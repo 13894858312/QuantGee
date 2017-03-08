@@ -1,5 +1,7 @@
 package logic.tools;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by Mark.W on 2017/3/6.
  */
@@ -14,7 +16,10 @@ public class MathHelper {
             sum += Math.pow(data[i]-average, 2);
         }
 
-        return sum/data.length;
+        double temp = sum/data.length;
+
+        DecimalFormat df = new DecimalFormat("#.00");
+        return Double.parseDouble(df.format(temp));
     }
 
     public static double average(double[] data) {
@@ -24,7 +29,11 @@ public class MathHelper {
             sum += data[i];
         }
 
-        return sum/data.length;
+
+        double temp = sum/data.length;
+
+        DecimalFormat df = new DecimalFormat("#.00");
+        return Double.parseDouble(df.format(temp));
     }
 
 }
