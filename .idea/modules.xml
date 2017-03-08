@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GuantGee.iml" filepath="$PROJECT_DIR$/GuantGee.iml" />
+      <module fileurl="file://$PROJECT_DIR$/QuantGee.iml" filepath="$PROJECT_DIR$/QuantGee.iml" />
     </modules>
   </component>
 </project>
