@@ -21,6 +21,8 @@ public class DateHelperTest {
         assertEquals(3, DateHelper.calculateDaysBetween(date1, date2));
     }
 
+
+
     @Test
     public void nextTradeDay() throws Exception {
         String dateString = "3/4/17";
