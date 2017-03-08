@@ -22,7 +22,7 @@ public class DateHelper {
         start = startDate.getTime();
         end = endDate.getTime();
 
-        int res = (int) ((start - end) / (1000 * 60 * 60 * 24));
+        int res = (int) ((end - start) / (1000 * 60 * 60 * 24));
 
         return res;
     }
@@ -37,6 +37,10 @@ public class DateHelper {
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         c.add(Calendar.DAY_OF_MONTH, 1);
+
+        while(c.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            c.add(Calendar.DAY_OF_MONTH, 1);
+        }
 
         return c.getTime();
     }
