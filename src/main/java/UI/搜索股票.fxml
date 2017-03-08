@@ -6,10 +6,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="768.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="718.0" prefWidth="774.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="718.0" prefWidth="774.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="日K线图">
                <content>
@@ -35,9 +34,9 @@
       </TabPane>
       <Pane fx:id="title" prefHeight="50.0" prefWidth="774.0">
          <children>
-            <Label layoutX="600.0" layoutY="15.0" text="Label" />
+            <Label fx:id="num" layoutX="600.0" layoutY="15.0" text="error" />
             <Label layoutX="500.0" layoutY="15.0" text="股票代码:" />
-            <Label layoutX="400.0" layoutY="15.0" text="Label" />
+            <Label fx:id="name" layoutX="400.0" layoutY="15.0" text="error" />
             <Label layoutX="300.0" layoutY="15.0" text="股票名称:" />
          </children>
       </Pane>
