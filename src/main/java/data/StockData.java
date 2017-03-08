@@ -108,6 +108,7 @@ public class StockData implements StockDataDao{
 				}
 				
 			}
+			System.out.println("test eclipse");
 			return stockPOS;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
