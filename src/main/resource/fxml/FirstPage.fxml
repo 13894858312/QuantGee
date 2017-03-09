@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="firstPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url(&quot;/pictures/登陆页.png&quot;);" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.FirstPageController">
+   <children>
+      <Button fx:id="go" layoutX="450.0" layoutY="250.0" mnemonicParsing="false" onAction="#goToMain" styleClass="firstPage_Button" text="点击进入" />
+      <Button fx:id="leave" layoutX="450.0" layoutY="300.0" mnemonicParsing="false" onAction="#close" styleClass="firstPage_Button" text="退出" />
+   </children>
+</Pane>
