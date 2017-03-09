@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 
 /**
  * Created by wangxue on 2017/3/9.
+ * 主要负责管理stage
  */
 public class MainController {
 

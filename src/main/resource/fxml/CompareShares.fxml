@@ -4,12 +4,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="768.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane fx:id="left" layoutX="10.0" layoutY="15.0">
+      <AnchorPane fx:id="left" layoutX="5.0" layoutY="15.0">
          <children>
             <Label layoutX="20.0" text="股票名称:" />
-            <TabPane layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="370.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="360.0" tabClosingPolicy="UNAVAILABLE">
                <tabs>
                   <Tab text="日K线图">
                      <content>
@@ -43,13 +43,13 @@
             <Label layoutX="190.0" text="股票代码:" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="right" layoutX="395.0" layoutY="15.0">
+      <AnchorPane fx:id="right" layoutX="385.0" layoutY="15.0">
          <children>
             <Label layoutX="40.0" text="股票名称:" />
             <Label fx:id="name_right" layoutX="130.0" text="error" />
             <Label layoutX="210.0" text="股票代码:" />
             <Label fx:id="num_right" layoutX="290.0" text="error" />
-            <TabPane layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="370.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="360.0" tabClosingPolicy="UNAVAILABLE">
                <tabs>
                   <Tab text="日K线图">
                      <content>
@@ -80,12 +80,12 @@
             </TabPane>
          </children>
       </AnchorPane>
-      <Separator layoutX="386.0" layoutY="20.0" orientation="VERTICAL" prefHeight="400.0" />
-      <AnchorPane fx:id="down" layoutX="10.0" layoutY="440.0" prefHeight="300.0" prefWidth="750.0">
+      <Separator layoutX="372.0" layoutY="20.0" orientation="VERTICAL" prefHeight="400.0" />
+      <AnchorPane fx:id="down" layoutX="10.0" layoutY="430.0" prefHeight="300.0" prefWidth="730.0">
          <children>
-            <Pane fx:id="first" layoutX="50.0" prefHeight="300.0" prefWidth="200.0" />
-            <Pane fx:id="second" layoutX="280.0" prefHeight="300.0" prefWidth="200.0" />
-            <Pane fx:id="third" layoutX="510.0" prefHeight="300.0" prefWidth="200.0" />
+            <Pane fx:id="first" layoutX="50.0" layoutY="10.0" prefHeight="280.0" prefWidth="200.0" />
+            <Pane fx:id="second" layoutX="280.0" layoutY="10.0" prefHeight="280.0" prefWidth="200.0" />
+            <Pane fx:id="third" layoutX="510.0" layoutY="10.0" prefHeight="280.0" prefWidth="200.0" />
          </children>
       </AnchorPane>
    </children>
