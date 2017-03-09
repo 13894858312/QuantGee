@@ -1,0 +1,28 @@
+.button{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-radius: 0;
+    -fx-padding: 0;
+    -fx-border-insets: 0;
+    -fx-content-display: center;
+}
+
+.firstPage_Button{
+    -fx-background-color: rgba(39,44,133,0.64);
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-opacity: 0.7;
+    -fx-text-alignment: center;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-pref-width: 100;
+    -fx-pref-height: 40;
+}
+
+.firstPage_Button:hover{
+    -fx-opacity: 0.5;
+}
+
+.firstPage_Button:pressed{
+    -fx-opacity: 0.2;
+}
