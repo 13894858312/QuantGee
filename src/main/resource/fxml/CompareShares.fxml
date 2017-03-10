@@ -162,7 +162,7 @@
                            </children></AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="对数收益率">
+                  <Tab text="收益率">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
