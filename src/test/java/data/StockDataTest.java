@@ -12,12 +12,16 @@ public class StockDataTest {
 
 	@Test
 	public void testGetStockPO() {
-		fail("Not yet implemented");
+		StockData stockData = new StockData();
+//		StockPO po = stockData.getStockPO("4/29/14", "1");
+		StockPO po2 = stockData.getStockPO("10/10/11", "2418");
+//		assertEquals("data:4/29/14	openPrice:11.02	maxValue:11.25	minValue:10.92	closePrice:11.16	volume:41362100	ADJ:11.16	stockCode:1	stockName:深发展Ａ	stockMarket:SZ", po.toString());
+		assertEquals("data:10/10/11	openPrice:8.72	maxValue:8.75	minValue:8.6	closePrice:8.63	volume:284600	ADJ:8.47	stockCode:2418	stockName:康盛股份	stockMarket:SZ", po2.toString());
 	}
 
 	@Test
 	public void testGetStockPOsByDate() {
-		fail("Not yet implemented");
+		StockData stockData = new StockData();	
 	}
 
 	@Test

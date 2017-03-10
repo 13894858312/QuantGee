@@ -38,13 +38,20 @@ public class StockPO {
         this.maxValue = maxValue;
         this.minValue = minValue;
         this.closePrice = closePrice;
-        this.ADJ = ADJ;
         this.volume = volume;
+        this.ADJ = ADJ;
         this.stockCode = stockCode;
         this.stockName = stockName;
         this.stockMarket = stockMarket;
     }
 
+    @Override
+    public String toString() {
+    	return "data:"+date+"	openPrice:"+openPrice+"	maxValue:"+maxValue+"	minValue:"+minValue+
+    			"	closePrice:"+closePrice+"	volume:"+volume+"	ADJ:"+ADJ+"	stockCode:"+stockCode+
+    			"	stockName:"+stockName+"	stockMarket:"+stockMarket;
+    }
+    
     public String getDate() {
         return date;
     }
