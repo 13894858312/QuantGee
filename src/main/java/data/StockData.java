@@ -11,7 +11,7 @@ import po.StockPO;
  */
 public class StockData implements StockDataDao{
 	public StockPO getStockPO(String date, String stockCode) {
-		File file = new File("D:/Study/SE/软工III/量化交易/股票历史数据ALL(1).txt");
+		File file = new File("D:/Study/SE/软工III/量化交易/股票历史数据ALL.csv");
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
@@ -37,7 +37,7 @@ public class StockData implements StockDataDao{
 	
 	public ArrayList<StockPO> getStockPOsByDate(String date){
 		ArrayList<StockPO> stockPOS = new ArrayList<StockPO>();
-		File file = new File("D:/Study/SE/软工III/量化交易/股票历史数据ALL(1).txt");
+		File file = new File("D:/Study/SE/软工III/量化交易/股票历史数据ALL.csv");
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
@@ -63,7 +63,7 @@ public class StockData implements StockDataDao{
 	
 	public ArrayList<StockPO> getStockPOsByTimeInterval(String startdate, String endDate, String stockCode) {
 		ArrayList<StockPO> stockPOS = new ArrayList<StockPO>();
-		File file = new File("D:/Study/SE/软工III/量化交易/股票历史数据ALL(1).txt");
+		File file = new File("D:/Study/SE/软工III/量化交易/股票历史数据ALL.csv");
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
@@ -83,7 +83,7 @@ public class StockData implements StockDataDao{
 						isFound = true;
 					}
 					if (inTimeRange) {
-						if (strings[1].equals(startdate)) {
+						if (strings[1].equals(endDate)) {
 							inTimeRange = false;
 						}
 						StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
@@ -92,7 +92,7 @@ public class StockData implements StockDataDao{
 								Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
 						stockPOS.add(po);
 					}else {
-						if (strings[1].equals(endDate)) {
+						if (strings[1].equals(startdate)) {
 							inTimeRange = true;
 							StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
 									Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
@@ -108,7 +108,6 @@ public class StockData implements StockDataDao{
 				}
 				
 			}
-			System.out.println("test eclipse");
 			return stockPOS;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
