@@ -7,7 +7,7 @@ import java.text.DecimalFormat;
  */
 public class MathHelper {
 
-    public static double calculateVariance(double[] data) {
+    public static double sampleVariance(double[] data) {
         double average = MathHelper.average(data);
 
         double sum = 0;
@@ -16,10 +16,8 @@ public class MathHelper {
             sum += Math.pow(data[i]-average, 2);
         }
 
-        double temp = sum/data.length;
-
-        DecimalFormat df = new DecimalFormat("#.00");
-        return Double.parseDouble(df.format(temp));
+        double temp = sum/data.length-1;
+        return MathHelper.formatData(temp);
     }
 
     public static double average(double[] data) {
@@ -32,8 +30,11 @@ public class MathHelper {
 
         double temp = sum/data.length;
 
-        DecimalFormat df = new DecimalFormat("#.00");
-        return Double.parseDouble(df.format(temp));
+        return MathHelper.formatData(temp);
     }
 
+    public static double formatData(double d) {
+        DecimalFormat df = new DecimalFormat("#.00");
+        return Double.parseDouble(df.format(d));
+    }
 }
