@@ -5,6 +5,7 @@ import dataDao.StockDataDao;
 import logic.tools.DateHelper;
 import logic.tools.MathHelper;
 import logicService.DataCalculationService;
+import mock.MockStockData;
 import po.StockPO;
 import vo.*;
 
@@ -19,7 +20,7 @@ public class DataCalculation implements DataCalculationService {
     private StockDataDao stockDataDao;
 
     public DataCalculation() {
-        this.stockDataDao = new StockData();
+        this.stockDataDao = new MockStockData();
     }
 
     public StockVO getStockInfo(String stockCode, Date startDate, Date endDate) {
@@ -54,7 +55,7 @@ public class DataCalculation implements DataCalculationService {
             double inOrDecreaseRate = (stockPOs.get(i).getClosePrice() - stockPOs.get(i - 1).getClosePrice()) / stockPOs.get(i - 1).getClosePrice();
             double logarithmYield = stockPOs.get(i).getClosePrice() / stockPOs.get(i - 1).getClosePrice();
 
-            stockDailyInfoVOs.add(new StockDailyInfoVO(date, inOrDecreaseRate, stockPOs.get(0).getClosePrice(), logarithmYield));
+            stockDailyInfoVOs.add(new StockDailyInfoVO(date, inOrDecreaseRate, stockPOs.get(i).getClosePrice(), logarithmYield));
         }
 
         //计算对数收益率方差
@@ -79,13 +80,13 @@ public class DataCalculation implements DataCalculationService {
      * 系统可以显示用户查询日期或者某一日期的股票交易市场行情相关数据。
      * 相关数据应当包括但不局限于:当日总交易量、涨停股票数、跌停股票数、涨幅超过5%的股票数，跌幅超过5%的股票数，
      * 开盘‐收盘大于5%*上一个交易日收盘价的股票个数、开盘‐收盘小于‐5%*上一个交易日收盘价的股票个数。
-     *
      * @param date 日期
      * @return
      */
     public MarketInfoVO getMarketInfo(Date date) {
 
         Date formerTradeDay = DateHelper.formerTradeDay(date);
+
         ArrayList<StockPO> yesterdayStockMarket = this.stockDataDao.getStockPOsByDate(DateHelper.dateTransToString(formerTradeDay));
 
         ArrayList<StockPO> todayStockMarket = this.stockDataDao.getStockPOsByDate(DateHelper.dateTransToString(date));
@@ -99,8 +100,11 @@ public class DataCalculation implements DataCalculationService {
         for (int i = 0; i < todayStockMarket.size(); ++i, ++j) {
             allVolume += todayStockMarket.get(i).getVolume();
 
-            while (yesterdayStockMarket.get(j).getStockCode().equals(todayStockMarket.get(i).getStockCode())) {
+            while (!yesterdayStockMarket.get(j).getStockCode().equals(todayStockMarket.get(i).getStockCode())) {
                 j++;
+                if (j >= yesterdayStockMarket.size()) {
+                    break;
+                }
             }
             if (j >= yesterdayStockMarket.size()) {
                 break;
