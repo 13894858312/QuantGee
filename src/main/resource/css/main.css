@@ -67,16 +67,42 @@
     -fx-opacity: 0.6;
 }
 
+.pane{
+    -fx-border-color: black;
+}
+
 .tab{
     -fx-background-color: rgba(39,44,133,0.64);
     -fx-opacity: 0.8;
     -fx-text-alignment: center;
     -fx-font-size: 12px;
-    -fx-text-fill: #ffffff;
-    -fx-pref-width: 70;
+    -fx-text-fill: #000000;
+    -fx-pref-width: 60;
     -fx-pref-height: 30;
 }
 
-.tab:pressed{
+.tab :pressed{
+    -fx-background-color:#ffffff;
+}
+
+.tab:focused{
     -fx-opacity: 1;
+}
+
+.label{
+    -fx-text-fill: rgba(18,4,68,0.99);
+    -fx-font-size: 14px;
+    -fx-text-alignment: center;
+}
+
+.text-field{
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-background-color: white;
+}
+
+.datePicker{
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-background-color: white;
 }

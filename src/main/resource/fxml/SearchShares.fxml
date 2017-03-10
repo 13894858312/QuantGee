@@ -12,22 +12,62 @@
         <tabs>
           <Tab fx:id="kLine" onSelectionChanged="#showKLine" text="日K线图">
                <content>
-                  <AnchorPane fx:id="kLinePane" prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane fx:id="kLinePane" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <LineChart prefHeight="676.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </children></AnchorPane>
                </content>
           </Tab>
           <Tab fx:id="dayLine" onSelectionChanged="#showDayLine" text="日均线">
             <content>
-              <AnchorPane fx:id="dayLinePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane fx:id="dayLinePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AreaChart layoutX="-9.0" layoutY="53.0" prefHeight="670.0" prefWidth="687.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </AreaChart>
+                     </children></AnchorPane>
             </content>
           </Tab>
             <Tab fx:id="quarterLine" onSelectionChanged="#showQuaterLine" text="季均线">
               <content>
-                <AnchorPane fx:id="quarterLinePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane fx:id="quarterLinePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <LineChart layoutX="151.0" layoutY="81.0" prefHeight="670.0" prefWidth="687.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </children></AnchorPane>
               </content>
             </Tab>
             <Tab fx:id="yearLine" onSelectionChanged="#showYearLine" text="年均线">
               <content>
-                <AnchorPane fx:id="yearLinePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane fx:id="yearLinePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <LineChart layoutX="128.0" layoutY="135.0" prefHeight="670.0" prefWidth="687.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>
