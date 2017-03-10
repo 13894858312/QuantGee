@@ -106,3 +106,7 @@
     -fx-border-radius: 0;
     -fx-background-color: white;
 }
+
+.RootPane{
+    -fx-background-color: rgba(45,50,65,0.99);
+}

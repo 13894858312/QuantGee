@@ -6,6 +6,5 @@ package view.controller;
 public enum RightType {
     MARKETINFO,
     SEARCHSHARES,
-    COMPARESHARES,
-    NONE
+    COMPARESHARES
 }

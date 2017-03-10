@@ -18,7 +18,7 @@ public class StockVO {
     /**
      * @param stockCode 股票代码
      * @param stockName 股票名称
-     * @param stockMarket   市场名称
+     * @param stockMarket 市场名称
      * @param minValue 最低值
      * @param maxValue 最高值
      * @param logarithmYieldVariance 对数收益率方差

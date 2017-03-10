@@ -1,6 +1,5 @@
 package logic.calculation;
 
-import data.StockData;
 import dataDao.StockDataDao;
 import logic.tools.DateHelper;
 import logic.tools.MathHelper;
@@ -18,12 +17,14 @@ import java.util.Date;
 public class DataCalculation implements DataCalculationService {
 
     private StockDataDao stockDataDao;
+    private DateHelper dateHelper;
 
     public DataCalculation() {
+        this.dateHelper = DateHelper.getInstance();
         this.stockDataDao = new MockStockData();
     }
 
-    public StockVO getStockInfo(String stockCode, Date startDate, Date endDate) {
+    public StockVO getStockInfoByCode(String stockCode, Date startDate, Date endDate) {
 
         ArrayList<StockPO> stockPOs = this.stockDataDao.getStockPOsByTimeInterval(startDate.toString(),
                 endDate.toString(), stockCode);
@@ -47,26 +48,26 @@ public class DataCalculation implements DataCalculationService {
 
         //计算涨幅/跌幅、每天的收盘价和对数收益率
         ArrayList<StockDailyInfoVO> stockDailyInfoVOs = new ArrayList<StockDailyInfoVO>();
-        stockDailyInfoVOs.add(new StockDailyInfoVO(DateHelper.stringTransToDate(stockPOs.get(0).getDate()),
+        stockDailyInfoVOs.add(new StockDailyInfoVO(dateHelper.stringTransToDate(stockPOs.get(0).getDate()),
                 0, stockPOs.get(0).getClosePrice(), 0));
 
         for (int i = 1; i < stockPOs.size(); ++i) {
-            Date date = DateHelper.stringTransToDate(stockPOs.get(i).getDate());
-            double inOrDecreaseRate = (stockPOs.get(i).getClosePrice() - stockPOs.get(i - 1).getClosePrice()) / stockPOs.get(i - 1).getClosePrice();
-            double logarithmYield = stockPOs.get(i).getClosePrice() / stockPOs.get(i - 1).getClosePrice();
+            Date date = dateHelper.stringTransToDate(stockPOs.get(i).getDate());
+            double inOrDecreaseRate = (stockPOs.get(i).getADJ() - stockPOs.get(i - 1).getADJ()) / stockPOs.get(i - 1).getADJ();
+            double logarithmYield = stockPOs.get(i).getADJ() / stockPOs.get(i - 1).getADJ();
 
             stockDailyInfoVOs.add(new StockDailyInfoVO(date, inOrDecreaseRate, stockPOs.get(i).getClosePrice(), logarithmYield));
         }
 
+
         //计算对数收益率方差
         double logarithmYieldVariance = 0;
-
         double[] temp = new double[stockDailyInfoVOs.size()];
         for (int i = 0; i < stockDailyInfoVOs.size(); ++i) {
             temp[i] = stockDailyInfoVOs.get(i).logarithmYield;
         }
 
-        logarithmYieldVariance = MathHelper.calculateVariance(temp);
+        logarithmYieldVariance = MathHelper.sampleVariance(temp);
 
 
         StockVO stockVO = new StockVO(stockPOs.get(0).getStockCode(), stockPOs.get(0).getStockName(),
@@ -76,6 +77,7 @@ public class DataCalculation implements DataCalculationService {
         return stockVO;
     }
 
+
     /**
      * 系统可以显示用户查询日期或者某一日期的股票交易市场行情相关数据。
      * 相关数据应当包括但不局限于:当日总交易量、涨停股票数、跌停股票数、涨幅超过5%的股票数，跌幅超过5%的股票数，
@@ -84,12 +86,26 @@ public class DataCalculation implements DataCalculationService {
      * @return
      */
     public MarketInfoVO getMarketInfo(Date date) {
+        ArrayList<StockPO> todayStockMarket = this.stockDataDao.getStockPOsByDate(dateHelper.dateTransToString(date));
 
-        Date formerTradeDay = DateHelper.formerTradeDay(date);
+        if(todayStockMarket == null) {
+            return null;
+        }
 
-        ArrayList<StockPO> yesterdayStockMarket = this.stockDataDao.getStockPOsByDate(DateHelper.dateTransToString(formerTradeDay));
+        Date formerTradeDay = dateHelper.formerTradeDay(date);
+        ArrayList<StockPO> yesterdayStockMarket = this.stockDataDao.getStockPOsByDate(dateHelper.dateTransToString(formerTradeDay));
 
-        ArrayList<StockPO> todayStockMarket = this.stockDataDao.getStockPOsByDate(DateHelper.dateTransToString(date));
+        //寻找上一个交易日
+        while(yesterdayStockMarket == null) {
+            Date temp = dateHelper.formerTradeDay(date);
+
+            //超过时间范围
+            if(dateHelper.dateOutOfRange(temp)) {
+                return null;
+            }
+
+            yesterdayStockMarket = this.stockDataDao.getStockPOsByDate(dateHelper.dateTransToString(temp));
+        }
 
         //计算当日总交易量
         int j = 0;          //yesterdayStockMarket遍历的下标
@@ -136,6 +152,17 @@ public class DataCalculation implements DataCalculationService {
         MarketInfoVO marketInfoVO = new MarketInfoVO(date, allVolume, rateNums, greaterThanFiveNum, lessThanFiveNum);
 
         return marketInfoVO;
+    }
+
+    public StockVO getStockInfoByName(String stockName, Date startDate, Date endDate) {
+
+        String code = this.stockDataDao.getStockCodeByName(stockName);
+
+        if(code == null || code.equals("")) {
+            return null;
+        }
+
+        return this.getStockInfoByCode(code, startDate, endDate);
     }
 
 }
