@@ -20,8 +20,8 @@
                               <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.82191467285156" minWidth="10.0" prefWidth="101.82191467285156" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="98.17808532714844" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.82191467285156" minWidth="10.0" prefWidth="80.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.0" minWidth="10.0" prefWidth="123.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -43,8 +43,8 @@
                      <children>
                         <GridPane alignment="TOP_CENTER" layoutX="20.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.82191467285156" minWidth="10.0" prefWidth="101.82191467285156" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="98.17808532714844" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.82191467285156" minWidth="10.0" prefWidth="80.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="120.0" />
                           </columnConstraints>
                           <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -83,8 +83,8 @@
                               <TextField fx:id="num_2_0" text="代码/名称" GridPane.columnIndex="1" />
                            </children>
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.82191467285156" minWidth="10.0" prefWidth="101.82191467285156" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="98.17808532714844" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.82191467285156" minWidth="10.0" prefWidth="80.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="127.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
