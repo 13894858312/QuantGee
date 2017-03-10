@@ -8,6 +8,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 
 /**
@@ -98,6 +101,32 @@ public class MainPageController{
         } catch (IOException e){
             e.printStackTrace();
         }
+
+    }
+
+    private void noResult(){
+
+        Stage dialog = new Stage();
+
+        try{
+
+            FXMLLoader rootLoader = new FXMLLoader();
+            rootLoader.setLocation(getClass().getResource("/fxml/Dialog.fxml"));
+            Pane root = rootLoader.load();
+            dialog.setScene(new Scene(root));
+            DialogController dialogController = rootLoader.getController();
+            dialogController.setText("未找到数据");
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        dialog.centerOnScreen();
+        dialog.initStyle(StageStyle.UNDECORATED);
+        dialog.setResizable(false);
+        dialog.show();
+
+        return;
 
     }
 

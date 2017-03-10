@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SearchSharesController">
    <children>
       <TabPane layoutX="15.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="720.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -25,7 +25,7 @@
                 <AnchorPane fx:id="quarterLinePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
-            <Tab fx:id="yearLine" onSelectionChanged="#yearLine" text="年均线">
+            <Tab fx:id="yearLine" onSelectionChanged="#showYearLine" text="年均线">
               <content>
                 <AnchorPane fx:id="yearLinePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>

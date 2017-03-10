@@ -26,3 +26,57 @@
 .firstPage_Button:pressed{
     -fx-opacity: 0.2;
 }
+
+#closeButton{
+    -fx-background-color: rgba(39,44,133,0.64);
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-opacity: 1;
+    -fx-text-alignment: center;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-pref-width: 200;
+    -fx-pref-height: 40;
+}
+
+#closeButton:hover{
+    -fx-opacity: 0.8;
+}
+
+#closeButton:pressed{
+    -fx-opacity: 0.6;
+}
+
+.SearchButton{
+    -fx-background-color: rgba(39,44,133,0.64);
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-opacity: 1;
+    -fx-text-alignment: center;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-pref-width: 100;
+    -fx-pref-height: 30;
+}
+
+.SearchButton:hover{
+    -fx-opacity: 0.8;
+}
+
+.SearchButton:pressed{
+    -fx-opacity: 0.6;
+}
+
+.tab{
+    -fx-background-color: rgba(39,44,133,0.64);
+    -fx-opacity: 0.8;
+    -fx-text-alignment: center;
+    -fx-font-size: 12px;
+    -fx-text-fill: #ffffff;
+    -fx-pref-width: 70;
+    -fx-pref-height: 30;
+}
+
+.tab:pressed{
+    -fx-opacity: 1;
+}
