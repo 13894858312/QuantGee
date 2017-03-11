@@ -6,15 +6,15 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SearchSharesController">
+<AnchorPane prefHeight="750.0" prefWidth="750.0" styleClass="RootPane" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SearchSharesController">
    <children>
       <TabPane layoutX="15.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="720.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab fx:id="kLine" onSelectionChanged="#showKLine" text="日K线图">
+          <Tab text="日K线图">
                <content>
                   <AnchorPane fx:id="kLinePane" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <LineChart prefHeight="676.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <LineChart fx:id="kLine" prefHeight="676.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
@@ -25,26 +25,26 @@
                      </children></AnchorPane>
                </content>
           </Tab>
-          <Tab fx:id="dayLine" onSelectionChanged="#showDayLine" text="日均线">
+          <Tab text="日均线">
             <content>
               <AnchorPane fx:id="dayLinePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <AreaChart layoutX="-9.0" layoutY="53.0" prefHeight="670.0" prefWidth="687.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <LineChart layoutX="77.0" layoutY="75.0" prefHeight="670.0" prefWidth="684.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis side="LEFT" />
                           </yAxis>
-                        </AreaChart>
+                        </LineChart>
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="quarterLine" onSelectionChanged="#showQuaterLine" text="季均线">
+            <Tab text="季均线">
               <content>
                 <AnchorPane fx:id="quarterLinePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <LineChart layoutX="151.0" layoutY="81.0" prefHeight="670.0" prefWidth="687.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <LineChart fx:id="quarterLine" layoutX="151.0" layoutY="81.0" prefHeight="670.0" prefWidth="687.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
@@ -55,11 +55,11 @@
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="yearLine" onSelectionChanged="#showYearLine" text="年均线">
+            <Tab text="年均线">
               <content>
                 <AnchorPane fx:id="yearLinePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <LineChart layoutX="128.0" layoutY="135.0" prefHeight="670.0" prefWidth="687.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <LineChart fx:id="yearLine" layoutX="128.0" layoutY="135.0" prefHeight="670.0" prefWidth="687.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>

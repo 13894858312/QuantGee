@@ -1,20 +1,25 @@
 package vo;
 
+
+import logic.tools.AverageLineType;
+
+import java.util.Date;
+
 /**
  * Created by Mark.W on 2017/3/5.
  */
 public class AverageLineVO {
-
-    public String averageLineX;
-    public double averageLineY;
+    public AverageLineType averageLineType;
+    public Date date;
+    public double averageValue;
 
     /**
-     * @param averageLineX 横坐标（时间）
-     * @param averageLineY 纵坐标（均值）
+     * @param averageLineType 类型
+     * @param date 时间
+     * @param averageValue 对应平均值
      */
-    public AverageLineVO(String averageLineX, double averageLineY) {
-        this.averageLineX = averageLineX;
-        this.averageLineY = averageLineY;
+    public AverageLineVO(AverageLineType averageLineType, Date date, double averageValue) {
+        this.date = date;
+        this.averageValue = averageValue;
     }
-
 }

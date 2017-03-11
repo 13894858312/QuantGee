@@ -19,7 +19,7 @@ public class MathHelperTest {
         data[4] = 2.1;
         data[5] = 1.9;
 
-        assertEquals(0.02, MathHelper.calculateVariance(data), 0);
+        assertEquals(0.02, MathHelper.sampleVariance(data), 0);
     }
 
     @Test
@@ -32,7 +32,7 @@ public class MathHelperTest {
         data[4] = -1;
         data[5] = 2;
 
-        assertEquals(3.33, MathHelper.calculateVariance(data), 0);
+        assertEquals(3.33, MathHelper.sampleVariance(data), 0);
     }
 
 

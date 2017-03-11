@@ -11,7 +11,18 @@ import java.util.Date;
  */
 public class DateHelper {
 
-    public static String dateTransToString(Date date) {
+    private static DateHelper dateHelper;
+
+    public static DateHelper getInstance() {
+        if(dateHelper == null) {
+            dateHelper = new DateHelper();
+        }
+
+        return dateHelper;
+    }
+
+
+    public String dateTransToString(Date date) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
 
         return simpleDateFormat.format(date);
@@ -33,7 +44,7 @@ public class DateHelper {
      * @param date 日期
      * @return
      */
-    public static Date nextTradeDay(Date date) {
+    public  Date nextTradeDay(Date date) {
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         c.add(Calendar.DAY_OF_MONTH, 1);
@@ -50,7 +61,7 @@ public class DateHelper {
      * @param date 日期
      * @return
      */
-    public static Date formerTradeDay(Date date) {
+    public Date formerTradeDay(Date date) {
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         c.add(Calendar.DAY_OF_MONTH, -1);
@@ -62,7 +73,7 @@ public class DateHelper {
         return c.getTime();
     }
 
-    public static Date stringTransToDate(String dateformat) {
+    public Date stringTransToDate(String dateformat) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
 
         Date date = null;
@@ -73,6 +84,23 @@ public class DateHelper {
         }
 
         return date;
+    }
+
+    public  boolean dateOutOfRange(Date date) {
+
+        Date start = this.stringTransToDate("2/1/05");
+        Date end = this.stringTransToDate("4/29/14");
+
+        long s = start.getTime();
+        long e = end.getTime();
+
+        long d = date.getTime();
+
+        if(s-d>=0 || e-d<=0) {
+            return true;
+        }
+
+        return false;
     }
 
 }

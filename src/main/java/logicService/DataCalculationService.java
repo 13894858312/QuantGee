@@ -14,7 +14,14 @@ public interface DataCalculationService {
      * @param stockCode 股票编号
      * @return  StockVO
      */
-    public StockVO getStockInfo(String stockCode, Date startDate, Date endDate);
+    public StockVO getStockInfoByCode(String stockCode, Date startDate, Date endDate);
+
+    /**
+     * 根据股票名称获取股票信息
+     * @param stockName 股票编号
+     * @return  StockVO
+     */
+    public StockVO getStockInfoByName(String stockName, Date startDate, Date endDate);
 
     /**
      * 根据时间获取股票市场行情数据
