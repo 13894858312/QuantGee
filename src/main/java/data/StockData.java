@@ -11,7 +11,9 @@ import po.StockPO;
  */
 public class StockData implements StockDataDao{
 	public StockPO getStockPO(String date, String stockCode) {
-		File file = new File("/src/股票历史数据ALL.csv");
+		String path = System.getProperty("user.dir");
+		path.replace("\\\\", "/");
+		File file = new File(path+"/src/股票历史数据ALL.csv");
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
@@ -37,7 +39,9 @@ public class StockData implements StockDataDao{
 	
 	public ArrayList<StockPO> getStockPOsByDate(String date){
 		ArrayList<StockPO> stockPOS = new ArrayList<StockPO>();
-		File file = new File("/src/股票历史数据ALL.csv");
+		String path = System.getProperty("user.dir");
+		path.replace("\\\\", "/");
+		File file = new File(path+"/src/股票历史数据ALL.csv");
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
@@ -63,7 +67,9 @@ public class StockData implements StockDataDao{
 	
 	public ArrayList<StockPO> getStockPOsByTimeInterval(String startdate, String endDate, String stockCode) {
 		ArrayList<StockPO> stockPOS = new ArrayList<StockPO>();
-		File file = new File("/src/股票历史数据ALL.csv");
+		String path = System.getProperty("user.dir");
+		path.replace("\\\\", "/");
+		File file = new File(path+"/src/股票历史数据ALL.csv");
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
