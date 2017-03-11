@@ -42,5 +42,10 @@ public class StockDataTest {
 		}
 	}
 	
-
+	@Test
+	public void testGetStockCodeByName(){
+		StockData stockData = new StockData();
+		String stockCode = stockData.getStockCodeByName("莱美药业");
+		assertEquals("300006", stockCode);
+	}
 }

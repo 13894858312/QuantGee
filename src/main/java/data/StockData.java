@@ -124,7 +124,24 @@ public class StockData implements StockDataDao{
 	}
 
 	public String getStockCodeByName(String stockName) {
-		// TODO Auto-generated method stub
+		String path = System.getProperty("user.dir");
+		path.replace("\\\\", "/");
+		File file = new File(path+"/src/股票历史数据ALL.csv");
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line = "";
+			line = br.readLine();
+			while((line = br.readLine()) != null) {
+				String[] strings = line.split("\\t");
+				if (strings[9].equals(stockName) ) {
+					return strings[8];
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 }
