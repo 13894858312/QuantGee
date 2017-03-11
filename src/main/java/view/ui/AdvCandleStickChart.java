@@ -181,7 +181,7 @@ public class AdvCandleStickChart extends Pane {
                         double candleWidth = -1;
                         if (getXAxis() instanceof CategoryAxis) {
                             CategoryAxis xa = (CategoryAxis) getXAxis();
-//                            candleWidth = xa.getDisplayPosition(xa.getTickUnit()) * 0.90; // use 90% width between ticks
+                            candleWidth = (xa.getCategorySpacing()); // use 90% width between ticks
                         }
                         // update candle
                         //K线图

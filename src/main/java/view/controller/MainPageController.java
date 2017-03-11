@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.swing.event.ListSelectionListener;
 import java.io.IOException;
 
 /**
@@ -35,6 +36,15 @@ public class MainPageController{
     @FXML private TextField num_1;
     @FXML private TextField num_2_0;
     @FXML private TextField num_2_1;
+
+    public static MainPageController mainPageController;
+
+    public static MainPageController getInstance(){
+        if (mainPageController == null){
+            mainPageController = new MainPageController();
+        }
+        return mainPageController;
+    }
 
     public void showLeftPane(){
 
@@ -129,6 +139,7 @@ public class MainPageController{
         return;
 
     }
+
 
     public String getStartTime(){
         if(String.valueOf(start_1).equals("")){
