@@ -122,4 +122,9 @@ public class StockData implements StockDataDao{
 		}
 		return null;	
 	}
+
+	public String getStockCodeByName(String stockName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
