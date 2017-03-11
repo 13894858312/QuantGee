@@ -23,7 +23,7 @@ public class DateHelper {
 
 
     public String dateTransToString(Date date) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm/dd/yy");
 
         return simpleDateFormat.format(date);
     }

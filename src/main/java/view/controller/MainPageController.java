@@ -130,4 +130,19 @@ public class MainPageController{
 
     }
 
+    public String getStartTime(){
+        if(String.valueOf(start_1).equals("")){
+            return null;
+        }else{
+            return String.valueOf(start_1);
+        }
+    }
+
+    public String getEndTime(){
+        if(String.valueOf(end_1).equals("")){
+            return null;
+        }else{
+            return String.valueOf(end_1);
+        }
+    }
 }

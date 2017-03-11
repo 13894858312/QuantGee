@@ -19,6 +19,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
+import logic.tools.DateHelper;
+import view.controller.SearchSharesController;
 import vo.KLineVO;
 
 import java.util.ArrayList;
@@ -28,14 +30,15 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/3/10.
  */
-public class AdvCandleStickChart extends Pane{
+public class AdvCandleStickChart extends Pane {
+    private SearchSharesController searchSharesController;
     // DAY, OPEN, CLOSE, HIGH, LOW, AVERAGE
-//    KLineVO vo1 = new KLineVO("one",25,20,32,16);
+//    KLineVO vo1 = new KLineVO(false,"one",25,20,32,16);
 //    KLineVO vo2 = new KLineVO("two",26,30,33,22);
-    ArrayList<KLineVO> KLineData = new ArrayList<KLineVO>();
+//    ArrayList<KLineVO> KLineData = new ArrayList<KLineVO>();
 //    KLineData.add(new KLineVO("one",25,20,32,16));
-    private static KLineVO[][] data = new KLineVO[][]{
-//            {"one", 25, 20, 32, 16, 20},
+//    private static double[][] data = new double[][]{
+//            {1, 25, 20, 32, 16, 20},
 //            {2, 26, 30, 33, 22, 25},
 //            {3, 30, 38, 40, 20, 32},
 //            {4, 24, 30, 34, 22, 30},
@@ -66,10 +69,10 @@ public class AdvCandleStickChart extends Pane{
 //            {29, 28, 18, 30, 12, 23},
 //            {30, 28, 18, 30, 12, 23.2},
 //            {31, 28, 18, 30, 12, 22}
-    };
+//    };
 
-    public AdvCandleStickChart() {
-
+    public AdvCandleStickChart(SearchSharesController searchSharesController) throws Exception{
+        this.searchSharesController = searchSharesController;
         // x-axis:
 
         final CategoryAxis xAxis = new CategoryAxis();
@@ -87,12 +90,13 @@ public class AdvCandleStickChart extends Pane{
         bc.setTitle("Custom Candle Stick Chart");
 
         // add starting data
+        ArrayList<KLineVO> kLineVOArrayList = searchSharesController.getKlineVoList();
         XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
-        for (int i = 0; i < data.length; i++) {
-//            double[] day = data[i];
-//            series.getData().add(
-//                    new XYChart.Data<String, Number>(day[0], day[1], new CandleStickExtraValues(day[2], day[3], day[4], day[5]))
-//            );
+        for (int i = 0; i < kLineVOArrayList.size(); i++) {
+            KLineVO day = kLineVOArrayList.get(i);
+            series.getData().add(
+                    new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(day.date), day.openPrice, new CandleStickExtraValues(day.closePrice, day.maxValue, day.minValue))
+            );
         }
         ObservableList<XYChart.Series<String, Number>> data = bc.getData();
         if (data == null) {
