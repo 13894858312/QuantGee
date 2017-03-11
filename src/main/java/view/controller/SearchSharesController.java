@@ -5,11 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Label;
 import logic.calculation.GraphCalculation;
+import logic.tools.DateHelper;
 import logicService.GraphCalculationService;
 import vo.KLineVO;
 import java.text.SimpleDateFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by wangxue on 2017/3/9.
@@ -36,9 +37,8 @@ public class SearchSharesController {
     public ArrayList<KLineVO> getKlineVoList() throws Exception{
         String startTime = mainPageController.getStartTime();
         String endTime = mainPageController.getEndTime();
-        SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yy");
-        ArrayList<KLineVO> kLineVOArrayList = graphCalculation.getKLineInfoByName(formatter.parse(startTime), formatter.parse(endTime), name.getText());
-
+        ArrayList<KLineVO> kLineVOArrayList = graphCalculation.getKLineInfoByName(DateHelper.getInstance().stringTransToDate(startTime),
+                DateHelper.getInstance().stringTransToDate(endTime), name.getText());
         return kLineVOArrayList;
     }
 }
