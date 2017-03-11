@@ -24,8 +24,8 @@ public class DataCalculationTest {
 
     @Test
     public void getStockInfo() throws Exception {
-        Date startDate = DateHelper.stringTransToDate("3/1/17");
-        Date endDate = DateHelper.stringTransToDate("3/14/17");
+        Date startDate = DateHelper.getInstance().stringTransToDate("3/1/17");
+        Date endDate = DateHelper.getInstance().stringTransToDate("3/14/17");
         StockVO stockVO = this.dataCalculation.getStockInfoByName("1", startDate, endDate);
 
         assertEquals("1", stockVO.stockCode);
@@ -45,9 +45,9 @@ public class DataCalculationTest {
     @Test
     public void getMarketInfo() throws Exception {
 
-        MarketInfoVO marketInfoVO = this.dataCalculation.getMarketInfo(DateHelper.stringTransToDate("3/2/17"));
+        MarketInfoVO marketInfoVO = this.dataCalculation.getMarketInfo(DateHelper.getInstance().stringTransToDate("3/2/17"));
 
-        assertEquals("3/2/17", DateHelper.dateTransToString(marketInfoVO.date));
+        assertEquals("3/2/17", DateHelper.getInstance().dateTransToString(marketInfoVO.date));
 
         assertEquals(3620, marketInfoVO.volume);
 
