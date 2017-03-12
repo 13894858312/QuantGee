@@ -3,6 +3,7 @@ package logic.calculation;
 import dataDao.StockDataDao;
 import logic.tools.AverageLineType;
 import logic.tools.DateHelper;
+import logic.tools.MathHelper;
 import logic.tools.SwitchAverageLineType;
 import logicService.GraphCalculationService;
 import mock.MockStockData;
@@ -21,7 +22,7 @@ public class GraphCalculation implements GraphCalculationService {
     private StockDataDao stockDataDao;
     private DateHelper dateHelper;
 
-    public GraphCalculation(StockDataDao stockDataDao) {
+    public GraphCalculation() {
         this.dateHelper = DateHelper.getInstance();
         this.stockDataDao = new MockStockData();
     }
@@ -34,6 +35,9 @@ public class GraphCalculation implements GraphCalculationService {
      * 在 K 线图中，从实体向下延伸的细线叫下影线。在阳线中，它是当日开盘价与 最低价之差;在阴线中，它是当日收盘价与最低价之差。
      */
     public ArrayList<KLineVO> getKLineInfoByCode(Date startDate, Date endDate, String stockCode) {
+
+        assert (stockCode != null && !stockCode.equals("") && startDate != null && endDate != null)
+                : "logic.calculation.GraphCalculation.getKLineInfoByCode参数异常";
 
         ArrayList<StockPO> stockPOS = this.stockDataDao.getStockPOsByTimeInterval(dateHelper.dateTransToString(startDate),
                 dateHelper.dateTransToString(endDate), stockCode);
@@ -52,6 +56,7 @@ public class GraphCalculation implements GraphCalculationService {
             double upper = 0;
             double lower = 0;
 
+            //如果开盘价低于收盘价 阳线
             if(po.getOpenPrice() < po.getClosePrice()) {
                 positive = true;
             }
@@ -66,9 +71,8 @@ public class GraphCalculation implements GraphCalculationService {
                 lower = po.getClosePrice() - po.getMinValue();
             }
 
-            result.add(new KLineVO(positive, date, upper, lower, po.getMaxValue(),
-                    po.getMinValue(), po.getOpenPrice(), po.getClosePrice()));
-
+            result.add(new KLineVO(po.getStockCode(), po.getStockName(), positive, date, upper, lower,
+                    po.getMaxValue(), po.getMinValue(), po.getOpenPrice(), po.getClosePrice()));
         }
 
         return result;
@@ -94,15 +98,18 @@ public class GraphCalculation implements GraphCalculationService {
      */
     public ArrayList<AverageLineVO> getAverageLineInfoByCode(Date startDate, Date endDate, String stockCode, AverageLineType averageLineType) {
 
-        int dayNums = SwitchAverageLineType.getDayInterval(averageLineType);
+        assert (stockCode != null && !stockCode.equals("") && startDate != null && endDate != null)
+                : "logic.calculation.GraphCalculation.getAverageLineInfoByCode参数异常";
 
+        //获取均线图的时间间隔
+        int dayNums = SwitchAverageLineType.getDayInterval(averageLineType);
         if(dayNums > dateHelper.calculateDaysBetween(startDate, endDate)) {
             return null;
         }
 
+        //如果总天数小于均线图的时间间隔 出错
         ArrayList<StockPO> stockPOS = this.stockDataDao.getStockPOsByTimeInterval(dateHelper.dateTransToString(startDate),
                 dateHelper.dateTransToString(endDate), stockCode);
-
         if(dayNums > stockPOS.size()) {
             return null;
         }
@@ -113,19 +120,23 @@ public class GraphCalculation implements GraphCalculationService {
             Date date = dateHelper.stringTransToDate(stockPOS.get(i).getDate());
 
             double all = 0;
-            for(int j=i-dayNums+1; j<i+1; ++i) {
+            for(int j=i-dayNums+1; j<i+1; ++j) {
                 all += stockPOS.get(j).getClosePrice();
             }
 
-            double average = all/dayNums;
+            double average = MathHelper.formatData(all/dayNums);
 
-            result.add(new AverageLineVO(averageLineType, date, average));
+            result.add(new AverageLineVO(stockPOS.get(i).getStockCode(), stockPOS.get(i).getStockName(),averageLineType, date, average));
         }
 
         return result;
     }
 
+
     public ArrayList<AverageLineVO> getAverageLineInfoByName(Date startDate, Date endDate, String stockName, AverageLineType averageLineType) {
+
+        assert (stockName != null && !stockName.equals("") && startDate != null && endDate != null)
+                : "logic.calculation.GraphCalculation.getAverageLineInfoByName参数异常";
 
         String code = this.stockDataDao.getStockCodeByName(stockName);
 
@@ -137,6 +148,9 @@ public class GraphCalculation implements GraphCalculationService {
     }
 
     public ArrayList<KLineVO> getKLineInfoByName(Date startDate, Date endDate, String stockName) {
+
+        assert (stockName != null && !stockName.equals("") && startDate != null && endDate != null)
+                : "logic.calculation.GraphCalculation.getKLineInfoByName参数异常";
 
         String code = this.stockDataDao.getStockCodeByName(stockName);
 

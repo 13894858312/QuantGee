@@ -47,6 +47,8 @@ public class DataCalculationTest {
 
         MarketInfoVO marketInfoVO = this.dataCalculation.getMarketInfo(DateHelper.getInstance().stringTransToDate("3/2/17"));
 
+        System.out.println(marketInfoVO.date.toString());
+
         assertEquals("3/2/17", DateHelper.getInstance().dateTransToString(marketInfoVO.date));
 
         assertEquals(3620, marketInfoVO.volume);
