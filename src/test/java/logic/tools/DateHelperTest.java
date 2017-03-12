@@ -12,6 +12,14 @@ import static org.junit.Assert.*;
 public class DateHelperTest {
 
     @Test
+    public void dateTransToString() throws Exception {
+         Date date = DateHelper.getInstance().stringTransToDate("3/12/17");
+
+        assertEquals("3/12/17", DateHelper.getInstance().dateTransToString(date));
+    }
+
+
+    @Test
     public void calculateDaysBetween() throws Exception {
         String dateString1 = "2/28/17";
         String dateString2 = "3/2/17";

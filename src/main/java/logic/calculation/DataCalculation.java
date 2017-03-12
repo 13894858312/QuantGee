@@ -26,6 +26,9 @@ public class DataCalculation implements DataCalculationService {
 
     public StockVO getStockInfoByCode(String stockCode, Date startDate, Date endDate) {
 
+        assert (stockCode != null && !stockCode.equals("") && startDate != null && endDate != null)
+                : "logic.calculation.DataCalculation.getStockInfoByCode参数异常";
+
         ArrayList<StockPO> stockPOs = this.stockDataDao.getStockPOsByTimeInterval(startDate.toString(),
                 endDate.toString(), stockCode);
 
@@ -48,15 +51,15 @@ public class DataCalculation implements DataCalculationService {
 
         //计算涨幅/跌幅、每天的收盘价和对数收益率
         ArrayList<StockDailyInfoVO> stockDailyInfoVOs = new ArrayList<StockDailyInfoVO>();
-        stockDailyInfoVOs.add(new StockDailyInfoVO(dateHelper.stringTransToDate(stockPOs.get(0).getDate()),
-                0, stockPOs.get(0).getClosePrice(), 0));
+        stockDailyInfoVOs.add(new StockDailyInfoVO(stockPOs.get(0).getStockCode(), stockPOs.get(0).getStockName(),
+                dateHelper.stringTransToDate(stockPOs.get(0).getDate()), 0, stockPOs.get(0).getClosePrice(), 0));
 
         for (int i = 1; i < stockPOs.size(); ++i) {
             Date date = dateHelper.stringTransToDate(stockPOs.get(i).getDate());
             double inOrDecreaseRate = (stockPOs.get(i).getADJ() - stockPOs.get(i - 1).getADJ()) / stockPOs.get(i - 1).getADJ();
             double logarithmYield = stockPOs.get(i).getADJ() / stockPOs.get(i - 1).getADJ();
 
-            stockDailyInfoVOs.add(new StockDailyInfoVO(date, inOrDecreaseRate, stockPOs.get(i).getClosePrice(), logarithmYield));
+            stockDailyInfoVOs.add(new StockDailyInfoVO(stockPOs.get(i).getStockCode(), stockPOs.get(i).getStockName(),date, inOrDecreaseRate, stockPOs.get(i).getClosePrice(), logarithmYield));
         }
 
 
@@ -86,6 +89,9 @@ public class DataCalculation implements DataCalculationService {
      * @return
      */
     public MarketInfoVO getMarketInfo(Date date) {
+
+        assert (date != null) : "logic.calculation.DataCalculation.getMarketInfo参数异常";
+
         ArrayList<StockPO> todayStockMarket = this.stockDataDao.getStockPOsByDate(dateHelper.dateTransToString(date));
 
         if(todayStockMarket == null) {
@@ -155,6 +161,9 @@ public class DataCalculation implements DataCalculationService {
     }
 
     public StockVO getStockInfoByName(String stockName, Date startDate, Date endDate) {
+
+        assert (stockName != null && !stockName.equals("") && startDate != null && endDate != null)
+                : "logic.calculation.DataCalculation.getStockInfoByName参数异常";
 
         String code = this.stockDataDao.getStockCodeByName(stockName);
 
