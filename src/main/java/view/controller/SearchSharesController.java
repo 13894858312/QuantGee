@@ -27,10 +27,10 @@ public class SearchSharesController {
 
     private GraphCalculationService graphCalculation;
     private MainPageController mainPageController;
-    private StockDataDao stockDataDao;
+//    private StockDataDao stockDataDao;
 
     public void init(){
-        graphCalculation = new GraphCalculation(stockDataDao);
+//        graphCalculation = new GraphCalculation(stockDataDao);
         mainPageController = new MainPageController();
     }
 

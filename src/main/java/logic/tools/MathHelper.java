@@ -16,7 +16,7 @@ public class MathHelper {
             sum += Math.pow(data[i]-average, 2);
         }
 
-        double temp = sum/data.length-1;
+        double temp = sum/(data.length-1);
         return MathHelper.formatData(temp);
     }
 

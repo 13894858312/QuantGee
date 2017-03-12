@@ -37,6 +37,9 @@ public class MainPageController{
     @FXML private TextField num_2_0;
     @FXML private TextField num_2_1;
 
+    private DatePicker startTime;//传给图表的开始时间
+    private DatePicker endTime;//传给图表的结束时间
+
     public static MainPageController mainPageController;
 
     public static MainPageController getInstance(){
@@ -142,18 +145,18 @@ public class MainPageController{
 
 
     public String getStartTime(){
-        if(String.valueOf(start_1).equals("")){
+        if(String.valueOf(startTime).equals("")){
             return null;
         }else{
-            return String.valueOf(start_1);
+            return String.valueOf(startTime);
         }
     }
 
     public String getEndTime(){
-        if(String.valueOf(end_1).equals("")){
+        if(String.valueOf(endTime).equals("")){
             return null;
         }else{
-            return String.valueOf(end_1);
+            return String.valueOf(endTime);
         }
     }
 }

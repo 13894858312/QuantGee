@@ -4,22 +4,20 @@ import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
+import javafx.scene.layout.Pane;
 import view.controller.MarketInfoController;
 import vo.MarketInfoVO;
 
 /**
  * Created by Administrator on 2017/3/10.
  */
-public class MarketThermometer {
+public class MarketThermometer extends Pane {
 
-    private MarketInfoController marketInfoController;
-
-    public MarketThermometer(MarketInfoController marketInfoController){
-        this.marketInfoController = marketInfoController;
+    public MarketThermometer(MarketInfoVO marketInfoVO){
 
         //x-xAxis
         final CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Type");
+        xAxis.setLabel("Share Type");
 
         //y-yAxis
         final NumberAxis yAxis = new NumberAxis();
@@ -29,9 +27,19 @@ public class MarketThermometer {
         final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
         bc.setTitle("MarketThermometer");
         XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
+        series.getData().add(new XYChart.Data<String, Number>("跌停", marketInfoVO.rateNums[0]));
+        series.getData().add(new XYChart.Data<String, Number>("跌幅5%-10%", marketInfoVO.rateNums[1]));
+        series.getData().add(new XYChart.Data<String, Number>("跌幅0-5%", marketInfoVO.rateNums[2]));
+        series.getData().add(new XYChart.Data<String, Number>("涨幅0-5%", marketInfoVO.rateNums[3]));
+        series.getData().add(new XYChart.Data<String, Number>("涨幅5%-10%", marketInfoVO.rateNums[4]));
+        series.getData().add(new XYChart.Data<String, Number>("涨停", marketInfoVO.rateNums[5]));
+        series.getData().add(new XYChart.Data<String, Number>("开盘‐收盘大于 " +
+                "5%*上一个交易日收盘价", marketInfoVO.greaterThanFiveNum));
+        series.getData().add(new XYChart.Data<String, Number>("开盘‐收盘小于" +
+                "‐5%*上一个交易日收盘价", marketInfoVO.lessThanFiveNum));
+
+        bc.getData().addAll(series);
+        getChildren().add(bc);
     }
 
-    private MarketInfoVO getMarketInfo(){
-        return null;
-    }
 }
