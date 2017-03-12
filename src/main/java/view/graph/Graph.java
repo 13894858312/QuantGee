@@ -1,6 +1,6 @@
 package view.graph;
 
-import view.ui.*;
+import view.UI.*;
 import vo.*;
 
 import java.util.ArrayList;
