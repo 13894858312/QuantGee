@@ -3,6 +3,8 @@ package view.ui;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.layout.Pane;
+import logic.tools.DateHelper;
 import view.controller.SearchSharesController;
 import javafx.scene.chart.XYChart;
 import vo.AverageLineVO;
@@ -12,12 +14,9 @@ import java.util.ArrayList;
 /**
  * Created by Administrator on 2017/3/10.
  */
-public class AverageChart {
+public class AverageChart extends Pane{
 
-    private SearchSharesController searchSharesController;
-
-    public AverageChart(SearchSharesController searchSharesController){
-        this.searchSharesController = searchSharesController;
+    public AverageChart(ArrayList<AverageLineVO> averageLineVOArrayList){
 
         //x-xAxis
         final CategoryAxis xAxis = new CategoryAxis();
@@ -34,11 +33,15 @@ public class AverageChart {
 
         //date
         XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
-        series.setName("My portfolio");
+        for(int i=0;i<averageLineVOArrayList.size();i++) {
+            AverageLineVO averageLineVO = averageLineVOArrayList.get(i);
+            series.getData().add(new XYChart.Data<String, Number>(
+                    DateHelper.getInstance().dateTransToString(averageLineVO.date), averageLineVO.averageValue));
+        }
 
+        averageLineChart.getData().addAll(series);
+        getChildren().add(averageLineChart);
     }
 
-    private ArrayList<AverageLineVO> getAverageLineDate(){
-        return null;
-    }
+
 }

@@ -31,7 +31,7 @@ import java.util.List;
  * Created by Administrator on 2017/3/10.
  */
 public class AdvCandleStickChart extends Pane {
-    private SearchSharesController searchSharesController;
+//    private SearchSharesController searchSharesController;
     // DAY, OPEN, CLOSE, HIGH, LOW, AVERAGE
 //    KLineVO vo1 = new KLineVO(false,"one",25,20,32,16);
 //    KLineVO vo2 = new KLineVO("two",26,30,33,22);
@@ -71,8 +71,7 @@ public class AdvCandleStickChart extends Pane {
 //            {31, 28, 18, 30, 12, 22}
 //    };
 
-    public AdvCandleStickChart(SearchSharesController searchSharesController) throws Exception{
-        this.searchSharesController = searchSharesController;
+    public AdvCandleStickChart(ArrayList<KLineVO> kLineVOArrayList) throws Exception{
         // x-axis:
 
         final CategoryAxis xAxis = new CategoryAxis();
@@ -90,7 +89,7 @@ public class AdvCandleStickChart extends Pane {
         bc.setTitle("Custom Candle Stick Chart");
 
         // add starting data
-        ArrayList<KLineVO> kLineVOArrayList = searchSharesController.getKlineVoList();
+//        ArrayList<KLineVO> kLineVOArrayList = searchSharesController.getKlineVoList();
         XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
         for (int i = 0; i < kLineVOArrayList.size(); i++) {
             KLineVO day = kLineVOArrayList.get(i);
@@ -181,7 +180,7 @@ public class AdvCandleStickChart extends Pane {
                         double candleWidth = -1;
                         if (getXAxis() instanceof CategoryAxis) {
                             CategoryAxis xa = (CategoryAxis) getXAxis();
-                            candleWidth = (xa.getCategorySpacing()); // use 90% width between ticks
+                            candleWidth = (xa.getCategorySpacing())*0.7; // use 70% width between ticks
                         }
                         // update candle
                         //K线图
