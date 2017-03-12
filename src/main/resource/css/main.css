@@ -1,3 +1,4 @@
+/*普通按钮*/
 .button{
     -fx-background-color: transparent;
     -fx-border-color: transparent;
@@ -7,6 +8,7 @@
     -fx-content-display: center;
 }
 
+/*首页进入or退出按钮*/
 .firstPage_Button{
     -fx-background-color: rgba(39,44,133,0.64);
     -fx-border-radius: 0;
@@ -27,8 +29,9 @@
     -fx-opacity: 0.2;
 }
 
+/*左下角退出系统按钮*/
 #closeButton{
-    -fx-background-color: rgba(39,44,133,0.64);
+    -fx-background-color:#666666;
     -fx-border-radius: 0;
     -fx-background-radius: 0;
     -fx-opacity: 1;
@@ -47,8 +50,9 @@
     -fx-opacity: 0.6;
 }
 
+/*左侧三个tab里的搜索按钮*/
 .SearchButton{
-    -fx-background-color: rgba(39,44,133,0.64);
+    -fx-background-color: #666666;
     -fx-border-radius: 0;
     -fx-background-radius: 0;
     -fx-opacity: 1;
@@ -67,46 +71,55 @@
     -fx-opacity: 0.6;
 }
 
-.pane{
-    -fx-border-color: black;
-}
-
-.tab{
-    -fx-background-color: rgba(39,44,133,0.64);
-    -fx-opacity: 0.8;
-    -fx-text-alignment: center;
-    -fx-font-size: 12px;
-    -fx-text-fill: #000000;
-    -fx-pref-width: 60;
-    -fx-pref-height: 30;
-}
-
-.tab :pressed{
-    -fx-background-color:#ffffff;
-}
-
-.tab:focused{
+/*tab的默认样式*/
+.TabButton{
     -fx-opacity: 1;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-text-fill: white;
+    -fx-fill: white;
+    -fx-pref-width: 70;
+    -fx-pref-height: 40;
+    -fx-padding: 0 0 0 0;
 }
 
+.tab :armed{
+    -fx-background-color: #666666;
+}
+
+.tab-pane{
+    -fx-background-color: rgba(244,244,244,0.99);
+}
+
+/*label默认样式*/
 .label{
-    -fx-text-fill: rgba(18,4,68,0.99);
+    -fx-text-fill: #333333;
     -fx-font-size: 14px;
     -fx-text-alignment: center;
 }
 
+/*textFeld默认样式*/
 .text-field{
+    -fx-font-fill:#333333;
     -fx-background-radius: 0;
     -fx-border-radius: 0;
-    -fx-background-color: white;
+    -fx-background-color: #eeeeee;
 }
 
-.datePicker{
-    -fx-background-radius: 0;
-    -fx-border-radius: 0;
-    -fx-background-color: white;
-}
-
+/*右侧根节点样式*/
 .RootPane{
-    -fx-background-color: rgba(45,50,65,0.99);
+    -fx-background-color: #eeeeee;
+}
+
+#mainPane{
+    -fx-background-color: #dddddd;
+}
+
+.Picker{
+    -fx-border-color: #eeeeee;
+    -fx-background-color: #eeeeee;
+}
+
+.Picker.button{
+
 }
