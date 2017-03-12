@@ -71,6 +71,44 @@
     -fx-opacity: 0.6;
 }
 
+/*比较界面按钮*/
+.TwoSharesButton{
+    -fx-background-color:#aaaaaa;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-border-style: none;
+    -fx-text-alignment: center;
+    -fx-font-size: 12px;
+    -fx-text-fill: #ffffff;
+    -fx-pref-width: 60;
+    -fx-pref-height: 30;
+}
+
+.TwoSharesButton:focused{
+    -fx-background-color: #dddddd;
+    -fx-text-fill: #333333;
+    -fx-opacity: 1;
+}
+
+/*单只股票界面按钮*/
+.SingleShareButton{
+    -fx-background-color:#aaaaaa;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-border-style: none;
+    -fx-text-alignment: center;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-pref-width: 100;
+    -fx-pref-height: 40;
+}
+
+.SingleShareButton:focused{
+    -fx-background-color: #dddddd;
+    -fx-text-fill: #333333;
+    -fx-opacity: 1;
+}
+
 /*tab的默认样式*/
 .TabButton{
     -fx-opacity: 1;
@@ -120,6 +158,19 @@
     -fx-background-color: #eeeeee;
 }
 
-.Picker.button{
+/*chart底部颜色*/
+.ChartPane{
+    -fx-background-color: #dddddd;
+}
 
+.ButtonBottom{
+    -fx-background-color: #cccccc;
+}
+
+.LabelBottom{
+    -fx-background-color: #cccccc;
+}
+
+.SharePane{
+    -fx-background-color: #cccccc;
 }

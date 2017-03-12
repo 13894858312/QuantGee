@@ -9,8 +9,6 @@ import javafx.scene.control.Label;
  */
 public class MarketInfoController {
 
-    @FXML private StackedBarChart graph;
-
     @FXML private Label date;
     @FXML private Label all;
     @FXML private Label larger;
