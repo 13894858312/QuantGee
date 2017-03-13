@@ -13,7 +13,8 @@ public class StockData implements StockDataDao{
 	public StockPO getStockPO(String date, String stockCode) {
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		File file = new File(path+"/src/股票历史数据ALL.csv");
+		path  = path+"/all_data/"+getFileNameByCode(stockCode)+".txt";
+		File file = new File(path);
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
@@ -41,7 +42,7 @@ public class StockData implements StockDataDao{
 		ArrayList<StockPO> stockPOS = new ArrayList<StockPO>();
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		File file = new File(path+"/src/股票历史数据ALL.csv");
+		File file = new File(path+"/all_data/股票历史数据ALL.csv");
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
@@ -69,7 +70,8 @@ public class StockData implements StockDataDao{
 		ArrayList<StockPO> stockPOS = new ArrayList<StockPO>();
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		File file = new File(path+"/src/股票历史数据ALL.csv");
+		path  = path+"/all_data/"+getFileNameByCode(stockCode)+".txt";
+		File file = new File(path);
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
@@ -126,15 +128,14 @@ public class StockData implements StockDataDao{
 	public String getStockCodeByName(String stockName) {
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		File file = new File(path+"/src/股票历史数据ALL.csv");
+		File file = new File(path+"/all_data/fileName.txt");
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
-			line = br.readLine();
 			while((line = br.readLine()) != null) {
-				String[] strings = line.split("\\t");
-				if (strings[9].equals(stockName) ) {
-					return strings[8];
+				String[] strings = line.split(":");
+				if (strings[1].equals(stockName) ) {
+					return strings[0];
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -144,4 +145,26 @@ public class StockData implements StockDataDao{
 		}
 		return null;
 	}
+	
+	public String getFileNameByCode(String stockCode) {
+		String path = System.getProperty("user.dir");
+		path.replace("\\\\", "/");
+		File file = new File(path+"/all_data/fileName.txt");
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line = "";
+			while((line = br.readLine()) != null) {
+				String[] strings = line.split(":");
+				if (strings[0].equals(stockCode) ) {
+					return strings[2];
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }

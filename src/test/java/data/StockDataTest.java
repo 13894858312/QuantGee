@@ -21,7 +21,9 @@ public class StockDataTest {
 
 	@Test
 	public void testGetStockPOsByDate() {
-		StockData stockData = new StockData();	
+		StockData stockData = new StockData();
+		ArrayList<StockPO> list = stockData.getStockPOsByDate("4/21/14");
+		assertEquals(10.9, list.get(0).getMaxValue(),0);
 	}
 
 	@Test
