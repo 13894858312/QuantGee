@@ -48,8 +48,8 @@
                            <children>
                               <GridPane alignment="TOP_CENTER" layoutX="20.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0">
                                 <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.82191467285156" minWidth="10.0" prefWidth="80.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="120.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.74067687988281" minWidth="10.0" prefWidth="97.63371276855469" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="102.36628723144531" />
                                 </columnConstraints>
                                 <rowConstraints>
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -76,20 +76,20 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <GridPane alignment="TOP_CENTER" layoutX="20.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0">
+                              <GridPane alignment="TOP_CENTER" layoutX="10.0" layoutY="50.0" prefHeight="200.0" prefWidth="220.0">
                                  <children>
                                     <Label text="股票2代码/名称" GridPane.rowIndex="1" />
                                     <Label text="结束日期" GridPane.rowIndex="3" />
                                     <Label text="开始日期" GridPane.rowIndex="2" />
-                                    <TextField fx:id="num_2_1"  GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="num_2_1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <DatePicker fx:id="start_2" styleClass="Picker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <DatePicker fx:id="end_2" styleClass="Picker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <Label text="股票1代码/名称" />
-                                    <TextField fx:id="num_2_0"  GridPane.columnIndex="1" />
+                                    <TextField fx:id="num_2_0" GridPane.columnIndex="1" />
                                  </children>
                                  <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.82191467285156" minWidth="10.0" prefWidth="80.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="127.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.97731018066406" minWidth="10.0" prefWidth="99.70989227294922" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="100.29010772705078" />
                                  </columnConstraints>
                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

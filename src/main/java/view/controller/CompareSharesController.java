@@ -1,18 +1,17 @@
 package view.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import logic.calculation.GraphCalculation;
 import logic.tools.AverageLineType;
 import logicService.GraphCalculationService;
 import view.graph.Graph;
+import vo.StockDailyInfoVO;
 import vo.StockVO;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -96,9 +95,9 @@ public class CompareSharesController {
         kLineLeft.setDefaultButton(true);
         kLineRight.setDefaultButton(true);
 
-        showHighest();
-        showLowest();
-        showVariance();
+        showFirst();
+        showSecond();
+        showThird();
 
     }
 
@@ -134,6 +133,18 @@ public class CompareSharesController {
     @FXML
     private void showLeftYieldLine() {
 
+        Pane yieldPane;
+
+        try{
+
+            yieldPane = graph.getLogYieldCompareChart(stockVO_0.stockDailyInfoVOs);
+            leftChart.getChildren().clear();
+            leftChart.getChildren().add(yieldPane);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
@@ -168,26 +179,65 @@ public class CompareSharesController {
 
     @FXML
     private void showRightYieldLine() {
-//待补充
+
+        Pane yieldPane;
+
+        try{
+
+            yieldPane = graph.getLogYieldCompareChart(stockVO_1.stockDailyInfoVOs);
+            rightChart.getChildren().clear();
+            rightChart.getChildren().add(yieldPane);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
-//待讨论
-    private void showHighest(){
+
+    private void showFirst(){
+
+        Pane firstPane ;
+
+        try{
+
+            ArrayList<StockVO> stockVOS = new ArrayList<StockVO>();
+            stockVOS.add(stockVO_0);
+            stockVOS.add(stockVO_1);
+
+            firstPane = graph.getPriceCompareChart(stockVOS);
+            highest.getChildren().clear();
+            highest.getChildren().add(firstPane);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
-//待讨论
-    private void showLowest(){
+
+    private void showSecond(){
+
+        Pane secondPane ;
+
+        try {
+
+            secondPane = graph.getLogYieldVarCompareChart(stockVO_0,stockVO_1);
+            lowest.getChildren().clear();
+            lowest.getChildren().add(secondPane);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 
 //待讨论
-    private void showVariance(){
+    private void showThird(){
 
         Pane yieldLinePane;
 
         try{
             yieldLinePane = graph.getLogYieldVarCompareChart(stockVO_0,stockVO_1);
-            leftChart.getChildren().clear();
-            leftChart.getChildren().add(yieldLinePane);
+            variance.getChildren().clear();
+            variance.getChildren().add(yieldLinePane);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -221,4 +271,5 @@ public class CompareSharesController {
         }
         return;
     }
+
 }
