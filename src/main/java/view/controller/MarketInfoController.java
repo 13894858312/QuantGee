@@ -10,6 +10,7 @@ import view.graph.Graph;
 import vo.MarketInfoVO;
 
 import java.util.Date;
+import java.util.DoubleSummaryStatistics;
 
 /**
  * Created by wangxue on 2017/3/9.
@@ -38,7 +39,7 @@ public class MarketInfoController {
         MarketThermometer marketThermometer = graph.getMarketThermometerChart(marketInfoVO);
 
         date.setText(marketInfoVO.date.toString());
-        all.setText(Integer.toString(marketInfoVO.volume));
+        all.setText(Double.toString(marketInfoVO.volume));
         larger.setText(Integer.toString(marketInfoVO.greaterThanFiveNum));
         smaller.setText(Integer.toString(marketInfoVO.lessThanFiveNum));
 

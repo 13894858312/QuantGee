@@ -8,7 +8,7 @@ import java.util.Date;
 public class MarketInfoVO {
 
     public Date date;
-    public int volume;
+    public double volume;
     public int[] rateNums;
     public int greaterThanFiveNum;
     public int lessThanFiveNum;
@@ -20,7 +20,7 @@ public class MarketInfoVO {
      * @param greaterThanFiveNum  开盘‐收盘大于 5%*上一个交易日收盘价的股票个数
      * @param lessThanFiveNum  开盘‐收盘小于‐5%*上一个交易日收盘价的股票个数
      */
-    public MarketInfoVO(Date date, int volume, int[] rateNums,
+    public MarketInfoVO(Date date, double volume, int[] rateNums,
                         int greaterThanFiveNum, int lessThanFiveNum) {
         this.date = date;
         this.volume = volume;
