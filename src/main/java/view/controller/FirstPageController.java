@@ -17,13 +17,23 @@ public class FirstPageController{
     @FXML private Pane firstPane;
     @FXML private Button go;
 
-    private MainPageController mainPageController;
-
     @FXML
     public void goToMain(){
 
-        mainPageController = new MainPageController();
-        mainPageController.showLeftPane();
+        try{
+
+            FXMLLoader rootLoader = new FXMLLoader();
+            rootLoader.setLocation(getClass().getResource("/fxml/MainPage.fxml"));
+            Pane root = rootLoader.load();
+            MainController.getStage().setScene(new Scene(root));
+            MainController.resetStage();
+
+            MainPageController mainPageController = rootLoader.getController();
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
 
     }
 

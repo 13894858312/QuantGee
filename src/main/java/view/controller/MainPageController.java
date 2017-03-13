@@ -60,22 +60,6 @@ public class MainPageController{
 
     }
 
-    public void showLeftPane(){
-
-        try{
-
-            FXMLLoader rootLoader = new FXMLLoader();
-            rootLoader.setLocation(getClass().getResource("/fxml/MainPage.fxml"));
-            Pane root = rootLoader.load();
-            MainController.getStage().setScene(new Scene(root));
-            MainController.resetStage();
-
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
-    }
-
     @FXML
     private void closeStage(){
         System.exit(0);
