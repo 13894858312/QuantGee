@@ -5,19 +5,27 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import logic.calculation.DataCalculation;
+import logic.calculation.GraphCalculation;
+import logicService.DataCalculationService;
+import logicService.GraphCalculationService;
+import vo.MarketInfoVO;
+import vo.StockVO;
 
-import javax.swing.event.ListSelectionListener;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * Created by wangxue on 2017/3/9.
  */
 public class MainPageController{
+
+    private DataCalculationService dataCalculationService;
 
     @FXML private Pane rightPane;
 
@@ -37,9 +45,6 @@ public class MainPageController{
     @FXML private TextField num_2_0;
     @FXML private TextField num_2_1;
 
-    private DatePicker startTime;//传给图表的开始时间
-    private DatePicker endTime;//传给图表的结束时间
-
     public static MainPageController mainPageController;
 
     public static MainPageController getInstance(){
@@ -47,6 +52,12 @@ public class MainPageController{
             mainPageController = new MainPageController();
         }
         return mainPageController;
+    }
+
+    private MainPageController(){
+
+        dataCalculationService = new DataCalculation();
+
     }
 
     public void showLeftPane(){
@@ -66,47 +77,18 @@ public class MainPageController{
     }
 
     @FXML
-    public void closeStage(){
+    private void closeStage(){
         System.exit(0);
     }
 
     @FXML
-    public void showMarketInfo(){
+    private void showMarketInfo(){
 
-        //待补充
-        showRightPane(RightType.MARKETINFO);
-    }
-
-    @FXML
-    public void showSearchShares(){
-
-        //待补充
-        showRightPane(RightType.SEARCHSHARES);
-    }
-
-    @FXML
-    public void showCompareShares(){
-
-        //待补充
-        showRightPane(RightType.COMPARESHARES);
-    }
-
-    private void showRightPane(RightType rightType){
-
-        String str = "" ;
-
-        if(rightType == RightType.MARKETINFO){
-            str += ("/fxml/MarketInfo.fxml");
-        }else if(rightType == RightType.SEARCHSHARES){
-            str += ("/fxml/SearchShares.fxml");
-        }else if(rightType == RightType.COMPARESHARES){
-            str += ("/fxml/CompareShares.fxml");
-        }
+        FXMLLoader rootLoader = new FXMLLoader();
 
         try{
 
-            FXMLLoader rootLoader = new FXMLLoader();
-            rootLoader.setLocation(getClass().getResource(str));
+            rootLoader.setLocation(getClass().getResource("/fxml/MarketInfo.fxml"));
             Pane root = rootLoader.load();
             rightPane.getChildren().clear();
             rightPane.getChildren().addAll(root);
@@ -114,6 +96,85 @@ public class MainPageController{
         } catch (IOException e){
             e.printStackTrace();
         }
+
+        LocalDate localDate = this.date.getValue();
+
+        MarketInfoController marketInfoController = rootLoader.getController();
+
+        MarketInfoVO marketInfoVO = dataCalculationService.getMarketInfo(Helper.localDateToDate(localDate));
+
+        if(marketInfoVO==null){
+            noResult();
+            return;
+        }
+
+        marketInfoController.init(marketInfoVO);
+
+    }
+
+    @FXML
+    private void showSearchShares(){
+
+        FXMLLoader rootLoader = new FXMLLoader();
+
+        try{
+
+            rootLoader.setLocation(getClass().getResource("/fxml/SearchShares.fxml"));
+            Pane root = rootLoader.load();
+            rightPane.getChildren().clear();
+            rightPane.getChildren().addAll(root);
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        LocalDate start = start_1.getValue();
+        Date startDate = Helper.localDateToDate(start);
+
+        LocalDate end = end_1.getValue();
+        Date endDate = Helper.localDateToDate(end);
+
+        String input = num_1.getText().trim();
+        InputState inputState = Helper.checkInputState(input);
+
+        StockVO stockVO ;
+
+        if(inputState == InputState.NAME){
+            stockVO = dataCalculationService.getStockInfoByName(input,startDate,endDate);
+        }else if(inputState == InputState.NUM){
+            stockVO = dataCalculationService.getStockInfoByCode(input,startDate,endDate);
+        }else{
+            noResult();
+            return;
+        }
+
+        if(stockVO == null){
+            noResult();
+            return;
+        }
+
+        SearchSharesController searchSharesController = rootLoader.getController();
+        searchSharesController.init(stockVO,startDate,endDate);
+
+    }
+
+    @FXML
+    private void showCompareShares(){
+
+        FXMLLoader rootLoader = new FXMLLoader();
+
+        try{
+
+            rootLoader.setLocation(getClass().getResource("/fxml/CompareShares.fxml"));
+            Pane root = rootLoader.load();
+            rightPane.getChildren().clear();
+            rightPane.getChildren().addAll(root);
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        CompareSharesController compareSharesController = rootLoader.getController();
 
     }
 
@@ -143,20 +204,4 @@ public class MainPageController{
 
     }
 
-
-    public String getStartTime(){
-        if(String.valueOf(startTime).equals("")){
-            return null;
-        }else{
-            return String.valueOf(startTime);
-        }
-    }
-
-    public String getEndTime(){
-        if(String.valueOf(endTime).equals("")){
-            return null;
-        }else{
-            return String.valueOf(endTime);
-        }
-    }
 }

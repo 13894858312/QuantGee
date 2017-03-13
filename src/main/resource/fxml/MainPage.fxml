@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -11,16 +13,16 @@
       <Pane id="leftPane" layoutX="10.0" layoutY="9.0">
          <children>
             <Button id="closeButton" fx:id="leave" layoutX="20.0" layoutY="691.0" mnemonicParsing="false" onAction="#closeStage" text="退出系统" />
-            <TabPane prefHeight="675.0" prefWidth="240.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane id="leftTabPane" prefHeight="675.0" prefWidth="240.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab fx:id="marketInfoButton" text="大盘">
+                <Tab fx:id="marketInfoButton" closable="false" styleClass="TabButton" text="大盘温度计">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0">
                            <children>
                               <GridPane alignment="CENTER" layoutX="20.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0">
                                  <children>
                                     <Label text="查询日期" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                    <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <DatePicker fx:id="date" styleClass="Picker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.82191467285156" minWidth="10.0" prefWidth="80.0" />
@@ -40,7 +42,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab fx:id="searchSharesButton" text="搜索股票">
+                <Tab fx:id="searchSharesButton" closable="false" styleClass="TabButton" text="   搜索股票">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0">
                            <children>
@@ -61,8 +63,8 @@
                                     <Label text="结束日期" GridPane.rowIndex="2" />
                                     <Label text="开始日期" GridPane.rowIndex="1" />
                                     <TextField fx:id="num_1" text="代码/名称" GridPane.columnIndex="1" />
-                                    <DatePicker fx:id="start_1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <DatePicker fx:id="end_1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <DatePicker fx:id="start_1" styleClass="Picker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <DatePicker fx:id="end_1" styleClass="Picker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
                               <Button fx:id="search_1" layoutX="70.0" layoutY="250.0" mnemonicParsing="false" onAction="#showSearchShares" prefHeight="27.0" prefWidth="100.0" styleClass="SearchButton" text="搜索" textAlignment="CENTER" />
@@ -70,7 +72,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab fx:id="compareSharesButton" text="股票比较">
+                  <Tab fx:id="compareSharesButton" closable="false" styleClass="TabButton" text="  股票比较   ">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -80,8 +82,8 @@
                                     <Label text="结束日期" GridPane.rowIndex="3" />
                                     <Label text="开始日期" GridPane.rowIndex="2" />
                                     <TextField fx:id="num_2_1" text="代码/名称" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <DatePicker fx:id="start_2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <DatePicker fx:id="end_2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <DatePicker fx:id="start_2" styleClass="Picker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <DatePicker fx:id="end_2" styleClass="Picker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <Label text="股票1" />
                                     <TextField fx:id="num_2_0" text="代码/名称" GridPane.columnIndex="1" />
                                  </children>
@@ -103,6 +105,9 @@
                     </content>
                   </Tab>
               </tabs>
+               <rotationAxis>
+                  <Point3D />
+               </rotationAxis>
             </TabPane>
          </children>
       </Pane>

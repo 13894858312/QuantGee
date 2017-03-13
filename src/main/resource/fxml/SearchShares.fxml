@@ -8,76 +8,25 @@
 
 <AnchorPane prefHeight="750.0" prefWidth="750.0" styleClass="RootPane" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SearchSharesController">
    <children>
-      <TabPane layoutX="15.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="720.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="日K线图">
-               <content>
-                  <AnchorPane fx:id="kLinePane" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <LineChart fx:id="kLine" prefHeight="676.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <xAxis>
-                            <CategoryAxis side="BOTTOM" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis side="LEFT" />
-                          </yAxis>
-                        </LineChart>
-                     </children></AnchorPane>
-               </content>
-          </Tab>
-          <Tab text="日均线">
-            <content>
-              <AnchorPane fx:id="dayLinePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <LineChart layoutX="77.0" layoutY="75.0" prefHeight="670.0" prefWidth="684.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <xAxis>
-                            <CategoryAxis side="BOTTOM" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis side="LEFT" />
-                          </yAxis>
-                        </LineChart>
-                     </children></AnchorPane>
-            </content>
-          </Tab>
-            <Tab text="季均线">
-              <content>
-                <AnchorPane fx:id="quarterLinePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <LineChart fx:id="quarterLine" layoutX="151.0" layoutY="81.0" prefHeight="670.0" prefWidth="687.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <xAxis>
-                            <CategoryAxis side="BOTTOM" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis side="LEFT" />
-                          </yAxis>
-                        </LineChart>
-                     </children></AnchorPane>
-              </content>
-            </Tab>
-            <Tab text="年均线">
-              <content>
-                <AnchorPane fx:id="yearLinePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <LineChart fx:id="yearLine" layoutX="128.0" layoutY="135.0" prefHeight="670.0" prefWidth="687.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <xAxis>
-                            <CategoryAxis side="BOTTOM" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis side="LEFT" />
-                          </yAxis>
-                        </LineChart>
-                     </children></AnchorPane>
-              </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-      <AnchorPane layoutX="15.0" layoutY="15.0" prefHeight="40.0" prefWidth="720.0">
+      <Pane layoutX="15.0" layoutY="65.0" prefHeight="670.0" prefWidth="720.0" styleClass="ChartPane">
          <children>
-            <Label layoutX="300.0" layoutY="12.0" text="股票名称:" />
-            <Label fx:id="num" layoutX="600.0" layoutY="12.0" text="error" />
-            <Label layoutX="500.0" layoutY="12.0" text="股票代码:" />
-            <Label fx:id="name" layoutX="400.0" layoutY="12.0" text="error" />
+            <HBox layoutX="20.0" layoutY="10.0" prefHeight="40.0" prefWidth="680.0" styleClass="ButtonBottom">
+               <children>
+                  <Button fx:id="kLine" mnemonicParsing="false" onAction="#showKLine" styleClass="SingleShareButton" text="K线图" />
+                  <Button fx:id="dayLine" mnemonicParsing="false" onAction="#showDayLine" styleClass="SingleShareButton" text="日均线" />
+                  <Button fx:id="quarterLine" mnemonicParsing="false" onAction="#showQuarterLine" styleClass="SingleShareButton" text="季均线" />
+                  <Button fx:id="yearLine" mnemonicParsing="false" onAction="#showYearLine" styleClass="SingleShareButton" text="年均线" />
+               </children>
+            </HBox>
+            <Pane fx:id="chart" layoutX="20.0" layoutY="50.0" prefHeight="600.0" prefWidth="680.0" />
+         </children>
+      </Pane>
+      <AnchorPane layoutX="35.0" layoutY="15.0" prefHeight="40.0" prefWidth="680.0" styleClass="LabelBottom">
+         <children>
+            <Label layoutX="220.0" layoutY="11.0" text="股票名称:" />
+            <Label fx:id="num" layoutX="570.0" layoutY="12.0" text="error" />
+            <Label layoutX="450.0" layoutY="12.0" text="股票代码:" />
+            <Label fx:id="name" layoutX="340.0" layoutY="11.0" text="error" />
          </children>
       </AnchorPane>
    </children>

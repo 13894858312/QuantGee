@@ -1,4 +1,4 @@
-package view.ui;
+package view.UI;
 
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;

@@ -1,15 +1,15 @@
 package view.controller;
 
-import dataDao.StockDataDao;
 import javafx.fxml.FXML;
-import javafx.scene.chart.LineChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import logic.calculation.GraphCalculation;
-import logic.tools.DateHelper;
+import logic.tools.AverageLineType;
 import logicService.GraphCalculationService;
-import vo.KLineVO;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import view.graph.Graph;
+import vo.StockVO;
+
 import java.util.Date;
 
 /**
@@ -17,28 +17,86 @@ import java.util.Date;
  */
 public class SearchSharesController {
 
+    private GraphCalculationService graphCalculationService;
+    private Graph graph;
+
+    private StockVO stockVO;
+    private Date start;
+    private Date end;
+
     @FXML private Label name;
     @FXML private Label num;
 
-    @FXML private LineChart kLine;
-    @FXML private LineChart dayLine;
-    @FXML private LineChart quarterLine;
-    @FXML private LineChart yearLine;
+    @FXML private Pane chart;
 
-    private GraphCalculationService graphCalculation;
-    private MainPageController mainPageController;
-//    private StockDataDao stockDataDao;
+    @FXML private Button kLine;
+    @FXML private Button dayLine;
+    @FXML private Button quarterLine;
+    @FXML private Button yearLine;
 
-    public void init(){
-//        graphCalculation = new GraphCalculation(stockDataDao);
-        mainPageController = new MainPageController();
+    public SearchSharesController(){
+
+        graphCalculationService = new GraphCalculation();
+        graph = new Graph();
+
     }
 
-    public ArrayList<KLineVO> getKlineVoList() throws Exception{
-        String startTime = mainPageController.getStartTime();
-        String endTime = mainPageController.getEndTime();
-        ArrayList<KLineVO> kLineVOArrayList = graphCalculation.getKLineInfoByName(DateHelper.getInstance().stringTransToDate(startTime),
-                DateHelper.getInstance().stringTransToDate(endTime), name.getText());
-        return kLineVOArrayList;
+    public void init(StockVO stockVO, Date start, Date end){
+
+        this.stockVO = stockVO;
+        this.start = start;
+        this.end = end;
+
+        name.setText(stockVO.stockName);
+        num.setText(stockVO.stockCode);
+
+        kLine.setDefaultButton(true);
+
+        showKLine();
+
+    }
+
+    @FXML
+    private void showKLine() {
+
+        Pane kLinePane;
+
+        try{
+             kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO.stockCode));
+             chart.getChildren().clear();
+             chart.getChildren().add(kLinePane);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    private void showDayLine(){
+        drawAveLine(AverageLineType.DAYS_5);
+    }
+
+    @FXML
+    private void showQuarterLine(){
+        drawAveLine(AverageLineType.DAYS_60);
+    }
+
+    @FXML
+    private void showYearLine(){
+        drawAveLine(AverageLineType.DAYS_240);
+    }
+
+    private void drawAveLine(AverageLineType averageLineType){
+
+        Pane aveLinePane;
+
+        try{
+            aveLinePane = graph.getAverageLineChart(graphCalculationService.getAverageLineInfoByCode(start,end,stockVO.stockCode,averageLineType));
+            chart.getChildren().clear();
+            chart.getChildren().add(aveLinePane);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

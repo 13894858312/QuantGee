@@ -1,4 +1,4 @@
-package view.ui;
+package view.UI;
 
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
