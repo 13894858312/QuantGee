@@ -39,6 +39,11 @@ public class Graph {
         return new Range_Compare(stockVOArrayList, stockDailyInfoVOArrayList);
     }
 
+    //对数收益率比较图
+    public LogYield_Compare getLogYieldCompareChart(ArrayList<StockDailyInfoVO> stockDailyInfoVOArrayList){
+        return new LogYield_Compare(stockDailyInfoVOArrayList);
+    }
+
     //对数收益率方差比较图
     public LogYieldVar_Compare getLogYieldVarCompareChart(StockVO stockVO1, StockVO stockVO2){
         return new LogYieldVar_Compare(stockVO1, stockVO2);
