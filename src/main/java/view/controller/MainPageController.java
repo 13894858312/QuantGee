@@ -56,6 +56,7 @@ public class MainPageController{
 
         dataCalculationService = new DataCalculation();
 
+
     }
 
     @FXML
@@ -208,6 +209,8 @@ public class MainPageController{
         compareSharesController.init(stockVO_0,stockVO_1,startDate,endDate);
 
     }
+
+
 
     private void showMessage(String str){
 

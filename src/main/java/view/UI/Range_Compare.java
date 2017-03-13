@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class Range_Compare extends Pane{
 
-    public Range_Compare(ArrayList<StockVO> stockVOArrayList, ArrayList<StockDailyInfoVO> stockDailyInfoVOArrayList){
+    public Range_Compare(ArrayList<StockVO> stockVOArrayList){
 
         //x-xAxis
         final CategoryAxis xAxis = new CategoryAxis();
@@ -36,9 +36,11 @@ public class Range_Compare extends Pane{
         series_DecreaseRange.setName("DecreaseRange");
         for(int i=0;i<stockVOArrayList.size();i++){
             StockVO stockVO = stockVOArrayList.get(i);
-            StockDailyInfoVO stockDailyInfoVO = stockDailyInfoVOArrayList.get(i);
-            series_IncreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO.stockName, Math.abs(stockDailyInfoVO.inOrDecreaseRate)));
-            series_DecreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO.stockName, Math.abs(stockDailyInfoVO.inOrDecreaseRate)));
+            ArrayList<StockDailyInfoVO> stockDailyInfoVOArrayList = stockVO.stockDailyInfoVOs;
+            for(int j=0;j<stockDailyInfoVOArrayList.size();j++) {
+                series_IncreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO.stockName, Math.abs(stockDailyInfoVOArrayList.get(i).inOrDecreaseRate)));
+                series_DecreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO.stockName, Math.abs(stockDailyInfoVOArrayList.get(i).inOrDecreaseRate)));
+            }
         }
 
         bc.getData().addAll(series_IncreaseRange, series_DecreaseRange);
