@@ -1,5 +1,6 @@
 package logic.calculation;
 
+import data.StockData;
 import dataDao.StockDataDao;
 import logic.tools.DateHelper;
 import logic.tools.MathHelper;
@@ -21,7 +22,7 @@ public class DataCalculation implements DataCalculationService {
 
     public DataCalculation() {
         this.dateHelper = DateHelper.getInstance();
-        this.stockDataDao = new MockStockData();
+        this.stockDataDao = new StockData();
     }
 
     public StockVO getStockInfoByCode(String stockCode, Date startDate, Date endDate) {
