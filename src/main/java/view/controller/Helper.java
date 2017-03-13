@@ -15,7 +15,7 @@ public class Helper {
         }
 
         input = input.trim();
-
+/*
         //若六位数字则为股票代码
         if(input.length() == 6){
             boolean isNum = true;
@@ -30,6 +30,19 @@ public class Helper {
                 return InputState.NUM;
             }
 
+        }
+*/
+        //全是数字就是代码
+        boolean isNum = true;
+        for(int i = 0 ; i < input.length() ; i++ ){
+            if(input.charAt(i)>'9' || input.charAt(i)<'0'){
+                isNum = false;
+                break;
+            }
+        }
+
+        if(isNum == true){
+            return  InputState.NUM;
         }
 
         return InputState.NAME;

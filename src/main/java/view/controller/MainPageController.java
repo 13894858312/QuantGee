@@ -66,6 +66,15 @@ public class MainPageController{
     @FXML
     private void showMarketInfo(){
 
+        LocalDate localDate = this.date.getValue();
+
+        MarketInfoVO marketInfoVO = dataCalculationService.getMarketInfo(Helper.localDateToDate(localDate));
+
+        if(marketInfoVO==null){
+            showMessage("无数据");
+            return;
+        }
+
         FXMLLoader rootLoader = new FXMLLoader();
 
         try{
@@ -79,17 +88,7 @@ public class MainPageController{
             e.printStackTrace();
         }
 
-        LocalDate localDate = this.date.getValue();
-
         MarketInfoController marketInfoController = rootLoader.getController();
-
-        MarketInfoVO marketInfoVO = dataCalculationService.getMarketInfo(Helper.localDateToDate(localDate));
-
-        if(marketInfoVO==null){
-            showMessage("无数据");
-            return;
-        }
-
         marketInfoController.init(marketInfoVO);
 
     }
@@ -97,23 +96,11 @@ public class MainPageController{
     @FXML
     private void showSearchShares(){
 
-        FXMLLoader rootLoader = new FXMLLoader();
-
-        try{
-
-            rootLoader.setLocation(getClass().getResource("/fxml/SearchShares.fxml"));
-            Pane root = rootLoader.load();
-            rightPane.getChildren().clear();
-            rightPane.getChildren().addAll(root);
-
-        } catch (IOException e){
-            e.printStackTrace();
-        }
 
         LocalDate start = start_1.getValue();
         LocalDate end = end_1.getValue();
 
-        if(end.isBefore(start)){
+        if(end.isBefore(start)||end.equals(start)){
             showMessage("结束时间不应早于开始时间");
             return;
         }
@@ -140,19 +127,11 @@ public class MainPageController{
             return;
         }
 
-        SearchSharesController searchSharesController = rootLoader.getController();
-        searchSharesController.init(stockVO,startDate,endDate);
-
-    }
-
-    @FXML
-    private void showCompareShares(){
-
         FXMLLoader rootLoader = new FXMLLoader();
 
         try{
 
-            rootLoader.setLocation(getClass().getResource("/fxml/CompareShares.fxml"));
+            rootLoader.setLocation(getClass().getResource("/fxml/SearchShares.fxml"));
             Pane root = rootLoader.load();
             rightPane.getChildren().clear();
             rightPane.getChildren().addAll(root);
@@ -161,10 +140,18 @@ public class MainPageController{
             e.printStackTrace();
         }
 
+        SearchSharesController searchSharesController = rootLoader.getController();
+        searchSharesController.init(stockVO,startDate,endDate);
+
+    }
+
+    @FXML
+    private void showCompareShares(){
+
         LocalDate start = start_2.getValue();
         LocalDate end = end_2.getValue();
 
-        if(end.isBefore(start)){
+        if(end.isBefore(start)||end.equals(start)){
             showMessage("结束时间不应早于开始时间");
             return;
         }
@@ -202,6 +189,19 @@ public class MainPageController{
         if(stockVO_0 == null || stockVO_1 == null){
             showMessage("无数据");
             return;
+        }
+
+        FXMLLoader rootLoader = new FXMLLoader();
+
+        try{
+
+            rootLoader.setLocation(getClass().getResource("/fxml/CompareShares.fxml"));
+            Pane root = rootLoader.load();
+            rightPane.getChildren().clear();
+            rightPane.getChildren().addAll(root);
+
+        } catch (IOException e){
+            e.printStackTrace();
         }
 
         CompareSharesController compareSharesController = rootLoader.getController();
