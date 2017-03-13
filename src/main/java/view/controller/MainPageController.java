@@ -54,25 +54,9 @@ public class MainPageController{
         return mainPageController;
     }
 
-    private MainPageController(){
+    public MainPageController(){
 
         dataCalculationService = new DataCalculation();
-
-    }
-
-    public void showLeftPane(){
-
-        try{
-
-            FXMLLoader rootLoader = new FXMLLoader();
-            rootLoader.setLocation(getClass().getResource("/fxml/MainPage.fxml"));
-            Pane root = rootLoader.load();
-            MainController.getStage().setScene(new Scene(root));
-            MainController.resetStage();
-
-        } catch (IOException e){
-            e.printStackTrace();
-        }
 
     }
 
@@ -174,10 +158,10 @@ public class MainPageController{
             e.printStackTrace();
         }
 
-        LocalDate start = start_1.getValue();
+        LocalDate start = start_2.getValue();
         Date startDate = Helper.localDateToDate(start);
 
-        LocalDate end = end_1.getValue();
+        LocalDate end = end_2.getValue();
         Date endDate = Helper.localDateToDate(end);
 
         String input_0 = num_2_0.getText();

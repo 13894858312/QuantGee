@@ -1,5 +1,6 @@
 package logic.calculation;
 
+import data.StockData;
 import dataDao.StockDataDao;
 import logic.tools.AverageLineType;
 import logic.tools.DateHelper;
@@ -24,7 +25,10 @@ public class GraphCalculation implements GraphCalculationService {
 
     public GraphCalculation() {
         this.dateHelper = DateHelper.getInstance();
-        this.stockDataDao = new MockStockData();
+
+//        this.stockDataDao = new MockStockData();
+        this.stockDataDao = new StockData();
+
     }
 
     /**
