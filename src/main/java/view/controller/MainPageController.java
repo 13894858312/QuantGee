@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -13,7 +14,9 @@ import logic.calculation.DataCalculation;
 import logicService.DataCalculationService;
 import vo.MarketInfoVO;
 import vo.StockVO;
-
+import java.time.temporal.ChronoUnit;
+import javafx.scene.control.Tooltip;
+import javafx.util.Callback;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
@@ -55,8 +58,6 @@ public class MainPageController{
     public MainPageController(){
 
         dataCalculationService = new DataCalculation();
-
-
     }
 
     @FXML
@@ -96,7 +97,6 @@ public class MainPageController{
 
     @FXML
     private void showSearchShares(){
-
 
         LocalDate start = start_1.getValue();
         LocalDate end = end_1.getValue();
@@ -210,7 +210,37 @@ public class MainPageController{
 
     }
 
+    //设置DatePicker的时间
+    private void setDatePicker(DatePicker datePicker){
+        DatePicker minDatePicker = new DatePicker();
+        minDatePicker.setValue(LocalDate.of(2005,2,1));
+        DatePicker maxDatePicker = new DatePicker();
+        maxDatePicker.setValue(LocalDate.of(2014,4,29));
+        final Callback<DatePicker, DateCell> dayCellFactory =
+                new Callback<DatePicker, DateCell>() {
+                    @Override
+                    public DateCell call(final DatePicker datePicker) {
+                        return new DateCell() {
+                            @Override
+                            public void updateItem(LocalDate Item,  boolean empty) {
+                                super.updateItem(Item, empty);
 
+                                if (Item.isBefore(minDatePicker.getValue()) || Item.isAfter(maxDatePicker.getValue())){
+                                    setDisable(true);
+                                    setStyle("-fx-background-color: #ffc0cb;");
+                                }
+                                long p = ChronoUnit.DAYS.between(
+                                        minDatePicker.getValue(), Item
+                                );
+                                setTooltip(new Tooltip(
+                                        "You're about to stay for " + p + " days")
+                                );
+                            }
+                        };
+                    }
+                };
+        datePicker.setDayCellFactory(dayCellFactory);
+    }
 
     private void showMessage(String str){
 
