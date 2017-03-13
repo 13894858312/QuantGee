@@ -10,6 +10,10 @@ public class Helper {
 
     public static InputState checkInputState(String input){
 
+        if( input == null || input.equals("") || input == ""){
+            return InputState.NOINPUT;
+        }
+
         input = input.trim();
 
         //若六位数字则为股票代码

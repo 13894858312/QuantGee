@@ -10,9 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import logic.calculation.DataCalculation;
-import logic.calculation.GraphCalculation;
 import logicService.DataCalculationService;
-import logicService.GraphCalculationService;
 import vo.MarketInfoVO;
 import vo.StockVO;
 
@@ -88,7 +86,7 @@ public class MainPageController{
         MarketInfoVO marketInfoVO = dataCalculationService.getMarketInfo(Helper.localDateToDate(localDate));
 
         if(marketInfoVO==null){
-            noResult("无数据");
+            showMessage("无数据");
             return;
         }
 
@@ -113,9 +111,14 @@ public class MainPageController{
         }
 
         LocalDate start = start_1.getValue();
-        Date startDate = Helper.localDateToDate(start);
-
         LocalDate end = end_1.getValue();
+
+        if(end.isBefore(start)){
+            showMessage("结束时间不应早于开始时间");
+            return;
+        }
+
+        Date startDate = Helper.localDateToDate(start);
         Date endDate = Helper.localDateToDate(end);
 
         String input = num_1.getText().trim();
@@ -128,12 +131,12 @@ public class MainPageController{
         }else if(inputState == InputState.NUM){
             stockVO = dataCalculationService.getStockInfoByCode(input,startDate,endDate);
         }else{
-            noResult("请输入股票代码/名称");
+            showMessage("请输入股票代码/名称");
             return;
         }
 
         if(stockVO == null){
-            noResult("无数据");
+            showMessage("无数据");
             return;
         }
 
@@ -159,9 +162,14 @@ public class MainPageController{
         }
 
         LocalDate start = start_2.getValue();
-        Date startDate = Helper.localDateToDate(start);
-
         LocalDate end = end_2.getValue();
+
+        if(end.isBefore(start)){
+            showMessage("结束时间不应早于开始时间");
+            return;
+        }
+
+        Date startDate = Helper.localDateToDate(start);
         Date endDate = Helper.localDateToDate(end);
 
         String input_0 = num_2_0.getText();
@@ -175,7 +183,7 @@ public class MainPageController{
         }else if(inputState_0 == InputState.NUM){
             stockVO_0 = dataCalculationService.getStockInfoByCode(input_0,startDate,endDate);
         }else{
-            noResult("请输入股票代码/名称");
+            showMessage("请输入股票代码/名称");
             return;
         }
 
@@ -187,12 +195,12 @@ public class MainPageController{
         }else if(inputState_1 == InputState.NUM){
             stockVO_1 = dataCalculationService.getStockInfoByCode(input_1,startDate,endDate);
         }else{
-            noResult("请输入股票代码/名称");
+            showMessage("请输入股票代码/名称");
             return;
         }
 
         if(stockVO_0 == null || stockVO_1 == null){
-            noResult("无数据");
+            showMessage("无数据");
             return;
         }
 
@@ -201,7 +209,7 @@ public class MainPageController{
 
     }
 
-    private void noResult(String str){
+    private void showMessage(String str){
 
         Stage dialog = new Stage();
 
