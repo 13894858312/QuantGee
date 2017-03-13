@@ -174,7 +174,46 @@ public class MainPageController{
             e.printStackTrace();
         }
 
+        LocalDate start = start_1.getValue();
+        Date startDate = Helper.localDateToDate(start);
+
+        LocalDate end = end_1.getValue();
+        Date endDate = Helper.localDateToDate(end);
+
+        String input_0 = num_2_0.getText();
+        String input_1 = num_2_1.getText();
+
+        StockVO stockVO_0 ;
+        InputState inputState_0 = Helper.checkInputState(input_0);
+
+        if(inputState_0 == InputState.NAME){
+            stockVO_0 = dataCalculationService.getStockInfoByName(input_0,startDate,endDate);
+        }else if(inputState_0 == InputState.NUM){
+            stockVO_0 = dataCalculationService.getStockInfoByCode(input_0,startDate,endDate);
+        }else{
+            noResult();
+            return;
+        }
+
+        StockVO stockVO_1 ;
+        InputState inputState_1 = Helper.checkInputState(input_1);
+
+        if(inputState_1 == InputState.NAME){
+            stockVO_1 = dataCalculationService.getStockInfoByName(input_1,startDate,endDate);
+        }else if(inputState_1 == InputState.NUM){
+            stockVO_1 = dataCalculationService.getStockInfoByCode(input_1,startDate,endDate);
+        }else{
+            noResult();
+            return;
+        }
+
+        if(stockVO_0 == null || stockVO_1 == null){
+            noResult();
+            return;
+        }
+
         CompareSharesController compareSharesController = rootLoader.getController();
+        compareSharesController.init(stockVO_0,stockVO_1,startDate,endDate);
 
     }
 
