@@ -34,8 +34,10 @@ public class Helper {
 
     public static Date localDateToDate(LocalDate localDate){
 
-        String temp = localDate.toString();
-        Date date = new Date(temp);
+        int year = localDate.getYear()-1900;
+        int month = localDate.getMonthValue()-1;
+        int day = localDate.getDayOfMonth();
+        Date date = new Date(year,month,day);
         return date;
 
     }

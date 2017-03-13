@@ -7,6 +7,6 @@ import org.omg.PortableServer.POAPackage.WrongAdapter;
  */
 public enum InputState {
     NUM,
-    WRONG,
-    NAME
+    NAME,
+    NOINPUT
 }
