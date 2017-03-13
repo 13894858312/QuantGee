@@ -20,7 +20,7 @@ public class LogYieldVar_Compare extends Pane{
 
         //y-yAxis
         final NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Logarithmic yield variance");
+        yAxis.setLabel("Logarithmic Yield Variance");
 
         //chart
         final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
