@@ -19,26 +19,32 @@ public class Graph {
         return graph;
     }
 
+    //K线图
     public AdvCandleStickChart getKLineChart(ArrayList<KLineVO> kLineVOArrayList) throws Exception{
         return new AdvCandleStickChart(kLineVOArrayList);
     }
 
+    //均线图
     public AverageChart getAverageLineChart(ArrayList<AverageLineVO> averageLineVOArrayList){
         return new AverageChart(averageLineVOArrayList);
     }
 
+    //最高价、最低价、收盘价比较图
     public Price_Compare getPriceCompareChart(ArrayList<StockVO> stockVOArrayList, ArrayList<StockDailyInfoVO> stockDailyInfoVOArrayList){
         return new Price_Compare(stockVOArrayList, stockDailyInfoVOArrayList);
     }
 
+    //涨跌幅、对数收益率比较图
     public Range_Compare getRangeCompareChart(ArrayList<StockVO> stockVOArrayList, ArrayList<StockDailyInfoVO> stockDailyInfoVOArrayList){
         return new Range_Compare(stockVOArrayList, stockDailyInfoVOArrayList);
     }
 
+    //对数收益率方差比较图
     public LogYieldVar_Compare getLogYieldVarCompareChart(StockVO stockVO1, StockVO stockVO2){
         return new LogYieldVar_Compare(stockVO1, stockVO2);
     }
 
+    //市场温度计比较图
     public MarketThermometer getMarketThermometerChart(MarketInfoVO marketInfoVO){
         return new MarketThermometer(marketInfoVO);
     }
