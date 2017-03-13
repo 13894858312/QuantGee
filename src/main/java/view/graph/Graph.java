@@ -30,8 +30,8 @@ public class Graph {
     }
 
     //最高价、最低价、收盘价比较图
-    public Price_Compare getPriceCompareChart(ArrayList<StockVO> stockVOArrayList, ArrayList<StockDailyInfoVO> stockDailyInfoVOArrayList){
-        return new Price_Compare(stockVOArrayList, stockDailyInfoVOArrayList);
+    public Price_Compare getPriceCompareChart(ArrayList<StockVO> stockVOArrayList){
+        return new Price_Compare(stockVOArrayList);
     }
 
     //涨跌幅比较图
