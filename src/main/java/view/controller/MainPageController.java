@@ -88,7 +88,7 @@ public class MainPageController{
         MarketInfoVO marketInfoVO = dataCalculationService.getMarketInfo(Helper.localDateToDate(localDate));
 
         if(marketInfoVO==null){
-            noResult();
+            noResult("无数据");
             return;
         }
 
@@ -128,12 +128,12 @@ public class MainPageController{
         }else if(inputState == InputState.NUM){
             stockVO = dataCalculationService.getStockInfoByCode(input,startDate,endDate);
         }else{
-            noResult();
+            noResult("请输入股票代码/名称");
             return;
         }
 
         if(stockVO == null){
-            noResult();
+            noResult("无数据");
             return;
         }
 
@@ -175,7 +175,7 @@ public class MainPageController{
         }else if(inputState_0 == InputState.NUM){
             stockVO_0 = dataCalculationService.getStockInfoByCode(input_0,startDate,endDate);
         }else{
-            noResult();
+            noResult("请输入股票代码/名称");
             return;
         }
 
@@ -187,12 +187,12 @@ public class MainPageController{
         }else if(inputState_1 == InputState.NUM){
             stockVO_1 = dataCalculationService.getStockInfoByCode(input_1,startDate,endDate);
         }else{
-            noResult();
+            noResult("请输入股票代码/名称");
             return;
         }
 
         if(stockVO_0 == null || stockVO_1 == null){
-            noResult();
+            noResult("无数据");
             return;
         }
 
@@ -201,7 +201,7 @@ public class MainPageController{
 
     }
 
-    private void noResult(){
+    private void noResult(String str){
 
         Stage dialog = new Stage();
 
@@ -212,7 +212,7 @@ public class MainPageController{
             Pane root = rootLoader.load();
             dialog.setScene(new Scene(root));
             DialogController dialogController = rootLoader.getController();
-            dialogController.setText("未找到数据");
+            dialogController.setText(str);
 
         }catch (IOException e){
             e.printStackTrace();
