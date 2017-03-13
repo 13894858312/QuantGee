@@ -62,12 +62,12 @@
                         <Pane fx:id="highest" prefHeight="270.0" prefWidth="200.0" />
                      </children>
                   </Pane>
-                  <Label alignment="CENTER" layoutX="83.0" layoutY="270.0" text="最高价" textAlignment="CENTER" />
+                  <Label alignment="CENTER" layoutX="83.0" layoutY="270.0" text="最高价/最低价/收盘价" textAlignment="CENTER" />
                </children></Pane>
             <Pane layoutX="280.0" layoutY="10.0" prefHeight="300.0" prefWidth="200.0">
                <children>
                   <Pane fx:id="lowest" prefHeight="270.0" prefWidth="200.0" />
-                  <Label alignment="CENTER" layoutX="83.0" layoutY="270.0" text="最低价" textAlignment="CENTER" />
+                  <Label alignment="CENTER" layoutX="83.0" layoutY="270.0" text="涨/跌幅" textAlignment="CENTER" />
                </children></Pane>
             <Pane layoutX="510.0" layoutY="10.0" prefHeight="300.0" prefWidth="200.0">
                <children>
