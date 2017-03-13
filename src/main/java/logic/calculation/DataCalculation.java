@@ -116,7 +116,7 @@ public class DataCalculation implements DataCalculationService {
 
         //计算当日总交易量
         int j = 0;          //yesterdayStockMarket遍历的下标
-        int allVolume = 0;
+        double allVolume = 0;
         int[] rateNums = new int[6]; //数据依次为跌停，-10%- -5%，-5%-0，0-5%，5%-10%，涨停
         int greaterThanFiveNum = 0, lessThanFiveNum = 0;
 
