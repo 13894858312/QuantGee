@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -15,7 +16,8 @@ import logicService.DataCalculationService;
 import logicService.GraphCalculationService;
 import vo.MarketInfoVO;
 import vo.StockVO;
-
+import javafx.util.Callback;
+//import javax.security.auth.callback.Callback;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
@@ -57,6 +59,7 @@ public class MainPageController{
     public MainPageController(){
 
         dataCalculationService = new DataCalculation();
+//        date.setChronology();
 
     }
 
@@ -199,6 +202,17 @@ public class MainPageController{
         CompareSharesController compareSharesController = rootLoader.getController();
         compareSharesController.init(stockVO_0,stockVO_1,startDate,endDate);
 
+    }
+
+    //设置DatePicker的时间
+    private void setDatePicker(DatePicker datePicker){
+        final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>(){
+            public DateCell call(final DatePicker datePicker) {
+                return new DateCell(){
+
+                };
+            }
+        };
     }
 
     private void noResult(String str){

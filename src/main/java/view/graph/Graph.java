@@ -35,8 +35,8 @@ public class Graph {
     }
 
     //涨跌幅比较图
-    public Range_Compare getRangeCompareChart(ArrayList<StockVO> stockVOArrayList, ArrayList<StockDailyInfoVO> stockDailyInfoVOArrayList){
-        return new Range_Compare(stockVOArrayList, stockDailyInfoVOArrayList);
+    public Range_Compare getRangeCompareChart(ArrayList<StockVO> stockVOArrayList){
+        return new Range_Compare(stockVOArrayList);
     }
 
     //对数收益率比较图
