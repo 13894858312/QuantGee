@@ -47,7 +47,7 @@ public class StockDataTest {
 	@Test
 	public void testGetStockPOsByTimeInterval3() {
 		StockData stockData = new StockData();
-		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("2/10/10", "4/11/12", "1");
+		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("2/7/05", "2/10/05", "1");
 		for (StockPO stockPO : stockPOs) {
 			System.out.println(stockPO.getVolume());
 		}
