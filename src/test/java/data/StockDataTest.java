@@ -45,6 +45,15 @@ public class StockDataTest {
 	}
 	
 	@Test
+	public void testGetStockPOsByTimeInterval3() {
+		StockData stockData = new StockData();
+		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("2/10/10", "4/11/12", "1");
+		for (StockPO stockPO : stockPOs) {
+			System.out.println(stockPO.getVolume());
+		}
+	}
+	
+	@Test
 	public void testGetStockCodeByName(){
 		StockData stockData = new StockData();
 		String stockCode = stockData.getStockCodeByName("莱美药业");
