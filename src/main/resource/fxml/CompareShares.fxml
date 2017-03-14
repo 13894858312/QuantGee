@@ -17,7 +17,7 @@
                      <children>
                         <Button fx:id="kLineLeft" mnemonicParsing="false" onAction="#showLeftKLine" styleClass="TwoSharesButton" text="K线图" />
                         <Button fx:id="dayLineLeft" mnemonicParsing="false" onAction="#showLeftDayLine" styleClass="TwoSharesButton" text="日均线" />
-                        <Button fx:id="quaterLineLeft" mnemonicParsing="false" onAction="#showLeftQuarterLine" styleClass="TwoSharesButton" text="季均线" />
+                        <Button fx:id="quarterLineLeft" mnemonicParsing="false" onAction="#showLeftQuarterLine" styleClass="TwoSharesButton" text="季均线" />
                         <Button fx:id="yearLineLeft" mnemonicParsing="false" onAction="#showLeftYearLine" styleClass="TwoSharesButton" text="年均线" />
                         <Button fx:id="yieldLineLeft" mnemonicParsing="false" onAction="#showLeftYieldLine" styleClass="TwoSharesButton" text="收益率" />
                      </children>
@@ -43,7 +43,7 @@
                      <children>
                         <Button fx:id="kLineRight" mnemonicParsing="false" onAction="#showRightKLine" styleClass="TwoSharesButton" text="K线图" />
                         <Button fx:id="dayLineRight" mnemonicParsing="false" onAction="#showRightDayLine" styleClass="TwoSharesButton" text="日均线" />
-                        <Button fx:id="quaterLineRight" mnemonicParsing="false" onAction="#showRightQuarterLine" styleClass="TwoSharesButton" text="季均线" />
+                        <Button fx:id="quarterLineRight" mnemonicParsing="false" onAction="#showRightQuarterLine" styleClass="TwoSharesButton" text="季均线" />
                         <Button fx:id="yearLineRight" mnemonicParsing="false" onAction="#showRightYearLine" styleClass="TwoSharesButton" text="年均线" />
                         <Button fx:id="yieldLineRight" mnemonicParsing="false" onAction="#showRightYieldLine" styleClass="TwoSharesButton" text="收益率" />
                      </children>

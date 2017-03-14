@@ -23,6 +23,7 @@ public class SearchSharesController {
     private StockVO stockVO;
     private Date start;
     private Date end;
+    private long gap;
 
     @FXML private Label name;
     @FXML private Label num;
@@ -46,6 +47,22 @@ public class SearchSharesController {
         this.stockVO = stockVO;
         this.start = start;
         this.end = end;
+
+        dayLine.setDisable(true);
+        quarterLine.setDisable(true);
+        yearLine.setDisable(true);
+
+        gap = ( end.getTime() - start.getTime() )/1000/60/60/24;
+
+        if(gap>10){
+            dayLine.setDisable(false);
+        }
+        if(gap>60){
+            quarterLine.setDisable(false);
+        }
+        if(gap>240){
+            yearLine.setDisable(false);
+        }
 
         name.setText(stockVO.stockName);
         num.setText(stockVO.stockCode);
@@ -73,7 +90,7 @@ public class SearchSharesController {
 
     @FXML
     private void showDayLine(){
-        drawAveLine(AverageLineType.DAYS_5);
+        drawAveLine(AverageLineType.DAYS_10);
     }
 
     @FXML

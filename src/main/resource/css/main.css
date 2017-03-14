@@ -75,12 +75,12 @@
     -fx-alignment: center;
     -fx-text-alignment: center;
     -fx-font-size: 14px;
-    fx-font-fill: #333333;
+    -fx-font-fill: #333333;
     -fx-pref-width: 60;
     -fx-pref-height: 30;
     -fx-background-radius: 0px;
     -fx-border-radius: 0px;
-    -fx-background-color: #eeeeee;
+    -fx-background-color: #dddddd;
 }
 
 /*比较界面按钮*/
