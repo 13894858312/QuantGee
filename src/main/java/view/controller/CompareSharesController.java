@@ -274,7 +274,7 @@ public class CompareSharesController {
         try {
             aveLinePane = graph.getAverageLineChart(graphCalculationService.getAverageLineInfoByCode(start, end, stockVO_0.stockCode, averageLineType));
             leftChart.getChildren().clear();
-            rightChart.getChildren().add(aveLinePane);
+            leftChart.getChildren().add(aveLinePane);
         } catch (Exception e) {
             e.printStackTrace();
         }
