@@ -73,6 +73,7 @@ public class AdvCandleStickChart extends Pane {
 
     public AdvCandleStickChart(ArrayList<KLineVO> kLineVOArrayList) throws Exception{
         // x-axis:
+        this.getStylesheets().add("/css/ensemble_AdvCandleStickChart.css");
 
         final CategoryAxis xAxis = new CategoryAxis();
 //        final NumberAxis xAxis = new NumberAxis(0, 32, 1);
@@ -93,6 +94,7 @@ public class AdvCandleStickChart extends Pane {
         XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
         for (int i = 0; i < kLineVOArrayList.size(); i++) {
             KLineVO day = kLineVOArrayList.get(i);
+            System.out.println(day.date);
             series.getData().add(
                     new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(day.date), day.openPrice, new CandleStickExtraValues(day.closePrice, day.maxValue, day.minValue))
             );
@@ -185,7 +187,7 @@ public class AdvCandleStickChart extends Pane {
                         // update candle
                         //K线图
                         candle.update(close - y, high - y, low - y, candleWidth);
-//                        candle.updateTooltip(item.getYValue().doubleValue(), extra.getClose(), extra.getHigh(), extra.getLow());
+                        candle.updateTooltip(item.getYValue().doubleValue(), extra.getClose(), extra.getHigh(), extra.getLow());
 
                         // position the candle
                         candle.setLayoutX(x);
@@ -368,13 +370,13 @@ public class AdvCandleStickChart extends Pane {
         private double close;
         private double high;
         private double low;
-//        private double average;
+        private double average;
 
         public CandleStickExtraValues(double close, double high, double low) {
             this.close = close;
             this.high = high;
             this.low = low;
-//            this.average = average;
+            this.average = average;
         }
 
         public double getClose() {
@@ -389,9 +391,9 @@ public class AdvCandleStickChart extends Pane {
             return low;
         }
 
-//        public double getAverage() {
-//            return average;
-//        }
+        public double getAverage() {
+            return average;
+        }
     }
 
     /**
