@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.DialogController">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" styleClass="RootPane" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.DialogController">
    <children>
       <Button id="dialogButton" fx:id="backButton" alignment="CENTER" layoutX="120.0" layoutY="125.0" mnemonicParsing="false" onAction="#close" text="返回" textAlignment="CENTER" />
       <Label fx:id="myLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="60.0" prefWidth="200.0" text="Label" textAlignment="CENTER" />
