@@ -91,7 +91,7 @@ public class StockData implements StockDataDao{
 						isFound = true;
 					}
 					if (inTimeRange) {
-						if (strings[1].equals(endDate)) {
+						if (strings[1].equals(startdate)) {
 							inTimeRange = false;
 						}
 						StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
@@ -100,7 +100,7 @@ public class StockData implements StockDataDao{
 								Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
 						stockPOS.add(po);
 					}else {
-						if (strings[1].equals(startdate)) {
+						if (strings[1].equals(endDate)) {
 							inTimeRange = true;
 							StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
 									Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
