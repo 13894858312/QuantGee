@@ -94,7 +94,6 @@ public class AdvCandleStickChart extends Pane {
         XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
         for (int i = 0; i < kLineVOArrayList.size(); i++) {
             KLineVO day = kLineVOArrayList.get(i);
-            System.out.println(day.date);
             series.getData().add(
                     new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(day.date), day.openPrice, new CandleStickExtraValues(day.closePrice, day.maxValue, day.minValue))
             );
@@ -182,7 +181,7 @@ public class AdvCandleStickChart extends Pane {
                         double candleWidth = -1;
                         if (getXAxis() instanceof CategoryAxis) {
                             CategoryAxis xa = (CategoryAxis) getXAxis();
-                            candleWidth = (xa.getCategorySpacing())*0.7; // use 70% width between ticks
+                            candleWidth = (xa.getCategorySpacing()); // use 70% width between ticks
                         }
                         // update candle
                         //K线图
