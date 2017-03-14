@@ -27,16 +27,15 @@ public class MarketThermometer extends Pane {
         final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
         bc.setTitle("MarketThermometer");
         XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
+        series.setName("Number Of Shares");
         series.getData().add(new XYChart.Data<String, Number>("跌停", marketInfoVO.rateNums[0]));
         series.getData().add(new XYChart.Data<String, Number>("跌幅5%-10%", marketInfoVO.rateNums[1]));
         series.getData().add(new XYChart.Data<String, Number>("跌幅0-5%", marketInfoVO.rateNums[2]));
         series.getData().add(new XYChart.Data<String, Number>("涨幅0-5%", marketInfoVO.rateNums[3]));
         series.getData().add(new XYChart.Data<String, Number>("涨幅5%-10%", marketInfoVO.rateNums[4]));
         series.getData().add(new XYChart.Data<String, Number>("涨停", marketInfoVO.rateNums[5]));
-        series.getData().add(new XYChart.Data<String, Number>("开盘‐收盘大于 " +
-                "5%*上一个交易日收盘价", marketInfoVO.greaterThanFiveNum));
-        series.getData().add(new XYChart.Data<String, Number>("开盘‐收盘小于" +
-                "‐5%*上一个交易日收盘价", marketInfoVO.lessThanFiveNum));
+        series.getData().add(new XYChart.Data<String, Number>("开收>5%", marketInfoVO.greaterThanFiveNum));
+        series.getData().add(new XYChart.Data<String, Number>("开收<-5%", marketInfoVO.lessThanFiveNum));
 
         bc.getData().addAll(series);
         getChildren().add(bc);

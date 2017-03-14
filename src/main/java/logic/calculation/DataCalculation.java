@@ -27,13 +27,19 @@ public class DataCalculation implements DataCalculationService {
 
     public StockVO getStockInfoByCode(String stockCode, Date startDate, Date endDate) {
 
+        System.out.println(stockCode + " ");
+
         assert (stockCode != null && !stockCode.equals("") && startDate != null && endDate != null)
                 : "logic.calculation.DataCalculation.getStockInfoByCode参数异常";
 
-        ArrayList<StockPO> stockPOs = this.stockDataDao.getStockPOsByTimeInterval(startDate.toString(),
-                endDate.toString(), stockCode);
+        ArrayList<StockPO> stockPOs = this.stockDataDao.getStockPOsByTimeInterval(DateHelper.getInstance().dateTransToString(startDate),
+                DateHelper.getInstance().dateTransToString(startDate), stockCode);
 
-        if (stockPOs == null || stockPOs.size() == 1) {
+        System.out.println(stockPOs.size());
+        System.out.println(DateHelper.getInstance().dateTransToString(startDate));
+        System.out.println(DateHelper.getInstance().dateTransToString(endDate));
+
+        if (stockPOs == null || stockPOs.size() == 0) {
             return null;
         }
 
