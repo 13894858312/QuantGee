@@ -34,17 +34,21 @@ public class Range_Compare extends Pane{
         XYChart.Series<String, Number> series_DecreaseRange = new XYChart.Series<String, Number>();
         series_IncreaseRange.setName("IncreaseRange");
         series_DecreaseRange.setName("DecreaseRange");
-        for(int i=0;i<stockVOArrayList.size();i++){
-            StockVO stockVO = stockVOArrayList.get(i);
-            ArrayList<StockDailyInfoVO> stockDailyInfoVOArrayList = stockVO.stockDailyInfoVOs;
-            for(int j=0;j<stockDailyInfoVOArrayList.size();j++) {
-                series_IncreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO.stockName, Math.abs(stockDailyInfoVOArrayList.get(i).inOrDecreaseRate)));
-                series_DecreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO.stockName, Math.abs(stockDailyInfoVOArrayList.get(i).inOrDecreaseRate)));
-            }
-        }
+        StockVO stockVO1 = stockVOArrayList.get(0);
+        StockVO stockVO2 = stockVOArrayList.get(1);
+
+
 
         bc.getData().addAll(series_IncreaseRange, series_DecreaseRange);
         getChildren().add(bc);
 
+    }
+
+    private boolean judgeInOrDeRange(double d){
+        if(d >= 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
