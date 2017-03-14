@@ -71,6 +71,18 @@
     -fx-opacity: 0.6;
 }
 
+#dialogButton{
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-font-size: 14px;
+    fx-font-fill: #333333;
+    -fx-pref-width: 60;
+    -fx-pref-height: 30;
+    -fx-background-radius: 0px;
+    -fx-border-radius: 0px;
+    -fx-background-color: #eeeeee;
+}
+
 /*比较界面按钮*/
 .TwoSharesButton{
     -fx-background-color:#aaaaaa;
@@ -138,6 +150,7 @@
 
 /*textFeld默认样式*/
 .text-field{
+    -fx-text-alignment: center;
     -fx-font-fill:#333333;
     -fx-background-radius: 0;
     -fx-border-radius: 0;

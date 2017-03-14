@@ -23,6 +23,7 @@ public class CompareSharesController {
     private Graph graph;
     private Date start;
     private Date end;
+    private long gap;
     private StockVO stockVO_0;
     private StockVO stockVO_1;
 
@@ -83,6 +84,28 @@ public class CompareSharesController {
         this.start = start;
         this.end = end;
 
+        dayLineLeft.setDisable(true);
+        dayLineRight.setDisable(true);
+        quarterLineLeft.setDisable(true);
+        quarterLineRight.setDisable(true);
+        yearLineLeft.setDisable(true);
+        yearLineRight.setDisable(true);
+
+        gap = (end.getTime()-start.getTime())/1000/60/60/24;
+
+        if(gap>10){
+            dayLineLeft.setDisable(false);
+            dayLineRight.setDisable(false);
+        }
+        if(gap>60){
+            quarterLineLeft.setDisable(false);
+            quarterLineRight.setDisable(false);
+        }
+        if(gap>240){
+            yearLineLeft.setDisable(false);
+            yearLineRight.setDisable(false);
+        }
+
         name_left.setText(stockVO_0.stockName);
         num_left.setText(stockVO_0.stockCode);
 
@@ -117,7 +140,7 @@ public class CompareSharesController {
 
     @FXML
     private void showLeftDayLine() {
-        drawLeftAveLine(AverageLineType.DAYS_5);
+        drawLeftAveLine(AverageLineType.DAYS_10);
     }
 
     @FXML
@@ -164,7 +187,7 @@ public class CompareSharesController {
 
     @FXML
     private void showRightDayLine() {
-        drawLeftAveLine(AverageLineType.DAYS_5);
+        drawLeftAveLine(AverageLineType.DAYS_10);
     }
 
     @FXML
