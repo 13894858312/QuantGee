@@ -48,7 +48,6 @@ public class SearchSharesController {
         this.start = start;
         this.end = end;
 
-        /*
         dayLine.setDisable(true);
         quarterLine.setDisable(true);
         yearLine.setDisable(true);
@@ -64,8 +63,6 @@ public class SearchSharesController {
         if(gap>240){
             yearLine.setDisable(false);
         }
-
-        */
 
         name.setText(stockVO.stockName);
         num.setText(stockVO.stockCode);
