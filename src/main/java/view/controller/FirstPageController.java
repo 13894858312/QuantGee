@@ -29,6 +29,7 @@ public class FirstPageController{
             MainController.resetStage();
 
             MainPageController mainPageController = rootLoader.getController();
+            mainPageController.setDatePicker();
 
         } catch (IOException e){
             e.printStackTrace();

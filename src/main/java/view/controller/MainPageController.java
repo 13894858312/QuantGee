@@ -46,6 +46,33 @@ public class MainPageController{
     @FXML private TextField num_2_0;
     @FXML private TextField num_2_1;
 
+    private final LocalDate MIN = LocalDate.of(2005,2,2);
+    private final LocalDate MAX = LocalDate.of(2014,4,29);
+
+    private final Callback<DatePicker, DateCell> dayCellFactory =
+            new Callback<DatePicker, DateCell>() {
+                @Override
+                public DateCell call(final DatePicker datePicker) {
+                    return new DateCell() {
+                        @Override
+                        public void updateItem(LocalDate Item,  boolean empty) {
+                            super.updateItem(Item, empty);
+
+                            if (Item.isBefore(MIN) || Item.isAfter(MAX)){
+                                setDisable(true);
+                                setStyle("-fx-background-color: #ffc0cb;");
+                            }
+                            long p = ChronoUnit.DAYS.between(
+                                    MIN, Item
+                            );
+                            setTooltip(new Tooltip(
+                                    "You're about to stay for " + p + " days")
+                            );
+                        }
+                    };
+                }
+            };
+
     public static MainPageController mainPageController;
 
     public static MainPageController getInstance(){
@@ -58,6 +85,7 @@ public class MainPageController{
     public MainPageController(){
 
         dataCalculationService = new DataCalculation();
+
     }
 
     @FXML
@@ -149,6 +177,7 @@ public class MainPageController{
     @FXML
     private void showCompareShares(){
 
+
         LocalDate start = start_2.getValue();
         LocalDate end = end_2.getValue();
 
@@ -211,35 +240,17 @@ public class MainPageController{
     }
 
     //设置DatePicker的时间
-    private void setDatePicker(DatePicker datePicker){
-        DatePicker minDatePicker = new DatePicker();
-        minDatePicker.setValue(LocalDate.of(2005,2,1));
-        DatePicker maxDatePicker = new DatePicker();
-        maxDatePicker.setValue(LocalDate.of(2014,4,29));
-        final Callback<DatePicker, DateCell> dayCellFactory =
-                new Callback<DatePicker, DateCell>() {
-                    @Override
-                    public DateCell call(final DatePicker datePicker) {
-                        return new DateCell() {
-                            @Override
-                            public void updateItem(LocalDate Item,  boolean empty) {
-                                super.updateItem(Item, empty);
-
-                                if (Item.isBefore(minDatePicker.getValue()) || Item.isAfter(maxDatePicker.getValue())){
-                                    setDisable(true);
-                                    setStyle("-fx-background-color: #ffc0cb;");
-                                }
-                                long p = ChronoUnit.DAYS.between(
-                                        minDatePicker.getValue(), Item
-                                );
-                                setTooltip(new Tooltip(
-                                        "You're about to stay for " + p + " days")
-                                );
-                            }
-                        };
-                    }
-                };
-        datePicker.setDayCellFactory(dayCellFactory);
+    public void setDatePicker(){
+        date.setDayCellFactory(dayCellFactory);
+        date.setValue(MIN);
+        start_1.setDayCellFactory(dayCellFactory);
+        start_1.setValue(MIN);
+        end_1.setDayCellFactory(dayCellFactory);
+        end_1.setValue(MAX);
+        start_2.setDayCellFactory(dayCellFactory);
+        start_2.setValue(MIN);
+        end_2.setDayCellFactory(dayCellFactory);
+        end_2.setValue(MAX);
     }
 
     private void showMessage(String str){
