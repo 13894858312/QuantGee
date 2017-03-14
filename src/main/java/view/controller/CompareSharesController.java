@@ -187,17 +187,17 @@ public class CompareSharesController {
 
     @FXML
     private void showRightDayLine() {
-        drawLeftAveLine(AverageLineType.DAYS_10);
+        drawRightAveLine(AverageLineType.DAYS_10);
     }
 
     @FXML
     private void showRightQuarterLine() {
-        drawLeftAveLine(AverageLineType.DAYS_60);
+        drawRightAveLine(AverageLineType.DAYS_60);
     }
 
     @FXML
     private void showRightYearLine() {
-        drawLeftAveLine(AverageLineType.DAYS_240);
+        drawRightAveLine(AverageLineType.DAYS_240);
     }
 
     @FXML
