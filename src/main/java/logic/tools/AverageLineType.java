@@ -6,5 +6,4 @@ package logic.tools;
  */
 public enum AverageLineType {
     DAYS_5, DAYS_10, DAYS_30, DAYS_60, DAYS_120, DAYS_240
-
 }

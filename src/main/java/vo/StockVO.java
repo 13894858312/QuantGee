@@ -13,6 +13,7 @@ public class StockVO {
     public double minValue;
     public double maxValue;
     public double logarithmYieldVariance;
+    public double rate;
     public ArrayList<StockDailyInfoVO> stockDailyInfoVOs;
 
     /**
@@ -24,14 +25,15 @@ public class StockVO {
      * @param logarithmYieldVariance 对数收益率方差
      * @param stockDailyInfoVOs stockDailyInfoVOs
      */
-    public StockVO(String stockCode, String stockName, String stockMarket, double minValue,
-                   double maxValue, double logarithmYieldVariance, ArrayList<StockDailyInfoVO> stockDailyInfoVOs) {
+    public StockVO(String stockCode, String stockName, String stockMarket, double minValue, double maxValue,
+                   double logarithmYieldVariance,double rate, ArrayList<StockDailyInfoVO> stockDailyInfoVOs) {
         this.stockCode = stockCode;
         this.stockName = stockName;
         this.stockMarket = stockMarket;
         this.minValue = minValue;
         this.maxValue = maxValue;
         this.logarithmYieldVariance = logarithmYieldVariance;
+        this.rate = rate;
         this.stockDailyInfoVOs = stockDailyInfoVOs;
     }
 }
