@@ -55,24 +55,24 @@
       <Separator layoutX="372.0" layoutY="20.0" orientation="VERTICAL" prefHeight="380.0" />
       <AnchorPane layoutX="10.0" layoutY="420.0" prefHeight="320.0" prefWidth="730.0" styleClass="ChartPane">
          <children>
-            <Pane layoutX="50.0" layoutY="10.0" prefHeight="300.0" prefWidth="200.0">
+            <Pane layoutX="20.0" layoutY="10.0" prefHeight="300.0" prefWidth="200.0">
                <children>
                   <Pane>
                      <children>
                         <Pane fx:id="highest" prefHeight="270.0" prefWidth="200.0" />
                      </children>
                   </Pane>
-                  <Label alignment="CENTER" layoutX="83.0" layoutY="270.0" text="最高价/最低价/收盘价" textAlignment="CENTER" />
+                  <Label alignment="CENTER" layoutX="32.0" layoutY="277.0" text="最高价/最低价/收盘价" textAlignment="CENTER" />
                </children></Pane>
-            <Pane layoutX="280.0" layoutY="10.0" prefHeight="300.0" prefWidth="200.0">
+            <Pane layoutX="255.0" layoutY="10.0" prefHeight="300.0" prefWidth="200.0">
                <children>
                   <Pane fx:id="lowest" prefHeight="270.0" prefWidth="200.0" />
-                  <Label alignment="CENTER" layoutX="83.0" layoutY="270.0" text="涨/跌幅" textAlignment="CENTER" />
+                  <Label alignment="CENTER" layoutX="77.0" layoutY="277.0" text="涨/跌幅" textAlignment="CENTER" />
                </children></Pane>
-            <Pane layoutX="510.0" layoutY="10.0" prefHeight="300.0" prefWidth="200.0">
+            <Pane layoutX="490.0" layoutY="10.0" prefHeight="300.0" prefWidth="200.0">
                <children>
                   <Pane fx:id="variance" prefHeight="270.0" prefWidth="200.0" />
-                  <Label alignment="CENTER" layoutX="55.0" layoutY="270.0" text="对数收益率方差" textAlignment="CENTER" />
+                  <Label alignment="CENTER" layoutX="51.0" layoutY="277.0" text="对数收益率方差" textAlignment="CENTER" />
                </children></Pane>
          </children>
       </AnchorPane>

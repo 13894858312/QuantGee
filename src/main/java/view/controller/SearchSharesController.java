@@ -58,10 +58,10 @@ public class SearchSharesController {
         if(gap>10){
             dayLine.setDisable(false);
         }
-        if(gap>60){
+        if(gap>90){
             quarterLine.setDisable(false);
         }
-        if(gap>240){
+        if(gap>360){
             yearLine.setDisable(false);
         }
 
@@ -91,7 +91,7 @@ public class SearchSharesController {
 
     @FXML
     private void showDayLine(){
-        drawAveLine(AverageLineType.DAYS_10);
+        drawAveLine(AverageLineType.DAYS_5);
     }
 
     @FXML

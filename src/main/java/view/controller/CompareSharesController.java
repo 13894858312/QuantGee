@@ -97,11 +97,11 @@ public class CompareSharesController {
             dayLineLeft.setDisable(false);
             dayLineRight.setDisable(false);
         }
-        if(gap>60){
+        if(gap>90){
             quarterLineLeft.setDisable(false);
             quarterLineRight.setDisable(false);
         }
-        if(gap>240){
+        if(gap>360){
             yearLineLeft.setDisable(false);
             yearLineRight.setDisable(false);
         }
@@ -140,7 +140,7 @@ public class CompareSharesController {
 
     @FXML
     private void showLeftDayLine() {
-        drawLeftAveLine(AverageLineType.DAYS_10);
+        drawLeftAveLine(AverageLineType.DAYS_5);
     }
 
     @FXML
