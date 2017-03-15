@@ -52,7 +52,7 @@
 
 /*左侧三个tab里的搜索按钮*/
 .SearchButton{
-    -fx-background-color: #666666;
+    -fx-background-color: #555555;
     -fx-border-radius: 0;
     -fx-background-radius: 0;
     -fx-opacity: 1;
@@ -97,8 +97,8 @@
 }
 
 .TwoSharesButton:focused{
-    -fx-background-color: #999999;
-    -fx-text-fill: #333333;
+    -fx-background-color: #000000;
+    -fx-text-fill: #eeeeee;
     -fx-opacity: 1;
 }
 
@@ -116,8 +116,8 @@
 }
 
 .SingleShareButton:focused{
-    -fx-background-color: #999999;
-    -fx-text-fill: #333333;
+    -fx-background-color: #000000;
+    -fx-text-fill: #eeeeee;
     -fx-opacity: 1;
 }
 
