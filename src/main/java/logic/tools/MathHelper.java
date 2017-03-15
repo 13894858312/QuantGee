@@ -17,7 +17,7 @@ public class MathHelper {
         }
 
         double temp = sum/(data.length-1);
-        return MathHelper.formatData(temp);
+        return temp;
     }
 
     public static double average(double[] data) {
