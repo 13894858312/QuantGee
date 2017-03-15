@@ -26,7 +26,7 @@ public class DateHelperTest {
         Date date1 = DateHelper.getInstance().stringTransToDate(dateString1);
         Date date2 = DateHelper.getInstance().stringTransToDate(dateString2);
 
-        assertEquals(2, DateHelper.calculateDaysBetween(date1, date2));
+        assertEquals(2, DateHelper.getInstance().calculateDaysBetween(date1, date2));
     }
 
 
