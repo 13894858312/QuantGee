@@ -33,10 +33,6 @@ public class DataCalculation implements DataCalculationService {
         ArrayList<StockPO> stockPOs = this.stockDataDao.getStockPOsByTimeInterval(DateHelper.getInstance().dateTransToString(startDate),
                 DateHelper.getInstance().dateTransToString(endDate), stockCode);
 
-        System.out.println(DateHelper.getInstance().dateTransToString(startDate));
-        System.out.println(DateHelper.getInstance().dateTransToString(endDate));
-        System.out.println(stockPOs.size());
-
         if (stockPOs == null || stockPOs.size() == 0) {
             return null;
         }
@@ -73,14 +69,9 @@ public class DataCalculation implements DataCalculationService {
         double[] temp = new double[stockDailyInfoVOs.size()];
         for (int i = 0; i < stockDailyInfoVOs.size(); ++i) {
             temp[i] = stockDailyInfoVOs.get(i).logarithmYield;
-            System.out.println(temp[i]);
         }
 
         logarithmYieldVariance = MathHelper.sampleVariance(temp);
-
-
-        System.out.println(logarithmYieldVariance);
-
 
         double rate = 0;
         rate = (stockPOs.get(stockPOs.size()-1).getADJ()-stockPOs.get(0).getADJ())/stockPOs.get(0).getADJ();
