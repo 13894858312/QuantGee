@@ -93,58 +93,45 @@ public class StockData implements StockDataDao{
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
 			line = br.readLine();
-			boolean inTimeRange = false;
+			boolean isFound = false;		//是否找到该股票
+			boolean inTimeRange = false; 	//在要搜寻的时间范围内
 			while((line = br.readLine()) != null) {
 				String[] strings = line.split("\\t");
-				if (strings[1].equals(endDate)) {
-					inTimeRange = true;
-				}
-				if (inTimeRange&&strings[1].equals(startdate)) {
-					inTimeRange = false;
+				if (!strings[8].equals(stockCode)) {
+					if (isFound) {
+						break;
+					}else {
+						continue;
+					}
+				}else {
+					if (!isFound) {
+						isFound = true;
+					}
+					if (inTimeRange) {
+						if (strings[1].equals(startdate)) {
+							inTimeRange = false;
+						}
+						StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
+								Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
+								Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
+								Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
+						stockPOS.add(po);
+					}else {
+						if (strings[1].equals(endDate)) {
+							inTimeRange = true;
+							StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
+									Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
+									Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
+									Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
+							stockPOS.add(po);
+						}else{
+							if (inTimeRange) {
+								break;
+							}
+						}
+					}
 				}
 			}
-			if (!inTimeRange) {
-				return null;
-			}
-//			boolean isFound = false;		//是否找到该股票
-//			boolean inTimeRange = false; 	//在要搜寻的时间范围内
-//			while((line = br.readLine()) != null) {
-//				String[] strings = line.split("\\t");
-//				if (!strings[8].equals(stockCode)) {
-//					if (isFound) {
-//						break;
-//					}else {
-//						continue;
-//					}
-//				}else {
-//					if (!isFound) {
-//						isFound = true;
-//					}
-//					if (inTimeRange) {
-//						if (strings[1].equals(startdate)) {
-//							inTimeRange = false;
-//						}
-//						StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
-//								Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
-//								Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
-//								Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
-//						stockPOS.add(po);
-//					}else {
-//						if (strings[1].equals(endDate)) {
-//							inTimeRange = true;
-//							StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
-//									Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
-//									Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
-//									Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
-//							stockPOS.add(po);
-//						}else{
-//							if (inTimeRange) {
-//								break;
-//							}
-//						}
-//					}
-//				}
-//			}
 			return stockPOS;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

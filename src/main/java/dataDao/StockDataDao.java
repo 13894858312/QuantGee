@@ -41,11 +41,4 @@ public interface StockDataDao {
      */
     public ArrayList<StockPO> getStockPOsByTimeInterval(String startdate, String endDate, String stockCode);
     
-    /**
-     * 根据指定时间和股票编号判断当日股票信息是否存在
-     * @param date
-     * @param stockCode
-     * @return
-     */
-    public boolean isExistData(String date,String stockCode);
 }
