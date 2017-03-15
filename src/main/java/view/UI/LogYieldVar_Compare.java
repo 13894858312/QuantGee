@@ -23,16 +23,16 @@ public class LogYieldVar_Compare extends Pane{
 
         //y-yAxis
         final NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Logarithmic Yield Variance");
+        yAxis.setLabel("LogYieldVar");
 
         //chart
         final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
         bc.setPrefSize(width, height);
         bc.setCategoryGap(30);
-        bc.setTitle("Comparision Of Logarithmic yield variance");
 
         //data
         XYChart.Series<String, Number> series_LogYieldVar = new XYChart.Series<String, Number>();
+        series_LogYieldVar.setName("LogYieldVar");
         series_LogYieldVar.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName, stockVO1.logarithmYieldVariance));
         series_LogYieldVar.getData().add(new XYChart.Data<String, Number>(stockVO2.stockName, stockVO2.logarithmYieldVariance));
 
