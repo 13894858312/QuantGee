@@ -85,7 +85,7 @@
 
 /*比较界面按钮*/
 .TwoSharesButton{
-    -fx-background-color:#aaaaaa;
+    -fx-background-color:#444444;
     -fx-border-radius: 0;
     -fx-background-radius: 0;
     -fx-border-style: none;
@@ -97,14 +97,14 @@
 }
 
 .TwoSharesButton:focused{
-    -fx-background-color: #dddddd;
+    -fx-background-color: #999999;
     -fx-text-fill: #333333;
     -fx-opacity: 1;
 }
 
 /*单只股票界面按钮*/
 .SingleShareButton{
-    -fx-background-color:#aaaaaa;
+    -fx-background-color:#444444;
     -fx-border-radius: 0;
     -fx-background-radius: 0;
     -fx-border-style: none;
@@ -116,74 +116,71 @@
 }
 
 .SingleShareButton:focused{
-    -fx-background-color: #dddddd;
+    -fx-background-color: #999999;
     -fx-text-fill: #333333;
     -fx-opacity: 1;
 }
 
 /*tab的默认样式*/
 .TabButton{
+    -fx-background-color: #666666;
     -fx-opacity: 1;
     -fx-background-radius: 0;
     -fx-border-radius: 0;
     -fx-text-fill: white;
-    -fx-fill: white;
-    -fx-pref-width: 70;
+    -fx-pref-width: 74;
     -fx-pref-height: 40;
     -fx-padding: 0 0 0 0;
 }
 
-.tab :armed{
-    -fx-background-color: #666666;
-}
-
 .tab-pane{
-    -fx-background-color: rgba(244,244,244,0.99);
+    -fx-background-color: #424242;
 }
 
 /*label默认样式*/
 .label{
-    -fx-text-fill: #333333;
+    -fx-text-fill: #ffffff;
     -fx-font-size: 14px;
     -fx-text-alignment: center;
 }
 
 /*textFeld默认样式*/
 .text-field{
-    -fx-text-alignment: center;
-    -fx-font-fill:#333333;
+    -fx-text-fill: #ffffff;
     -fx-background-radius: 0;
     -fx-border-radius: 0;
-    -fx-background-color: #eeeeee;
+    -fx-background-color: #333333;
 }
+
 
 /*右侧根节点样式*/
 .RootPane{
-    -fx-background-color: #eeeeee;
+    -fx-background-color: #424242;
 }
 
 #mainPane{
-    -fx-background-color: #dddddd;
+    -fx-background-color: #333333;
 }
 
 .Picker{
-    -fx-border-color: #eeeeee;
-    -fx-background-color: #eeeeee;
+    -fx-text-fill: #000000;
+    -fx-border-color: #333333;
+    -fx-background-color: #333333;
 }
 
 /*chart底部颜色*/
 .ChartPane{
-    -fx-background-color: #dddddd;
+    -fx-background-color: #222222;
 }
 
 .ButtonBottom{
-    -fx-background-color: #cccccc;
+    -fx-background-color: #222222;
 }
 
 .LabelBottom{
-    -fx-background-color: #cccccc;
+    -fx-background-color: #222222;
 }
 
 .SharePane{
-    -fx-background-color: #cccccc;
+    -fx-background-color: #222222;
 }
