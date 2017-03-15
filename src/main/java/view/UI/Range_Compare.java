@@ -28,6 +28,9 @@ public class Range_Compare extends Pane{
 
         //chart
         final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
+        bc.setBarGap(3);
+        bc.setCategoryGap(30);
+        bc.setPrefSize(width, height);
         bc.setTitle("Comparision Of Range");
 
         //data
@@ -36,8 +39,17 @@ public class Range_Compare extends Pane{
         series_IncreaseRange.setName("IncreaseRange");
         series_DecreaseRange.setName("DecreaseRange");
 
-        //待添加
+        if(stockVO1.rate<0){
+            series_DecreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName, Math.abs(stockVO1.rate)));
+        }else{
+            series_IncreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName, stockVO1.rate));
+        }
 
+        if(stockVO2.rate<0){
+            series_DecreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO2.stockName, Math.abs(stockVO2.rate)));
+        }else{
+            series_IncreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO2.stockName, stockVO2.rate));
+        }
 
         bc.getData().addAll(series_IncreaseRange, series_DecreaseRange);
         getChildren().add(bc);

@@ -34,6 +34,10 @@
     /*derive(-fx-background, -10%);*/
     -fx-stroke-dash-array: 0.1em, 0.1em;
 }
-.chart-bar{
-    -fx-background-color: black;
+.date0.chart-bar{
+    -fx-background-color: red;
+}
+
+.date1.chart-bar{
+    -fx-background-color: green;
 }
