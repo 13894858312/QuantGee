@@ -188,7 +188,6 @@ public class StockData implements StockDataDao{
 		return null;
 	}
 
-	@Override
 	public boolean isExistData(String date, String stockCode) {
 		return getStockPO(date, stockCode)==null;
 	}
