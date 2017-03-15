@@ -54,6 +54,13 @@ public class StockDataTest {
 	}
 	
 	@Test
+	public void testGetStockPOsByTimeInterval4(){
+		StockData stockData = new StockData();
+		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("4/26/14", "4/29/14", "1");
+		assertEquals(2, stockPOs.size());
+	}
+	
+	@Test
 	public void testGetStockCodeByName(){
 		StockData stockData = new StockData();
 		String stockCode = stockData.getStockCodeByName("莱美药业");
