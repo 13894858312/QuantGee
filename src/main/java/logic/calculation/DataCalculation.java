@@ -58,7 +58,7 @@ public class DataCalculation implements DataCalculationService {
         for (int i = 1; i < stockPOs.size(); ++i) {
             Date date = dateHelper.stringTransToDate(stockPOs.get(i).getDate());
             double inOrDecreaseRate = (stockPOs.get(i).getADJ() - stockPOs.get(i - 1).getADJ()) / stockPOs.get(i - 1).getADJ();
-            double logarithmYield = stockPOs.get(i).getADJ() / stockPOs.get(i - 1).getADJ();
+            double logarithmYield = Math.log(stockPOs.get(i).getADJ() / stockPOs.get(i - 1).getADJ());
 
             stockDailyInfoVOs.add(new StockDailyInfoVO(stockPOs.get(i).getStockCode(), stockPOs.get(i).getStockName(),date, inOrDecreaseRate, stockPOs.get(i).getClosePrice(), logarithmYield));
         }
