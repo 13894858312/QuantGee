@@ -15,8 +15,9 @@ import java.util.Locale;
  * Created by Administrator on 2017/3/13.
  */
 public class LogYield_Compare extends Pane {
-    public LogYield_Compare(ArrayList<StockDailyInfoVO> stockDailyInfoVOArrayList){
+    public LogYield_Compare(ArrayList<StockDailyInfoVO> stockDailyInfoVOArrayList, int width, int height){
 
+        this.getStylesheets().add("/css/logYield_Compare.css");
         //x-xAxis
         final CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Date");
@@ -27,11 +28,14 @@ public class LogYield_Compare extends Pane {
 
         //chart
         final LineChart<String, Number> lc = new LineChart<String, Number>(xAxis, yAxis);
+        lc.setCreateSymbols(false);
+        lc.setPrefSize(width, height);
         lc.setTitle("Logarithmic Yield Of Shares");
 
         //data
         XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
-        for(int i=0;i<stockDailyInfoVOArrayList.size();i++){
+        series.setName("Logarithm Yield");
+        for(int i=stockDailyInfoVOArrayList.size()-1;i>=0;i--){
             StockDailyInfoVO stockDailyInfoVO = stockDailyInfoVOArrayList.get(i);
             series.getData().add(new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(stockDailyInfoVO.date), stockDailyInfoVO.logarithmYield));
         }

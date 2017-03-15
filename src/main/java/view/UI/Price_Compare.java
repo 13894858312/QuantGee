@@ -15,7 +15,9 @@ import java.util.ArrayList;
  */
 public class Price_Compare extends Pane{
 
-    public Price_Compare(ArrayList<StockVO> stockVOArrayList){
+    public Price_Compare(ArrayList<StockVO> stockVOArrayList, int width, int height){
+
+        this.getStylesheets().add("/css/price_Compare.css");
 
         //x-xAxis
         final CategoryAxis xAxis = new CategoryAxis();
@@ -27,6 +29,9 @@ public class Price_Compare extends Pane{
 
         //chart
         final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
+        bc.setCategoryGap(20);
+        bc.setBarGap(3);
+        bc.setPrefSize(width, height);
         bc.setTitle("Comparision Of Price");
 
         //data

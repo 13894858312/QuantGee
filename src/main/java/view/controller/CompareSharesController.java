@@ -129,7 +129,7 @@ public class CompareSharesController {
         Pane kLinePane;
 
         try{
-            kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO_0.stockCode));
+            kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO_0.stockCode), 350, 300);
             leftChart.getChildren().clear();
             leftChart.getChildren().add(kLinePane);
         }catch (Exception e){
@@ -160,7 +160,7 @@ public class CompareSharesController {
 
         try{
 
-            yieldPane = graph.getLogYieldCompareChart(stockVO_0.stockDailyInfoVOs);
+            yieldPane = graph.getLogYieldCompareChart(stockVO_0.stockDailyInfoVOs, 350, 300);
             leftChart.getChildren().clear();
             leftChart.getChildren().add(yieldPane);
 
@@ -176,7 +176,7 @@ public class CompareSharesController {
         Pane kLinePane;
 
         try{
-            kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO_1.stockCode));
+            kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO_1.stockCode), 350, 300);
             rightChart.getChildren().clear();
             rightChart.getChildren().add(kLinePane);
         }catch (Exception e){
@@ -207,7 +207,7 @@ public class CompareSharesController {
 
         try{
 
-            yieldPane = graph.getLogYieldCompareChart(stockVO_1.stockDailyInfoVOs);
+            yieldPane = graph.getLogYieldCompareChart(stockVO_1.stockDailyInfoVOs, 350, 300);
             rightChart.getChildren().clear();
             rightChart.getChildren().add(yieldPane);
 
@@ -226,7 +226,7 @@ public class CompareSharesController {
             stockVOS.add(stockVO_0);
             stockVOS.add(stockVO_1);
 
-            firstPane = graph.getPriceCompareChart(stockVOS);
+            firstPane = graph.getPriceCompareChart(stockVOS,220, 250);
             highest.getChildren().clear();
             highest.getChildren().add(firstPane);
 
@@ -242,7 +242,7 @@ public class CompareSharesController {
 
         try {
 
-            secondPane = graph.getLogYieldVarCompareChart(stockVO_0,stockVO_1);
+            secondPane = graph.getLogYieldVarCompareChart(stockVO_0,stockVO_1,220,250);
             lowest.getChildren().clear();
             lowest.getChildren().add(secondPane);
 
@@ -258,7 +258,7 @@ public class CompareSharesController {
         Pane yieldLinePane;
 
         try{
-            yieldLinePane = graph.getLogYieldVarCompareChart(stockVO_0,stockVO_1);
+            yieldLinePane = graph.getLogYieldVarCompareChart(stockVO_0,stockVO_1,220, 250);
             variance.getChildren().clear();
             variance.getChildren().add(yieldLinePane);
         }catch (Exception e){
@@ -272,7 +272,7 @@ public class CompareSharesController {
         Pane aveLinePane;
 
         try {
-            aveLinePane = graph.getAverageLineChart(graphCalculationService.getAverageLineInfoByCode(start, end, stockVO_0.stockCode, averageLineType));
+            aveLinePane = graph.getAverageLineChart(graphCalculationService.getAverageLineInfoByCode(start, end, stockVO_0.stockCode, averageLineType), 350, 300);
             leftChart.getChildren().clear();
             leftChart.getChildren().add(aveLinePane);
         } catch (Exception e) {
@@ -286,7 +286,7 @@ public class CompareSharesController {
         Pane aveLinePane;
 
         try{
-            aveLinePane = graph.getAverageLineChart(graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_1.stockCode,averageLineType));
+            aveLinePane = graph.getAverageLineChart(graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_1.stockCode,averageLineType), 350, 300);
             rightChart.getChildren().clear();
             rightChart.getChildren().add(aveLinePane);
         }catch (Exception e){

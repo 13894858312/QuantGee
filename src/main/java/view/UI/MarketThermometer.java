@@ -15,6 +15,7 @@ public class MarketThermometer extends Pane {
 
     public MarketThermometer(MarketInfoVO marketInfoVO){
 
+        this.getStylesheets().add("/css/marketThermometer.css");
         //x-xAxis
         final CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Share Type");
@@ -25,6 +26,8 @@ public class MarketThermometer extends Pane {
 
         //chart
         final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
+        bc.setPrefSize(700,500);
+        bc.setCategoryGap(30);
         bc.setTitle("MarketThermometer");
         XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
         series.setName("Number Of Shares");

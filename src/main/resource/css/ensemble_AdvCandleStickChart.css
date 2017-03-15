@@ -10,13 +10,14 @@
 }
 .candlestick-candle {
     -fx-effect: dropshadow( two-pass-box , rgba(0,0,0,0.4) , 10, 0.0 , 2 , 4 );
+    -fx-background-color: black;
 }
 .candlestick-line {
-    -fx-stroke: #666666;
-    -fx-stroke-width: 3px;
+    -fx-stroke: white;
+    -fx-stroke-width: 1px;
 }
 .candlestick-bar {
-    -fx-padding: 5;
+    -fx-padding: 3;
     -demo-bar-fill: red;
     /*-fx-background-color: linear-gradient(derive(-demo-bar-fill,-30%), derive(-demo-bar-fill,-40%)),*/
     /*linear-gradient(derive(-demo-bar-fill,100%), derive(-demo-bar-fill, 10%)),*/
@@ -24,8 +25,46 @@
     -fx-background-insets: 0,1,2;
 }
 .candlestick-bar.close-above-open {
-    -fx-background-color: #95ce1b;
+    -fx-background-color: lawngreen;
 }
 .candlestick-bar.open-above-close {
-    -fx-background-color: #ce2700;
+    -fx-background-color: red;
 }
+.chart{
+    -fx-background-color: black;
+    -fx-stroke-width: 0px;
+}
+.chart-legend{
+    -fx-background-color: transparent;
+}
+.chart-plot-background{
+    -fx-background-color: transparent;
+}
+.chart-alternative-row-fill {
+    -fx-fill: null;
+    -fx-stroke: null;
+}
+
+.chart-alternative-column-fill {
+    -fx-fill: null;
+    -fx-stroke: null;
+}
+
+.chart-vertical-zero-line,
+.chart-horizontal-zero-line {
+    -fx-stroke: derive(-fx-text-background-color, 40%);
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: black;
+    /*derive(-fx-background, -10%);*/
+    -fx-stroke-dash-array: 0.1em, 0.1em;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: black;
+    /*derive(-fx-background, -10%);*/
+    -fx-stroke-dash-array: 0.1em, 0.1em;
+}
+
+

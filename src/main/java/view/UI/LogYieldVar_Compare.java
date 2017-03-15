@@ -13,7 +13,10 @@ import vo.StockVO;
  */
 public class LogYieldVar_Compare extends Pane{
 
-    public LogYieldVar_Compare(StockVO stockVO1, StockVO stockVO2){
+    public LogYieldVar_Compare(StockVO stockVO1, StockVO stockVO2, int width, int height){
+
+        this.getStylesheets().add("/css/logYieldVar_Compare.css");
+
         //x-xAxis
         final CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Name Of Share");
@@ -24,6 +27,8 @@ public class LogYieldVar_Compare extends Pane{
 
         //chart
         final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
+        bc.setPrefSize(width, height);
+        bc.setCategoryGap(20);
         bc.setTitle("Comparision Of Logarithmic yield variance");
 
         //data

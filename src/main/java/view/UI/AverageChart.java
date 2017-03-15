@@ -16,8 +16,9 @@ import java.util.ArrayList;
  */
 public class AverageChart extends Pane{
 
-    public AverageChart(ArrayList<AverageLineVO> averageLineVOArrayList){
+    public AverageChart(ArrayList<AverageLineVO> averageLineVOArrayList, int width, int height){
 
+        this.getStylesheets().add("/css/averageChart.css");
         //x-xAxis
         final CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Day");
@@ -29,11 +30,14 @@ public class AverageChart extends Pane{
 
         //chart
         final LineChart<String, Number> averageLineChart = new LineChart<String, Number>(xAxis, yAxis);
+        averageLineChart.setPrefSize(width,height);
+        averageLineChart.setCreateSymbols(false);
         averageLineChart.setTitle("AverageLine Chart");
 
         //date
         XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
-        for(int i=0;i<averageLineVOArrayList.size();i++) {
+        series.setName("Data");
+        for(int i=averageLineVOArrayList.size()-1;i>=0;i--) {
             AverageLineVO averageLineVO = averageLineVOArrayList.get(i);
             series.getData().add(new XYChart.Data<String, Number>(
                     DateHelper.getInstance().dateTransToString(averageLineVO.date), averageLineVO.averageValue));

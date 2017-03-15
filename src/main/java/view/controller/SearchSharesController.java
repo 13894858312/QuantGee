@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import logic.calculation.GraphCalculation;
 import logic.tools.AverageLineType;
 import logicService.GraphCalculationService;
+import view.UI.AdvCandleStickChart;
 import view.graph.Graph;
 import vo.StockVO;
 
@@ -79,7 +80,7 @@ public class SearchSharesController {
         Pane kLinePane;
 
         try{
-             kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO.stockCode));
+             kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO.stockCode), 680, 600);
              chart.getChildren().clear();
              chart.getChildren().add(kLinePane);
         }catch (Exception e){
@@ -108,7 +109,7 @@ public class SearchSharesController {
         Pane aveLinePane;
 
         try{
-            aveLinePane = graph.getAverageLineChart(graphCalculationService.getAverageLineInfoByCode(start,end,stockVO.stockCode,averageLineType));
+            aveLinePane = graph.getAverageLineChart(graphCalculationService.getAverageLineInfoByCode(start,end,stockVO.stockCode,averageLineType),680, 600);
             chart.getChildren().clear();
             chart.getChildren().add(aveLinePane);
         }catch (Exception e){
