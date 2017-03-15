@@ -66,5 +66,11 @@
     /*derive(-fx-background, -10%);*/
     -fx-stroke-dash-array: 0.1em, 0.1em;
 }
-
+.axis{
+    -fx-font-size:1.2em;
+    -fx-tick-label-fill: white;
+}
+.axis-label{
+    -fx-text-fill: white;
+}
 
