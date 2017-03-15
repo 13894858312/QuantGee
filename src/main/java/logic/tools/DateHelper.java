@@ -27,7 +27,7 @@ public class DateHelper {
         return simpleDateFormat.format(date);
     }
 
-    public static int calculateDaysBetween(Date startDate, Date endDate) {
+    public int calculateDaysBetween(Date startDate, Date endDate) {
         long start = 0, end = 0;
         start = startDate.getTime();
         end = endDate.getTime();

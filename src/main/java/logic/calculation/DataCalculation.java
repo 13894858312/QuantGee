@@ -27,17 +27,11 @@ public class DataCalculation implements DataCalculationService {
 
     public StockVO getStockInfoByCode(String stockCode, Date startDate, Date endDate) {
 
-        System.out.println(stockCode + " ");
-
         assert (stockCode != null && !stockCode.equals("") && startDate != null && endDate != null)
                 : "logic.calculation.DataCalculation.getStockInfoByCode参数异常";
 
         ArrayList<StockPO> stockPOs = this.stockDataDao.getStockPOsByTimeInterval(DateHelper.getInstance().dateTransToString(startDate),
-                DateHelper.getInstance().dateTransToString(startDate), stockCode);
-
-        System.out.println(stockPOs.size());
-        System.out.println(DateHelper.getInstance().dateTransToString(startDate));
-        System.out.println(DateHelper.getInstance().dateTransToString(endDate));
+                DateHelper.getInstance().dateTransToString(endDate), stockCode);
 
         if (stockPOs == null || stockPOs.size() == 0) {
             return null;
@@ -79,9 +73,13 @@ public class DataCalculation implements DataCalculationService {
 
         logarithmYieldVariance = MathHelper.sampleVariance(temp);
 
+        double rate = 0;
+        rate = (stockPOs.get(stockPOs.size()-1).getADJ()-stockPOs.get(0).getADJ())/stockPOs.get(0).getADJ();
+        rate = MathHelper.formatData(rate);
+
 
         StockVO stockVO = new StockVO(stockPOs.get(0).getStockCode(), stockPOs.get(0).getStockName(),
-                stockPOs.get(0).getStockMarket(), min, max, logarithmYieldVariance, stockDailyInfoVOs);
+                stockPOs.get(0).getStockMarket(), min, max, logarithmYieldVariance, rate, stockDailyInfoVOs);
 
 
         return stockVO;
