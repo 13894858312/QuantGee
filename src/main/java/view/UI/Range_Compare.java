@@ -15,8 +15,9 @@ import java.util.ArrayList;
  */
 public class Range_Compare extends Pane{
 
-    public Range_Compare(ArrayList<StockVO> stockVOArrayList){
+    public Range_Compare(StockVO stockVO1, StockVO stockVO2, int width, int height){
 
+        this.getStylesheets().add("/css/range_Compare.css");
         //x-xAxis
         final CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Name Of Share");
@@ -34,9 +35,8 @@ public class Range_Compare extends Pane{
         XYChart.Series<String, Number> series_DecreaseRange = new XYChart.Series<String, Number>();
         series_IncreaseRange.setName("IncreaseRange");
         series_DecreaseRange.setName("DecreaseRange");
-        StockVO stockVO1 = stockVOArrayList.get(0);
-        StockVO stockVO2 = stockVOArrayList.get(1);
 
+        //待添加
 
 
         bc.getData().addAll(series_IncreaseRange, series_DecreaseRange);

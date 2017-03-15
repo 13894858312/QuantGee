@@ -28,7 +28,7 @@ public class LogYieldVar_Compare extends Pane{
         //chart
         final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
         bc.setPrefSize(width, height);
-        bc.setCategoryGap(20);
+        bc.setCategoryGap(30);
         bc.setTitle("Comparision Of Logarithmic yield variance");
 
         //data

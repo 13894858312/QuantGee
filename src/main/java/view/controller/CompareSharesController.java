@@ -242,7 +242,7 @@ public class CompareSharesController {
 
         try {
 
-            secondPane = graph.getLogYieldVarCompareChart(stockVO_0,stockVO_1,220,250);
+            secondPane = graph.getRangeCompareChart(stockVO_0,stockVO_1,220,250);
             lowest.getChildren().clear();
             lowest.getChildren().add(secondPane);
 

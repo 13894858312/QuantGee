@@ -35,5 +35,5 @@
     -fx-stroke-dash-array: 0.1em, 0.1em;
 }
 .chart-bar{
-    -fx-background-color: black;
+    -fx-background-color: red;
 }

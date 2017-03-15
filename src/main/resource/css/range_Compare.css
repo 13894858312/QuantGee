@@ -1,5 +1,5 @@
 .chart{
-    -fx-background-color: black;
+    -fx-background-color: white;
     -fx-stroke-width: 0px;
 }
 .chart-legend{
@@ -24,16 +24,16 @@
 }
 
 .chart-vertical-grid-lines {
-    -fx-stroke: black;
+    -fx-stroke: white;
     /*derive(-fx-background, -10%);*/
     -fx-stroke-dash-array: 0.1em, 0.1em;
 }
 
 .chart-horizontal-grid-lines {
-    -fx-stroke: black;
+    -fx-stroke: white;
     /*derive(-fx-background, -10%);*/
     -fx-stroke-dash-array: 0.1em, 0.1em;
 }
-.default-color0.chart-series-line{
-    -fx-stroke: white;
+.chart-bar{
+    -fx-background-color: black;
 }
