@@ -9,6 +9,7 @@ import view.UI.MarketThermometer;
 import view.graph.Graph;
 import vo.MarketInfoVO;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.DoubleSummaryStatistics;
 
@@ -38,8 +39,14 @@ public class MarketInfoController {
 
         MarketThermometer marketThermometer = graph.getMarketThermometerChart(marketInfoVO);
 
-        date.setText(marketInfoVO.date.toString());
-        all.setText(Double.toString(marketInfoVO.volume));
+        BigDecimal bd = new BigDecimal(marketInfoVO.volume);
+
+
+        Date d = marketInfoVO.date;
+        String str = " " +( d.getYear() +1900 ) + " 年 " + ( d.getMonth()+1 ) + " 月 " + d.getDate() + " 日 ； 星期 " + d.getDay() ;
+
+        date.setText(str);
+        all.setText(bd.toPlainString());
         larger.setText(Integer.toString(marketInfoVO.greaterThanFiveNum));
         smaller.setText(Integer.toString(marketInfoVO.lessThanFiveNum));
 

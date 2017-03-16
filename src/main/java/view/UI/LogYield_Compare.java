@@ -1,7 +1,7 @@
 package view.UI;
 
 import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
+import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
@@ -26,8 +26,8 @@ public class LogYield_Compare extends Pane {
         final NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Logarithmic Yield");
 
-        //chart
-        final LineChart<String, Number> lc = new LineChart<String, Number>(xAxis, yAxis);
+        /* chart */
+        final AreaChart<String, Number> lc = new AreaChart<String, Number>(xAxis, yAxis);
         lc.setCreateSymbols(false);
         lc.setPrefSize(width, height);
         lc.setTitle("Logarithmic Yield Of Shares");
