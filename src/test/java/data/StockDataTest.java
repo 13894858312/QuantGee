@@ -49,7 +49,7 @@ public class StockDataTest {
 	public void testGetStockPOsByTimeInterval3() {
 		StockData stockData = new StockData();
 		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("2/5/05", "2/13/05", "1");
-		assertEquals(5, stockPOs.size());
+		assertEquals(0, stockPOs.size());
 	}
 	
 	@Test
