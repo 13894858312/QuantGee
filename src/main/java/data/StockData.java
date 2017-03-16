@@ -12,11 +12,14 @@ import po.StockPO;
  */
 public class StockData implements StockDataDao{
 	
+	
 	public StockPO getStockPO(String date, String stockCode) {
 		
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		path  = path+"/all_data/"+getFileNameByCode(stockCode)+".txt";
+		String[] newDate = date.split("/");
+		
+		path  = path+"/all_data_by_year/"+newDate[2]+".txt";
 		File file = new File(path);
 		
 		try {
@@ -51,7 +54,10 @@ public class StockData implements StockDataDao{
 		ArrayList<StockPO> stockPOS = new ArrayList<StockPO>();
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		File file = new File(path+"/all_data/股票历史数据ALL.csv");
+		String[] newDate = date.split("/");
+		
+		path  = path+"/all_data_by_year/"+newDate[2]+".txt";
+		File file = new File(path);
 		
 		try {
 			
@@ -86,7 +92,7 @@ public class StockData implements StockDataDao{
 		ArrayList<StockPO> stockPOS = new ArrayList<StockPO>();
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		path  = path+"/all_data/"+getFileNameByCode(stockCode)+".txt";
+		path  = path+"/all_data_by_name/"+getFileNameByCode(stockCode)+".txt";
 		File file = new File(path);
 		
 		String[] validDate = getVaildDate(startDate, endDate, path);
@@ -156,7 +162,7 @@ public class StockData implements StockDataDao{
 		
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		File file = new File(path+"/all_data/fileName.txt");
+		File file = new File(path+"/all_data_by_name/fileName.txt");
 		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
@@ -181,7 +187,7 @@ public class StockData implements StockDataDao{
 	public String getFileNameByCode(String stockCode) {
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		File file = new File(path+"/all_data/fileName.txt");
+		File file = new File(path+"/all_data_by_name/fileName.txt");
 		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
