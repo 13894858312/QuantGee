@@ -41,7 +41,10 @@ public class MarketInfoController {
 
         BigDecimal bd = new BigDecimal(marketInfoVO.volume);
 
-        date.setText(marketInfoVO.date.toString());
+
+        Date d = marketInfoVO.date;
+
+        date.setText(d.toString());
         all.setText(bd.toPlainString());
         larger.setText(Integer.toString(marketInfoVO.greaterThanFiveNum));
         smaller.setText(Integer.toString(marketInfoVO.lessThanFiveNum));
