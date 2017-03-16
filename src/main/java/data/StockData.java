@@ -12,11 +12,14 @@ import po.StockPO;
  */
 public class StockData implements StockDataDao{
 	
+	
 	public StockPO getStockPO(String date, String stockCode) {
 		
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		path  = path+"/all_data/"+getFileNameByCode(stockCode)+".txt";
+		String[] newDate = date.split("/");
+		
+		path  = path+"/all_data_by_year/"+newDate[2]+".txt";
 		File file = new File(path);
 		
 		try {
@@ -51,7 +54,10 @@ public class StockData implements StockDataDao{
 		ArrayList<StockPO> stockPOS = new ArrayList<StockPO>();
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		File file = new File(path+"/all_data/股票历史数据ALL.csv");
+		String[] newDate = date.split("/");
+		
+		path  = path+"/all_data_by_year/"+newDate[2]+".txt";
+		File file = new File(path);
 		
 		try {
 			
@@ -86,7 +92,7 @@ public class StockData implements StockDataDao{
 		ArrayList<StockPO> stockPOS = new ArrayList<StockPO>();
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		path  = path+"/all_data/"+getFileNameByCode(stockCode)+".txt";
+		path  = path+"/all_data_by_name/"+getFileNameByCode(stockCode)+".txt";
 		File file = new File(path);
 		
 		String[] validDate = getVaildDate(startDate, endDate, path);
@@ -156,16 +162,15 @@ public class StockData implements StockDataDao{
 		
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		File file = new File(path+"/all_data/fileName.txt");
+		File file = new File(path+"/all_data_by_name/fileName.txt");
 		
-		if (stockName.contains("A")) {
-			stockName = stockName.replace("A", "Ａ");
-		}
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
 			while((line = br.readLine()) != null) {
+				line  = line.replaceAll("Ａ", "A");
 				String[] strings = line.split(":");
+				strings[1] = strings[1].replace(" ","");
 				if (strings[1].equals(stockName) ) {
 					return strings[0];
 				}
@@ -182,7 +187,7 @@ public class StockData implements StockDataDao{
 	public String getFileNameByCode(String stockCode) {
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		File file = new File(path+"/all_data/fileName.txt");
+		File file = new File(path+"/all_data_by_name/fileName.txt");
 		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
@@ -210,8 +215,8 @@ public class StockData implements StockDataDao{
 		String[] vaildDate = new String[2];
 		String[] endDates = endDate.split("/");
 		String[] startDates = startDate.split("/");
-		Date newStartDate = new Date(Integer.parseInt(startDates[2]), Integer.parseInt(startDates[0]), Integer.parseInt(startDates[1]));
-		Date newEndDate = new Date(Integer.parseInt(endDates[2]), Integer.parseInt(endDates[0]), Integer.parseInt(endDates[1]));
+		Date newStartDate = new Date(Integer.parseInt(startDates[2])+100, Integer.parseInt(startDates[0])-1, Integer.parseInt(startDates[1]));
+		Date newEndDate = new Date(Integer.parseInt(endDates[2])+100, Integer.parseInt(endDates[0])-1, Integer.parseInt(endDates[1]));
 		String lastDate = "";
 		
 		try {
@@ -226,11 +231,12 @@ public class StockData implements StockDataDao{
 				vaildDate[1] = endDate;
 			}else {
 				String[] date = strings[1].split("/");
-				Date newDate = new Date(Integer.parseInt(date[2]), Integer.parseInt(date[0]), Integer.parseInt(date[1]));
+				Date newDate = new Date(Integer.parseInt(date[2])+100, Integer.parseInt(date[0])-1, Integer.parseInt(date[1]));
 				endDateDiff = (int) ((newEndDate.getTime() - newDate.getTime()) / (1000*3600*24));
 				startDateDiff = (int)((newStartDate.getTime() - newDate.getTime()) / (1000*3600*24));
 				lastDate = strings[1];
 			}
+			
 
 			while((line = br.readLine()) != null){
 				
@@ -243,36 +249,26 @@ public class StockData implements StockDataDao{
 					vaildDate[1] = endDate;
 				}
 				
+				String[] date = strings[1].split("/"); 
 				//获取有效的结束日期
 				if (vaildDate[1]==null) {
 					
-					if (strings[1].equals(endDate)) {
-						vaildDate[1] = endDate;
-						lastDate = strings[1];
-					}else {
-						String[] date = strings[1].split("/");
-						Date newDate = new Date(Integer.parseInt(date[2]), Integer.parseInt(date[0]), Integer.parseInt(date[1]));
-						if(endDateDiff*(int) ((newEndDate.getTime() - newDate.getTime()) / (1000*3600*24))<0){
-							vaildDate[1] = strings[1];
-							lastDate = strings[1];
-						}
-						endDateDiff = (int) ((newEndDate.getTime() - newDate.getTime()) / (1000*3600*24));
+					Date newDate = new Date(Integer.parseInt(date[2])+100, Integer.parseInt(date[0])-1, Integer.parseInt(date[1]));
+					if(endDateDiff*(int) ((newEndDate.getTime() - newDate.getTime()) / (1000*3600*24))<0){
+						vaildDate[1] = strings[1];
 					}
+					endDateDiff = (int) ((newEndDate.getTime() - newDate.getTime()) / (1000*3600*24));
+					
 				}
+				
 				
 				//获取有效的开始日期
 				if(vaildDate[0]==null){
-					
-					if (strings[1].equals(startDate)) {
-						vaildDate[0] = startDate;
-					}else {
-						String[] date = strings[1].split("/");
-						Date newDate = new Date(Integer.parseInt(date[2]), Integer.parseInt(date[0]), Integer.parseInt(date[1]));
-						if(startDateDiff*(int) ((newStartDate.getTime() - newDate.getTime()) / (1000*3600*24))<0){
-							vaildDate[0] = lastDate;
-						}
-						startDateDiff = (int) ((newStartDate.getTime() - newDate.getTime()) / (1000*3600*24));
+					Date newDate = new Date(Integer.parseInt(date[2])+100, Integer.parseInt(date[0])-1, Integer.parseInt(date[1]));
+					if(startDateDiff*(int) ((newStartDate.getTime() - newDate.getTime()) / (1000*3600*24))<0){
+						vaildDate[0] = lastDate;
 					}
+					startDateDiff = (int) ((newStartDate.getTime() - newDate.getTime()) / (1000*3600*24));
 				}
 				
 				lastDate = strings[1];
