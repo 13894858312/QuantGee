@@ -170,7 +170,9 @@ public class DataCalculation implements DataCalculationService {
         assert (stockName != null && !stockName.equals("") && startDate != null && endDate != null)
                 : "logic.calculation.DataCalculation.getStockInfoByName参数异常";
 
+        System.out.println(stockName);
         String code = this.stockDataDao.getStockCodeByName(stockName);
+        System.out.println(code);
 
         if(code == null || code.equals("")) {
             return null;
