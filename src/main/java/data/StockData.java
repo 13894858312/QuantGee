@@ -1,6 +1,7 @@
 package data;
 
 import java.io.*;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import dataDao.StockDataDao;
@@ -80,7 +81,7 @@ public class StockData implements StockDataDao{
 		
 	}
 	
-	public ArrayList<StockPO> getStockPOsByTimeInterval(String startdate, String endDate, String stockCode) {
+	public ArrayList<StockPO> getStockPOsByTimeInterval(String startDate, String endDate, String stockCode) {
 		
 		ArrayList<StockPO> stockPOS = new ArrayList<StockPO>();
 		String path = System.getProperty("user.dir");
@@ -88,46 +89,58 @@ public class StockData implements StockDataDao{
 		path  = path+"/all_data/"+getFileNameByCode(stockCode)+".txt";
 		File file = new File(path);
 		
+		String[] validDate = getVaildDate(startDate, endDate, path);
+		startDate = validDate[0];
+		endDate = validDate[1];
+		
+		System.out.println(startDate+" "+endDate);
+		
+		if (endDate==null||startDate==null) {
+			return null;
+		}
+		
+		if (startDate.equals(endDate)) {
+			stockPOS.add(getStockPO(endDate, stockCode));
+			return stockPOS;
+		}
+		
 		try {
 			
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
 			line = br.readLine();
-			boolean isFound = false;		//是否找到该股票
 			boolean inTimeRange = false; 	//在要搜寻的时间范围内
+			
 			while((line = br.readLine()) != null) {
+				
 				String[] strings = line.split("\\t");
-				if (!strings[8].equals(stockCode)) {
-					if (isFound) {
-						break;
-					}else {
-						continue;
+				
+				if (inTimeRange) {
+					
+					if (strings[1].equals(startDate)) {
+						inTimeRange = false;
 					}
+					
+					StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
+							Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
+							Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
+							Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
+					stockPOS.add(po);
+					
 				}else {
-					if (!isFound) {
-						isFound = true;
-					}
-					if (inTimeRange) {
-						if (strings[1].equals(startdate)) {
-							inTimeRange = false;
-						}
+					
+					if (strings[1].equals(endDate)) {
+						
+						inTimeRange = true;
 						StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
 								Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
 								Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
 								Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
 						stockPOS.add(po);
-					}else {
-						if (strings[1].equals(endDate)) {
-							inTimeRange = true;
-							StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
-									Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
-									Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
-									Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
-							stockPOS.add(po);
-						}else{
-							if (inTimeRange) {
-								break;
-							}
+						
+					}else{
+						if (inTimeRange) {
+							break;
 						}
 					}
 				}
@@ -188,8 +201,90 @@ public class StockData implements StockDataDao{
 		return null;
 	}
 
-	public boolean isExistData(String date, String stockCode) {
-		return getStockPO(date, stockCode)==null;
+	public String[] getVaildDate(String startDate , String endDate , String path){
+		
+		File file = new File(path);
+		int endDateDiff = 0;
+		int startDateDiff = 0;
+		String[] vaildDate = new String[2];
+		String[] endDates = endDate.split("/");
+		String[] startDates = startDate.split("/");
+		Date newStartDate = new Date(Integer.parseInt(startDates[2]), Integer.parseInt(startDates[0]), Integer.parseInt(startDates[1]));
+		Date newEndDate = new Date(Integer.parseInt(endDates[2]), Integer.parseInt(endDates[0]), Integer.parseInt(endDates[1]));
+		String lastDate = "";
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			
+			br.readLine();					//读表头
+			
+			String line = br.readLine();	//读第一行
+			
+			String[] strings = line.split("\\t");
+			if (strings[1].equals(endDate)) {
+				vaildDate[1] = endDate;
+			}else {
+				String[] date = strings[1].split("/");
+				Date newDate = new Date(Integer.parseInt(date[2]), Integer.parseInt(date[0]), Integer.parseInt(date[1]));
+				endDateDiff = (int) ((newEndDate.getTime() - newDate.getTime()) / (1000*3600*24));
+				startDateDiff = (int)((newStartDate.getTime() - newDate.getTime()) / (1000*3600*24));
+				lastDate = strings[1];
+			}
+
+			while((line = br.readLine()) != null){
+				
+				strings = line.split("\\t");
+				
+				if (strings[1].equals(startDate)) {
+					vaildDate[0] =  startDate;
+				}
+				if (strings[1].equals(endDate)) {
+					vaildDate[1] = endDate;
+				}
+				
+				//获取有效的结束日期
+				if (vaildDate[1]==null) {
+					
+					if (strings[1].equals(endDate)) {
+						vaildDate[1] = endDate;
+						lastDate = strings[1];
+						continue;
+					}else {
+						String[] date = strings[1].split("/");
+						Date newDate = new Date(Integer.parseInt(date[2]), Integer.parseInt(date[0]), Integer.parseInt(date[1]));
+						if(endDateDiff*(int) ((newEndDate.getTime() - newDate.getTime()) / (1000*3600*24))<0){
+							vaildDate[1] = strings[1];
+							lastDate = strings[1];
+							continue;
+						}
+						endDateDiff = (int) ((newEndDate.getTime() - newDate.getTime()) / (1000*3600*24));
+					}
+				}
+				
+				//获取有效的开始日期
+				if(vaildDate[0]==null){
+					
+					if (strings[1].equals(startDate)) {
+						vaildDate[0] = startDate;
+						break;
+					}else {
+						String[] date = strings[1].split("/");
+						Date newDate = new Date(Integer.parseInt(date[2]), Integer.parseInt(date[0]), Integer.parseInt(date[1]));
+						if(startDateDiff*(int) ((newStartDate.getTime() - newDate.getTime()) / (1000*3600*24))<0){
+							vaildDate[0] = lastDate;
+							break;
+						}
+						startDateDiff = (int) ((newStartDate.getTime() - newDate.getTime()) / (1000*3600*24));
+					}
+				}
+				
+				lastDate = strings[1];
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return vaildDate;
 	}
-	
 }

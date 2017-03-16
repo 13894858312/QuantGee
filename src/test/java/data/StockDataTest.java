@@ -29,28 +29,22 @@ public class StockDataTest {
 	@Test
 	public void testGetStockPOsByTimeInterval1() {
 		StockData stockData = new StockData();
-		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval( "4/17/14", "4/25/14","1");
-		for (StockPO stockPO : stockPOs) {
-			System.out.println(stockPO.getVolume());
-		}
+		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval( "4/19/14", "4/25/14","1");
+		assertEquals(5, stockPOs.size());
 	}
 	
 	@Test
 	public void testGetStockPOsByTimeInterval2() {
 		StockData stockData = new StockData();
-		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("8/19/11", "8/29/11", "402");
-		for (StockPO stockPO : stockPOs) {
-			System.out.println(stockPO.getVolume());
-		}
+		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("8/19/11", "8/20/11", "402");
+		assertEquals(1, stockPOs.size());
 	}
 	
 	@Test
 	public void testGetStockPOsByTimeInterval3() {
 		StockData stockData = new StockData();
-		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("2/7/05", "2/10/05", "1");
-		for (StockPO stockPO : stockPOs) {
-			System.out.println(stockPO.getVolume());
-		}
+		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("2/5/05", "2/13/05", "1");
+		assertEquals(5, stockPOs.size());
 	}
 	
 	@Test
@@ -66,4 +60,32 @@ public class StockDataTest {
 		String stockCode = stockData.getStockCodeByName("莱美药业");
 		assertEquals("300006", stockCode);
 	}
+	
+	@Test
+	public void testGetValidDate(){
+		StockData stockData = new StockData();
+		String[] validDate = stockData.getVaildDate("4/13/14", "4/20/14", "D:/workspace/QuantGee/all_data/1_深发展Ａ.txt");
+		assertEquals("start:4/14/14 end:4/18/14", "start:"+validDate[0]+" end:"+validDate[1]);
+	}
+	
+	@Test
+	public void testGetValidDate2(){
+		StockData stockData  = new StockData();
+		String[] validDate = stockData.getVaildDate("8/19/11", "8/20/11", "D:/workspace/QuantGee/all_data/402_金 融 街.txt");
+		String[] trueDate = new String[2];
+		trueDate[0] = "8/19/11";
+		trueDate[1] = "8/19/11";
+		assertArrayEquals(trueDate, validDate);
+	}
+	
+	@Test
+	public void testGetValidDate3(){
+		StockData stockData  = new StockData();
+		String[] validDate = stockData.getVaildDate("2/1/14", "2/4/14", "D:/workspace/QuantGee/all_data/1_深发展Ａ.txt");
+		String[] trueDate = new String[2];
+		trueDate[0] = "2/3/14";
+		trueDate[1] = "2/3/14";
+		assertArrayEquals(trueDate, validDate);
+	}
+	
 }

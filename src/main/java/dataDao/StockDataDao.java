@@ -39,6 +39,6 @@ public interface StockDataDao {
      * @return ArrayList<StockPO>
      * @return
      */
-    public ArrayList<StockPO> getStockPOsByTimeInterval(String startdate, String endDate, String stockCode);
+    public ArrayList<StockPO> getStockPOsByTimeInterval(String startDate, String endDate, String stockCode);
     
 }
