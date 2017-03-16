@@ -119,29 +119,27 @@ public class DataCalculation implements DataCalculationService {
             yesterdayStockMarket = this.stockDataDao.getStockPOsByDate(dateHelper.dateTransToString(temp));
         }
 
-        System.out.println("yesterdayStockMarket: " + yesterdayStockMarket.size());
-        for (int i = 0; i < yesterdayStockMarket.size(); ++i) {
-            System.out.println("1:  " + yesterdayStockMarket.get(i).getStockCode());
-        }
-
-        System.out.println("todayStockMarket: " + todayStockMarket.size());
-        for (int i = 0; i < todayStockMarket.size(); ++i) {
-            System.out.println("1:  " + todayStockMarket.get(i).getStockCode());
-        }
+//        System.out.println("yesterdayStockMarket: " + yesterdayStockMarket.size());
+//        for (int i = 0; i < yesterdayStockMarket.size(); ++i) {
+//            System.out.println("1:  " + yesterdayStockMarket.get(i).getStockCode());
+//        }
+//        System.out.println("todayStockMarket: " + todayStockMarket.size());
+//        for (int i = 0; i < todayStockMarket.size(); ++i) {
+//            System.out.println("1:  " + todayStockMarket.get(i).getStockCode());
+//        }
 
         todayStockMarket = sortList(todayStockMarket);
         yesterdayStockMarket = sortList(yesterdayStockMarket);
 
 
-        System.out.println("yesterdayStockMarket: " + yesterdayStockMarket.size());
-        for (int i = 0; i < yesterdayStockMarket.size(); ++i) {
-            System.out.println("2:  " + yesterdayStockMarket.get(i).getStockCode());
-        }
-
-        System.out.println("todayStockMarket: " + todayStockMarket.size());
-        for (int i = 0; i < todayStockMarket.size(); ++i) {
-            System.out.println("2:  " + todayStockMarket.get(i).getStockCode());
-        }
+//        System.out.println("yesterdayStockMarket: " + yesterdayStockMarket.size());
+//        for (int i = 0; i < yesterdayStockMarket.size(); ++i) {
+//            System.out.println("2:  " + yesterdayStockMarket.get(i).getStockCode());
+//        }
+//        System.out.println("todayStockMarket: " + todayStockMarket.size());
+//        for (int i = 0; i < todayStockMarket.size(); ++i) {
+//            System.out.println("2:  " + todayStockMarket.get(i).getStockCode());
+//        }
 
         //计算当日总交易量
         int j = 0;          //yesterdayStockMarket遍历的下标
@@ -157,8 +155,8 @@ public class DataCalculation implements DataCalculationService {
 
             while (!yesterdayStockMarket.get(j).getStockCode().equals(todayStockMarket.get(i).getStockCode())) {
 
-                System.out.println("here i " + i + " code: " + todayStockMarket.get(i).getCodeNumber());
-                System.out.println("here j " + j + " code: " + yesterdayStockMarket.get(j).getCodeNumber());
+//                System.out.println("here i " + i + " code: " + todayStockMarket.get(i).getCodeNumber());
+//                System.out.println("here j " + j + " code: " + yesterdayStockMarket.get(j).getCodeNumber());
 
                 if (yesterdayStockMarket.get(j).getCodeNumber() < todayStockMarket.get(i).getCodeNumber()) {
                     j++;
@@ -166,9 +164,9 @@ public class DataCalculation implements DataCalculationService {
                     i++;
                 }
 
-                System.out.println("here i " + i + " code: " + todayStockMarket.get(i).getCodeNumber());
-                System.out.println("here j " + j + " code: " + yesterdayStockMarket.get(j).getCodeNumber());
-                System.out.println();
+//                System.out.println("here i " + i + " code: " + todayStockMarket.get(i).getCodeNumber());
+//                System.out.println("here j " + j + " code: " + yesterdayStockMarket.get(j).getCodeNumber());
+//                System.out.println();
 
                 if (j >= yesterdayStockMarket.size() || i >= todayStockMarket.size()) {
                     break;
@@ -219,9 +217,12 @@ public class DataCalculation implements DataCalculationService {
         assert (stockName != null && !stockName.equals("") && startDate != null && endDate != null)
                 : "logic.calculation.DataCalculation.getStockInfoByName参数异常";
 
-        System.out.println(stockName);
+
         String code = this.stockDataDao.getStockCodeByName(stockName);
-        System.out.println(code);
+
+
+//        System.out.println(stockName);
+//        System.out.println(code);
 
         if (code == null || code.equals("")) {
             return null;
@@ -248,9 +249,6 @@ public class DataCalculation implements DataCalculationService {
                 }
             }
         }
-
-//        quicksort(ids, 0, ids.length-1);
-
 
         for (int i = 0; i < ids.length; ++i) {
             result.add(stockPOS.get(ids[i].getIndex()));
