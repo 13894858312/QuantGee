@@ -57,8 +57,8 @@ public class StockDataTest {
 	@Test
 	public void testGetStockCodeByName(){
 		StockData stockData = new StockData();
-		String stockCode = stockData.getStockCodeByName("莱美药业");
-		assertEquals("300006", stockCode);
+		String stockCode = stockData.getStockCodeByName("南玻A");
+		assertEquals("12", stockCode);
 	}
 	
 	@Test
@@ -66,6 +66,13 @@ public class StockDataTest {
 		StockData stockData = new StockData();
 		String stockCode = stockData.getStockCodeByName("深发展A");
 		assertEquals("1", stockCode);
+	}
+	
+	@Test
+	public void testGetStockCodeByName3(){
+		StockData stockData = new StockData();
+		String stockCode = stockData.getStockCodeByName("*ST中华A");
+		assertEquals("17", stockCode);
 	}
 	
 	@Test
@@ -92,9 +99,16 @@ public class StockDataTest {
 		String[] trueDate = new String[2];
 		trueDate[0] = "2/3/14";
 		trueDate[1] = "2/3/14";
-		System.out.println(validDate[0]);
-		System.out.println(validDate[1]);
 		assertArrayEquals(trueDate, validDate);
 	}
 	
+	@Test
+	public void testGetValidDate4(){
+		StockData stockData  = new StockData();
+		String[] validDate = stockData.getVaildDate("4/27/14", "4/29/14", "D:/workspace/QuantGee/all_data/1_深发展Ａ.txt");
+		String[] trueDate = new String[2];
+		trueDate[0] = "4/28/14";
+		trueDate[1] = "4/29/14";
+		assertArrayEquals(trueDate, validDate);
+	}
 }
