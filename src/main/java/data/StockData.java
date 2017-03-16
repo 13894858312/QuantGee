@@ -93,8 +93,6 @@ public class StockData implements StockDataDao{
 		startDate = validDate[0];
 		endDate = validDate[1];
 		
-		System.out.println(startDate+" "+endDate);
-		
 		if (endDate==null||startDate==null) {
 			return null;
 		}
@@ -160,6 +158,9 @@ public class StockData implements StockDataDao{
 		path.replace("\\\\", "/");
 		File file = new File(path+"/all_data/fileName.txt");
 		
+		if (stockName.contains("A")) {
+			stockName = stockName.replace("A", "Ａ");
+		}
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
@@ -248,14 +249,12 @@ public class StockData implements StockDataDao{
 					if (strings[1].equals(endDate)) {
 						vaildDate[1] = endDate;
 						lastDate = strings[1];
-						continue;
 					}else {
 						String[] date = strings[1].split("/");
 						Date newDate = new Date(Integer.parseInt(date[2]), Integer.parseInt(date[0]), Integer.parseInt(date[1]));
 						if(endDateDiff*(int) ((newEndDate.getTime() - newDate.getTime()) / (1000*3600*24))<0){
 							vaildDate[1] = strings[1];
 							lastDate = strings[1];
-							continue;
 						}
 						endDateDiff = (int) ((newEndDate.getTime() - newDate.getTime()) / (1000*3600*24));
 					}
@@ -266,13 +265,11 @@ public class StockData implements StockDataDao{
 					
 					if (strings[1].equals(startDate)) {
 						vaildDate[0] = startDate;
-						break;
 					}else {
 						String[] date = strings[1].split("/");
 						Date newDate = new Date(Integer.parseInt(date[2]), Integer.parseInt(date[0]), Integer.parseInt(date[1]));
 						if(startDateDiff*(int) ((newStartDate.getTime() - newDate.getTime()) / (1000*3600*24))<0){
 							vaildDate[0] = lastDate;
-							break;
 						}
 						startDateDiff = (int) ((newStartDate.getTime() - newDate.getTime()) / (1000*3600*24));
 					}
