@@ -45,6 +45,12 @@ public class StockPO {
         this.stockMarket = stockMarket;
     }
 
+    public int getCodeNumber() {
+        int number = Integer.parseInt(this.stockCode);
+        return number;
+    }
+
+
     @Override
     public String toString() {
     	return "data:"+date+"	openPrice:"+openPrice+"	maxValue:"+maxValue+"	minValue:"+minValue+
