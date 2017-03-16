@@ -4,8 +4,11 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import vo.StockDailyInfoVO;
+import javafx.scene.control.Tooltip;
 import vo.StockVO;
 
 /**
@@ -28,6 +31,7 @@ public class LogYieldVar_Compare extends Pane{
         //chart
         final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
         bc.setPrefSize(width, height);
+
         bc.setCategoryGap(30);
 
         //data
@@ -38,5 +42,7 @@ public class LogYieldVar_Compare extends Pane{
 
         bc.getData().addAll(series_LogYieldVar);
         getChildren().add(bc);
+
     }
+
 }
