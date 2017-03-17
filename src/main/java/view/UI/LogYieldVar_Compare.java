@@ -7,6 +7,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import logic.tools.DateHelper;
 import vo.StockDailyInfoVO;
 import javafx.scene.control.Tooltip;
 import vo.StockVO;
@@ -37,8 +38,8 @@ public class LogYieldVar_Compare extends Pane{
         //data
         XYChart.Series<String, Number> series_LogYieldVar = new XYChart.Series<String, Number>();
         series_LogYieldVar.setName("LogYieldVar");
-        series_LogYieldVar.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName, stockVO1.logarithmYieldVariance));
-        series_LogYieldVar.getData().add(new XYChart.Data<String, Number>(stockVO2.stockName, stockVO2.logarithmYieldVariance));
+        series_LogYieldVar.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName+"\n"+"("+ DateHelper.getInstance().getDealDate(stockVO1.logarithmYieldVariance)+")", stockVO1.logarithmYieldVariance));
+        series_LogYieldVar.getData().add(new XYChart.Data<String, Number>(stockVO2.stockName+"\n"+"("+ DateHelper.getInstance().getDealDate(stockVO2.logarithmYieldVariance)+")", stockVO2.logarithmYieldVariance));
 
         bc.getData().addAll(series_LogYieldVar);
         getChildren().add(bc);

@@ -35,7 +35,7 @@
     -fx-stroke-dash-array: 0.1em, 0.1em;
 }
 .chart-bar{
-    -fx-background-color: red;
+    -fx-background-color: chocolate;
 }
 .axis{
     -fx-font-size:1.2em;

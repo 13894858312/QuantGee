@@ -45,9 +45,9 @@ public class Price_Compare extends Pane{
             StockVO stockVO = stockVOArrayList.get(i);
             ArrayList<StockDailyInfoVO> stockDailyInfoVOArrayList = stockVO.stockDailyInfoVOs;
             for(int j=0;j<stockDailyInfoVOArrayList.size();j++) {
-                series_MaxPrice.getData().add(new XYChart.Data<String, Number>(stockVO.stockName, stockVO.maxValue));
-                series_MinPrice.getData().add(new XYChart.Data<String, Number>(stockVO.stockName, stockVO.minValue));
-                series_ClosePrice.getData().add(new XYChart.Data<String, Number>(stockVO.stockName, stockDailyInfoVOArrayList.get(i).closePrice));
+                series_MaxPrice.getData().add(new XYChart.Data<String, Number>(stockVO.stockName+"\n"+"("+stockVO.maxValue+")"+"\n"+"("+stockVO.minValue+")"+"\n"+"("+stockDailyInfoVOArrayList.get(i).closePrice+")", stockVO.maxValue));
+                series_MinPrice.getData().add(new XYChart.Data<String, Number>(stockVO.stockName+"\n"+"("+stockVO.maxValue+")"+"\n"+"("+stockVO.minValue+")"+"\n"+"("+stockDailyInfoVOArrayList.get(i).closePrice+")", stockVO.minValue));
+                series_ClosePrice.getData().add(new XYChart.Data<String, Number>(stockVO.stockName+"\n"+"("+stockVO.maxValue+")"+"\n"+"("+stockVO.minValue+")"+"\n"+"("+stockDailyInfoVOArrayList.get(i).closePrice+")", stockDailyInfoVOArrayList.get(i).closePrice));
             }
         }
 

@@ -40,15 +40,15 @@ public class Range_Compare extends Pane{
         series_DecreaseRange.setName("DecreaseRange");
 
         if(stockVO1.rate<0){
-            series_DecreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName, Math.abs(stockVO1.rate)));
+            series_DecreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName+"\n"+"("+stockVO1.rate+")", Math.abs(stockVO1.rate)));
         }else{
-            series_IncreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName, stockVO1.rate));
+            series_IncreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName+"\n"+"("+stockVO1.rate+")", stockVO1.rate));
         }
 
         if(stockVO2.rate<0){
-            series_DecreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO2.stockName, Math.abs(stockVO2.rate)));
+            series_DecreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO2.stockName+"\n"+"("+stockVO2.rate+")", Math.abs(stockVO2.rate)));
         }else{
-            series_IncreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO2.stockName, stockVO2.rate));
+            series_IncreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO2.stockName+"\n"+"("+stockVO2.rate+")", stockVO2.rate));
         }
 
         bc.getData().addAll(series_IncreaseRange, series_DecreaseRange);
@@ -56,11 +56,4 @@ public class Range_Compare extends Pane{
 
     }
 
-    private boolean judgeInOrDeRange(double d){
-        if(d >= 0){
-            return true;
-        }else{
-            return false;
-        }
-    }
 }
