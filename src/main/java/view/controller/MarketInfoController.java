@@ -43,7 +43,7 @@ public class MarketInfoController {
 
 
         Date d = marketInfoVO.date;
-        String str = " " +( d.getYear() +1900 ) + " 年 " + ( d.getMonth()+1 ) + " 月 " + d.getDate() + " 日 ； 星期 " + d.getDay() ;
+        String str = " " +( d.getYear() +1900 ) + " 年 " + ( d.getMonth()+1 ) + " 月 " + d.getDate() + " 日 星期 " + d.getDay() ;
 
         date.setText(str);
         all.setText(bd.toPlainString());
