@@ -164,7 +164,7 @@ public class StockData implements StockDataDao{
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
 		File file = new File(path+"/all_data_by_name/fileName.txt");
-		
+
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
@@ -189,7 +189,7 @@ public class StockData implements StockDataDao{
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
 		File file = new File(path+"/all_data_by_name/fileName.txt");
-		
+
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
@@ -204,7 +204,7 @@ public class StockData implements StockDataDao{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 
