@@ -30,7 +30,7 @@ public class StockData implements StockDataDao{
 			
 			while((line = br.readLine()) != null) {
 				String[] strings = line.split("\\t");
-				if (strings[1].equals(date) && strings[8].equals(stockCode)) {
+				if (strings[1].equals(date) && strings[8].equals(stockCode)&&Integer.parseInt(strings[6])!=0) {
 					StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
 							Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
 							Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
@@ -67,7 +67,7 @@ public class StockData implements StockDataDao{
 			
 			while((line = br.readLine()) != null) {
 				String[] strings = line.split("\\t");
-				if (strings[1].equals(date) ) {
+				if (strings[1].equals(date) && Integer.parseInt(strings[6])!=0) {
 					StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
 							Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
 							Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
@@ -98,7 +98,6 @@ public class StockData implements StockDataDao{
 		String[] validDate = getVaildDate(startDate, endDate, path);
 		startDate = validDate[0];
 		endDate = validDate[1];
-		
 		if (endDate==null||startDate==null) {
 			return null;
 		}
@@ -125,15 +124,17 @@ public class StockData implements StockDataDao{
 						inTimeRange = false;
 					}
 					
-					StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
-							Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
-							Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
-							Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
-					stockPOS.add(po);
+					if (Integer.parseInt(strings[6])!=0) {
+						StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
+								Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
+								Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
+								Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
+						stockPOS.add(po);
+					}
 					
 				}else {
 					
-					if (strings[1].equals(endDate)) {
+					if (strings[1].equals(endDate)&&Integer.parseInt(strings[6])!=0) {
 						
 						inTimeRange = true;
 						StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
