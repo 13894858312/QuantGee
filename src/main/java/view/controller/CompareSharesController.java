@@ -258,7 +258,7 @@ public class CompareSharesController {
         Pane yieldLinePane;
 
         try{
-            yieldLinePane = graph.getLogYieldVarCompareChart(stockVO_0,stockVO_1,220, 250);
+            yieldLinePane = graph.getLogYieldVarCompareChart(stockVO_0,stockVO_1,230, 250);
             variance.getChildren().clear();
             variance.getChildren().add(yieldLinePane);
         }catch (Exception e){

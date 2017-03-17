@@ -1,6 +1,7 @@
 package logic.tools;
 
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -100,5 +101,10 @@ public class DateHelper {
         }
 
         return false;
+    }
+
+    //保留小数
+    public String getDealDate(double d){
+        return new java.text.DecimalFormat("0.000000").format(d);
     }
 }
