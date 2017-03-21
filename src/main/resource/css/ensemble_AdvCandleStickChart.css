@@ -12,8 +12,12 @@
     -fx-effect: dropshadow( two-pass-box , rgba(0,0,0,0.4) , 10, 0.0 , 2 , 4 );
     -fx-background-color: black;
 }
-.candlestick-line {
-    -fx-stroke: white;
+.candlestick-line.close-above-open  {
+    -fx-stroke: rgb(84,252,252);
+    -fx-stroke-width: 1px;
+}
+.candlestick-line.open-above-close {
+    -fx-stroke: rgb(255,50,50);
     -fx-stroke-width: 1px;
 }
 .candlestick-bar {
@@ -25,10 +29,11 @@
     -fx-background-insets: 0,1,2;
 }
 .candlestick-bar.close-above-open {
-    -fx-background-color: lawngreen;
+    -fx-background-color: rgb(84,252,252);
 }
 .candlestick-bar.open-above-close {
-    -fx-background-color: red;
+    -fx-background-color: black;
+    -fx-border-color: rgb(255,50,50);
 }
 .chart{
     -fx-background-color: black;
