@@ -17,8 +17,9 @@ public class StockPO {
     private String stockName;
     private String stockMarket;
 
+    private String blockName;
+
     /**
-     *
      * @param date 日期
      * @param openPrice 开盘价
      * @param maxValue 最高值
@@ -29,10 +30,11 @@ public class StockPO {
      * @param stockCode 股票代码
      * @param stockName  股票名称
      * @param stockMarket 市场名称
+     * @param blockName 板块名字
      */
     public StockPO(String date, double openPrice, double maxValue, double minValue,
                    double closePrice,int volume, double ADJ,  String stockCode,
-                   String stockName, String stockMarket) {
+                   String stockName, String stockMarket, String blockName) {
         this.date = date;
         this.openPrice = openPrice;
         this.maxValue = maxValue;
@@ -43,6 +45,7 @@ public class StockPO {
         this.stockCode = stockCode;
         this.stockName = stockName;
         this.stockMarket = stockMarket;
+        this.blockName = blockName;
     }
 
     public int getCodeNumber() {
@@ -137,4 +140,13 @@ public class StockPO {
     public void setStockMarket(String stockMarket) {
         this.stockMarket = stockMarket;
     }
+
+    public String getBlockName() {
+        return blockName;
+    }
+
+    public void setBlockName(String blockName) {
+        this.blockName = blockName;
+    }
+
 }
