@@ -233,6 +233,11 @@ public class DataCalculation implements DataCalculationService {
         return this.getStockInfoByCode(code, startDate, endDate);
     }
 
+    /**
+     * 将从logic拿到的股票数据按照股票代码从小到大排序
+     * @param stockPOS
+     * @return
+     */
     public ArrayList<StockPO> sortList(ArrayList<StockPO> stockPOS) {
         ArrayList<StockPO> result = new ArrayList<StockPO>();
 

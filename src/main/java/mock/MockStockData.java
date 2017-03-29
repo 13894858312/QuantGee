@@ -76,7 +76,7 @@ public class MockStockData implements StockDataDao {
     }
 
     @Override
-    public ArrayList<StockPO> getStockPOsByBlockName(String startDate, String endDate, String blockName) {
+    public ArrayList<StockPO>[] getStockPOsByBlockName(String startDate, String endDate, String blockName) {
         return null;
     }
 }

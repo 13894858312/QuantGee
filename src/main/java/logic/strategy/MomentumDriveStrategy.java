@@ -25,10 +25,7 @@ public class MomentumDriveStrategy implements Strategy {
     @Override
     public CumulativeYieldGraphVO getCumulativeYieldGraphInfo(StrategyInputVO strategyInputVO) {
 
-        HashMap<String, StockInfo> stocks = new HashMap<>();
-
-
-
+        StockPool stockPool = this.initStockPool(strategyInputVO);
 
 
 
@@ -37,31 +34,55 @@ public class MomentumDriveStrategy implements Strategy {
 
     @Override
     public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StrategyInputVO strategyInputVO, double period, boolean isHoldingPeriod) {
+        StockPool stockPool = this.initStockPool(strategyInputVO);
         return null;
     }
 
     @Override
     public YieldHistogramGraphVO getYieldHistogramGraphInfo(StrategyInputVO strategyInputVO) {
+        StockPool stockPool = this.initStockPool(strategyInputVO);
         return null;
     }
 
-    private ArrayList<StockPO> getStockPOs(StrategyInputVO strategyInputVO) {
-        ArrayList<StockPO> stockPOS = null;
+
+    /**
+     * 初始化股票池
+     * @param strategyInputVO 策略输入
+     * @return StockPool
+     */
+    private StockPool initStockPool(StrategyInputVO strategyInputVO) {
+        StockPool stockPool = null;
 
         if(strategyInputVO.strategyInputType == StrategyInputType.ALL) {
+            //选择所有股票构造股票池
+            ArrayList<StockPO>[] stocks = this.stockDataDao.getAllStockPO();
+            stockPool = new StockPool(stocks);
 
-                                                    //这里添加获取所有股票信息的代码
         } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK) {
-
+            //根据特定股票板块构造股票池
             String s = DateHelper.getInstance().dateTransToString(strategyInputVO.startDate);
             String e = DateHelper.getInstance().dateTransToString(strategyInputVO.endDate);
-            stockPOS = this.stockDataDao.getStockPOsByBlockName(s, e, strategyInputVO.blockName);
+
+            ArrayList<StockPO>[] stocks = this.stockDataDao.getStockPOsByBlockName(s, e, strategyInputVO.blockName);
+            stockPool = new StockPool(stocks);
 
         } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_STOCKS) {
+            //选定特定股票构造股票池
+            String s = DateHelper.getInstance().dateTransToString(strategyInputVO.startDate);
+            String e = DateHelper.getInstance().dateTransToString(strategyInputVO.endDate);
 
+            ArrayList<StockInfo> stockInfos = new ArrayList<>();
+            for(int i=0; i<strategyInputVO.stockNames.size(); ++i) {
+                ArrayList<StockPO> stockPOS = this.stockDataDao.getStockPOsByTimeInterval(s, e, strategyInputVO.stockNames.get(i));
 
+                if(stockPOS != null && stockPOS.size() != 0) {
+                    stockInfos.add(new StockInfo(strategyInputVO.startDate, stockPOS.get(0).getStockCode(), stockPOS));
+                }
+            }
+
+            stockPool = new StockPool(stockInfos);
         }
 
-        return stockPOS;
+        return stockPool;
     }
 }
