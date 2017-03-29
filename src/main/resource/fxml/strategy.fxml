@@ -4,14 +4,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.StrategyInputController">
    <children>
       <ScrollPane layoutX="20.0" layoutY="50.0" prefHeight="325.0" prefWidth="300.0" styleClass="ScrollPane">
          <content>
-            <VBox fx:id="blockPane" minHeight="100.0" minWidth="290.0" />
+            <AnchorPane maxWidth="290.0" minHeight="300.0" minWidth="290.0">
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="290.0">
+                     <children>
+                        <Label text="已选择" />
+                        <Label fx:id="num" text="0" />
+                        <Label text="支股票（最少需选择100支）" />
+                     </children>
+                  </HBox>
+                  <VBox fx:id="stockPane" layoutY="50.0" minHeight="50.0" minWidth="290.0" />
+               </children>
+            </AnchorPane>
          </content>
       </ScrollPane>
-      <GridPane layoutX="368.0" layoutY="25.0" prefHeight="200.0" prefWidth="200.0">
+      <GridPane layoutX="368.0" layoutY="25.0" prefHeight="250.0" prefWidth="200.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="10.0" prefWidth="65.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="135.0" />
@@ -19,23 +30,26 @@
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <DatePicker fx:id="startPicker" GridPane.columnIndex="1" />
             <DatePicker fx:id="endPicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="kaishiriqi" />
-            <Label text="jieshuriqi" GridPane.rowIndex="1" />
-            <Label text="chiyouqi" GridPane.rowIndex="2" />
-            <Label text="xingchengqi" GridPane.rowIndex="3" />
-            <TextField fx:id="hold" prefHeight="27.0" prefWidth="114.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="make" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="开始日期" />
+            <Label text="结束日期" GridPane.rowIndex="1" />
+            <Label text="持有期" GridPane.rowIndex="3" />
+            <Label text="形成期" GridPane.rowIndex="4" />
+            <TextField fx:id="hold" onAction="#selectHoldText" prefHeight="27.0" prefWidth="114.0" text="请输入整数天" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ChoiceBox fx:id="strategyPicker" prefHeight="27.0" prefWidth="199.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="策略" GridPane.rowIndex="2" />
+            <TextField fx:id="make_TextField" text="请输入整数天" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="make_ChoiceBox" prefWidth="150.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <ChoiceBox fx:id="strategy" layoutX="368.0" layoutY="250.0" prefWidth="200.0" />
-      <Button fx:id="search" layoutX="368.0" layoutY="314.0" mnemonicParsing="false" styleClass="StrategyButton" text="yes" />
-      <Button fx:id="cancel" layoutX="468.0" layoutY="314.0" mnemonicParsing="false" styleClass="StrategyButton" text="no" />
+      <Button layoutX="368.0" layoutY="314.0" mnemonicParsing="false" onAction="#search" styleClass="StrategyButton" text="搜索" />
+      <Button layoutX="468.0" layoutY="314.0" mnemonicParsing="false" onAction="#close" styleClass="StrategyButton" text="取消" />
       <ChoiceBox fx:id="stockPool" layoutX="20.0" layoutY="25.0" prefHeight="27.0" prefWidth="300.0" />
    </children>
 </AnchorPane>
