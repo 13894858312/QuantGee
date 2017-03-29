@@ -5,5 +5,5 @@ package vo;
  * 策略类型
  */
 public enum StrategyType {
-    MOMENTUN_DRIVEN, MEAN_REVERSION
+    MOMENTUM_DRIVEN, MEAN_REVERSION
 }
