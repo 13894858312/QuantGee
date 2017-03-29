@@ -8,7 +8,7 @@ import vo.*;
 public class MomentumDriveStrategy implements Strategy {
 
     @Override
-    public CumulativeYieldGraphVO getCumulativeYieldGraphInfo(StrategyType strategyType) {
+    public CumulativeYieldGraphVO getCumulativeYieldGraphInfo(StrategyInputVO strategyInputVO) {
         return null;
     }
 
