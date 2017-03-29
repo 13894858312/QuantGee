@@ -3,6 +3,7 @@ package view.controller;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -10,6 +11,7 @@ import javafx.util.Callback;
 import vo.StrategyInputVO;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
 /**
  * 策略输入框
@@ -19,7 +21,7 @@ public class StrategyInputController {
 
     @FXML private Pane root;
 
-    @FXML private VBox stockPane;
+    @FXML private VBox blockPane;
 
     @FXML private Label num;
 
@@ -32,6 +34,9 @@ public class StrategyInputController {
 
     @FXML private ChoiceBox strategyPicker;
     @FXML private ChoiceBox stockPool;
+
+    private ArrayList<HBox> blocks;
+    private ArrayList<StrategyBlockController> strategyBlockControllers;
 
     private boolean isTextField = true;
 
@@ -75,8 +80,9 @@ public class StrategyInputController {
         stockPool.setItems(FXCollections.observableArrayList("所有股票","选择板块","选择股票"));
         stockPool.setValue(0);
 
-        //设定全部股票
-
+        //初始化左侧并设定全部股票
+        blocks = new ArrayList<HBox>();
+        strategyBlockControllers = new ArrayList<StrategyBlockController>();
 
         //设定时间选项
         startPicker.setDayCellFactory(dayCellFactory);
@@ -145,6 +151,14 @@ public class StrategyInputController {
 
         //所选时间要比MIN+形成期*1.5晚
         return null;
+    }
+
+    private void addBlock(){
+
+    }
+
+    private void deleteBlock(){
+
     }
 
 }
