@@ -1,6 +1,8 @@
 package logic.tools;
 
 
+import org.omg.CORBA.INTERNAL;
+
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,6 +11,7 @@ import java.util.Date;
 
 /**
  * Created by Mark.W on 2017/3/6.
+ * 日期计算的帮助类
  */
 public class DateHelper {
 
@@ -71,6 +74,24 @@ public class DateHelper {
         }
 
         return c.getTime();
+    }
+
+    public Date formerNTradeDay(Date date, int n) {
+        Date d = date;
+        for(int i=0; i<n; ++i) {
+            d = formerTradeDay(d);
+        }
+
+        return d;
+    }
+
+    public  Date nextNTradeDay(Date date, int n) {
+        Date d = date;
+        for(int i=0; i<n; ++i) {
+            d = nextTradeDay(d);
+        }
+
+        return d;
     }
 
     public Date stringTransToDate(String dateformat) {

@@ -45,8 +45,16 @@ public interface StockDataDao {
      * @param startDate 开始时间
      * @param endDate 结束时间
      * @param blockName 板块名
-     * @return ArrayList<StockPO>
+     * @return ArrayList<StockPO>[]   股票数组，每一项即
+     *                              每个arraylist里是一种股票在一段时间内的信息
      */
-    public ArrayList<StockPO> getStockPOsByBlockName(String startDate, String endDate, String blockName);
+    public ArrayList<StockPO>[] getStockPOsByBlockName(String startDate, String endDate, String blockName);
+
+    /**
+     * 获得所有股票数据
+     * @return ArrayList<StockPO>[]   股票数组，每一项即
+     *                              每个arraylist里是一种股票在一段时间内的信息
+     */
+    public ArrayList<StockPO>[] getAllStockPO();
 
 }
