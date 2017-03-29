@@ -1,9 +1,13 @@
-package logic.calculation;
+package logic.strategy;
 
-import vo.*;
+import vo.AbnormalReturnGraphVO;
+import vo.CumulativeYieldGraphVO;
+import vo.StrategyInputVO;
+import vo.YieldHistogramGraphVO;
 
 /**
  * Created by Mark.W on 2017/3/29.
+ * 策略的接口 采用策略模式
  */
 public interface Strategy {
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Mark.W on 2017/3/23.
+ * 收益分布直方图的vo
  */
 public class YieldHistogramGraphVO {
 

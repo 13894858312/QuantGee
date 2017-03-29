@@ -1,11 +1,14 @@
-package logic.calculation;
+package logic.strategy;
 
-import vo.*;
+import vo.AbnormalReturnGraphVO;
+import vo.CumulativeYieldGraphVO;
+import vo.StrategyInputVO;
+import vo.YieldHistogramGraphVO;
 
 /**
  * Created by Mark.W on 2017/3/29.
  */
-public class MeanReversionStrategy implements Strategy{
+public class MeanReversionStrategy implements Strategy {
     @Override
     public CumulativeYieldGraphVO getCumulativeYieldGraphInfo(StrategyInputVO strategyInputVO) {
         return null;

@@ -1,12 +1,13 @@
 package logic.tools;
 
-import logic.calculation.MeanReversionStrategy;
-import logic.calculation.MomentumDriveStrategy;
-import logic.calculation.Strategy;
+import logic.strategy.MeanReversionStrategy;
+import logic.strategy.MomentumDriveStrategy;
+import logic.strategy.Strategy;
 import vo.StrategyType;
 
 /**
  * Created by Mark.W on 2017/3/29.
+ * 确定某种策略的工厂
  */
 public class StrategyFactory {
     private static StrategyFactory ourInstance = new StrategyFactory();
