@@ -25,20 +25,22 @@ public class DateHelper {
         return dateHelper;
     }
 
+    public Date stringTransToDate(String dateformat) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
+
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(dateformat);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return date;
+    }
 
     public String dateTransToString(Date date) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
         return simpleDateFormat.format(date);
-    }
-
-    public int calculateDaysBetween(Date startDate, Date endDate) {
-        long start = 0, end = 0;
-        start = startDate.getTime();
-        end = endDate.getTime();
-
-        int res = (int) ((end - start) / (1000 * 60 * 60 * 24));
-
-        return res;
     }
 
     /**
@@ -94,18 +96,17 @@ public class DateHelper {
         return d;
     }
 
-    public Date stringTransToDate(String dateformat) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
+    public Date getNextFirstTradeDay(Date date) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
 
-        Date date = null;
-        try {
-            date = simpleDateFormat.parse(dateformat);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        while(c.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            c.add(Calendar.DAY_OF_MONTH, 1);
         }
 
-        return date;
+        return c.getTime();
     }
+
 
     public  boolean dateOutOfRange(Date date) {
 
@@ -122,6 +123,16 @@ public class DateHelper {
         }
 
         return false;
+    }
+
+    public int calculateDaysBetween(Date startDate, Date endDate) {
+        long start = 0, end = 0;
+        start = startDate.getTime();
+        end = endDate.getTime();
+
+        int res = (int) ((end - start) / (1000 * 60 * 60 * 24));
+
+        return res;
     }
 
     //保留小数
