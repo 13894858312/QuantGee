@@ -1,9 +1,6 @@
 package logic.tools;
 
 
-import org.omg.CORBA.INTERNAL;
-
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,6 +22,7 @@ public class DateHelper {
         return dateHelper;
     }
 
+
     public Date stringTransToDate(String dateformat) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
 
@@ -45,11 +43,10 @@ public class DateHelper {
 
     /**
      * 给定日期计算下一个交易日（除去周末）
-     *
      * @param date 日期
-     * @return
+     * @return Date
      */
-    public  Date nextTradeDay(Date date) {
+    public Date nextTradeDay(Date date) {
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         c.add(Calendar.DAY_OF_MONTH, 1);
@@ -64,7 +61,7 @@ public class DateHelper {
     /**
      * 给定日期计算前一个交易日（除去周末）
      * @param date 日期
-     * @return
+     * @return Date
      */
     public Date formerTradeDay(Date date) {
         Calendar c = Calendar.getInstance();
@@ -106,7 +103,6 @@ public class DateHelper {
 
         return c.getTime();
     }
-
 
     public  boolean dateOutOfRange(Date date) {
 

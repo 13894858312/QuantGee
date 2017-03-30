@@ -1,14 +1,7 @@
 package logic.strategy;
 
-import dataDao.StockDataDao;
-import logic.tools.DateHelper;
-import mock.MockStockData;
-import po.StockPO;
 import vo.*;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Mark.W on 2017/3/29.
@@ -23,9 +16,9 @@ public class MomentumDriveStrategy implements Strategy {
 
         stockPool = new StockPool(strategyInputVO);
 
+        stockPool.start();
 
-
-        ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS = new ArrayList<>();
+        ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS = stockPool.getCumulativeYieldGraphDataVOS();
 
         double annualRevenue = 0;       //年化收益率
         double baseAnnualRevenue = 0;  //基准年化收益率
@@ -40,6 +33,7 @@ public class MomentumDriveStrategy implements Strategy {
 
         CumulativeYieldGraphVO cumulativeYieldGraphVO = new CumulativeYieldGraphVO(annualRevenue,baseAnnualRevenue,
                 alpha, beta,sharpeRatio, maxDrawdown,cumulativeYieldGraphDataVOS);
+
         return cumulativeYieldGraphVO;
     }
 
@@ -50,6 +44,9 @@ public class MomentumDriveStrategy implements Strategy {
 
     @Override
     public YieldHistogramGraphVO getYieldHistogramGraphInfo(StrategyInputVO strategyInputVO) {
+
+
+
         return null;
     }
 

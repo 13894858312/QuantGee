@@ -24,9 +24,10 @@ public class StockPool {
     private Date endDate;
     private int holdingPeriod;  //持有期
     private int returnPeriod;    //形成期
-    private int holdingStockNum;
+    private int holdingStockNum;  //每个持有期持有的股票数量
 
-    private  ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS;
+    private  ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS;  //每天的收益率
+    private ArrayList<String> holdingStockCodes;
 
 
     public StockPool(StrategyInputVO strategyInputVO) {
@@ -39,19 +40,42 @@ public class StockPool {
         this.holdingStockNum = strategyInputVO.holdingStockNum;
 
         this.initStockInfos(strategyInputVO);
+
+        this.cumulativeYieldGraphDataVOS = new ArrayList<>();
+        this.holdingStockCodes = new ArrayList<>();
     }
 
-    public StockPO getBeforeRange() {
-        return null;
+
+    /**
+     *  执行回测的主程序
+     */
+    public void start() {
+        this.initHoldingStockOnfirstRun();
+
+         Date temp = startDate;
+         int index = 0;     //记录是否达到一个holdingPeriod的index
+
+         while(!DateHelper.getInstance().dateTransToString(temp).equals(DateHelper.getInstance().dateTransToString(endDate))) {
+             if(index == this.holdingPeriod) { //若达到holdingPeriod index置0 同时进行rebalance
+                 index = 0;
+                 this.rebalance(temp);
+
+             } else {
+                 index ++;
+             }
+
+             this.calculateHoldingStockYield(temp); //计算收益
+             temp = DateHelper.getInstance().nextTradeDay(temp);
+         }
+
     }
 
     /**
-     * 计算指定日期所有股票的收益，并获取前holdingStockNum个的股票代码
+     * 计算指定日期所有股票形成期收益，并获取前holdingStockNum个的股票代码
      * @param date 日期
-     * @return 股票代码
      */
-    public ArrayList<String> rebalance(Date date) {
-        return null;
+    public void rebalance(Date date) {
+
     }
 
     /**
@@ -59,6 +83,36 @@ public class StockPool {
      * @param date 日期
      */
     public void calculateHoldingStockYield(Date date) {
+
+    }
+
+    /**
+     * 在第一次运行时 确定持有的股票
+     */
+    private void initHoldingStockOnfirstRun() {
+        ArrayList<StockYield> stockYields = new ArrayList<>();
+        for(int i=0; i<stockInfos.size(); ++i) {
+            StockPO before = stockInfos.get(i).getBeforeStockPO();
+            StockPO now = stockInfos.get(i).getStockByDate(DateHelper.getInstance().formerTradeDay(startDate));
+
+            if(now == null || before == null) {
+                continue;
+            }
+
+            //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
+            double yield = (now.getADJ()-before.getADJ())/before.getADJ();
+
+            stockYields.add(new StockYield(now.getStockCode(), yield));
+        }
+
+        this.initTopNStocks(stockYields);
+    }
+
+    /**
+     * 从所有股票的收益率中选取前holdingStockNum 作为持有的股票
+     * @param stockYields stockYields
+     */
+    private void initTopNStocks(ArrayList<StockYield> stockYields) {
 
     }
 
@@ -136,5 +190,9 @@ public class StockPool {
                 this.setStockInfos(stockInfos);
             }
         }
+    }
+
+    public ArrayList<CumulativeYieldGraphDataVO> getCumulativeYieldGraphDataVOS() {
+        return cumulativeYieldGraphDataVOS;
     }
 }

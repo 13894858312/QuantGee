@@ -15,13 +15,15 @@ public class StockInfo {
 
     private String stockCode;
     private StockPO beforeStockPO;
+//    private StockPO yesterdayStockPO;
     private ArrayList<StockPO> stockPOS;
 
     public StockInfo(Date startDate, String stockCode, ArrayList<StockPO> stockPOS) {
+        this.initIndex(startDate);
+
         this.beforeStockPO = stockPOS.get(0);
         this.stockCode = stockCode;
-
-        this.initIndex(startDate);
+//        this.yesterdayStockPO = stockPOS.get(index-1);
     }
 
 
@@ -40,10 +42,15 @@ public class StockInfo {
         return beforeStockPO;
     }
 
+    public StockPO getStockByDate(Date date) {
+        return null;
+    }
 
+//    public StockPO getYesterdayStockPO() {
+//        return yesterdayStockPO;
+//    }
 
-    //
-//    public StockPO getStockInfoOnSpecificDay(Date d) {
+    //    public StockPO getStockInfoOnSpecificDay(Date d) {
 //        String da = DateHelper.getInstance().dateTransToString(today);
 //        if(this.stockPOS.get(index).getDate().equals(da)) {
 //            return stockPOS.get(index);
