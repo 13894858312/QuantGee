@@ -70,11 +70,76 @@ public class StockPool {
 
     }
 
+
+    /**
+     * 在第一次运行时 确定持有的股票
+     */
+    private void initHoldingStockOnfirstRun() {
+        ArrayList<StockYield> stockYields = new ArrayList<>();
+
+        for(int i=0; i<stockInfos.size(); ++i) {
+            StockPO before = stockInfos.get(i).getBeforeStockPO();
+            StockPO yesterday = stockInfos.get(i).getStockByDate(DateHelper.getInstance().formerTradeDay(startDate));
+
+            if(yesterday == null || before == null) {
+                continue;
+            }
+
+            //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
+            double yield = (yesterday.getADJ()-before.getADJ())/before.getADJ();
+
+            stockYields.add(new StockYield(yesterday.getStockCode(), yield));
+        }
+
+        this.initTopNStocks(stockYields);
+    }
+
+    /**
+     * 从所有股票的收益率中选取前holdingStockNum作为持有的股票
+     * @param stockYields stockYields
+     */
+    private void initTopNStocks(ArrayList<StockYield> stockYields) {
+        //冒泡排序 排序holdingStockNum次 得到收益前holdingStockNum的股票
+        for(int i=stockYields.size()-1;i>stockYields.size()-this.holdingStockNum-1; i--) {
+            for(int j=0; j<i; ++ j) {
+                if(stockYields.get(j).getYield() < stockYields.get(j+1).getYield()) {
+                    StockYield temp = stockYields.get(j);
+                    stockYields.set(j, new StockYield(stockYields.get(j+1).getStockCode(), stockYields.get(j+1).getYield()));
+                    stockYields.set(j+1, temp);
+                }
+            }
+        }
+
+        //确定持有股票的代码
+        for(int i=0; i<this.holdingStockNum; ++i) {
+            this.holdingStockCodes.add(stockYields.get(i).getStockCode());
+        }
+    }
+
     /**
      * 计算指定日期所有股票形成期收益，并获取前holdingStockNum个的股票代码
      * @param date 日期
      */
-    public void rebalance(Date date) {
+    private void rebalance(Date date) {
+        ArrayList<StockYield> stockYields = new ArrayList<>();
+
+        Date beforeDate = DateHelper.getInstance().formerNTradeDay(date, returnPeriod);
+
+        for(int i=0; i<stockInfos.size(); ++i) {
+            StockPO before = stockInfos.get(i).getStockByDate(beforeDate);
+            StockPO yesterday = stockInfos.get(i).getStockByDate(DateHelper.getInstance().formerTradeDay(date));
+
+            if(yesterday == null || before == null) {
+                continue;
+            }
+
+            //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
+            double yield = (yesterday.getADJ()-before.getADJ())/before.getADJ();
+
+            stockYields.add(new StockYield(yesterday.getStockCode(), yield));
+        }
+
+        this.initTopNStocks(stockYields);
 
     }
 
@@ -82,40 +147,28 @@ public class StockPool {
      * 计算持有股票每天的收益，并将数据存入cumulativeYieldGraphDataVOS
      * @param date 日期
      */
-    public void calculateHoldingStockYield(Date date) {
+    private void calculateHoldingStockYield(Date date) {
+        int yieldNum = 0; //计算该日期有多少未停牌，用于计算平均值
 
-    }
+        for(int i=0; i<this.holdingStockCodes.size(); ++i) {
+            StockPO stockPO = this.findSpecificStock(this.holdingStockCodes.get(i), date);
 
-    /**
-     * 在第一次运行时 确定持有的股票
-     */
-    private void initHoldingStockOnfirstRun() {
-        ArrayList<StockYield> stockYields = new ArrayList<>();
-        for(int i=0; i<stockInfos.size(); ++i) {
-            StockPO before = stockInfos.get(i).getBeforeStockPO();
-            StockPO now = stockInfos.get(i).getStockByDate(DateHelper.getInstance().formerTradeDay(startDate));
-
-            if(now == null || before == null) {
+            if(stockPO == null) {
                 continue;
             }
 
-            //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
-            double yield = (now.getADJ()-before.getADJ())/before.getADJ();
+            yieldNum ++;
 
-            stockYields.add(new StockYield(now.getStockCode(), yield));
+            //这里添加计算收益率的代码
+
+
         }
 
-        this.initTopNStocks(stockYields);
     }
 
-    /**
-     * 从所有股票的收益率中选取前holdingStockNum 作为持有的股票
-     * @param stockYields stockYields
-     */
-    private void initTopNStocks(ArrayList<StockYield> stockYields) {
-
+    private StockPO findSpecificStock(String stockCode, Date date) {
+        return null;
     }
-
 
     /**
      * 初始化股票

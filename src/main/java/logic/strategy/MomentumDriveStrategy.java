@@ -44,9 +44,6 @@ public class MomentumDriveStrategy implements Strategy {
 
     @Override
     public YieldHistogramGraphVO getYieldHistogramGraphInfo(StrategyInputVO strategyInputVO) {
-
-
-
         return null;
     }
 

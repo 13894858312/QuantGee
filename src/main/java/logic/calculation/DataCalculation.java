@@ -264,6 +264,9 @@ public class DataCalculation implements DataCalculationService {
         return result;
     }
 
+    /**
+     * 对stockpo重新进行排序的类
+     */
     private class SortItem {
         private int codeNumber;
         private int index;
