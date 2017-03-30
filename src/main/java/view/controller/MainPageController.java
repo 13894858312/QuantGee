@@ -239,6 +239,26 @@ public class MainPageController{
 
     }
 
+    /*
+    迭代二新增
+     */
+    @FXML
+    private void showStrategyInputDialog(){
+
+        try{
+            FXMLLoader rootLoader = new FXMLLoader();
+            rootLoader.setLocation(getClass().getResource("/fxml/CompareShares.fxml"));
+            Pane root = rootLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
     //设置DatePicker的时间
     public void setDatePicker(){
         date.setDayCellFactory(dayCellFactory);

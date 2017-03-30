@@ -1,17 +1,25 @@
 package view.controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import vo.StrategyInputVO;
+import java.beans.EventHandler;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * 策略输入框
@@ -71,14 +79,39 @@ public class StrategyInputController {
         //载入策略选择框
         strategyPicker.setItems(FXCollections.observableArrayList("动量策略","均值回归"));
         strategyPicker.setValue(0);
+        strategyPicker.getSelectionModel().selectedIndexProperty().addListener(
+                new ChangeListener<Number>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                    }
+                }
+        );
 
         //载入形成期选择框(不可见)
         make_ChoiceBox.setItems(FXCollections.observableArrayList("5天","10天","20天"));
         make_ChoiceBox.setValue(0);
+        make_ChoiceBox.getSelectionModel().selectedIndexProperty().addListener(
+                new ChangeListener<Number>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                    }
+                }
+        );
+
 
         //载入股票池选项
         stockPool.setItems(FXCollections.observableArrayList("所有股票","选择板块","选择股票"));
         stockPool.setValue(0);
+        stockPool.getSelectionModel().selectedIndexProperty().addListener(
+                new ChangeListener<Number>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                    }
+                }
+        );
 
         //初始化左侧并设定全部股票
         blocks = new ArrayList<HBox>();
@@ -157,7 +190,33 @@ public class StrategyInputController {
 
     }
 
-    private void deleteBlock(){
+    private void deleteBlock() {
+
+    }
+
+    private void showMessage(String str){
+
+        Stage dialog = new Stage();
+
+        try{
+
+            FXMLLoader rootLoader = new FXMLLoader();
+            rootLoader.setLocation(getClass().getResource("/fxml/Dialog.fxml"));
+            Pane root = rootLoader.load();
+            dialog.setScene(new Scene(root));
+            DialogController dialogController = rootLoader.getController();
+            dialogController.setText(str);
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        dialog.centerOnScreen();
+        dialog.initStyle(StageStyle.UNDECORATED);
+        dialog.setResizable(false);
+        dialog.show();
+
+        return;
 
     }
 
