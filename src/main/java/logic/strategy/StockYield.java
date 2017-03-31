@@ -1,6 +1,5 @@
 package logic.strategy;
 
-import java.util.Date;
 
 /**
  * 计算收益率保存信息的类

@@ -19,6 +19,7 @@ public class MomentumDriveStrategy implements Strategy {
         stockPool.start();
 
         ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS = stockPool.getCumulativeYieldGraphDataVOS();
+        ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS = stockPool.getBaseCumulativeYieldGraphDataVOS();
 
         double annualRevenue = 0;       //年化收益率
         double baseAnnualRevenue = 0;  //基准年化收益率
@@ -32,7 +33,7 @@ public class MomentumDriveStrategy implements Strategy {
 
 
         CumulativeYieldGraphVO cumulativeYieldGraphVO = new CumulativeYieldGraphVO(annualRevenue,baseAnnualRevenue,
-                alpha, beta,sharpeRatio, maxDrawdown,cumulativeYieldGraphDataVOS);
+                alpha, beta,sharpeRatio, maxDrawdown,cumulativeYieldGraphDataVOS, baseCumulativeYieldGraphDataVOS);
 
         return cumulativeYieldGraphVO;
     }

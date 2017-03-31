@@ -4,6 +4,7 @@ import dataDao.StockDataDao;
 import logic.tools.DateHelper;
 import mock.MockStockData;
 import po.StockPO;
+import vo.BaseCumulativeYieldGraphDataVO;
 import vo.CumulativeYieldGraphDataVO;
 import vo.StrategyInputType;
 import vo.StrategyInputVO;
@@ -27,6 +28,7 @@ public class StockPool {
     private int holdingStockNum;  //每个持有期持有的股票数量
 
     private  ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS;  //每天的收益率
+    private  ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS; //基准收益率
     private ArrayList<String> holdingStockCodes;
 
 
@@ -43,6 +45,7 @@ public class StockPool {
 
         this.cumulativeYieldGraphDataVOS = new ArrayList<>();
         this.holdingStockCodes = new ArrayList<>();
+        this.baseCumulativeYieldGraphDataVOS = new ArrayList<>();
     }
 
 
@@ -100,6 +103,7 @@ public class StockPool {
      */
     private void initTopNStocks(ArrayList<StockYield> stockYields) {
         //冒泡排序 排序holdingStockNum次 得到收益前holdingStockNum的股票
+
         for(int i=stockYields.size()-1;i>stockYields.size()-this.holdingStockNum-1; i--) {
             for(int j=0; j<i; ++ j) {
                 if(stockYields.get(j).getYield() < stockYields.get(j+1).getYield()) {
@@ -149,24 +153,56 @@ public class StockPool {
      */
     private void calculateHoldingStockYield(Date date) {
         int yieldNum = 0; //计算该日期有多少未停牌，用于计算平均值
+        double yield = 0;
 
         for(int i=0; i<this.holdingStockCodes.size(); ++i) {
             StockPO stockPO = this.findSpecificStock(this.holdingStockCodes.get(i), date);
+            StockPO startDatePO = this.findStartDateStock(this.holdingStockCodes.get(i));
 
-            if(stockPO == null) {
+            if(stockPO == null || startDatePO == null) {
                 continue;
             }
 
             yieldNum ++;
 
-            //这里添加计算收益率的代码
-
-
+            //计算累计收益率
+             yield += (stockPO.getADJ()-startDatePO.getADJ())/startDatePO.getADJ();
         }
+
+        this.cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(date,yield/yieldNum));
 
     }
 
+    /**
+     * 根据股票代码和时间获取股票数据
+     * @param stockCode stockCode
+     * @param date date
+     * @return StockPO
+     */
     private StockPO findSpecificStock(String stockCode, Date date) {
+        for(int i=0; i<this.stockInfos.size(); ++i) {
+            if(stockInfos.get(i).getStockCode().equals(stockCode)) {
+                StockPO stockPO = stockInfos.get(i).getStockByDate(date);
+                return stockPO;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * 根据股票代码获取开始日期那一天的股票信息
+     * @param stockCode 股票代码
+     * @return StockPO
+     */
+    private StockPO findStartDateStock(String stockCode) {
+        for(int i=0; i<this.stockInfos.size(); ++i) {
+            if(stockInfos.get(i).getStockCode().equals(stockCode)) {
+                StockPO po = stockInfos.get(i).getStartDateStockPO();
+                return po;
+            }
+        }
+
         return null;
     }
 
@@ -182,26 +218,27 @@ public class StockPool {
      * 将数组转换为arraylist 初始化股票
      * @param stockPOS 从数据层获取的po
      */
-    private void setStockInfos(ArrayList<StockPO>[] stockPOS) {
+    private void setStockInfosFromDataDao(ArrayList<ArrayList<StockPO>> stockPOS) {
+
         this.stockInfos = new ArrayList<>();
 
-        for(int i=0; i<stockPOS.length; ++i) {
-            if(stockPOS[i] != null && stockPOS[i].size() != 0) {
-                this.stockInfos.add(new StockInfo(startDate, stockPOS[i].get(0).getStockCode(), stockPOS[i]));
+        for(int i=0; i<stockPOS.size(); ++i) {
+            if(stockPOS.get(i) != null && stockPOS.get(i).size() != 0) {
+                this.stockInfos.add(new StockInfo(startDate, stockPOS.get(i).get(0).getStockCode(), stockPOS.get(i)));
             }
         }
     }
 
     /**
-     * 初始化股票池
+     * 初始化股票池的股票信息
      * @param strategyInputVO strategyInputVO
      */
     private void initStockInfos(StrategyInputVO strategyInputVO) {
 
         if(strategyInputVO.strategyInputType == StrategyInputType.ALL) {
             //选择所有股票构造股票池
-            ArrayList<StockPO>[] stocks = this.stockDataDao.getAllStockPO();
-            this.setStockInfos(stocks);
+            ArrayList<ArrayList<StockPO>> stocks = this.stockDataDao.getAllStockPO();
+            this.setStockInfosFromDataDao(stocks);
 
         } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK) {
             //根据特定股票板块构造股票池
@@ -215,8 +252,8 @@ public class StockPool {
                 String s = DateHelper.getInstance().dateTransToString(sd);
                 String e = DateHelper.getInstance().dateTransToString(endDate);
 
-                ArrayList<StockPO>[] stocks = this.stockDataDao.getStockPOsByBlockName(s, e, strategyInputVO.blockName);
-                this.setStockInfos(stocks);
+                ArrayList<ArrayList<StockPO>> stocks = this.stockDataDao.getStockPOsByBlockName(s, e, strategyInputVO.blockName);
+                this.setStockInfosFromDataDao(stocks);
             }
 
         } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_STOCKS) {
@@ -245,7 +282,13 @@ public class StockPool {
         }
     }
 
+
+
     public ArrayList<CumulativeYieldGraphDataVO> getCumulativeYieldGraphDataVOS() {
         return cumulativeYieldGraphDataVOS;
+    }
+
+    public ArrayList<BaseCumulativeYieldGraphDataVO> getBaseCumulativeYieldGraphDataVOS() {
+        return baseCumulativeYieldGraphDataVOS;
     }
 }

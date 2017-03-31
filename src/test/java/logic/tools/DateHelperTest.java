@@ -1,7 +1,9 @@
 package logic.tools;
 
 import org.junit.Test;
+import po.StockPO;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import static org.junit.Assert.*;
@@ -21,12 +23,12 @@ public class DateHelperTest {
 
     @Test
     public void calculateDaysBetween() throws Exception {
-        String dateString1 = "2/28/17";
-        String dateString2 = "3/2/17";
+        String dateString1 = "3/2/17";
+        String dateString2 = "3/1/17";
         Date date1 = DateHelper.getInstance().stringTransToDate(dateString1);
         Date date2 = DateHelper.getInstance().stringTransToDate(dateString2);
 
-        assertEquals(2, DateHelper.getInstance().calculateDaysBetween(date1, date2));
+        assertEquals(-1, DateHelper.getInstance().calculateDaysBetween(date1, date2));
     }
 
 
@@ -41,6 +43,19 @@ public class DateHelperTest {
 
     @Test
     public void formerTradeDay() throws Exception {
+        ArrayList<StockPO>[] arrayLists = new ArrayList[10];
+
+        for(int i = 0; i<arrayLists.length; ++i) {
+            ArrayList<StockPO> stockPOS = new ArrayList<>();
+            stockPOS.add(new StockPO("3/1/17", 90, 150, 90, 8.15, 3000, 130, "1", "aaa", "a", null));
+            arrayLists[i] = stockPOS;
+        }
+
+        for(int i = 0; i<arrayLists.length; ++i) {
+            System.out.println(arrayLists[i].get(0).getADJ());
+        }
+
+
         String dateString = "3/6/17";
         Date date = DateHelper.getInstance().stringTransToDate(dateString);
 

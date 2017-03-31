@@ -1,5 +1,6 @@
 package dataDao;
 
+import po.BaseCumulativeYieldGraphDataPO;
 import po.StockPO;
 
 import java.util.ArrayList;
@@ -56,5 +57,14 @@ public interface StockDataDao {
      *                              每个arraylist里是一种股票在一段时间内的信息
      */
     public ArrayList<ArrayList<StockPO>> getAllStockPO();
+
+//    /**
+//     * 根据板块名获取基准累计收益率图
+//     * @param blockName 板块名
+//     * @param startDate 开始日期
+//     * @param endDate 结束日期
+//     * @return BaseCumulativeYieldGraphDataPO
+//     */
+//    public ArrayList<BaseCumulativeYieldGraphDataPO> getBaseCumulativeYieldGraphData(String blockName, String startDate, String endDate);
 
 }

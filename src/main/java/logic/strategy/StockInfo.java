@@ -8,31 +8,38 @@ import java.util.Date;
 
 /**
  * Created by Mark.W on 2017/3/29.
- * 策略计算时保存一种股票指定区间信息的类
+ * 策略计算时保存 一种 股票指定区间信息的类
  */
 public class StockInfo {
     private int index;
 
     private String stockCode;
-    private StockPO beforeStockPO;
-//    private StockPO yesterdayStockPO;
+    private StockPO beforeStockPO; //第一次确定股票 时间区间前returnPeriod天的股票信息
+    private StockPO startDateStockPO = null; //开始日期的股票数据 如果为空 抛弃该股票
     private ArrayList<StockPO> stockPOS;
 
     public StockInfo(Date startDate, String stockCode, ArrayList<StockPO> stockPOS) {
         this.initIndex(startDate);
 
-        this.beforeStockPO = stockPOS.get(0);
+        this.beforeStockPO = stockPOS.get(stockPOS.size()-1);
         this.stockCode = stockCode;
-//        this.yesterdayStockPO = stockPOS.get(index-1);
+        this.stockPOS = stockPOS;
     }
-
 
     //初始化index
     private void initIndex(Date startDate) {
-        for(int i=0; i<stockPOS.size(); ++i) {
-            String d = DateHelper.getInstance().dateTransToString(startDate);
-            if(stockPOS.get(i).getDate().equals(d)) {
+        for(int i=stockPOS.size()-1; i>=0; i --) {
+            Date stockDate = DateHelper.getInstance().stringTransToDate(this.stockPOS.get(i).getDate());
+            int days = DateHelper.getInstance().calculateDaysBetween(stockDate, startDate);
+
+            if(days < 0) {
+
+                break;
+            }
+
+            if(days == 0) {
                 this.index = i;
+                this.startDateStockPO = this.stockPOS.get(index);           //初始化开始日期的股票数据
                 break;
             }
         }
@@ -42,29 +49,36 @@ public class StockInfo {
         return beforeStockPO;
     }
 
+    /**
+     * 根据日期获得股票数据 待优化
+     * @param date 日期
+     * @return StockPO
+     */
     public StockPO getStockByDate(Date date) {
+
+        //股票数据默认按时间倒序排序 用时间比较 提高一下数据
+        for(int i=this.stockPOS.size(); i>=0; i --) {
+            Date stockDate = DateHelper.getInstance().stringTransToDate(this.stockPOS.get(i).getDate());
+            int days = DateHelper.getInstance().calculateDaysBetween(stockDate, date);
+
+            if(days < 0) {
+                return null;
+            }
+
+            if(days == 0) {
+                return stockPOS.get(i);
+            }
+
+        }
+
         return null;
     }
 
-//    public StockPO getYesterdayStockPO() {
-//        return yesterdayStockPO;
-//    }
+    public String getStockCode() {
+        return stockCode;
+    }
 
-    //    public StockPO getStockInfoOnSpecificDay(Date d) {
-//        String da = DateHelper.getInstance().dateTransToString(today);
-//        if(this.stockPOS.get(index).getDate().equals(da)) {
-//            return stockPOS.get(index);
-//        }
-//
-//        return null;
-//    }
-//
-//    /**
-//     * 回测第一次调整时 获取时间范围之前returnPeriod天的股票信息
-//     * @param returnPeriod 形成期
-//     * @return StockPO
-//     */
-//    public StockPO getBeforeTimeRangeStockInfo(int returnPeriod) {
-//        return null;
-//    }
+    public StockPO getStartDateStockPO() {
+        return startDateStockPO;
+    }
 }
