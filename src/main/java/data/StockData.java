@@ -281,4 +281,92 @@ public class StockData implements StockDataDao{
 		}
 		return vaildDate;
 	}
+
+	@Override
+	public ArrayList<ArrayList<StockPO>> getStockPOsByBlockName(String startDate, String endDate, String blockName) {
+		
+		//判断板块名称，不符合规范则返回空
+		if (!(blockName.equals("主板")||blockName.equals("创业板")||blockName.equals("中小板"))) {
+			return null;
+		}
+		
+		ArrayList<ArrayList<StockPO>> datas = new ArrayList<ArrayList<StockPO>>();
+		
+		//在Block_Name中获取当前板块的所有股票编码
+		String path = System.getProperty("user.dir");
+		path.replace("\\\\", "/");
+		File file = new File(path+"/Block_Name/"+blockName+".txt");
+		
+		try {
+			
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line = "";
+			
+			//读取当前板块的所有股票代码
+			while((line = br.readLine()) != null) {
+				String[] strings = line.split(":");
+				
+				//获取到股票代码调用getStockPOsByTimeInterval方法读取该代码的股票信息
+				datas.add(getStockPOsByTimeInterval(startDate, endDate, strings[0]));
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return datas;
+	}
+
+	@Override
+	public ArrayList<ArrayList<StockPO>> getAllStockPO() {
+		
+		ArrayList<ArrayList<StockPO>> allDatas = new ArrayList<ArrayList<StockPO>>();
+		
+		//遍历all_data_by_name中的数据
+		String path = System.getProperty("user.dir");
+		path.replace("\\\\", "/");
+		File file = new File(path+"/all_data_by_name");
+		File[] fileList =  file.listFiles();
+
+		for (File file2 : fileList) {
+			
+			if (file2.getName().equals("fileName.txt")) {
+				continue;
+			}
+			//当前股票数据的Arraylist
+			ArrayList<StockPO> data = new ArrayList<>();
+			
+			//开始读取
+			try {
+				
+				BufferedReader br = new BufferedReader(new FileReader(file2));
+				String line = br.readLine();
+				
+				while((line = br.readLine()) != null) {
+					String[] strings = line.split("\\t");
+					StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
+							Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
+							Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
+							Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
+					
+					//将获取的数据放入当前股票数据的Arraylist中
+					data.add(po);
+					
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			
+			//读取完毕将当前股票数据的Arraylist放入结果的Arraylist中
+			allDatas.add(data);
+			
+		}
+		
+		return allDatas;
+	}
 }

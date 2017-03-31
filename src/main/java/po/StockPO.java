@@ -30,6 +30,33 @@ public class StockPO {
      * @param stockCode 股票代码
      * @param stockName  股票名称
      * @param stockMarket 市场名称
+     */
+    public StockPO(String date, double openPrice, double maxValue, double minValue,
+    		double closePrice,int volume, double ADJ,  String stockCode,
+    		String stockName, String stockMarket) {
+    	this.date = date;
+    	this.openPrice = openPrice;
+    	this.maxValue = maxValue;
+    	this.minValue = minValue;
+    	this.closePrice = closePrice;
+    	this.volume = volume;
+    	this.ADJ = ADJ;
+    	this.stockCode = stockCode;
+    	this.stockName = stockName;
+    	this.stockMarket = stockMarket;
+    }
+    
+    /**
+     * @param date 日期
+     * @param openPrice 开盘价
+     * @param maxValue 最高值
+     * @param minValue 最低值
+     * @param closePrice 收盘价
+     * @param ADJ 复权后的收盘指数
+     * @param volume 成交量
+     * @param stockCode 股票代码
+     * @param stockName  股票名称
+     * @param stockMarket 市场名称
      * @param blockName 板块名字
      */
     public StockPO(String date, double openPrice, double maxValue, double minValue,
