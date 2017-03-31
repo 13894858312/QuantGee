@@ -13,13 +13,13 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import sun.swing.BakedArrayList;
 import vo.StrategyInputVO;
-import java.beans.EventHandler;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Observable;
 
 /**
  * 策略输入框
@@ -31,6 +31,7 @@ public class StrategyInputController {
 
     @FXML private VBox blockPane;
 
+    @FXML private HBox hBox;
     @FXML private Label num;
 
     @FXML private DatePicker startPicker;
@@ -43,10 +44,18 @@ public class StrategyInputController {
     @FXML private ChoiceBox strategyPicker;
     @FXML private ChoiceBox stockPool;
 
+    @FXML private CheckBox chooseHold;
+    @FXML private CheckBox chooseMake;
+
+    @FXML private Label perLabel;
+    @FXML private TextField perField;
+    @FXML private Label perLabel1;
+
     private ArrayList<HBox> blocks;
     private ArrayList<StrategyBlockController> strategyBlockControllers;
 
-    private boolean isTextField = true;
+    private boolean isDongLiangCeLue = true;
+    private int count = 0;
 
     private final LocalDate MIN = LocalDate.of(2005,2,2);
     private final LocalDate MAX = LocalDate.of(2014,4,29);
@@ -84,6 +93,9 @@ public class StrategyInputController {
                     @Override
                     public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 
+                        if(newValue.equals(0))setDongLiangCeLue();
+                        else if(newValue.equals(1))setJunZhiHuiGui();
+
                     }
                 }
         );
@@ -91,14 +103,6 @@ public class StrategyInputController {
         //载入形成期选择框(不可见)
         make_ChoiceBox.setItems(FXCollections.observableArrayList("5天","10天","20天"));
         make_ChoiceBox.setValue(0);
-        make_ChoiceBox.getSelectionModel().selectedIndexProperty().addListener(
-                new ChangeListener<Number>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-
-                    }
-                }
-        );
 
 
         //载入股票池选项
@@ -108,6 +112,14 @@ public class StrategyInputController {
                 new ChangeListener<Number>() {
                     @Override
                     public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                        if(newValue.equals(0)){
+                            setAllStocks();
+                        }else if(newValue.equals(1)){
+                            setChosenBlocks();
+                        }else if(newValue.equals(2)){
+                            setChosenStocks();
+                        }
 
                     }
                 }
@@ -123,8 +135,16 @@ public class StrategyInputController {
         endPicker.setDayCellFactory(dayCellFactory);
         endPicker.setValue(MAX);
 
+        //设定单选框浮标
+        chooseHold.setSelected(true);
+        chooseHold.setTooltip(new Tooltip("选为生成超额收益率关系图的数据"));
+        chooseMake.setTooltip(new Tooltip("选为生成超额收益率关系图的数据"));
+
     }
 
+    /*
+    鼠标选择就全选内容
+     */
     @FXML
     private void selectHoldText(){
         hold.selectAll();
@@ -135,62 +155,129 @@ public class StrategyInputController {
         make_TextField.selectAll();
     }
 
+    /*
+    搜索
+     */
     @FXML
     private void search(){
 
     }
 
+    /*
+    取消输入，关闭输入框
+     */
     @FXML
     private void close(){
         ((Stage)root.getScene().getWindow()).close();
     }
 
 
-    private void setMake_TextField(){
+    /*
+    两个框只能选一个
+     */
+    @FXML
+    private void chooseHoldFunc(){
+        if(chooseHold.isSelected()){
+            chooseMake.setSelected(true);
+        }
+    }
 
-        if(isTextField)return;
+    @FXML
+    private void chooseMakeFunc(){
+        if(chooseMake.isSelected()){
+            chooseHold.setSelected(true);
+        }
+    }
+
+    /*
+    选择动量策略（0）
+     */
+    private void setDongLiangCeLue(){
+
+        if(isDongLiangCeLue)return;
 
         make_ChoiceBox.setVisible(false);
         make_TextField.setVisible(true);
 
-        isTextField = true;
+
+        perLabel.setVisible(true);
+        perLabel1.setVisible(true);
+        perField.setVisible(true);
+
+        isDongLiangCeLue = true;
 
     }
 
-    private void setMake_ChoiceBox(){
+    /*
+    选择均值回归（1）
+     */
+    private void setJunZhiHuiGui(){
 
-        if(!isTextField)return;
+        if(!isDongLiangCeLue)return;
 
         make_TextField.setVisible(false);
         make_ChoiceBox.setVisible(true);
 
-        isTextField = false;
+        chooseMake.setVisible(false);
+        chooseHold.setVisible(false);
+
+        perLabel.setVisible(false);
+        perLabel1.setVisible(false);
+        perField.setVisible(false);
+
+        isDongLiangCeLue = false;
 
     }
 
+    /*
+    股票池选项
+     */
     private void setAllStocks(){
+
+        blockPane.getChildren().removeAll();
+        hBox.setVisible(false);
 
     }
 
     private void setChosenBlocks(){
-
+        setBlockPane(true);
     }
 
     private void setChosenStocks(){
+        setBlockPane(false);
+    }
+
+    private void setBlockPane(boolean isBlock){
+
+        blockPane.getChildren().removeAll();
+        showHBox();
+
+        blocks = new ArrayList<HBox>();
+        strategyBlockControllers = new ArrayList<StrategyBlockController>();
+
+
 
     }
 
-    private StrategyInputVO getInput(){
+    public void addBlock(){
 
-        //所选时间要比MIN+形成期*1.5晚
-        return null;
-    }
-
-    private void addBlock(){
+        count++;
+        num.setText(Integer.toString(count));
 
     }
 
-    private void deleteBlock() {
+    public void deleteBlock() {
+
+        count--;
+        num.setText(Integer.toString(count));
+
+    }
+
+    private void showHBox(){
+
+        hBox.setVisible(true);
+        count = 0;
+        num.setText(Integer.toString(count));
 
     }
 
@@ -218,6 +305,15 @@ public class StrategyInputController {
 
         return;
 
+    }
+
+    /*
+    得到全部数据并检查数据正确性
+     */
+    private StrategyInputVO getInput(){
+
+        //所选时间要比MIN+形成期*1.5晚
+        return null;
     }
 
 }
