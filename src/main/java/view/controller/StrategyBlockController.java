@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 
 /**
  * 控制输入股票名称小单元的controller
@@ -14,17 +16,26 @@ public class StrategyBlockController {
     @FXML private Button button;
     @FXML private TextField name;
     @FXML private Label label;
+    @FXML private HBox rootPane;
 
-    private boolean isAdd;
+    private boolean isAdd = true;
+    private StrategyInputController strategyInputController;
+
+    public StrategyBlockController(StrategyInputController strategyInputController){
+        this.strategyInputController = strategyInputController;
+    }
 
     @FXML
     private void option(){
 
         if(isAdd){
             //新增一行输入框
+            strategyInputController.addBlock();
+            setDelete();
         }else{
             //删除本行
-
+            rootPane.getChildren().removeAll();
+            strategyInputController.deleteBlock();
         }
 
     }
@@ -32,11 +43,6 @@ public class StrategyBlockController {
     @FXML
     private void selectText(){
         name.selectAll();
-    }
-
-    public void setAdd() {
-        isAdd = true;
-        button.setText("新增");
     }
 
     public void setDelete(){
