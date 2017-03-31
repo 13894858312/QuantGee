@@ -31,6 +31,7 @@ public class StockData implements StockDataDao{
 			while((line = br.readLine()) != null) {
 				String[] strings = line.split("\\t");
 				if (strings[1].equals(date) && strings[8].equals(stockCode)&&Integer.parseInt(strings[6])!=0) {
+
 					StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
 							Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
 							Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
