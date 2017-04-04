@@ -18,7 +18,8 @@ public class MeanReversionStrategy implements Strategy {
 
         stockPool = new StockPool(strategyInputVO);
 
-        MeanReversionCumlativeYield meanReversionCumlativeYield = new MeanReversionCumlativeYield(stockPool);
+        MeanReversionCumlativeYield meanReversionCumlativeYield = new MeanReversionCumlativeYield(stockPool, strategyInputVO.holdingPeriod,
+                strategyInputVO.returnPeriod, strategyInputVO.holdingStockNum);
 
         meanReversionCumlativeYield.start();
 
@@ -36,6 +37,7 @@ public class MeanReversionStrategy implements Strategy {
         meanReversionAbnormalReturn.start();
 
         AbnormalReturnGraphVO abnormalReturnGraphVO = meanReversionAbnormalReturn.getAbnormalReturnGraphVO();
+
         return abnormalReturnGraphVO;
     }
 
@@ -51,4 +53,5 @@ public class MeanReversionStrategy implements Strategy {
 
         return yieldHistogramGraphVO;
     }
+
 }

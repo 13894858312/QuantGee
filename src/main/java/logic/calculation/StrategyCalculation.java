@@ -1,6 +1,7 @@
 package logic.calculation;
 
 import logic.strategy.MomentumDriveStrategy;
+import logic.strategy.StockPool;
 import logic.strategy.Strategy;
 import logic.tools.StrategyFactory;
 import logicService.StrategyCalculationService;

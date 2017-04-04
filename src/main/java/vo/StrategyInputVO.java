@@ -18,7 +18,7 @@ public class StrategyInputVO {
     public Date endDate; //回测区间
 
     public int holdingPeriod; //调仓周期 (持有期）
-    public int returnPeriod; //基准收益率计算周期 (形成期)，
+    public int returnPeriod; //基准收益率计算周期 (形成期)
                                 //若是均值回归策略，则是N日移动均线
     public int holdingStockNum; //每次调仓持有的股票数量
 

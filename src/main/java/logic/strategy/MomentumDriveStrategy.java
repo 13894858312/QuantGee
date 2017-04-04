@@ -1,7 +1,7 @@
 package logic.strategy;
 
+import logic.tools.DateHelper;
 import vo.*;
-import java.util.ArrayList;
 
 /**
  * Created by Mark.W on 2017/3/29.
@@ -14,9 +14,10 @@ public class MomentumDriveStrategy implements Strategy {
     @Override
     public CumulativeYieldGraphVO getCumulativeYieldGraphInfo(StrategyInputVO strategyInputVO) {
 
-        stockPool = new StockPool(strategyInputVO);
+        this.initStockPool(strategyInputVO);
 
-        MomentumCumlativeYield momentumCumlativeYield = new MomentumCumlativeYield(stockPool);
+        MomentumCumlativeYield momentumCumlativeYield = new MomentumCumlativeYield(stockPool,
+                strategyInputVO.holdingPeriod, strategyInputVO.returnPeriod, strategyInputVO.holdingStockNum);
 
         momentumCumlativeYield.start();
 
@@ -27,7 +28,7 @@ public class MomentumDriveStrategy implements Strategy {
 
     @Override
     public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StrategyInputVO strategyInputVO, double period, boolean isHoldingPeriod) {
-        stockPool = new StockPool(strategyInputVO);
+        this.initStockPool(strategyInputVO);
 
         MomentumAbnormalReturn momentumAbnormalReturn = new MomentumAbnormalReturn(stockPool, period, isHoldingPeriod);
 
@@ -39,7 +40,7 @@ public class MomentumDriveStrategy implements Strategy {
 
     @Override
     public YieldHistogramGraphVO getYieldHistogramGraphInfo(StrategyInputVO strategyInputVO) {
-        stockPool = new StockPool(strategyInputVO);
+        this.initStockPool(strategyInputVO);
 
         MomentumYieldHistogram momentumYieldHistogram = new MomentumYieldHistogram(stockPool);
 
@@ -49,4 +50,23 @@ public class MomentumDriveStrategy implements Strategy {
 
         return yieldHistogramGraphVO;
     }
+
+    private void initStockPool(StrategyInputVO strategyInputVO) {
+        if(stockPool == null) {
+            stockPool = new StockPool(strategyInputVO);
+        } else {
+
+            String s1 = DateHelper.getInstance().dateTransToString(stockPool.getStartDate());
+            String e1 = DateHelper.getInstance().dateTransToString(stockPool.getEndDate());
+
+            String s2 = DateHelper.getInstance().dateTransToString(strategyInputVO.startDate);
+            String e2 = DateHelper.getInstance().dateTransToString(strategyInputVO.endDate);
+
+            if(!(s1.equals(s2) && e1.equals(e2))) {
+                stockPool = new StockPool(strategyInputVO);
+            }
+
+        }
+    }
+
 }
