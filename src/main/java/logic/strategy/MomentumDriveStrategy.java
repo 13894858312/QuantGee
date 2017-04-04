@@ -16,38 +16,37 @@ public class MomentumDriveStrategy implements Strategy {
 
         stockPool = new StockPool(strategyInputVO);
 
-        stockPool.start();
+        MomentumCumlativeYield momentumCumlativeYield = new MomentumCumlativeYield(stockPool);
 
-        ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS = stockPool.getCumulativeYieldGraphDataVOS();
-        ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS = stockPool.getBaseCumulativeYieldGraphDataVOS();
+        momentumCumlativeYield.start();
 
-        double annualRevenue = 0;       //年化收益率
-        double baseAnnualRevenue = 0;  //基准年化收益率
-        double alpha = 0;
-        double beta = 0;
-        double sharpeRatio = 0;  //夏普比率
-        double maxDrawdown = 0;  //最大回撤
-
-
-
-
-
-        CumulativeYieldGraphVO cumulativeYieldGraphVO = new CumulativeYieldGraphVO(annualRevenue,baseAnnualRevenue,
-                alpha, beta,sharpeRatio, maxDrawdown,cumulativeYieldGraphDataVOS, baseCumulativeYieldGraphDataVOS);
+        CumulativeYieldGraphVO cumulativeYieldGraphVO = momentumCumlativeYield.getCumulativeYieldGraphVO();
 
         return cumulativeYieldGraphVO;
     }
 
     @Override
     public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StrategyInputVO strategyInputVO, double period, boolean isHoldingPeriod) {
-        return null;
+        stockPool = new StockPool(strategyInputVO);
+
+        MomentumAbnormalReturn momentumAbnormalReturn = new MomentumAbnormalReturn(stockPool, period, isHoldingPeriod);
+
+        momentumAbnormalReturn.start();
+
+        AbnormalReturnGraphVO abnormalReturnGraphVO = momentumAbnormalReturn.getAbnormalReturnGraphVO();
+        return abnormalReturnGraphVO;
     }
 
     @Override
     public YieldHistogramGraphVO getYieldHistogramGraphInfo(StrategyInputVO strategyInputVO) {
-        return null;
+        stockPool = new StockPool(strategyInputVO);
+
+        MomentumYieldHistogram momentumYieldHistogram = new MomentumYieldHistogram(stockPool);
+
+        momentumYieldHistogram.start();
+
+        YieldHistogramGraphVO yieldHistogramGraphVO = momentumYieldHistogram.getYieldHistogramGraphVO();
+
+        return yieldHistogramGraphVO;
     }
-
-
-
 }

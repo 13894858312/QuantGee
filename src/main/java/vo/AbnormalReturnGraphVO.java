@@ -16,7 +16,6 @@ public class AbnormalReturnGraphVO {
     public ArrayList<AbnormalReturnGraphDataVO> abnormalReturnGraphDataVOS;  //超额收益率和策略胜率图数据信息
 
     /**
-     *
      * @param bestHoldingPeriod 最佳持有期
      * @param bestReturnPeriod 最佳形成期
      * @param bestAbnormalReturn 最优的超额收益率

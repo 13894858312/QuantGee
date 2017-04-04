@@ -15,7 +15,7 @@ public class YieldHistogramGraphVO {
     public int negativeEarningNum; //负收益周期数
     public double winRate; //赢率
 
-    ArrayList<YieldHistogramGraphDataVO> yieldHistogramGraphDataVOS; //坐标信息
+    public ArrayList<YieldHistogramGraphDataVO> yieldHistogramGraphDataVOS; //坐标信息
 
     /**
      *
