@@ -184,3 +184,8 @@
 .SharePane{
     -fx-background-color: #222222;
 }
+
+.SmallLabel{
+    -fx-text-alignment: left;
+    -fx-font-size: 12px;
+}

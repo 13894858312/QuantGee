@@ -1,7 +1,7 @@
 package logic.strategy;
 
+import logic.tools.DateHelper;
 import vo.*;
-import java.util.ArrayList;
 
 /**
  * Created by Mark.W on 2017/3/29.
@@ -9,14 +9,12 @@ import java.util.ArrayList;
  */
 public class MomentumDriveStrategy implements Strategy {
 
-    private StockPool stockPool;
-
     @Override
-    public CumulativeYieldGraphVO getCumulativeYieldGraphInfo(StrategyInputVO strategyInputVO) {
+    public CumulativeYieldGraphVO getCumulativeYieldGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO) {
 
-        stockPool = new StockPool(strategyInputVO);
 
-        MomentumCumlativeYield momentumCumlativeYield = new MomentumCumlativeYield(stockPool);
+        MomentumCumlativeYield momentumCumlativeYield = new MomentumCumlativeYield(stockPool,
+                strategyInputVO.holdingPeriod, strategyInputVO.returnPeriod, strategyInputVO.holdingStockNum);
 
         momentumCumlativeYield.start();
 
@@ -26,8 +24,7 @@ public class MomentumDriveStrategy implements Strategy {
     }
 
     @Override
-    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StrategyInputVO strategyInputVO, double period, boolean isHoldingPeriod) {
-        stockPool = new StockPool(strategyInputVO);
+    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO, double period, boolean isHoldingPeriod) {
 
         MomentumAbnormalReturn momentumAbnormalReturn = new MomentumAbnormalReturn(stockPool, period, isHoldingPeriod);
 
@@ -38,8 +35,7 @@ public class MomentumDriveStrategy implements Strategy {
     }
 
     @Override
-    public YieldHistogramGraphVO getYieldHistogramGraphInfo(StrategyInputVO strategyInputVO) {
-        stockPool = new StockPool(strategyInputVO);
+    public YieldHistogramGraphVO getYieldHistogramGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO) {
 
         MomentumYieldHistogram momentumYieldHistogram = new MomentumYieldHistogram(stockPool);
 
@@ -49,4 +45,5 @@ public class MomentumDriveStrategy implements Strategy {
 
         return yieldHistogramGraphVO;
     }
+
 }

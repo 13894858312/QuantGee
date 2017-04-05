@@ -16,16 +16,24 @@ import java.util.Date;
 public class MomentumCumlativeYield implements CumlativeYieldInterface {
     private StockPool stockPool;
 
+    private int holdingPeriod;  //持有期
+    private int returnPeriod;    //形成期
+    private int holdingStockNum;  //每个持有期持有的股票数量
+
     private ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS;  //每天的收益率
     private ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS; //基准收益率
     private ArrayList<String> holdingStockCodes;
+
     private double capital;     //本金
     private double income;      //总收益
-
     private CumulativeYieldGraphVO cumulativeYieldGraphVO;
 
-    public MomentumCumlativeYield(StockPool stockPool) {
+    public MomentumCumlativeYield(StockPool stockPool, int holdingPeriod, int returnPeriod, int holdingStockNum) {
         this.stockPool = stockPool;
+
+        this.holdingPeriod = holdingPeriod;
+        this.returnPeriod = returnPeriod;
+        this.holdingStockNum = holdingStockNum;
 
         this.cumulativeYieldGraphDataVOS = new ArrayList<>();
         this.holdingStockCodes = new ArrayList<>();
@@ -42,7 +50,7 @@ public class MomentumCumlativeYield implements CumlativeYieldInterface {
         int index = 0;     //记录是否达到一个holdingPeriod的index
 
         while(!DateHelper.getInstance().dateTransToString(temp).equals(DateHelper.getInstance().dateTransToString(stockPool.getEndDate()))) {
-            if(index == stockPool.getHoldingPeriod()) { //若达到holdingPeriod index置0 同时进行rebalance
+            if(index == holdingPeriod) { //若达到holdingPeriod index置0 同时进行rebalance
                 index = 0;
                 this.rebalance(temp);
 
@@ -88,7 +96,7 @@ public class MomentumCumlativeYield implements CumlativeYieldInterface {
     public void initTopNStocks(ArrayList<StockYield> stockYields) {
         //冒泡排序 排序holdingStockNum次 得到收益前holdingStockNum的股票
 
-        for(int i=stockYields.size()-1;i>stockYields.size()-this.stockPool.getHoldingStockNum()-1; i--) {
+        for(int i=stockYields.size()-1;i>stockYields.size()-holdingStockNum-1; i--) {
             for(int j=0; j<i; ++ j) {
                 if(stockYields.get(j).getYield() < stockYields.get(j+1).getYield()) {
                     StockYield temp = stockYields.get(j);
@@ -99,7 +107,7 @@ public class MomentumCumlativeYield implements CumlativeYieldInterface {
         }
 
         //确定持有股票的代码
-        for(int i=0; i<this.stockPool.getHoldingStockNum(); ++i) {
+        for(int i=0; i<holdingStockNum; ++i) {
             this.holdingStockCodes.add(stockYields.get(i).getStockCode());
         }
     }
@@ -111,7 +119,7 @@ public class MomentumCumlativeYield implements CumlativeYieldInterface {
     public void rebalance(Date date) {
         ArrayList<StockYield> stockYields = new ArrayList<>();
 
-        Date beforeDate = DateHelper.getInstance().formerNTradeDay(date, stockPool.getReturnPeriod());
+        Date beforeDate = DateHelper.getInstance().formerNTradeDay(date, returnPeriod);
 
         for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
             StockPO before = stockPool.getStockInfos().get(i).getStockByDate(beforeDate);
