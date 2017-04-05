@@ -61,19 +61,23 @@ public class AdvCandleStickChart extends Pane {
         XYChart.Series<String, Number> series1 = new XYChart.Series<String, Number>();
         XYChart.Series<String, Number> series2 = new XYChart.Series<String, Number>();
         XYChart.Series<String, Number> series3 = new XYChart.Series<String, Number>();
-        if(averageLineVOArrayList1.size() > 0) {
             for (int i = kLineVOArrayList.size() - 1; i >= 0; i--) {
                 KLineVO day = kLineVOArrayList.get(i);
-                AverageLineVO averageLineVO = averageLineVOArrayList1.get(i);
                 series1.getData().add(
-                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(day.date), day.openPrice, new CandleStickExtraValues(day.closePrice, day.maxValue, day.minValue, averageLineVO.averageValue))
+                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(day.date), day.openPrice, new CandleStickExtraValues(day.closePrice, day.maxValue, day.minValue))
                 );
-
             }
-        }
+
+            for(int i=averageLineVOArrayList1.size()-1;i>=0;i--){
+                AverageLineVO averageLineVO = averageLineVOArrayList1.get(i);
+                series2.getData().add(
+                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date),averageLineVO.averageValue)
+                );
+            }
+
         ObservableList<XYChart.Series<String, Number>> data = bc.getData();
         if (data == null) {
-            data = FXCollections.observableArrayList(series1);
+            data = FXCollections.observableArrayList(series1,series2);
 
             bc.setData(data);
         } else {
@@ -349,11 +353,11 @@ public class AdvCandleStickChart extends Pane {
         private double low;
         private double average;
 
-        public CandleStickExtraValues(double close, double high, double low, double average) {
+        public CandleStickExtraValues(double close, double high, double low) {
             this.close = close;
             this.high = high;
             this.low = low;
-            this.average = average;
+//            this.average = average;
         }
 
         public double getClose() {
