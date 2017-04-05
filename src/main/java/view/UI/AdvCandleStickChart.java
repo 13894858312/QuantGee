@@ -20,7 +20,10 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
 import logic.tools.DateHelper;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
 import view.controller.SearchSharesController;
+import vo.AverageLineVO;
 import vo.KLineVO;
 
 import java.util.ArrayList;
@@ -33,7 +36,8 @@ import java.util.List;
 public class AdvCandleStickChart extends Pane {
     // DAY, OPEN, CLOSE, HIGH, LOW, AVERAGE
     final CandleStickChart bc;
-    public AdvCandleStickChart(ArrayList<KLineVO> kLineVOArrayList, int width, int height) throws Exception{
+    public AdvCandleStickChart(ArrayList<KLineVO> kLineVOArrayList, ArrayList<AverageLineVO> averageLineVOArrayList1, ArrayList<AverageLineVO> averageLineVOArrayList2,
+                               ArrayList<AverageLineVO> averageLineVOArrayList3, int width, int height) throws Exception{
         // x-axis:
         this.getStylesheets().add("/css/ensemble_AdvCandleStickChart.css");
 
@@ -54,19 +58,26 @@ public class AdvCandleStickChart extends Pane {
         bc.setTitle("Custom Candle Stick Chart");
 
         // add starting data
-        XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
-        for (int i = kLineVOArrayList.size()-1; i>=0; i--) {
-            KLineVO day = kLineVOArrayList.get(i);
-            series.getData().add(
-                    new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(day.date), day.openPrice, new CandleStickExtraValues(day.closePrice, day.maxValue, day.minValue))
-            );
+        XYChart.Series<String, Number> series1 = new XYChart.Series<String, Number>();
+        XYChart.Series<String, Number> series2 = new XYChart.Series<String, Number>();
+        XYChart.Series<String, Number> series3 = new XYChart.Series<String, Number>();
+        if(averageLineVOArrayList1.size() > 0) {
+            for (int i = kLineVOArrayList.size() - 1; i >= 0; i--) {
+                KLineVO day = kLineVOArrayList.get(i);
+                AverageLineVO averageLineVO = averageLineVOArrayList1.get(i);
+                series1.getData().add(
+                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(day.date), day.openPrice, new CandleStickExtraValues(day.closePrice, day.maxValue, day.minValue, averageLineVO.averageValue))
+                );
+
+            }
         }
         ObservableList<XYChart.Series<String, Number>> data = bc.getData();
         if (data == null) {
-            data = FXCollections.observableArrayList(series);
+            data = FXCollections.observableArrayList(series1);
+
             bc.setData(data);
         } else {
-            bc.getData().add(series);
+            bc.getData().add(series1);
         }
 
         getChildren().add(bc);
@@ -160,13 +171,13 @@ public class AdvCandleStickChart extends Pane {
                         candle.setLayoutY(y);
                     }
                     //均线图
-//                    if (seriesPath != null) {
-//                        if (seriesPath.getElements().isEmpty()) {
-//                            seriesPath.getElements().add(new MoveTo(x, getYAxis().getDisplayPosition(extra.getAverage())));
-//                        } else {
-//                            seriesPath.getElements().add(new LineTo(x, getYAxis().getDisplayPosition(extra.getAverage())));
-//                        }
-//                    }
+                    if (seriesPath != null) {
+                        if (seriesPath.getElements().isEmpty()) {
+                            seriesPath.getElements().add(new MoveTo(x, getYAxis().getDisplayPosition(extra.getAverage())));
+                        } else {
+                            seriesPath.getElements().add(new LineTo(x, getYAxis().getDisplayPosition(extra.getAverage())));
+                        }
+                    }
                 }
             }
         }
@@ -338,7 +349,7 @@ public class AdvCandleStickChart extends Pane {
         private double low;
         private double average;
 
-        public CandleStickExtraValues(double close, double high, double low) {
+        public CandleStickExtraValues(double close, double high, double low, double average) {
             this.close = close;
             this.high = high;
             this.low = low;

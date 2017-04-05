@@ -1,6 +1,5 @@
 package dataDao;
 
-import po.BaseCumulativeYieldGraphDataPO;
 import po.StockPO;
 
 import java.util.ArrayList;
