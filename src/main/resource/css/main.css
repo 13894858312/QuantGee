@@ -185,7 +185,6 @@
     -fx-background-color: #222222;
 }
 
-.SmallLabel{
-    -fx-text-alignment: left;
-    -fx-font-size: 12px;
+.BigLabel{
+    -fx-font-size: 16px;
 }

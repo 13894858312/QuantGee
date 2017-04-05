@@ -12,7 +12,7 @@
                <children>
                   <AnchorPane prefHeight="50.0" prefWidth="740.0">
                      <children>
-                        <Label layoutX="30.0" layoutY="15.0" text="累计收益率比较图" />
+                        <Label layoutX="30.0" layoutY="15.0" styleClass="BigLabel" text="累计收益率比较图" />
                         <Separator layoutX="10.0" layoutY="45.0" prefWidth="720.0" />
                      </children>
                   </AnchorPane>
@@ -21,34 +21,34 @@
                         <AnchorPane fx:id="graphA" layoutX="30.0" layoutY="80.0" prefHeight="400.0" prefWidth="660.0" styleClass="SharePane" />
                         <HBox layoutX="30.0" layoutY="20.0" prefHeight="30.0" prefWidth="660.0">
                            <children>
-                              <Label styleClass="SmallLabel" text="年化收益率：" />
-                              <Label fx:id="year" styleClass="SmallLabel" text="--" />
-                              <Label styleClass="SmallLabel" text=" 基准收益率：" />
-                              <Label fx:id="base" styleClass="SmallLabel" text="--" />
-                              <Label styleClass="SmallLabel" text=" 阿尔法：" />
-                              <Label fx:id="alpha" styleClass="SmallLabel" text="--" />
-                              <Label styleClass="SmallLabel" text=" 贝塔：" />
-                              <Label styleClass="SmallLabel" text="--" />
-                              <Label styleClass="SmallLabel" text=" 夏普比率：" />
-                              <Label fx:id="sharp" styleClass="SmallLabel" text="--" />
+                              <Label text="年化收益率：" />
+                              <Label fx:id="year" text="--" />
+                              <Label text=" 基准收益率：" />
+                              <Label fx:id="base" text="--" />
+                              <Label text=" 阿尔法：" />
+                              <Label fx:id="alpha" text="--" />
+                              <Label text=" 贝塔：" />
+                              <Label text="--" />
+                              <Label text=" 夏普比率：" />
+                              <Label fx:id="sharp" text="--" />
                            </children>
                         </HBox>
                         <HBox layoutX="30.0" layoutY="50.0" prefHeight="30.0" prefWidth="660.0">
                            <children>
-                              <Label styleClass="SmallLabel" text="收益波动率：" />
-                              <Label fx:id="volatility" styleClass="SmallLabel" text="--" />
-                              <Label styleClass="SmallLabel" text=" 信息比率：" />
-                              <Label fx:id="message" styleClass="SmallLabel" text="--" />
-                              <Label styleClass="SmallLabel" text=" 最大回撤：" />
-                              <Label fx:id="max" styleClass="SmallLabel" text="--" />
-                              <Label styleClass="SmallLabel" text=" 换手率：" />
-                              <Label fx:id="turnover" styleClass="SmallLabel" text="--" />
+                              <Label text="收益波动率：" />
+                              <Label fx:id="volatility" text="--" />
+                              <Label text=" 信息比率：" />
+                              <Label fx:id="message" text="--" />
+                              <Label text=" 最大回撤：" />
+                              <Label fx:id="max" text="--" />
+                              <Label text=" 换手率：" />
+                              <Label fx:id="turnover" text="--" />
                            </children>
                         </HBox>
                      </children></AnchorPane>
                   <AnchorPane prefHeight="50.0" prefWidth="740.0">
                      <children>
-                        <Label layoutX="30.0" layoutY="15.0" text="超额收益率和策略胜率与不同形成期/持有期关系图" />
+                        <Label layoutX="30.0" layoutY="15.0" styleClass="BigLabel" text="超额收益率和策略胜率与不同形成期/持有期关系图" />
                         <Separator layoutX="10.0" layoutY="45.0" prefWidth="720.0" />
                      </children>
                   </AnchorPane>
@@ -59,7 +59,7 @@
                      </children></AnchorPane>
                   <AnchorPane prefHeight="50.0" prefWidth="740.0">
                      <children>
-                        <Label layoutX="30.0" layoutY="15.0" text="收益率分布直方图" />
+                        <Label layoutX="30.0" layoutY="15.0" styleClass="BigLabel" text="收益率分布直方图" />
                         <Separator layoutX="10.0" layoutY="45.0" prefWidth="720.0" />
                      </children>
                   </AnchorPane>

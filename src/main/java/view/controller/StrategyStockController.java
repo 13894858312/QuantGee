@@ -11,7 +11,7 @@ import javafx.scene.layout.Pane;
  * 控制输入股票名称小单元的controller
  * Created by wangxue on 2017/3/29.
  */
-public class StrategyBlockController {
+public class StrategyStockController {
 
     @FXML private Button button;
     @FXML private TextField name;
@@ -21,7 +21,7 @@ public class StrategyBlockController {
     private boolean isAdd = true;
     private StrategyInputController strategyInputController;
 
-    public StrategyBlockController(StrategyInputController strategyInputController){
+    public StrategyStockController(StrategyInputController strategyInputController){
         this.strategyInputController = strategyInputController;
     }
 
