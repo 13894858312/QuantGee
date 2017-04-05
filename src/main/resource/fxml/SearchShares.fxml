@@ -10,15 +10,7 @@
    <children>
       <Pane layoutX="15.0" layoutY="65.0" prefHeight="670.0" prefWidth="720.0" styleClass="ChartPane">
          <children>
-            <HBox layoutX="20.0" layoutY="10.0" prefHeight="40.0" prefWidth="680.0" styleClass="ButtonBottom">
-               <children>
-                  <Button fx:id="kLine" mnemonicParsing="false" onAction="#showKLine" styleClass="SingleShareButton" text="K线图" />
-                  <Button fx:id="dayLine" mnemonicParsing="false" onAction="#showDayLine" styleClass="SingleShareButton" text="日均线" />
-                  <Button fx:id="quarterLine" mnemonicParsing="false" onAction="#showQuarterLine" styleClass="SingleShareButton" text="季均线" />
-                  <Button fx:id="yearLine" mnemonicParsing="false" onAction="#showYearLine" styleClass="SingleShareButton" text="年均线" />
-               </children>
-            </HBox>
-            <Pane fx:id="chart" layoutX="20.0" layoutY="50.0" prefHeight="600.0" prefWidth="680.0" />
+            <Pane fx:id="chart" layoutX="20.0" layoutY="20.0" prefHeight="630.0" prefWidth="680.0" />
          </children>
       </Pane>
       <AnchorPane layoutX="35.0" layoutY="15.0" prefHeight="40.0" prefWidth="680.0" styleClass="LabelBottom">

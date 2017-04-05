@@ -83,14 +83,14 @@ public class StockDataTest {
 	@Test
 	public void testGetValidDate(){
 		StockData stockData = new StockData();
-		String[] validDate = stockData.getVaildDate("4/13/14", "4/20/14", "D:/workspace/QuantGee/all_data_by_name/1_深发展Ａ.txt");
+		String[] validDate = stockData.getVaildDate("4/13/14", "4/20/14", "D:/workspace/QuantGee/all_stock_data/all_data_by_name/1_深发展Ａ.txt");
 		assertEquals("start:4/14/14 end:4/18/14", "start:"+validDate[0]+" end:"+validDate[1]);
 	}
 	
 	@Test
 	public void testGetValidDate2(){
 		StockData stockData  = new StockData();
-		String[] validDate = stockData.getVaildDate("8/19/11", "8/20/11", "D:/workspace/QuantGee/all_data_by_name/402_金 融 街.txt");
+		String[] validDate = stockData.getVaildDate("8/19/11", "8/20/11", "D:/workspace/QuantGee/all_stock_data/all_data_by_name/402_金 融 街.txt");
 		String[] trueDate = new String[2];
 		trueDate[0] = "8/19/11";
 		trueDate[1] = "8/19/11";
@@ -100,7 +100,7 @@ public class StockDataTest {
 	@Test
 	public void testGetValidDate3(){
 		StockData stockData  = new StockData();
-		String[] validDate = stockData.getVaildDate("2/1/14", "2/4/14", "D:/workspace/QuantGee/all_data_by_name/1_深发展Ａ.txt");
+		String[] validDate = stockData.getVaildDate("2/1/14", "2/4/14", "D:/workspace/QuantGee/all_stock_data/all_data_by_name/1_深发展Ａ.txt");
 		String[] trueDate = new String[2];
 		trueDate[0] = "2/3/14";
 		trueDate[1] = "2/3/14";
@@ -110,7 +110,7 @@ public class StockDataTest {
 	@Test
 	public void testGetValidDate4(){
 		StockData stockData  = new StockData();
-		String[] validDate = stockData.getVaildDate("4/27/14", "4/29/14", "D:/workspace/QuantGee/all_data_by_name/1_深发展Ａ.txt");
+		String[] validDate = stockData.getVaildDate("4/27/14", "4/29/14", "D:/workspace/QuantGee/all_stock_data/all_data_by_name/1_深发展Ａ.txt");
 		String[] trueDate = new String[2];
 		trueDate[0] = "4/28/14";
 		trueDate[1] = "4/29/14";

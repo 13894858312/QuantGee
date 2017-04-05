@@ -15,38 +15,20 @@ import java.util.Date;
  * Created by Mark.W on 2017/3/29.
  */
 public class StockPool {
-    public static int ID_INDEX = 0;
 
-    private int id;  //用于标记唯一的对象
     private StockDataDao stockDataDao;
 
     private ArrayList<StockInfo> stockInfos;
     private Date startDate;
     private Date endDate;
-    private int holdingPeriod;  //持有期
-    private int returnPeriod;    //形成期
-    private int holdingStockNum;  //每个持有期持有的股票数量
-
 
     public StockPool(StrategyInputVO strategyInputVO) {
-        this.initID();
-
         this.stockDataDao = new MockStockData();
 
         this.startDate = DateHelper.getInstance().getNextFirstTradeDay(strategyInputVO.startDate);
         this.endDate = strategyInputVO.endDate;
-        this.holdingPeriod = strategyInputVO.holdingPeriod;
-        this.returnPeriod = strategyInputVO.returnPeriod;
-        this.holdingStockNum = strategyInputVO.holdingStockNum;
 
         this.initStockInfos(strategyInputVO);
-
-    }
-
-    //初始化id
-    private void initID() {
-        this.id = ID_INDEX;
-        ID_INDEX ++;
     }
 
     /**
@@ -118,7 +100,7 @@ public class StockPool {
 
         } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK) {
             //根据特定股票板块构造股票池
-            Date sd = DateHelper.getInstance().formerNTradeDay(startDate, returnPeriod);
+            Date sd = DateHelper.getInstance().formerNTradeDay(startDate, strategyInputVO.returnPeriod);
             //时间范围之前的returnPeriod天的数据也需要拿
 
             if(DateHelper.getInstance().dateOutOfRange(sd)) {
@@ -135,7 +117,7 @@ public class StockPool {
 
         } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_STOCKS) {
             //选定特定股票构造股票池
-            Date sd = DateHelper.getInstance().formerNTradeDay(startDate, returnPeriod);
+            Date sd = DateHelper.getInstance().formerNTradeDay(startDate, strategyInputVO.returnPeriod);
             //时间范围之前的returnPeriod天的数据也需要拿
 
             if(DateHelper.getInstance().dateOutOfRange(sd)) {
@@ -167,19 +149,19 @@ public class StockPool {
         return endDate;
     }
 
-    public int getHoldingPeriod() {
-        return holdingPeriod;
-    }
-
-    public int getReturnPeriod() {
-        return returnPeriod;
-    }
-
-    public int getHoldingStockNum() {
-        return holdingStockNum;
-    }
-
     public ArrayList<StockInfo> getStockInfos() {
         return stockInfos;
     }
+
+//    public int getHoldingPeriod() {
+//        return holdingPeriod;
+//    }
+//
+//    public int getReturnPeriod() {
+//        return returnPeriod;
+//    }
+//
+//    public int getHoldingStockNum() {
+//        return holdingStockNum;
+//    }
 }
