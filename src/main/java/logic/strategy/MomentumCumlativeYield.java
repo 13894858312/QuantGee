@@ -13,7 +13,7 @@ import java.util.Date;
  * 动量策略计算累计收益率
  * Created by Mark.W on 2017/4/4.
  */
-public class MomentumCumlativeYield implements CumlativeYieldInterface {
+public class MomentumCumlativeYield {
     private StockPool stockPool;
 
     private int holdingPeriod;  //持有期
