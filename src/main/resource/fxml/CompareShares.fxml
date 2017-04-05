@@ -13,16 +13,7 @@
             <Label layoutX="20.0" layoutY="10.0" text="股票名称:" />
             <Pane layoutY="35.0" prefHeight="350.0" prefWidth="360.0" styleClass="ChartPane">
                <children>
-                  <HBox fillHeight="false" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="340.0" spacing="10.0" styleClass="ButtonBottom">
-                     <children>
-                        <Button fx:id="kLineLeft" mnemonicParsing="false" onAction="#showLeftKLine" styleClass="TwoSharesButton" text="K线图" />
-                        <Button fx:id="dayLineLeft" mnemonicParsing="false" onAction="#showLeftDayLine" styleClass="TwoSharesButton" text="日均线" />
-                        <Button fx:id="quarterLineLeft" mnemonicParsing="false" onAction="#showLeftQuarterLine" styleClass="TwoSharesButton" text="季均线" />
-                        <Button fx:id="yearLineLeft" mnemonicParsing="false" onAction="#showLeftYearLine" styleClass="TwoSharesButton" text="年均线" />
-                        <Button fx:id="yieldLineLeft" mnemonicParsing="false" onAction="#showLeftYieldLine" styleClass="TwoSharesButton" text="收益率" />
-                     </children>
-                  </HBox>
-                  <Pane fx:id="leftChart" layoutX="10.0" layoutY="40.0" prefHeight="300.0" prefWidth="340.0" />
+                  <Pane fx:id="leftChart" layoutX="10.0" layoutY="10.0" prefHeight="330.0" prefWidth="340.0" />
                </children>
             </Pane>
             <Label fx:id="num_left" layoutX="280.0" layoutY="10.0" text="error" />
@@ -38,16 +29,7 @@
             <Label fx:id="num_right" layoutX="290.0" layoutY="10.0" text="error" />
             <Pane layoutY="35.0" prefHeight="350.0" prefWidth="360.0" styleClass="ChartPane">
                <children>
-                  <Pane fx:id="rightChart" layoutX="10.0" layoutY="40.0" prefHeight="300.0" prefWidth="340.0" />
-                  <HBox fillHeight="false" layoutX="14.0" layoutY="10.0" prefHeight="30.0" prefWidth="340.0" spacing="10.0" styleClass="ButtonBottom">
-                     <children>
-                        <Button fx:id="kLineRight" mnemonicParsing="false" onAction="#showRightKLine" styleClass="TwoSharesButton" text="K线图" />
-                        <Button fx:id="dayLineRight" mnemonicParsing="false" onAction="#showRightDayLine" styleClass="TwoSharesButton" text="日均线" />
-                        <Button fx:id="quarterLineRight" mnemonicParsing="false" onAction="#showRightQuarterLine" styleClass="TwoSharesButton" text="季均线" />
-                        <Button fx:id="yearLineRight" mnemonicParsing="false" onAction="#showRightYearLine" styleClass="TwoSharesButton" text="年均线" />
-                        <Button fx:id="yieldLineRight" mnemonicParsing="false" onAction="#showRightYieldLine" styleClass="TwoSharesButton" text="收益率" />
-                     </children>
-                  </HBox>
+                  <Pane fx:id="rightChart" layoutX="10.0" layoutY="10.0" prefHeight="330.0" prefWidth="340.0" />
                </children>
             </Pane>
          </children>
