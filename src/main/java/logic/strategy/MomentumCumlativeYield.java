@@ -23,9 +23,9 @@ public class MomentumCumlativeYield implements CumlativeYieldInterface {
     private ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS;  //每天的收益率
     private ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS; //基准收益率
     private ArrayList<String> holdingStockCodes;
+
     private double capital;     //本金
     private double income;      //总收益
-
     private CumulativeYieldGraphVO cumulativeYieldGraphVO;
 
     public MomentumCumlativeYield(StockPool stockPool, int holdingPeriod, int returnPeriod, int holdingStockNum) {

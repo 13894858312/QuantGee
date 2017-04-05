@@ -3,6 +3,7 @@ package logic.calculation;
 import logic.strategy.MomentumDriveStrategy;
 import logic.strategy.StockPool;
 import logic.strategy.Strategy;
+import logic.tools.DateHelper;
 import logic.tools.StrategyFactory;
 import logicService.StrategyCalculationService;
 import vo.*;
@@ -13,6 +14,7 @@ import vo.*;
 public class StrategyCalculation implements StrategyCalculationService{
 
     private Strategy strategy;
+    private StockPool stockPool;
 
     public StrategyCalculation() {
         this.strategy = new MomentumDriveStrategy();
@@ -25,8 +27,11 @@ public class StrategyCalculation implements StrategyCalculationService{
      */
     @Override
     public CumulativeYieldGraphVO getCumulativeYieldGraphInfo(StrategyType strategyType, StrategyInputVO strategyInputVO) {
+        this.initStockPool(strategyInputVO);
+
         this.initStrategy(strategyType);
-        CumulativeYieldGraphVO cumulativeYieldGraphVO = strategy.getCumulativeYieldGraphInfo(strategyInputVO);
+
+        CumulativeYieldGraphVO cumulativeYieldGraphVO = strategy.getCumulativeYieldGraphInfo(stockPool, strategyInputVO);
 
         assert (cumulativeYieldGraphVO != null) : "logic.calculation.StrategyCalculation.getCumulativeYieldGraphInfo返回值异常" ;
 
@@ -43,8 +48,10 @@ public class StrategyCalculation implements StrategyCalculationService{
      */
     @Override
     public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StrategyType strategyType, StrategyInputVO strategyInputVO, double period, boolean isHoldingPeriod) {
+        this.initStockPool(strategyInputVO);
+
         this.initStrategy(strategyType);
-        AbnormalReturnGraphVO abnormalReturnGraphVO = strategy.getAbnormalReturnGraphInfo(strategyInputVO, period, isHoldingPeriod);
+        AbnormalReturnGraphVO abnormalReturnGraphVO = strategy.getAbnormalReturnGraphInfo(stockPool, strategyInputVO, period, isHoldingPeriod);
 
         assert (abnormalReturnGraphVO != null) : "logic.calculation.StrategyCalculation.getAbnormalReturnGraphInfo返回值异常" ;
 
@@ -59,8 +66,10 @@ public class StrategyCalculation implements StrategyCalculationService{
      */
     @Override
     public YieldHistogramGraphVO getYieldHistogramGraphInfo(StrategyType strategyType, StrategyInputVO strategyInputVO) {
+        this.initStockPool(strategyInputVO);
+
         this.initStrategy(strategyType);
-        YieldHistogramGraphVO yieldHistogramGraphVO = strategy.getYieldHistogramGraphInfo(strategyInputVO);
+        YieldHistogramGraphVO yieldHistogramGraphVO = strategy.getYieldHistogramGraphInfo(stockPool, strategyInputVO);
 
         assert (yieldHistogramGraphVO != null) : "logic.calculation.StrategyCalculation.getYieldHistogramGraphInfo返回值异常" ;
 
@@ -71,5 +80,23 @@ public class StrategyCalculation implements StrategyCalculationService{
         this.strategy = StrategyFactory.getInstance().getStrategy(strategyType);
 
         assert (strategy != null) : "logic.calculation成员变量strategy异常" ;
+    }
+
+    private void initStockPool(StrategyInputVO strategyInputVO) {
+        if(stockPool == null) {
+            stockPool = new StockPool(strategyInputVO);
+        } else {
+
+            String s1 = DateHelper.getInstance().dateTransToString(stockPool.getStartDate());
+            String e1 = DateHelper.getInstance().dateTransToString(stockPool.getEndDate());
+
+            String s2 = DateHelper.getInstance().dateTransToString(strategyInputVO.startDate);
+            String e2 = DateHelper.getInstance().dateTransToString(strategyInputVO.endDate);
+
+            if(!(s1.equals(s2) && e1.equals(e2))) {
+                stockPool = new StockPool(strategyInputVO);
+            }
+
+        }
     }
 }

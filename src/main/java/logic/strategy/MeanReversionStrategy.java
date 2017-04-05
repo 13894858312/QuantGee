@@ -11,12 +11,8 @@ import vo.YieldHistogramGraphVO;
  */
 public class MeanReversionStrategy implements Strategy {
 
-    private StockPool stockPool;
-
     @Override
-    public CumulativeYieldGraphVO getCumulativeYieldGraphInfo(StrategyInputVO strategyInputVO) {
-
-        stockPool = new StockPool(strategyInputVO);
+    public CumulativeYieldGraphVO getCumulativeYieldGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO) {
 
         MeanReversionCumlativeYield meanReversionCumlativeYield = new MeanReversionCumlativeYield(stockPool, strategyInputVO.holdingPeriod,
                 strategyInputVO.returnPeriod, strategyInputVO.holdingStockNum);
@@ -29,8 +25,7 @@ public class MeanReversionStrategy implements Strategy {
     }
 
     @Override
-    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StrategyInputVO strategyInputVO, double period, boolean isHoldingPeriod) {
-        stockPool = new StockPool(strategyInputVO);
+    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO, double period, boolean isHoldingPeriod) {
 
         MeanReversionAbnormalReturn meanReversionAbnormalReturn = new MeanReversionAbnormalReturn(stockPool, period, isHoldingPeriod);
 
@@ -42,8 +37,7 @@ public class MeanReversionStrategy implements Strategy {
     }
 
     @Override
-    public YieldHistogramGraphVO getYieldHistogramGraphInfo(StrategyInputVO strategyInputVO) {
-        stockPool = new StockPool(strategyInputVO);
+    public YieldHistogramGraphVO getYieldHistogramGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO) {
 
         MeanReversionYieldHistogram meanReversionYieldHistogram = new MeanReversionYieldHistogram(stockPool);
 
