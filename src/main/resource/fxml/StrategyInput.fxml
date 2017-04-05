@@ -6,11 +6,11 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.StrategyInputController">
    <children>
-      <ScrollPane layoutX="20.0" layoutY="50.0" prefHeight="325.0" prefWidth="300.0" styleClass="ScrollPane">
+      <ScrollPane fx:id="scrollPane" layoutX="20.0" layoutY="50.0" prefHeight="325.0" prefWidth="300.0" styleClass="ScrollPane">
          <content>
             <AnchorPane maxWidth="290.0" minHeight="300.0" minWidth="290.0">
                <children>
-                  <HBox fx:id="hBox" prefHeight="50.0" prefWidth="290.0" visible="false">
+                  <HBox fx:id="hBox" layoutX="5.0" layoutY="10.0" prefHeight="30.0" prefWidth="280.0" visible="false">
                      <children>
                         <Label text="已选择" />
                         <Label fx:id="num" text="0" />
@@ -51,6 +51,8 @@
             <Label fx:id="perLabel" text="持有比例" GridPane.rowIndex="5" />
             <TextField fx:id="perField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label fx:id="perLabel1" text="  %" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Label fx:id="holdLabel" text="持有期" visible="false" GridPane.rowIndex="3" />
+            <Label fx:id="makeLabel" text="形成期" visible="false" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <Button layoutX="368.0" layoutY="328.0" mnemonicParsing="false" onAction="#search" styleClass="StrategyButton" text="搜索" />
