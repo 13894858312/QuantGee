@@ -14,7 +14,10 @@ public class GetStockPOsByTimeIntervalTest {
 	public void test1() {
 		StockData stockData = new StockData();
 		ArrayList<ArrayList<StockPO>> data = stockData.getAllStockPO();
-		System.out.println(data.get(0).get(1).toString());
+		System.out.println(data.size());
+//		for (ArrayList<StockPO> arrayList : data) {
+//			System.out.println(arrayList.get(0).toString());
+//		}
 	}
 
 }

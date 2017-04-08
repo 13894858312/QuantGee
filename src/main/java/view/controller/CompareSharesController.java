@@ -129,7 +129,7 @@ public class CompareSharesController {
         Pane kLinePane;
 
         try{
-            kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO_0.stockCode), 350, 300);
+            kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO_0.stockCode),graphCalculationService.getAverageLineInfoByCode(start, end, stockVO_0.stockCode,AverageLineType.DAYS_5),null,null, 350, 300);
             leftChart.getChildren().clear();
             leftChart.getChildren().add(kLinePane);
         }catch (Exception e){
@@ -176,7 +176,7 @@ public class CompareSharesController {
         Pane kLinePane;
 
         try{
-            kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO_1.stockCode), 350, 300);
+            kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO_1.stockCode),graphCalculationService.getAverageLineInfoByCode(start, end, stockVO_1.stockCode,AverageLineType.DAYS_5),null,null, 350, 300);
             rightChart.getChildren().clear();
             rightChart.getChildren().add(kLinePane);
         }catch (Exception e){

@@ -4,9 +4,17 @@
     -fx-text-fill: #666666;
     -fx-padding: 2 5 2 0;
 }
-.candlestick-average-line {
-    -fx-stroke: #106ece;
-    -fx-stroke-width: 2px;
+.candlestick-average-line1 {
+    -fx-stroke: rgb(0,230,0);
+    -fx-stroke-width: 1px;
+}
+.candlestick-average-line2{
+    -fx-stroke: rgb(255, 128, 255);
+    -fx-stroke-width: 1px;
+}
+.candlestick-average-line3{
+    -fx-stroke: rgb(255, 128, 255);
+    -fx-stroke-width: 1px;
 }
 .candlestick-candle {
     -fx-effect: dropshadow( two-pass-box , rgba(0,0,0,0.4) , 10, 0.0 , 2 , 4 );

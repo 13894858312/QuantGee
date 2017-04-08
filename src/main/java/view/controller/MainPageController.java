@@ -247,12 +247,16 @@ public class MainPageController{
 
         try{
             FXMLLoader rootLoader = new FXMLLoader();
-            rootLoader.setLocation(getClass().getResource("/fxml/CompareShares.fxml"));
+            rootLoader.setLocation(getClass().getResource("/fxml/StrategyInput.fxml"));
             Pane root = rootLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.centerOnScreen();
             stage.show();
+
+            StrategyInputController strategyInputController = rootLoader.getController();
+            strategyInputController.init();
         } catch (IOException e){
             e.printStackTrace();
         }

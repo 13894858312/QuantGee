@@ -4,20 +4,26 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="750.0" styleClass="RootPane" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="750.0" styleClass="RootPane" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.StrategyPaneController">
    <children>
-      <ScrollPane layoutX="20.0" layoutY="20.0" prefHeight="710.0" prefWidth="710.0">
+      <ScrollPane prefHeight="750.0" prefWidth="750.0" styleClass="RootPane">
          <content>
-            <VBox maxWidth="700.0" prefHeight="1800.0" prefWidth="700.0">
+            <VBox maxWidth="740.0" prefHeight="1950.0" prefWidth="740.0" styleClass="RootPane">
                <children>
-                  <AnchorPane prefHeight="500.0" prefWidth="200.0">
+                  <AnchorPane prefHeight="50.0" prefWidth="740.0">
                      <children>
-                        <AnchorPane fx:id="graphA" layoutX="20.0" layoutY="50.0" prefHeight="440.0" prefWidth="660.0" styleClass="SharePane" />
-                        <HBox layoutX="20.0" layoutY="10.0" prefHeight="40.0" prefWidth="660.0">
+                        <Label layoutX="30.0" layoutY="15.0" styleClass="BigLabel" text="累计收益率比较图" />
+                        <Separator layoutX="10.0" layoutY="45.0" prefWidth="720.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="500.0" prefWidth="200.0" styleClass="RootPane">
+                     <children>
+                        <AnchorPane fx:id="graphA" layoutX="30.0" layoutY="80.0" prefHeight="400.0" prefWidth="660.0" styleClass="SharePane" />
+                        <HBox layoutX="30.0" layoutY="20.0" prefHeight="30.0" prefWidth="660.0">
                            <children>
                               <Label text="年化收益率：" />
                               <Label fx:id="year" text="--" />
-                              <Label text=" 基准年化收益率：" />
+                              <Label text=" 基准收益率：" />
                               <Label fx:id="base" text="--" />
                               <Label text=" 阿尔法：" />
                               <Label fx:id="alpha" text="--" />
@@ -25,7 +31,11 @@
                               <Label text="--" />
                               <Label text=" 夏普比率：" />
                               <Label fx:id="sharp" text="--" />
-                              <Label text=" 收益波动率：" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="30.0" layoutY="50.0" prefHeight="30.0" prefWidth="660.0">
+                           <children>
+                              <Label text="收益波动率：" />
                               <Label fx:id="volatility" text="--" />
                               <Label text=" 信息比率：" />
                               <Label fx:id="message" text="--" />
@@ -36,27 +46,36 @@
                            </children>
                         </HBox>
                      </children></AnchorPane>
-                  <AnchorPane prefHeight="800.0" prefWidth="200.0">
+                  <AnchorPane prefHeight="50.0" prefWidth="740.0">
                      <children>
-                        <AnchorPane fx:id="graphB_0" layoutX="50.0" layoutY="10.0" prefHeight="380.0" prefWidth="600.0" />
+                        <Label layoutX="30.0" layoutY="15.0" styleClass="BigLabel" text="超额收益率和策略胜率与不同形成期/持有期关系图" />
+                        <Separator layoutX="10.0" layoutY="45.0" prefWidth="720.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="800.0" prefWidth="200.0" styleClass="RootPane">
+                     <children>
+                        <AnchorPane fx:id="graphB_0" layoutX="30.0" layoutY="20.0" prefHeight="360.0" prefWidth="600.0" styleClass="SharePane" />
+                        <AnchorPane fx:id="graphB_1" layoutX="30.0" layoutY="420.0" prefHeight="360.0" prefWidth="600.0" styleClass="SharePane" />
                      </children></AnchorPane>
-                  <AnchorPane prefHeight="500.0" prefWidth="200.0">
+                  <AnchorPane prefHeight="50.0" prefWidth="740.0">
                      <children>
-                        <AnchorPane fx:id="graphC" layoutX="20.0" layoutY="50.0" prefHeight="400.0" prefWidth="660.0">
+                        <Label layoutX="30.0" layoutY="15.0" styleClass="BigLabel" text="收益率分布直方图" />
+                        <Separator layoutX="10.0" layoutY="45.0" prefWidth="720.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="500.0" prefWidth="200.0" styleClass="RootPane">
+                     <children>
+                        <AnchorPane fx:id="graphC" layoutX="30.0" layoutY="70.0" prefHeight="400.0" prefWidth="660.0" styleClass="SharePane" />
+                        <HBox layoutX="30.0" layoutY="30.0" prefHeight="30.0" prefWidth="660.0">
                            <children>
-                              <AnchorPane fx:id="graphB_1" layoutX="20.0" layoutY="50.0" prefHeight="380.0" prefWidth="600.0" />
-                              <HBox layoutX="20.0" layoutY="10.0" prefHeight="40.0" prefWidth="660.0">
-                                 <children>
-                                    <Label text="相对指数收益分布图：  正收益周期数：" />
-                                    <Label fx:id="postive" text="--" />
-                                    <Label text=" 负收益周期数：" />
-                                    <Label fx:id="negative" text="--" />
-                                    <Label text=" 赢率：" />
-                                    <Label fx:id="win" text="--" />
-                                 </children>
-                              </HBox>
+                              <Label text="相对指数收益分布图：  正收益周期数：" />
+                              <Label fx:id="postive" text="--" />
+                              <Label text=" 负收益周期数：" />
+                              <Label fx:id="negative" text="--" />
+                              <Label text=" 赢率：" />
+                              <Label fx:id="win" text="--" />
                            </children>
-                        </AnchorPane>
+                        </HBox>
                      </children></AnchorPane>
                </children>
             </VBox>

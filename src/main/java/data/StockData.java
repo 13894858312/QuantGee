@@ -15,11 +15,15 @@ public class StockData implements StockDataDao{
 	
 	public StockPO getStockPO(String date, String stockCode) {
 		
+		if (date==null||date.equals("")) {
+			return null;
+		}
+		
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
 		String[] newDate = date.split("/");
 		
-		path  = path+"/all_data_by_year/"+newDate[2]+".txt";
+		path  = path+"/all_stock_data/all_data_by_year/"+newDate[2]+".txt";
 		File file = new File(path);
 		
 		try {
@@ -39,7 +43,7 @@ public class StockData implements StockDataDao{
 					return po;
 				}
 			}
-			
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -57,7 +61,7 @@ public class StockData implements StockDataDao{
 		path.replace("\\\\", "/");
 		String[] newDate = date.split("/");
 		
-		path  = path+"/all_data_by_year/"+newDate[2]+".txt";
+		path  = path+"/all_stock_data/all_data_by_year/"+newDate[2]+".txt";
 		File file = new File(path);
 		
 		try {
@@ -93,7 +97,7 @@ public class StockData implements StockDataDao{
 		ArrayList<StockPO> stockPOS = new ArrayList<StockPO>();
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		path  = path+"/all_data_by_name/"+getFileNameByCode(stockCode)+".txt";
+		path  = path+"/all_stock_data/all_data_by_name/"+getFileNameByCode(stockCode)+".txt";
 		File file = new File(path);
 		
 		String[] validDate = getVaildDate(startDate, endDate, path);
@@ -164,7 +168,7 @@ public class StockData implements StockDataDao{
 		
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		File file = new File(path+"/all_data_by_name/fileName.txt");
+		File file = new File(path+"/all_stock_data/all_data_by_name/fileName.txt");
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
@@ -189,7 +193,7 @@ public class StockData implements StockDataDao{
 	public String getFileNameByCode(String stockCode) {
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		File file = new File(path+"/all_data_by_name/fileName.txt");
+		File file = new File(path+"/all_stock_data/all_data_by_name/fileName.txt");
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
@@ -296,7 +300,7 @@ public class StockData implements StockDataDao{
 		//在Block_Name中获取当前板块的所有股票编码
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		File file = new File(path+"/Block_Name/"+blockName+".txt");
+		File file = new File(path+"/all_stock_data/Block_Name/"+blockName+".txt");
 		
 		try {
 			
@@ -319,54 +323,105 @@ public class StockData implements StockDataDao{
 		
 		return datas;
 	}
+	
+//	public ArrayList<ArrayList<StockPO>> getAllStockPO2() {
+//		
+//		ArrayList<ArrayList<StockPO>> data = new ArrayList<>();
+//		
+//		//在Block_Name中获取当前板块的所有股票编码
+//		String path = System.getProperty("user.dir");
+//		path.replace("\\\\", "/");
+//		File file = new File(path+"/all_stock_data/all_data_by_name");
+//		File[] files = file.listFiles();
+//		
+//		try {
+//			String line = "";
+//			
+//			for (File file2 : files) {
+//				ArrayList<StockPO> 
+//				BufferedReader br = new BufferedReader(new FileReader(file2));
+//				line = br.readLine();
+//				
+//				while ((line=br.readLine()) != null) {
+//					
+//				}
+//			}
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		return null;
+//		
+//	}
 
 	@Override
 	public ArrayList<ArrayList<StockPO>> getAllStockPO() {
 		
 		ArrayList<ArrayList<StockPO>> allDatas = new ArrayList<ArrayList<StockPO>>();
 		
-		//遍历all_data_by_name中的数据
+		//查询“股票历史数据ALL.txt”
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		File file = new File(path+"/all_data_by_name");
-		File[] fileList =  file.listFiles();
+		File file = new File(path+"/all_stock_data/股票历史数据ALL.txt");
+		
+		BufferedReader br;
+		
+		try {
+			
+			br = new BufferedReader(new FileReader(file));
+			
+			String line = br.readLine();		//第一行舍弃
+			String code = "";					//记录股票代码
+			
+			ArrayList<StockPO> stockPOs = new ArrayList<StockPO>();		//记录当前股票信息
 
-		for (File file2 : fileList) {
-			
-			if (file2.getName().equals("fileName.txt")) {
-				continue;
-			}
-			//当前股票数据的Arraylist
-			ArrayList<StockPO> data = new ArrayList<>();
-			
-			//开始读取
-			try {
+			while((line = br.readLine()) != null) {
 				
-				BufferedReader br = new BufferedReader(new FileReader(file2));
-				String line = br.readLine();
+				String[] strings  = line.split("\\t");
 				
-				while((line = br.readLine()) != null) {
-					String[] strings = line.split("\\t");
-					StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
-							Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
-							Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
-							Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
+				int i = 0;
+				//判断是否是新股票
+				if (!code.equals(strings[8])) {
+
+					code = strings[8];
+					if (!stockPOs.isEmpty()) {
+						ArrayList<StockPO> datas = new ArrayList<>();
+						datas.addAll(stockPOs);
+						allDatas.add(datas);
+						i++;
+					}
 					
-					//将获取的数据放入当前股票数据的Arraylist中
-					data.add(po);
+//					if (!allDatas.isEmpty()) {
+//						System.out.println(allDatas.get(i-1).get(0).getCodeNumber());
+//					}
 					
+					stockPOs = new ArrayList<>();
+					continue;
 				}
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+				
+				//将股票信息存入Arraylist
+				stockPOs.add(new StockPO(strings[1],Double.parseDouble(strings[2]),
+						Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
+						Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
+						Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]));
+				
+				
 			}
 			
-			
-			//读取完毕将当前股票数据的Arraylist放入结果的Arraylist中
-			allDatas.add(data);
-			
+			//加入最后一次股票数据
+			allDatas.add(stockPOs);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		
 		return allDatas;
 	}

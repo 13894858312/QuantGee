@@ -13,7 +13,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
-import sun.swing.BakedArrayList;
 import vo.StrategyInputVO;
 
 import java.io.IOException;
@@ -29,6 +28,7 @@ public class StrategyInputController {
 
     @FXML private Pane root;
 
+    @FXML private ScrollPane scrollPane;
     @FXML private VBox blockPane;
 
     @FXML private HBox hBox;
@@ -47,14 +47,16 @@ public class StrategyInputController {
     @FXML private CheckBox chooseHold;
     @FXML private CheckBox chooseMake;
 
+    @FXML private Label makeLabel;
+    @FXML private Label holdLabel;
+
     @FXML private Label perLabel;
     @FXML private TextField perField;
     @FXML private Label perLabel1;
 
-    private ArrayList<HBox> blocks;
-    private ArrayList<StrategyBlockController> strategyBlockControllers;
+    private ArrayList<HBox> stocks;
+    private ArrayList<StrategyStockController> strategyStockControllers;
 
-    private boolean isDongLiangCeLue = true;
     private int count = 0;
 
     private final LocalDate MIN = LocalDate.of(2005,2,2);
@@ -87,7 +89,7 @@ public class StrategyInputController {
     public void init(){
         //载入策略选择框
         strategyPicker.setItems(FXCollections.observableArrayList("动量策略","均值回归"));
-        strategyPicker.setValue(0);
+        strategyPicker.setValue("动量策略");
         strategyPicker.getSelectionModel().selectedIndexProperty().addListener(
                 new ChangeListener<Number>() {
                     @Override
@@ -102,12 +104,12 @@ public class StrategyInputController {
 
         //载入形成期选择框(不可见)
         make_ChoiceBox.setItems(FXCollections.observableArrayList("5天","10天","20天"));
-        make_ChoiceBox.setValue(0);
+        make_ChoiceBox.setValue("5天");
 
 
         //载入股票池选项
         stockPool.setItems(FXCollections.observableArrayList("所有股票","选择板块","选择股票"));
-        stockPool.setValue(0);
+        stockPool.setValue("所有股票");
         stockPool.getSelectionModel().selectedIndexProperty().addListener(
                 new ChangeListener<Number>() {
                     @Override
@@ -126,8 +128,8 @@ public class StrategyInputController {
         );
 
         //初始化左侧并设定全部股票
-        blocks = new ArrayList<HBox>();
-        strategyBlockControllers = new ArrayList<StrategyBlockController>();
+        stocks = new ArrayList<HBox>();
+        strategyStockControllers = new ArrayList<StrategyStockController>();
 
         //设定时间选项
         startPicker.setDayCellFactory(dayCellFactory);
@@ -143,16 +145,14 @@ public class StrategyInputController {
     }
 
     /*
-    鼠标选择就全选内容
+    鼠标选择,删除内容
      */
     @FXML
-    private void selectHoldText(){
-        hold.selectAll();
-    }
+    private void selectHoldText(){ hold.setText("");}
 
     @FXML
     private void selectMakeText(){
-        make_TextField.selectAll();
+        make_TextField.setText("");
     }
 
     /*
@@ -178,14 +178,14 @@ public class StrategyInputController {
     @FXML
     private void chooseHoldFunc(){
         if(chooseHold.isSelected()){
-            chooseMake.setSelected(true);
+            chooseMake.setSelected(false);
         }
     }
 
     @FXML
     private void chooseMakeFunc(){
         if(chooseMake.isSelected()){
-            chooseHold.setSelected(true);
+            chooseHold.setSelected(false);
         }
     }
 
@@ -194,17 +194,23 @@ public class StrategyInputController {
      */
     private void setDongLiangCeLue(){
 
-        if(isDongLiangCeLue)return;
-
+        //可视性更改
         make_ChoiceBox.setVisible(false);
         make_TextField.setVisible(true);
 
+        chooseMake.setVisible(true);
+        chooseHold.setVisible(true);
+
+        makeLabel.setVisible(false);
+        holdLabel.setVisible(false);
 
         perLabel.setVisible(true);
         perLabel1.setVisible(true);
         perField.setVisible(true);
 
-        isDongLiangCeLue = true;
+        //数据清空
+        hold.setText("请输入整数天");
+        make_ChoiceBox.setValue("5天");
 
     }
 
@@ -213,50 +219,47 @@ public class StrategyInputController {
      */
     private void setJunZhiHuiGui(){
 
-        if(!isDongLiangCeLue)return;
-
+        //可视性更改
         make_TextField.setVisible(false);
         make_ChoiceBox.setVisible(true);
 
         chooseMake.setVisible(false);
         chooseHold.setVisible(false);
 
+        makeLabel.setVisible(true);
+        holdLabel.setVisible(true);
+
         perLabel.setVisible(false);
         perLabel1.setVisible(false);
         perField.setVisible(false);
 
-        isDongLiangCeLue = false;
-
+        //数据清空
+        chooseHold.setSelected(true);
+        chooseMake.setSelected(false);
+        hold.setText("请输入整数天");
+        make_TextField.setText("请输入整数天");
     }
 
     /*
     股票池选项
      */
     private void setAllStocks(){
-
         blockPane.getChildren().removeAll();
-        hBox.setVisible(false);
-
+        scrollPane.setDisable(true);
     }
 
     private void setChosenBlocks(){
-        setBlockPane(true);
+
+        blockPane.getChildren().removeAll();
+
     }
 
     private void setChosenStocks(){
-        setBlockPane(false);
-    }
-
-    private void setBlockPane(boolean isBlock){
-
         blockPane.getChildren().removeAll();
         showHBox();
 
-        blocks = new ArrayList<HBox>();
-        strategyBlockControllers = new ArrayList<StrategyBlockController>();
-
-
-
+        stocks = new ArrayList<HBox>();
+        strategyStockControllers = new ArrayList<StrategyStockController>();
     }
 
     public void addBlock(){

@@ -80,7 +80,7 @@ public class SearchSharesController {
         Pane kLinePane;
 
         try{
-             kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO.stockCode), 680, 600);
+             kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO.stockCode), graphCalculationService.getAverageLineInfoByCode(start, end, stockVO.stockCode,AverageLineType.DAYS_5),null,null,680, 600);
              chart.getChildren().clear();
              chart.getChildren().add(kLinePane);
         }catch (Exception e){
