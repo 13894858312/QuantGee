@@ -12,7 +12,6 @@ public class MomentumDriveStrategy implements Strategy {
     @Override
     public CumulativeYieldGraphVO getCumulativeYieldGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO) {
 
-
         MomentumCumlativeYield momentumCumlativeYield = new MomentumCumlativeYield(stockPool,
                 strategyInputVO.holdingPeriod, strategyInputVO.returnPeriod, strategyInputVO.holdingStockNum);
 

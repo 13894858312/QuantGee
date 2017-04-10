@@ -11,15 +11,14 @@ import java.util.Date;
  * 策略计算时保存 一种 股票指定区间信息的类
  */
 public class StockInfo {
-    private int index;
-
     private String stockCode;
     private StockPO beforeStockPO; //第一次确定股票 时间区间前returnPeriod天的股票信息
-    private StockPO startDateStockPO = null; //开始日期的股票数据 如果为空 抛弃该股票
+    private StockPO startDateStock = null; //开始日期的股票数据 如果为空 抛弃该股票
+    private StockPO yesterdayStock = null; //开始日期前一天的股票数据 如果为空 抛弃该股票
     private ArrayList<StockPO> stockPOS;
 
     public StockInfo(Date startDate, String stockCode, ArrayList<StockPO> stockPOS) {
-        this.initIndex(startDate);
+        this.initStartDateStock(startDate);
 
         this.beforeStockPO = stockPOS.get(stockPOS.size()-1);
         this.stockCode = stockCode;
@@ -27,8 +26,9 @@ public class StockInfo {
     }
 
     //初始化index
-    private void initIndex(Date startDate) {
+    private void initStartDateStock(Date startDate) {
         for(int i=stockPOS.size()-1; i>=0; i --) {
+            //提高访问效率
             Date stockDate = DateHelper.getInstance().stringTransToDate(this.stockPOS.get(i).getDate());
             int days = DateHelper.getInstance().calculateDaysBetween(stockDate, startDate);
 
@@ -38,15 +38,14 @@ public class StockInfo {
             }
 
             if(days == 0) {
-                this.index = i;
-                this.startDateStockPO = this.stockPOS.get(index);           //初始化开始日期的股票数据
+                this.startDateStock = this.stockPOS.get(i);           //初始化开始日期的股票数据
+
+                if(i<stockPOS.size()-1) {
+                    this.yesterdayStock = this.stockPOS.get(i+1);
+                }
                 break;
             }
         }
-    }
-
-    public StockPO getBeforeStockPO() {
-        return beforeStockPO;
     }
 
     /**
@@ -79,6 +78,14 @@ public class StockInfo {
     }
 
     public StockPO getStartDateStockPO() {
-        return startDateStockPO;
+        return startDateStock;
+    }
+
+    public StockPO getBeforeStockPO() {
+        return beforeStockPO;
+    }
+
+    public StockPO getYesterdayStock() {
+        return yesterdayStock;
     }
 }
