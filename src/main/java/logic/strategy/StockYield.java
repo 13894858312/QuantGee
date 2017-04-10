@@ -1,12 +1,10 @@
 package logic.strategy;
 
-
 /**
  * 计算收益率保存信息的类
  * Created by Mark.W on 2017/3/30.
  */
 public class StockYield {
-//    private Date date;
     private String stockCode;
     private double yield;
 
