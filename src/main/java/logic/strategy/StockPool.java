@@ -31,6 +31,14 @@ public class StockPool {
         this.initStockInfos(strategyInputVO);
     }
 
+    public StockInfo getIndexStocks() {
+        int index = 0;
+        for(int i=0; i<this.stockInfos.size(); ++i) {
+            if(this.stockInfos.get(i).)
+        }
+
+
+    }
 
     /**
      * 根据股票代码和时间获取股票数据
