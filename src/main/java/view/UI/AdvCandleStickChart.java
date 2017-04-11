@@ -61,57 +61,68 @@ public class AdvCandleStickChart extends Pane {
 
         // add starting data
         XYChart.Series<String, Number> series1 = new XYChart.Series<String, Number>();
+        series1.setName("candlestick");
         XYChart.Series<String, Number> series2 = new XYChart.Series<String, Number>();
+        series2.setName("first average");
         XYChart.Series<String, Number> series3 = new XYChart.Series<String, Number>();
+        series3.setName("second average");
         XYChart.Series<String, Number> series4 = new XYChart.Series<String, Number>();
+        series4.setName("third average");
         XYChart.Series<String, Number> series5 = new XYChart.Series<String, Number>();
+        series5.setName("fourth average");
         XYChart.Series<String, Number> series6 = new XYChart.Series<String, Number>();
+        series6.setName("fifth average");
+        if(kLineVOArrayList != null) {
             for (int i = kLineVOArrayList.size() - 1; i >= 0; i--) {
                 KLineVO day = kLineVOArrayList.get(i);
                 series1.getData().add(
                         new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(day.date), day.openPrice, new CandleStickExtraValues(day.closePrice, day.maxValue, day.minValue))
                 );
-                series1.setName("candlestick");
             }
-
-            for(int i=averageLineVOArrayList1.size()-1;i>=0;i--){
-                AverageLineVO averageLineVO = averageLineVOArrayList1.get(i);
-                series2.getData().add(
-                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date),0, new CandleStickExtraValues(averageLineVO.averageValue))
-                );
-                series2.setName("first average");
-            }
-
-        for(int i=averageLineVOArrayList2.size()-1;i>=0;i--){
-            AverageLineVO averageLineVO = averageLineVOArrayList2.get(i);
-            series3.getData().add(
-                    new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date),0, new CandleStickExtraValues(averageLineVO.averageValue))
-            );
-            series3.setName("second average");
         }
 
-        for(int i=averageLineVOArrayList3.size()-1;i>=0;i--){
+        if(averageLineVOArrayList1 != null) {
+            for (int i = 0; i < averageLineVOArrayList1.size(); i++) {
+                AverageLineVO averageLineVO = averageLineVOArrayList1.get(i);
+                series2.getData().add(
+                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date), 0, new CandleStickExtraValues(averageLineVO.averageValue))
+                );
+            }
+        }
+
+        if(averageLineVOArrayList2 != null) {
+            for (int i = 0; i < averageLineVOArrayList2.size(); i++) {
+                AverageLineVO averageLineVO = averageLineVOArrayList2.get(i);
+                series3.getData().add(
+                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date), 0, new CandleStickExtraValues(averageLineVO.averageValue))
+                );
+            }
+        }
+
+        if(averageLineVOArrayList3 != null)
+        for(int i = 0; i < averageLineVOArrayList3.size(); i++){
             AverageLineVO averageLineVO = averageLineVOArrayList3.get(i);
             series4.getData().add(
                     new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date),0, new CandleStickExtraValues(averageLineVO.averageValue))
             );
-            series4.setName("third average");
         }
 
-        for(int i=averageLineVOArrayList4.size()-1;i>=0;i--){
-            AverageLineVO averageLineVO = averageLineVOArrayList4.get(i);
-            series5.getData().add(
-                    new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date),0, new CandleStickExtraValues(averageLineVO.averageValue))
-            );
-            series5.setName("fourth average");
+        if(averageLineVOArrayList4 != null) {
+            for (int i = 0; i < averageLineVOArrayList4.size(); i++) {
+                AverageLineVO averageLineVO = averageLineVOArrayList4.get(i);
+                series5.getData().add(
+                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date), 0, new CandleStickExtraValues(averageLineVO.averageValue))
+                );
+            }
         }
 
-        for(int i=averageLineVOArrayList5.size()-1;i>=0;i--){
-            AverageLineVO averageLineVO = averageLineVOArrayList5.get(i);
-            series6.getData().add(
-                    new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date),0, new CandleStickExtraValues(averageLineVO.averageValue))
-            );
-            series6.setName("fifth average");
+        if(averageLineVOArrayList5 != null) {
+            for (int i = 0; i < averageLineVOArrayList5.size(); i++) {
+                AverageLineVO averageLineVO = averageLineVOArrayList5.get(i);
+                series6.getData().add(
+                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date), 0, new CandleStickExtraValues(averageLineVO.averageValue))
+                );
+            }
         }
 
         ObservableList<XYChart.Series<String, Number>> data = bc.getData();
