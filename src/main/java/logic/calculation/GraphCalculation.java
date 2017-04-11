@@ -114,6 +114,7 @@ public class GraphCalculation implements GraphCalculationService {
         //如果总天数小于均线图的时间间隔出错
         ArrayList<StockPO> stockPOS = this.stockDataDao.getStockPOsByTimeInterval(dateHelper.dateTransToString(startDate),
                 dateHelper.dateTransToString(endDate), stockCode);
+
         if(dayNums > stockPOS.size()) {
             return null;
         }

@@ -31,13 +31,19 @@ public class StockPool {
         this.initStockInfos(strategyInputVO);
     }
 
-    public StockInfo getIndexStocks() {
+    /**
+     * 获取stockpo size最大的stockinfo 作为标杆
+     * @return StockInfo
+     */
+    public ArrayList<StockPO> getIndexStocks() {
         int index = 0;
         for(int i=0; i<this.stockInfos.size(); ++i) {
-            if(this.stockInfos.get(i).)
+            if(this.stockInfos.get(i).getStockSize() > this.stockInfos.get(index).getStockSize()) {
+                index = i;
+            }
         }
 
-
+        return this.stockInfos.get(index).getStockPOS();
     }
 
     /**

@@ -12,6 +12,7 @@ import java.util.Date;
  */
 public class StockInfo {
     private String stockCode;
+
     private StockPO beforeStockPO; //第一次确定股票 时间区间前returnPeriod天的股票信息
     private StockPO startDateStock = null; //开始日期的股票数据 如果为空 抛弃该股票
     private StockPO yesterdayStock = null; //开始日期前一天的股票数据 如果为空 抛弃该股票
@@ -33,7 +34,6 @@ public class StockInfo {
             int days = DateHelper.getInstance().calculateDaysBetween(stockDate, startDate);
 
             if(days < 0) {
-
                 break;
             }
 
@@ -87,5 +87,13 @@ public class StockInfo {
 
     public StockPO getYesterdayStock() {
         return yesterdayStock;
+    }
+
+    public int getStockSize() {
+        return this.stockPOS.size();
+    }
+
+    public ArrayList<StockPO> getStockPOS() {
+        return stockPOS;
     }
 }
