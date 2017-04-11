@@ -21,9 +21,11 @@ public class CompareSharesController {
 
     private GraphCalculationService graphCalculationService;
     private Graph graph;
-    private Date start;
-    private Date end;
-    private long gap;
+
+//    private Date start;
+//    private Date end;
+//    private long gap;
+
     private StockVO stockVO_0;
     private StockVO stockVO_1;
 
@@ -35,28 +37,28 @@ public class CompareSharesController {
     private Label name_right;
     @FXML
     private Label num_right;
-
-    @FXML
-    private Button kLineLeft;
-    @FXML
-    private Button dayLineLeft;
-    @FXML
-    private Button quarterLineLeft;
-    @FXML
-    private Button yearLineLeft;
-    @FXML
-    private Button yieldLineLeft;
-
-    @FXML
-    private Button kLineRight;
-    @FXML
-    private Button dayLineRight;
-    @FXML
-    private Button quarterLineRight;
-    @FXML
-    private Button yearLineRight;
-    @FXML
-    private Button yieldLineRight;
+//
+//    @FXML
+//    private Button kLineLeft;
+//    @FXML
+//    private Button dayLineLeft;
+//    @FXML
+//    private Button quarterLineLeft;
+//    @FXML
+//    private Button yearLineLeft;
+//    @FXML
+//    private Button yieldLineLeft;
+//
+//    @FXML
+//    private Button kLineRight;
+//    @FXML
+//    private Button dayLineRight;
+//    @FXML
+//    private Button quarterLineRight;
+//    @FXML
+//    private Button yearLineRight;
+//    @FXML
+//    private Button yieldLineRight;
 
     @FXML
     private Pane leftChart;
@@ -81,30 +83,30 @@ public class CompareSharesController {
 
         this.stockVO_0 = stockVO_0;
         this.stockVO_1 = stockVO_1;
-        this.start = start;
-        this.end = end;
-
-        dayLineLeft.setDisable(true);
-        dayLineRight.setDisable(true);
-        quarterLineLeft.setDisable(true);
-        quarterLineRight.setDisable(true);
-        yearLineLeft.setDisable(true);
-        yearLineRight.setDisable(true);
-
-        gap = (end.getTime()-start.getTime())/1000/60/60/24;
-
-        if(gap>10){
-            dayLineLeft.setDisable(false);
-            dayLineRight.setDisable(false);
-        }
-        if(gap>90){
-            quarterLineLeft.setDisable(false);
-            quarterLineRight.setDisable(false);
-        }
-        if(gap>360){
-            yearLineLeft.setDisable(false);
-            yearLineRight.setDisable(false);
-        }
+//        this.start = start;
+//        this.end = end;
+//
+//        dayLineLeft.setDisable(true);
+//        dayLineRight.setDisable(true);
+//        quarterLineLeft.setDisable(true);
+//        quarterLineRight.setDisable(true);
+//        yearLineLeft.setDisable(true);
+//        yearLineRight.setDisable(true);
+//
+//        gap = (end.getTime()-start.getTime())/1000/60/60/24;
+//
+//        if(gap>10){
+//            dayLineLeft.setDisable(false);
+//            dayLineRight.setDisable(false);
+//        }
+//        if(gap>90){
+//            quarterLineLeft.setDisable(false);
+//            quarterLineRight.setDisable(false);
+//        }
+//        if(gap>360){
+//            yearLineLeft.setDisable(false);
+//            yearLineRight.setDisable(false);
+//        }
 
         name_left.setText(stockVO_0.stockName);
         num_left.setText(stockVO_0.stockCode);
@@ -112,11 +114,12 @@ public class CompareSharesController {
         name_right.setText(stockVO_1.stockName);
         num_right.setText(stockVO_1.stockCode);
 
-        showLeftKLine();
-        showRightKLine();
+        //画图;
+        //画图;
 
-        kLineLeft.setDefaultButton(true);
-        kLineRight.setDefaultButton(true);
+//
+//        kLineLeft.setDefaultButton(true);
+//        kLineRight.setDefaultButton(true);
 
         showFirst();
         showSecond();
@@ -124,97 +127,97 @@ public class CompareSharesController {
 
     }
 
-    @FXML
-    private void showLeftKLine() {
-        Pane kLinePane;
-
-        try{
-            kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO_0.stockCode),graphCalculationService.getAverageLineInfoByCode(start, end, stockVO_0.stockCode,AverageLineType.DAYS_5),null,null, 350, 300);
-            leftChart.getChildren().clear();
-            leftChart.getChildren().add(kLinePane);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    private void showLeftDayLine() {
-        drawLeftAveLine(AverageLineType.DAYS_5);
-    }
-
-    @FXML
-    private void showLeftQuarterLine() {
-        drawLeftAveLine(AverageLineType.DAYS_60);
-    }
-
-    @FXML
-    private void showLeftYearLine() {
-        drawLeftAveLine(AverageLineType.DAYS_240);
-    }
-
-    @FXML
-    private void showLeftYieldLine() {
-
-        Pane yieldPane;
-
-        try{
-
-            yieldPane = graph.getLogYieldCompareChart(stockVO_0.stockDailyInfoVOs, 350, 300);
-            leftChart.getChildren().clear();
-            leftChart.getChildren().add(yieldPane);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    private void showRightKLine() {
-
-        Pane kLinePane;
-
-        try{
-            kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO_1.stockCode),graphCalculationService.getAverageLineInfoByCode(start, end, stockVO_1.stockCode,AverageLineType.DAYS_5),null,null, 350, 300);
-            rightChart.getChildren().clear();
-            rightChart.getChildren().add(kLinePane);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    private void showRightDayLine() {
-        drawRightAveLine(AverageLineType.DAYS_10);
-    }
-
-    @FXML
-    private void showRightQuarterLine() {
-        drawRightAveLine(AverageLineType.DAYS_60);
-    }
-
-    @FXML
-    private void showRightYearLine() {
-        drawRightAveLine(AverageLineType.DAYS_240);
-    }
-
-    @FXML
-    private void showRightYieldLine() {
-
-        Pane yieldPane;
-
-        try{
-
-            yieldPane = graph.getLogYieldCompareChart(stockVO_1.stockDailyInfoVOs, 350, 300);
-            rightChart.getChildren().clear();
-            rightChart.getChildren().add(yieldPane);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
+//    @FXML
+//    private void showLeftKLine() {
+//        Pane kLinePane;
+//
+//        try{
+//            kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO_0.stockCode),graphCalculationService.getAverageLineInfoByCode(start, end, stockVO_0.stockCode,AverageLineType.DAYS_5),null,null, 350, 300);
+//            leftChart.getChildren().clear();
+//            leftChart.getChildren().add(kLinePane);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//
+//    }
+//
+//    @FXML
+//    private void showLeftDayLine() {
+//        drawLeftAveLine(AverageLineType.DAYS_5);
+//    }
+//
+//    @FXML
+//    private void showLeftQuarterLine() {
+//        drawLeftAveLine(AverageLineType.DAYS_60);
+//    }
+//
+//    @FXML
+//    private void showLeftYearLine() {
+//        drawLeftAveLine(AverageLineType.DAYS_240);
+//    }
+//
+//    @FXML
+//    private void showLeftYieldLine() {
+//
+//        Pane yieldPane;
+//
+//        try{
+//
+//            yieldPane = graph.getLogYieldCompareChart(stockVO_0.stockDailyInfoVOs, 350, 300);
+//            leftChart.getChildren().clear();
+//            leftChart.getChildren().add(yieldPane);
+//
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//
+//    }
+//
+//    @FXML
+//    private void showRightKLine() {
+//
+//        Pane kLinePane;
+//
+//        try{
+//            kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO_1.stockCode),graphCalculationService.getAverageLineInfoByCode(start, end, stockVO_1.stockCode,AverageLineType.DAYS_5),null,null, 350, 300);
+//            rightChart.getChildren().clear();
+//            rightChart.getChildren().add(kLinePane);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//
+//    }
+//
+//    @FXML
+//    private void showRightDayLine() {
+//        drawRightAveLine(AverageLineType.DAYS_10);
+//    }
+//
+//    @FXML
+//    private void showRightQuarterLine() {
+//        drawRightAveLine(AverageLineType.DAYS_60);
+//    }
+//
+//    @FXML
+//    private void showRightYearLine() {
+//        drawRightAveLine(AverageLineType.DAYS_240);
+//    }
+//
+//    @FXML
+//    private void showRightYieldLine() {
+//
+//        Pane yieldPane;
+//
+//        try{
+//
+//            yieldPane = graph.getLogYieldCompareChart(stockVO_1.stockDailyInfoVOs, 350, 300);
+//            rightChart.getChildren().clear();
+//            rightChart.getChildren().add(yieldPane);
+//
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
 
     private void showFirst(){
 
@@ -266,33 +269,33 @@ public class CompareSharesController {
         }
 
     }
-
-    private void drawLeftAveLine(AverageLineType averageLineType) {
-
-        Pane aveLinePane;
-
-        try {
-            aveLinePane = graph.getAverageLineChart(graphCalculationService.getAverageLineInfoByCode(start, end, stockVO_0.stockCode, averageLineType), 350, 300);
-            leftChart.getChildren().clear();
-            leftChart.getChildren().add(aveLinePane);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return;
-    }
-
-    private void drawRightAveLine(AverageLineType averageLineType){
-
-        Pane aveLinePane;
-
-        try{
-            aveLinePane = graph.getAverageLineChart(graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_1.stockCode,averageLineType), 350, 300);
-            rightChart.getChildren().clear();
-            rightChart.getChildren().add(aveLinePane);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return;
-    }
+//
+//    private void drawLeftAveLine(AverageLineType averageLineType) {
+//
+//        Pane aveLinePane;
+//
+//        try {
+//            aveLinePane = graph.getAverageLineChart(graphCalculationService.getAverageLineInfoByCode(start, end, stockVO_0.stockCode, averageLineType), 350, 300);
+//            leftChart.getChildren().clear();
+//            leftChart.getChildren().add(aveLinePane);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return;
+//    }
+//
+//    private void drawRightAveLine(AverageLineType averageLineType){
+//
+//        Pane aveLinePane;
+//
+//        try{
+//            aveLinePane = graph.getAverageLineChart(graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_1.stockCode,averageLineType), 350, 300);
+//            rightChart.getChildren().clear();
+//            rightChart.getChildren().add(aveLinePane);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        return;
+//    }
 
 }
