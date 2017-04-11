@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -8,7 +9,7 @@
    <children>
       <ScrollPane fx:id="scrollPane" layoutX="20.0" layoutY="50.0" prefHeight="325.0" prefWidth="300.0" styleClass="ScrollPane">
          <content>
-            <AnchorPane maxWidth="290.0" minHeight="300.0" minWidth="290.0">
+            <AnchorPane fx:id="leftPane" maxWidth="290.0" minHeight="300.0" minWidth="290.0">
                <children>
                   <HBox fx:id="hBox" layoutX="5.0" layoutY="10.0" prefHeight="30.0" prefWidth="280.0" visible="false">
                      <children>
