@@ -152,16 +152,4 @@ public class StockPool {
     public ArrayList<StockInfo> getStockInfos() {
         return stockInfos;
     }
-
-//    public int getHoldingPeriod() {
-//        return holdingPeriod;
-//    }
-//
-//    public int getReturnPeriod() {
-//        return returnPeriod;
-//    }
-//
-//    public int getHoldingStockNum() {
-//        return holdingStockNum;
-//    }
 }

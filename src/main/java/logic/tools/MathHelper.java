@@ -3,10 +3,50 @@ package logic.tools;
 import java.text.DecimalFormat;
 
 /**
+ * 数学统计量计算的类
  * Created by Mark.W on 2017/3/6.
  */
 public class MathHelper {
 
+    /**
+     * 计算方差
+     * @param data 数据
+     * @return 方差
+     */
+    public static double variance(double[] data) {
+        double average = MathHelper.average(data);
+        double sum = 0;
+
+        for(int i=0; i<data.length; ++i) {
+            sum += Math.pow(data[i]-average, 2);
+        }
+        return sum/data.length;
+    }
+
+    /**
+     * 计算协方差
+     * @param data1 数据
+     * @param data2 数据
+     * @return 方差
+     */
+    public static double covariance(double[] data1, double[] data2) {
+        double average1 = MathHelper.average(data1);
+        double average2 = MathHelper.average(data2);
+
+        for(int i=0; i<data1.length; ++i) {
+            data1[i] = data1[i] * data2[i];
+        }
+
+        double cov = MathHelper.average(data1) - average1 * average2;
+
+        return cov;
+    }
+
+    /**
+     * 计算样本方差
+     * @param data 数据
+     * @return 样本方差值
+     */
     public static double sampleVariance(double[] data) {
         double average = MathHelper.average(data);
 

@@ -1,6 +1,7 @@
 package logic.strategy;
 
 import logic.tools.DateHelper;
+import logic.tools.MathHelper;
 import po.StockPO;
 import vo.BaseCumulativeYieldGraphDataVO;
 import vo.CumulativeYieldGraphDataVO;
@@ -53,7 +54,7 @@ public class MomentumCumlativeYield {
 
         while(!DateHelper.getInstance().dateTransToString(temp).equals(DateHelper.getInstance().dateTransToString(stockPool.getEndDate()))) {
             if(index == holdingPeriod) { //若达到holdingPeriod index置0 同时进行rebalance
-                index = 0;
+                index = 0;                  //前一天进行调仓
                 this.rebalance(temp);
 
             } else {
@@ -66,7 +67,7 @@ public class MomentumCumlativeYield {
             temp = DateHelper.getInstance().nextTradeDay(temp);     //暂时没考虑节假日
         }
 
-        this.calculateData();
+        this.finish();
 
     }
 
@@ -95,6 +96,30 @@ public class MomentumCumlativeYield {
     }
 
     /**
+     * 计算持有股票每天的收益，并将数据存入cumulativeYieldGraphDataVOS
+     * @param date 日期
+     */
+    private void calculateHoldingStockYield(Date date) {
+        double yield = 0;
+
+        for(int i = 0; i<this.holdingStocks.size(); ++i) {
+            StockPO stockPO = stockPool.findSpecificStock(this.holdingStocks.get(i).getStockCode(), date);
+
+            if(stockPO == null) {  //如果该天的股票数据没有 暂时放弃该股票
+                continue;
+            }
+
+            yield += this.holdingStocks.get(i).getNumOfStock() * stockPO.getADJ();
+        }
+
+        //计算累计收益率
+        yield = (yield-this.INIT_FUND)/this.INIT_FUND;
+
+        this.cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(date, yield));
+    }
+
+
+    /**
      * 在第一次运行时 确定持有的股票
      */
     private void initHoldingStockOnfirstRun() {
@@ -108,7 +133,6 @@ public class MomentumCumlativeYield {
                 continue;
             }
 
-
             //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
             double yield = (yesterday.getADJ()-before.getADJ())/before.getADJ();
 
@@ -117,6 +141,37 @@ public class MomentumCumlativeYield {
 
         Date date = DateHelper.getInstance().formerTradeDay(this.stockPool.getStartDate());
         this.initTopNStocks(stockYields, date);
+    }
+
+    /**
+     * 计算指定日期所有股票形成期收益，并获取前holdingStockNum个的股票代码
+     * @param date 该日期的前一天的收盘价用于计算
+     */
+    private void rebalance(Date date) {
+
+        Date oneDayBeforeDate = DateHelper.getInstance().formerTradeDay(date);     //该日期的前一天的收盘价用于计算
+        Date beforeDate = DateHelper.getInstance().formerNTradeDay(date, returnPeriod);
+
+        this.sellStock(oneDayBeforeDate);
+
+        ArrayList<StockYield> stockYields = new ArrayList<>();
+
+        for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
+            StockPO before = stockPool.getStockInfos().get(i).getStockByDate(beforeDate);
+            StockPO yesterday = stockPool.getStockInfos().get(i).getStockByDate(oneDayBeforeDate);
+
+            if(yesterday == null || before == null) {
+                continue;
+            }
+
+            //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
+            double yield = (yesterday.getADJ()-before.getADJ())/before.getADJ();
+
+            stockYields.add(new StockYield(yesterday.getStockCode(), yield));
+        }
+
+        this.initTopNStocks(stockYields, oneDayBeforeDate);
+
     }
 
     /**
@@ -149,36 +204,6 @@ public class MomentumCumlativeYield {
         }
     }
 
-    /**
-     * 计算指定日期所有股票形成期收益，并获取前holdingStockNum个的股票代码
-     * @param date 该日期的前一天的收盘价用于计算
-     */
-    private void rebalance(Date date) {
-
-        Date oneDayBeforeDate = DateHelper.getInstance().formerTradeDay(date);     //该日期的前一天的收盘价用于计算
-        Date beforeDate = DateHelper.getInstance().formerNTradeDay(date, returnPeriod);
-
-        this.sellStock(oneDayBeforeDate);
-
-        ArrayList<StockYield> stockYields = new ArrayList<>();
-
-        for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
-            StockPO before = stockPool.getStockInfos().get(i).getStockByDate(beforeDate);
-            StockPO yesterday = stockPool.getStockInfos().get(i).getStockByDate(oneDayBeforeDate);
-
-            if(yesterday == null || before == null) {
-                continue;
-            }
-
-            //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
-            double yield = (yesterday.getADJ()-before.getADJ())/before.getADJ();
-
-            stockYields.add(new StockYield(yesterday.getStockCode(), yield));
-        }
-
-        this.initTopNStocks(stockYields, date);
-
-    }
 
     /**
      * 卖出股票
@@ -196,47 +221,122 @@ public class MomentumCumlativeYield {
 
 
     /**
-     * 计算持有股票每天的收益，并将数据存入cumulativeYieldGraphDataVOS
-     * @param date 日期
-     */
-    private void calculateHoldingStockYield(Date date) {
-        double yield = 0;
-
-        for(int i = 0; i<this.holdingStocks.size(); ++i) {
-            StockPO stockPO = stockPool.findSpecificStock(this.holdingStocks.get(i).getStockCode(), date);
-
-            if(stockPO == null) {
-                continue;
-            }
-
-            //计算累计收益率
-            yield += this.holdingStocks.get(i).getNumOfStock() * stockPO.getADJ();
-        }
-
-        yield = (yield-this.INIT_FUND)/this.INIT_FUND;
-
-        this.cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(date, yield));
-    }
-
-    /**
      * 计算累计收益率图的分析结果数据
      */
-    private void calculateData() {
+    private void finish() {
 
-        double annualRevenue = 0;       //年化收益率
-        double baseAnnualRevenue = 0;  //基准年化收益率
-        double alpha = 0;
-        double beta = 0;
-        double sharpeRatio = 0;  //夏普比率
-        double maxDrawdown = 0;  //最大回撤
-
-        //这里添加计算计算上述六个数据的代码
-
-
+        double annualRevenue = calculateAnnualRevenue();       //策略年化收益率
+        double baseAnnualRevenue = calculateBaseAnnualRevenue();  //基准年化收益率\
+        double beta = calculateBeta();
+        double alpha = calculateAlpha(annualRevenue, baseAnnualRevenue, beta);
+        double sharpeRatio = calculateSharpRatio(annualRevenue);  //夏普比率
+        double maxDrawdown = calculateMaxDrawdown();  //最大回撤
 
         this.cumulativeYieldGraphVO = new CumulativeYieldGraphVO(annualRevenue,baseAnnualRevenue,
                 alpha, beta,sharpeRatio, maxDrawdown,cumulativeYieldGraphDataVOS, baseCumulativeYieldGraphDataVOS);
 
+    }
+
+    /**
+     * 计算策略年化收益率
+     * @return 策略年化收益率
+     */
+    private double calculateAnnualRevenue() {
+        double annualRevenue = 0;
+        return annualRevenue;
+    }
+
+
+    /**
+     * 计算alpha
+     * @param annualRevenue 年化收益率
+     * @param baseAnnualRevenue 基准收益率
+     * @param beta beta
+     * @return
+     */
+    private double calculateAlpha(double annualRevenue, double baseAnnualRevenue, double beta) {
+        double rf = 0.0175;
+        double alpha = annualRevenue - rf - beta * (baseAnnualRevenue - rf);
+        return alpha;
+    }
+
+    /**
+     * 计算夏普比率
+     * @return 夏普比率
+     */
+    private double calculateSharpRatio(double annualRevenue) {
+        double rf = 0.0175;
+        double[] strategy = new double[this.cumulativeYieldGraphDataVOS.size()];
+        for(int i=0; i<this.cumulativeYieldGraphDataVOS.size(); ++i) {
+            strategy[i] = this.cumulativeYieldGraphDataVOS.get(i).ratio;
+        }
+
+        double sharpeRatio = (annualRevenue - rf)/Math.sqrt(MathHelper.variance(strategy));
+
+        return sharpeRatio;
+    }
+
+    /**
+     * 计算beta
+     * @return beta
+     */
+    private double calculateBeta() {
+        double[] strategy = new double[this.cumulativeYieldGraphDataVOS.size()];
+        for(int i=0; i<this.cumulativeYieldGraphDataVOS.size(); ++i) {
+            strategy[i] = this.cumulativeYieldGraphDataVOS.get(i).ratio;
+        }
+
+        double[] base = new double[this.baseCumulativeYieldGraphDataVOS.size()];
+        for(int i=0; i<this.baseCumulativeYieldGraphDataVOS.size(); ++i) {
+            base[i] = this.baseCumulativeYieldGraphDataVOS.get(i).baseRatio;
+        }
+
+        double beta = MathHelper.covariance(strategy, base)/MathHelper.variance(base);
+
+        return beta;
+    }
+
+
+    /**
+     * 计算基准年化收益率
+     * @return 基准年化收益率
+     */
+    private double calculateBaseAnnualRevenue() {
+        double baseAnnualRevenue = 0;
+        for(int i=1; i<this.baseCumulativeYieldGraphDataVOS.size(); ++i) {
+            baseAnnualRevenue += this.baseCumulativeYieldGraphDataVOS.get(i).baseRatio;
+        }
+        baseAnnualRevenue /= this.baseCumulativeYieldGraphDataVOS.size();
+
+        return baseAnnualRevenue;
+    }
+
+    /**
+     * 计算最大回撤
+     * @return 最大回撤
+     */
+    private double calculateMaxDrawdown() {
+        double maxDrawdown = 0;
+
+        double start = this.cumulativeYieldGraphDataVOS.get(0).ratio, end = start;
+
+        for(int i=1; i<this.cumulativeYieldGraphDataVOS.size(); ++i) {
+            //折线在上升
+            if(cumulativeYieldGraphDataVOS.get(i).ratio > cumulativeYieldGraphDataVOS.get(i-1).ratio) {
+                start = cumulativeYieldGraphDataVOS.get(i).ratio;
+            }
+
+            //折线在上升折线在下降
+            if(cumulativeYieldGraphDataVOS.get(i).ratio < cumulativeYieldGraphDataVOS.get(i-1).ratio) {
+                end = cumulativeYieldGraphDataVOS.get(i).ratio;
+            }
+
+            if((start-end) > maxDrawdown) {
+                maxDrawdown = start-end;
+            }
+        }
+
+        return maxDrawdown;
     }
 
     public CumulativeYieldGraphVO getCumulativeYieldGraphVO() {
