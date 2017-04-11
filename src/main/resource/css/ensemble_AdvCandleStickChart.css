@@ -1,19 +1,27 @@
-.candlestick-tooltip-label {
+.candlestick-tooltip-label{
     -fx-font-size: 0.75em;
     -fx-font-weight: bold;
     -fx-text-fill: #666666;
     -fx-padding: 2 5 2 0;
 }
-.candlestick-average-line1 {
-    -fx-stroke: rgb(0,230,0);
+.candlestick-average-line1{
+    -fx-stroke: rgb(255,255,255);
     -fx-stroke-width: 1px;
 }
 .candlestick-average-line2{
-    -fx-stroke: rgb(255, 128, 255);
+    -fx-stroke: rgb(255,255,11);
     -fx-stroke-width: 1px;
 }
 .candlestick-average-line3{
     -fx-stroke: rgb(255, 128, 255);
+    -fx-stroke-width: 1px;
+}
+.candlestick-average-line4{
+    -fx-stroke: rgb(0,230,0);
+    -fx-stroke-width: 1px;
+}
+.candlestick-average-line4{
+    -fx-stroke: rgb(2,226,244);
     -fx-stroke-width: 1px;
 }
 .candlestick-candle {
