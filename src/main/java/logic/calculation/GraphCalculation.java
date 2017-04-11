@@ -111,14 +111,15 @@ public class GraphCalculation implements GraphCalculationService {
             return null;
         }
 
-        //如果总天数小于均线图的时间间隔 出错
+        //如果总天数小于均线图的时间间隔出错
         ArrayList<StockPO> stockPOS = this.stockDataDao.getStockPOsByTimeInterval(dateHelper.dateTransToString(startDate),
                 dateHelper.dateTransToString(endDate), stockCode);
+
         if(dayNums > stockPOS.size()) {
             return null;
         }
 
-        ArrayList<AverageLineVO> result = new ArrayList<AverageLineVO>();
+        ArrayList<AverageLineVO> result = new ArrayList<>();
 
         for(int i=dayNums-1; i<stockPOS.size(); ++i) {
             Date date = dateHelper.stringTransToDate(stockPOS.get(i).getDate());

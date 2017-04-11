@@ -82,7 +82,7 @@ public class AdvCandleStickChart extends Pane {
         }
 
         if(averageLineVOArrayList1 != null) {
-            for (int i = 0; i < averageLineVOArrayList1.size(); i++) {
+            for (int i = averageLineVOArrayList1.size()-1; i >= 0; i--) {
                 AverageLineVO averageLineVO = averageLineVOArrayList1.get(i);
                 series2.getData().add(
                         new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date), 0, new CandleStickExtraValues(averageLineVO.averageValue))
@@ -91,7 +91,7 @@ public class AdvCandleStickChart extends Pane {
         }
 
         if(averageLineVOArrayList2 != null) {
-            for (int i = 0; i < averageLineVOArrayList2.size(); i++) {
+            for (int i = averageLineVOArrayList2.size()-1; i >= 0; i--) {
                 AverageLineVO averageLineVO = averageLineVOArrayList2.get(i);
                 series3.getData().add(
                         new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date), 0, new CandleStickExtraValues(averageLineVO.averageValue))
@@ -100,7 +100,7 @@ public class AdvCandleStickChart extends Pane {
         }
 
         if(averageLineVOArrayList3 != null)
-        for(int i = 0; i < averageLineVOArrayList3.size(); i++){
+        for(int i = averageLineVOArrayList3.size()-1; i >= 0; i--){
             AverageLineVO averageLineVO = averageLineVOArrayList3.get(i);
             series4.getData().add(
                     new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date),0, new CandleStickExtraValues(averageLineVO.averageValue))
@@ -108,8 +108,9 @@ public class AdvCandleStickChart extends Pane {
         }
 
         if(averageLineVOArrayList4 != null) {
-            for (int i = 0; i < averageLineVOArrayList4.size(); i++) {
+            for (int i = averageLineVOArrayList4.size()-1; i >= 0; i--) {
                 AverageLineVO averageLineVO = averageLineVOArrayList4.get(i);
+//                System.out.println(DateHelper.getInstance().dateTransToString(averageLineVO.date)+" "+averageLineVO.averageValue);
                 series5.getData().add(
                         new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date), 0, new CandleStickExtraValues(averageLineVO.averageValue))
                 );
@@ -117,7 +118,7 @@ public class AdvCandleStickChart extends Pane {
         }
 
         if(averageLineVOArrayList5 != null) {
-            for (int i = 0; i < averageLineVOArrayList5.size(); i++) {
+            for (int i = averageLineVOArrayList5.size()-1; i >= 0; i--) {
                 AverageLineVO averageLineVO = averageLineVOArrayList5.get(i);
                 series6.getData().add(
                         new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date), 0, new CandleStickExtraValues(averageLineVO.averageValue))

@@ -32,6 +32,21 @@ public class StockPool {
     }
 
     /**
+     * 获取stockpo size最大的stockinfo 作为标杆
+     * @return StockInfo
+     */
+    public ArrayList<StockPO> getIndexStocks() {
+        int index = 0;
+        for(int i=0; i<this.stockInfos.size(); ++i) {
+            if(this.stockInfos.get(i).getStockSize() > this.stockInfos.get(index).getStockSize()) {
+                index = i;
+            }
+        }
+
+        return this.stockInfos.get(index).getStockPOS();
+    }
+
+    /**
      * 根据股票代码和时间获取股票数据
      * @param stockCode stockCode
      * @param date date
