@@ -170,7 +170,7 @@ public class MainPageController{
         }
 
         SearchSharesController searchSharesController = rootLoader.getController();
-        searchSharesController.init(stockVO,startDate,endDate);
+        searchSharesController.init(stockVO);
 
     }
 
