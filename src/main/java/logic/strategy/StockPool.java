@@ -31,6 +31,7 @@ public class StockPool {
         this.initStockInfos(strategyInputVO);
     }
 
+
     /**
      * 根据股票代码和时间获取股票数据
      * @param stockCode stockCode
