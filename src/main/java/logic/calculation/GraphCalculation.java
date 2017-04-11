@@ -121,11 +121,13 @@ public class GraphCalculation implements GraphCalculationService {
 
         ArrayList<AverageLineVO> result = new ArrayList<>();
 
-        for(int i=dayNums-1; i<stockPOS.size(); ++i) {
+
+
+        for(int i=stockPOS.size()-dayNums; i>=0; i--) {
             Date date = dateHelper.stringTransToDate(stockPOS.get(i).getDate());
 
             double all = 0;
-            for(int j=i-dayNums+1; j<i+1; ++j) {
+            for(int j=i+dayNums-1; j>i-1; j--) {
                 all += stockPOS.get(j).getClosePrice();
             }
 
