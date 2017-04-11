@@ -196,8 +196,6 @@ public class MomentumCumlativeYield {
     private void initTopNStocks(ArrayList<StockYield> stockYields, Date date) {
         //冒泡排序 排序holdingStockNum次 得到收益前holdingStockNum的股票
 
-        double moneyEachStock = income/this.holdingStockNum;
-
         for(int i=stockYields.size()-1;i>stockYields.size()-holdingStockNum-1; i--) {
             for(int j=0; j<i; ++ j) {
                 if(stockYields.get(j).getYield() < stockYields.get(j+1).getYield()) {
@@ -208,17 +206,17 @@ public class MomentumCumlativeYield {
             }
         }
 
+        //买入股票
+        double moneyEachStock = income/this.holdingStockNum;
+        for(int i=0; i<holdingStockNum; ++ i) {
+            if(this.holdingStocks.size() < this.holdingStockNum) {
+                double adj = this.stockPool.findSpecificStock(stockYields.get(i).getStockCode(), date).getADJ();
+                double numOfStock = moneyEachStock/adj;
 
-        //确定持有股票的代码
-        for(int i=0; i<holdingStockNum; ++i) {
-
-            double adj = this.stockPool.findSpecificStock(holdingStocks.get(i).getStockCode(), date).getADJ();
-            double numOfStock = moneyEachStock/adj;
-
-            this.holdingStocks.add(new HoldingStock(stockYields.get(i).getStockCode(), numOfStock));
+                this.holdingStocks.add(new HoldingStock(stockYields.get(i).getStockCode(), numOfStock));
+            }
         }
     }
-
 
     /**
      * 卖出股票

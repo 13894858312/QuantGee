@@ -119,7 +119,7 @@ public class GraphCalculation implements GraphCalculationService {
             return null;
         }
 
-        ArrayList<AverageLineVO> result = new ArrayList<AverageLineVO>();
+        ArrayList<AverageLineVO> result = new ArrayList<>();
 
         for(int i=dayNums-1; i<stockPOS.size(); ++i) {
             Date date = dateHelper.stringTransToDate(stockPOS.get(i).getDate());
