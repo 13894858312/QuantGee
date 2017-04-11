@@ -21,8 +21,8 @@ public class Graph {
 
     //K线图
     public AdvCandleStickChart getKLineChart(ArrayList<KLineVO> kLineVOArrayList, ArrayList<AverageLineVO> averageLineVOArrayList1, ArrayList<AverageLineVO> averageLineVOArrayList2,
-                                             ArrayList<AverageLineVO> averageLineVOArrayList3, int width, int height) throws Exception{
-        return new AdvCandleStickChart(kLineVOArrayList,averageLineVOArrayList1,averageLineVOArrayList2, averageLineVOArrayList3,  width, height);
+                                             ArrayList<AverageLineVO> averageLineVOArrayList3, ArrayList<AverageLineVO> averageLineVOArrayList4,ArrayList<AverageLineVO> averageLineVOArrayList5,  int width, int height) throws Exception{
+        return new AdvCandleStickChart(kLineVOArrayList,averageLineVOArrayList1,averageLineVOArrayList2, averageLineVOArrayList3, averageLineVOArrayList4, averageLineVOArrayList5,  width, height);
     }
 
     //k线图chart

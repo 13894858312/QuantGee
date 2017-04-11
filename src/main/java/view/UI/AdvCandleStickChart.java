@@ -36,7 +36,7 @@ import java.util.List;
 public class AdvCandleStickChart extends Pane {
     // DAY, OPEN, CLOSE, HIGH, LOW, AVERAGE
     final CandleStickChart bc;
-    //日均线
+
     public AdvCandleStickChart(ArrayList<KLineVO> kLineVOArrayList, ArrayList<AverageLineVO> averageLineVOArrayList1, ArrayList<AverageLineVO> averageLineVOArrayList2,
                                ArrayList<AverageLineVO> averageLineVOArrayList3, ArrayList<AverageLineVO> averageLineVOArrayList4, ArrayList<AverageLineVO> averageLineVOArrayList5,
                                        int width, int height) throws Exception{
@@ -114,152 +114,9 @@ public class AdvCandleStickChart extends Pane {
             series6.setName("fifth average");
         }
 
-
-
-
         ObservableList<XYChart.Series<String, Number>> data = bc.getData();
         if (data == null) {
             data = FXCollections.observableArrayList(series1,series2,series3,series4,series5,series6);
-
-            bc.setData(data);
-        } else {
-            bc.getData().add(series1);
-        }
-
-        getChildren().add(bc);
-    }
-
-    //月均线
-    public AdvCandleStickChart(ArrayList<KLineVO> kLineVOArrayList, ArrayList<AverageLineVO> averageLineVOArrayList1, ArrayList<AverageLineVO> averageLineVOArrayList2,
-                               ArrayList<AverageLineVO> averageLineVOArrayList3, int width, int height) throws Exception{
-        // x-axis:
-        this.getStylesheets().add("/css/ensemble_AdvCandleStickChart.css");
-
-        final CategoryAxis xAxis = new CategoryAxis();
-//        final NumberAxis xAxis = new NumberAxis(0, 32, 1);
-//        xAxis.setMinorTickCount(0);
-        xAxis.setLabel("Day");
-
-        // y-axis:
-        final NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Price");
-        yAxis.setForceZeroInRange(false);
-
-        // chart:
-        bc = new CandleStickChart(xAxis, yAxis);
-        bc.setPrefSize(width, height);
-        bc.setLegendVisible(false);
-        bc.setTitle("Custom Candle Stick Chart");
-
-        // add starting data
-        XYChart.Series<String, Number> series1 = new XYChart.Series<String, Number>();
-        XYChart.Series<String, Number> series2 = new XYChart.Series<String, Number>();
-        XYChart.Series<String, Number> series3 = new XYChart.Series<String, Number>();
-        XYChart.Series<String, Number> series4 = new XYChart.Series<String, Number>();
-        for (int i = kLineVOArrayList.size() - 1; i >= 0; i--) {
-            KLineVO day = kLineVOArrayList.get(i);
-            series1.getData().add(
-                    new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(day.date), day.openPrice, new CandleStickExtraValues(day.closePrice, day.maxValue, day.minValue))
-            );
-            series1.setName("candlestick");
-        }
-
-        for(int i=averageLineVOArrayList1.size()-1;i>=0;i--){
-            AverageLineVO averageLineVO = averageLineVOArrayList1.get(i);
-            series2.getData().add(
-                    new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date),0, new CandleStickExtraValues(averageLineVO.averageValue))
-            );
-            series2.setName("first average");
-        }
-
-        for(int i=averageLineVOArrayList2.size()-1;i>=0;i--){
-            AverageLineVO averageLineVO = averageLineVOArrayList2.get(i);
-            series3.getData().add(
-                    new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date),0, new CandleStickExtraValues(averageLineVO.averageValue))
-            );
-            series3.setName("second average");
-        }
-
-        for(int i=averageLineVOArrayList3.size()-1;i>=0;i--){
-            AverageLineVO averageLineVO = averageLineVOArrayList3.get(i);
-            series3.getData().add(
-                    new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date),0, new CandleStickExtraValues(averageLineVO.averageValue))
-            );
-            series3.setName("third average");
-        }
-
-
-
-        ObservableList<XYChart.Series<String, Number>> data = bc.getData();
-        if (data == null) {
-            data = FXCollections.observableArrayList(series1,series2,series3,series4);
-
-            bc.setData(data);
-        } else {
-            bc.getData().add(series1);
-        }
-
-        getChildren().add(bc);
-    }
-
-    //年均线
-    public AdvCandleStickChart(ArrayList<KLineVO> kLineVOArrayList, ArrayList<AverageLineVO> averageLineVOArrayList1, ArrayList<AverageLineVO> averageLineVOArrayList2
-                               , int width, int height) throws Exception{
-        // x-axis:
-        this.getStylesheets().add("/css/ensemble_AdvCandleStickChart.css");
-
-        final CategoryAxis xAxis = new CategoryAxis();
-//        final NumberAxis xAxis = new NumberAxis(0, 32, 1);
-//        xAxis.setMinorTickCount(0);
-        xAxis.setLabel("Day");
-
-        // y-axis:
-        final NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Price");
-        yAxis.setForceZeroInRange(false);
-
-        // chart:
-        bc = new CandleStickChart(xAxis, yAxis);
-        bc.setPrefSize(width, height);
-        bc.setLegendVisible(false);
-        bc.setTitle("Custom Candle Stick Chart");
-
-        // add starting data
-        XYChart.Series<String, Number> series1 = new XYChart.Series<String, Number>();
-        XYChart.Series<String, Number> series2 = new XYChart.Series<String, Number>();
-        XYChart.Series<String, Number> series3 = new XYChart.Series<String, Number>();
-        XYChart.Series<String, Number> series4 = new XYChart.Series<String, Number>();
-        for (int i = kLineVOArrayList.size() - 1; i >= 0; i--) {
-            KLineVO day = kLineVOArrayList.get(i);
-            series1.getData().add(
-                    new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(day.date), day.openPrice, new CandleStickExtraValues(day.closePrice, day.maxValue, day.minValue))
-            );
-            series1.setName("candlestick");
-        }
-
-        for(int i=averageLineVOArrayList1.size()-1;i>=0;i--){
-            AverageLineVO averageLineVO = averageLineVOArrayList1.get(i);
-            series2.getData().add(
-                    new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date),0, new CandleStickExtraValues(averageLineVO.averageValue))
-            );
-            series2.setName("first average");
-        }
-
-        for(int i=averageLineVOArrayList2.size()-1;i>=0;i--){
-            AverageLineVO averageLineVO = averageLineVOArrayList2.get(i);
-            series3.getData().add(
-                    new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date),0, new CandleStickExtraValues(averageLineVO.averageValue))
-            );
-            series3.setName("second average");
-        }
-
-
-
-
-
-        ObservableList<XYChart.Series<String, Number>> data = bc.getData();
-        if (data == null) {
-            data = FXCollections.observableArrayList(series1,series2,series3,series4);
 
             bc.setData(data);
         } else {
@@ -432,17 +289,25 @@ public class AdvCandleStickChart extends Pane {
             Path seriesPath1 = new Path();
             Path seriesPath2 = new Path();
             Path seriesPath3 = new Path();
+            Path seriesPath4 = new Path();
+            Path seriesPath5 = new Path();
             seriesPath1.getStyleClass().setAll("candlestick-average-line1");
             seriesPath2.getStyleClass().setAll("candlestick-average-line2");
             seriesPath3.getStyleClass().setAll("candlestick-average-line3");
+            seriesPath4.getStyleClass().setAll("candlestick-average-line4");
+            seriesPath5.getStyleClass().setAll("candlestick-average-line5");
             if(series.getName().equals("first average")) {
                 series.setNode(seriesPath1);
             }else if(series.getName().equals("second average")){
                 series.setNode(seriesPath2);
-            }else{
+            }else if(series.getName().equals("third average")){
                 series.setNode(seriesPath3);
+            }else if(series.getName().equals("fourth average")){
+                series.setNode(seriesPath4);
+            }else{
+                series.setNode(seriesPath5);
             }
-            getPlotChildren().addAll(seriesPath1,seriesPath2,seriesPath3);
+            getPlotChildren().addAll(seriesPath1,seriesPath2,seriesPath3,seriesPath4,seriesPath5);
         }
 
         @Override
