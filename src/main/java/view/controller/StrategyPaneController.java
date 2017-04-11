@@ -59,7 +59,7 @@ public class StrategyPaneController {
         sharp.setText(Double.toString(cumulativeYieldGraphVO.sharpeRatio));
         alpha.setText(Double.toString(cumulativeYieldGraphVO.alpha));
         beta.setText(Double.toString(cumulativeYieldGraphVO.beta));
-        max.setText(Double.toString(cumulativeYieldGraphVO.maxDrawdown));
+        max .setText(Double.toString(cumulativeYieldGraphVO.maxDrawdown));
 
     }
 
