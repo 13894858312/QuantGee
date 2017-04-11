@@ -22,8 +22,9 @@ public class SearchSharesController {
     private Graph graph;
 
     private StockVO stockVO;
-//    private Date start;
-//    private Date end;
+
+    private Date start;
+    private Date end;
 //    private long gap;
 
     @FXML private Label name;
@@ -38,11 +39,11 @@ public class SearchSharesController {
 
     }
 
-    public void init(StockVO stockVO){
+    public void init(StockVO stockVO,Date start , Date end){
 
         this.stockVO = stockVO;
-//        this.start = start;
-//        this.end = end;
+        this.start = start;
+        this.end = end;
 
 //        dayLine.setDisable(true);
 //        quarterLine.setDisable(true);
@@ -65,24 +66,30 @@ public class SearchSharesController {
 
 //        kLine.setDefaultButton(true);
 
-        //显示;
+        showKLine();
 
     }
 //
 //    @FXML
-//    private void showKLine() {
-//
-//        Pane kLinePane;
-//
-//        try{
-//             kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO.stockCode), graphCalculationService.getAverageLineInfoByCode(start, end, stockVO.stockCode,AverageLineType.DAYS_5),null,null,680, 600);
-//             chart.getChildren().clear();
-//             chart.getChildren().add(kLinePane);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//
-//    }
+    private void showKLine() {
+
+        Pane kLinePane;
+
+        try{
+             kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO.stockCode),
+                     graphCalculationService.getAverageLineInfoByCode(start, end, stockVO.stockCode,AverageLineType.DAYS_5),
+                     graphCalculationService.getAverageLineInfoByCode(start,end,stockVO.stockCode,AverageLineType.DAYS_10) ,
+                     graphCalculationService.getAverageLineInfoByCode(start,end,stockVO.stockCode,AverageLineType.DAYS_60) ,
+                     graphCalculationService.getAverageLineInfoByCode(start,end,stockVO.stockCode,AverageLineType.DAYS_120) ,
+                     graphCalculationService.getAverageLineInfoByCode(start,end,stockVO.stockCode,AverageLineType.DAYS_240) ,
+                     680, 610);
+             chart.getChildren().clear();
+             chart.getChildren().add(kLinePane);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 //
 //    @FXML
 //    private void showDayLine(){

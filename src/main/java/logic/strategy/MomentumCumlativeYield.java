@@ -30,7 +30,6 @@ public class MomentumCumlativeYield {
 
     private CumulativeYieldGraphVO cumulativeYieldGraphVO;
 
-
     public MomentumCumlativeYield(StockPool stockPool, int holdingPeriod, int returnPeriod, int holdingStockNum) {
         this.stockPool = stockPool;
 
@@ -48,11 +47,28 @@ public class MomentumCumlativeYield {
      */
     public void start() {
         this.initHoldingStockOnfirstRun();
+        int index = this.returnPeriod;      //记录是否达到一个holdingPeriod的index
 
-        Date temp = stockPool.getStartDate();
-        int index = 0;      //记录是否达到一个holdingPeriod的index
+        ArrayList<StockPO> stockPOS = stockPool.getIndexStocks();
 
-        while(!DateHelper.getInstance().dateTransToString(temp).equals(DateHelper.getInstance().dateTransToString(stockPool.getEndDate()))) {
+        //确定开始日期 stockPOS的index
+        for(int i=0; i<stockPOS.size(); ++i) {
+            Date d = DateHelper.getInstance().stringTransToDate(stockPOS.get(i).getDate());
+            int num = DateHelper.getInstance().calculateDaysBetween(d, stockPool.getStartDate());
+            if(num < 0) {
+                break;
+            }
+
+            if(num == 0) {
+                index = i;
+            }
+        }
+
+        //循环主题
+        for(int i=index; i<stockPOS.size(); ++i) {
+
+            Date temp = DateHelper.getInstance().stringTransToDate(stockPOS.get(i).getDate());
+
             if(index == holdingPeriod) { //若达到holdingPeriod index置0 同时进行rebalance
                 index = 0;                  //前一天进行调仓
                 this.rebalance(temp);
@@ -63,12 +79,9 @@ public class MomentumCumlativeYield {
 
             this.calculateBaseCumlativeYield(temp);         //基准收益率计算 用今日adj
             this.calculateHoldingStockYield(temp);          //计算收益， 用昨日adj
-
-            temp = DateHelper.getInstance().nextTradeDay(temp);     //暂时没考虑节假日
         }
 
         this.finish();
-
     }
 
     /**
@@ -123,6 +136,7 @@ public class MomentumCumlativeYield {
      * 在第一次运行时 确定持有的股票
      */
     private void initHoldingStockOnfirstRun() {
+    	
         ArrayList<StockYield> stockYields = new ArrayList<>();
 
         for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
@@ -194,6 +208,7 @@ public class MomentumCumlativeYield {
             }
         }
 
+
         //确定持有股票的代码
         for(int i=0; i<holdingStockNum; ++i) {
 
@@ -212,10 +227,26 @@ public class MomentumCumlativeYield {
     private void sellStock(Date date) {
         income = 0;
 
+        ArrayList<HoldingStock> temp = new ArrayList<>();
+
         for(int i=0; i<this.holdingStocks.size(); ++i) {
             double numOfStock = this.holdingStocks.get(i).getNumOfStock();
-            double adj = this.stockPool.findSpecificStock(this.holdingStocks.get(i).getStockCode(), date).getADJ();
-            income += numOfStock*adj;
+            StockPO stockPO = this.stockPool.findSpecificStock(this.holdingStocks.get(i).getStockCode(), date);
+
+            if(stockPO != null) {
+                double adj = this.stockPool.findSpecificStock(this.holdingStocks.get(i).getStockCode(), date).getADJ();
+                income += numOfStock*adj;
+            } else {
+                temp.add(this.holdingStocks.get(i));
+            }
+        }
+
+        this.holdingStocks.clear();
+
+        if(temp.size() != 0) {
+            for(int i=0; i<temp.size(); ++i) {
+                this.holdingStocks.add(temp.get(i));
+            }
         }
     }
 
