@@ -123,6 +123,7 @@ public class MomentumCumlativeYield {
      * 在第一次运行时 确定持有的股票
      */
     private void initHoldingStockOnfirstRun() {
+    	
         ArrayList<StockYield> stockYields = new ArrayList<>();
 
         for(int i=0; i<stockPool.getStockInfos().size(); ++i) {

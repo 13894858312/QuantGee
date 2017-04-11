@@ -57,26 +57,28 @@ public class MeanReversionCumlativeYield{
 
 
 	private void calculateData() {
-		ArrayList<StockYield> stockYields = new ArrayList<>();
-
-        for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
-            StockPO before = stockPool.getStockInfos().get(i).getBeforeStockPO();
-            StockPO yesterday = stockPool.getStockInfos().get(i).getStockByDate(DateHelper.getInstance().formerTradeDay(stockPool.getStartDate()));
-
-            if(yesterday == null || before == null) {
-                continue;
-            }
-
-            //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
-            double yield = (yesterday.getADJ()-before.getADJ())/before.getADJ();
-
-            stockYields.add(new StockYield(yesterday.getStockCode(), yield));
-        }
-
-        this.initTopNStocks(stockYields);		
+		
 	}
 
 	public void initHoldingStockOnfirstRun() {
+		
+		ArrayList<StockYield> stockYields = new ArrayList<>();
+		
+		for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
+			StockPO before = stockPool.getStockInfos().get(i).getBeforeStockPO();
+			StockPO yesterday = stockPool.getStockInfos().get(i).getStockByDate(DateHelper.getInstance().formerTradeDay(stockPool.getStartDate()));
+			
+			if(yesterday == null || before == null) {
+				continue;
+			}
+			
+			//计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
+			double yield = (yesterday.getADJ()-before.getADJ())/before.getADJ();
+			
+			stockYields.add(new StockYield(yesterday.getStockCode(), yield));
+		}
+		
+		this.initTopNStocks(stockYields);		
 		
 	}
 
