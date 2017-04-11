@@ -133,11 +133,11 @@ public class CompareSharesController {
 
         try{
             kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO_0.stockCode)
-                    ,graphCalculationService.getAverageLineInfoByCode(start, end, stockVO_1.stockCode,AverageLineType.DAYS_5)
-                    ,graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_1.stockCode,AverageLineType.DAYS_10) ,
-                    graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_1.stockCode,AverageLineType.DAYS_60) ,
-                    graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_1.stockCode,AverageLineType.DAYS_120) ,
-                    graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_1.stockCode,AverageLineType.DAYS_240)
+                    ,graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_0.stockCode,AverageLineType.DAYS_5)
+                    ,graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_0.stockCode,AverageLineType.DAYS_10) ,
+                    graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_0.stockCode,AverageLineType.DAYS_60) ,
+                    graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_0.stockCode,AverageLineType.DAYS_120) ,
+                    graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_0.stockCode,AverageLineType.DAYS_240)
                     , 340, 300);
             leftChart.getChildren().clear();
             leftChart.getChildren().add(kLinePane);
@@ -186,7 +186,7 @@ public class CompareSharesController {
 
         try{
             kLinePane = graph.getKLineChart(graphCalculationService.getKLineInfoByCode(start,end,stockVO_1.stockCode)
-                    ,graphCalculationService.getAverageLineInfoByCode(start, end, stockVO_1.stockCode,AverageLineType.DAYS_5)
+                    ,graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_1.stockCode,AverageLineType.DAYS_5)
                     ,graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_1.stockCode,AverageLineType.DAYS_10) ,
                     graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_1.stockCode,AverageLineType.DAYS_60) ,
                     graphCalculationService.getAverageLineInfoByCode(start,end,stockVO_1.stockCode,AverageLineType.DAYS_120) ,

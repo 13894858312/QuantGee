@@ -6,7 +6,8 @@
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.StrategyBoardController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="43.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="237.0" minWidth="10.0" prefWidth="237.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -14,12 +15,12 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <RadioButton fx:id="mother" mnemonicParsing="false" selected="true" text="zhu">
+      <RadioButton fx:id="mother" mnemonicParsing="false" onAction="#choose0" selected="true" text="主板" GridPane.columnIndex="1">
          <toggleGroup>
             <ToggleGroup fx:id="RBs" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="gem" mnemonicParsing="false" text="chuang" toggleGroup="$RBs" GridPane.rowIndex="1" />
-      <RadioButton fx:id="small" mnemonicParsing="false" text="zhong" toggleGroup="$RBs" GridPane.rowIndex="2" />
+      <RadioButton fx:id="gem" mnemonicParsing="false" onAction="#choose1" text="创业板" toggleGroup="$RBs" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <RadioButton fx:id="small" mnemonicParsing="false" onAction="#choose2" text="中小板" toggleGroup="$RBs" GridPane.columnIndex="1" GridPane.rowIndex="2" />
    </children>
 </GridPane>

@@ -3,6 +3,9 @@ package view.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import vo.AbnormalReturnGraphVO;
+import vo.CumulativeYieldGraphVO;
+import vo.YieldHistogramGraphVO;
 
 /**
  * 展示策略的三个图
@@ -47,7 +50,17 @@ public class StrategyPaneController {
     private Label win;
 
 
-    public void init(){
+    public void init(CumulativeYieldGraphVO cumulativeYieldGraphVO ,
+                     AbnormalReturnGraphVO abnormalReturnGraphVO ,
+                     YieldHistogramGraphVO yieldHistogramGraphVO){
+
+        year.setText(Double.toString(cumulativeYieldGraphVO.annualRevenue));
+        base.setText(Double.toString(cumulativeYieldGraphVO.baseAnnualRevenue));
+        sharp.setText(Double.toString(cumulativeYieldGraphVO.sharpeRatio));
+        alpha.setText(Double.toString(cumulativeYieldGraphVO.alpha));
+        beta.setText(Double.toString(cumulativeYieldGraphVO.beta));
+        max .setText(Double.toString(cumulativeYieldGraphVO.maxDrawdown));
 
     }
+
 }

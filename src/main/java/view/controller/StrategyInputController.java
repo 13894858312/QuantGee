@@ -7,12 +7,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import logic.calculation.StrategyCalculation;
+import logicService.StrategyCalculationService;
 import vo.StrategyInputVO;
 
 import java.io.IOException;
@@ -26,9 +29,12 @@ import java.util.ArrayList;
  */
 public class StrategyInputController {
 
+    private StrategyCalculationService strategyCalculationService;
+
     @FXML private Pane root;
 
     @FXML private ScrollPane scrollPane;
+    @FXML private AnchorPane leftPane;
     @FXML private VBox blockPane;
 
     @FXML private HBox hBox;
@@ -56,6 +62,8 @@ public class StrategyInputController {
 
     private ArrayList<HBox> stocks;
     private ArrayList<StrategyStockController> strategyStockControllers;
+
+    private StrategyBoardController strategyBoardController;
 
     private int count = 0;
 
@@ -86,6 +94,11 @@ public class StrategyInputController {
                 }
             };
 
+
+    public StrategyInputController(){
+        strategyCalculationService = new StrategyCalculation();
+    }
+    
     public void init(){
         //载入策略选择框
         strategyPicker.setItems(FXCollections.observableArrayList("动量策略","均值回归"));
@@ -108,7 +121,7 @@ public class StrategyInputController {
 
 
         //载入股票池选项
-        stockPool.setItems(FXCollections.observableArrayList("所有股票","选择板块","选择股票"));
+        stockPool.setItems(FXCollections.observableArrayList("    所有股票","    选择板块","    选择股票"));
         stockPool.setValue("所有股票");
         stockPool.getSelectionModel().selectedIndexProperty().addListener(
                 new ChangeListener<Number>() {
@@ -244,22 +257,52 @@ public class StrategyInputController {
     股票池选项
      */
     private void setAllStocks(){
-        blockPane.getChildren().removeAll();
+
+        leftPane.getChildren().clear();
         scrollPane.setDisable(true);
+
+        //清空其他controller
+        strategyBoardController = null;
+        stocks = null;
+        strategyStockControllers = null;
     }
 
     private void setChosenBlocks(){
 
-        blockPane.getChildren().removeAll();
+        leftPane.getChildren().clear();
+        scrollPane.setDisable(false);
+
+        try{
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/fxml/StrategyBoard.fxml"));
+            Pane root = fxmlLoader.load();
+            leftPane.getChildren().add(root);
+
+            strategyBoardController = fxmlLoader.getController();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        //清空其他controller
+        stocks = null;
+        strategyStockControllers = null;
 
     }
 
     private void setChosenStocks(){
-        blockPane.getChildren().removeAll();
+
+        leftPane.getChildren().clear();
+        scrollPane.setDisable(false);
         showHBox();
 
         stocks = new ArrayList<HBox>();
         strategyStockControllers = new ArrayList<StrategyStockController>();
+
+
+        //清空其他controller
+        strategyBoardController = null;
     }
 
     public void addBlock(){
