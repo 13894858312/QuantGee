@@ -22,7 +22,7 @@ public class StrategyInputVO {
 
 
     /**
-     * 回测所有股票的构造方法
+     * 均值回归策略回测所有股票的构造方法
      * @param holdingPeriod 调仓周期
      * @param returnPeriod 基准收益率计算周期
      * @param holdingStockNum 每次调仓持有的股票数量
@@ -39,7 +39,7 @@ public class StrategyInputVO {
 
 
     /**
-     * 回测指定板块的股票的构造方法
+     * 均值回归策略回测指定板块的股票的构造方法
      * @param blockName 板块名称
      * @param holdingPeriod 调仓周期
      * @param returnPeriod 基准收益率计算周期
@@ -57,7 +57,7 @@ public class StrategyInputVO {
     }
 
     /**
-     * 回测指定的股票的构造方法
+     * 均值回归策略回测指定的股票的构造方法
      * @param stockNames 股票名称或代码
      * @param holdingPeriod 调仓周期
      * @param returnPeriod 基准收益率计算周期
@@ -71,6 +71,52 @@ public class StrategyInputVO {
         this.holdingPeriod = holdingPeriod;
         this.returnPeriod = returnPeriod;
         this.holdingStockNum = holdingStockNum;
+        this.strategyInputType = StrategyInputType.SPECIFIC_STOCKS;
+    }
+
+    /**
+     * 动量策略测所有股票的构造方法
+     * @param holdingPeriod 调仓周期
+     * @param returnPeriod 基准收益率计算周期
+     */
+    public StrategyInputVO(Date startDate, Date endDate, int holdingPeriod, int returnPeriod) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.holdingPeriod = holdingPeriod;
+        this.returnPeriod = returnPeriod;
+        this.strategyInputType = StrategyInputType.ALL;
+    }
+
+
+    /**
+     * 动量策略回测指定板块的股票的构造方法
+     * @param blockName 板块名称
+     * @param holdingPeriod 调仓周期
+     * @param returnPeriod 基准收益率计算周期
+     */
+    public StrategyInputVO(Date startDate, Date endDate, String blockName,
+                           int holdingPeriod, int returnPeriod) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.blockName = blockName;
+        this.holdingPeriod = holdingPeriod;
+        this.returnPeriod = returnPeriod;
+        this.strategyInputType = StrategyInputType.SPECIFIC_BLOCK;
+    }
+
+    /**
+     * 动量策略回测指定的股票的构造方法
+     * @param stockNames 股票名称或代码
+     * @param holdingPeriod 调仓周期
+     * @param returnPeriod 基准收益率计算周期
+     */
+    public StrategyInputVO(Date startDate, Date endDate,ArrayList<String> stockNames,
+                           int holdingPeriod, int returnPeriod) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.stockNames = stockNames;
+        this.holdingPeriod = holdingPeriod;
+        this.returnPeriod = returnPeriod;
         this.strategyInputType = StrategyInputType.SPECIFIC_STOCKS;
     }
 }

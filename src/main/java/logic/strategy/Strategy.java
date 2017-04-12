@@ -23,5 +23,5 @@ public interface Strategy {
      * @param isHoldingPeriod period参数是否是持有期，true为持有期，false为形成期
      * @return AbnormalReturnGraphVO
      */
-    AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO, double period, boolean isHoldingPeriod);
+    AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO, int period, boolean isHoldingPeriod);
 }

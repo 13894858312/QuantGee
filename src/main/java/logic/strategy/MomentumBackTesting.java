@@ -1,12 +1,8 @@
 package logic.strategy;
 
 import logic.tools.DateHelper;
-import logic.tools.MathHelper;
 import po.StockPO;
-import vo.BackTestingResultVO;
-import vo.BaseCumulativeYieldGraphDataVO;
-import vo.CumulativeYieldGraphDataVO;
-import vo.CumulativeYieldGraphVO;
+import vo.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,42 +13,48 @@ import java.util.Date;
  */
 public class MomentumBackTesting {
     private final double INIT_FUND = 1000; //起始资金
-    private double income = INIT_FUND;      //总收益
+    private double income = INIT_FUND;      //总本金+收益
+    private double tempIncome = income;  //记录上一个周期的本金+收益，用于计算周期收益率
 
     private StockPool stockPool;
 
     private int holdingPeriod;  //持有期
     private int returnPeriod;    //形成期
     private int holdingStockNum;  //每个持有期持有的股票数量
+    private ArrayList<HoldingStock> holdingStocks;
 
     private ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS;  //每天的收益率
     private ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS; //基准收益率
-    private ArrayList<HoldingStock> holdingStocks;
 
-    private CumulativeYieldGraphVO cumulativeYieldGraphVO;
+    private ArrayList<Double> yieldPerPeriod;     //每个持有期结束后的收益率
+
     private BackTestingResultVO backTestingResultVO;
 
-    public MomentumBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod, int holdingStockNum) {
+    /**
+     * @param stockPool 股票池
+     * @param holdingPeriod 持有期
+     * @param returnPeriod 形成期
+     */
+    public MomentumBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod) {
         this.stockPool = stockPool;
 
         this.holdingPeriod = holdingPeriod;
         this.returnPeriod = returnPeriod;
-        this.holdingStockNum = holdingStockNum;
+        this.holdingStockNum = stockPool.getStockInfos().size() / 5;
+        this.holdingStocks = new ArrayList<>();
 
         this.cumulativeYieldGraphDataVOS = new ArrayList<>();
-        this.holdingStocks = new ArrayList<>();
         this.baseCumulativeYieldGraphDataVOS = new ArrayList<>();
+        this.yieldPerPeriod = new ArrayList<>();
     }
 
     /**
      *  执行回测的主程序
      */
     public void start() {
-        this.initHoldingStockOnfirstRun();
         int startIndex = this.returnPeriod;
 
         ArrayList<StockPO> stockPOS = stockPool.getIndexStocks();
-
         //确定开始日期 stockPOS的index
         for(int i=0; i<stockPOS.size(); ++i) {
             Date d = DateHelper.getInstance().stringTransToDate(stockPOS.get(i).getDate());
@@ -66,28 +68,28 @@ public class MomentumBackTesting {
             }
         }
 
-        int index = 0;      //记录是否达到一个holdingPeriod的index
 
-        //循环主题
+        int index = 0;  //记录是否达到一个holdingPeriod的index
+        this.initHoldingStockOnfirstRun();
+        //循环主体
         for(int i=startIndex; i<stockPOS.size(); ++i) {
-
             Date temp = DateHelper.getInstance().stringTransToDate(stockPOS.get(i).getDate());
 
             if(index == holdingPeriod) { //若达到holdingPeriod index置0 同时进行rebalance
                 index = 0;                  //前一天进行调仓
                 this.rebalance(temp);
-
             } else {
                 index ++;
             }
 
             this.calculateBaseCumlativeYield(temp);         //基准收益率计算 用今日adj
             this.calculateHoldingStockYield(temp);          //计算收益， 用昨日adj
-        }
 
-//        if(index > 0 && index < holdingPeriod) {
-//            this.
-//        }
+            if(i == stockPOS.size()-1 && index > 0 && index < holdingPeriod) {
+                this.sellStock(temp);                       //如果最后剩余的天数不足holdingPeriod，仍然计算周期收益率
+                this.calculatePeriodYield();
+            }
+        }
 
         this.finish();
     }
@@ -144,7 +146,6 @@ public class MomentumBackTesting {
      * 在第一次运行时 确定持有的股票
      */
     private void initHoldingStockOnfirstRun() {
-    	
         ArrayList<StockYield> stockYields = new ArrayList<>();
 
         for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
@@ -162,22 +163,25 @@ public class MomentumBackTesting {
         }
 
         Date date = DateHelper.getInstance().formerTradeDay(this.stockPool.getStartDate());
-        this.initTopNStocks(stockYields, date);
+
+        this.initTopNStocksAndBuy(stockYields, date);
     }
 
     /**
+     * 一个持有期结束
      * 计算指定日期所有股票形成期收益，并获取前holdingStockNum个的股票代码
      * @param date 该日期的前一天的收盘价用于计算
      */
     private void rebalance(Date date) {
-
         Date oneDayBeforeDate = DateHelper.getInstance().formerTradeDay(date);     //该日期的前一天的收盘价用于计算
         Date beforeDate = DateHelper.getInstance().formerNTradeDay(date, returnPeriod);
 
-        this.sellStock(oneDayBeforeDate);
+        this.sellStock(oneDayBeforeDate);           //卖出所有持有的且当天没有停盘的股票
+        this.calculatePeriodYield();
 
+
+        //计算股票池內所有股票的收益率 用于确定下次持有的股票
         ArrayList<StockYield> stockYields = new ArrayList<>();
-
         for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
             StockPO before = stockPool.getStockInfos().get(i).getStockByDate(beforeDate);
             StockPO yesterday = stockPool.getStockInfos().get(i).getStockByDate(oneDayBeforeDate);
@@ -185,15 +189,23 @@ public class MomentumBackTesting {
             if(yesterday == null || before == null) {
                 continue;
             }
-
             //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
             double yield = (yesterday.getADJ()-before.getADJ())/before.getADJ();
 
             stockYields.add(new StockYield(yesterday.getStockCode(), yield));
         }
 
-        this.initTopNStocks(stockYields, oneDayBeforeDate);
+        //确定前n的股票，并买入
+        this.initTopNStocksAndBuy(stockYields, oneDayBeforeDate);
 
+    }
+
+    /**
+     * 计算每个持有期结束后的收益率
+     */
+    private void calculatePeriodYield() {
+        double yield = (income-tempIncome)/tempIncome;
+        this.yieldPerPeriod.add(yield);
     }
 
     /**
@@ -201,9 +213,8 @@ public class MomentumBackTesting {
      * @param stockYields stockYields
      * @param date  用于确定特定一天的adj， 确定每只股票买多少股
      */
-    private void initTopNStocks(ArrayList<StockYield> stockYields, Date date) {
+    private void initTopNStocksAndBuy(ArrayList<StockYield> stockYields, Date date) {
         //冒泡排序 排序holdingStockNum次 得到收益前holdingStockNum的股票
-
         for(int i=stockYields.size()-1;i>stockYields.size()-holdingStockNum-1; i--) {
             for(int j=0; j<i; ++ j) {
                 if(stockYields.get(j).getYield() < stockYields.get(j+1).getYield()) {
@@ -217,7 +228,7 @@ public class MomentumBackTesting {
         //买入股票
         double moneyEachStock = income/this.holdingStockNum;
         for(int i=0; i<holdingStockNum; ++ i) {
-            if(this.holdingStocks.size() < this.holdingStockNum) {
+            if(this.holdingStocks.size() < this.holdingStockNum) {      //持有数量只能为holdingStockNum
                 double adj = this.stockPool.findSpecificStock(stockYields.get(i).getStockCode(), date).getADJ();
                 double numOfStock = moneyEachStock/adj;
 
@@ -231,150 +242,66 @@ public class MomentumBackTesting {
      * @param date 指定日期
      */
     private void sellStock(Date date) {
-        income = 0;
+        tempIncome  = income;
+        income = 0;  //当前本金+收益
 
         ArrayList<HoldingStock> temp = new ArrayList<>();
 
-        for(int i=0; i<this.holdingStocks.size(); ++i) {
+        for (int i = 0; i < this.holdingStocks.size(); ++i) {
             double numOfStock = this.holdingStocks.get(i).getNumOfStock();
             StockPO stockPO = this.stockPool.findSpecificStock(this.holdingStocks.get(i).getStockCode(), date);
 
-            if(stockPO != null) {
+            if (stockPO != null) {
                 double adj = this.stockPool.findSpecificStock(this.holdingStocks.get(i).getStockCode(), date).getADJ();
-                income += numOfStock*adj;
-            } else {
+                income += numOfStock * adj;
+            } else {                    //如果当天股票停盘 继续持有该股票
                 temp.add(this.holdingStocks.get(i));
             }
         }
 
         this.holdingStocks.clear();
 
-        if(temp.size() != 0) {
-            for(int i=0; i<temp.size(); ++i) {
+        if (temp.size() != 0) {
+            for (int i = 0; i < temp.size(); ++i) {
                 this.holdingStocks.add(temp.get(i));
             }
         }
     }
 
-
     /**
-     * 计算累计收益率图的分析结果数据
+     * 计算分析结果数据
      */
     private void finish() {
+        StrategyDataAnlysis analysis = new StrategyDataAnlysis();
 
-        double annualRevenue = calculateAnnualRevenue();       //策略年化收益率
-        double baseAnnualRevenue = calculateBaseAnnualRevenue();  //基准年化收益率\
-        double beta = calculateBeta();
-        double alpha = calculateAlpha(annualRevenue, baseAnnualRevenue, beta);
-        double sharpeRatio = calculateSharpRatio(annualRevenue);  //夏普比率
-        double maxDrawdown = calculateMaxDrawdown();  //最大回撤
+        //计算累计收益率图的有关数据
+        CumulativeYieldGraphVO cumulativeYieldGraphVO = analysis.analyseCumulativeYieldGraph(income, this.INIT_FUND, stockPool.getTradeDays(),
+                cumulativeYieldGraphDataVOS, baseCumulativeYieldGraphDataVOS);
 
-        this.cumulativeYieldGraphVO = new CumulativeYieldGraphVO(annualRevenue,baseAnnualRevenue,
-                alpha, beta,sharpeRatio, maxDrawdown,cumulativeYieldGraphDataVOS, baseCumulativeYieldGraphDataVOS);
+        //计算有关频率分布直方图的数据
+        YieldHistogramGraphVO yieldHistogramGraphVO = analysis.analyseYieldHistogram(this.yieldPerPeriod);
 
+        this.backTestingResultVO = new BackTestingResultVO(cumulativeYieldGraphVO,yieldHistogramGraphVO);
     }
 
     /**
-     * 计算策略年化收益率
-     * @return 策略年化收益率
+     * 获取超额收益率
+     * @return 超额收益率
      */
-    private double calculateAnnualRevenue() {
-        double annualRevenue = 0;
-        return annualRevenue;
-    }
-
-
-    /**
-     * 计算alpha
-     * @param annualRevenue 年化收益率
-     * @param baseAnnualRevenue 基准收益率
-     * @param beta beta
-     * @return
-     */
-    private double calculateAlpha(double annualRevenue, double baseAnnualRevenue, double beta) {
-        double rf = 0.0175;
-        double alpha = annualRevenue - rf - beta * (baseAnnualRevenue - rf);
-        return alpha;
+    public double getAbnormalReturn() {
+        double result = new StrategyDataAnlysis().analyseAbnormalReturn(income, INIT_FUND, baseCumulativeYieldGraphDataVOS);
+        return result;
     }
 
     /**
-     * 计算夏普比率
-     * @return 夏普比率
+     * 获取策略胜率
+     * @return 策略胜率
      */
-    private double calculateSharpRatio(double annualRevenue) {
-        double rf = 0.0175;
-        double[] strategy = new double[this.cumulativeYieldGraphDataVOS.size()];
-        for(int i=0; i<this.cumulativeYieldGraphDataVOS.size(); ++i) {
-            strategy[i] = this.cumulativeYieldGraphDataVOS.get(i).ratio;
-        }
-
-        double sharpeRatio = (annualRevenue - rf)/Math.sqrt(MathHelper.variance(strategy));
-
-        return sharpeRatio;
+    public double getWinRate() {
+        double result = this.backTestingResultVO.yieldHistogramGraphVO.winRate;
+        return result;
     }
 
-    /**
-     * 计算beta
-     * @return beta
-     */
-    private double calculateBeta() {
-        double[] strategy = new double[this.cumulativeYieldGraphDataVOS.size()];
-        for(int i=0; i<this.cumulativeYieldGraphDataVOS.size(); ++i) {
-            strategy[i] = this.cumulativeYieldGraphDataVOS.get(i).ratio;
-        }
-
-        double[] base = new double[this.baseCumulativeYieldGraphDataVOS.size()];
-        for(int i=0; i<this.baseCumulativeYieldGraphDataVOS.size(); ++i) {
-            base[i] = this.baseCumulativeYieldGraphDataVOS.get(i).baseRatio;
-        }
-
-        double beta = MathHelper.covariance(strategy, base)/MathHelper.variance(base);
-
-        return beta;
-    }
-
-
-    /**
-     * 计算基准年化收益率
-     * @return 基准年化收益率
-     */
-    private double calculateBaseAnnualRevenue() {
-        double baseAnnualRevenue = 0;
-        for(int i=1; i<this.baseCumulativeYieldGraphDataVOS.size(); ++i) {
-            baseAnnualRevenue += this.baseCumulativeYieldGraphDataVOS.get(i).baseRatio;
-        }
-        baseAnnualRevenue /= this.baseCumulativeYieldGraphDataVOS.size();
-
-        return baseAnnualRevenue;
-    }
-
-    /**
-     * 计算最大回撤
-     * @return 最大回撤
-     */
-    private double calculateMaxDrawdown() {
-        double maxDrawdown = 0;
-
-        double start = this.cumulativeYieldGraphDataVOS.get(0).ratio, end = start;
-
-        for(int i=1; i<this.cumulativeYieldGraphDataVOS.size(); ++i) {
-            //折线在上升
-            if(cumulativeYieldGraphDataVOS.get(i).ratio > cumulativeYieldGraphDataVOS.get(i-1).ratio) {
-                start = cumulativeYieldGraphDataVOS.get(i).ratio;
-            }
-
-            //折线在上升折线在下降
-            if(cumulativeYieldGraphDataVOS.get(i).ratio < cumulativeYieldGraphDataVOS.get(i-1).ratio) {
-                end = cumulativeYieldGraphDataVOS.get(i).ratio;
-            }
-
-            if((start-end) > maxDrawdown) {
-                maxDrawdown = start-end;
-            }
-        }
-
-        return maxDrawdown;
-    }
 
     public BackTestingResultVO getBackTestingResultVO() {
         return backTestingResultVO;

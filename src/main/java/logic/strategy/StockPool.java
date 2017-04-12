@@ -21,6 +21,7 @@ public class StockPool {
     private ArrayList<StockInfo> stockInfos;
     private Date startDate;
     private Date endDate;
+    private int tradeDays;   //时间区间內的交易日数
 
     public StockPool(StrategyInputVO strategyInputVO) {
         this.stockDataDao = new MockStockData();
@@ -43,6 +44,7 @@ public class StockPool {
             }
         }
 
+        this.tradeDays = this.stockInfos.get(index).getStockPOS().size();
         return this.stockInfos.get(index).getStockPOS();
     }
 
@@ -166,5 +168,9 @@ public class StockPool {
 
     public ArrayList<StockInfo> getStockInfos() {
         return stockInfos;
+    }
+
+    public int getTradeDays() {
+        return tradeDays;
     }
 }

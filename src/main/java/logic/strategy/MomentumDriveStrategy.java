@@ -12,7 +12,7 @@ public class MomentumDriveStrategy implements Strategy {
     public BackTestingResultVO getStrategyBackTestingGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO) {
 
         MomentumBackTesting momentumBackTesting = new MomentumBackTesting(stockPool,
-                strategyInputVO.holdingPeriod, strategyInputVO.returnPeriod, strategyInputVO.holdingStockNum);
+                strategyInputVO.holdingPeriod, strategyInputVO.returnPeriod);
 
         momentumBackTesting.start();
 
@@ -22,7 +22,7 @@ public class MomentumDriveStrategy implements Strategy {
     }
 
     @Override
-    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO, double period, boolean isHoldingPeriod) {
+    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO, int period, boolean isHoldingPeriod) {
 
         MomentumAbnormalReturn momentumAbnormalReturn = new MomentumAbnormalReturn(stockPool, period, isHoldingPeriod);
 
