@@ -3,6 +3,12 @@ package view.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import vo.AbnormalReturnGraphVO;
+import vo.CumulativeYieldGraphVO;
+import vo.YieldHistogramGraphVO;
+
+import javax.xml.crypto.dom.DOMCryptoContext;
+
 
 /**
  * 展示策略的三个图
@@ -30,14 +36,14 @@ public class StrategyPaneController {
     private Label alpha;
     @FXML
     private Label beta;
-    @FXML
-    private Label volatility;
-    @FXML
-    private Label message;
+//    @FXML
+//    private Label volatility;
+//    @FXML
+//    private Label message;
     @FXML
     private Label max;
-    @FXML
-    private Label turnover;
+//    @FXML
+//    private Label turnover;
 
     @FXML
     private Label positive;
@@ -57,6 +63,10 @@ public class StrategyPaneController {
         alpha.setText(Double.toString(cumulativeYieldGraphVO.alpha));
         beta.setText(Double.toString(cumulativeYieldGraphVO.beta));
         max .setText(Double.toString(cumulativeYieldGraphVO.maxDrawdown));
+
+        positive.setText(Double.toString(yieldHistogramGraphVO.positiveEarningNum));
+        negative.setText(Double.toString(yieldHistogramGraphVO.negativeEarningNum));
+        win.setText(Double.toString(yieldHistogramGraphVO.winRate));
 
     }
 
