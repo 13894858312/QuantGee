@@ -29,7 +29,6 @@ public class StrategyCalculation implements StrategyCalculationService{
     @Override
     public BackTestingResultVO getStrategyBackTestingGraphInfo(StrategyType strategyType, StrategyInputVO strategyInputVO) {
         this.initStockPool(strategyInputVO);
-
         this.initStrategy(strategyType);
 
         BackTestingResultVO backTestingResultVO = strategy.getStrategyBackTestingGraphInfo(stockPool, strategyInputVO);
@@ -43,16 +42,15 @@ public class StrategyCalculation implements StrategyCalculationService{
      * 计算收益率和策略胜率的图
      * @param strategyType 策略类型
      * @param strategyInputVO 股票信息
-     * @param period 周期
      * @param isHoldingPeriod period参数是否是持有期，true为持有期，false为形成期
      * @return AbnormalReturnGraphVO
      */
     @Override
-    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StrategyType strategyType, StrategyInputVO strategyInputVO, double period, boolean isHoldingPeriod) {
+    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StrategyType strategyType, StrategyInputVO strategyInputVO, boolean isHoldingPeriod) {
         this.initStockPool(strategyInputVO);
-
         this.initStrategy(strategyType);
-        AbnormalReturnGraphVO abnormalReturnGraphVO = strategy.getAbnormalReturnGraphInfo(stockPool, strategyInputVO, period, isHoldingPeriod);
+
+        AbnormalReturnGraphVO abnormalReturnGraphVO = strategy.getAbnormalReturnGraphInfo(stockPool, strategyInputVO, isHoldingPeriod);
 
         assert (abnormalReturnGraphVO != null) : "logic.calculation.StrategyCalculation.getAbnormalReturnGraphInfo返回值异常" ;
 

@@ -12,7 +12,7 @@ import java.util.Date;
  * Created by Mark.W on 2017/4/4.
  */
 public class MomentumBackTesting {
-    private final double INIT_FUND = 1000; //起始资金
+    private static final double INIT_FUND = 1000; //起始资金
     private double income = INIT_FUND;      //总本金+收益
     private double tempIncome = income;  //记录上一个周期的本金+收益，用于计算周期收益率
 
@@ -41,8 +41,8 @@ public class MomentumBackTesting {
         this.holdingPeriod = holdingPeriod;
         this.returnPeriod = returnPeriod;
         this.holdingStockNum = stockPool.getStockInfos().size() / 5;
-        this.holdingStocks = new ArrayList<>();
 
+        this.holdingStocks = new ArrayList<>();
         this.cumulativeYieldGraphDataVOS = new ArrayList<>();
         this.baseCumulativeYieldGraphDataVOS = new ArrayList<>();
         this.yieldPerPeriod = new ArrayList<>();
@@ -52,27 +52,16 @@ public class MomentumBackTesting {
      *  执行回测的主程序
      */
     public void start() {
-        int startIndex = this.returnPeriod;
 
         ArrayList<StockPO> stockPOS = stockPool.getIndexStocks();
-        //确定开始日期 stockPOS的index
-        for(int i=0; i<stockPOS.size(); ++i) {
-            Date d = DateHelper.getInstance().stringTransToDate(stockPOS.get(i).getDate());
-            int num = DateHelper.getInstance().calculateDaysBetween(d, stockPool.getStartDate());
-            if(num < 0) {
-                break;
-            }
-
-            if(num == 0) {
-                startIndex = i;
-            }
-        }
-
+        int endIndex
+                = stockPool.getEndIndex(); //初始化访问股票的下表index
 
         int index = 0;  //记录是否达到一个holdingPeriod的index
         this.initHoldingStockOnfirstRun();
-        //循环主体
-        for(int i=startIndex; i<stockPOS.size(); ++i) {
+        //循环主体 最早的时间在前面 所以倒序访问
+
+        for(int i=stockPOS.size()-1; i>=endIndex; i--) {
             Date temp = DateHelper.getInstance().stringTransToDate(stockPOS.get(i).getDate());
 
             if(index == holdingPeriod) { //若达到holdingPeriod index置0 同时进行rebalance
@@ -85,7 +74,7 @@ public class MomentumBackTesting {
             this.calculateBaseCumlativeYield(temp);         //基准收益率计算 用今日adj
             this.calculateHoldingStockYield(temp);          //计算收益， 用昨日adj
 
-            if(i == stockPOS.size()-1 && index > 0 && index < holdingPeriod) {
+            if(i == endIndex && index > 0 && index < holdingPeriod) {
                 this.sellStock(temp);                       //如果最后剩余的天数不足holdingPeriod，仍然计算周期收益率
                 this.calculatePeriodYield();
             }
@@ -99,8 +88,8 @@ public class MomentumBackTesting {
      * @param date 日期
      */
     private void calculateBaseCumlativeYield(Date date) {
-        int stockNum = 0;
-        double yield = 0;
+        int stockNum = 0;           //用于求平均
+        double yield = 0;           //收益率
         for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
             StockPO firstDay = stockPool.getStockInfos().get(i).getStartDateStockPO();
             StockPO today = stockPool.getStockInfos().get(i).getStockByDate(date);
@@ -119,7 +108,8 @@ public class MomentumBackTesting {
     }
 
     /**
-     * 计算持有股票每天的收益，并将数据存入cumulativeYieldGraphDataVOS
+     * 计算持有股票每天的收益
+     * 并将数据存入cumulativeYieldGraphDataVOS
      * @param date 日期
      */
     private void calculateHoldingStockYield(Date date) {
@@ -136,7 +126,7 @@ public class MomentumBackTesting {
         }
 
         //计算累计收益率
-        yield = (yield-this.INIT_FUND)/this.INIT_FUND;
+        yield = (yield-INIT_FUND)/INIT_FUND;
 
         this.cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(date, yield));
     }
@@ -162,23 +152,23 @@ public class MomentumBackTesting {
             stockYields.add(new StockYield(yesterday.getStockCode(), yield));
         }
 
+        //在开始日期的前一个交易日买入股票
         Date date = DateHelper.getInstance().formerTradeDay(this.stockPool.getStartDate());
 
-        this.initTopNStocksAndBuy(stockYields, date);
+        this.buyStock(stockYields, date);
     }
 
     /**
      * 一个持有期结束
      * 计算指定日期所有股票形成期收益，并获取前holdingStockNum个的股票代码
-     * @param date 该日期的前一天的收盘价用于计算
+     * @param date 日期（前一天卖出并立马买入股票）
      */
     private void rebalance(Date date) {
-        Date oneDayBeforeDate = DateHelper.getInstance().formerTradeDay(date);     //该日期的前一天的收盘价用于计算
+        Date oneDayBeforeDate = DateHelper.getInstance().formerTradeDay(date);     //在该日期的前一天卖出
         Date beforeDate = DateHelper.getInstance().formerNTradeDay(date, returnPeriod);
 
         this.sellStock(oneDayBeforeDate);           //卖出所有持有的且当天没有停盘的股票
-        this.calculatePeriodYield();
-
+        this.calculatePeriodYield();                //计算周期收益率
 
         //计算股票池內所有股票的收益率 用于确定下次持有的股票
         ArrayList<StockYield> stockYields = new ArrayList<>();
@@ -195,9 +185,8 @@ public class MomentumBackTesting {
             stockYields.add(new StockYield(yesterday.getStockCode(), yield));
         }
 
-        //确定前n的股票，并买入
-        this.initTopNStocksAndBuy(stockYields, oneDayBeforeDate);
-
+        //确定前n的股票 买入
+        this.buyStock(stockYields, oneDayBeforeDate);
     }
 
     /**
@@ -209,18 +198,18 @@ public class MomentumBackTesting {
     }
 
     /**
-     * 从所有股票的收益率中选取前holdingStockNum作为持有的股票
+     * 从所有股票的收益率中选取前holdingStockNum买入
      * @param stockYields stockYields
      * @param date  用于确定特定一天的adj， 确定每只股票买多少股
      */
-    private void initTopNStocksAndBuy(ArrayList<StockYield> stockYields, Date date) {
+    private void buyStock(ArrayList<StockYield> stockYields, Date date) {
         //冒泡排序 排序holdingStockNum次 得到收益前holdingStockNum的股票
-        for(int i=stockYields.size()-1;i>stockYields.size()-holdingStockNum-1; i--) {
-            for(int j=0; j<i; ++ j) {
-                if(stockYields.get(j).getYield() < stockYields.get(j+1).getYield()) {
+        for(int i=0; i<holdingStockNum; ++i) {
+            for(int j=stockYields.size()-1; j>i; j--) {
+                if(stockYields.get(j).getYield() > stockYields.get(j-1).getYield()) {
                     StockYield temp = stockYields.get(j);
-                    stockYields.set(j, new StockYield(stockYields.get(j+1).getStockCode(), stockYields.get(j+1).getYield()));
-                    stockYields.set(j+1, temp);
+                    stockYields.set(j, new StockYield(stockYields.get(j-1).getStockCode(), stockYields.get(j+1).getYield()));
+                    stockYields.set(j-1, temp);
                 }
             }
         }
@@ -229,10 +218,13 @@ public class MomentumBackTesting {
         double moneyEachStock = income/this.holdingStockNum;
         for(int i=0; i<holdingStockNum; ++ i) {
             if(this.holdingStocks.size() < this.holdingStockNum) {      //持有数量只能为holdingStockNum
-                double adj = this.stockPool.findSpecificStock(stockYields.get(i).getStockCode(), date).getADJ();
-                double numOfStock = moneyEachStock/adj;
+                StockPO stockPO = this.stockPool.findSpecificStock(stockYields.get(i).getStockCode(), date);
 
-                this.holdingStocks.add(new HoldingStock(stockYields.get(i).getStockCode(), numOfStock));
+                if(stockPO != null) {
+                    double adj = stockPO.getADJ();
+                    double numOfStock = moneyEachStock/adj;
+                    this.holdingStocks.add(new HoldingStock(stockYields.get(i).getStockCode(), numOfStock));
+                }
             }
         }
     }
@@ -254,7 +246,7 @@ public class MomentumBackTesting {
             if (stockPO != null) {
                 double adj = this.stockPool.findSpecificStock(this.holdingStocks.get(i).getStockCode(), date).getADJ();
                 income += numOfStock * adj;
-            } else {                    //如果当天股票停盘 继续持有该股票
+            } else {                    //如果当天股票停盘 继续持有该股票，不卖出
                 temp.add(this.holdingStocks.get(i));
             }
         }
@@ -275,7 +267,7 @@ public class MomentumBackTesting {
         StrategyDataAnlysis analysis = new StrategyDataAnlysis();
 
         //计算累计收益率图的有关数据
-        CumulativeYieldGraphVO cumulativeYieldGraphVO = analysis.analyseCumulativeYieldGraph(income, this.INIT_FUND, stockPool.getTradeDays(),
+        CumulativeYieldGraphVO cumulativeYieldGraphVO = analysis.analyseCumulativeYieldGraph(income, INIT_FUND, stockPool.getTradeDays(),
                 cumulativeYieldGraphDataVOS, baseCumulativeYieldGraphDataVOS);
 
         //计算有关频率分布直方图的数据

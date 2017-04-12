@@ -22,25 +22,6 @@ public class DateHelper {
         return dateHelper;
     }
 
-
-    public Date stringTransToDate(String dateformat) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
-
-        Date date = null;
-        try {
-            date = simpleDateFormat.parse(dateformat);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return date;
-    }
-
-    public String dateTransToString(Date date) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
-        return simpleDateFormat.format(date);
-    }
-
     /**
      * 给定日期计算下一个交易日（除去周末）
      * @param date 日期
@@ -75,6 +56,12 @@ public class DateHelper {
         return c.getTime();
     }
 
+    /**
+     * 计算给定日期前n个交易日的日期
+     * @param date 日期
+     * @param n n
+     * @return Date
+     */
     public Date formerNTradeDay(Date date, int n) {
         Date d = date;
         for(int i=0; i<n; ++i) {
@@ -93,6 +80,12 @@ public class DateHelper {
         return d;
     }
 
+    /**
+     * 获得给定日期的下一个第一个交易日
+     * 如果给定日期是交易日，则日期不改变
+     * @param date
+     * @return
+     */
     public Date getNextFirstTradeDay(Date date) {
         Calendar c = Calendar.getInstance();
         c.setTime(date);
@@ -104,7 +97,12 @@ public class DateHelper {
         return c.getTime();
     }
 
-    public  boolean dateOutOfRange(Date date) {
+    /**
+     * 判断给定日期是否落在有股票数据的区间
+     * @param date 日期
+     * @return boolean
+     */
+    public boolean dateOutOfRange(Date date) {
 
         Date start = this.stringTransToDate("2/1/05");
         Date end = this.stringTransToDate("4/29/14");
@@ -121,8 +119,14 @@ public class DateHelper {
         return false;
     }
 
+    /**
+     * 计算两个日期间相差的天数
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @return 天数 可为负数
+     */
     public int calculateDaysBetween(Date startDate, Date endDate) {
-        long start = 0, end = 0;
+        long start, end;
         start = startDate.getTime();
         end = endDate.getTime();
 
@@ -135,4 +139,23 @@ public class DateHelper {
     public String getDealDate(double d){
         return new java.text.DecimalFormat("0.000000").format(d);
     }
+
+    public Date stringTransToDate(String dateformat) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
+
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(dateformat);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return date;
+    }
+
+    public String dateTransToString(Date date) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
+        return simpleDateFormat.format(date);
+    }
+
 }

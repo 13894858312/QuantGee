@@ -1,6 +1,7 @@
 package logic.tools;
 
 /**
+ * 均线图的种类转换
  * Created by Mark.W on 2017/3/10.
  */
 public class SwitchAverageLineType {

@@ -22,7 +22,14 @@ public class MomentumDriveStrategy implements Strategy {
     }
 
     @Override
-    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO, int period, boolean isHoldingPeriod) {
+    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO,  boolean isHoldingPeriod) {
+
+        int period;
+        if(isHoldingPeriod) {
+            period = strategyInputVO.holdingPeriod;
+        } else {
+            period = strategyInputVO.returnPeriod;
+        }
 
         MomentumAbnormalReturn momentumAbnormalReturn = new MomentumAbnormalReturn(stockPool, period, isHoldingPeriod);
 

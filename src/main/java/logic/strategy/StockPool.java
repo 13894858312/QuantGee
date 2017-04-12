@@ -21,13 +21,17 @@ public class StockPool {
     private ArrayList<StockInfo> stockInfos;
     private Date startDate;
     private Date endDate;
-    private int tradeDays;   //时间区间內的交易日数
+    private int tradeDays;   //时间区间內的交易日数，即投资天数
+
+    private int endIndex;     //indexStocks的结束下标
 
     public StockPool(StrategyInputVO strategyInputVO) {
         this.stockDataDao = new MockStockData();
 
-        this.startDate = DateHelper.getInstance().getNextFirstTradeDay(strategyInputVO.startDate);
+        this.startDate = strategyInputVO.startDate;
         this.endDate = strategyInputVO.endDate;
+
+        this.stockInfos = new ArrayList<>();
 
         this.initStockInfos(strategyInputVO);
     }
@@ -44,7 +48,9 @@ public class StockPool {
             }
         }
 
-        this.tradeDays = this.stockInfos.get(index).getStockPOS().size();
+        this.endIndex = this.stockInfos.get(index).getEndIndex();
+        this.tradeDays = this.stockInfos.get(index).getStockSize();
+
         return this.stockInfos.get(index).getStockPOS();
     }
 
@@ -66,36 +72,10 @@ public class StockPool {
     }
 
     /**
-     * 根据股票代码获取开始日期那一天的股票信息
-     * @param stockCode 股票代码
-     * @return StockPO
-     */
-    public StockPO findStartDateStock(String stockCode) {
-        for(int i=0; i<this.stockInfos.size(); ++i) {
-            if(stockInfos.get(i).getStockCode().equals(stockCode)) {
-                StockPO po = stockInfos.get(i).getStartDateStockPO();
-                return po;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * 初始化股票
-     * @param stockInfos ArrayList<StockInfo>
-     */
-    public void setStockInfos(ArrayList<StockInfo> stockInfos) {
-        this.stockInfos = stockInfos;
-    }
-
-    /**
      * 将数组转换为arraylist 初始化股票
      * @param stockPOS 从数据层获取的po
      */
     public void setStockInfosFromDataDao(ArrayList<ArrayList<StockPO>> stockPOS) {
-
-        this.stockInfos = new ArrayList<>();
 
         for(int i=0; i<stockPOS.size(); ++i) {
             if(stockPOS.get(i) != null && stockPOS.get(i).size() != 0) {
@@ -144,7 +124,6 @@ public class StockPool {
                 String s = DateHelper.getInstance().dateTransToString(sd);
                 String e = DateHelper.getInstance().dateTransToString(endDate);
 
-                ArrayList<StockInfo> stockInfos = new ArrayList<>();
                 for(int i=0; i<strategyInputVO.stockNames.size(); ++i) {
                     ArrayList<StockPO> stockPOS = this.stockDataDao.getStockPOsByTimeInterval(s, e, strategyInputVO.stockNames.get(i));
 
@@ -153,7 +132,6 @@ public class StockPool {
                     }
                 }
 
-                this.setStockInfos(stockInfos);
             }
         }
     }
@@ -172,5 +150,9 @@ public class StockPool {
 
     public int getTradeDays() {
         return tradeDays;
+    }
+
+    public int getEndIndex() {
+        return endIndex;
     }
 }

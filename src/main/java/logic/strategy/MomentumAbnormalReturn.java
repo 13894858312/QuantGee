@@ -10,6 +10,9 @@ import java.util.ArrayList;
  * Created by Mark.W on 2017/4/4.
  */
 public class MomentumAbnormalReturn {
+    private static final int START_PERIOD = 2;//暂时固定为2-80
+    private static final int END_PERIOD = 80;
+    private static final int INTERVAL = 2;
 
     private StockPool stockPool;
 
@@ -19,6 +22,11 @@ public class MomentumAbnormalReturn {
     private ArrayList<AbnormalReturnGraphDataVO> abnormalReturnGraphDataVOS;  //超额收益率和策略胜率图数据信息
     private AbnormalReturnGraphVO abnormalReturnGraphVO;
 
+    /**
+     * @param stockPool 股票池
+     * @param period 期间（天数）
+     * @param isHoldingPeriod 给定日期是否为持有期
+     */
     public MomentumAbnormalReturn(StockPool stockPool, int period, boolean isHoldingPeriod) {
         this.stockPool = stockPool;
         this.period = period;
@@ -28,10 +36,9 @@ public class MomentumAbnormalReturn {
     }
 
     public void start() {
-        MomentumBackTesting momentumBackTesting = null;
+        MomentumBackTesting momentumBackTesting;
 
-        //暂时固定为2-80
-        for(int i=2; i<=80; i+=2) {
+        for(int i=START_PERIOD; i<=END_PERIOD; i+=INTERVAL) {
             if(isHoldingPeriod) {
                 momentumBackTesting = new MomentumBackTesting(stockPool, period, i);
             } else {
@@ -77,9 +84,8 @@ public class MomentumAbnormalReturn {
             }
         }
 
-        this.abnormalReturnGraphVO = new AbnormalReturnGraphVO(isHoldingPeriod,bestHoldingPeriod, bestReturnPeriod,
+        this.abnormalReturnGraphVO = new AbnormalReturnGraphVO(isHoldingPeriod, bestHoldingPeriod, bestReturnPeriod,
                 bestAbnormalReturn, bestStategyWinRate, this.abnormalReturnGraphDataVOS);
-
     }
 
     public AbnormalReturnGraphVO getAbnormalReturnGraphVO() {

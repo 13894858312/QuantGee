@@ -60,6 +60,7 @@ public class MathHelper {
         return temp;
     }
 
+
     public static double average(double[] data) {
         double sum = 0;
 

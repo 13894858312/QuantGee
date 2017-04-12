@@ -14,6 +14,8 @@ import java.util.ArrayList;
  */
 public class StrategyDataAnlysis {
 
+    private static final double RF = 0.0175;
+
     /**
      * 计算有关频率分布直方图的数据
      * @param yieldPerPeriod 周期收益率数据
@@ -49,7 +51,7 @@ public class StrategyDataAnlysis {
                                                               ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS,
                                                               ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS) {
         double annualRevenue = this.calculateAnnualRevenue(income, init_fund, tradeDays);       //策略年化收益率
-        double baseAnnualRevenue = this.calculateBaseAnnualRevenue(tradeDays, baseCumulativeYieldGraphDataVOS);  //基准年化收益率\
+        double baseAnnualRevenue = this.calculateBaseAnnualRevenue(baseCumulativeYieldGraphDataVOS, tradeDays);  //基准年化收益率\
         double beta = this.calculateBeta(cumulativeYieldGraphDataVOS, baseCumulativeYieldGraphDataVOS);
         double alpha = this.calculateAlpha(annualRevenue, baseAnnualRevenue, beta);
         double sharpeRatio = this.calculateSharpRatio(annualRevenue, cumulativeYieldGraphDataVOS);  //夏普比率
@@ -66,7 +68,7 @@ public class StrategyDataAnlysis {
      * @param income 本金+利益
      * @param initFund 本金
      * @param baseCumulativeYieldGraphDataVOS 基准收益率
-     * @return 超额收益率
+     * @return 超额收益率=策略收益率-基准收益率
      */
     public double analyseAbnormalReturn(double income, double initFund,
                                       ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS) {
@@ -102,8 +104,7 @@ public class StrategyDataAnlysis {
      * @return
      */
     private double calculateAlpha(double annualRevenue, double baseAnnualRevenue, double beta) {
-        double rf = 0.0175;
-        double alpha = annualRevenue - rf - beta * (baseAnnualRevenue - rf);
+        double alpha = (annualRevenue - RF) - beta * (baseAnnualRevenue - RF);
         return alpha;
     }
 
@@ -114,14 +115,12 @@ public class StrategyDataAnlysis {
      * @return 夏普比率
      */
     private double calculateSharpRatio(double annualRevenue, ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS) {
-        double rf = 0.0175;
         double[] strategy = new double[cumulativeYieldGraphDataVOS.size()];
         for(int i=0; i<cumulativeYieldGraphDataVOS.size(); ++i) {
             strategy[i] = cumulativeYieldGraphDataVOS.get(i).ratio;
         }
 
-        double sharpeRatio = (annualRevenue - rf)/Math.sqrt(MathHelper.variance(strategy));
-
+        double sharpeRatio = (annualRevenue - RF)/Math.sqrt(MathHelper.variance(strategy));
         return sharpeRatio;
     }
 
@@ -154,8 +153,8 @@ public class StrategyDataAnlysis {
      * @param baseCumulativeYieldGraphDataVOS 投资区间的基准策略收益率
      * @return 基准年化收益率
      */
-    private double calculateBaseAnnualRevenue(int tradeDays,
-                                              ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS) {
+    private double calculateBaseAnnualRevenue(ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS,
+                                              int tradeDays) {
         double baseAnnualRevenue = 0;
         for(int i=1; i<baseCumulativeYieldGraphDataVOS.size(); ++i) {
             baseAnnualRevenue += baseCumulativeYieldGraphDataVOS.get(i).baseRatio;
