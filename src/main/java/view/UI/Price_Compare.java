@@ -5,8 +5,6 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
-import vo.StockDailyInfoVO;
-import vo.StockVO;
 
 import java.util.ArrayList;
 

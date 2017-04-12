@@ -7,7 +7,6 @@ import logic.tools.DateHelper;
 import logic.tools.MathHelper;
 import logic.tools.SwitchAverageLineType;
 import logicService.GraphCalculationService;
-import mock.MockStockData;
 import po.StockPO;
 import vo.AverageLineVO;
 import vo.KLineVO;
@@ -16,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
+ *
  * Created by Mark.W on 2017/3/5.
  */
 public class GraphCalculation implements GraphCalculationService {
@@ -151,7 +151,7 @@ public class GraphCalculation implements GraphCalculationService {
             return null;
         }
 
-        return this.getAverageLineInfoByCode(startDate, endDate, code, averageLineType);
+        return getAverageLineInfoByCode(startDate, endDate, code, averageLineType);
     }
 
     public ArrayList<KLineVO> getKLineInfoByName(Date startDate, Date endDate, String stockName) {

@@ -3,15 +3,11 @@ package view.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import logic.calculation.DataCalculation;
-import logicService.DataCalculationService;
 import view.UI.MarketThermometer;
 import view.graph.Graph;
-import vo.MarketInfoVO;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.DoubleSummaryStatistics;
 
 /**
  * Created by wangxue on 2017/3/9.

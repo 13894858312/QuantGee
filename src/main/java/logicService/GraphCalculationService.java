@@ -36,8 +36,8 @@ public interface GraphCalculationService {
      * 根据开始日期、结束日期、时间间隔和股票名字绘画均线图图
      * @param startDate 开始日期
      * @param endDate 结束日期
-     * @param averageLineType 均线图时间间隔
      * @param stockName  股票编号
+     * @param averageLineType 均线图时间间隔
      * @return ArrayList<AverageLineVO>
      */
     public ArrayList<AverageLineVO> getAverageLineInfoByName(Date startDate, Date endDate, String stockName, AverageLineType averageLineType);

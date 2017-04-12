@@ -1,6 +1,5 @@
 package logic.strategy;
 
-import logic.tools.DateHelper;
 import vo.*;
 
 /**
@@ -10,16 +9,16 @@ import vo.*;
 public class MomentumDriveStrategy implements Strategy {
 
     @Override
-    public CumulativeYieldGraphVO getCumulativeYieldGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO) {
+    public BackTestingResultVO getStrategyBackTestingGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO) {
 
-        MomentumCumlativeYield momentumCumlativeYield = new MomentumCumlativeYield(stockPool,
+        MomentumBackTesting momentumBackTesting = new MomentumBackTesting(stockPool,
                 strategyInputVO.holdingPeriod, strategyInputVO.returnPeriod, strategyInputVO.holdingStockNum);
 
-        momentumCumlativeYield.start();
+        momentumBackTesting.start();
 
-        CumulativeYieldGraphVO cumulativeYieldGraphVO = momentumCumlativeYield.getCumulativeYieldGraphVO();
+        BackTestingResultVO backTestingResultVO = momentumBackTesting.getBackTestingResultVO();
 
-        return cumulativeYieldGraphVO;
+        return backTestingResultVO;
     }
 
     @Override
@@ -31,18 +30,6 @@ public class MomentumDriveStrategy implements Strategy {
 
         AbnormalReturnGraphVO abnormalReturnGraphVO = momentumAbnormalReturn.getAbnormalReturnGraphVO();
         return abnormalReturnGraphVO;
-    }
-
-    @Override
-    public YieldHistogramGraphVO getYieldHistogramGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO) {
-
-        MomentumYieldHistogram momentumYieldHistogram = new MomentumYieldHistogram(stockPool);
-
-        momentumYieldHistogram.start();
-
-        YieldHistogramGraphVO yieldHistogramGraphVO = momentumYieldHistogram.getYieldHistogramGraphVO();
-
-        return yieldHistogramGraphVO;
     }
 
 }

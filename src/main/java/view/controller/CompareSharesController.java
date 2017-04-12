@@ -8,8 +8,6 @@ import logic.calculation.GraphCalculation;
 import logic.tools.AverageLineType;
 import logicService.GraphCalculationService;
 import view.graph.Graph;
-import vo.StockDailyInfoVO;
-import vo.StockVO;
 
 import java.util.ArrayList;
 import java.util.Date;

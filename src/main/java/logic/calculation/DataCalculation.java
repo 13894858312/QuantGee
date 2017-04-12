@@ -5,9 +5,10 @@ import dataDao.StockDataDao;
 import logic.tools.DateHelper;
 import logic.tools.MathHelper;
 import logicService.DataCalculationService;
-import mock.MockStockData;
 import po.StockPO;
-import vo.*;
+import vo.MarketInfoVO;
+import vo.StockDailyInfoVO;
+import vo.StockVO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -119,27 +120,8 @@ public class DataCalculation implements DataCalculationService {
             yesterdayStockMarket = this.stockDataDao.getStockPOsByDate(dateHelper.dateTransToString(temp));
         }
 
-//        System.out.println("yesterdayStockMarket: " + yesterdayStockMarket.size());
-//        for (int i = 0; i < yesterdayStockMarket.size(); ++i) {
-//            System.out.println("1:  " + yesterdayStockMarket.get(i).getStockCode());
-//        }
-//        System.out.println("todayStockMarket: " + todayStockMarket.size());
-//        for (int i = 0; i < todayStockMarket.size(); ++i) {
-//            System.out.println("1:  " + todayStockMarket.get(i).getStockCode());
-//        }
-
         todayStockMarket = sortList(todayStockMarket);
         yesterdayStockMarket = sortList(yesterdayStockMarket);
-
-
-//        System.out.println("yesterdayStockMarket: " + yesterdayStockMarket.size());
-//        for (int i = 0; i < yesterdayStockMarket.size(); ++i) {
-//            System.out.println("2:  " + yesterdayStockMarket.get(i).getStockCode());
-//        }
-//        System.out.println("todayStockMarket: " + todayStockMarket.size());
-//        for (int i = 0; i < todayStockMarket.size(); ++i) {
-//            System.out.println("2:  " + todayStockMarket.get(i).getStockCode());
-//        }
 
         //计算当日总交易量
         int j = 0;          //yesterdayStockMarket遍历的下标
@@ -155,18 +137,11 @@ public class DataCalculation implements DataCalculationService {
 
             while (!yesterdayStockMarket.get(j).getStockCode().equals(todayStockMarket.get(i).getStockCode())) {
 
-//                System.out.println("here i " + i + " code: " + todayStockMarket.get(i).getCodeNumber());
-//                System.out.println("here j " + j + " code: " + yesterdayStockMarket.get(j).getCodeNumber());
-
                 if (yesterdayStockMarket.get(j).getCodeNumber() < todayStockMarket.get(i).getCodeNumber()) {
                     j++;
                 } else if (yesterdayStockMarket.get(j).getCodeNumber() > todayStockMarket.get(i).getCodeNumber()) {
                     i++;
                 }
-
-//                System.out.println("here i " + i + " code: " + todayStockMarket.get(i).getCodeNumber());
-//                System.out.println("here j " + j + " code: " + yesterdayStockMarket.get(j).getCodeNumber());
-//                System.out.println();
 
                 if (j >= yesterdayStockMarket.size() || i >= todayStockMarket.size()) {
                     break;
@@ -204,11 +179,6 @@ public class DataCalculation implements DataCalculationService {
             }
         }
 
-//        for (int i = 0; i < rateNums.length; ++i) {  //初始化
-//            System.out.println(rateNums[i]);
-//        }
-
-
         MarketInfoVO marketInfoVO = new MarketInfoVO(date, allVolume, rateNums, greaterThanFiveNum, lessThanFiveNum);
 
         return marketInfoVO;
@@ -221,10 +191,6 @@ public class DataCalculation implements DataCalculationService {
 
 
         String code = this.stockDataDao.getStockCodeByName(stockName);
-
-
-//        System.out.println(stockName);
-//        System.out.println(code);
 
         if (code == null || code.equals("")) {
             return null;

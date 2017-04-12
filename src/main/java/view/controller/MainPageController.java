@@ -12,8 +12,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import logic.calculation.DataCalculation;
 import logicService.DataCalculationService;
-import vo.MarketInfoVO;
-import vo.StockVO;
+
 import java.time.temporal.ChronoUnit;
 import javafx.scene.control.Tooltip;
 import javafx.util.Callback;

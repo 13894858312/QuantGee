@@ -8,11 +8,12 @@ import vo.*;
 public interface StrategyCalculationService {
 
     /**
-     * 计算累计收益率的图
+     * 策略回测
+     * 计算累计收益率的图和频率分布直方图
      * @param strategyInputVO 股票信息
-     * @return CumulativeYieldGraphVO
+     * @return BackTestingResultVO
      */
-    public CumulativeYieldGraphVO getCumulativeYieldGraphInfo(StrategyType strategyType, StrategyInputVO strategyInputVO);
+    public BackTestingResultVO getStrategyBackTestingGraphInfo(StrategyType strategyType, StrategyInputVO strategyInputVO);
 
     /**
      * 计算收益率和策略胜率的图
@@ -23,12 +24,4 @@ public interface StrategyCalculationService {
      * @return AbnormalReturnGraphVO
      */
     public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StrategyType strategyType,StrategyInputVO strategyInputVO, double period, boolean isHoldingPeriod);
-
-    /**
-     * 计算收益分布直方图
-     * @param strategyType 策略类型
-     * @param strategyInputVO 股票信息
-     * @return YieldHistogramGraphVO
-     */
-    public YieldHistogramGraphVO getYieldHistogramGraphInfo(StrategyType strategyType, StrategyInputVO strategyInputVO);
 }

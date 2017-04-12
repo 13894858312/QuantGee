@@ -3,7 +3,6 @@ package view.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import vo.StrategyType;
 
 /**
  * Created by wangxue on 2017/4/5.

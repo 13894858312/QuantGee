@@ -1,15 +1,12 @@
 package view.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import logic.calculation.GraphCalculation;
 import logic.tools.AverageLineType;
 import logicService.GraphCalculationService;
-import view.UI.AdvCandleStickChart;
 import view.graph.Graph;
-import vo.StockVO;
 
 import java.util.Date;
 

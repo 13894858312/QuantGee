@@ -21,21 +21,22 @@ public class StrategyCalculation implements StrategyCalculationService{
     }
 
     /**
-     * 计算累计收益率的图
+     * 策略回测
+     * 计算累计收益率的图和收益分布直方图
      * @param strategyInputVO 股票信息
-     * @return CumulativeYieldGraphVO
+     * @return BackTestingResultVO
      */
     @Override
-    public CumulativeYieldGraphVO getCumulativeYieldGraphInfo(StrategyType strategyType, StrategyInputVO strategyInputVO) {
+    public BackTestingResultVO getStrategyBackTestingGraphInfo(StrategyType strategyType, StrategyInputVO strategyInputVO) {
         this.initStockPool(strategyInputVO);
 
         this.initStrategy(strategyType);
 
-        CumulativeYieldGraphVO cumulativeYieldGraphVO = strategy.getCumulativeYieldGraphInfo(stockPool, strategyInputVO);
+        BackTestingResultVO backTestingResultVO = strategy.getStrategyBackTestingGraphInfo(stockPool, strategyInputVO);
 
-        assert (cumulativeYieldGraphVO != null) : "logic.calculation.StrategyCalculation.getCumulativeYieldGraphInfo返回值异常" ;
+        assert (backTestingResultVO != null) : "logic.calculation.StrategyCalculation.getCumulativeYieldGraphInfo返回值异常" ;
 
-        return cumulativeYieldGraphVO;
+        return backTestingResultVO;
     }
 
     /**
@@ -58,23 +59,6 @@ public class StrategyCalculation implements StrategyCalculationService{
         return abnormalReturnGraphVO;
     }
 
-    /**
-     * 计算收益分布直方图
-     * @param strategyType 策略类型
-     * @param strategyInputVO 股票信息
-     * @return YieldHistogramGraphVO
-     */
-    @Override
-    public YieldHistogramGraphVO getYieldHistogramGraphInfo(StrategyType strategyType, StrategyInputVO strategyInputVO) {
-        this.initStockPool(strategyInputVO);
-
-        this.initStrategy(strategyType);
-        YieldHistogramGraphVO yieldHistogramGraphVO = strategy.getYieldHistogramGraphInfo(stockPool, strategyInputVO);
-
-        assert (yieldHistogramGraphVO != null) : "logic.calculation.StrategyCalculation.getYieldHistogramGraphInfo返回值异常" ;
-
-        return yieldHistogramGraphVO;
-    }
 
     private void initStrategy(StrategyType strategyType) {
         this.strategy = StrategyFactory.getInstance().getStrategy(strategyType);

@@ -1,9 +1,6 @@
 package logic.strategy;
 
-import vo.AbnormalReturnGraphVO;
-import vo.CumulativeYieldGraphVO;
-import vo.StrategyInputVO;
-import vo.YieldHistogramGraphVO;
+import vo.*;
 
 /**
  * Created by Mark.W on 2017/3/29.
@@ -12,11 +9,11 @@ import vo.YieldHistogramGraphVO;
 public interface Strategy {
 
     /**
-     * 计算累计收益率的图
+     * 计算累计收益率的图 频率分布直方图
      * @param stockPool 股票池
      * @return CumulativeYieldGraphVO
      */
-    CumulativeYieldGraphVO getCumulativeYieldGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO);
+    BackTestingResultVO getStrategyBackTestingGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO);
 
     /**
      * 计算收益率和策略胜率的图
@@ -27,12 +24,4 @@ public interface Strategy {
      * @return AbnormalReturnGraphVO
      */
     AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO, double period, boolean isHoldingPeriod);
-
-    /**
-     * 计算收益分布直方图
-     * @param stockPool 股票池
-     * @param strategyInputVO 股票信息
-     * @return YieldHistogramGraphVO
-     */
-    YieldHistogramGraphVO getYieldHistogramGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO);
 }

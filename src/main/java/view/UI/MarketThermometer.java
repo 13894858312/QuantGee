@@ -1,12 +1,7 @@
 package view.UI;
 
-import javafx.collections.ObservableList;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.layout.Pane;
-import view.controller.MarketInfoController;
-import vo.MarketInfoVO;
 
 /**
  * Created by Administrator on 2017/3/10.

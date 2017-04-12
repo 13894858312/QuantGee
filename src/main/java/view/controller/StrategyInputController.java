@@ -16,7 +16,6 @@ import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import logic.calculation.StrategyCalculation;
 import logicService.StrategyCalculationService;
-import vo.StrategyInputVO;
 
 import java.io.IOException;
 import java.time.LocalDate;

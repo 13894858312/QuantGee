@@ -3,6 +3,7 @@ package logic.strategy;
 import logic.tools.DateHelper;
 import logic.tools.MathHelper;
 import po.StockPO;
+import vo.BackTestingResultVO;
 import vo.BaseCumulativeYieldGraphDataVO;
 import vo.CumulativeYieldGraphDataVO;
 import vo.CumulativeYieldGraphVO;
@@ -14,7 +15,7 @@ import java.util.Date;
  * 动量策略计算累计收益率
  * Created by Mark.W on 2017/4/4.
  */
-public class MomentumCumlativeYield {
+public class MomentumBackTesting {
     private final double INIT_FUND = 1000; //起始资金
     private double income = INIT_FUND;      //总收益
 
@@ -29,8 +30,9 @@ public class MomentumCumlativeYield {
     private ArrayList<HoldingStock> holdingStocks;
 
     private CumulativeYieldGraphVO cumulativeYieldGraphVO;
+    private BackTestingResultVO backTestingResultVO;
 
-    public MomentumCumlativeYield(StockPool stockPool, int holdingPeriod, int returnPeriod, int holdingStockNum) {
+    public MomentumBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod, int holdingStockNum) {
         this.stockPool = stockPool;
 
         this.holdingPeriod = holdingPeriod;
@@ -47,7 +49,7 @@ public class MomentumCumlativeYield {
      */
     public void start() {
         this.initHoldingStockOnfirstRun();
-        int index = this.returnPeriod;      //记录是否达到一个holdingPeriod的index
+        int startIndex = this.returnPeriod;
 
         ArrayList<StockPO> stockPOS = stockPool.getIndexStocks();
 
@@ -60,12 +62,14 @@ public class MomentumCumlativeYield {
             }
 
             if(num == 0) {
-                index = i;
+                startIndex = i;
             }
         }
 
+        int index = 0;      //记录是否达到一个holdingPeriod的index
+
         //循环主题
-        for(int i=index; i<stockPOS.size(); ++i) {
+        for(int i=startIndex; i<stockPOS.size(); ++i) {
 
             Date temp = DateHelper.getInstance().stringTransToDate(stockPOS.get(i).getDate());
 
@@ -80,6 +84,10 @@ public class MomentumCumlativeYield {
             this.calculateBaseCumlativeYield(temp);         //基准收益率计算 用今日adj
             this.calculateHoldingStockYield(temp);          //计算收益， 用昨日adj
         }
+
+//        if(index > 0 && index < holdingPeriod) {
+//            this.
+//        }
 
         this.finish();
     }
@@ -368,7 +376,7 @@ public class MomentumCumlativeYield {
         return maxDrawdown;
     }
 
-    public CumulativeYieldGraphVO getCumulativeYieldGraphVO() {
-        return cumulativeYieldGraphVO;
+    public BackTestingResultVO getBackTestingResultVO() {
+        return backTestingResultVO;
     }
 }

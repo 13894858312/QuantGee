@@ -1,21 +1,21 @@
 package logic.strategy;
 
-import vo.BaseCumulativeYieldGraphDataVO;
-import vo.CumulativeYieldGraphDataVO;
-import vo.CumulativeYieldGraphVO;
-
 import java.util.ArrayList;
 import java.util.Date;
 
 import logic.tools.DateHelper;
 import logic.tools.MathHelper;
 import po.StockPO;
+import vo.BackTestingResultVO;
+import vo.BaseCumulativeYieldGraphDataVO;
+import vo.CumulativeYieldGraphDataVO;
+import vo.CumulativeYieldGraphVO;
 
 /**
  * 均值回归策略累计收益率图
  * Created by Mark.W on 2017/4/4.
  */
-public class MeanReversionCumlativeYield{
+public class MeanReversionBackTesting {
     private StockPool stockPool;
 
     private int holdingPeriod;  //持有期
@@ -27,7 +27,9 @@ public class MeanReversionCumlativeYield{
 
     private CumulativeYieldGraphVO cumulativeYieldGraphVO;
 
-    public MeanReversionCumlativeYield(StockPool stockPool, int holdingPeriod, int returnPeriod, int holdingStockNum) {
+    private BackTestingResultVO backTestingResultVO;
+
+    public MeanReversionBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod, int holdingStockNum) {
         this.stockPool = stockPool;
         this.holdingPeriod = holdingPeriod;
         this.returnPeriod = returnPeriod;
@@ -96,10 +98,6 @@ public class MeanReversionCumlativeYield{
 	public void calculateHoldingStockYield(Date date) {
 		// TODO Auto-generated method stub
 		
-	}
-	
-	public CumulativeYieldGraphVO getCumulativeYieldGraphVO() {
-		return cumulativeYieldGraphVO;
 	}
 	
 	 /**
@@ -221,4 +219,7 @@ public class MeanReversionCumlativeYield{
         return maxDrawdown;
     }
 
+    public BackTestingResultVO getBackTestingResultVO() {
+        return backTestingResultVO;
+    }
 }

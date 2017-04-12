@@ -3,9 +3,6 @@ package view.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import vo.AbnormalReturnGraphVO;
-import vo.CumulativeYieldGraphVO;
-import vo.YieldHistogramGraphVO;
 
 /**
  * 展示策略的三个图
