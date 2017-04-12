@@ -7,7 +7,6 @@ import logic.tools.DateHelper;
 import logic.tools.MathHelper;
 import po.StockPO;
 import vo.BackTestingResultVO;
-import vo.BaseCumulativeYieldGraphDataVO;
 import vo.CumulativeYieldGraphDataVO;
 import vo.CumulativeYieldGraphVO;
 

@@ -2,6 +2,7 @@ package logic.strategy;
 
 import dataDao.StockDataDao;
 import logic.tools.DateHelper;
+import logic.tools.SwitchBlockType;
 import mock.MockStockData;
 import po.StockPO;
 import vo.StrategyInputType;
@@ -35,6 +36,8 @@ public class StockPool {
 
         this.initStockInfos(strategyInputVO);
     }
+
+
 
     /**
      * 获取stockpo size最大的stockinfo 作为标杆
@@ -107,7 +110,7 @@ public class StockPool {
                 String s = DateHelper.getInstance().dateTransToString(sd);
                 String e = DateHelper.getInstance().dateTransToString(endDate);
 
-                ArrayList<ArrayList<StockPO>> stocks = this.stockDataDao.getStockPOsByBlockName(s, e, strategyInputVO.blockName);
+                ArrayList<ArrayList<StockPO>> stocks = this.stockDataDao.getStockPOsByBlockName(s, e, SwitchBlockType.getBlockName(strategyInputVO.blockType));
 
                 this.setStockInfosFromDataDao(stocks);
             }

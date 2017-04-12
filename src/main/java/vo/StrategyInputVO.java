@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class StrategyInputVO {
     public StrategyInputType strategyInputType;
-    public String blockName;
+    public BlockType blockType;
     public ArrayList<String> stockNames;
 
     public Date startDate;
@@ -46,16 +46,16 @@ public class StrategyInputVO {
      * 均值回归策略回测指定板块的股票的构造方法
      * @param startDate 开始日期
      * @param endDate 结束日期
-     * @param blockName 板块名称
+     * @param blockType 板块名称
      * @param holdingPeriod 调仓周期
      * @param returnPeriod 基准收益率计算周期
      * @param holdingStockNum 每次调仓持有的股票数量
      */
-    public StrategyInputVO(Date startDate, Date endDate, String blockName, int holdingPeriod,
+    public StrategyInputVO(Date startDate, Date endDate, BlockType blockType, int holdingPeriod,
                            int returnPeriod, int holdingStockNum) {
         this.startDate = DateHelper.getInstance().getNextFirstTradeDay(startDate);
         this.endDate = endDate;
-        this.blockName = blockName;
+        this.blockType = blockType;
         this.holdingPeriod = holdingPeriod;
         this.returnPeriod = returnPeriod;
         this.holdingStockNum = holdingStockNum;
@@ -98,13 +98,13 @@ public class StrategyInputVO {
      * 动量策略回测指定板块的股票的构造方法
      * @param startDate 开始日期
      * @param endDate 结束日期
-     * @param blockName 板块名称
+     * @param blockType 板块名称
      * @param holdingPeriod 调仓周期
      * @param returnPeriod 基准收益率计算周期
      */
-    public StrategyInputVO(Date startDate, Date endDate, String blockName,
+    public StrategyInputVO(Date startDate, Date endDate, BlockType blockType,
                            int holdingPeriod, int returnPeriod) {
-        this(startDate,endDate,blockName,holdingPeriod,returnPeriod, 0);
+        this(startDate,endDate,blockType,holdingPeriod,returnPeriod, 0);
     }
 
     /**

@@ -23,8 +23,8 @@ public class MomentumBackTesting {
     private int holdingStockNum;  //每个持有期持有的股票数量
     private ArrayList<HoldingStock> holdingStocks;
 
-    private ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS;  //每天的收益率
-    private ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS; //基准收益率
+    private ArrayList<CumulativeYieldGraphDataVO> strategyYield;  //每天的收益率
+    private ArrayList<CumulativeYieldGraphDataVO> baseYield; //基准收益率
 
     private ArrayList<Double> yieldPerPeriod;     //每个持有期结束后的收益率
 
@@ -43,8 +43,8 @@ public class MomentumBackTesting {
         this.holdingStockNum = stockPool.getStockInfos().size() / 5;
 
         this.holdingStocks = new ArrayList<>();
-        this.cumulativeYieldGraphDataVOS = new ArrayList<>();
-        this.baseCumulativeYieldGraphDataVOS = new ArrayList<>();
+        this.strategyYield = new ArrayList<>();
+        this.baseYield = new ArrayList<>();
         this.yieldPerPeriod = new ArrayList<>();
     }
 
@@ -104,7 +104,7 @@ public class MomentumBackTesting {
 
         yield /= stockNum;
 
-        this.baseCumulativeYieldGraphDataVOS.add(new BaseCumulativeYieldGraphDataVO(date, yield));
+        this.baseYield.add(new CumulativeYieldGraphDataVO(date, yield));
     }
 
     /**
@@ -128,7 +128,7 @@ public class MomentumBackTesting {
         //计算累计收益率
         yield = (yield-INIT_FUND)/INIT_FUND;
 
-        this.cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(date, yield));
+        this.strategyYield.add(new CumulativeYieldGraphDataVO(date, yield));
     }
 
 
@@ -268,7 +268,7 @@ public class MomentumBackTesting {
 
         //计算累计收益率图的有关数据
         CumulativeYieldGraphVO cumulativeYieldGraphVO = analysis.analyseCumulativeYieldGraph(income, INIT_FUND, stockPool.getTradeDays(),
-                cumulativeYieldGraphDataVOS, baseCumulativeYieldGraphDataVOS);
+                strategyYield, baseYield);
 
         //计算有关频率分布直方图的数据
         YieldHistogramGraphVO yieldHistogramGraphVO = analysis.analyseYieldHistogram(this.yieldPerPeriod);
@@ -281,7 +281,7 @@ public class MomentumBackTesting {
      * @return 超额收益率
      */
     public double getAbnormalReturn() {
-        double result = new StrategyDataAnlysis().analyseAbnormalReturn(income, INIT_FUND, baseCumulativeYieldGraphDataVOS);
+        double result = new StrategyDataAnlysis().analyseAbnormalReturn(income, INIT_FUND, baseYield);
         return result;
     }
 

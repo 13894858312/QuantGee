@@ -1,7 +1,6 @@
 package logic.strategy;
 
 import logic.tools.MathHelper;
-import vo.BaseCumulativeYieldGraphDataVO;
 import vo.CumulativeYieldGraphDataVO;
 import vo.CumulativeYieldGraphVO;
 import vo.YieldHistogramGraphVO;
@@ -43,22 +42,22 @@ public class StrategyDataAnlysis {
      * @param income 收益+本金
      * @param init_fund 本金
      * @param tradeDays 投资天数
-     * @param cumulativeYieldGraphDataVOS 策略收益率数据
-     * @param baseCumulativeYieldGraphDataVOS 基准收益率数据
+     * @param strategyYield 策略收益率数据
+     * @param baseYield 基准收益率数据
      * @return CumulativeYieldGraphVO
      */
     public CumulativeYieldGraphVO analyseCumulativeYieldGraph(double income, double init_fund, int tradeDays,
-                                                              ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS,
-                                                              ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS) {
+                                                              ArrayList<CumulativeYieldGraphDataVO> strategyYield,
+                                                              ArrayList<CumulativeYieldGraphDataVO> baseYield) {
         double annualRevenue = this.calculateAnnualRevenue(income, init_fund, tradeDays);       //策略年化收益率
-        double baseAnnualRevenue = this.calculateBaseAnnualRevenue(baseCumulativeYieldGraphDataVOS, tradeDays);  //基准年化收益率\
-        double beta = this.calculateBeta(cumulativeYieldGraphDataVOS, baseCumulativeYieldGraphDataVOS);
+        double baseAnnualRevenue = this.calculateBaseAnnualRevenue(baseYield, tradeDays);  //基准年化收益率\
+        double beta = this.calculateBeta(strategyYield, baseYield);
         double alpha = this.calculateAlpha(annualRevenue, baseAnnualRevenue, beta);
-        double sharpeRatio = this.calculateSharpRatio(annualRevenue, cumulativeYieldGraphDataVOS);  //夏普比率
-        double maxDrawdown = this.calculateMaxDrawdown(cumulativeYieldGraphDataVOS);  //最大回撤
+        double sharpeRatio = this.calculateSharpRatio(annualRevenue, strategyYield);  //夏普比率
+        double maxDrawdown = this.calculateMaxDrawdown(strategyYield);  //最大回撤
 
         CumulativeYieldGraphVO cumulativeYieldGraphVO = new CumulativeYieldGraphVO(annualRevenue,baseAnnualRevenue,
-                alpha, beta,sharpeRatio, maxDrawdown,cumulativeYieldGraphDataVOS, baseCumulativeYieldGraphDataVOS);
+                alpha, beta,sharpeRatio, maxDrawdown,strategyYield, baseYield);
 
         return cumulativeYieldGraphVO;
     }
@@ -67,17 +66,17 @@ public class StrategyDataAnlysis {
      * 计算超额收益率
      * @param income 本金+利益
      * @param initFund 本金
-     * @param baseCumulativeYieldGraphDataVOS 基准收益率
+     * @param baseYield 基准收益率
      * @return 超额收益率=策略收益率-基准收益率
      */
     public double analyseAbnormalReturn(double income, double initFund,
-                                      ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS) {
+                                      ArrayList<CumulativeYieldGraphDataVO> baseYield) {
         double base = 0;
-        for(int i=0; i<baseCumulativeYieldGraphDataVOS.size(); ++i) {
-            base += baseCumulativeYieldGraphDataVOS.get(i).baseRatio;
+        for(int i=0; i<baseYield.size(); ++i) {
+            base += baseYield.get(i).ratio;
         }
 
-        base /= baseCumulativeYieldGraphDataVOS.size();
+        base /= baseYield.size();
 
         double result = (income-initFund)/initFund - base;
         return result;
@@ -111,13 +110,13 @@ public class StrategyDataAnlysis {
     /**
      * 计算夏普比率
      * @param annualRevenue 策略年化收益率
-     * @param cumulativeYieldGraphDataVOS 投资区间的策略收益率
+     * @param strategyYield 投资区间的策略收益率
      * @return 夏普比率
      */
-    private double calculateSharpRatio(double annualRevenue, ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS) {
-        double[] strategy = new double[cumulativeYieldGraphDataVOS.size()];
-        for(int i=0; i<cumulativeYieldGraphDataVOS.size(); ++i) {
-            strategy[i] = cumulativeYieldGraphDataVOS.get(i).ratio;
+    private double calculateSharpRatio(double annualRevenue, ArrayList<CumulativeYieldGraphDataVO> strategyYield) {
+        double[] strategy = new double[strategyYield.size()];
+        for(int i=0; i<strategyYield.size(); ++i) {
+            strategy[i] = strategyYield.get(i).ratio;
         }
 
         double sharpeRatio = (annualRevenue - RF)/Math.sqrt(MathHelper.variance(strategy));
@@ -126,20 +125,20 @@ public class StrategyDataAnlysis {
 
     /**
      * 计算beta
-     * @param cumulativeYieldGraphDataVOS 投资区间的策略收益率
-     * @param baseCumulativeYieldGraphDataVOS 投资区间的基准策略收益率
+     * @param strategyYield 投资区间的策略收益率
+     * @param baseYield 投资区间的基准策略收益率
      * @return beta
      */
-    private double calculateBeta(ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS,
-                                ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS) {
-        double[] strategy = new double[cumulativeYieldGraphDataVOS.size()];
-        for(int i=0; i<cumulativeYieldGraphDataVOS.size(); ++i) {
-            strategy[i] = cumulativeYieldGraphDataVOS.get(i).ratio;
+    private double calculateBeta(ArrayList<CumulativeYieldGraphDataVO> strategyYield,
+                                ArrayList<CumulativeYieldGraphDataVO> baseYield) {
+        double[] strategy = new double[strategyYield.size()];
+        for(int i=0; i<strategyYield.size(); ++i) {
+            strategy[i] = strategyYield.get(i).ratio;
         }
 
-        double[] base = new double[baseCumulativeYieldGraphDataVOS.size()];
-        for(int i=0; i<baseCumulativeYieldGraphDataVOS.size(); ++i) {
-            base[i] = baseCumulativeYieldGraphDataVOS.get(i).baseRatio;
+        double[] base = new double[baseYield.size()];
+        for(int i=0; i<baseYield.size(); ++i) {
+            base[i] = baseYield.get(i).ratio;
         }
 
         double beta = MathHelper.covariance(strategy, base)/MathHelper.variance(base);
@@ -150,16 +149,16 @@ public class StrategyDataAnlysis {
 
     /**
      * 计算基准年化收益率
-     * @param baseCumulativeYieldGraphDataVOS 投资区间的基准策略收益率
+     * @param baseYield 投资区间的基准策略收益率
      * @return 基准年化收益率
      */
-    private double calculateBaseAnnualRevenue(ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS,
+    private double calculateBaseAnnualRevenue(ArrayList<CumulativeYieldGraphDataVO> baseYield,
                                               int tradeDays) {
         double baseAnnualRevenue = 0;
-        for(int i=1; i<baseCumulativeYieldGraphDataVOS.size(); ++i) {
-            baseAnnualRevenue += baseCumulativeYieldGraphDataVOS.get(i).baseRatio;
+        for(int i=1; i<baseYield.size(); ++i) {
+            baseAnnualRevenue += baseYield.get(i).ratio;
         }
-        baseAnnualRevenue /= baseCumulativeYieldGraphDataVOS.size();
+        baseAnnualRevenue /= baseYield.size();
 
         baseAnnualRevenue = (baseAnnualRevenue/tradeDays) * 365;
 
@@ -168,22 +167,22 @@ public class StrategyDataAnlysis {
 
     /**
      * 计算最大回撤
-     * @param cumulativeYieldGraphDataVOS 投资区间的策略收益率
+     * @param strategyYield 投资区间的策略收益率
      * @return 最大回撤
      */
-    private double calculateMaxDrawdown(ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS) {
+    private double calculateMaxDrawdown(ArrayList<CumulativeYieldGraphDataVO> strategyYield) {
         double maxDrawdown = 0;
-        double start = cumulativeYieldGraphDataVOS.get(0).ratio, end = start;
+        double start = strategyYield.get(0).ratio, end = start;
 
-        for(int i=1; i<cumulativeYieldGraphDataVOS.size(); ++i) {
+        for(int i=1; i<strategyYield.size(); ++i) {
             //折线在上升
-            if(cumulativeYieldGraphDataVOS.get(i).ratio > cumulativeYieldGraphDataVOS.get(i-1).ratio) {
-                start = cumulativeYieldGraphDataVOS.get(i).ratio;
+            if(strategyYield.get(i).ratio > strategyYield.get(i-1).ratio) {
+                start = strategyYield.get(i).ratio;
             }
 
             //折线在上升折线在下降
-            if(cumulativeYieldGraphDataVOS.get(i).ratio < cumulativeYieldGraphDataVOS.get(i-1).ratio) {
-                end = cumulativeYieldGraphDataVOS.get(i).ratio;
+            if(strategyYield.get(i).ratio < strategyYield.get(i-1).ratio) {
+                end = strategyYield.get(i).ratio;
             }
 
             if((start-end) > maxDrawdown) {

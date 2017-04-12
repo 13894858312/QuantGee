@@ -13,8 +13,8 @@ public class CumulativeYieldGraphVO {
     public double beta;
     public double sharpeRatio;  //夏普比率
     public double maxDrawdown;  //最大回撤
-    public ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS;
-    public ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS;
+    public ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS;       //策略收益率
+    public ArrayList<CumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS; //基准收益率
 
     /**
      * 收益率图
@@ -30,7 +30,7 @@ public class CumulativeYieldGraphVO {
     public CumulativeYieldGraphVO(double annualRevenue, double baseAnnualRevenue, double alpha,
                                   double beta, double sharpeRatio, double maxDrawdown,
                                   ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS,
-                                  ArrayList<BaseCumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS) {
+                                  ArrayList<CumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS) {
         this.annualRevenue = annualRevenue;
         this.baseAnnualRevenue = baseAnnualRevenue;
         this.alpha = alpha;
