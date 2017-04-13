@@ -1,9 +1,11 @@
 package logic.strategy;
 
 import logic.tools.DateHelper;
+import po.BaseCumulativeYielPO;
 import po.StockPO;
 import vo.*;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,13 +13,15 @@ import java.util.Date;
  * 动量策略计算累计收益率
  * Created by Mark.W on 2017/4/4.
  */
-public class MomentumBackTesting {
+public class StrategyBackTesting {
     private static final double INIT_FUND = 1000; //起始资金
     private double income = INIT_FUND;      //总本金+收益
     private double tempIncome = income;  //记录上一个周期的本金+收益，用于计算周期收益率
 
+    private Strategy strategy;
     private StockPool stockPool;
 
+    private BlockType blockType;
     private int holdingPeriod;  //持有期
     private int returnPeriod;    //形成期
     private int holdingStockNum;  //每个持有期持有的股票数量
@@ -34,10 +38,15 @@ public class MomentumBackTesting {
      * @param stockPool 股票池
      * @param holdingPeriod 持有期
      * @param returnPeriod 形成期
+     * @param strategy 不同策略选择股票的接口
+     * @param blockType 板块类型
      */
-    public MomentumBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod) {
+    public StrategyBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod,
+                               Strategy strategy, BlockType blockType) {
         this.stockPool = stockPool;
+        this.strategy = strategy;
 
+        this.blockType = blockType;
         this.holdingPeriod = holdingPeriod;
         this.returnPeriod = returnPeriod;
         this.holdingStockNum = stockPool.getStockInfos().size() / 5;
@@ -53,12 +62,16 @@ public class MomentumBackTesting {
      */
     public void start() {
 
+        //如果回测板块，获取板块的基准收益率
+        if (blockType != null) {
+            this.baseYield = stockPool.getBlockBaseRaito();
+        }
+
         ArrayList<StockPO> stockPOS = stockPool.getIndexStocks();
-        int endIndex
-                = stockPool.getEndIndex(); //初始化访问股票的下表index
+        int endIndex = stockPool.getEndIndex(); //初始化访问股票的下标index
 
         int index = 0;  //记录是否达到一个holdingPeriod的index
-        this.initHoldingStockOnfirstRun();
+        this.initHoldingStocks();
         //循环主体 最早的时间在前面 所以倒序访问
 
         for(int i=stockPOS.size()-1; i>=endIndex; i--) {
@@ -88,23 +101,28 @@ public class MomentumBackTesting {
      * @param date 日期
      */
     private void calculateBaseCumlativeYield(Date date) {
-        int stockNum = 0;           //用于求平均
-        double yield = 0;           //收益率
-        for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
-            StockPO firstDay = stockPool.getStockInfos().get(i).getStartDateStockPO();
-            StockPO today = stockPool.getStockInfos().get(i).getStockByDate(date);
 
-            if(firstDay == null || today == null) {
-                continue;
+        //不是按照板块回测
+        if(blockType == null) {
+            int stockNum = 0;           //用于求平均
+            double yield = 0;           //收益率
+
+            for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
+                StockPO firstDay = stockPool.getStockInfos().get(i).getStartDateStockPO();
+                StockPO today = stockPool.getStockInfos().get(i).getStockByDate(date);
+
+                if(firstDay == null || today == null) {
+                    continue;
+                }
+                //计算基准累计收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
+                yield += (today.getADJ()-firstDay.getADJ())/firstDay.getADJ();
+                stockNum ++;
             }
-            //计算基准累计收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
-            yield += (today.getADJ()-firstDay.getADJ())/firstDay.getADJ();
-            stockNum ++;
+
+            yield /= stockNum;
+
+            this.baseYield.add(new CumulativeYieldGraphDataVO(date, yield));
         }
-
-        yield /= stockNum;
-
-        this.baseYield.add(new CumulativeYieldGraphDataVO(date, yield));
     }
 
     /**
@@ -134,23 +152,11 @@ public class MomentumBackTesting {
 
     /**
      * 在第一次运行时 确定持有的股票
+     * 不同策略确定方法不一样
      */
-    private void initHoldingStockOnfirstRun() {
-        ArrayList<StockYield> stockYields = new ArrayList<>();
-
-        for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
-            StockPO before = stockPool.getStockInfos().get(i).getBeforeStockPO();
-            StockPO yesterday = stockPool.getStockInfos().get(i).getYesterdayStock();
-
-            if(yesterday == null || before == null) {
-                continue;
-            }
-
-            //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
-            double yield = (yesterday.getADJ()-before.getADJ())/before.getADJ();
-
-            stockYields.add(new StockYield(yesterday.getStockCode(), yield));
-        }
+    private void initHoldingStocks() {
+        //不同策略确定方法不一样
+        ArrayList<StockYield> stockYields = strategy.initHoldingStocks(stockPool);
 
         //在开始日期的前一个交易日买入股票
         Date date = DateHelper.getInstance().formerTradeDay(this.stockPool.getStartDate());
@@ -161,6 +167,7 @@ public class MomentumBackTesting {
     /**
      * 一个持有期结束
      * 计算指定日期所有股票形成期收益，并获取前holdingStockNum个的股票代码
+     * 不同策略确定方法不一样
      * @param date 日期（前一天卖出并立马买入股票）
      */
     private void rebalance(Date date) {
@@ -171,19 +178,8 @@ public class MomentumBackTesting {
         this.calculatePeriodYield();                //计算周期收益率
 
         //计算股票池內所有股票的收益率 用于确定下次持有的股票
-        ArrayList<StockYield> stockYields = new ArrayList<>();
-        for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
-            StockPO before = stockPool.getStockInfos().get(i).getStockByDate(beforeDate);
-            StockPO yesterday = stockPool.getStockInfos().get(i).getStockByDate(oneDayBeforeDate);
-
-            if(yesterday == null || before == null) {
-                continue;
-            }
-            //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
-            double yield = (yesterday.getADJ()-before.getADJ())/before.getADJ();
-
-            stockYields.add(new StockYield(yesterday.getStockCode(), yield));
-        }
+        // 不同策略确定方法不一样
+        ArrayList<StockYield> stockYields = strategy.rebalanceHoldingStocks(stockPool, beforeDate, oneDayBeforeDate);
 
         //确定前n的股票 买入
         this.buyStock(stockYields, oneDayBeforeDate);

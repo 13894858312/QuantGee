@@ -1,8 +1,7 @@
 package logic.strategy;
 
-import vo.AbnormalReturnGraphVO;
-import vo.BackTestingResultVO;
-import vo.StrategyInputVO;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * 均值回归策略
@@ -11,34 +10,12 @@ import vo.StrategyInputVO;
 public class MeanReversionStrategy implements Strategy {
 
     @Override
-    public BackTestingResultVO getStrategyBackTestingGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO) {
-
-        MeanReversionBackTesting meanReversionBackTesting = new MeanReversionBackTesting(stockPool, strategyInputVO.holdingPeriod,
-                strategyInputVO.returnPeriod, strategyInputVO.holdingStockNum);
-
-        meanReversionBackTesting.start();
-
-        BackTestingResultVO backTestingResultVO = meanReversionBackTesting.getBackTestingResultVO();
-
-        return backTestingResultVO;
+    public ArrayList<StockYield> initHoldingStocks(StockPool stockPool) {
+        return null;
     }
 
     @Override
-    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO, boolean isHoldingPeriod) {
-        int period;
-        if(isHoldingPeriod) {
-            period = strategyInputVO.holdingPeriod;
-        } else {
-            period = strategyInputVO.returnPeriod;
-        }
-
-        MeanReversionAbnormalReturn meanReversionAbnormalReturn = new MeanReversionAbnormalReturn(stockPool, period, isHoldingPeriod);
-
-        meanReversionAbnormalReturn.start();
-
-        AbnormalReturnGraphVO abnormalReturnGraphVO = meanReversionAbnormalReturn.getAbnormalReturnGraphVO();
-
-        return abnormalReturnGraphVO;
+    public ArrayList<StockYield> rebalanceHoldingStocks(StockPool stockPool, Date beforeDate, Date today) {
+        return null;
     }
-
 }

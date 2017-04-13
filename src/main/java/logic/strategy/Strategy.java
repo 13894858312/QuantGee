@@ -1,6 +1,7 @@
 package logic.strategy;
 
-import vo.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Mark.W on 2017/3/29.
@@ -9,18 +10,18 @@ import vo.*;
 public interface Strategy {
 
     /**
-     * 计算累计收益率的图 频率分布直方图
+     * 在第一次运行时 确定持有的股票
      * @param stockPool 股票池
-     * @return CumulativeYieldGraphVO
+     * @return ArrayList<StockYield>
      */
-    BackTestingResultVO getStrategyBackTestingGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO);
+    ArrayList<StockYield> initHoldingStocks(StockPool stockPool);
 
     /**
-     * 计算收益率和策略胜率的图
+     * 调仓时计算股票池所有指标量，用来确定持有的股票
      * @param stockPool 股票池
-     * @param strategyInputVO 股票信息
-     * @param isHoldingPeriod period参数是否是持有期，true为持有期，false为形成期
-     * @return AbnormalReturnGraphVO
+     * @param beforeDate 形成期第一天的时间
+     * @param today 调仓当天的时间
+     * @return ArrayList<StockYield>
      */
-    AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO, boolean isHoldingPeriod);
+    ArrayList<StockYield> rebalanceHoldingStocks(StockPool stockPool, Date beforeDate, Date today);
 }

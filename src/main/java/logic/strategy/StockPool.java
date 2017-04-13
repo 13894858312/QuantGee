@@ -1,10 +1,12 @@
 package logic.strategy;
 
+import data.StockData;
 import dataDao.StockDataDao;
 import logic.tools.DateHelper;
 import logic.tools.SwitchBlockType;
-import mock.MockStockData;
+import po.BaseCumulativeYielPO;
 import po.StockPO;
+import vo.CumulativeYieldGraphDataVO;
 import vo.StrategyInputType;
 import vo.StrategyInputVO;
 
@@ -19,6 +21,9 @@ public class StockPool {
 
     private StockDataDao stockDataDao;
 
+    private StrategyInputVO strategyInputVO; //用于判断该股票池是否可以继续被复用
+
+    private ArrayList<BaseCumulativeYielPO> blockBaseRaito;
     private ArrayList<StockInfo> stockInfos;
     private Date startDate;
     private Date endDate;
@@ -27,7 +32,8 @@ public class StockPool {
     private int endIndex;     //indexStocks的结束下标
 
     public StockPool(StrategyInputVO strategyInputVO) {
-        this.stockDataDao = new MockStockData();
+        this.strategyInputVO = strategyInputVO;
+        this.stockDataDao = new StockData();
 
         this.startDate = strategyInputVO.startDate;
         this.endDate = strategyInputVO.endDate;
@@ -35,26 +41,13 @@ public class StockPool {
         this.stockInfos = new ArrayList<>();
 
         this.initStockInfos(strategyInputVO);
-    }
 
-
-
-    /**
-     * 获取stockpo size最大的stockinfo 作为标杆
-     * @return StockInfo
-     */
-    public ArrayList<StockPO> getIndexStocks() {
-        int index = 0;
-        for(int i=0; i<this.stockInfos.size(); ++i) {
-            if(this.stockInfos.get(i).getStockSize() > this.stockInfos.get(index).getStockSize()) {
-                index = i;
-            }
+        //如果是板块 初始化基准收益率
+        if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK
+                && strategyInputVO.blockType != null) {
+            this.blockBaseRaito = this.stockDataDao.getBaseYieldByBlockName(SwitchBlockType.getBlockName(strategyInputVO.blockType),
+                    DateHelper.getInstance().dateTransToString(this.startDate),  DateHelper.getInstance().dateTransToString(this.endDate));
         }
-
-        this.endIndex = this.stockInfos.get(index).getEndIndex();
-        this.tradeDays = this.stockInfos.get(index).getStockSize();
-
-        return this.stockInfos.get(index).getStockPOS();
     }
 
     /**
@@ -72,6 +65,45 @@ public class StockPool {
         }
 
         return null;
+    }
+//
+//    /**
+//     * 根据时间获取板块基准收益率数据
+//     * @param date date
+//     * @return StockPO
+//     */
+//    public CumulativeYieldGraphDataVO findSpecificBlockBaseRatio(Date date) {
+//
+//        for(int i=0; i<this.blockBaseRaito.size(); ++i) {
+//            int days = DateHelper.getInstance().calculateDaysBetween(date, this.blockBaseRaito.get(i).getDate());
+//
+//            if(days < 0) {
+//               return null;
+//            }
+//            if(days == 0) {
+//                return new CumulativeYieldGraphDataVO(date, this.blockBaseRaito.get(i).getBaseRatio());
+//            }
+//        }
+//
+//        return null;
+//    }
+
+    /**
+     * 获取stockpo size最大的stockinfo 作为标杆
+     * @return StockInfo
+     */
+    public ArrayList<StockPO> getIndexStocks() {
+        int index = 0;
+        for(int i=0; i<this.stockInfos.size(); ++i) {
+            if(this.stockInfos.get(i).getStockSize() > this.stockInfos.get(index).getStockSize()) {
+                index = i;
+            }
+        }
+
+        this.endIndex = this.stockInfos.get(index).getEndIndex();
+        this.tradeDays = this.stockInfos.get(index).getStockSize();
+
+        return this.stockInfos.get(index).getStockPOS();
     }
 
     /**
@@ -151,11 +183,26 @@ public class StockPool {
         return stockInfos;
     }
 
+    public ArrayList<CumulativeYieldGraphDataVO> getBlockBaseRaito() {
+        ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS = new ArrayList<>();
+
+        for(int i=0; i<this.blockBaseRaito.size(); ++i) {
+            cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(blockBaseRaito.get(i).getDate(),
+                    blockBaseRaito.get(i).getBaseRatio()));
+        }
+
+        return  cumulativeYieldGraphDataVOS;
+    }
+
     public int getTradeDays() {
         return tradeDays;
     }
 
     public int getEndIndex() {
         return endIndex;
+    }
+
+    public StrategyInputVO getStrategyInputVO() {
+        return strategyInputVO;
     }
 }

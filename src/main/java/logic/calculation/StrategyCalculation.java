@@ -1,8 +1,6 @@
 package logic.calculation;
 
-import logic.strategy.MomentumDriveStrategy;
-import logic.strategy.StockPool;
-import logic.strategy.Strategy;
+import logic.strategy.*;
 import logic.tools.DateHelper;
 import logic.tools.StrategyFactory;
 import logicService.StrategyCalculationService;
@@ -31,7 +29,16 @@ public class StrategyCalculation implements StrategyCalculationService{
         this.initStockPool(strategyInputVO);
         this.initStrategy(strategyType);
 
-        BackTestingResultVO backTestingResultVO = strategy.getStrategyBackTestingGraphInfo(stockPool, strategyInputVO);
+        BlockType blockType = null;
+        if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK) {
+            blockType = strategyInputVO.blockType;
+        }
+
+        StrategyBackTesting strategyBackTesting = new StrategyBackTesting(stockPool, strategyInputVO.holdingPeriod, strategyInputVO.returnPeriod, strategy, blockType);
+
+        strategyBackTesting.start();
+
+        BackTestingResultVO backTestingResultVO = strategyBackTesting.getBackTestingResultVO();
 
         assert (backTestingResultVO != null) : "logic.calculation.StrategyCalculation.getCumulativeYieldGraphInfo返回值异常" ;
 
@@ -50,7 +57,23 @@ public class StrategyCalculation implements StrategyCalculationService{
         this.initStockPool(strategyInputVO);
         this.initStrategy(strategyType);
 
-        AbnormalReturnGraphVO abnormalReturnGraphVO = strategy.getAbnormalReturnGraphInfo(stockPool, strategyInputVO, isHoldingPeriod);
+        BlockType blockType = null;
+        if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK) {
+            blockType = strategyInputVO.blockType;
+        }
+
+        int period;
+        if(isHoldingPeriod) {
+            period = strategyInputVO.holdingPeriod;
+        } else {
+            period = strategyInputVO.returnPeriod;
+        }
+
+        StrategyAbnormalReturn strategyAbnormalReturn = new StrategyAbnormalReturn(stockPool, period, isHoldingPeriod, strategy, blockType);
+
+        strategyAbnormalReturn.start();
+
+        AbnormalReturnGraphVO abnormalReturnGraphVO = strategyAbnormalReturn.getAbnormalReturnGraphVO();
 
         assert (abnormalReturnGraphVO != null) : "logic.calculation.StrategyCalculation.getAbnormalReturnGraphInfo返回值异常" ;
 
@@ -58,27 +81,28 @@ public class StrategyCalculation implements StrategyCalculationService{
     }
 
 
+    /**
+     * 工厂模式初始化策略
+     * @param strategyType strategyType
+     */
     private void initStrategy(StrategyType strategyType) {
         this.strategy = StrategyFactory.getInstance().getStrategy(strategyType);
 
         assert (strategy != null) : "logic.calculation成员变量strategy异常" ;
     }
 
+    /**
+     * 判断StrategyInputVO是否相同 用来确定是否要重新加载股票池
+     * @param strategyInputVO StrategyInputVO
+     */
     private void initStockPool(StrategyInputVO strategyInputVO) {
         if(stockPool == null) {
             stockPool = new StockPool(strategyInputVO);
         } else {
 
-            String s1 = DateHelper.getInstance().dateTransToString(stockPool.getStartDate());
-            String e1 = DateHelper.getInstance().dateTransToString(stockPool.getEndDate());
-
-            String s2 = DateHelper.getInstance().dateTransToString(strategyInputVO.startDate);
-            String e2 = DateHelper.getInstance().dateTransToString(strategyInputVO.endDate);
-
-            if(!(s1.equals(s2) && e1.equals(e2))) {
+            if(!(strategyInputVO.equals(stockPool.getStrategyInputVO()))) {
                 stockPool = new StockPool(strategyInputVO);
             }
-
         }
     }
 }

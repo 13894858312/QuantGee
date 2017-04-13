@@ -25,8 +25,6 @@ public class GraphCalculation implements GraphCalculationService {
 
     public GraphCalculation() {
         this.dateHelper = DateHelper.getInstance();
-
-//        this.stockDataDao = new MockStockData();
         this.stockDataDao = new StockData();
 
     }

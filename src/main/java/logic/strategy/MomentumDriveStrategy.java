@@ -1,7 +1,9 @@
 package logic.strategy;
 
 import po.StockPO;
-import vo.*;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Mark.W on 2017/3/29.
@@ -10,34 +12,40 @@ import vo.*;
 public class MomentumDriveStrategy implements Strategy {
 
     @Override
-    public BackTestingResultVO getStrategyBackTestingGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO) {
+    public ArrayList<StockYield> initHoldingStocks(StockPool stockPool) {
+        ArrayList<StockYield> stockYields = new ArrayList<>();
 
-        MomentumBackTesting momentumBackTesting = new MomentumBackTesting(stockPool,
-                strategyInputVO.holdingPeriod, strategyInputVO.returnPeriod);
+        for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
+            StockPO before = stockPool.getStockInfos().get(i).getBeforeStockPO();
+            StockPO yesterday = stockPool.getStockInfos().get(i).getYesterdayStock();
 
-        momentumBackTesting.start();
+            if(yesterday == null || before == null) {
+                continue;
+            }
 
-        BackTestingResultVO backTestingResultVO = momentumBackTesting.getBackTestingResultVO();
+            //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
+            double yield = (yesterday.getADJ()-before.getADJ())/before.getADJ();
 
-        return backTestingResultVO;
+            stockYields.add(new StockYield(yesterday.getStockCode(), yield));
+        }
+        return stockYields;
     }
 
     @Override
-    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StockPool stockPool, StrategyInputVO strategyInputVO,  boolean isHoldingPeriod) {
+    public ArrayList<StockYield> rebalanceHoldingStocks(StockPool stockPool, Date beforeDate, Date today) {
+        ArrayList<StockYield> stockYields = new ArrayList<>();
+        for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
+            StockPO before = stockPool.getStockInfos().get(i).getStockByDate(beforeDate);
+            StockPO yesterday = stockPool.getStockInfos().get(i).getStockByDate(today);
 
-        int period;
-        if(isHoldingPeriod) {
-            period = strategyInputVO.holdingPeriod;
-        } else {
-            period = strategyInputVO.returnPeriod;
+            if(yesterday == null || before == null) {
+                continue;
+            }
+            //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
+            double yield = (yesterday.getADJ()-before.getADJ())/before.getADJ();
+
+            stockYields.add(new StockYield(yesterday.getStockCode(), yield));
         }
-
-        MomentumAbnormalReturn momentumAbnormalReturn = new MomentumAbnormalReturn(stockPool, period, isHoldingPeriod);
-
-        momentumAbnormalReturn.start();
-
-        AbnormalReturnGraphVO abnormalReturnGraphVO = momentumAbnormalReturn.getAbnormalReturnGraphVO();
-        return abnormalReturnGraphVO;
+        return stockYields;
     }
-
 }

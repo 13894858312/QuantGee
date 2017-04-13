@@ -2,6 +2,7 @@ package logic.strategy;
 
 import vo.AbnormalReturnGraphDataVO;
 import vo.AbnormalReturnGraphVO;
+import vo.BlockType;
 
 import java.util.ArrayList;
 
@@ -9,13 +10,15 @@ import java.util.ArrayList;
  * 动量策略超额收益
  * Created by Mark.W on 2017/4/4.
  */
-public class MomentumAbnormalReturn {
+public class StrategyAbnormalReturn {
     private static final int START_PERIOD = 2;//暂时固定为2-80
     private static final int END_PERIOD = 80;
     private static final int INTERVAL = 2;
 
     private StockPool stockPool;
 
+    private BlockType blockType;
+    private Strategy strategy;
     private int period;
     private boolean isHoldingPeriod;
 
@@ -27,27 +30,29 @@ public class MomentumAbnormalReturn {
      * @param period 期间（天数）
      * @param isHoldingPeriod 给定日期是否为持有期
      */
-    public MomentumAbnormalReturn(StockPool stockPool, int period, boolean isHoldingPeriod) {
+    public StrategyAbnormalReturn(StockPool stockPool, int period, boolean isHoldingPeriod, Strategy strategy, BlockType blockType) {
         this.stockPool = stockPool;
         this.period = period;
         this.isHoldingPeriod = isHoldingPeriod;
+        this.blockType = blockType;
+        this.strategy = strategy;
 
         this.abnormalReturnGraphDataVOS = new ArrayList<>();
     }
 
     public void start() {
-        MomentumBackTesting momentumBackTesting;
+        StrategyBackTesting strategyBackTesting;
 
         for(int i=START_PERIOD; i<=END_PERIOD; i+=INTERVAL) {
             if(isHoldingPeriod) {
-                momentumBackTesting = new MomentumBackTesting(stockPool, period, i);
+                strategyBackTesting = new StrategyBackTesting(stockPool, period, i, strategy, blockType);
             } else {
-                momentumBackTesting = new MomentumBackTesting(stockPool, i, period);
+                strategyBackTesting = new StrategyBackTesting(stockPool, i, period, strategy, blockType);
             }
 
-            momentumBackTesting.start();
-            double abnormalReturn = momentumBackTesting.getAbnormalReturn();
-            double winRate = momentumBackTesting.getWinRate();
+            strategyBackTesting.start();
+            double abnormalReturn = strategyBackTesting.getAbnormalReturn();
+            double winRate = strategyBackTesting.getWinRate();
 
             if(isHoldingPeriod) {
                 this.abnormalReturnGraphDataVOS.add(new AbnormalReturnGraphDataVO(period, i, abnormalReturn, winRate));
@@ -58,8 +63,6 @@ public class MomentumAbnormalReturn {
 
         this.calculateData();
     }
-
-
 
     /**
      *  计算累计超额收益率图的分析结果数据

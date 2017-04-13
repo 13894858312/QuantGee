@@ -119,4 +119,44 @@ public class StrategyInputVO {
                            int holdingPeriod, int returnPeriod) {
         this(startDate, endDate, stockNames, holdingPeriod, returnPeriod,0);
     }
+
+    /**
+     * 判断StrategyInputVO是否相同 用来确定是否要重新加载股票池
+     * @param strategyInputVO StrategyInputVO
+     * @return boolean
+     */
+    public boolean equals(StrategyInputVO strategyInputVO) {
+
+        String s1 = DateHelper.getInstance().dateTransToString(strategyInputVO.startDate);
+        String e1 = DateHelper.getInstance().dateTransToString(strategyInputVO.endDate);
+
+        String s2 = DateHelper.getInstance().dateTransToString(this.startDate);
+        String e2 = DateHelper.getInstance().dateTransToString(this.endDate);
+
+        boolean temp1 = s1.equals(s2) && e1.equals(e2)
+                && (strategyInputVO.strategyInputType == this.strategyInputType)
+                && (strategyInputVO.blockType == this.blockType);
+
+        boolean temp2 = stockNamesEqual(strategyInputVO.stockNames);
+
+
+        return (temp1 && temp2);
+    }
+
+    private boolean stockNamesEqual(ArrayList<String> s) {
+        if(s.size() != this.stockNames.size()) {
+            return false;
+        }
+
+        boolean temp = true;
+        for(int i=0; i<this.stockNames.size(); ++i) {
+            if(!stockNames.get(i).equals(s.get(i))) {
+                temp = false;
+                break;
+            }
+        }
+
+        return temp;
+    }
+
 }
