@@ -22,6 +22,8 @@ import javafx.util.Duration;
 import logic.tools.DateHelper;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
+import vo.AverageLineVO;
+import vo.KLineVO;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -36,7 +38,7 @@ public class AdvCandleStickChart extends Pane {
 
     public AdvCandleStickChart(ArrayList<KLineVO> kLineVOArrayList, ArrayList<AverageLineVO> averageLineVOArrayList1, ArrayList<AverageLineVO> averageLineVOArrayList2,
                                ArrayList<AverageLineVO> averageLineVOArrayList3, ArrayList<AverageLineVO> averageLineVOArrayList4, ArrayList<AverageLineVO> averageLineVOArrayList5,
-                                       int width, int height) throws Exception{
+                               int width, int height) throws Exception{
         // x-axis:
         this.getStylesheets().add("/css/ensemble_AdvCandleStickChart.css");
 

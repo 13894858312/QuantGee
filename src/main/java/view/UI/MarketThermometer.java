@@ -2,6 +2,7 @@ package view.UI;
 
 import javafx.scene.chart.*;
 import javafx.scene.layout.Pane;
+import vo.MarketInfoVO;
 
 /**
  * Created by Administrator on 2017/3/10.

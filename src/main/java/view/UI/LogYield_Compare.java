@@ -6,6 +6,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
 import logic.tools.DateHelper;
+import vo.StockDailyInfoVO;
 
 import java.util.ArrayList;
 

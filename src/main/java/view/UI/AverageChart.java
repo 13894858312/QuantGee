@@ -6,6 +6,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.layout.Pane;
 import logic.tools.DateHelper;
 import javafx.scene.chart.XYChart;
+import vo.AverageLineVO;
 
 import java.util.ArrayList;
 
