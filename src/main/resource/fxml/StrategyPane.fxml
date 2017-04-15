@@ -23,19 +23,20 @@
                            <children>
                               <Label text="年化收益率：" />
                               <Label fx:id="year" text="--" />
-                              <Label text=" 基准收益率：" />
+                              <Label text="\%  基准收益率：" />
                               <Label fx:id="base" text="--" />
-                              <Label text=" 阿尔法：" />
+                              <Label text="\%  阿尔法：" />
                               <Label fx:id="alpha" text="--" />
-                              <Label text=" 贝塔：" />
+                              <Label text="\%  贝塔：" />
                               <Label text="--" />
+                              <Label text="\%" />
                            </children>
                         </HBox>
                         <HBox layoutX="30.0" layoutY="50.0" prefHeight="30.0" prefWidth="660.0">
                            <children>
-                              <Label text=" 夏普比率：" />
+                              <Label text="夏普比率：" />
                               <Label fx:id="sharp" text="--" />
-                              <Label text=" 最大回撤：" />
+                              <Label text="\%  最大回撤：" />
                               <Label fx:id="max" text="--" />
                            </children>
                         </HBox>
@@ -64,10 +65,11 @@
                            <children>
                               <Label text="相对指数收益分布图：  正收益周期数：" />
                               <Label fx:id="positive" text="--" />
-                              <Label text=" 负收益周期数：" />
+                              <Label text="  负收益周期数：" />
                               <Label fx:id="negative" text="--" />
-                              <Label text=" 赢率：" />
+                              <Label text="  赢率：" />
                               <Label fx:id="win" text="--" />
+                              <Label text=" \%" />
                            </children>
                         </HBox>
                      </children></AnchorPane>

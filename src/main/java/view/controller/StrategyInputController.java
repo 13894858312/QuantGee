@@ -510,14 +510,14 @@ public class StrategyInputController {
                     stockNames.add(name);
                 }
 
-                return new StrategyInputVO(startDate , endDate , stockNames , holdInt , makeInt , holdNum);
+                return new StrategyInputVO(startDate , endDate , stockNames , holdInt , makeInt , holdNum/100);
             }else if( stockPoolType == 1)//选择板块
             {
                 blockType = strategyBoardController.getBlockType();
-                return  new StrategyInputVO(startDate , endDate , blockType , holdInt , makeInt ,holdNum);
+                return  new StrategyInputVO(startDate , endDate , blockType , holdInt , makeInt ,holdNum/100 );
             }else//选择全部
             {
-                return new StrategyInputVO(startDate , endDate , holdInt , makeInt , holdNum);
+                return new StrategyInputVO(startDate , endDate , holdInt , makeInt , holdNum/100 );
             }
 
         }else{
