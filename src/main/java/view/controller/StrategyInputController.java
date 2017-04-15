@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * 策略输入框
@@ -248,9 +249,9 @@ public class StrategyInputController {
         makeLabel.setVisible(false);
         holdLabel.setVisible(false);
 
-        perLabel.setVisible(true);
+        perLabel.setText("持有比例");
         perLabel1.setVisible(true);
-        perField.setVisible(true);
+        perField.setText("");
 
         //数据清空
         hold.setText("请输入整数天");
@@ -275,9 +276,9 @@ public class StrategyInputController {
         makeLabel.setVisible(true);
         holdLabel.setVisible(true);
 
-        perLabel.setVisible(false);
+        perLabel.setText("持有数量");
         perLabel1.setVisible(false);
-        perField.setVisible(false);
+        perField.setText("请输入整数");
 
         //数据清空
         chooseHold.setSelected(true);
@@ -398,8 +399,103 @@ public class StrategyInputController {
      */
     private StrategyInputVO getInput(){
 
+        //股票池种类，0为全部，1为板块，2为股票
+        int stockPoolType = stockPool.getSelectionModel().getSelectedIndex();
 
-        //所选时间要比MIN+形成期*1.5晚
+        LocalDate startLocalDate = startPicker.getValue();
+        LocalDate endLocalDate = endPicker.getValue();
+        if(startLocalDate.isAfter(endLocalDate)){
+            showMessage("开始时间不应晚于结束时间");
+            return null;
+        }else if(strategyType == StrategyType.MEAN_REVERSION){
+            int time = 0;
+            int temp = make_ChoiceBox.getSelectionModel().getSelectedIndex();
+            if(temp == 0){
+                time = 8;
+            }else if(temp == 1){
+                time = 15;
+            }else if(temp == 2){
+                time = 30;
+            }
+            //所选时间要比MIN+形成期*1.5晚
+            if(startLocalDate.isBefore(LocalDate.of(2005,2,2).plusDays(time))){
+                showMessage("开始日期过早");
+                return null;
+            }
+        }
+        Date startDate = Helper.localDateToDate(startLocalDate);
+        Date endDate = Helper.localDateToDate(endLocalDate);
+
+        int holdInt;
+        try{
+            holdInt = new Integer(hold.getText().trim());
+        }catch (Exception e) {
+            //不是整数显示对话框
+            showMessage("请输入整数持有期");
+            return null;
+        }
+        double holdNum = 0;
+        try{
+            holdNum = new Double(perField.getText().trim());
+        }catch (Exception e){
+            showMessage("请输入合法数值");
+        }
+
+        ///////
+
+        if(strategyType == StrategyType.MOMENTUM_DRIVEN){
+            //动量策略
+            int makeInt;
+            try{
+                makeInt = new Integer(make_TextField.getText().trim());
+            }catch (Exception e) {
+                //不是整数显示对话框
+                showMessage("请输入整数形成期");
+                return null;
+            }
+
+            if( stockPoolType == 2)//选择股票
+            {
+
+            }else if( stockPoolType == 1)//选择板块
+            {
+                blockType = strategyBoardController.getBlockType();
+                return  new StrategyInputVO(startDate , endDate , blockType , holdInt , makeInt);
+            }else//选择全部
+            {
+                return new StrategyInputVO(startDate , endDate , holdInt , makeInt);
+            }
+
+        }else{
+            //均值回归
+            int makeInt;
+            if(make_ChoiceBox.getSelectionModel().getSelectedIndex() == 0){
+                makeInt = 5;
+            }else if(make_ChoiceBox.getSelectionModel().getSelectedIndex() == 1){
+                makeInt = 10;
+            }else{
+                makeInt = 20;
+            }
+
+            if((int) holdNum != holdNum){
+                //持有数量不是整数
+                showMessage("请输入整数");
+                return null;
+            }
+
+            if(stockPoolType == 2)//选择股票
+            {
+
+            }else if(stockPoolType == 1)//选择板块
+            {
+                blockType = strategyBoardController.getBlockType();
+                return new StrategyInputVO(startDate , endDate , blockType , holdInt , makeInt , (int) holdNum);
+            }else{
+                return new StrategyInputVO(startDate , endDate , holdInt , makeInt ,(int) holdNum);
+            }
+
+        }
+
         return null;
     }
 
