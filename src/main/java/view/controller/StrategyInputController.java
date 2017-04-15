@@ -133,7 +133,6 @@ public class StrategyInputController {
         make_ChoiceBox.setItems(FXCollections.observableArrayList("5天","10天","20天"));
         make_ChoiceBox.setValue("5天");
 
-
         //载入股票池选项
         stockPool.setItems(FXCollections.observableArrayList("所有股票","选择板块","选择股票"));
         stockPool.setValue("所有股票");
@@ -297,7 +296,7 @@ public class StrategyInputController {
      */
     private void setAllStocks(){
 
-        leftPane.getChildren().clear();
+        blockPane.getChildren().clear();
         scrollPane.setDisable(true);
 
         //清空其他controller
@@ -309,7 +308,7 @@ public class StrategyInputController {
 
     private void setChosenBlocks(){
 
-        leftPane.getChildren().clear();
+        blockPane.getChildren().clear();
         scrollPane.setDisable(false);
 
         try{
@@ -317,7 +316,7 @@ public class StrategyInputController {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/fxml/StrategyBoard.fxml"));
             Pane root = fxmlLoader.load();
-            leftPane.getChildren().add(root);
+            blockPane.getChildren().add(root);
 
             strategyBoardController = fxmlLoader.getController();
 
@@ -333,7 +332,7 @@ public class StrategyInputController {
 
     private void setChosenStocks(){
 
-        leftPane.getChildren().clear();
+        blockPane.getChildren().clear();
         scrollPane.setDisable(false);
         showHBox();
 
@@ -344,8 +343,13 @@ public class StrategyInputController {
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/fxml/StrategyStock.fxml"));
-            stocks.add(fxmlLoader.load());
+
+            HBox root = fxmlLoader.load();
+            stocks.add(root);
+            blockPane.getChildren().add(root);
+
             StrategyStockController controller = fxmlLoader.getController();
+            controller.init(this);
             strategyStockControllers.add(controller);
             controller.setIndex(0);
 
@@ -367,8 +371,11 @@ public class StrategyInputController {
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/fxml/StrategyStock.fxml") );
-            stocks.add(fxmlLoader.load());
+            HBox root = fxmlLoader.load();
+            stocks.add(root);
+            blockPane.getChildren().add(root);
             StrategyStockController controller = fxmlLoader.getController();
+            controller.init(this);
             strategyStockControllers.add(controller);
             controller.setIndex(count);
 
@@ -379,22 +386,27 @@ public class StrategyInputController {
         showBlockPane();
 
     }
-
+//待修改
     public void deleteBlock(int index) {
 
         count--;
         num.setText(Integer.toString(count));
         stocks.remove(index);
 
-        //删除时需要重新设index
+        //删除时需要重新设index和按钮
         for(int i = 0 ; i <= count ; i++ ){
             strategyStockControllers.get(i).setIndex(i);
+
+            strategyStockControllers.get(i).setDelete();
         }
 
         showBlockPane();
 
     }
 
+    /*
+    删除后重显
+     */
     private void showBlockPane(){
         blockPane.getChildren().clear();
         blockPane.getChildren().addAll(stocks);
@@ -504,12 +516,10 @@ public class StrategyInputController {
 
             if( stockPoolType == 2)//选择股票
             {
-                ArrayList<String> stockNames = new ArrayList<>();
-                for(int i = 0 ; i < count ; i++ ) {
-                    String name = strategyStockControllers.get(i).getBlockName();
-                    stockNames.add(name);
+                ArrayList<String> stockNames = getStockNames();
+                if(stockNames == null){
+                    return null;
                 }
-
                 return new StrategyInputVO(startDate , endDate , stockNames , holdInt , makeInt , holdNum/100);
             }else if( stockPoolType == 1)//选择板块
             {
@@ -539,13 +549,10 @@ public class StrategyInputController {
 
             if(stockPoolType == 2)//选择股票
             {
-
-                ArrayList<String> stockNames = new ArrayList<>();
-                for(int i = 0 ; i < count ; i++ ) {
-                    String name = strategyStockControllers.get(i).getBlockName();
-                    stockNames.add(name);
+                ArrayList<String> stockNames = getStockNames();
+                if(stockNames == null){
+                    return null;
                 }
-
                 return new StrategyInputVO(startDate , endDate , stockNames , holdInt , makeInt , holdNum);
 
             }else if(stockPoolType == 1)//选择板块
@@ -560,6 +567,26 @@ public class StrategyInputController {
 
     }
 
+    private ArrayList<String> getStockNames(){
+
+        if(count < 100){
+            showMessage("至少需要输入100支股票");
+            return null;
+        }
+
+        ArrayList<String> stockNames = new ArrayList<>();
+        for(int i = 0 ; i < count ; i++ ) {
+            String name = strategyStockControllers.get(i).getBlockName();
+            if(name == null){
+                showMessage("请输入股票代码");
+                return null;
+            }
+            stockNames.add(name);
+        }
+        return stockNames;
+
+    }
+
     /*
     显示strategypane
      */
@@ -571,7 +598,7 @@ public class StrategyInputController {
             Pane root = fxmlLoader.load();
             StrategyPaneController strategyPaneController = fxmlLoader.getController();
 
-            strategyPaneController.init(backTestingResultVO , abnormalReturnGraphVO);
+            strategyPaneController.init(backTestingResultVO , abnormalReturnGraphVO , isHold);
             mainPageController.showRightPane(root);
 
         }catch (Exception e){

@@ -10,7 +10,7 @@
    <children>
       <ScrollPane fx:id="scrollPane" layoutX="20.0" layoutY="64.0" prefHeight="312.0" prefWidth="300.0">
          <content>
-            <AnchorPane fx:id="leftPane" maxWidth="290.0" minHeight="300.0" minWidth="290.0">
+            <AnchorPane fx:id="leftPane" maxWidth="298.0" minHeight="310.0" minWidth="298.0" styleClass="RootPane">
                <children>
                   <HBox fx:id="hBox" layoutX="5.0" layoutY="10.0" prefHeight="30.0" prefWidth="280.0" visible="false">
                      <children>

@@ -15,14 +15,13 @@ public class StrategyStockController {
 
     @FXML private Button button;
     @FXML private TextField name;
-    @FXML private Label label;
     @FXML private HBox rootPane;
 
     private int index;
     private boolean isAdd = true;
     private StrategyInputController strategyInputController;
 
-    public StrategyStockController(StrategyInputController strategyInputController){
+    public void init(StrategyInputController strategyInputController){
         this.strategyInputController = strategyInputController;
     }
 
@@ -35,7 +34,7 @@ public class StrategyStockController {
             setDelete();
         }else{
             //删除本行
-            rootPane.getChildren().removeAll();
+            rootPane.getChildren().clear();
             strategyInputController.deleteBlock(index);
         }
 
@@ -43,12 +42,17 @@ public class StrategyStockController {
 
     @FXML
     private void selectText(){
-        name.selectAll();
+        name.setText("");
     }
 
     public void setDelete(){
         isAdd = false;
         button.setText("删除");
+    }
+
+    public void setAdd(){
+        isAdd = true;
+        button.setText("新增");
     }
 
     public String getBlockName(){
