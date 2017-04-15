@@ -1,8 +1,10 @@
 package logic.strategy;
 
+import logic.tools.DateHelper;
 import logic.tools.MathHelper;
 import vo.CumulativeYieldGraphDataVO;
 import vo.CumulativeYieldGraphVO;
+import vo.YieldHistogramGraphDataVO;
 import vo.YieldHistogramGraphVO;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 public class StrategyDataAnlysis {
 
     private static final double RF = 0.0175;
+    private static final int interval = 1; //直方图分组的间隔为%几
 
     /**
      * 计算有关频率分布直方图的数据
@@ -22,18 +25,24 @@ public class StrategyDataAnlysis {
      */
     public YieldHistogramGraphVO analyseYieldHistogram(ArrayList<Double> yieldPerPeriod) {
         int positiveEarningNum=0, negativeEarningNum=0;
+        double maxYield = yieldPerPeriod.get(0), minYield = 0;
 
         for(int i=0; i<yieldPerPeriod.size(); ++i) {
-            if(yieldPerPeriod.get(i) > 0) {
+            if(yieldPerPeriod.get(i) >= 0) {
                 positiveEarningNum ++;
+                maxYield = Math.max(yieldPerPeriod.get(i), maxYield);
             } else if(yieldPerPeriod.get(i) < 0) {
                 negativeEarningNum ++;
+                minYield = Math.min(yieldPerPeriod.get(i), minYield);
             }
         }
 
-        //待填代码 没确定直方图的数据形式
+        maxYield = Math.max(maxYield, -minYield);
+        ArrayList<YieldHistogramGraphDataVO> data = calculatePeriodYieldNum(maxYield, yieldPerPeriod);
 
-        YieldHistogramGraphVO yieldHistogramGraphVO = null;
+        double winRate = MathHelper.formatData(positiveEarningNum/(positiveEarningNum+negativeEarningNum),4);
+        YieldHistogramGraphVO yieldHistogramGraphVO = new YieldHistogramGraphVO(positiveEarningNum, negativeEarningNum, winRate,data);
+
         return yieldHistogramGraphVO;
     }
 
@@ -80,6 +89,54 @@ public class StrategyDataAnlysis {
 
         double result = (income-initFund)/initFund - base;
         return MathHelper.formatData(result,4);
+    }
+
+    private ArrayList<YieldHistogramGraphDataVO> calculatePeriodYieldNum(double maxYield, ArrayList<Double> yieldPerPeriod) {
+
+        int n = (int)(maxYield * 100) / interval + 1;
+
+        int[] positiveYields = new int[n];          //正收益数量
+        for (int i=0; i<positiveYields.length; ++i) {
+            positiveYields[i] = 0;
+        }
+
+        int[] negativeYields = new int[n];          //负收益数量
+        for (int i=0; i<negativeYields.length; ++i) {
+            negativeYields[i] = 0;
+        }
+
+        for(int i=0; i<yieldPerPeriod.size(); ++i) {
+            if(yieldPerPeriod.get(i) >= 0) {
+                for(int j=1; j<positiveYields.length; ++j) {
+                    double d1 = (double)j/100 * interval;
+                    double d2 = (double)(j-1)/100 * interval;
+                    if(yieldPerPeriod.get(i) >= d1 && yieldPerPeriod.get(i) < d2) {
+                        positiveYields[j] ++;
+                        break;
+                    }
+                }
+            } else {
+                double temp = -yieldPerPeriod.get(i);
+                for(int j=1; j<negativeYields.length; ++j) {
+                    double d1 = (double)j/100 * interval;
+                    double d2 = (double)(j-1)/100 * interval;
+                    if(temp >= d1 && temp < d2) {
+                        negativeYields[j] ++;
+                        break;
+                    }
+                }
+            }
+        }
+
+        ArrayList<YieldHistogramGraphDataVO> yieldHistogramGraphDataVOS = new ArrayList<>();
+
+        for(int i = 0;i<positiveYields.length; ++i) {
+            double startRate = (double)i/100 * interval;
+            double endRate = (double)(i+1)/100 * interval;
+            yieldHistogramGraphDataVOS.add(new YieldHistogramGraphDataVO(startRate, endRate, positiveYields[i], negativeYields[i]));
+        }
+
+        return yieldHistogramGraphDataVOS;
     }
 
     /**
@@ -142,8 +199,7 @@ public class StrategyDataAnlysis {
         }
 
         double beta = MathHelper.covariance(strategy, base)/MathHelper.variance(base);
-
-        return beta;
+        return MathHelper.formatData(beta,4);
     }
 
 
@@ -163,7 +219,7 @@ public class StrategyDataAnlysis {
 
         baseAnnualRevenue = (baseAnnualRevenue/tradeDays) * 365;
 
-        return baseAnnualRevenue;
+        return MathHelper.formatData(baseAnnualRevenue,4);
     }
 
     /**
@@ -173,25 +229,27 @@ public class StrategyDataAnlysis {
      */
     private double calculateMaxDrawdown(ArrayList<CumulativeYieldGraphDataVO> strategyYield) {
         double maxDrawdown = 0;
-        double start = strategyYield.get(0).ratio, end = start;
+        double high = strategyYield.get(0).ratio, low = high;
+        int highIndex = 0, lowIndex = 0;
 
         for(int i=1; i<strategyYield.size(); ++i) {
             //折线在上升
             if(strategyYield.get(i).ratio > strategyYield.get(i-1).ratio) {
-                start = strategyYield.get(i).ratio;
+                high = strategyYield.get(i).ratio;
+                highIndex = i;
             }
 
             //折线在上升折线在下降
             if(strategyYield.get(i).ratio < strategyYield.get(i-1).ratio) {
-                end = strategyYield.get(i).ratio;
+                low = strategyYield.get(i).ratio;
+                lowIndex = i;
             }
 
-            if((start-end) > maxDrawdown) {
-                maxDrawdown = start-end;
+            if(highIndex < lowIndex && (high-low) > maxDrawdown) {
+                maxDrawdown = high-low;
             }
         }
 
-        return maxDrawdown;
+        return MathHelper.formatData(maxDrawdown,4);
     }
-
 }

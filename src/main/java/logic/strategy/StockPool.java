@@ -6,9 +6,7 @@ import logic.tools.DateHelper;
 import logic.tools.SwitchBlockType;
 import po.BaseCumulativeYielPO;
 import po.StockPO;
-import vo.CumulativeYieldGraphDataVO;
-import vo.StrategyInputType;
-import vo.StrategyInputVO;
+import vo.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,8 +26,10 @@ public class StockPool {
     private Date startDate;
     private Date endDate;
     private int tradeDays;   //时间区间內的交易日数，即投资天数
-
     private int endIndex;     //indexStocks的结束下标
+
+    private BlockType blockType;
+    private int holdingStockNum;
 
     public StockPool(StrategyInputVO strategyInputVO) {
         this.strategyInputVO = strategyInputVO;
@@ -37,10 +37,21 @@ public class StockPool {
 
         this.startDate = strategyInputVO.startDate;
         this.endDate = strategyInputVO.endDate;
-
         this.stockInfos = new ArrayList<>();
 
         this.initStockInfos(strategyInputVO);
+
+        //确定持有股票的数量
+        if(strategyInputVO.ratio > 0) {
+            holdingStockNum = (int)(stockInfos.size() * strategyInputVO.ratio);
+        } else {
+            holdingStockNum = strategyInputVO.holdingStockNum;
+        }
+
+
+        if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK) {
+            blockType = strategyInputVO.blockType;
+        }
 
         //如果是板块 初始化基准收益率
         if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK
@@ -125,39 +136,26 @@ public class StockPool {
      */
     private void initStockInfos(StrategyInputVO strategyInputVO) {
 
-        if(strategyInputVO.strategyInputType == StrategyInputType.ALL) {
-            //选择所有股票构造股票池
-            ArrayList<ArrayList<StockPO>> stocks = this.stockDataDao.getAllStockPO();
-            this.setStockInfosFromDataDao(stocks);
+        //根据特定股票板块构造股票池
+        Date sd = DateHelper.getInstance().formerNTradeDay(startDate, strategyInputVO.returnPeriod);
+        //时间范围之前的returnPeriod天的数据也需要拿
+        String s = DateHelper.getInstance().dateTransToString(sd);
+        String e = DateHelper.getInstance().dateTransToString(endDate);
 
-        } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK) {
-            //根据特定股票板块构造股票池
-            Date sd = DateHelper.getInstance().formerNTradeDay(startDate, strategyInputVO.returnPeriod);
-            //时间范围之前的returnPeriod天的数据也需要拿
+        if(DateHelper.getInstance().dateOutOfRange(sd)) {
+            this.stockInfos = null;
+        } else {
+            if(strategyInputVO.strategyInputType == StrategyInputType.ALL) {
+                //选择所有股票构造股票池
+                ArrayList<ArrayList<StockPO>> stocks = this.stockDataDao.getAllStockPO(s, e);
+                this.setStockInfosFromDataDao(stocks);
 
-            if(DateHelper.getInstance().dateOutOfRange(sd)) {
-                 this.stockInfos = null;
-            } else {
-
-                String s = DateHelper.getInstance().dateTransToString(sd);
-                String e = DateHelper.getInstance().dateTransToString(endDate);
+            } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK) {
 
                 ArrayList<ArrayList<StockPO>> stocks = this.stockDataDao.getStockPOsByBlockName(s, e, SwitchBlockType.getBlockName(strategyInputVO.blockType));
-
                 this.setStockInfosFromDataDao(stocks);
-            }
 
-        } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_STOCKS) {
-            //选定特定股票构造股票池
-            Date sd = DateHelper.getInstance().formerNTradeDay(startDate, strategyInputVO.returnPeriod);
-            //时间范围之前的returnPeriod天的数据也需要拿
-
-            if(DateHelper.getInstance().dateOutOfRange(sd)) {
-                this.stockInfos = null;
-            } else {
-
-                String s = DateHelper.getInstance().dateTransToString(sd);
-                String e = DateHelper.getInstance().dateTransToString(endDate);
+            } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_STOCKS) {
 
                 for(int i=0; i<strategyInputVO.stockNames.size(); ++i) {
                     ArrayList<StockPO> stockPOS = this.stockDataDao.getStockPOsByTimeInterval(s, e, strategyInputVO.stockNames.get(i));
@@ -166,7 +164,6 @@ public class StockPool {
                         stockInfos.add(new StockInfo(startDate, stockPOS.get(0).getStockCode(), stockPOS));
                     }
                 }
-
             }
         }
     }
@@ -208,5 +205,13 @@ public class StockPool {
 
     public StrategyInputVO getStrategyInputVO() {
         return strategyInputVO;
+    }
+
+    public int getHoldingStockNum() {
+        return holdingStockNum;
+    }
+
+    public BlockType getBlockType() {
+        return blockType;
     }
 }

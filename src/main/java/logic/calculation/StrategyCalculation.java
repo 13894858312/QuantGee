@@ -29,14 +29,9 @@ public class StrategyCalculation implements StrategyCalculationService{
         this.initStockPool(strategyInputVO);
         this.initStrategy(strategyType);
 
-        BlockType blockType = null;
-        if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK) {
-            blockType = strategyInputVO.blockType;
-        }
-
+        //回测
         StrategyBackTesting strategyBackTesting = new StrategyBackTesting(stockPool, strategyInputVO.holdingPeriod,
-                strategyInputVO.returnPeriod, strategy, blockType);
-
+                strategyInputVO.returnPeriod, strategy);
         strategyBackTesting.start();
 
         BackTestingResultVO backTestingResultVO = strategyBackTesting.getBackTestingResultVO();
@@ -58,11 +53,6 @@ public class StrategyCalculation implements StrategyCalculationService{
         this.initStockPool(strategyInputVO);
         this.initStrategy(strategyType);
 
-        BlockType blockType = null;
-        if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK) {
-            blockType = strategyInputVO.blockType;
-        }
-
         int period;
         if(isHoldingPeriod) {
             period = strategyInputVO.holdingPeriod;
@@ -70,8 +60,7 @@ public class StrategyCalculation implements StrategyCalculationService{
             period = strategyInputVO.returnPeriod;
         }
 
-        StrategyAbnormalReturn strategyAbnormalReturn = new StrategyAbnormalReturn(stockPool, period, isHoldingPeriod, strategy, blockType);
-
+        StrategyAbnormalReturn strategyAbnormalReturn = new StrategyAbnormalReturn(stockPool, period, isHoldingPeriod, strategy);
         strategyAbnormalReturn.start();
 
         AbnormalReturnGraphVO abnormalReturnGraphVO = strategyAbnormalReturn.getAbnormalReturnGraphVO();

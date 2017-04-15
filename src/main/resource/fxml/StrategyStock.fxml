@@ -6,8 +6,8 @@
 
 <HBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.StrategyStockController">
    <children>
-      <Label fx:id="label" text="label" />
-      <TextField fx:id="name" onAction="#selectText" prefWidth="100.0" text="名称或代码" />
+      <Label fx:id="label" text="股票代码" />
+      <TextField fx:id="name" onAction="#selectText" prefWidth="100.0"  />
       <Button fx:id="button" mnemonicParsing="false" onAction="#option" text="新增" />
    </children>
 </HBox>
