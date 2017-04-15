@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import view.UI.MarketThermometer;
 import view.graph.Graph;
+import vo.MarketInfoVO;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -28,7 +29,7 @@ public class MarketInfoController {
         graph = new Graph();
     }
 
-    public void init(MarketInfoVO marketInfoVO){
+    public void init(MarketInfoVO  marketInfoVO){
 
 
         graph = new Graph();
