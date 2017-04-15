@@ -1,6 +1,7 @@
 package logic.strategy;
 
 import logic.tools.DateHelper;
+import logic.tools.MathHelper;
 import po.BaseCumulativeYielPO;
 import po.StockPO;
 import vo.*;
@@ -125,7 +126,7 @@ public class StrategyBackTesting {
 
         yield /= stockNum;
 
-        this.baseYield.add(new CumulativeYieldGraphDataVO(date, yield));
+        this.baseYield.add(new CumulativeYieldGraphDataVO(date, MathHelper.formatData(yield,4)));
     }
 
     /**
@@ -149,7 +150,7 @@ public class StrategyBackTesting {
         //计算累计收益率
         yield = (yield-INIT_FUND)/INIT_FUND;
 
-        this.strategyYield.add(new CumulativeYieldGraphDataVO(date, yield));
+        this.strategyYield.add(new CumulativeYieldGraphDataVO(date, MathHelper.formatData(yield,4)));
     }
 
 
