@@ -12,7 +12,6 @@ public class YieldHistogramGraphDataVO {
     public int negativeFrequency;
 
     /**
-     *
      * @param startRate 每一组左端值
      * @param endRate 每一组右端值
      * @param positiveFrequency 正收益频数

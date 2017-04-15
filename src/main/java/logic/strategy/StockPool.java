@@ -6,9 +6,7 @@ import logic.tools.DateHelper;
 import logic.tools.SwitchBlockType;
 import po.BaseCumulativeYielPO;
 import po.StockPO;
-import vo.CumulativeYieldGraphDataVO;
-import vo.StrategyInputType;
-import vo.StrategyInputVO;
+import vo.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,8 +26,10 @@ public class StockPool {
     private Date startDate;
     private Date endDate;
     private int tradeDays;   //时间区间內的交易日数，即投资天数
-
     private int endIndex;     //indexStocks的结束下标
+
+    private BlockType blockType;
+    private int holdingStockNum;
 
     public StockPool(StrategyInputVO strategyInputVO) {
         this.strategyInputVO = strategyInputVO;
@@ -37,10 +37,21 @@ public class StockPool {
 
         this.startDate = strategyInputVO.startDate;
         this.endDate = strategyInputVO.endDate;
-
         this.stockInfos = new ArrayList<>();
 
         this.initStockInfos(strategyInputVO);
+
+        //确定持有股票的数量
+        if(strategyInputVO.ratio > 0) {
+            holdingStockNum = (int)(stockInfos.size() * strategyInputVO.ratio);
+        } else {
+            holdingStockNum = strategyInputVO.holdingStockNum;
+        }
+
+
+        if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK) {
+            blockType = strategyInputVO.blockType;
+        }
 
         //如果是板块 初始化基准收益率
         if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK
@@ -194,5 +205,13 @@ public class StockPool {
 
     public StrategyInputVO getStrategyInputVO() {
         return strategyInputVO;
+    }
+
+    public int getHoldingStockNum() {
+        return holdingStockNum;
+    }
+
+    public BlockType getBlockType() {
+        return blockType;
     }
 }

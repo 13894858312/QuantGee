@@ -21,7 +21,6 @@ public class StrategyAbnormalReturn {
     private BlockType blockType;
     private Strategy strategy;
     private int period;
-    private int holdingNum;
     private boolean isHoldingPeriod;
 
     private ArrayList<AbnormalReturnGraphDataVO> abnormalReturnGraphDataVOS;  //超额收益率和策略胜率图数据信息
@@ -32,13 +31,12 @@ public class StrategyAbnormalReturn {
      * @param period 期间（天数）
      * @param isHoldingPeriod 给定日期是否为持有期
      */
-    public StrategyAbnormalReturn(StockPool stockPool, int period, boolean isHoldingPeriod, int holdingNum, Strategy strategy, BlockType blockType) {
+    public StrategyAbnormalReturn(StockPool stockPool, int period, boolean isHoldingPeriod, Strategy strategy) {
         this.stockPool = stockPool;
         this.period = period;
         this.isHoldingPeriod = isHoldingPeriod;
-        this.blockType = blockType;
+        this.blockType = stockPool.getBlockType();
         this.strategy = strategy;
-        this.holdingNum = holdingNum;
 
         this.abnormalReturnGraphDataVOS = new ArrayList<>();
     }
@@ -48,9 +46,9 @@ public class StrategyAbnormalReturn {
 
         for(int i=START_PERIOD; i<=END_PERIOD; i+=INTERVAL) {
             if(isHoldingPeriod) {
-                strategyBackTesting = new StrategyBackTesting(stockPool, period, i, holdingNum,strategy, blockType);
+                strategyBackTesting = new StrategyBackTesting(stockPool, period, i,strategy, blockType);
             } else {
-                strategyBackTesting = new StrategyBackTesting(stockPool, i, period, holdingNum,strategy, blockType);
+                strategyBackTesting = new StrategyBackTesting(stockPool, i, period,strategy, blockType);
             }
 
             strategyBackTesting.start();
