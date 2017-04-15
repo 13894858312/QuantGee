@@ -34,22 +34,22 @@ public class StockDataTest {
 	@Test
 	public void testGetStockPOsByTimeInterval1() {
 		StockData stockData = new StockData();
-		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval( "4/19/14", "4/25/14","1");
-		assertEquals(5, stockPOs.size());
+		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval( "4/19/14", "4/29/14","1");
+		assertEquals(7, stockPOs.size());
 	}
 	
 	@Test
 	public void testGetStockPOsByTimeInterval2() {
 		StockData stockData = new StockData();
-		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("8/19/11", "8/20/11", "402");
+		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("4/1/14","4/29/14", "150");
 		assertEquals(1, stockPOs.size());
 	}
 	
 	@Test
 	public void testGetStockPOsByTimeInterval3() {
 		StockData stockData = new StockData();
-		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("2/5/05", "2/13/05", "1");
-		assertEquals(0, stockPOs.size());
+		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("2/1/05","4/29/14", "2039");
+		assertEquals(2151, stockPOs.size());
 	}
 	
 	@Test
@@ -83,8 +83,8 @@ public class StockDataTest {
 	@Test
 	public void testGetValidDate(){
 		StockData stockData = new StockData();
-		String[] validDate = stockData.getVaildDate("4/13/14", "4/20/14", "D:/workspace/QuantGee/all_stock_data/all_data_by_name/1_深发展Ａ.txt");
-		assertEquals("start:4/14/14 end:4/18/14", "start:"+validDate[0]+" end:"+validDate[1]);
+		String[] validDate = stockData.getVaildDate("4/13/14", "4/30/14", "D:/workspace/QuantGee/all_stock_data/all_data_by_name/1_深发展Ａ.txt");
+		assertEquals("start:4/14/14 end:4/29/14", "start:"+validDate[0]+" end:"+validDate[1]);
 	}
 	
 	@Test

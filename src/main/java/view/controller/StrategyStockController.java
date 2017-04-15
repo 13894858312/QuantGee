@@ -18,6 +18,7 @@ public class StrategyStockController {
     @FXML private Label label;
     @FXML private HBox rootPane;
 
+    private int index;
     private boolean isAdd = true;
     private StrategyInputController strategyInputController;
 
@@ -35,7 +36,7 @@ public class StrategyStockController {
         }else{
             //删除本行
             rootPane.getChildren().removeAll();
-            strategyInputController.deleteBlock();
+            strategyInputController.deleteBlock(index);
         }
 
     }
@@ -62,11 +63,8 @@ public class StrategyStockController {
 
     }
 
-    public void setBlock(){
-        label.setText("板块");
+    public void setIndex(int index){
+        this.index = index ;
     }
 
-    public void setStock(){
-        label.setText("股票");
-    }
 }

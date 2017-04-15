@@ -1,5 +1,6 @@
 package data;
 
+import java.awt.datatransfer.StringSelection;
 import java.io.*;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -100,7 +101,7 @@ public class StockData implements StockDataDao{
 		path.replace("\\\\", "/");
 		path  = path+"/all_stock_data/all_data_by_name/"+getFileNameByCode(stockCode)+".txt";
 		File file = new File(path);
-		
+
 		String[] validDate = getVaildDate(startDate, endDate, path);
 		startDate = validDate[0];
 		endDate = validDate[1];
@@ -125,7 +126,6 @@ public class StockData implements StockDataDao{
 				String[] strings = line.split("\\t");
 				
 				if (inTimeRange) {
-					
 					if (strings[1].equals(startDate)) {
 						inTimeRange = false;
 					}
@@ -139,15 +139,17 @@ public class StockData implements StockDataDao{
 					}
 					
 				}else {
-					
-					if (strings[1].equals(endDate)&&Integer.parseInt(strings[6])!=0) {
-						
+					if (strings[1].equals(endDate)) {
+
 						inTimeRange = true;
-						StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
-								Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
-								Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
-								Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
-						stockPOS.add(po);
+						
+						if (Integer.parseInt(strings[6])!=0) {
+							StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
+									Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
+									Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
+									Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
+							stockPOS.add(po);
+						}
 						
 					}else{
 						if (inTimeRange) {
@@ -219,6 +221,8 @@ public class StockData implements StockDataDao{
 		File file = new File(path);
 		int endDateDiff = 0;
 		int startDateDiff = 0;
+		String firstLineDate = "";
+		String lastLineDate = "";
 		String[] vaildDate = new String[2];
 		String[] endDates = endDate.split("/");
 		String[] startDates = startDate.split("/");
@@ -234,6 +238,7 @@ public class StockData implements StockDataDao{
 			String line = br.readLine();	//读第一行
 			
 			String[] strings = line.split("\\t");
+			firstLineDate = strings[1];
 			if (strings[1].equals(endDate)) {
 				vaildDate[1] = endDate;
 			}else {
@@ -248,6 +253,8 @@ public class StockData implements StockDataDao{
 			while((line = br.readLine()) != null){
 				
 				strings = line.split("\\t");
+				
+				lastLineDate = strings[1];
 				
 				if (strings[1].equals(startDate)) {
 					vaildDate[0] =  startDate;
@@ -285,6 +292,15 @@ public class StockData implements StockDataDao{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		if (vaildDate[0]==null) {
+			vaildDate[0]=lastLineDate;
+		}
+		
+		if (vaildDate[1]==null) {
+			vaildDate[1]=firstLineDate;
+		}
+		
 		return vaildDate;
 	}
 
@@ -325,28 +341,92 @@ public class StockData implements StockDataDao{
 		return datas;
 	}
 	
-//	public ArrayList<ArrayList<StockPO>> getAllStockPO2() {
+	public ArrayList<ArrayList<StockPO>> getAllStockPO(String startDate, String endDate) {
+		
+		ArrayList<ArrayList<StockPO>> datas = new ArrayList<ArrayList<StockPO>>();
+		
+		//在Block_Name中获取所有股票编码
+		String path = System.getProperty("user.dir");
+		path.replace("\\\\", "/");
+		File file = new File(path+"/all_stock_data/all_data_by_name/fileName.txt");
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line = "";
+			
+			while((line = br.readLine()) != null) {
+				String[] strings = line.split(":");
+				
+				//获取到股票代码调用getStockPOsByTimeInterval方法读取该代码的股票信息
+				ArrayList<StockPO> pos = getStockPOsByTimeInterval(startDate, endDate, strings[0]);
+//				datas.add(getStockPOsByTimeInterval(startDate, endDate, strings[0]));
+				datas.add(pos);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return datas;
+		
+	}
+
+//	public ArrayList<ArrayList<StockPO>> getAllStockPO1(String startDate, String endDate) {
 //		
-//		ArrayList<ArrayList<StockPO>> data = new ArrayList<>();
+//		ArrayList<ArrayList<StockPO>> allDatas = new ArrayList<ArrayList<StockPO>>();
 //		
-//		//在Block_Name中获取当前板块的所有股票编码
+//		//查询“股票历史数据ALL.txt”
 //		String path = System.getProperty("user.dir");
 //		path.replace("\\\\", "/");
-//		File file = new File(path+"/all_stock_data/all_data_by_name");
-//		File[] files = file.listFiles();
+//		File file = new File(path+"/all_stock_data/股票历史数据ALL.txt");
+//		
+//		BufferedReader br;
 //		
 //		try {
-//			String line = "";
 //			
-//			for (File file2 : files) {
-//				ArrayList<StockPO> 
-//				BufferedReader br = new BufferedReader(new FileReader(file2));
-//				line = br.readLine();
+//			br = new BufferedReader(new FileReader(file));
+//			
+//			String line = br.readLine();		//第一行舍弃
+//			String code = "";					//记录股票代码
+//			
+//			ArrayList<StockPO> stockPOs = new ArrayList<StockPO>();		//记录当前股票信息
+//
+//			while((line = br.readLine()) != null) {
 //				
-//				while ((line=br.readLine()) != null) {
+//				String[] strings  = line.split("\\t");
+//				
+//				int i = 0;
+//				//判断是否是新股票
+//				if (!code.equals(strings[8])) {
+//
+//					code = strings[8];
+//					if (!stockPOs.isEmpty()) {
+//						ArrayList<StockPO> datas = new ArrayList<>();
+//						datas.addAll(stockPOs);
+//						allDatas.add(datas);
+//						i++;
+//					}
 //					
+////					if (!allDatas.isEmpty()) {
+////						System.out.println(allDatas.get(i-1).get(0).getCodeNumber());
+////					}
+//					
+//					stockPOs = new ArrayList<>();
+//					continue;
 //				}
+//				
+//				//将股票信息存入Arraylist
+//				stockPOs.add(new StockPO(strings[1],Double.parseDouble(strings[2]),
+//						Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
+//						Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
+//						Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]));
+//				
+//				
 //			}
+//			
+//			//加入最后一次股票数据
+//			allDatas.add(stockPOs);
 //		} catch (FileNotFoundException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
@@ -354,82 +434,18 @@ public class StockData implements StockDataDao{
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-//
-//		return null;
 //		
+//		
+//		return allDatas;
 //	}
 
 	@Override
-	public ArrayList<ArrayList<StockPO>> getAllStockPO() {
+	public ArrayList<BaseCumulativeYielPO> getBaseYieldByBlockName(String blockName, String startDate, String endDate) {
 		
-		ArrayList<ArrayList<StockPO>> allDatas = new ArrayList<ArrayList<StockPO>>();
-		
-		//查询“股票历史数据ALL.txt”
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		File file = new File(path+"/all_stock_data/股票历史数据ALL.txt");
-		
-		BufferedReader br;
-		
-		try {
-			
-			br = new BufferedReader(new FileReader(file));
-			
-			String line = br.readLine();		//第一行舍弃
-			String code = "";					//记录股票代码
-			
-			ArrayList<StockPO> stockPOs = new ArrayList<StockPO>();		//记录当前股票信息
+		File file = new File(path+"/all_stock_data/all_data_by_name/fileName.txt");
 
-			while((line = br.readLine()) != null) {
-				
-				String[] strings  = line.split("\\t");
-				
-				int i = 0;
-				//判断是否是新股票
-				if (!code.equals(strings[8])) {
-
-					code = strings[8];
-					if (!stockPOs.isEmpty()) {
-						ArrayList<StockPO> datas = new ArrayList<>();
-						datas.addAll(stockPOs);
-						allDatas.add(datas);
-						i++;
-					}
-					
-//					if (!allDatas.isEmpty()) {
-//						System.out.println(allDatas.get(i-1).get(0).getCodeNumber());
-//					}
-					
-					stockPOs = new ArrayList<>();
-					continue;
-				}
-				
-				//将股票信息存入Arraylist
-				stockPOs.add(new StockPO(strings[1],Double.parseDouble(strings[2]),
-						Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
-						Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
-						Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]));
-				
-				
-			}
-			
-			//加入最后一次股票数据
-			allDatas.add(stockPOs);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		return allDatas;
-	}
-
-	@Override
-	public ArrayList<BaseCumulativeYielPO> getBaseYieldByBlockName(String blockName, String startDate, String endDate) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

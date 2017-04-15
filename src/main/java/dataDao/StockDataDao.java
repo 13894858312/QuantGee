@@ -57,7 +57,7 @@ public interface StockDataDao {
      * @return ArrayList<ArrayList<StockPO>>   股票数组，每一项即
      *                              每个arraylist里是一种股票在一段时间内的信息
      */
-    public ArrayList<ArrayList<StockPO>> getAllStockPO();
+    public ArrayList<ArrayList<StockPO>> getAllStockPO(String startDate, String endDate);
 
     /**
      * 根据板块名获取基准股票信息

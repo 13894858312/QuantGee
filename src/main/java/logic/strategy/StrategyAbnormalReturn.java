@@ -1,5 +1,6 @@
 package logic.strategy;
 
+import logic.tools.MathHelper;
 import vo.AbnormalReturnGraphDataVO;
 import vo.AbnormalReturnGraphVO;
 import vo.BlockType;
@@ -30,11 +31,11 @@ public class StrategyAbnormalReturn {
      * @param period 期间（天数）
      * @param isHoldingPeriod 给定日期是否为持有期
      */
-    public StrategyAbnormalReturn(StockPool stockPool, int period, boolean isHoldingPeriod, Strategy strategy, BlockType blockType) {
+    public StrategyAbnormalReturn(StockPool stockPool, int period, boolean isHoldingPeriod, Strategy strategy) {
         this.stockPool = stockPool;
         this.period = period;
         this.isHoldingPeriod = isHoldingPeriod;
-        this.blockType = blockType;
+        this.blockType = stockPool.getBlockType();
         this.strategy = strategy;
 
         this.abnormalReturnGraphDataVOS = new ArrayList<>();
@@ -45,9 +46,9 @@ public class StrategyAbnormalReturn {
 
         for(int i=START_PERIOD; i<=END_PERIOD; i+=INTERVAL) {
             if(isHoldingPeriod) {
-                strategyBackTesting = new StrategyBackTesting(stockPool, period, i, strategy, blockType);
+                strategyBackTesting = new StrategyBackTesting(stockPool, period, i,strategy);
             } else {
-                strategyBackTesting = new StrategyBackTesting(stockPool, i, period, strategy, blockType);
+                strategyBackTesting = new StrategyBackTesting(stockPool, i, period,strategy);
             }
 
             strategyBackTesting.start();
@@ -88,7 +89,8 @@ public class StrategyAbnormalReturn {
         }
 
         this.abnormalReturnGraphVO = new AbnormalReturnGraphVO(isHoldingPeriod, bestHoldingPeriod, bestReturnPeriod,
-                bestAbnormalReturn, bestStategyWinRate, this.abnormalReturnGraphDataVOS);
+                MathHelper.formatData(bestAbnormalReturn,4),  MathHelper.formatData(bestStategyWinRate,4),
+                this.abnormalReturnGraphDataVOS);
     }
 
     public AbnormalReturnGraphVO getAbnormalReturnGraphVO() {

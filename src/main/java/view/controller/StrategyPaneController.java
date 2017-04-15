@@ -3,6 +3,7 @@ package view.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import logic.calculation.StrategyCalculation;
 import logicService.StrategyCalculationService;
 import view.graph.Graph;
@@ -71,23 +72,30 @@ public class StrategyPaneController {
         YieldHistogramGraphVO yieldHistogramGraphVO = backTestingResultVO.yieldHistogramGraphVO;
 
         //a
-        year.setText(Double.toString(cumulativeYieldGraphVO.annualRevenue));
-        base.setText(Double.toString(cumulativeYieldGraphVO.baseAnnualRevenue));
-        sharp.setText(Double.toString(cumulativeYieldGraphVO.sharpeRatio));
-        alpha.setText(Double.toString(cumulativeYieldGraphVO.alpha));
-        beta.setText(Double.toString(cumulativeYieldGraphVO.beta));
-        max .setText(Double.toString(cumulativeYieldGraphVO.maxDrawdown));
+        year.setText(Double.toString(cumulativeYieldGraphVO.annualRevenue * 100));
+        base.setText(Double.toString(cumulativeYieldGraphVO.baseAnnualRevenue * 100));
+        sharp.setText(Double.toString(cumulativeYieldGraphVO.sharpeRatio * 100));
+        alpha.setText(Double.toString(cumulativeYieldGraphVO.alpha * 100));
+        beta.setText(Double.toString(cumulativeYieldGraphVO.beta * 100));
+        max .setText(Double.toString(cumulativeYieldGraphVO.maxDrawdown * 100));
 
-        //图
+        Pane a = graph.getCumulativeYieldChart(cumulativeYieldGraphVO.baseCumulativeYieldGraphDataVOS , cumulativeYieldGraphVO.cumulativeYieldGraphDataVOS ,660 , 400);
+        graphA.getChildren().addAll(a);
 
-        //b
+        //b0
+        Pane b0 = graph.getExcessEarning(true , abnormalReturnGraphVO.abnormalReturnGraphDataVOS , 600 , 360);
+        graphB_0.getChildren().addAll(b0);
+        //b1
+        Pane b1 = graph.getWinningStrategy(true , abnormalReturnGraphVO.abnormalReturnGraphDataVOS , 600 , 360);
+        graphB_1.getChildren().addAll(b1);
 
         //c
         positive.setText(Double.toString(yieldHistogramGraphVO.positiveEarningNum));
         negative.setText(Double.toString(yieldHistogramGraphVO.negativeEarningNum));
-        win.setText(Double.toString(yieldHistogramGraphVO.winRate));
+        win.setText(Double.toString(yieldHistogramGraphVO.winRate * 100));
 
-        //图
+        Pane c = graph.getDistributionYield(yieldHistogramGraphVO.yieldHistogramGraphDataVOS , 660 , 400 );
+        graphC.getChildren().addAll(c);
 
     }
 
