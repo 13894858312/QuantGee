@@ -22,6 +22,7 @@ public class StrategyInputVO {
                                 //若是均值回归策略，则是N日移动均线
     public int holdingStockNum; //每次调仓持有的股票数量
 
+    public double ratio; //持有比例
 
     /**
      * 均值回归策略回测所有股票的构造方法
@@ -89,8 +90,9 @@ public class StrategyInputVO {
      * @param holdingPeriod 调仓周期
      * @param returnPeriod 基准收益率计算周期
      */
-    public StrategyInputVO(Date startDate, Date endDate, int holdingPeriod, int returnPeriod) {
+    public StrategyInputVO(Date startDate, Date endDate, int holdingPeriod, int returnPeriod, double ratio) {
         this(startDate, endDate, holdingPeriod, returnPeriod, 0);
+        this.ratio = ratio;
     }
 
 
@@ -103,8 +105,9 @@ public class StrategyInputVO {
      * @param returnPeriod 基准收益率计算周期
      */
     public StrategyInputVO(Date startDate, Date endDate, BlockType blockType,
-                           int holdingPeriod, int returnPeriod) {
+                           int holdingPeriod, int returnPeriod, double ratio) {
         this(startDate,endDate,blockType,holdingPeriod,returnPeriod, 0);
+        this.ratio = ratio;
     }
 
     /**
@@ -116,8 +119,9 @@ public class StrategyInputVO {
      * @param returnPeriod 基准收益率计算周期
      */
     public StrategyInputVO(Date startDate, Date endDate,ArrayList<String> stockNames,
-                           int holdingPeriod, int returnPeriod) {
+                           int holdingPeriod, int returnPeriod, double ratio) {
         this(startDate, endDate, stockNames, holdingPeriod, returnPeriod,0);
+        this.ratio = ratio;
     }
 
     /**

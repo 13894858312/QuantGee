@@ -22,16 +22,24 @@ public class StrategyDataAnlysis {
      */
     public YieldHistogramGraphVO analyseYieldHistogram(ArrayList<Double> yieldPerPeriod) {
         int positiveEarningNum=0, negativeEarningNum=0;
+        double maxYield = yieldPerPeriod.get(0), minYield = 0;
 
         for(int i=0; i<yieldPerPeriod.size(); ++i) {
             if(yieldPerPeriod.get(i) > 0) {
                 positiveEarningNum ++;
+                maxYield = Math.max(yieldPerPeriod.get(i), maxYield);
             } else if(yieldPerPeriod.get(i) < 0) {
                 negativeEarningNum ++;
+                minYield = Math.min(yieldPerPeriod.get(i), minYield);
             }
         }
 
-        //待填代码 没确定直方图的数据形式
+        maxYield = Math.max(maxYield, -minYield) * 100;
+
+        double maxLeft = ((((int)maxYield) / 5 + 1) * 5 ) / 100;
+
+
+
 
         YieldHistogramGraphVO yieldHistogramGraphVO = null;
         return yieldHistogramGraphVO;
@@ -142,8 +150,7 @@ public class StrategyDataAnlysis {
         }
 
         double beta = MathHelper.covariance(strategy, base)/MathHelper.variance(base);
-
-        return beta;
+        return MathHelper.formatData(beta,4);
     }
 
 
@@ -163,7 +170,7 @@ public class StrategyDataAnlysis {
 
         baseAnnualRevenue = (baseAnnualRevenue/tradeDays) * 365;
 
-        return baseAnnualRevenue;
+        return MathHelper.formatData(baseAnnualRevenue,4);
     }
 
     /**
@@ -173,25 +180,27 @@ public class StrategyDataAnlysis {
      */
     private double calculateMaxDrawdown(ArrayList<CumulativeYieldGraphDataVO> strategyYield) {
         double maxDrawdown = 0;
-        double start = strategyYield.get(0).ratio, end = start;
+        double high = strategyYield.get(0).ratio, low = high;
+        int highIndex = 0, lowIndex = 0;
 
         for(int i=1; i<strategyYield.size(); ++i) {
             //折线在上升
             if(strategyYield.get(i).ratio > strategyYield.get(i-1).ratio) {
-                start = strategyYield.get(i).ratio;
+                high = strategyYield.get(i).ratio;
+                highIndex = i;
             }
 
             //折线在上升折线在下降
             if(strategyYield.get(i).ratio < strategyYield.get(i-1).ratio) {
-                end = strategyYield.get(i).ratio;
+                low = strategyYield.get(i).ratio;
+                lowIndex = i;
             }
 
-            if((start-end) > maxDrawdown) {
-                maxDrawdown = start-end;
+            if(highIndex < lowIndex && (high-low) > maxDrawdown) {
+                maxDrawdown = high-low;
             }
         }
 
-        return maxDrawdown;
+        return MathHelper.formatData(maxDrawdown,4);
     }
-
 }

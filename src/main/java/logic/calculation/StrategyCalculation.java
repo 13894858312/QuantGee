@@ -34,8 +34,15 @@ public class StrategyCalculation implements StrategyCalculationService{
             blockType = strategyInputVO.blockType;
         }
 
+        int holdingStockNum = 0;
+        if(strategyType == StrategyType.MOMENTUM_DRIVEN) {
+            holdingStockNum = (int)(stockPool.getStockInfos().size() * strategyInputVO.ratio);
+        } else {
+            holdingStockNum = strategyInputVO.holdingStockNum;
+        }
+
         StrategyBackTesting strategyBackTesting = new StrategyBackTesting(stockPool, strategyInputVO.holdingPeriod,
-                strategyInputVO.returnPeriod, strategy, blockType);
+                strategyInputVO.returnPeriod, holdingStockNum, strategy, blockType);
 
         strategyBackTesting.start();
 
