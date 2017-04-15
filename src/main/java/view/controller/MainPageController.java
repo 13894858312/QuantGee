@@ -16,6 +16,9 @@ import logicService.DataCalculationService;
 import java.time.temporal.ChronoUnit;
 import javafx.scene.control.Tooltip;
 import javafx.util.Callback;
+import vo.MarketInfoVO;
+import vo.StockVO;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
