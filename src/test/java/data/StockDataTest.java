@@ -127,8 +127,9 @@ public class StockDataTest {
 	public void testGetBaseYieldByBlockName(){
 		StockData stockData = new StockData();
 		ArrayList<BaseCumulativeYieldPO> data = stockData.getBaseYieldByBlockName("000300", "4/13/14", "4/29/14");
-//		for (BaseCumulativeYielPO baseCumulativeYielPO : data) {
-//			System.out.println(baseCumulativeYielPO.getBaseRatio());
+		System.out.println(data.size());
+//		for (BaseCumulativeYieldPO baseCumulativeYieldPO : data) {
+//			System.out.println(baseCumulativeYieldPO.getBaseRatio());
 //		}
 	}
 }
