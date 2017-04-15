@@ -34,6 +34,7 @@ public class StrategyBackTesting {
 
     private BackTestingResultVO backTestingResultVO;
 
+
     /**
      * @param stockPool 股票池
      * @param holdingPeriod 持有期
@@ -41,7 +42,7 @@ public class StrategyBackTesting {
      * @param strategy 不同策略选择股票的接口
      * @param blockType 板块类型
      */
-    public StrategyBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod,
+    public StrategyBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod, int holdingStockNum,
                                Strategy strategy, BlockType blockType) {
         this.stockPool = stockPool;
         this.strategy = strategy;
@@ -49,7 +50,7 @@ public class StrategyBackTesting {
         this.blockType = blockType;
         this.holdingPeriod = holdingPeriod;
         this.returnPeriod = returnPeriod;
-        this.holdingStockNum = stockPool.getStockInfos().size() / 5;
+        this.holdingStockNum = holdingStockNum;
 
         this.holdingStocks = new ArrayList<>();
         this.strategyYield = new ArrayList<>();
