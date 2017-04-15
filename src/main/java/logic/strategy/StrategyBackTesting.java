@@ -77,17 +77,21 @@ public class StrategyBackTesting {
         for(int i=stockPOS.size()-1; i>=endIndex; i--) {
             Date temp = DateHelper.getInstance().stringTransToDate(stockPOS.get(i).getDate());
 
-            if(index == holdingPeriod) { //若达到holdingPeriod index置0 同时进行rebalance
-                index = 0;                  //前一天进行调仓
+            if(index == holdingPeriod) { //若达到holdingPeriod index置0
+                index = 0;               //前一天进行rebalance,买入卖出
                 this.rebalance(temp);
             } else {
                 index ++;
             }
 
-            this.calculateBaseCumlativeYield(temp);         //基准收益率计算 用今日adj
+            //每天需要计算的数据
+            if(blockType == null) {                             //如果不是回测板块 则需要计算基准收益率
+                this.calculateBaseCumlativeYield(temp);         //基准收益率计算 用今日adj
+            }
             this.calculateHoldingStockYield(temp);          //计算收益， 用昨日adj
 
-            if(i == endIndex && index > 0 && index < holdingPeriod) {
+
+            if(i == endIndex && index != holdingPeriod) {
                 this.sellStock(temp);                       //如果最后剩余的天数不足holdingPeriod，仍然计算周期收益率
                 this.calculatePeriodYield();
             }
@@ -103,26 +107,24 @@ public class StrategyBackTesting {
     private void calculateBaseCumlativeYield(Date date) {
 
         //不是按照板块回测
-        if(blockType == null) {
-            int stockNum = 0;           //用于求平均
-            double yield = 0;           //收益率
+        int stockNum = 0;           //用于求平均
+        double yield = 0;           //收益率
 
-            for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
-                StockPO firstDay = stockPool.getStockInfos().get(i).getStartDateStockPO();
-                StockPO today = stockPool.getStockInfos().get(i).getStockByDate(date);
+        for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
+            StockPO firstDay = stockPool.getStockInfos().get(i).getStartDateStockPO();
+            StockPO today = stockPool.getStockInfos().get(i).getStockByDate(date);
 
-                if(firstDay == null || today == null) {
-                    continue;
-                }
-                //计算基准累计收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
-                yield += (today.getADJ()-firstDay.getADJ())/firstDay.getADJ();
-                stockNum ++;
+            if(firstDay == null || today == null) {
+                continue;
             }
-
-            yield /= stockNum;
-
-            this.baseYield.add(new CumulativeYieldGraphDataVO(date, yield));
+            //计算基准累计收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
+            yield += (today.getADJ()-firstDay.getADJ())/firstDay.getADJ();
+            stockNum ++;
         }
+
+        yield /= stockNum;
+
+        this.baseYield.add(new CumulativeYieldGraphDataVO(date, yield));
     }
 
     /**

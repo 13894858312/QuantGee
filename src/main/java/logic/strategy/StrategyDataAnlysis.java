@@ -50,7 +50,7 @@ public class StrategyDataAnlysis {
                                                               ArrayList<CumulativeYieldGraphDataVO> strategyYield,
                                                               ArrayList<CumulativeYieldGraphDataVO> baseYield) {
         double annualRevenue = this.calculateAnnualRevenue(income, init_fund, tradeDays);       //策略年化收益率
-        double baseAnnualRevenue = this.calculateBaseAnnualRevenue(baseYield, tradeDays);  //基准年化收益率\
+        double baseAnnualRevenue = this.calculateBaseAnnualRevenue(baseYield, tradeDays);  //基准年化收益率
         double beta = this.calculateBeta(strategyYield, baseYield);
         double alpha = this.calculateAlpha(annualRevenue, baseAnnualRevenue, beta);
         double sharpeRatio = this.calculateSharpRatio(annualRevenue, strategyYield);  //夏普比率
@@ -79,7 +79,7 @@ public class StrategyDataAnlysis {
         base /= baseYield.size();
 
         double result = (income-initFund)/initFund - base;
-        return result;
+        return MathHelper.formatData(result,4);
     }
 
     /**
@@ -91,7 +91,7 @@ public class StrategyDataAnlysis {
      */
     private double calculateAnnualRevenue(double income, double initFund, int tradeDays) {
         double annualRevenue = (((income-initFund)/initFund) / tradeDays) * 365;
-        return annualRevenue;
+        return MathHelper.formatData(annualRevenue,4);
     }
 
 
@@ -104,11 +104,11 @@ public class StrategyDataAnlysis {
      */
     private double calculateAlpha(double annualRevenue, double baseAnnualRevenue, double beta) {
         double alpha = (annualRevenue - RF) - beta * (baseAnnualRevenue - RF);
-        return alpha;
+        return MathHelper.formatData(alpha,4);
     }
 
     /**
-     * 计算夏普比率
+     * 计算夏普比率=[E(Rp)-Rf]/σp
      * @param annualRevenue 策略年化收益率
      * @param strategyYield 投资区间的策略收益率
      * @return 夏普比率
@@ -120,7 +120,7 @@ public class StrategyDataAnlysis {
         }
 
         double sharpeRatio = (annualRevenue - RF)/Math.sqrt(MathHelper.variance(strategy));
-        return sharpeRatio;
+        return MathHelper.formatData(sharpeRatio,4);
     }
 
     /**
@@ -158,6 +158,7 @@ public class StrategyDataAnlysis {
         for(int i=1; i<baseYield.size(); ++i) {
             baseAnnualRevenue += baseYield.get(i).ratio;
         }
+
         baseAnnualRevenue /= baseYield.size();
 
         baseAnnualRevenue = (baseAnnualRevenue/tradeDays) * 365;

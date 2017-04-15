@@ -141,6 +141,10 @@ public class DateHelper {
     }
 
     public Date stringTransToDate(String dateformat) {
+        if(dateformat == null) {
+            return null;
+        }
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
 
         Date date = null;
@@ -154,6 +158,9 @@ public class DateHelper {
     }
 
     public String dateTransToString(Date date) {
+        if(date == null) {
+            return null;
+        }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
         return simpleDateFormat.format(date);
     }

@@ -76,7 +76,7 @@ public class DataCalculation implements DataCalculationService {
 
         double rate = 0;
         rate = (stockPOs.get(stockPOs.size() - 1).getADJ() - stockPOs.get(0).getADJ()) / stockPOs.get(0).getADJ();
-        rate = MathHelper.formatData(rate);
+        rate = MathHelper.formatData(rate, 2);
 
 
         StockVO stockVO = new StockVO(stockPOs.get(0).getStockCode(), stockPOs.get(0).getStockName(),

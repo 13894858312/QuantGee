@@ -49,7 +49,6 @@ public class MathHelper {
      */
     public static double sampleVariance(double[] data) {
         double average = MathHelper.average(data);
-
         double sum = 0;
 
         for(int i=0; i<data.length; ++i) {
@@ -71,11 +70,26 @@ public class MathHelper {
 
         double temp = sum/data.length;
 
-        return MathHelper.formatData(temp);
+        return MathHelper.formatData(temp, 2);
     }
 
-    public static double formatData(double d) {
-        DecimalFormat df = new DecimalFormat("#.00");
+    /**
+     * 数字格式化
+     * @param d 数字
+     * @param num 精确到几位小数 默认两位小数
+     * @return double
+     */
+    public static double formatData(double d, int num) {
+        DecimalFormat df;
+
+        if(num == 3) {
+            df = new DecimalFormat("#.000");
+        } else if(num == 4) {
+            df = new DecimalFormat("#.0000");
+        } else {
+            df = new DecimalFormat("#.00");
+        }
+
         return Double.parseDouble(df.format(d));
     }
 }
