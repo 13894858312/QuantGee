@@ -8,17 +8,20 @@ public class YieldHistogramGraphDataVO {
     public double startRate;
     public double endRate;
 
-    public int Frequency;
+    public int positiveFrequency;
+    public int negativeFrequency;
 
     /**
      *
      * @param startRate 每一组左端值
      * @param endRate 每一组右端值
-     * @param frequency 频数
+     * @param positiveFrequency 正收益频数
+     * @param negativeFrequency 负收益频数
      */
-    public YieldHistogramGraphDataVO(double startRate, double endRate, int frequency) {
+    public YieldHistogramGraphDataVO(double startRate, double endRate, int positiveFrequency, int negativeFrequency) {
         this.startRate = startRate;
         this.endRate = endRate;
-        this.Frequency = frequency;
+        this.positiveFrequency = positiveFrequency;
+        this.negativeFrequency = negativeFrequency;
     }
 }

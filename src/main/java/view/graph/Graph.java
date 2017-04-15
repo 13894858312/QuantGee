@@ -58,4 +58,26 @@ public class Graph {
         return new MarketThermometer(marketInfoVO);
     }
 
+    //累计收益率折线图
+    //cumulativeYieldGraphDataVOArrayList1 基准收益率
+    //cumulativeYieldGraphDataVOArrayList2 策略收益率
+    public AverageChart getCumulativeYieldChart(ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOArrayList1, ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOArrayList2,
+                                                int width, int height){
+        return new AverageChart(cumulativeYieldGraphDataVOArrayList1, cumulativeYieldGraphDataVOArrayList2, width, height);
+    }
+
+    //超额收益率面积图
+    public ExcessEarning getExcessEarning(boolean judge, ArrayList<AbnormalReturnGraphDataVO> abnormalReturnGraphDataVOArrayList, int width, int height){
+        return new ExcessEarning(judge, abnormalReturnGraphDataVOArrayList, width, height);
+    }
+
+    //策略胜率面积图
+    public WinningStrategy getWinningStrategy(boolean judge, ArrayList<AbnormalReturnGraphDataVO> abnormalReturnGraphDataVOArrayList, int width, int height){
+        return new WinningStrategy(judge, abnormalReturnGraphDataVOArrayList, width, height);
+    }
+
+    //收益率分布直方图
+    public DistributionYield getDistributionYield(ArrayList<YieldHistogramGraphDataVO> yieldHistogramGraphDataVOArrayList, int width, int height){
+        return new DistributionYield(yieldHistogramGraphDataVOArrayList, width, height);
+    }
 }
