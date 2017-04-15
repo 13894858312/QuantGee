@@ -477,7 +477,7 @@ public class StockData implements StockDataDao{
 					}
 					
 					if (Integer.parseInt(strings[6])!=0) {
-//						BaseCumulativeYieldPO baseCumulativeYielPO = new BaseCumulativeYieldPO(strings[1], Double.valueOf(df.format(Double.valueOf(strings[4]))));
+						BaseCumulativeYieldPO baseCumulativeYielPO = new BaseCumulativeYieldPO(strings[1], Double.valueOf(df.format(Double.valueOf(strings[4]))));
 //						stockPOS.add(po);
 					}
 					

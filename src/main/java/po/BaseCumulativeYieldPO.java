@@ -7,15 +7,15 @@ import java.util.Date;
  * Created by Mark.W on 2017/3/31.
  */
 public class BaseCumulativeYieldPO {
-    private Date date;
+    private String date;
     private double baseRatio; //基准收益率
 
-    public BaseCumulativeYieldPO(Date date, double baseRatio) {
+    public BaseCumulativeYieldPO(String date, double baseRatio) {
         this.date = date;
         this.baseRatio = baseRatio;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
