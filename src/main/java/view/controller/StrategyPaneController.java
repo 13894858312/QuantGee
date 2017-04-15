@@ -66,7 +66,8 @@ public class StrategyPaneController {
     }
 
     public void init(BackTestingResultVO backTestingResultVO ,
-                     AbnormalReturnGraphVO abnormalReturnGraphVO ){
+                     AbnormalReturnGraphVO abnormalReturnGraphVO ,
+                     boolean judge){
 
         CumulativeYieldGraphVO cumulativeYieldGraphVO = backTestingResultVO.cumulativeYieldGraphVO;
         YieldHistogramGraphVO yieldHistogramGraphVO = backTestingResultVO.yieldHistogramGraphVO;
@@ -83,10 +84,10 @@ public class StrategyPaneController {
         graphA.getChildren().addAll(a);
 
         //b0
-        Pane b0 = graph.getExcessEarning(true , abnormalReturnGraphVO.abnormalReturnGraphDataVOS , 600 , 360);
+        Pane b0 = graph.getExcessEarning(judge , abnormalReturnGraphVO.abnormalReturnGraphDataVOS , 600 , 360);
         graphB_0.getChildren().addAll(b0);
         //b1
-        Pane b1 = graph.getWinningStrategy(true , abnormalReturnGraphVO.abnormalReturnGraphDataVOS , 600 , 360);
+        Pane b1 = graph.getWinningStrategy(judge , abnormalReturnGraphVO.abnormalReturnGraphDataVOS , 600 , 360);
         graphB_1.getChildren().addAll(b1);
 
         //c

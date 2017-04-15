@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by Mark.W on 2017/3/7.
  */
-public class MockStockData implements StockDataDao {
+public abstract class MockStockData implements StockDataDao {
 
     public String getStockCodeByName(String stockName) {
         return "1";
@@ -81,7 +81,6 @@ public class MockStockData implements StockDataDao {
         return null;
     }
 
-    @Override
     public ArrayList<ArrayList<StockPO>> getAllStockPO() {
         return null;
     }
