@@ -67,8 +67,6 @@ public class StrategyDataAnlysisTest {
 
         CumulativeYieldGraphVO cumulativeYieldGraphVO = this.strategyDataAnlysis.analyseCumulativeYieldGraph(income, init_fund, tradeDays, strategyYield, baseYield);
 
-
-
     }
 
 
