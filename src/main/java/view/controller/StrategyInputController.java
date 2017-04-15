@@ -14,9 +14,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import jdk.nashorn.internal.ir.Block;
 import logic.calculation.StrategyCalculation;
 import logicService.StrategyCalculationService;
-import vo.StrategyInputVO;
+import vo.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 public class StrategyInputController {
 
     private StrategyCalculationService strategyCalculationService;
+    private MainPageController mainPageController;
 
     @FXML private Pane root;
 
@@ -67,6 +69,9 @@ public class StrategyInputController {
 
     private int count = 0;
 
+    private StrategyType strategyType ;
+    boolean isHold ;
+
     private final LocalDate MIN = LocalDate.of(2005,2,2);
     private final LocalDate MAX = LocalDate.of(2014,4,29);
 
@@ -99,10 +104,16 @@ public class StrategyInputController {
         strategyCalculationService = new StrategyCalculation();
     }
     
-    public void init(){
+    public void init(MainPageController mainPageController){
+
+        this.mainPageController = mainPageController;
+
         //载入策略选择框
         strategyPicker.setItems(FXCollections.observableArrayList("动量策略","均值回归"));
         strategyPicker.setValue("动量策略");
+
+        strategyType = StrategyType.MOMENTUM_DRIVEN;
+
         strategyPicker.getSelectionModel().selectedIndexProperty().addListener(
                 new ChangeListener<Number>() {
                     @Override
@@ -152,6 +163,7 @@ public class StrategyInputController {
 
         //设定单选框浮标
         chooseHold.setSelected(true);
+        isHold = true;
         chooseHold.setTooltip(new Tooltip("选为生成超额收益率关系图的数据"));
         chooseMake.setTooltip(new Tooltip("选为生成超额收益率关系图的数据"));
 
@@ -174,6 +186,23 @@ public class StrategyInputController {
     @FXML
     private void search(){
 
+        StrategyInputVO strategyInputVO = getInput();
+        //错误则结束
+        if(strategyInputVO == null){return;}
+
+        BackTestingResultVO backTestingResultVO = strategyCalculationService
+                .getStrategyBackTestingGraphInfo(strategyType , strategyInputVO );
+        AbnormalReturnGraphVO abnormalReturnGraphVO = strategyCalculationService.getAbnormalReturnGraphInfo(strategyType , strategyInputVO , isHold);
+
+        //没有返回值则弹出对话框并结束
+        if(backTestingResultVO == null || strategyInputVO == null){
+            showMessage("无结果");
+            return;
+        }
+
+        //一切正常则显示策略界面
+        showResult(backTestingResultVO , abnormalReturnGraphVO);
+
     }
 
     /*
@@ -184,7 +213,6 @@ public class StrategyInputController {
         ((Stage)root.getScene().getWindow()).close();
     }
 
-
     /*
     两个框只能选一个
      */
@@ -193,6 +221,7 @@ public class StrategyInputController {
         if(chooseHold.isSelected()){
             chooseMake.setSelected(false);
         }
+        isHold = true;
     }
 
     @FXML
@@ -200,6 +229,7 @@ public class StrategyInputController {
         if(chooseMake.isSelected()){
             chooseHold.setSelected(false);
         }
+        isHold = false;
     }
 
     /*
@@ -225,6 +255,8 @@ public class StrategyInputController {
         hold.setText("请输入整数天");
         make_ChoiceBox.setValue("5天");
 
+        //策略更改
+        strategyType = StrategyType.MOMENTUM_DRIVEN;
     }
 
     /*
@@ -251,6 +283,9 @@ public class StrategyInputController {
         chooseMake.setSelected(false);
         hold.setText("请输入整数天");
         make_TextField.setText("请输入整数天");
+
+        //策略修改
+        strategyType = StrategyType.MEAN_REVERSION;
     }
 
     /*
@@ -327,6 +362,10 @@ public class StrategyInputController {
 
     }
 
+    /*
+    弹出对话框
+    @param 要显示的字符串
+     */
     private void showMessage(String str){
 
         Stage dialog = new Stage();
@@ -358,8 +397,30 @@ public class StrategyInputController {
      */
     private StrategyInputVO getInput(){
 
+        BlockType blockType ;
         //所选时间要比MIN+形成期*1.5晚
+
         return null;
+    }
+
+    /*
+    显示strategypane
+     */
+    private void showResult(BackTestingResultVO backTestingResultVO , AbnormalReturnGraphVO abnormalReturnGraphVO){
+
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/fxml/StrategyPane.fxml"));
+            Pane root = fxmlLoader.load();
+            StrategyPaneController strategyPaneController = fxmlLoader.getController();
+
+            strategyPaneController.init(backTestingResultVO , abnormalReturnGraphVO);
+            mainPageController.showRightPane(root);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 }

@@ -3,9 +3,10 @@ package view.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import vo.AbnormalReturnGraphVO;
-import vo.CumulativeYieldGraphVO;
-import vo.YieldHistogramGraphVO;
+import logic.calculation.StrategyCalculation;
+import logicService.StrategyCalculationService;
+import view.graph.Graph;
+import vo.*;
 
 import javax.xml.crypto.dom.DOMCryptoContext;
 
@@ -15,6 +16,10 @@ import javax.xml.crypto.dom.DOMCryptoContext;
  * Created by wangxue on 2017/3/31.
  */
 public class StrategyPaneController {
+
+    StrategyCalculationService strategyCalculationService;
+
+    Graph graph ;
 
     @FXML
     private AnchorPane graphA;
@@ -52,11 +57,20 @@ public class StrategyPaneController {
     @FXML
     private Label win;
 
+    public StrategyPaneController(){
 
-    public void init(CumulativeYieldGraphVO cumulativeYieldGraphVO ,
-                     AbnormalReturnGraphVO abnormalReturnGraphVO ,
-                     YieldHistogramGraphVO yieldHistogramGraphVO){
+        strategyCalculationService = new StrategyCalculation();
+        graph = new Graph();
 
+    }
+
+    public void init(BackTestingResultVO backTestingResultVO ,
+                     AbnormalReturnGraphVO abnormalReturnGraphVO ){
+
+        CumulativeYieldGraphVO cumulativeYieldGraphVO = backTestingResultVO.cumulativeYieldGraphVO;
+        YieldHistogramGraphVO yieldHistogramGraphVO = backTestingResultVO.yieldHistogramGraphVO;
+
+        //a
         year.setText(Double.toString(cumulativeYieldGraphVO.annualRevenue));
         base.setText(Double.toString(cumulativeYieldGraphVO.baseAnnualRevenue));
         sharp.setText(Double.toString(cumulativeYieldGraphVO.sharpeRatio));
@@ -64,9 +78,16 @@ public class StrategyPaneController {
         beta.setText(Double.toString(cumulativeYieldGraphVO.beta));
         max .setText(Double.toString(cumulativeYieldGraphVO.maxDrawdown));
 
+        //图
+
+        //b
+
+        //c
         positive.setText(Double.toString(yieldHistogramGraphVO.positiveEarningNum));
         negative.setText(Double.toString(yieldHistogramGraphVO.negativeEarningNum));
         win.setText(Double.toString(yieldHistogramGraphVO.winRate));
+
+        //图
 
     }
 

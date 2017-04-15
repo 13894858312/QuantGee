@@ -258,7 +258,7 @@ public class MainPageController{
             stage.show();
 
             StrategyInputController strategyInputController = rootLoader.getController();
-            strategyInputController.init();
+            strategyInputController.init(this);
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -303,6 +303,11 @@ public class MainPageController{
 
         return;
 
+    }
+
+    public void showRightPane(Pane root){
+        rightPane.getChildren().clear();
+        rightPane.getChildren().addAll(root);
     }
 
 }
