@@ -3,6 +3,8 @@ package logic.calculation;
 import logic.tools.DateHelper;
 import org.junit.Before;
 import org.junit.Test;
+import vo.MarketInfoVO;
+import vo.StockVO;
 
 import java.util.Date;
 
