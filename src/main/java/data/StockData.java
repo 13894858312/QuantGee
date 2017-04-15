@@ -3,10 +3,12 @@ package data;
 import java.awt.datatransfer.StringSelection;
 import java.io.*;
 import java.sql.Date;
+import java.text.DecimalFormat;
+import java.time.Year;
 import java.util.ArrayList;
 
 import dataDao.StockDataDao;
-import po.BaseCumulativeYielPO;
+import po.BaseCumulativeYieldPO;
 import po.StockPO;
 
 /**
@@ -440,22 +442,66 @@ public class StockData implements StockDataDao{
 //	}
 
 	@Override
-	public ArrayList<BaseCumulativeYielPO> getBaseYieldByBlockName(String blockName, String startDate, String endDate) {
+	public ArrayList<BaseCumulativeYieldPO> getBaseYieldByBlockName(String blockName, String startDate, String endDate) {
+		
+		ArrayList<BaseCumulativeYieldPO>  yielPOs  = new ArrayList<>();
 		
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
 		path = path+"/all_stock_data/Block_Name/"+blockName+".txt";
 		File file = new File(path);
+		
 
 		String[] vaildDate = getVaildDate(startDate, endDate, path);
 		System.out.println(vaildDate[0]+" "+vaildDate[1]);
+		
+		if (endDate==null||startDate==null) {
+			return null;
+		}
+		
 		try {
+			//将收益率化成两位小数
+			DecimalFormat df = new DecimalFormat("######0.00"); 
+			
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = br.readLine();
+			boolean inTimeRange = false; 	//在要搜寻的时间范围内
 			
 			while ((line=br.readLine())!=null) {
 				
+				String[] strings = line.split("\\t");
+				
+				if (inTimeRange) {
+					if (strings[1].equals(startDate)) {
+						inTimeRange = false;
+					}
+					
+					if (Integer.parseInt(strings[6])!=0) {
+//						BaseCumulativeYieldPO baseCumulativeYielPO = new BaseCumulativeYieldPO(strings[1], Double.valueOf(df.format(Double.valueOf(strings[4]))));
+//						stockPOS.add(po);
+					}
+					
+				}else {
+					if (strings[1].equals(endDate)) {
+
+						inTimeRange = true;
+						
+						if (Integer.parseInt(strings[6])!=0) {
+//							StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
+//									Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
+//									Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
+//									Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
+//							stockPOS.add(po);
+						}
+						
+					}else{
+						if (inTimeRange) {
+							break;
+						}
+					}
+				}
 			}
+//			return stockPOS;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

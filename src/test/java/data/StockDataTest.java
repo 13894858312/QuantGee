@@ -3,10 +3,8 @@ package data;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-
 import org.junit.Test;
-
-import po.BaseCumulativeYielPO;
+import po.BaseCumulativeYieldPO;
 import po.StockPO;
 
 public class StockDataTest {
@@ -128,7 +126,7 @@ public class StockDataTest {
 	@Test
 	public void testGetBaseYieldByBlockName(){
 		StockData stockData = new StockData();
-		ArrayList<BaseCumulativeYielPO> data = stockData.getBaseYieldByBlockName("000300", "4/13/14", "4/29/14");
+		ArrayList<BaseCumulativeYieldPO> data = stockData.getBaseYieldByBlockName("000300", "4/13/14", "4/29/14");
 //		for (BaseCumulativeYielPO baseCumulativeYielPO : data) {
 //			System.out.println(baseCumulativeYielPO.getBaseRatio());
 //		}

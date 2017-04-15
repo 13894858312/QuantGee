@@ -1,7 +1,8 @@
 package dataDao;
 
 import data.StockData;
-import po.BaseCumulativeYielPO;
+import po.BaseCumulativeYieldPO;
+import po.BaseCumulativeYieldPO;
 import po.StockPO;
 
 import java.util.ArrayList;
@@ -66,6 +67,6 @@ public interface StockDataDao {
      * @param endDate 结束日期
      * @return ArrayList<BaseCumulativeYielPO>
      */
-    public ArrayList<BaseCumulativeYielPO> getBaseYieldByBlockName(String blockName, String startDate, String endDate);
+    public ArrayList<BaseCumulativeYieldPO> getBaseYieldByBlockName(String blockName, String startDate, String endDate);
 
 }
