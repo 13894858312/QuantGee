@@ -1,5 +1,6 @@
 package logic.strategy;
 
+import logic.tools.DateHelper;
 import logic.tools.MathHelper;
 import vo.CumulativeYieldGraphDataVO;
 import vo.CumulativeYieldGraphVO;
@@ -37,11 +38,11 @@ public class StrategyDataAnlysis {
         }
 
         maxYield = Math.max(maxYield, -minYield);
-
         ArrayList<YieldHistogramGraphDataVO> data = calculatePeriodYieldNum(maxYield, yieldPerPeriod);
 
-        YieldHistogramGraphVO yieldHistogramGraphVO = new YieldHistogramGraphVO(positiveEarningNum, negativeEarningNum,
-                positiveEarningNum/(positiveEarningNum+negativeEarningNum),data);
+        double winRate = MathHelper.formatData(positiveEarningNum/(positiveEarningNum+negativeEarningNum),4);
+        YieldHistogramGraphVO yieldHistogramGraphVO = new YieldHistogramGraphVO(positiveEarningNum, negativeEarningNum, winRate,data);
+
         return yieldHistogramGraphVO;
     }
 

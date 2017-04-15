@@ -34,6 +34,7 @@ public class StrategyCalculation implements StrategyCalculationService{
             blockType = strategyInputVO.blockType;
         }
 
+        //确定持有股票的数量
         int holdingStockNum = 0;
         if(strategyType == StrategyType.MOMENTUM_DRIVEN) {
             holdingStockNum = (int)(stockPool.getStockInfos().size() * strategyInputVO.ratio);
@@ -41,9 +42,9 @@ public class StrategyCalculation implements StrategyCalculationService{
             holdingStockNum = strategyInputVO.holdingStockNum;
         }
 
+        //回测
         StrategyBackTesting strategyBackTesting = new StrategyBackTesting(stockPool, strategyInputVO.holdingPeriod,
                 strategyInputVO.returnPeriod, holdingStockNum, strategy, blockType);
-
         strategyBackTesting.start();
 
         BackTestingResultVO backTestingResultVO = strategyBackTesting.getBackTestingResultVO();
@@ -77,8 +78,15 @@ public class StrategyCalculation implements StrategyCalculationService{
             period = strategyInputVO.returnPeriod;
         }
 
-        StrategyAbnormalReturn strategyAbnormalReturn = new StrategyAbnormalReturn(stockPool, period, isHoldingPeriod, strategy, blockType);
+        //确定持有股票的数量
+        int holdingStockNum = 0;
+        if(strategyType == StrategyType.MOMENTUM_DRIVEN) {
+            holdingStockNum = (int)(stockPool.getStockInfos().size() * strategyInputVO.ratio);
+        } else {
+            holdingStockNum = strategyInputVO.holdingStockNum;
+        }
 
+        StrategyAbnormalReturn strategyAbnormalReturn = new StrategyAbnormalReturn(stockPool, period, isHoldingPeriod, holdingStockNum, strategy, blockType);
         strategyAbnormalReturn.start();
 
         AbnormalReturnGraphVO abnormalReturnGraphVO = strategyAbnormalReturn.getAbnormalReturnGraphVO();
