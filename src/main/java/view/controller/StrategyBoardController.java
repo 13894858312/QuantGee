@@ -3,6 +3,7 @@ package view.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import vo.BlockType;
 
 /**
  * Created by wangxue on 2017/4/5.
@@ -17,7 +18,7 @@ public class StrategyBoardController {
     @FXML
     private RadioButton small;
 
-    String blockname = "主板";
+    private BlockType blockType = BlockType.MAIN_BLOCK;
 
     @FXML
     private ToggleGroup RBs;
@@ -25,23 +26,23 @@ public class StrategyBoardController {
     /*
      * @return string 0=主板
      */
-    public String getChosenBoard(){
-        return blockname;
+    public BlockType getBlockType(){
+        return blockType;
     }
 
     @FXML
     private void choose0(){
-        blockname = "主板";
+        blockType = BlockType.MAIN_BLOCK;
     }
 
     @FXML
     private void choose1(){
-        blockname = "创业板";
+        blockType = BlockType.STARTUP_BLOCK;
     }
 
     @FXML
     private void choose2(){
-        blockname = "中小板";
+        blockType = BlockType.MIDDLE_SMALL_BLOCK;
     }
 
 }

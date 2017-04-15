@@ -70,7 +70,8 @@ public class StrategyInputController {
     private int count = 0;
 
     private StrategyType strategyType ;
-    boolean isHold ;
+    private boolean isHold ;
+    private BlockType blockType ;
 
     private final LocalDate MIN = LocalDate.of(2005,2,2);
     private final LocalDate MAX = LocalDate.of(2014,4,29);
@@ -132,7 +133,7 @@ public class StrategyInputController {
 
 
         //载入股票池选项
-        stockPool.setItems(FXCollections.observableArrayList("    所有股票","    选择板块","    选择股票"));
+        stockPool.setItems(FXCollections.observableArrayList("所有股票","选择板块","选择股票"));
         stockPool.setValue("所有股票");
         stockPool.getSelectionModel().selectedIndexProperty().addListener(
                 new ChangeListener<Number>() {
@@ -397,9 +398,8 @@ public class StrategyInputController {
      */
     private StrategyInputVO getInput(){
 
-        BlockType blockType ;
-        //所选时间要比MIN+形成期*1.5晚
 
+        //所选时间要比MIN+形成期*1.5晚
         return null;
     }
 
