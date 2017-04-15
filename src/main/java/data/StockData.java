@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import dataDao.StockDataDao;
+import po.BaseCumulativeYielPO;
 import po.StockPO;
 
 /**
@@ -424,5 +425,11 @@ public class StockData implements StockDataDao{
 		
 		
 		return allDatas;
+	}
+
+	@Override
+	public ArrayList<BaseCumulativeYielPO> getBaseYieldByBlockName(String blockName, String startDate, String endDate) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
