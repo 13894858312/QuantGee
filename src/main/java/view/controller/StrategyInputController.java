@@ -20,6 +20,7 @@ import logicService.StrategyCalculationService;
 import vo.*;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -288,6 +289,7 @@ public class StrategyInputController {
 
         //策略修改
         strategyType = StrategyType.MEAN_REVERSION;
+
     }
 
     /*
@@ -302,6 +304,7 @@ public class StrategyInputController {
         strategyBoardController = null;
         stocks = null;
         strategyStockControllers = null;
+
     }
 
     private void setChosenBlocks(){
@@ -337,9 +340,22 @@ public class StrategyInputController {
         stocks = new ArrayList<HBox>();
         strategyStockControllers = new ArrayList<StrategyStockController>();
 
+        try{
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/fxml/StrategyStock.fxml"));
+            stocks.add(fxmlLoader.load());
+            StrategyStockController controller = fxmlLoader.getController();
+            strategyStockControllers.add(controller);
+            controller.setIndex(0);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         //清空其他controller
         strategyBoardController = null;
+
     }
 
     public void addBlock(){
@@ -347,15 +363,46 @@ public class StrategyInputController {
         count++;
         num.setText(Integer.toString(count));
 
+        try{
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/fxml/StrategyStock.fxml") );
+            stocks.add(fxmlLoader.load());
+            StrategyStockController controller = fxmlLoader.getController();
+            strategyStockControllers.add(controller);
+            controller.setIndex(count);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        showBlockPane();
+
     }
 
-    public void deleteBlock() {
+    public void deleteBlock(int index) {
 
         count--;
         num.setText(Integer.toString(count));
+        stocks.remove(index);
+
+        //删除时需要重新设index
+        for(int i = 0 ; i <= count ; i++ ){
+            strategyStockControllers.get(i).setIndex(i);
+        }
+
+        showBlockPane();
 
     }
 
+    private void showBlockPane(){
+        blockPane.getChildren().clear();
+        blockPane.getChildren().addAll(stocks);
+    }
+
+    /*
+    选择输入股票时，显示当前计数
+     */
     private void showHBox(){
 
         hBox.setVisible(true);
@@ -439,6 +486,7 @@ public class StrategyInputController {
             holdNum = new Double(perField.getText().trim());
         }catch (Exception e){
             showMessage("请输入合法数值");
+            return null;
         }
 
         ///////
@@ -456,14 +504,20 @@ public class StrategyInputController {
 
             if( stockPoolType == 2)//选择股票
             {
+                ArrayList<String> stockNames = new ArrayList<>();
+                for(int i = 0 ; i < count ; i++ ) {
+                    String name = strategyStockControllers.get(i).getBlockName();
+                    stockNames.add(name);
+                }
 
+                return new StrategyInputVO(startDate , endDate , stockNames , holdInt , makeInt , holdNum);
             }else if( stockPoolType == 1)//选择板块
             {
                 blockType = strategyBoardController.getBlockType();
-                return  new StrategyInputVO(startDate , endDate , blockType , holdInt , makeInt);
+                return  new StrategyInputVO(startDate , endDate , blockType , holdInt , makeInt ,holdNum);
             }else//选择全部
             {
-                return new StrategyInputVO(startDate , endDate , holdInt , makeInt);
+                return new StrategyInputVO(startDate , endDate , holdInt , makeInt , holdNum);
             }
 
         }else{
@@ -486,6 +540,14 @@ public class StrategyInputController {
             if(stockPoolType == 2)//选择股票
             {
 
+                ArrayList<String> stockNames = new ArrayList<>();
+                for(int i = 0 ; i < count ; i++ ) {
+                    String name = strategyStockControllers.get(i).getBlockName();
+                    stockNames.add(name);
+                }
+
+                return new StrategyInputVO(startDate , endDate , stockNames , holdInt , makeInt , holdNum);
+
             }else if(stockPoolType == 1)//选择板块
             {
                 blockType = strategyBoardController.getBlockType();
@@ -496,7 +558,6 @@ public class StrategyInputController {
 
         }
 
-        return null;
     }
 
     /*
