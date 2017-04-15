@@ -48,5 +48,4 @@ public class MathHelperTest {
 
         assertEquals(2.00, MathHelper.average(data), 0);
     }
-
 }

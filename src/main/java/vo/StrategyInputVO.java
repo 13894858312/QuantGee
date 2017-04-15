@@ -144,6 +144,12 @@ public class StrategyInputVO {
     }
 
     private boolean stockNamesEqual(ArrayList<String> s) {
+        if(this.stockNames == null || this.stockNames.size() == 0) {
+            if(s == null || s.size() == 0) {
+                return true;
+            }
+        }
+
         if(s.size() != this.stockNames.size()) {
             return false;
         }

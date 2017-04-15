@@ -34,7 +34,8 @@ public class StrategyCalculation implements StrategyCalculationService{
             blockType = strategyInputVO.blockType;
         }
 
-        StrategyBackTesting strategyBackTesting = new StrategyBackTesting(stockPool, strategyInputVO.holdingPeriod, strategyInputVO.returnPeriod, strategy, blockType);
+        StrategyBackTesting strategyBackTesting = new StrategyBackTesting(stockPool, strategyInputVO.holdingPeriod,
+                strategyInputVO.returnPeriod, strategy, blockType);
 
         strategyBackTesting.start();
 

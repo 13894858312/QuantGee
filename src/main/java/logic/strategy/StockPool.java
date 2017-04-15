@@ -171,6 +171,21 @@ public class StockPool {
         }
     }
 
+    /**
+     * 获取
+     * @return
+     */
+    public ArrayList<CumulativeYieldGraphDataVO> getBlockBaseRaito() {
+        ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS = new ArrayList<>();
+
+        for(int i=0; i<this.blockBaseRaito.size(); ++i) {
+            cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(blockBaseRaito.get(i).getDate(),
+                    blockBaseRaito.get(i).getBaseRatio()));
+        }
+
+        return  cumulativeYieldGraphDataVOS;
+    }
+
     public Date getStartDate() {
         return startDate;
     }
@@ -181,17 +196,6 @@ public class StockPool {
 
     public ArrayList<StockInfo> getStockInfos() {
         return stockInfos;
-    }
-
-    public ArrayList<CumulativeYieldGraphDataVO> getBlockBaseRaito() {
-        ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS = new ArrayList<>();
-
-        for(int i=0; i<this.blockBaseRaito.size(); ++i) {
-            cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(blockBaseRaito.get(i).getDate(),
-                    blockBaseRaito.get(i).getBaseRatio()));
-        }
-
-        return  cumulativeYieldGraphDataVOS;
     }
 
     public int getTradeDays() {
