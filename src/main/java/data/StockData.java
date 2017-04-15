@@ -444,10 +444,11 @@ public class StockData implements StockDataDao{
 		
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		path = path+"/all_stock_data/Block_Name"+blockName+".txt";
+		path = path+"/all_stock_data/Block_Name/"+blockName+".txt";
 		File file = new File(path);
 
 		String[] vaildDate = getVaildDate(startDate, endDate, path);
+		System.out.println(vaildDate[0]+" "+vaildDate[1]);
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = br.readLine();

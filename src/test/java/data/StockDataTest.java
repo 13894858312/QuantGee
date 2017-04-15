@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import po.BaseCumulativeYielPO;
 import po.StockPO;
 
 public class StockDataTest {
@@ -115,5 +116,21 @@ public class StockDataTest {
 		trueDate[0] = "4/28/14";
 		trueDate[1] = "4/29/14";
 		assertArrayEquals(trueDate, validDate);
+	}
+	
+	@Test
+	public void testGetAllStockPO() {
+		StockData stockData = new StockData();
+		ArrayList<ArrayList<StockPO>> data = stockData.getAllStockPO("2/10/14","4/29/14");
+		assertEquals(791, data.size());
+	}
+	
+	@Test
+	public void testGetBaseYieldByBlockName(){
+		StockData stockData = new StockData();
+		ArrayList<BaseCumulativeYielPO> data = stockData.getBaseYieldByBlockName("000300", "4/13/14", "4/29/14");
+//		for (BaseCumulativeYielPO baseCumulativeYielPO : data) {
+//			System.out.println(baseCumulativeYielPO.getBaseRatio());
+//		}
 	}
 }
