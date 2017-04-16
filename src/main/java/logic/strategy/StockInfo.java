@@ -13,17 +13,17 @@ import java.util.Date;
 public class StockInfo {
     private String stockCode;
 
-    private int endIndex;
+    private int startIndex;
     private StockPO beforeStockPO; //第一次确定股票 时间区间前returnPeriod天的股票信息
-    private StockPO startDateStock = null; //开始日期的股票数据 如果为空 抛弃该股票
-    private StockPO yesterdayStock = null; //开始日期前一天的股票数据 如果为空 抛弃该股票
+    private StockPO startDateStock; //开始日期的股票数据 如果为空 抛弃该股票
+    private StockPO yesterdayStock; //开始日期前一天的股票数据 如果为空 抛弃该股票
     private ArrayList<StockPO> stockPOS;
 
     public StockInfo(Date startDate, String stockCode, ArrayList<StockPO> stockPOS) {
-        this.initDateStock(startDate);
-
         this.stockCode = stockCode;
         this.stockPOS = stockPOS;
+
+        this.initDateStock(startDate);
     }
 
     //初始化index和StartDateStock
@@ -38,7 +38,7 @@ public class StockInfo {
             }
 
             if(days == 0) {
-                endIndex = i;
+                startIndex = i;
                 this.startDateStock = this.stockPOS.get(i);           //初始化开始日期的股票数据
 
                 if(i<stockPOS.size()-1) {
@@ -59,7 +59,7 @@ public class StockInfo {
     public StockPO getStockByDate(Date date) {
 
         //股票数据默认按时间倒序排序 用时间比较 提高一下数据
-        for(int i=this.stockPOS.size(); i>=endIndex; i --) {
+        for(int i=startIndex+1; i>=0; i --) {
             Date d = DateHelper.getInstance().stringTransToDate(this.stockPOS.get(i).getDate());
             int days = DateHelper.getInstance().calculateDaysBetween(d, date);
 
@@ -100,7 +100,7 @@ public class StockInfo {
         return stockPOS;
     }
 
-    public int getEndIndex() {
-        return endIndex;
+    public int getStartIndex() {
+        return startIndex;
     }
 }

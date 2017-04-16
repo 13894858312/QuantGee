@@ -4,7 +4,7 @@ import data.StockData;
 import dataDao.StockDataDao;
 import logic.tools.DateHelper;
 import logic.tools.SwitchBlockType;
-import po.BaseCumulativeYielPO;
+import po.BaseCumulativeYieldPO;
 import po.StockPO;
 import vo.*;
 
@@ -21,12 +21,13 @@ public class StockPool {
 
     private StrategyInputVO strategyInputVO; //用于判断该股票池是否可以继续被复用
 
-    private ArrayList<BaseCumulativeYielPO> blockBaseRaito;
+    private ArrayList<BaseCumulativeYieldPO> blockBaseRaito;
     private ArrayList<StockInfo> stockInfos;
     private Date startDate;
     private Date endDate;
+
     private int tradeDays;   //时间区间內的交易日数，即投资天数
-    private int endIndex;     //indexStocks的结束下标
+    private int startIndex;     //indexStocks的结束下标
 
     private BlockType blockType;
     private int holdingStockNum;
@@ -111,7 +112,7 @@ public class StockPool {
             }
         }
 
-        this.endIndex = this.stockInfos.get(index).getEndIndex();
+        this.startIndex = this.stockInfos.get(index).getStartIndex();
         this.tradeDays = this.stockInfos.get(index).getStockSize();
 
         return this.stockInfos.get(index).getStockPOS();
@@ -164,6 +165,7 @@ public class StockPool {
                         stockInfos.add(new StockInfo(startDate, stockPOS.get(0).getStockCode(), stockPOS));
                     }
                 }
+
             }
         }
     }
@@ -176,7 +178,7 @@ public class StockPool {
         ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS = new ArrayList<>();
 
         for(int i=0; i<this.blockBaseRaito.size(); ++i) {
-            cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(blockBaseRaito.get(i).getDate(),
+            cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(DateHelper.getInstance().stringTransToDate(blockBaseRaito.get(i).getDate()),
                     blockBaseRaito.get(i).getBaseRatio()));
         }
 
@@ -199,8 +201,8 @@ public class StockPool {
         return tradeDays;
     }
 
-    public int getEndIndex() {
-        return endIndex;
+    public int getStartIndex() {
+        return startIndex;
     }
 
     public StrategyInputVO getStrategyInputVO() {

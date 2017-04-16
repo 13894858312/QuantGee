@@ -1,7 +1,7 @@
 package mock;
 
 import dataDao.StockDataDao;
-import po.BaseCumulativeYielPO;
+import po.BaseCumulativeYieldPO;
 import po.StockPO;
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by Mark.W on 2017/3/7.
  */
-public abstract class MockStockData implements StockDataDao {
+public class MockStockData implements StockDataDao {
 
     public String getStockCodeByName(String stockName) {
         return "1";
@@ -81,12 +81,13 @@ public abstract class MockStockData implements StockDataDao {
         return null;
     }
 
-    public ArrayList<ArrayList<StockPO>> getAllStockPO() {
+    @Override
+    public ArrayList<ArrayList<StockPO>> getAllStockPO(String startDate, String endDate) {
         return null;
     }
 
     @Override
-    public ArrayList<BaseCumulativeYielPO> getBaseYieldByBlockName(String blockName, String startDate, String endDate) {
+    public ArrayList<BaseCumulativeYieldPO> getBaseYieldByBlockName(String blockName, String startDate, String endDate) {
         return null;
     }
 }

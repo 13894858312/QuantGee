@@ -1,5 +1,6 @@
 package logic.strategy;
 
+import logic.tools.DateHelper;
 import po.StockPO;
 
 import java.util.ArrayList;
@@ -28,12 +29,14 @@ public class MomentumDriveStrategy implements Strategy {
 
             stockYields.add(new StockYield(yesterday.getStockCode(), yield));
         }
+
         return stockYields;
     }
 
     @Override
     public ArrayList<StockYield> rebalanceHoldingStocks(StockPool stockPool, Date beforeDate, Date today) {
         ArrayList<StockYield> stockYields = new ArrayList<>();
+
         for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
             StockPO before = stockPool.getStockInfos().get(i).getStockByDate(beforeDate);
             StockPO yesterday = stockPool.getStockInfos().get(i).getStockByDate(today);

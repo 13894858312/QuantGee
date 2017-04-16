@@ -176,6 +176,12 @@ public class StrategyDataAnlysis {
             strategy[i] = strategyYield.get(i).ratio;
         }
 
+//        for(int i=0; i<strategy.length; ++i) {
+//            System.out.println(strategy[i]);
+//        }
+//        System.out.println("annualRevenue: " + annualRevenue);
+//        System.out.println("  "+MathHelper.variance(strategy));
+
         double sharpeRatio = (annualRevenue - RF)/Math.sqrt(MathHelper.variance(strategy));
         return MathHelper.formatData(sharpeRatio,4);
     }
