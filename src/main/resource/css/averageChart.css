@@ -24,15 +24,15 @@
     -fx-stroke: rgb(0,230,0);
     -fx-stroke-width: 1.5px;
 }
+.default-color0.chart-legend{
+    -fx-background-radius: 0;
+}
 .default-color1.chart-series-line{
     -fx-stroke: rgb(2,226,244);
     -fx-stroke-width: 1.5px;
 }
 .default-color0.chart-legend-item-symbol{
     -fx-background-color:rgb(0,230,0);
-}
-.default-color0.chart-symbol{
-    -fx-background-radius: 10px;
 }
 .default-color1.chart-legend-item-symbol{
     -fx-background-color: rgb(2,226,244);

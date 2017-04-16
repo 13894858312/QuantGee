@@ -677,6 +677,12 @@ public class StrategyInputController {
 
     private void getFile() {
 
+        blockPane.getChildren().clear();
+        hBox.setVisible(false);
+        strategyStockControllers = null;
+        stocks = null;
+        strategyBoardController = null;
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("选取输入文件");
         fileChooser.getExtensionFilters().addAll(
