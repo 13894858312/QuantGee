@@ -32,7 +32,7 @@ public class StrategyCalculation implements StrategyCalculationService{
 
         //回测
         StrategyBackTesting strategyBackTesting = new StrategyBackTesting(stockPool, strategyInputVO.holdingPeriod,
-                strategyInputVO.returnPeriod, strategy);
+                strategyInputVO.returnPeriod, strategy,false);
         strategyBackTesting.start();
 
         BackTestingResultVO backTestingResultVO = strategyBackTesting.getBackTestingResultVO();

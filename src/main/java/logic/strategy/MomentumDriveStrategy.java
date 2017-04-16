@@ -34,9 +34,6 @@ public class MomentumDriveStrategy implements Strategy {
     @Override
     public ArrayList<StockYield> rebalanceHoldingStocks(StockPool stockPool, Date beforeDate, Date today) {
 
-        System.out.println(DateHelper.getInstance().dateTransToString(beforeDate));
-        System.out.println(DateHelper.getInstance().dateTransToString(today));
-
         ArrayList<StockYield> stockYields = new ArrayList<>();
 
         for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
@@ -53,7 +50,12 @@ public class MomentumDriveStrategy implements Strategy {
         }
 
 //        if(stockYields.size() == 0) {
-//            System.out.println("!!!!!!!!!!size is 0!!!!!!!!!");
+//            System.out.println(stockPool.getStockInfos().get(0).getStockCode());
+//            System.out.println(stockPool.getStockInfos().get(0).getStockByDate(beforeDate) == null);
+//            System.out.println(stockPool.getStockInfos().get(0).getStockByDate(today) == null);
+//            System.out.println("!!!!!!!!!!!!!!!!!!!size is 0");
+//            System.out.println("!!!!!!!!!!!!!!!!!!!" + DateHelper.getInstance().dateTransToString(beforeDate));
+//            System.out.println("!!!!!!!!!!!!!!!!!!!" + DateHelper.getInstance().dateTransToString(today));
 //            for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
 //                StockPO before = stockPool.getStockInfos().get(i).getStockByDate(beforeDate);
 //                StockPO yesterday = stockPool.getStockInfos().get(i).getStockByDate(today);

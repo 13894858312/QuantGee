@@ -17,8 +17,11 @@ public class StrategyBackTesting {
     private double income = INIT_FUND;      //总本金+收益
     private double tempIncome = income;  //记录上一个周期的本金+收益，用于计算周期收益率
 
+    private double baseY;   //总的基准收益率
+
     private Strategy strategy;
     private StockPool stockPool;
+    private boolean periodOnly;
 
     private BlockType blockType;
     private int holdingPeriod;  //持有期
@@ -40,9 +43,10 @@ public class StrategyBackTesting {
      * @param returnPeriod 形成期
      * @param strategy 不同策略选择股票的接口
      */
-    public StrategyBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod, Strategy strategy) {
+    public StrategyBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod, Strategy strategy, boolean periodOnly) {
         this.stockPool = stockPool;
         this.strategy = strategy;
+        this.periodOnly = periodOnly;
 
         this.blockType = stockPool.getBlockType();
         this.holdingPeriod = holdingPeriod;
@@ -66,29 +70,36 @@ public class StrategyBackTesting {
         }
 
 
-        ArrayList<StockPO> stockPOS = stockPool.getIndexStocks();
+        ArrayList<StockPO> indexStocks = stockPool.getIndexStocks();
         int startIndex = stockPool.getStartIndex(); //初始化访问股票的下标index
         int index = 0;  //记录是否达到一个holdingPeriod的index
         this.initHoldingStocks();
         //循环主体 最早的时间在前面 所以倒序访问
 
+        this.baseY = (indexStocks.get(0).getADJ()-indexStocks.get(startIndex).getADJ())/indexStocks.get(0).getADJ();
+
         for(int i=startIndex; i>=0; i--) {
-            System.out.println("here: " + stockPOS.get(i).getDate());
-            Date temp = DateHelper.getInstance().stringTransToDate(stockPOS.get(i).getDate());
+
+System.out.println("here: " + indexStocks.get(i).getDate());
+
+            Date temp = DateHelper.getInstance().stringTransToDate(indexStocks.get(i).getDate());
 
             if(index == holdingPeriod) { //若达到holdingPeriod index置0
                 index = 0;               //前一天进行rebalance,买入卖出
-                Date d = DateHelper.getInstance().stringTransToDate(stockPOS.get(i+1).getDate());
-                this.rebalance(d,temp);
+                Date d1 = DateHelper.getInstance().stringTransToDate(indexStocks.get(i+this.returnPeriod).getDate());
+                Date d2 = DateHelper.getInstance().stringTransToDate(indexStocks.get(i).getDate());
+                this.rebalance(d1,d2);
             } else {
                 index ++;
             }
 
-            //每天需要计算的数据
-            if(blockType == null) {                             //如果不是回测板块 则需要计算基准收益率
-                this.calculateBaseCumlativeYield(temp);         //基准收益率计算 用今日adj
+            if(!periodOnly) {
+                //每天需要计算的数据
+                if(blockType == null) {                             //如果不是回测板块 则需要计算基准收益率
+                    this.calculateBaseCumlativeYield(temp);         //基准收益率计算 用今日adj
+                }
+                this.calculateHoldingStockYield(temp);          //计算收益， 用昨日adj
             }
-            this.calculateHoldingStockYield(temp);          //计算收益， 用昨日adj
 
 
             if(i == 0 && index != holdingPeriod) {
@@ -97,7 +108,9 @@ public class StrategyBackTesting {
             }
         }
 
-        this.finish();
+        if(!periodOnly) {
+            this.finish1();
+        }
     }
 
     /**
@@ -173,11 +186,10 @@ public class StrategyBackTesting {
      * 一个持有期结束
      * 计算指定日期所有股票形成期收益，并获取前holdingStockNum个的股票代码
      * 不同策略确定方法不一样
-     * @param date 日期（前一天卖出并立马买入股票）
+     * @param beforeDate 形成期前的日期
+     * @param oneDayBeforeDate 调仓日期的前一天（用前一天的收盘价进行陶仓操作）
      */
-    private void rebalance(Date oneDayBeforeDate, Date date) {
-        Date beforeDate = DateHelper.getInstance().formerNTradeDay(date, returnPeriod);
-
+    private void rebalance(Date beforeDate, Date oneDayBeforeDate) {
         this.sellStock(oneDayBeforeDate);           //卖出所有持有的且当天没有停盘的股票
         this.calculatePeriodYield();                //计算周期收益率
 
@@ -193,6 +205,9 @@ public class StrategyBackTesting {
      * 计算每个持有期结束后的收益率
      */
     private void calculatePeriodYield() {
+System.out.println("                 前一周期收益：" + tempIncome);
+System.out.println("                 当前周期收益：" + income);
+
         double yield = (income-tempIncome)/tempIncome;
         this.yieldPerPeriod.add(yield);
     }
@@ -279,9 +294,9 @@ public class StrategyBackTesting {
     }
 
     /**
-     * 计算分析结果数据
+     * 计算分析结果数据, 累计收益率和直方图
      */
-    private void finish() {
+    private void finish1() {
         StrategyDataAnlysis analysis = new StrategyDataAnlysis();
 
         //计算累计收益率图的有关数据
@@ -294,12 +309,13 @@ public class StrategyBackTesting {
         this.backTestingResultVO = new BackTestingResultVO(cumulativeYieldGraphVO,yieldHistogramGraphVO);
     }
 
+
     /**
      * 获取超额收益率
      * @return 超额收益率
      */
     public double getAbnormalReturn() {
-        double result = new StrategyDataAnlysis().analyseAbnormalReturn(income, INIT_FUND, baseYield);
+        double result = new StrategyDataAnlysis().analyseAbnormalReturn(income, INIT_FUND, baseY);
         return result;
     }
 
@@ -308,7 +324,7 @@ public class StrategyBackTesting {
      * @return 策略胜率
      */
     public double getWinRate() {
-        double result = this.backTestingResultVO.yieldHistogramGraphVO.winRate;
+        double result = new StrategyDataAnlysis().analyseWinRate(yieldPerPeriod);
         return result;
     }
 
