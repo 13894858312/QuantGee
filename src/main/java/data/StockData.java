@@ -154,7 +154,7 @@ public class StockData implements StockDataDao{
 						}
 						
 					}else{
-						if (inTimeRange) {
+						if (!inTimeRange) {
 							break;
 						}
 					}
@@ -453,7 +453,8 @@ public class StockData implements StockDataDao{
 		
 
 		String[] vaildDate = getVaildDate(startDate, endDate, path);
-		System.out.println(vaildDate[0]+" "+vaildDate[1]);
+		startDate = vaildDate[0];
+		endDate = vaildDate[1];
 		
 		if (endDate==null||startDate==null) {
 			return null;
@@ -488,7 +489,7 @@ public class StockData implements StockDataDao{
 						yielPOs.add(baseCumulativeYielPO);
 						
 					}else{
-						if (inTimeRange) {
+						if (!inTimeRange) {
 							break;
 						}
 					}

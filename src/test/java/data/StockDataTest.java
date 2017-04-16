@@ -124,12 +124,20 @@ public class StockDataTest {
 	}
 	
 	@Test
-	public void testGetBaseYieldByBlockName(){
+	public void testGetBaseYieldByBlockName1(){
 		StockData stockData = new StockData();
 		ArrayList<BaseCumulativeYieldPO> data = stockData.getBaseYieldByBlockName("000300", "4/13/14", "4/29/14");
-		System.out.println(data.size());
-//		for (BaseCumulativeYieldPO baseCumulativeYieldPO : data) {
-//			System.out.println(baseCumulativeYieldPO.getBaseRatio());
-//		}
+		for (BaseCumulativeYieldPO baseCumulativeYieldPO : data) {
+			System.out.println(baseCumulativeYieldPO.getBaseRatio());
+		}
+	}
+	
+	@Test
+	public void testGetBaseYieldByBlockName2(){
+		StockData stockData = new StockData();
+		ArrayList<BaseCumulativeYieldPO> data = stockData.getBaseYieldByBlockName("399005", "2/10/05", "4/29/14");
+		for (BaseCumulativeYieldPO baseCumulativeYieldPO : data) {
+			System.out.println(baseCumulativeYieldPO.getBaseRatio());
+		}
 	}
 }
