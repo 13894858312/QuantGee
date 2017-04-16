@@ -208,6 +208,8 @@ public class StrategyInputController {
 
         //一切正常则显示策略界面
         showResult(backTestingResultVO , abnormalReturnGraphVO);
+        //关闭搜索栏
+        close();
 
     }
 
