@@ -476,23 +476,16 @@ public class StockData implements StockDataDao{
 						inTimeRange = false;
 					}
 					
-					if (Integer.parseInt(strings[6])!=0) {
-						BaseCumulativeYieldPO baseCumulativeYielPO = new BaseCumulativeYieldPO(strings[1], Double.valueOf(df.format(Double.valueOf(strings[4]))));
-//						stockPOS.add(po);
-					}
+					BaseCumulativeYieldPO baseCumulativeYielPO = new BaseCumulativeYieldPO(strings[1], Double.valueOf(df.format(Double.valueOf(strings[4]))));
+					yielPOs.add(baseCumulativeYielPO);
 					
 				}else {
 					if (strings[1].equals(endDate)) {
 
 						inTimeRange = true;
 						
-						if (Integer.parseInt(strings[6])!=0) {
-//							StockPO po = new StockPO(strings[1],Double.parseDouble(strings[2]),
-//									Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
-//									Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
-//									Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]);
-//							stockPOS.add(po);
-						}
+						BaseCumulativeYieldPO baseCumulativeYielPO = new BaseCumulativeYieldPO(strings[1], Double.valueOf(df.format(Double.valueOf(strings[4]))));
+						yielPOs.add(baseCumulativeYielPO);
 						
 					}else{
 						if (inTimeRange) {
@@ -501,16 +494,12 @@ public class StockData implements StockDataDao{
 					}
 				}
 			}
-//			return stockPOS;
+			return yielPOs;
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 
 		return null;
 	}
