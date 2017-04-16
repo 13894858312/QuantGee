@@ -1,6 +1,5 @@
 package logic.strategy;
 
-import logic.tools.DateHelper;
 import logic.tools.MathHelper;
 import vo.CumulativeYieldGraphDataVO;
 import vo.CumulativeYieldGraphVO;
@@ -40,7 +39,8 @@ public class StrategyDataAnlysis {
         maxYield = Math.max(maxYield, -minYield);
         ArrayList<YieldHistogramGraphDataVO> data = calculatePeriodYieldNum(maxYield, yieldPerPeriod);
 
-        double winRate = MathHelper.formatData(positiveEarningNum/(positiveEarningNum+negativeEarningNum),4);
+        double winRate = (double)positiveEarningNum /(double)(positiveEarningNum+negativeEarningNum);
+        winRate = MathHelper.formatData(winRate,4);
         YieldHistogramGraphVO yieldHistogramGraphVO = new YieldHistogramGraphVO(positiveEarningNum, negativeEarningNum, winRate,data);
 
         return yieldHistogramGraphVO;
@@ -78,18 +78,11 @@ public class StrategyDataAnlysis {
      * @param baseYield 基准收益率
      * @return 超额收益率=策略收益率-基准收益率
      */
-    public double analyseAbnormalReturn(double income, double initFund,
-                                      ArrayList<CumulativeYieldGraphDataVO> baseYield) {
-        double base = 0;
-        for(int i=0; i<baseYield.size(); ++i) {
-            base += baseYield.get(i).ratio;
-        }
-
-        base /= baseYield.size();
-
-        double result = (income-initFund)/initFund - base;
+    public double analyseAbnormalReturn(double income, double initFund, double baseYield) {
+        double result = (income-initFund)/initFund - baseYield;
         return MathHelper.formatData(result,4);
     }
+
 
     private ArrayList<YieldHistogramGraphDataVO> calculatePeriodYieldNum(double maxYield, ArrayList<Double> yieldPerPeriod) {
 
@@ -257,5 +250,17 @@ public class StrategyDataAnlysis {
         }
 
         return MathHelper.formatData(maxDrawdown,4);
+    }
+
+    public double analyseWinRate(ArrayList<Double> baseYield) {
+        int num = 0;
+        for(int i=0; i<baseYield.size(); ++i) {
+            if(baseYield.get(i) > 0) {
+                num ++;
+            }
+        }
+
+        double result = (double)num / (double)baseYield.size();
+        return result;
     }
 }
