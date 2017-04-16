@@ -28,7 +28,7 @@
                               <Label text="\%  阿尔法：" />
                               <Label fx:id="alpha" text="--" />
                               <Label text="\%  贝塔：" />
-                              <Label text="--" />
+                              <Label fx:id="beta" text="--" />
                               <Label text="\%" />
                            </children>
                         </HBox>

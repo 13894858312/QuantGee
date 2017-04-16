@@ -182,6 +182,10 @@ public class StrategyInputController {
         make_TextField.setText("");
     }
 
+    @FXML
+    private void selectPerText(){
+        perField.setText("");
+    }
     /*
     搜索
      */

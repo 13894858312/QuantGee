@@ -41,8 +41,8 @@ public class StrategyStockController {
     }
 
     @FXML
-    private void selectText(){
-        name.setText("");
+    private void selectTextField(){
+        name.selectAll();
     }
 
     public void setDelete(){
