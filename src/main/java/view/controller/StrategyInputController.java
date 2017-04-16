@@ -302,6 +302,7 @@ public class StrategyInputController {
 
         blockPane.getChildren().clear();
         scrollPane.setDisable(true);
+        hBox.setVisible(false);
 
         //清空其他controller
         strategyBoardController = null;
@@ -314,6 +315,7 @@ public class StrategyInputController {
 
         blockPane.getChildren().clear();
         scrollPane.setDisable(false);
+        hBox.setVisible(false);
 
         try{
 
@@ -513,6 +515,11 @@ public class StrategyInputController {
             return null;
         }
 
+        if(holdInt <= 0 || holdNum <= 0){
+            showMessage("请输入合法数值");
+            return null;
+        }
+
         ///////
 
         if(strategyType == StrategyType.MOMENTUM_DRIVEN){
@@ -523,6 +530,11 @@ public class StrategyInputController {
             }catch (Exception e) {
                 //不是整数显示对话框
                 showMessage("请输入整数形成期");
+                return null;
+            }
+
+            if(makeInt <= 0){
+                showMessage("请输入合法数值");
                 return null;
             }
 
@@ -593,8 +605,18 @@ public class StrategyInputController {
                 showMessage("请输入股票代码");
                 return null;
             }
+            //非数值
+            try{
+                new Integer(name);
+            }catch (Exception e){
+                showMessage("请输入股票代码");
+                return null;
+            }
+
             stockNames.add(name);
+
         }
+
         return stockNames;
 
     }
