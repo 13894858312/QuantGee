@@ -65,6 +65,6 @@
       </GridPane>
       <Button layoutX="350.0" layoutY="330.0" mnemonicParsing="false" onAction="#search" styleClass="StrategyButton" text="搜  索" />
       <Button layoutX="474.0" layoutY="330.0" mnemonicParsing="false" onAction="#close" styleClass="StrategyButton" text="取  消" />
-      <ChoiceBox fx:id="stockPool" layoutX="20.0" layoutY="36.0" prefHeight="27.0" prefWidth="300.0" />
+      <ChoiceBox fx:id="stockPool" layoutX="20.0" layoutY="36.0" prefHeight="27.0" prefWidth="300.0" styleClass="BigChoiceBox" />
    </children>
 </AnchorPane>
