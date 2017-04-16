@@ -202,3 +202,39 @@
     -fx-pref-width: 60;
     -fx-pref-height: 30；
 }
+
+.choice-box{
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+}
+
+.choice-box :pressed{
+    -fx-border-color: #333333;
+}
+
+.choice-box :focused{
+    -fx-border-color: #333333;
+}
+
+.choice-box > .label{
+    -fx-background-color: #333333;
+}
+
+.choice-box .menu-item{
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-background-color: #333333;
+    -fx-pref-width: 140px;
+}
+
+.choice-box .menu-item:focused{
+    -fx-background-color: #666666;
+}
+
+.BigChoiceBox .menu-item{
+    -fx-pref-width: 300px;
+}
+
+.Picker .label{
+    -fx-text-fill: #333333;
+}

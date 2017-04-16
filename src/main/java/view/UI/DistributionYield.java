@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class DistributionYield extends Pane {
     public DistributionYield(ArrayList<YieldHistogramGraphDataVO> yieldHistogramGraphDataVOArrayList, int width, int height){
 
-        this.getStylesheets().add("/css/price_Compare.css");
+//        this.getStylesheets().add("/css/price_Compare.css");
 
         //x-xAxis
         final CategoryAxis xAxis = new CategoryAxis();
@@ -37,7 +37,8 @@ public class DistributionYield extends Pane {
         XYChart.Series<String, Number> series_plus = new XYChart.Series<>();
         XYChart.Series<String, Number> series_minus = new XYChart.Series<>();
         for(int i = yieldHistogramGraphDataVOArrayList.size()-1;i>=0;i--){
-
+            YieldHistogramGraphDataVO yieldHistogramGraphDataVO = yieldHistogramGraphDataVOArrayList.get(i);
+//            series_minus.getData().add(new XYChart.Data<>())
         }
         //data
 

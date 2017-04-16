@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
@@ -19,6 +20,9 @@ import logic.calculation.StrategyCalculation;
 import logicService.StrategyCalculationService;
 import vo.*;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
@@ -74,6 +78,8 @@ public class StrategyInputController {
     private StrategyType strategyType ;
     private boolean isHold ;
     private BlockType blockType ;
+
+    private File file;
 
     private final LocalDate MIN = LocalDate.of(2005,2,2);
     private final LocalDate MAX = LocalDate.of(2014,4,29);
@@ -134,7 +140,7 @@ public class StrategyInputController {
         make_ChoiceBox.setValue("5天");
 
         //载入股票池选项
-        stockPool.setItems(FXCollections.observableArrayList("所有股票","选择板块","选择股票"));
+        stockPool.setItems(FXCollections.observableArrayList("所有股票","选择板块","选择股票","选择文件"));
         stockPool.setValue("所有股票");
         stockPool.getSelectionModel().selectedIndexProperty().addListener(
                 new ChangeListener<Number>() {
@@ -147,6 +153,9 @@ public class StrategyInputController {
                             setChosenBlocks();
                         }else if(newValue.equals(2)){
                             setChosenStocks();
+                        }else{
+                            //文件输入
+                            getFile();
                         }
 
                     }
@@ -208,6 +217,8 @@ public class StrategyInputController {
 
         //一切正常则显示策略界面
         showResult(backTestingResultVO , abnormalReturnGraphVO);
+        //关闭搜索栏
+        close();
 
     }
 
@@ -302,6 +313,7 @@ public class StrategyInputController {
 
         blockPane.getChildren().clear();
         scrollPane.setDisable(true);
+        hBox.setVisible(false);
 
         //清空其他controller
         strategyBoardController = null;
@@ -314,6 +326,7 @@ public class StrategyInputController {
 
         blockPane.getChildren().clear();
         scrollPane.setDisable(false);
+        hBox.setVisible(false);
 
         try{
 
@@ -513,6 +526,11 @@ public class StrategyInputController {
             return null;
         }
 
+        if(holdInt <= 0 || holdNum <= 0){
+            showMessage("请输入合法数值");
+            return null;
+        }
+
         ///////
 
         if(strategyType == StrategyType.MOMENTUM_DRIVEN){
@@ -523,6 +541,11 @@ public class StrategyInputController {
             }catch (Exception e) {
                 //不是整数显示对话框
                 showMessage("请输入整数形成期");
+                return null;
+            }
+
+            if(makeInt <= 0){
+                showMessage("请输入合法数值");
                 return null;
             }
 
@@ -537,9 +560,20 @@ public class StrategyInputController {
             {
                 blockType = strategyBoardController.getBlockType();
                 return  new StrategyInputVO(startDate , endDate , blockType , holdInt , makeInt ,holdNum/100 );
-            }else//选择全部
+            }else if( stockPoolType == 0)//选择全部
             {
                 return new StrategyInputVO(startDate , endDate , holdInt , makeInt , holdNum/100 );
+            }else{
+                //输入文件
+                if(file == null){
+                    getFile();
+                }
+
+                ArrayList<String> stockNames = getFileStockNames();
+                if(stockNames == null){
+                    return null;
+                }
+                return new StrategyInputVO(startDate , endDate , stockNames , holdInt , makeInt , holdNum/100);
             }
 
         }else{
@@ -571,8 +605,20 @@ public class StrategyInputController {
             {
                 blockType = strategyBoardController.getBlockType();
                 return new StrategyInputVO(startDate , endDate , blockType , holdInt , makeInt , (int) holdNum);
-            }else{
+            }else if(stockPoolType == 0){
+                //全部股票
                 return new StrategyInputVO(startDate , endDate , holdInt , makeInt ,(int) holdNum);
+            }else{
+                //输入文件
+                if(file == null){
+                    getFile();
+                }
+
+                ArrayList<String> stockNames = getFileStockNames();
+                if(stockNames == null){
+                    return null;
+                }
+                return new StrategyInputVO(startDate , endDate , stockNames , holdInt , makeInt , holdNum/100);
             }
 
         }
@@ -580,12 +626,12 @@ public class StrategyInputController {
     }
 
     private ArrayList<String> getStockNames(){
-
+/*
         if(count < 100){
             showMessage("至少需要输入100支股票");
             return null;
         }
-
+*/
         ArrayList<String> stockNames = new ArrayList<>();
         for(int i = 0 ; i < count ; i++ ) {
             String name = strategyStockControllers.get(i).getBlockName();
@@ -593,8 +639,18 @@ public class StrategyInputController {
                 showMessage("请输入股票代码");
                 return null;
             }
+            //非数值
+            try{
+                new Integer(name);
+            }catch (Exception e){
+                showMessage("请输入股票代码");
+                return null;
+            }
+
             stockNames.add(name);
+
         }
+
         return stockNames;
 
     }
@@ -617,6 +673,38 @@ public class StrategyInputController {
             e.printStackTrace();
         }
 
+    }
+
+    private void getFile() {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("选取输入文件");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("TXT","*.txt")
+        );
+
+        file = fileChooser.showOpenDialog(new Stage());
+
+    }
+
+    private ArrayList<String> getFileStockNames(){
+
+        if (file != null) {
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+                String string = bufferedReader.readLine().trim();
+                String[] strings = string.split(" ");
+                ArrayList<String> names = new ArrayList<String>();
+                for (int i = 0; i < strings.length; i++) {
+                    names.add(strings[i]);
+                }
+                return names;
+            } catch (IOException e) {
+                showMessage("出现错误，请检查输入文件");
+            }
+        }
+
+        return null;
     }
 
 }

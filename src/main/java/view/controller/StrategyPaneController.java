@@ -75,19 +75,19 @@ public class StrategyPaneController {
         //a
         year.setText(Double.toString(cumulativeYieldGraphVO.annualRevenue * 100));
         base.setText(Double.toString(cumulativeYieldGraphVO.baseAnnualRevenue * 100));
-        sharp.setText(Double.toString(cumulativeYieldGraphVO.sharpeRatio * 100));
-        alpha.setText(Double.toString(cumulativeYieldGraphVO.alpha * 100));
-        beta.setText(Double.toString(cumulativeYieldGraphVO.beta * 100));
-        max .setText(Double.toString(cumulativeYieldGraphVO.maxDrawdown * 100));
+        sharp.setText(Double.toString(cumulativeYieldGraphVO.sharpeRatio ));
+        alpha.setText(Double.toString(cumulativeYieldGraphVO.alpha ));
+        beta.setText(Double.toString(cumulativeYieldGraphVO.beta ));
+        max .setText(Double.toString(cumulativeYieldGraphVO.maxDrawdown ));
 
         Pane a = graph.getCumulativeYieldChart(cumulativeYieldGraphVO.baseCumulativeYieldGraphDataVOS , cumulativeYieldGraphVO.cumulativeYieldGraphDataVOS ,660 , 400);
         graphA.getChildren().addAll(a);
 
         //b0
-        Pane b0 = graph.getExcessEarning(judge , abnormalReturnGraphVO.abnormalReturnGraphDataVOS , 600 , 360);
+        Pane b0 = graph.getExcessEarning(judge , abnormalReturnGraphVO.abnormalReturnGraphDataVOS , 660 , 360);
         graphB_0.getChildren().addAll(b0);
         //b1
-        Pane b1 = graph.getWinningStrategy(judge , abnormalReturnGraphVO.abnormalReturnGraphDataVOS , 600 , 360);
+        Pane b1 = graph.getWinningStrategy(judge , abnormalReturnGraphVO.abnormalReturnGraphDataVOS , 660 , 360);
         graphB_1.getChildren().addAll(b1);
 
         //c
