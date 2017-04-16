@@ -71,15 +71,6 @@ public class DateHelper {
         return d;
     }
 
-    public  Date nextNTradeDay(Date date, int n) {
-        Date d = date;
-        for(int i=0; i<n; ++i) {
-            d = nextTradeDay(d);
-        }
-
-        return d;
-    }
-
     /**
      * 获得给定日期的下一个第一个交易日
      * 如果给定日期是交易日，则日期不改变

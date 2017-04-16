@@ -45,9 +45,9 @@ public class StrategyAbnormalReturn {
 
         for(int i=START_PERIOD; i<=END_PERIOD; i+=INTERVAL) {
             if(isHoldingPeriod) {
-                strategyBackTesting = new StrategyBackTesting(stockPool, period, i,strategy);
+                strategyBackTesting = new StrategyBackTesting(stockPool, period, i,strategy,true);
             } else {
-                strategyBackTesting = new StrategyBackTesting(stockPool, i, period,strategy);
+                strategyBackTesting = new StrategyBackTesting(stockPool, i, period,strategy,true);
             }
 
             strategyBackTesting.start();
