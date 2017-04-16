@@ -13,12 +13,11 @@ import java.util.ArrayList;
  */
 public class StrategyAbnormalReturn {
     private static final int START_PERIOD = 2;//暂时固定为2-80
-    private static final int END_PERIOD = 80;
+    private int END_PERIOD;
     private static final int INTERVAL = 2;
 
     private StockPool stockPool;
 
-    private BlockType blockType;
     private Strategy strategy;
     private int period;
     private boolean isHoldingPeriod;
@@ -35,8 +34,8 @@ public class StrategyAbnormalReturn {
         this.stockPool = stockPool;
         this.period = period;
         this.isHoldingPeriod = isHoldingPeriod;
-        this.blockType = stockPool.getBlockType();
         this.strategy = strategy;
+        this.END_PERIOD = stockPool.getTradeDays()/2;           //最高值取交易日除以二
 
         this.abnormalReturnGraphDataVOS = new ArrayList<>();
     }
@@ -52,6 +51,7 @@ public class StrategyAbnormalReturn {
             }
 
             strategyBackTesting.start();
+
             double abnormalReturn = strategyBackTesting.getAbnormalReturn();
             double winRate = strategyBackTesting.getWinRate();
 
