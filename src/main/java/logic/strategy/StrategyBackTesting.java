@@ -13,7 +13,7 @@ import java.util.Date;
  * Created by Mark.W on 2017/4/4.
  */
 public class StrategyBackTesting {
-    private static final double INIT_FUND = 1000; //起始资金
+    private static final double INIT_FUND = 100000; //起始资金
     private double income = INIT_FUND;      //总本金+收益
     private double tempIncome = income;  //记录上一个周期的本金+收益，用于计算周期收益率
 
@@ -65,19 +65,21 @@ public class StrategyBackTesting {
             this.baseYield = stockPool.getBlockBaseRaito();
         }
 
+
         ArrayList<StockPO> stockPOS = stockPool.getIndexStocks();
         int startIndex = stockPool.getStartIndex(); //初始化访问股票的下标index
-
         int index = 0;  //记录是否达到一个holdingPeriod的index
         this.initHoldingStocks();
         //循环主体 最早的时间在前面 所以倒序访问
 
         for(int i=startIndex; i>=0; i--) {
+            System.out.println("here: " + stockPOS.get(i).getDate());
             Date temp = DateHelper.getInstance().stringTransToDate(stockPOS.get(i).getDate());
 
             if(index == holdingPeriod) { //若达到holdingPeriod index置0
                 index = 0;               //前一天进行rebalance,买入卖出
-                this.rebalance(temp);
+                Date d = DateHelper.getInstance().stringTransToDate(stockPOS.get(i+1).getDate());
+                this.rebalance(d,temp);
             } else {
                 index ++;
             }
@@ -89,7 +91,7 @@ public class StrategyBackTesting {
             this.calculateHoldingStockYield(temp);          //计算收益， 用昨日adj
 
 
-            if(i == startIndex && index != holdingPeriod) {
+            if(i == 0 && index != holdingPeriod) {
                 this.sellStock(temp);                       //如果最后剩余的天数不足holdingPeriod，仍然计算周期收益率
                 this.calculatePeriodYield();
             }
@@ -104,9 +106,6 @@ public class StrategyBackTesting {
      */
     private void calculateBaseCumlativeYield(Date date) {
 
-//        System.out.println(DateHelper.getInstance().dateTransToString(date));
-//        System.out.println("size:" +stockPool.getStockInfos().size());
-
         //不是按照板块回测
         int stockNum = 0;           //用于求平均
         double yield = 0;           //收益率
@@ -115,21 +114,12 @@ public class StrategyBackTesting {
             StockPO firstDay = stockPool.getStockInfos().get(i).getStartDateStockPO();
             StockPO today = stockPool.getStockInfos().get(i).getStockByDate(date);
 
-//            System.out.println("  " + i + " " + (firstDay == null));
-//            System.out.println("  " + i + " " + (today == null));
-
             if(firstDay != null && today != null) {
                 //计算基准累计收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
                 yield += (today.getADJ()-firstDay.getADJ())/firstDay.getADJ();
                 stockNum ++;
-
-//                System.out.println("     yield:" + yield);
-//                System.out.println("     stockNum:" + stockNum);
             }
         }
-
-//        System.out.println(yield);
-//        System.out.println(stockNum);
 
         yield = yield/stockNum;
 
@@ -145,18 +135,21 @@ public class StrategyBackTesting {
 //        System.out.println("date: " +DateHelper.getInstance().dateTransToString(date));
 //        System.out.println("size:" + this.holdingStocks.size());
 
+        System.out.println("计算-holdingStocks-size: " + this.holdingStocks.size());
+
         double yield = 0;
         for(int i = 0; i<this.holdingStocks.size(); ++i) {
             StockPO stockPO = stockPool.findSpecificStock(this.holdingStocks.get(i).getStockCode(), date);
 
             if(stockPO != null) {  //如果该天的股票数据没有 暂时放弃该股票
-                yield += this.holdingStocks.get(i).getNumOfStock() * stockPO.getADJ();
+                yield += holdingStocks.get(i).getNumOfStock() * stockPO.getADJ();
             }
-
         }
 
         //计算累计收益率
-        yield = (yield-INIT_FUND)/INIT_FUND;
+        yield = (yield - INIT_FUND)/INIT_FUND;
+
+        System.out.println("计算-yield:" + yield);
 
         this.strategyYield.add(new CumulativeYieldGraphDataVO(date, MathHelper.formatData(yield,4)));
     }
@@ -182,8 +175,7 @@ public class StrategyBackTesting {
      * 不同策略确定方法不一样
      * @param date 日期（前一天卖出并立马买入股票）
      */
-    private void rebalance(Date date) {
-        Date oneDayBeforeDate = DateHelper.getInstance().formerTradeDay(date);     //在该日期的前一天卖出
+    private void rebalance(Date oneDayBeforeDate, Date date) {
         Date beforeDate = DateHelper.getInstance().formerNTradeDay(date, returnPeriod);
 
         this.sellStock(oneDayBeforeDate);           //卖出所有持有的且当天没有停盘的股票
@@ -212,7 +204,7 @@ public class StrategyBackTesting {
      */
     private void buyStock(ArrayList<StockYield> stockYields, Date date) {
 
-        System.out.println(stockYields.size());
+//        System.out.println(1 + " " + stockYields.size());
 
         //冒泡排序 排序holdingStockNum次 得到收益前holdingStockNum的股票
         for(int i=0; i<holdingStockNum; ++i) {
@@ -225,28 +217,34 @@ public class StrategyBackTesting {
             }
         }
 
+        System.out.println("买入前size:" + this.holdingStocks.size());
+        System.out.println(stockYields.size());
+
 //        System.out.println(0 + " " + stockYields.get(0).getYield());
 //        System.out.println(1 + " " + stockYields.get(1).getYield());
 //        System.out.println(2 + " " + stockYields.get(2).getYield());
 
         //买入股票
         double moneyEachStock = income/this.holdingStockNum;
-        for(int i=0; i<holdingStockNum; ++ i) {
-            if(this.holdingStocks.size() < this.holdingStockNum) {      //持有数量只能为holdingStockNum
+        for(int i=0; i<stockYields.size(); ++ i) {
+//          System.out.println(stockYields.get(i).getStockCode());
+//          System.out.println(DateHelper.getInstance().dateTransToString(date));
 
-//                System.out.println(stockYields.get(i).getStockCode());
-//                System.out.println(DateHelper.getInstance().dateTransToString(date));
+            StockPO stockPO = this.stockPool.findSpecificStock(stockYields.get(i).getStockCode(), date);
 
-                StockPO stockPO = this.stockPool.findSpecificStock(stockYields.get(i).getStockCode(), date);
-
-                if(stockPO != null) {
+            if(stockPO != null) {
 //                    System.out.println("not null");
-                    double adj = stockPO.getADJ();
-                    double numOfStock = moneyEachStock/adj;
-                    this.holdingStocks.add(new HoldingStock(stockYields.get(i).getStockCode(), numOfStock));
-                }
+                double adj = stockPO.getADJ();
+                double numOfStock = moneyEachStock/adj;
+                this.holdingStocks.add(new HoldingStock(stockYields.get(i).getStockCode(), numOfStock));
+            }
+
+            if(this.holdingStocks.size() >= this.holdingStockNum) { //持有数量只能为holdingStockNum
+                break;
             }
         }
+
+        System.out.println("买入后size:" + this.holdingStocks.size());
     }
 
     /**

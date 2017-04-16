@@ -26,6 +26,7 @@ public class StrategyCalculation implements StrategyCalculationService{
      */
     @Override
     public BackTestingResultVO getStrategyBackTestingGraphInfo(StrategyType strategyType, StrategyInputVO strategyInputVO) {
+
         this.initStockPool(strategyInputVO);
         this.initStrategy(strategyType);
 
