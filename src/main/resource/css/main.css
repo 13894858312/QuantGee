@@ -258,3 +258,8 @@
 .picker .button{
     -fx-background-color: rgb(102,160,208);
 }
+
+#SIPane{
+    -fx-background-color: #444444;
+    -fx-border-color:#aaaaaa;
+}
