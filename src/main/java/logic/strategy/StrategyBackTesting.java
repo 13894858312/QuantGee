@@ -86,7 +86,14 @@ System.out.println("here: " + indexStocks.get(i).getDate());
 
             if(index == holdingPeriod) { //若达到holdingPeriod index置0
                 index = 0;               //前一天进行rebalance,买入卖出
-                Date d1 = DateHelper.getInstance().stringTransToDate(indexStocks.get(i+this.returnPeriod).getDate());
+
+                Date d1;
+                if(i+this.returnPeriod >= indexStocks.size()) {
+                    d1 = DateHelper.getInstance().stringTransToDate(indexStocks.get(indexStocks.size()-1).getDate());
+                } else {
+                    d1 = DateHelper.getInstance().stringTransToDate(indexStocks.get(i+this.returnPeriod ).getDate());
+                }
+
                 Date d2 = DateHelper.getInstance().stringTransToDate(indexStocks.get(i).getDate());
                 this.rebalance(d1,d2);
             } else {

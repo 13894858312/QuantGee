@@ -21,7 +21,7 @@
 
 /*左下角退出系统按钮*/
 #closeButton{
-    -fx-background-color:#666666;
+    -fx-background-color:#555555;
     -fx-border-radius: 0;
     -fx-background-radius: 0;
     -fx-opacity: 1;
@@ -50,7 +50,7 @@
     -fx-font-size: 14px;
     -fx-text-fill: #ffffff;
     -fx-pref-width: 100;
-    -fx-pref-height: 30;
+    -fx-pref-height: 35;
 }
 
 .SearchButton:hover{
@@ -111,9 +111,13 @@
     -fx-opacity: 1;
 }
 
+.tab-pane > .menu {
+    -fx-background-color: #000000;
+}
+
 /*tab的默认样式*/
 .TabButton{
-    -fx-background-color: #666666;
+    -fx-background-color:#888888;
     -fx-opacity: 1;
     -fx-background-radius: 0;
     -fx-border-radius: 0;
@@ -121,6 +125,18 @@
     -fx-pref-width: 74;
     -fx-pref-height: 40;
     -fx-padding: 0 0 0 0;
+}
+
+.TabButton :hover{
+    -fx-opacity: 0.8;
+}
+
+.TabButton :selected{
+    -fx-background-color: #555555;
+}
+
+.TabButton .text{
+    -fx-text-fill: #ffffff;
 }
 
 .tab-pane{
@@ -237,4 +253,8 @@
 
 .Picker .label{
     -fx-text-fill: #333333;
+}
+
+.picker .button{
+    -fx-background-color: rgb(102,160,208);
 }

@@ -31,6 +31,7 @@ public class StockPool {
 
     private BlockType blockType;
     private int holdingStockNum;
+    private ArrayList<StockPO> indexStocks;
 
     public StockPool(StrategyInputVO strategyInputVO) {
         this.strategyInputVO = strategyInputVO;
@@ -41,6 +42,7 @@ public class StockPool {
         this.stockInfos = new ArrayList<>();
 
         this.initStockInfos(strategyInputVO);
+        this.initIndexStocks();
 
         //确定持有股票的数量
         if(strategyInputVO.ratio > 0) {
@@ -61,6 +63,21 @@ public class StockPool {
                     DateHelper.getInstance().dateTransToString(this.startDate),  DateHelper.getInstance().dateTransToString(this.endDate));
         }
     }
+
+    private void initIndexStocks() {
+        int index = 0;
+        for(int i=0; i<this.stockInfos.size(); ++i) {
+            if(this.stockInfos.get(i).getStockSize() > this.stockInfos.get(index).getStockSize()) {
+                index = i;
+            }
+        }
+
+        this.startIndex = this.stockInfos.get(index).getStartIndex();
+        this.tradeDays = this.stockInfos.get(index).getStockSize();
+
+        this.indexStocks =  this.stockInfos.get(index).getStockPOS();
+    }
+
 
     /**
      * 根据股票代码和时间获取股票数据
@@ -105,17 +122,7 @@ public class StockPool {
      * @return StockInfo
      */
     public ArrayList<StockPO> getIndexStocks() {
-        int index = 0;
-        for(int i=0; i<this.stockInfos.size(); ++i) {
-            if(this.stockInfos.get(i).getStockSize() > this.stockInfos.get(index).getStockSize()) {
-                index = i;
-            }
-        }
-
-        this.startIndex = this.stockInfos.get(index).getStartIndex();
-        this.tradeDays = this.stockInfos.get(index).getStockSize();
-
-        return this.stockInfos.get(index).getStockPOS();
+        return indexStocks;
     }
 
     /**

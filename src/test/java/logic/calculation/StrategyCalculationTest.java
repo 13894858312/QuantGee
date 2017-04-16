@@ -40,8 +40,8 @@ public class StrategyCalculationTest {
 
     @Test
     public void getAbnormalReturnGraphInfo() throws Exception {
-        Date startDate = DateHelper.getInstance().stringTransToDate("4/1/14");
-        Date endDate = DateHelper.getInstance().stringTransToDate("4/29/14");
+        Date startDate = DateHelper.getInstance().stringTransToDate("4/1/13");
+        Date endDate = DateHelper.getInstance().stringTransToDate("7/29/13");
         StrategyInputVO strategyInputVO = new StrategyInputVO(startDate, endDate, 10, 10, 0.2);
 
         StrategyCalculationService s = new StrategyCalculation();
