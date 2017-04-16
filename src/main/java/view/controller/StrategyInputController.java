@@ -182,6 +182,10 @@ public class StrategyInputController {
         make_TextField.setText("");
     }
 
+    @FXML
+    private void selectPerText(){
+        perField.setText("");
+    }
     /*
     搜索
      */
@@ -386,19 +390,27 @@ public class StrategyInputController {
         showBlockPane();
 
     }
-//待修改
+
     public void deleteBlock(int index) {
 
         count--;
         num.setText(Integer.toString(count));
-        stocks.remove(index);
+
+        for(int i = 0 ; i <= count ; i ++ ){
+            if(strategyStockControllers.get(i).getIndex() == index){
+                stocks.remove(i);
+                strategyStockControllers.remove(i);
+                break;
+            }
+        }
 
         //删除时需要重新设index和按钮
         for(int i = 0 ; i <= count ; i++ ){
             strategyStockControllers.get(i).setIndex(i);
-
             strategyStockControllers.get(i).setDelete();
         }
+
+        strategyStockControllers.get(count).setAdd();
 
         showBlockPane();
 
