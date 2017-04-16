@@ -28,10 +28,10 @@ public class Graph {
     //k线图chart
 
 
-    //均线图
-    public AverageChart getAverageLineChart(ArrayList<AverageLineVO> averageLineVOArrayList,int width, int height){
-        return new AverageChart(averageLineVOArrayList, width, height);
-    }
+//    //均线图
+//    public AverageChart getAverageLineChart(ArrayList<AverageLineVO> averageLineVOArrayList,int width, int height){
+//        return new AverageChart(averageLineVOArrayList, width, height);
+//    }
 
     //最高价、最低价、收盘价比较图
     public Price_Compare getPriceCompareChart(ArrayList<StockVO> stockVOArrayList, int width, int height){

@@ -254,6 +254,7 @@ public class MainPageController{
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.initStyle(StageStyle.UNDECORATED);
+            stage.alwaysOnTopProperty();
             stage.centerOnScreen();
             stage.show();
 

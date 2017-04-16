@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -15,12 +16,21 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <RadioButton fx:id="mother" mnemonicParsing="false" onAction="#choose0" selected="true" text="主板" GridPane.columnIndex="1">
+      <RadioButton fx:id="mother" mnemonicParsing="false" onAction="#choose0" selected="true" text="主板" textFill="WHITE" GridPane.columnIndex="1">
          <toggleGroup>
             <ToggleGroup fx:id="RBs" />
          </toggleGroup>
+         <font>
+            <Font size="14.0" />
+         </font>
       </RadioButton>
-      <RadioButton fx:id="gem" mnemonicParsing="false" onAction="#choose1" text="创业板" toggleGroup="$RBs" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <RadioButton fx:id="small" mnemonicParsing="false" onAction="#choose2" text="中小板" toggleGroup="$RBs" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <RadioButton fx:id="gem" mnemonicParsing="false" onAction="#choose1" text="创业板" textFill="WHITE" toggleGroup="$RBs" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="small" mnemonicParsing="false" onAction="#choose2" text="中小板" textFill="WHITE" toggleGroup="$RBs" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
    </children>
 </GridPane>

@@ -59,9 +59,14 @@ public class StockInfo {
     public StockPO getStockByDate(Date date) {
 
         //股票数据默认按时间倒序排序 用时间比较 提高一下数据
-        for(int i=startIndex+1; i>=0; i --) {
+        for(int i=stockPOS.size()-1; i>=0; i --) {
             Date d = DateHelper.getInstance().stringTransToDate(this.stockPOS.get(i).getDate());
             int days = DateHelper.getInstance().calculateDaysBetween(d, date);
+
+//            if(DateHelper.getInstance().dateTransToString(date).equals("6/12/13") && days == 5) {
+//                System.out.println("                        days:" + days);
+//                System.out.println("                        days:" + DateHelper.getInstance().dateTransToString(d));
+//            }
 
             if(days < 0) {
                 return null;

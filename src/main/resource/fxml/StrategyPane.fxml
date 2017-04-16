@@ -27,16 +27,15 @@
                               <Label fx:id="base" text="--" />
                               <Label text="\%  阿尔法：" />
                               <Label fx:id="alpha" text="--" />
-                              <Label text="\%  贝塔：" />
-                              <Label text="--" />
-                              <Label text="\%" />
+                              <Label text="  贝塔：" />
+                              <Label fx:id="beta" text="--" />
                            </children>
                         </HBox>
                         <HBox layoutX="30.0" layoutY="50.0" prefHeight="30.0" prefWidth="660.0">
                            <children>
                               <Label text="夏普比率：" />
                               <Label fx:id="sharp" text="--" />
-                              <Label text="\%  最大回撤：" />
+                              <Label text="  最大回撤：" />
                               <Label fx:id="max" text="--" />
                            </children>
                         </HBox>
@@ -49,8 +48,8 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="800.0" prefWidth="200.0" styleClass="RootPane">
                      <children>
-                        <AnchorPane fx:id="graphB_0" layoutX="30.0" layoutY="20.0" prefHeight="360.0" prefWidth="600.0" styleClass="SharePane" />
-                        <AnchorPane fx:id="graphB_1" layoutX="30.0" layoutY="420.0" prefHeight="360.0" prefWidth="600.0" styleClass="SharePane" />
+                        <AnchorPane fx:id="graphB_0" layoutX="30.0" layoutY="20.0" prefHeight="360.0" prefWidth="660.0" styleClass="SharePane" />
+                        <AnchorPane fx:id="graphB_1" layoutX="30.0" layoutY="420.0" prefHeight="360.0" prefWidth="660.0" styleClass="SharePane" />
                      </children></AnchorPane>
                   <AnchorPane prefHeight="50.0" prefWidth="740.0">
                      <children>
