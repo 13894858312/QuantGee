@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -93,7 +94,8 @@ public class StrategyInputController {
                         public void updateItem(LocalDate Item, boolean empty) {
                             super.updateItem(Item, empty);
 
-                            if (Item.isBefore(MIN) || Item.isAfter(MAX)){
+                            if (Item.isBefore(MIN) || Item.isAfter(MAX) ||
+                                    Item.getDayOfWeek().equals(DayOfWeek.SATURDAY) || Item.getDayOfWeek().equals(DayOfWeek.SUNDAY)){
                                 setDisable(true);
                                 setStyle("-fx-background-color: #ffc0cb;");
                             }

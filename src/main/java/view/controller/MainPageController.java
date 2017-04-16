@@ -13,6 +13,7 @@ import javafx.stage.StageStyle;
 import logic.calculation.DataCalculation;
 import logicService.DataCalculationService;
 
+import java.time.DayOfWeek;
 import java.time.temporal.ChronoUnit;
 import javafx.scene.control.Tooltip;
 import javafx.util.Callback;
@@ -60,7 +61,8 @@ public class MainPageController{
                         public void updateItem(LocalDate Item,  boolean empty) {
                             super.updateItem(Item, empty);
 
-                            if (Item.isBefore(MIN) || Item.isAfter(MAX)){
+                            if (Item.isBefore(MIN) || Item.isAfter(MAX)||
+                                    Item.getDayOfWeek().equals(DayOfWeek.SATURDAY) || Item.getDayOfWeek().equals(DayOfWeek.SUNDAY)){
                                 setDisable(true);
                                 setStyle("-fx-background-color: #ffc0cb;");
                             }
