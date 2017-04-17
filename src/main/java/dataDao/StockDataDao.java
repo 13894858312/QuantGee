@@ -39,26 +39,31 @@ public interface StockDataDao {
      * @param startDate 开始时间
      * @param endDate 结束时间
      * @param stockCode 股票编号
+     * @param notST 是否剔除ST股
      * @return ArrayList<StockPO>
      */
-    public ArrayList<StockPO> getStockPOsByTimeInterval(String startDate, String endDate, String stockCode);
+    public ArrayList<StockPO> getStockPOsByTimeInterval(String startDate, String endDate, String stockCode,boolean notST);
 
     /**
      * 根据板块名获得股票数据
      * @param startDate 开始时间
      * @param endDate 结束时间
      * @param blockName 板块名
+     * @param notST 是否剔除ST股
      * @return ArrayList<ArrayList<StockPO>>   股票数组，每一项即
      *                              每个arraylist里是一种股票在一段时间内的信息
      */
-    public ArrayList<ArrayList<StockPO>> getStockPOsByBlockName(String startDate, String endDate, String blockName);
+    public ArrayList<ArrayList<StockPO>> getStockPOsByBlockName(String startDate, String endDate, String blockName,boolean notST);
 
     /**
      * 获得所有股票数据
+     * @param startDate 开始时间
+     * @param endDate 结束时间
+     * @param notST 是否剔除ST股
      * @return ArrayList<ArrayList<StockPO>>   股票数组，每一项即
      *                              每个arraylist里是一种股票在一段时间内的信息
      */
-    public ArrayList<ArrayList<StockPO>> getAllStockPO(String startDate, String endDate);
+    public ArrayList<ArrayList<StockPO>> getAllStockPO(String startDate, String endDate,boolean notST);
 
     /**
      * 根据板块名获取基准股票信息
