@@ -23,5 +23,5 @@ public interface Strategy {
      * @param today 调仓当天的时间
      * @return ArrayList<StockYield>
      */
-    ArrayList<StockYield> rebalanceHoldingStocks(StockPool stockPool, Date beforeDate, Date today);
+    ArrayList<StockYield> rebalanceHoldingStocks(StockPool stockPool, String beforeDate, String today);
 }
