@@ -157,11 +157,14 @@ public class StockData implements StockDataDao{
 						}
 						
 					}else{
-						if (!inTimeRange) {
+						if (inTimeRange) {
 							break;
 						}
 					}
 				}
+			}
+			if (stockPOS.size()==0) {
+				return null;
 			}
 			return stockPOS;
 		} catch (FileNotFoundException e) {
@@ -373,7 +376,11 @@ public class StockData implements StockDataDao{
 				}
 				
 				//获取到股票代码调用getStockPOsByTimeInterval方法读取该代码的股票信息
-				ArrayList<StockPO> pos = getStockPOsByTimeInterval(startDate, endDate, strings[0],false);
+				ArrayList<StockPO> pos = new ArrayList<>();
+				pos = getStockPOsByTimeInterval(startDate, endDate, strings[0],false);
+				if (pos==null) {
+					continue;
+				}
 //				datas.add(getStockPOsByTimeInterval(startDate, endDate, strings[0]));
 				datas.add(pos);
 			}
