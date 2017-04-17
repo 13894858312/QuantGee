@@ -100,19 +100,14 @@ public class StockPool {
 
             if(strategyInputVO.strategyInputType == StrategyInputType.ALL) {
                 //选择所有股票构造股票池
-                allStockPOs = this.stockDataDao.getAllStockPO(s, e);
-
-                System.out.println(allStockPOs.size());
-                System.out.println(allStockPOs.get(0).size());
-                System.out.println(allStockPOs.get(1).size());
-
+                allStockPOs = this.stockDataDao.getAllStockPO(s, e, true);
             } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK) {
                 //选择指定板块股票构造股票池
-                allStockPOs = this.stockDataDao.getStockPOsByBlockName(s, e, SwitchBlockType.getBlockName(strategyInputVO.blockType));
+                allStockPOs = this.stockDataDao.getStockPOsByBlockName(s, e, SwitchBlockType.getBlockName(strategyInputVO.blockType),true);
             } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_STOCKS) {
                 //选择指定股票构造股票池
                 for(int i=0; i<strategyInputVO.stockNames.size(); ++i) {
-                    ArrayList<StockPO> stockPOS = this.stockDataDao.getStockPOsByTimeInterval(s, e, strategyInputVO.stockNames.get(i));
+                    ArrayList<StockPO> stockPOS = this.stockDataDao.getStockPOsByTimeInterval(s, e, strategyInputVO.stockNames.get(i), true);
                     if(stockPOS != null && stockPOS.size() != 0) {
                         allStockPOs.add(stockPOS);
                     }
@@ -131,25 +126,34 @@ public class StockPool {
      */
     public void initStocksFromData(ArrayList<ArrayList<StockPO>> allStockPOs) {
 
+System.out.println(allStockPOs.size());
+System.out.println(allStockPOs.get(0).size());
+System.out.println(allStockPOs.get(1).size());
+
         int index = 0;          //记录size最大的下标index
         for(int i=0; i<allStockPOs.size(); ++i) {
             if(allStockPOs.get(i) != null && allStockPOs.get(i).size() != 0) {
                 Stock stock = new Stock(this.strategyInputVO.startDate, allStockPOs.get(i));
-                this.stocksMap.put(allStockPOs.get(i).get(0).getStockCode(), stock);           //初始化map
-                this.stocksList.add(stock);                                                 //初始化list
+                //如果该股票各项数据都有 才加入到股票池
+                if(stock.getBeforeStockPO() != null && stock.getStartDateStockPO() != null && stock.getYesterdayStock() != null) {
+                    this.stocksMap.put(allStockPOs.get(i).get(0).getStockCode(), stock);           //初始化map
+                    this.stocksList.add(stock);                                                 //初始化list
 //                this.stockPoolSize ++;
 
-                if(allStockPOs.get(i).size() > allStockPOs.get(index).size()) {           //用来确定indexStock
-                    index = i;
+                    if(allStockPOs.get(i).size() > allStockPOs.get(index).size()) {           //用来确定indexStock
+                        index = i;
+                    }
                 }
             }
         }
 
-        System.out.println(index);
+System.out.println(index);
 
         this.indexStocks = allStockPOs.get(index);
-        System.out.println(indexStocks.size());
+
+System.out.println(indexStocks.size());
     }
+
 
     /**
      * 获取指定板块基准收益率
