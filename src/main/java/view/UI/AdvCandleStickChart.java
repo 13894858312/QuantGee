@@ -49,9 +49,8 @@ public class AdvCandleStickChart extends Pane {
 
         // y-axis:
         final NumberAxis yAxis = new NumberAxis();
-        yAxis.setForceZeroInRange(false);
         yAxis.setLabel("Price");
-        yAxis.setForceZeroInRange(false);
+        yAxis.setForceZeroInRange(true);
 
         // chart:
         bc = new CandleStickChart(xAxis, yAxis);

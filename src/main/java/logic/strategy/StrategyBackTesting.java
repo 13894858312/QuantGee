@@ -30,11 +30,8 @@ public class StrategyBackTesting {
 
     private ArrayList<CumulativeYieldGraphDataVO> strategyYield;  //每天的收益率
     private ArrayList<CumulativeYieldGraphDataVO> baseYield; //基准收益率
-
     private ArrayList<Double> yieldPerPeriod;     //每个持有期结束后的收益率  周期收益率
-
     private BackTestingResultVO backTestingResultVO;
-
 
     /**
      * @param stockPool 股票池
@@ -78,6 +75,7 @@ public class StrategyBackTesting {
 
         //循环主体 最早的时间在前面 所以倒序访问
         for(int i=startIndex; i>=0; i--) {
+
 System.out.println("here: " + indexStocks.get(i).getDate());
 
             String dateTemp = indexStocks.get(i).getDate();
@@ -88,7 +86,7 @@ System.out.println("here: " + indexStocks.get(i).getDate());
                 if(i+this.returnPeriod >= indexStocks.size()) {
                     d1 = indexStocks.get(indexStocks.size()-1).getDate();
                 } else {
-                    d1 = indexStocks.get(i+this.returnPeriod ).getDate();
+                    d1 = indexStocks.get(i+this.returnPeriod).getDate();
                 }
 
                 String d2 = indexStocks.get(i).getDate();
@@ -100,9 +98,9 @@ System.out.println("here: " + indexStocks.get(i).getDate());
             if(!periodOnly) {
                 //每天需要计算的数据
                 if(blockType == null) {                             //如果不是回测板块 则需要计算基准收益率
-                    this.calculateBaseCumlativeYield(dateTemp);         //基准收益率计算 用今日adj
+                    this.calculateBaseYield(dateTemp);         //基准收益率计算 用今日adj
                 }
-                this.calculateHoldingStockYield(dateTemp);          //计算收益， 用昨日adj
+                this.calculateStrategyYield(dateTemp);          //计算收益， 用昨日adj
             }
 
 
@@ -134,7 +132,7 @@ System.out.println("here: " + indexStocks.get(i).getDate());
      * 计算基准收益率
      * @param date 日期
      */
-    private void calculateBaseCumlativeYield(String date) {
+    private void calculateBaseYield(String date) {
 
         //不是按照板块回测
         int stockNum = 0;           //用于求平均
@@ -164,7 +162,7 @@ System.out.println(stockNum);
      * 并将数据存入cumulativeYieldGraphDataVOS
      * @param date 日期
      */
-    private void calculateHoldingStockYield(String date) {
+    private void calculateStrategyYield(String date) {
 
 System.out.println("holdingStocks-size: " + this.holdingStocks.size());
 
@@ -185,7 +183,6 @@ System.out.println("strategy-Yield:" + yield);
         this.strategyYield.add(new CumulativeYieldGraphDataVO(DateHelper.getInstance().stringTransToDate(date),
                 MathHelper.formatData(yield,4)));
     }
-
 
     /**
      * 一个持有期结束
@@ -323,7 +320,6 @@ System.out.println("               买入后size:" + this.holdingStocks.size());
         double result = new StrategyDataAnlysis().analyseWinRate(yieldPerPeriod);
         return result;
     }
-
 
     public BackTestingResultVO getBackTestingResultVO() {
         return backTestingResultVO;

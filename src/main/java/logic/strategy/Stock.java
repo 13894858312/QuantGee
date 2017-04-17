@@ -33,12 +33,10 @@ public class Stock {
 
         int days= 0, tempDays = 0;
         for(int i=stockPOS.size()-1; i>=0; i --) {
-
             stocksMap.put(stockPOS.get(i).getDate(), stocksMap.get(i));
 
-            //提高访问效率
-            Date d = DateHelper.getInstance().stringTransToDate(this.stockPOS.get(i).getDate());
             tempDays = days;
+            Date d = DateHelper.getInstance().stringTransToDate(this.stockPOS.get(i).getDate());
             days = DateHelper.getInstance().calculateDaysBetween(d, startDate);
 
             if((days == 0) || (days < 0 && tempDays > 0)) {
