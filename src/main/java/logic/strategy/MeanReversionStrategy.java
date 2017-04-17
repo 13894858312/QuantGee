@@ -6,7 +6,6 @@ import java.util.HashMap;
 
 import data.StockData;
 import dataDao.StockDataDao;
-import logic.calculation.GraphCalculation;
 import logic.tools.AverageLineType;
 import logic.tools.DateHelper;
 import logic.tools.MathHelper;
@@ -48,10 +47,10 @@ public class MeanReversionStrategy implements Strategy {
     	}
     	
     	//遍历股票池中股票
-        for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
-            StockPO before = stockPool.getStockInfos().get(i).getBeforeStockPO();
+        for(int i = 0; i<stockPool.getStocksList().size(); ++i) {
+            StockPO before = stockPool.getStocksList().get(i).getBeforeStockPO();
             String beforeDate = before.getDate();
-            StockPO yesterday = stockPool.getStockInfos().get(i).getYesterdayStock();
+            StockPO yesterday = stockPool.getStocksList().get(i).getYesterdayStock();
             
             if(yesterday == null || before == null) {
             	continue;
@@ -77,17 +76,17 @@ public class MeanReversionStrategy implements Strategy {
     }
 
     @Override
-    public ArrayList<StockYield> rebalanceHoldingStocks(StockPool stockPool, Date beforeDate, Date today) {
+    public ArrayList<StockYield> rebalanceHoldingStocks(StockPool stockPool, String beforeDate, String today) {
     	
     	ArrayList<StockYield> stockYields = new ArrayList<>();
 
-        for(int i=0; i<stockPool.getStockInfos().size(); ++i) {
-            StockPO before = stockPool.getStockInfos().get(i).getStockByDate(beforeDate);
-            StockPO yesterday = stockPool.getStockInfos().get(i).getStockByDate(today);
+        for(int i = 0; i<stockPool.getStocksList().size(); ++i) {
+            StockPO before = stockPool.getStocksList().get(i).getStockByDate(beforeDate);
+            StockPO yesterday = stockPool.getStocksList().get(i).getStockByDate(today);
 
             if(yesterday != null && before != null) {
                 //计算偏离度，(均值-当天的开盘价)/ 均值
-            	double average = allAverageLine.get(i).get(DateHelper.getInstance().dateTransToString(today)).averageValue;
+            	double average = allAverageLine.get(i).get(today).averageValue;
                 double yield = (average-yesterday.getADJ())/average;
 
                 stockYields.add(new StockYield(yesterday.getStockCode(), yield));
