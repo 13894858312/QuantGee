@@ -21,7 +21,7 @@ import vo.AverageLineVO;
 public class MeanReversionStrategy implements Strategy {
 	
 	//保存所有股票的N日移动均线
-	private ArrayList<HashMap<String, AverageLineVO>> allAverageLine;
+	private ArrayList<HashMap<String, AverageLineVO>> allAverageLine = new ArrayList<>();
 
     @Override
     public ArrayList<StockYield> initHoldingStocks(StockPool stockPool) {
