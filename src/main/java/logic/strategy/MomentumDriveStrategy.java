@@ -28,6 +28,12 @@ public class MomentumDriveStrategy implements Strategy {
             }
         }
 
+
+        System.out.println("  " +stockPool.getStockInfos().size());
+        System.out.println("  " +stockYields.size());
+        System.out.println("  " + (stockPool.getStockInfos().get(0).getBeforeStockPO() == null));
+        System.out.println("  " + (stockPool.getStockInfos().get(0).getYesterdayStock() == null));
+
         return stockYields;
     }
 
