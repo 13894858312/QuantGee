@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class WinningStrategy extends Pane {
     public WinningStrategy(boolean judge, ArrayList<AbnormalReturnGraphDataVO> abnormalReturnGraphDataVOArrayList, int width, int height){
 
-        this.getStylesheets().add("/css/logYield_Compare.css");
+        this.getStylesheets().add("/css/yieldArea.css");
         //x-xAxis
         final NumberAxis xAxis = new NumberAxis();
         xAxis.setLabel("Date");
