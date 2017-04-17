@@ -5,40 +5,41 @@ import po.StockPO;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Created by Mark.W on 2017/3/29.
  * 策略计算时保存 一种 股票指定区间信息的类
  */
-public class StockInfo {
-    private String stockCode;
+public class Stock {
 
     private int startIndex;
     private StockPO beforeStockPO; //第一次确定股票 时间区间前returnPeriod天的股票信息
     private StockPO startDateStock; //开始日期的股票数据 如果为空 抛弃该股票
     private StockPO yesterdayStock; //开始日期前一天的股票数据 如果为空 抛弃该股票
     private ArrayList<StockPO> stockPOS;
+    private HashMap<String, StockPO> stocksMap = new HashMap<>();   //key是date
 
-    public StockInfo(Date startDate, String stockCode, ArrayList<StockPO> stockPOS) {
-        this.stockCode = stockCode;
+    public Stock(Date startDate,  ArrayList<StockPO> stockPOS) {
         this.stockPOS = stockPOS;
-
-        this.initDateStock(startDate);
+        this.init(startDate);
     }
 
-    //初始化index和StartDateStock
-    private void initDateStock(Date startDate) {
+    /**
+     * 初始化index和StartDateStock
+     * 初始化stocksMap
+     */
+    private void init(Date startDate) {
+
         int days= 0, tempDays = days;
         for(int i=stockPOS.size()-1; i>=0; i --) {
+
+            stocksMap.put(stockPOS.get(i).getDate(), stocksMap.get(i));
+
             //提高访问效率
             Date d = DateHelper.getInstance().stringTransToDate(this.stockPOS.get(i).getDate());
             tempDays = days;
             days = DateHelper.getInstance().calculateDaysBetween(d, startDate);
-
-
-            if(days < 0 && tempDays <0) {
-                break;
-            }
 
             if((days == 0) || (days < 0 && tempDays > 0)) {
                 startIndex = i;
@@ -59,33 +60,8 @@ public class StockInfo {
      * @param date 日期
      * @return StockPO
      */
-    public StockPO getStockByDate(Date date) {
-
-        //股票数据默认按时间倒序排序 用时间比较 提高一下数据
-        for(int i=stockPOS.size()-1; i>=0; i --) {
-            Date d = DateHelper.getInstance().stringTransToDate(this.stockPOS.get(i).getDate());
-            int days = DateHelper.getInstance().calculateDaysBetween(d, date);
-
-//            if(DateHelper.getInstance().dateTransToString(date).equals("6/12/13") && days == 5) {
-//                System.out.println("                        days:" + days);
-//                System.out.println("                        days:" + DateHelper.getInstance().dateTransToString(d));
-//            }
-
-            if(days < 0) {
-                return null;
-            }
-
-            if(days == 0) {
-                return stockPOS.get(i);
-            }
-
-        }
-
-        return null;
-    }
-
-    public String getStockCode() {
-        return stockCode;
+    public StockPO getStockByDate(String date) {
+        return  this.stocksMap.get(date);
     }
 
     public StockPO getStartDateStockPO() {
