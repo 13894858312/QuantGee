@@ -33,29 +33,36 @@ public class StockDataTest {
 	@Test
 	public void testGetStockPOsByTimeInterval1() {
 		StockData stockData = new StockData();
-		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval( "4/19/14", "4/29/14","1");
+		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval( "4/19/14", "4/29/14","1",false);
 		assertEquals(7, stockPOs.size());
 	}
 	
 	@Test
 	public void testGetStockPOsByTimeInterval2() {
 		StockData stockData = new StockData();
-		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("4/1/14","4/29/14", "150");
+		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("4/1/14","4/29/14", "150",false);
 		assertEquals(1, stockPOs.size());
 	}
 	
 	@Test
 	public void testGetStockPOsByTimeInterval3() {
 		StockData stockData = new StockData();
-		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("2/1/05","4/29/14", "2039");
+		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("2/1/05","4/29/14", "2039",false);
 		assertEquals(2151, stockPOs.size());
 	}
 	
 	@Test
 	public void testGetStockPOsByTimeInterval4(){
 		StockData stockData = new StockData();
-		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("4/26/14", "4/29/14", "1");
+		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("4/26/14", "4/29/14", "1",false);
 		assertEquals(2, stockPOs.size());
+	}
+	
+	@Test
+	public void testGetStockPOsByTimeInterval5(){
+		StockData stockData = new StockData();
+		ArrayList<StockPO> stockPOs = stockData.getStockPOsByTimeInterval("4/26/14", "4/29/14", "10",true);
+		assertEquals(true, stockPOs==null);
 	}
 	
 	@Test
@@ -119,7 +126,7 @@ public class StockDataTest {
 	@Test
 	public void testGetAllStockPO() {
 		StockData stockData = new StockData();
-		ArrayList<ArrayList<StockPO>> data = stockData.getAllStockPO("2/10/14","4/29/14");
+		ArrayList<ArrayList<StockPO>> data = stockData.getAllStockPO("2/10/14","4/29/14",false);
 		assertEquals(791, data.size());
 	}
 	

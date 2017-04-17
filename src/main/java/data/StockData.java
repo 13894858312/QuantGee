@@ -96,11 +96,14 @@ public class StockData implements StockDataDao{
 		
 	}
 	
-	public ArrayList<StockPO> getStockPOsByTimeInterval(String startDate, String endDate, String stockCode) {
+	public ArrayList<StockPO> getStockPOsByTimeInterval(String startDate, String endDate, String stockCode,boolean notST) {
 		
 		ArrayList<StockPO> stockPOS = new ArrayList<StockPO>();
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
+		if (notST&&getFileNameByCode(stockCode).contains("ST")) {
+			return null;
+		}
 		path  = path+"/all_stock_data/all_data_by_name/"+getFileNameByCode(stockCode)+".txt";
 		File file = new File(path);
 
@@ -307,7 +310,7 @@ public class StockData implements StockDataDao{
 	}
 
 	@Override
-	public ArrayList<ArrayList<StockPO>> getStockPOsByBlockName(String startDate, String endDate, String blockName) {
+	public ArrayList<ArrayList<StockPO>> getStockPOsByBlockName(String startDate, String endDate, String blockName,boolean notST) {
 		
 		//判断板块名称，不符合规范则返回空
 		if (!(blockName.equals("主板")||blockName.equals("创业板")||blockName.equals("中小板"))) {
@@ -330,8 +333,13 @@ public class StockData implements StockDataDao{
 			while((line = br.readLine()) != null) {
 				String[] strings = line.split(":");
 				
+				//如果需要剔除ST股，继续循环
+				if (notST&&strings[1].contains("ST")) {
+					continue;
+				}
+				
 				//获取到股票代码调用getStockPOsByTimeInterval方法读取该代码的股票信息
-				datas.add(getStockPOsByTimeInterval(startDate, endDate, strings[0]));
+				datas.add(getStockPOsByTimeInterval(startDate, endDate, strings[0],false));
 			}
 			
 		} catch (FileNotFoundException e) {
@@ -343,7 +351,7 @@ public class StockData implements StockDataDao{
 		return datas;
 	}
 	
-	public ArrayList<ArrayList<StockPO>> getAllStockPO(String startDate, String endDate) {
+	public ArrayList<ArrayList<StockPO>> getAllStockPO(String startDate, String endDate,boolean notST) {
 		
 		ArrayList<ArrayList<StockPO>> datas = new ArrayList<ArrayList<StockPO>>();
 		
@@ -359,8 +367,13 @@ public class StockData implements StockDataDao{
 			while((line = br.readLine()) != null) {
 				String[] strings = line.split(":");
 				
+				//如果需要提出ST股，继续执行循环
+				if (notST&&strings[1].contains("ST")) {
+					continue;
+				}
+				
 				//获取到股票代码调用getStockPOsByTimeInterval方法读取该代码的股票信息
-				ArrayList<StockPO> pos = getStockPOsByTimeInterval(startDate, endDate, strings[0]);
+				ArrayList<StockPO> pos = getStockPOsByTimeInterval(startDate, endDate, strings[0],false);
 //				datas.add(getStockPOsByTimeInterval(startDate, endDate, strings[0]));
 				datas.add(pos);
 			}
