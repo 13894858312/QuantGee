@@ -28,20 +28,23 @@ public class StockInfo {
 
     //初始化index和StartDateStock
     private void initDateStock(Date startDate) {
+        int days= 0, tempDays = days;
         for(int i=stockPOS.size()-1; i>=0; i --) {
             //提高访问效率
             Date d = DateHelper.getInstance().stringTransToDate(this.stockPOS.get(i).getDate());
-            int days = DateHelper.getInstance().calculateDaysBetween(d, startDate);
+            tempDays = days;
+            days = DateHelper.getInstance().calculateDaysBetween(d, startDate);
 
-            if(days < 0) {
+
+            if(days < 0 && tempDays <0) {
                 break;
             }
 
-            if(days == 0) {
+            if((days == 0) || (days < 0 && tempDays > 0)) {
                 startIndex = i;
                 this.startDateStock = this.stockPOS.get(i);           //初始化开始日期的股票数据
 
-                if(i<stockPOS.size()-1) {
+                if(i< stockPOS.size()-1) {
                     this.yesterdayStock = this.stockPOS.get(i+1);
                 }
                 break;

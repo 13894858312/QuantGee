@@ -141,8 +141,11 @@ System.out.println("here: " + indexStocks.get(i).getDate());
             }
         }
 
-        yield = yield/stockNum;
+        System.out.println(stockPool.getStockInfos().get(0).getStartDateStockPO() == null);
+        System.out.println(stockPool.getStockInfos().get(0).getStockByDate(date) == null);
+        System.out.println(stockNum);
 
+        yield = yield/stockNum;
         this.baseYield.add(new CumulativeYieldGraphDataVO(date, MathHelper.formatData(yield,4)));
     }
 
@@ -152,10 +155,8 @@ System.out.println("here: " + indexStocks.get(i).getDate());
      * @param date 日期
      */
     private void calculateHoldingStockYield(Date date) {
-//        System.out.println("date: " +DateHelper.getInstance().dateTransToString(date));
-//        System.out.println("size:" + this.holdingStocks.size());
 
-        System.out.println("计算-holdingStocks-size: " + this.holdingStocks.size());
+System.out.println("计算-holdingStocks-size: " + this.holdingStocks.size());
 
         double yield = 0;
         for(int i = 0; i<this.holdingStocks.size(); ++i) {
@@ -169,7 +170,7 @@ System.out.println("here: " + indexStocks.get(i).getDate());
         //计算累计收益率
         yield = (yield - INIT_FUND)/INIT_FUND;
 
-        System.out.println("计算-yield:" + yield);
+System.out.println("计算-yield:" + yield);
 
         this.strategyYield.add(new CumulativeYieldGraphDataVO(date, MathHelper.formatData(yield,4)));
     }
@@ -212,8 +213,8 @@ System.out.println("here: " + indexStocks.get(i).getDate());
      * 计算每个持有期结束后的收益率
      */
     private void calculatePeriodYield() {
-System.out.println("                 前一周期收益：" + tempIncome);
-System.out.println("                 当前周期收益：" + income);
+System.out.println("               前一周期收益：" + tempIncome);
+System.out.println("               当前周期收益：" + income);
 
         double yield = (income-tempIncome)/tempIncome;
         this.yieldPerPeriod.add(yield);
@@ -226,8 +227,6 @@ System.out.println("                 当前周期收益：" + income);
      */
     private void buyStock(ArrayList<StockYield> stockYields, Date date) {
 
-//        System.out.println(1 + " " + stockYields.size());
-
         //冒泡排序 排序holdingStockNum次 得到收益前holdingStockNum的股票
         for(int i=0; i<holdingStockNum; ++i) {
             for(int j=stockYields.size()-1; j>i; j--) {
@@ -239,23 +238,16 @@ System.out.println("                 当前周期收益：" + income);
             }
         }
 
-        System.out.println("买入前size:" + this.holdingStocks.size());
-        System.out.println(stockYields.size());
-
-//        System.out.println(0 + " " + stockYields.get(0).getYield());
-//        System.out.println(1 + " " + stockYields.get(1).getYield());
-//        System.out.println(2 + " " + stockYields.get(2).getYield());
+System.out.println("买入前size:" + this.holdingStocks.size());
+System.out.println(stockYields.size());
 
         //买入股票
         double moneyEachStock = income/this.holdingStockNum;
         for(int i=0; i<stockYields.size(); ++ i) {
-//          System.out.println(stockYields.get(i).getStockCode());
-//          System.out.println(DateHelper.getInstance().dateTransToString(date));
 
             StockPO stockPO = this.stockPool.findSpecificStock(stockYields.get(i).getStockCode(), date);
 
             if(stockPO != null) {
-//                    System.out.println("not null");
                 double adj = stockPO.getADJ();
                 double numOfStock = moneyEachStock/adj;
                 this.holdingStocks.add(new HoldingStock(stockYields.get(i).getStockCode(), numOfStock));
@@ -266,7 +258,7 @@ System.out.println("                 当前周期收益：" + income);
             }
         }
 
-        System.out.println("买入后size:" + this.holdingStocks.size());
+System.out.println("买入后size:" + this.holdingStocks.size());
     }
 
     /**

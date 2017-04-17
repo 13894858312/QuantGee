@@ -260,6 +260,9 @@ public class StrategyDataAnlysis {
             }
         }
 
+        System.out.println(num);
+        System.out.println(baseYield.size());
+
         double result = (double)num / (double)baseYield.size();
         return result;
     }
