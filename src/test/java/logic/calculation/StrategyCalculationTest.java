@@ -17,8 +17,8 @@ import java.util.Date;
 public class StrategyCalculationTest {
     @Test
     public void getStrategyBackTestingGraphInfo() throws Exception {
-        Date startDate = DateHelper.getInstance().stringTransToDate("4/5/11");
-        Date endDate = DateHelper.getInstance().stringTransToDate("4/5/12");
+        Date startDate = DateHelper.getInstance().stringTransToDate("4/5/12");
+        Date endDate = DateHelper.getInstance().stringTransToDate("9/2/12");
         StrategyInputVO strategyInputVO = new StrategyInputVO(startDate, endDate, 20, 20, 0.2);
 
         StrategyCalculationService s = new StrategyCalculation();

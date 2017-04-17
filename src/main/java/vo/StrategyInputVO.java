@@ -23,6 +23,7 @@ public class StrategyInputVO {
     public int holdingStockNum; //每次调仓持有的股票数量
 
     public double ratio; //持有比例
+    public boolean notST;   //排除st
 
     /**
      * 均值回归策略回测所有股票的构造方法
@@ -34,7 +35,7 @@ public class StrategyInputVO {
      */
     public StrategyInputVO(Date startDate, Date endDate, int holdingPeriod,
                            int returnPeriod, int holdingStockNum) {
-        this.startDate = DateHelper.getInstance().getNextFirstTradeDay(startDate);
+        this.startDate = startDate;
         this.endDate = endDate;
         this.holdingPeriod = holdingPeriod;
         this.returnPeriod = returnPeriod;
@@ -54,7 +55,7 @@ public class StrategyInputVO {
      */
     public StrategyInputVO(Date startDate, Date endDate, BlockType blockType, int holdingPeriod,
                            int returnPeriod, int holdingStockNum) {
-        this.startDate = DateHelper.getInstance().getNextFirstTradeDay(startDate);
+        this.startDate = startDate;
         this.endDate = endDate;
         this.blockType = blockType;
         this.holdingPeriod = holdingPeriod;
@@ -74,7 +75,7 @@ public class StrategyInputVO {
      */
     public StrategyInputVO(Date startDate, Date endDate, ArrayList<String> stockNames, int holdingPeriod,
                            int returnPeriod, int holdingStockNum) {
-        this.startDate = DateHelper.getInstance().getNextFirstTradeDay(startDate);
+        this.startDate = startDate;
         this.endDate = endDate;
         this.stockNames = stockNames;
         this.holdingPeriod = holdingPeriod;

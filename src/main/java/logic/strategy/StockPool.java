@@ -24,7 +24,7 @@ public class StockPool {
     private ArrayList<BaseCumulativeYieldPO> blockBaseRaito;
 
     private HashMap<String, Stock> stocksMap;       //key是股票code
-    private ArrayList<Stock> stocksList;
+    private ArrayList<Stock> stocksList = new ArrayList<>();
 
     private int tradeDays;   //时间区间內的交易日数，即投资天数
     private int startIndex;     //indexStocks的开始下标
@@ -32,7 +32,7 @@ public class StockPool {
 
     private BlockType blockType;
     private int holdingStockNum;
-    private ArrayList<StockPO> indexStocks;
+    private ArrayList<StockPO> indexStocks = new ArrayList<>(); //stockPO size最大的stock作为标杆
 
     public StockPool(StrategyInputVO strategyInputVO) {
         this.strategyInputVO = strategyInputVO;
@@ -71,7 +71,7 @@ public class StockPool {
      * @param date date
      * @return StockPO
      */
-    public StockPO findSpecificStock(String stockCode, String date) {
+    public StockPO getStockByCodeAndDate(String stockCode, String date) {
        Stock temp = this.stocksMap.get(stockCode);
        if(temp != null) {
            return temp.getStockByDate(date);
@@ -80,31 +80,6 @@ public class StockPool {
        return null;
     }
 
-
-    /**
-     * 初始化list和map
-     * 同时初始化indexStocks
-     * @param allStockPOs 从数据层获取的po
-     */
-    public void initStocksFromDataDao(ArrayList<ArrayList<StockPO>> allStockPOs) {
-
-        int index = 0;
-
-        for(int i=0; i<allStockPOs.size(); ++i) {
-            if(allStockPOs.get(i) != null && allStockPOs.get(i).size() != 0) {
-                Stock stock = new Stock(this.strategyInputVO.startDate, allStockPOs.get(i));
-                this.stocksMap.put(allStockPOs.get(i).get(0).getStockCode(), stock);           //初始化map
-                this.stocksList.add(stock);                                                 //初始化list
-//                this.stockPoolSize ++;
-
-                if(allStockPOs.get(i).size() > allStockPOs.get(index).size()) {           //用来确定indexStock
-                    index = i;
-                }
-            }
-        }
-
-        this.indexStocks = allStockPOs.get(index);
-    }
 
     /**
      * 初始化股票池的股票信息
@@ -126,6 +101,11 @@ public class StockPool {
             if(strategyInputVO.strategyInputType == StrategyInputType.ALL) {
                 //选择所有股票构造股票池
                 allStockPOs = this.stockDataDao.getAllStockPO(s, e);
+
+                System.out.println(allStockPOs.size());
+                System.out.println(allStockPOs.get(0).size());
+                System.out.println(allStockPOs.get(1).size());
+
             } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK) {
                 //选择指定板块股票构造股票池
                 allStockPOs = this.stockDataDao.getStockPOsByBlockName(s, e, SwitchBlockType.getBlockName(strategyInputVO.blockType));
@@ -139,15 +119,45 @@ public class StockPool {
                 }
             }
 
-            this.initStocksFromDataDao(allStockPOs);
+            this.initStocksFromData(allStockPOs);
         }
     }
 
+
     /**
-     * 获取
-     * @return
+     * 初始化list和map
+     * 同时初始化indexStocks
+     * @param allStockPOs 从数据层获取的po
+     */
+    public void initStocksFromData(ArrayList<ArrayList<StockPO>> allStockPOs) {
+
+        int index = 0;          //记录size最大的下标index
+        for(int i=0; i<allStockPOs.size(); ++i) {
+            if(allStockPOs.get(i) != null && allStockPOs.get(i).size() != 0) {
+                Stock stock = new Stock(this.strategyInputVO.startDate, allStockPOs.get(i));
+                this.stocksMap.put(allStockPOs.get(i).get(0).getStockCode(), stock);           //初始化map
+                this.stocksList.add(stock);                                                 //初始化list
+//                this.stockPoolSize ++;
+
+                if(allStockPOs.get(i).size() > allStockPOs.get(index).size()) {           //用来确定indexStock
+                    index = i;
+                }
+            }
+        }
+
+        System.out.println(index);
+
+        this.indexStocks = allStockPOs.get(index);
+        System.out.println(indexStocks.size());
+    }
+
+    /**
+     * 获取指定板块基准收益率
+     * @return ArrayList<CumulativeYieldGraphDataVO>
      */
     public ArrayList<CumulativeYieldGraphDataVO> getBlockBaseRaito() {
+        assert (blockBaseRaito != null && blockBaseRaito.size() != 0) : "StockPool.getBlockBaseRaito.blockBaseRaito异常";
+
         ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS = new ArrayList<>();
 
         for(int i=0; i<this.blockBaseRaito.size(); ++i) {
@@ -190,11 +200,6 @@ public class StockPool {
         return blockType;
     }
 
-
-    /**
-     * 获取stockpo size最大的stockinfo 作为标杆
-     * @return Stock
-     */
     public ArrayList<StockPO> getIndexStocks() {
         return indexStocks;
     }

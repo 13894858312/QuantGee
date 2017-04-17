@@ -31,7 +31,7 @@ public class Stock {
      */
     private void init(Date startDate) {
 
-        int days= 0, tempDays = days;
+        int days= 0, tempDays = 0;
         for(int i=stockPOS.size()-1; i>=0; i --) {
 
             stocksMap.put(stockPOS.get(i).getDate(), stocksMap.get(i));
