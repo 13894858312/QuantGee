@@ -17,7 +17,10 @@
                   <HBox layoutX="10.0" layoutY="10.0">
                      <children>
                         <Button fx:id="kLineLeft" layoutX="10.0" mnemonicParsing="false" onAction="#showLeftKLine" styleClass="TwoSharesButton" text="均线K线图" />
-                        <Button fx:id="yieldLineLeft" mnemonicParsing="false" onAction="#showLeftYieldLine" styleClass="TwoSharesButton" text="对数收益率" />
+                        <Button fx:id="yieldLineLeft" mnemonicParsing="false" onAction="#showLeftYieldLine" styleClass="TwoSharesButton" text="对数收益率">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin></Button>
                      </children>
                   </HBox>
                </children>
@@ -39,7 +42,10 @@
                   <HBox layoutX="10.0" layoutY="10.0">
                      <children>
                         <Button fx:id="kLineRight" layoutX="10.0" mnemonicParsing="false" onAction="#showRightKLine" styleClass="TwoSharesButton" text="均线K线图" />
-                        <Button fx:id="yieldLineRight" mnemonicParsing="false" onAction="#showRightYieldLine" styleClass="TwoSharesButton" text="对数收益率" />
+                        <Button fx:id="yieldLineRight" mnemonicParsing="false" onAction="#showRightYieldLine" styleClass="TwoSharesButton" text="对数收益率">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin></Button>
                      </children>
                   </HBox>
                </children>

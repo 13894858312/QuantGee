@@ -22,13 +22,13 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="本日总交易量:" GridPane.rowIndex="1" />
+                  <Label text="  本日总交易量:" GridPane.rowIndex="1" />
                   <Label fx:id="all" text="error" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="开盘‐收盘大于5%*上一个交易日收盘价:" GridPane.rowIndex="2" />
+                  <Label text="  开盘‐收盘大于5%*上一个交易日收盘价:" GridPane.rowIndex="2" />
                   <Label fx:id="larger" text="error" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="开盘‐收盘小于‐5%*上一个交易日收盘价:" GridPane.rowIndex="3" />
+                  <Label text="  开盘‐收盘小于‐5%*上一个交易日收盘价:" GridPane.rowIndex="3" />
                   <Label fx:id="smaller" text="error" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="日期:" />
+                  <Label text="  日期:" />
                   <Label fx:id="date" text="error" GridPane.columnIndex="1" />
                </children>
             </GridPane>
