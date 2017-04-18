@@ -166,6 +166,7 @@ public class StockData implements StockDataDao{
 			if (stockPOS.size()==0) {
 				return null;
 			}
+			
 			return stockPOS;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -316,7 +317,7 @@ public class StockData implements StockDataDao{
 	public ArrayList<ArrayList<StockPO>> getStockPOsByBlockName(String startDate, String endDate, String blockName,boolean notST) {
 		
 		//判断板块名称，不符合规范则返回空
-		if (!(blockName.equals("主板")||blockName.equals("创业板")||blockName.equals("中小板"))) {
+		if (!(blockName.equals("000300")||blockName.equals("399005")||blockName.equals("399006"))) {
 			return null;
 		}
 		

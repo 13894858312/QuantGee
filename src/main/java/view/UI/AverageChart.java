@@ -62,7 +62,7 @@ public class AverageChart extends Pane{
             //chart
             final LineChart<String, Number> averageLineChart = new LineChart<String, Number>(xAxis, yAxis);
             averageLineChart.setPrefSize(width, height);
-            averageLineChart.setCreateSymbols(false);
+//            averageLineChart.setCreateSymbols(false);
             averageLineChart.setTitle("Cumulative Yield Graph");
 
             //date

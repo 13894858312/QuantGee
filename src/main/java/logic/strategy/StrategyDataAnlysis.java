@@ -83,6 +83,12 @@ public class StrategyDataAnlysis {
     }
 
 
+    /**
+     * 计算周期收益率
+     * @param maxYield 最大的周期收益
+      * @param yieldPerPeriod 周期收益率
+     * @return
+     */
     private ArrayList<YieldHistogramGraphDataVO> calculatePeriodYieldNum(double maxYield, ArrayList<Double> yieldPerPeriod) {
 
         int n = (int)(maxYield * 100) / interval + 1;
