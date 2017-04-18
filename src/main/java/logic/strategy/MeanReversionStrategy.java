@@ -3,6 +3,8 @@ package logic.strategy;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import data.StockData;
 import dataDao.StockDataDao;
@@ -51,6 +53,13 @@ public class MeanReversionStrategy implements Strategy {
             StockPO before = stockPool.getStocksList().get(i).getBeforeStockPO();
             String beforeDate = before.getDate();
             StockPO yesterday = stockPool.getStocksList().get(i).getYesterdayStock();
+            
+            //初始化第i只股票的N日移动均线
+            HashMap<String, AverageLineVO> averageLine = getAverageLineInfoByCode(DateHelper.getInstance().stringTransToDate(beforeDate)
+            		, stockPool.getEndDate(), yesterday.getStockCode(), type);
+            Iterator iterator = averageLine.entrySet().iterator();
+            //添加到allAverageLine
+            allAverageLine.add(averageLine);
 
             boolean live = true;                                   //持有期內每天的股票信息必须有 否则不持有该股票
             for(int j=0; j<dates.size(); ++j) {
@@ -64,17 +73,14 @@ public class MeanReversionStrategy implements Strategy {
             if(!live || yesterday == null || before == null) {
             	continue;
             }
-
-            //初始化第i只股票的N日移动均线
-            HashMap<String, AverageLineVO> averageLine = getAverageLineInfoByCode(DateHelper.getInstance().stringTransToDate(beforeDate)
-            		, stockPool.getEndDate(), yesterday.getStockCode(), type);
-
-            //添加到allAverageLine
-            allAverageLine.add(averageLine);
             
 
             //计算偏离度，(均值-当天的开盘价)/ 均值
-            double average = averageLine.get(DateHelper.getInstance().dateTransToString(stockPool.getStartDate())).averageValue; 
+            //如果当天无数据,跳出循环
+            double average = 0;
+            if (averageLine.get(DateHelper.getInstance().dateTransToString(stockPool.getStartDate()))!=null) {
+            	average = averageLine.get(DateHelper.getInstance().dateTransToString(stockPool.getStartDate())).averageValue;
+			}
             double yield = (average-yesterday.getADJ())/average;
 
             stockYields.add(new StockYield(yesterday.getStockCode(), yield));
@@ -103,7 +109,10 @@ public class MeanReversionStrategy implements Strategy {
 
             if(live && yesterday != null && before != null) {
                 //计算偏离度，(均值-当天的开盘价)/ 均值
-            	double average = allAverageLine.get(i).get(today).averageValue;
+            	double average = 0;
+            	if (allAverageLine.get(i).get(today)!=null) {
+            		average = allAverageLine.get(i).get(today).averageValue;
+				}
                 double yield = (average-yesterday.getADJ())/average;
 
                 stockYields.add(new StockYield(yesterday.getStockCode(), yield));
@@ -111,7 +120,7 @@ public class MeanReversionStrategy implements Strategy {
 
         }
         
-        return null;
+        return stockYields;
     }
     
     
@@ -139,7 +148,6 @@ public class MeanReversionStrategy implements Strategy {
         //如果总天数小于均线图的时间间隔出错
         ArrayList<StockPO> stockPOS = stockDataDao.getStockPOsByTimeInterval(DateHelper.getInstance().dateTransToString(startDate),
                 DateHelper.getInstance().dateTransToString(endDate), stockCode,false);
-
         if(dayNums > stockPOS.size()) {
             return null;
         }

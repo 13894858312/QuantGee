@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -15,7 +17,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
-import jdk.nashorn.internal.ir.Block;
 import logic.calculation.StrategyCalculation;
 import logicService.StrategyCalculationService;
 import vo.*;
@@ -24,7 +25,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -49,8 +49,12 @@ public class StrategyInputController {
     @FXML private AnchorPane leftPane;
     @FXML private VBox blockPane;
 
+    @FXML private ImageView loading;
+
     @FXML private HBox hBox;
     @FXML private Label num;
+
+    @FXML private Label txtLib;
 
     @FXML private DatePicker startPicker;
     @FXML private DatePicker endPicker;
@@ -202,6 +206,7 @@ public class StrategyInputController {
     private void selectPerText(){
         perField.setText("");
     }
+
     /*
     搜索
      */
@@ -212,9 +217,11 @@ public class StrategyInputController {
         //错误则结束
         if(strategyInputVO == null){return;}
 
+        loading.setVisible(true);
+
         ExecutorService pool = Executors.newFixedThreadPool(1);
-        LoadingThread loadingThread = new LoadingThread(strategyType , strategyInputVO , isHold);
-        Future<AandBVO> future = pool.submit(loadingThread);
+        Search search = new Search(strategyType , strategyInputVO , isHold);
+        Future<AandBVO> future = pool.submit(search);
 
         try {
 
@@ -237,26 +244,11 @@ public class StrategyInputController {
 
         }catch (Exception e){
             e.printStackTrace();
+            loading.setVisible(false);
             showMessage("出错，请重试");
             return;
         }
-/*
-        BackTestingResultVO backTestingResultVO = strategyCalculationService
-                .getStrategyBackTestingGraphInfo(strategyType , strategyInputVO );
-        AbnormalReturnGraphVO abnormalReturnGraphVO = strategyCalculationService.getAbnormalReturnGraphInfo(strategyType , strategyInputVO , isHold);
 
-        //没有返回值则弹出对话框并结束
-        if(backTestingResultVO == null || strategyInputVO == null){
-            showMessage("无结果");
-            return;
-        }
-
-
-        //一切正常则显示策略界面
-        showResult(backTestingResultVO , abnormalReturnGraphVO);
-        //关闭搜索栏
-        close();
-*/
     }
 
     /*
@@ -356,6 +348,7 @@ public class StrategyInputController {
         strategyBoardController = null;
         stocks = null;
         strategyStockControllers = null;
+        txtLib.setText("");
 
     }
 
@@ -364,6 +357,7 @@ public class StrategyInputController {
         blockPane.getChildren().clear();
         scrollPane.setDisable(false);
         hBox.setVisible(false);
+        txtLib.setText("");
 
         try{
 
@@ -381,6 +375,7 @@ public class StrategyInputController {
         //清空其他controller
         stocks = null;
         strategyStockControllers = null;
+        txtLib.setText("");
 
     }
 
@@ -413,6 +408,7 @@ public class StrategyInputController {
 
         //清空其他controller
         strategyBoardController = null;
+        txtLib.setText("");
 
     }
 
@@ -725,11 +721,24 @@ public class StrategyInputController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("选取输入文件");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("TXT","*.txt")
+                new FileChooser.ExtensionFilter("TXT", "*.txt")
         );
 
         file = fileChooser.showOpenDialog(new Stage());
 
+        if (file != null) {
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+                String string = bufferedReader.readLine();
+                bufferedReader.close();
+                String temp = "股票代码为：\n" + string.replace(" ", "\n");
+                txtLib.setText(temp);
+            } catch (IOException e) {
+                e.printStackTrace();
+                showMessage("出现错误，请检查输入文件");
+            }
+
+        }
     }
 
     private ArrayList<String> getFileStockNames(){
@@ -738,14 +747,18 @@ public class StrategyInputController {
             try {
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
                 String string = bufferedReader.readLine().trim();
+                bufferedReader.close();
                 String[] strings = string.split(" ");
                 ArrayList<String> names = new ArrayList<String>();
+                String temp = "股票代码为：\n" ;
                 for (int i = 0; i < strings.length; i++) {
                     names.add(strings[i]);
                 }
+                txtLib.setText(temp);
                 return names;
             } catch (IOException e) {
                 showMessage("出现错误，请检查输入文件");
+                return null;
             }
         }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -14,6 +15,7 @@
                <children>
                   <HBox fx:id="hBox" layoutX="5.0" layoutY="10.0" prefHeight="30.0" prefWidth="280.0" visible="false">
                      <children>
+                        <Label fx:id="txtLib" visible="false" wrapText="true" />
                         <Label text="已选择" />
                         <Label fx:id="num" text="0" />
                         <Label text="支股票（最少需选择100支）" />
@@ -24,7 +26,7 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <GridPane layoutX="350.0" layoutY="26.0" prefHeight="279.0" prefWidth="238.0">
+      <GridPane layoutX="350.0" layoutY="26.0" prefHeight="290.0" prefWidth="238.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="10.0" prefWidth="71.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="146.0" />
@@ -52,7 +54,8 @@
             <CheckBox fx:id="chooseHold" mnemonicParsing="false" onAction="#chooseHoldFunc" text="持有期" textFill="WHITE" GridPane.rowIndex="4">
                <font>
                   <Font size="14.0" />
-               </font></CheckBox>
+               </font>
+            </CheckBox>
             <CheckBox fx:id="chooseMake" mnemonicParsing="false" onAction="#chooseMakeFunc" text="形成期" textFill="WHITE" GridPane.rowIndex="5">
                <font>
                   <Font size="14.0" />
@@ -62,12 +65,20 @@
             <Label fx:id="perLabel1" text="  %" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <Label fx:id="holdLabel" text="持有期" visible="false" GridPane.rowIndex="4" />
             <Label fx:id="makeLabel" text="形成期" visible="false" GridPane.rowIndex="5" />
-            <CheckBox fx:id="deleteST" mnemonicParsing="false" text="排除ST股" textFill="WHITE" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+            <CheckBox fx:id="deleteST" mnemonicParsing="false" text="排除ST股" textFill="WHITE" GridPane.columnSpan="2" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font></CheckBox>
          </children>
       </GridPane>
       <Button layoutX="360.0" layoutY="330.0" mnemonicParsing="false" onAction="#search" styleClass="StrategyButton" text="搜  索" />
       <Button layoutX="480.0" layoutY="330.0" mnemonicParsing="false" onAction="#close" styleClass="StrategyButton" text="取  消" />
       <ChoiceBox fx:id="stockPool" layoutX="15.0" layoutY="25.0" prefHeight="27.0" prefWidth="300.0" styleClass="BigChoiceBox" />
       <Separator disable="true" layoutX="329.0" layoutY="25.0" opacity="0.6" orientation="VERTICAL" prefHeight="340.0" prefWidth="1.0" />
+      <ImageView fx:id="loading" fitHeight="230.0" fitWidth="300.0" layoutX="150.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../pictures/loading.gif" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
