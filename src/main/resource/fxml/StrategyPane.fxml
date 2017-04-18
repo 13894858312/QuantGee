@@ -38,7 +38,6 @@
                               <Label fx:id="beta" styleClass="Red" text="--" />
                               <Label text="        夏普比率   : " />
                               <Label fx:id="sharp" styleClass="Blue" text="--" />
-                              <Label text=" %" />
                            </children>
                         </HBox>
                      </children></AnchorPane>
