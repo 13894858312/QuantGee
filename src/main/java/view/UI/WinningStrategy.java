@@ -1,6 +1,7 @@
 package view.UI;
 
 import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
@@ -17,11 +18,11 @@ public class WinningStrategy extends Pane {
         this.getStylesheets().add("/css/yieldArea.css");
         //x-xAxis
         final NumberAxis xAxis = new NumberAxis();
-        xAxis.setLabel("Date");
+        xAxis.setLabel("Date (day)");
 
         //y-yAxis
         final NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("WinningStrategy Yield");
+        yAxis.setLabel("WinningStrategy Yield (%)");
 
         /* chart */
         final AreaChart<Number, Number> lc = new AreaChart<Number, Number>(xAxis, yAxis);
@@ -35,12 +36,12 @@ public class WinningStrategy extends Pane {
         if(!judge) {
             for (int i = 0; i <abnormalReturnGraphDataVOArrayList.size(); i++) {
                 AbnormalReturnGraphDataVO abnormalReturnGraphDataVO = abnormalReturnGraphDataVOArrayList.get(i);
-                series.getData().add(new XYChart.Data<Number, Number>(abnormalReturnGraphDataVO.holdingPeriod, abnormalReturnGraphDataVO.stategyWinRate));
+                series.getData().add(new XYChart.Data<Number, Number>(abnormalReturnGraphDataVO.holdingPeriod, abnormalReturnGraphDataVO.stategyWinRate*100));
             }
         }else{
             for (int i = 0; i <abnormalReturnGraphDataVOArrayList.size(); i++) {
                 AbnormalReturnGraphDataVO abnormalReturnGraphDataVO = abnormalReturnGraphDataVOArrayList.get(i);
-                series.getData().add(new XYChart.Data<Number, Number>(abnormalReturnGraphDataVO.returnPeriod, abnormalReturnGraphDataVO.stategyWinRate));
+                series.getData().add(new XYChart.Data<Number, Number>(abnormalReturnGraphDataVO.returnPeriod, abnormalReturnGraphDataVO.stategyWinRate*100));
             }
         }
 
