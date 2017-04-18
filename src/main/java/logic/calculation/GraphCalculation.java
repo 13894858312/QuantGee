@@ -42,7 +42,7 @@ public class GraphCalculation implements GraphCalculationService {
                 : "logic.calculation.GraphCalculation.getKLineInfoByCode参数异常";
 
         ArrayList<StockPO> stockPOS = this.stockDataDao.getStockPOsByTimeInterval(dateHelper.dateTransToString(startDate),
-                dateHelper.dateTransToString(endDate), stockCode);
+                dateHelper.dateTransToString(endDate), stockCode,false);
 
 
         if(stockPOS == null || stockPOS.size() == 0) {
@@ -111,7 +111,7 @@ public class GraphCalculation implements GraphCalculationService {
 
         //如果总天数小于均线图的时间间隔出错
         ArrayList<StockPO> stockPOS = this.stockDataDao.getStockPOsByTimeInterval(dateHelper.dateTransToString(startDate),
-                dateHelper.dateTransToString(endDate), stockCode);
+                dateHelper.dateTransToString(endDate), stockCode,false);
 
         if(dayNums > stockPOS.size()) {
             return null;

@@ -6,6 +6,7 @@ import po.StockPO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Mark.W on 2017/3/29.
@@ -33,7 +34,7 @@ public class Stock {
 
         int days= 0, tempDays = 0;
         for(int i=stockPOS.size()-1; i>=0; i --) {
-            stocksMap.put(stockPOS.get(i).getDate(), stocksMap.get(i));
+            stocksMap.put(stockPOS.get(i).getDate(), stockPOS.get(i));
 
             tempDays = days;
             Date d = DateHelper.getInstance().stringTransToDate(this.stockPOS.get(i).getDate());
@@ -46,7 +47,6 @@ public class Stock {
                 if(i< stockPOS.size()-1) {
                     this.yesterdayStock = this.stockPOS.get(i+1);
                 }
-                break;
             }
         }
 
@@ -59,7 +59,8 @@ public class Stock {
      * @return StockPO
      */
     public StockPO getStockByDate(String date) {
-        return  this.stocksMap.get(date);
+
+        return this.stocksMap.get(date);
     }
 
     public StockPO getStartDateStockPO() {

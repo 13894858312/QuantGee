@@ -12,14 +12,23 @@ import java.util.Date;
 public class MomentumDriveStrategy implements Strategy {
 
     @Override
-    public ArrayList<StockYield> initHoldingStocks(StockPool stockPool) {
+    public ArrayList<StockYield> initHoldingStocks(StockPool stockPool, ArrayList<String> dates) {
         ArrayList<StockYield> stockYields = new ArrayList<>();
 
         for(int i = 0; i<stockPool.getStocksList().size(); ++i) {
             StockPO before = stockPool.getStocksList().get(i).getBeforeStockPO();
             StockPO yesterday = stockPool.getStocksList().get(i).getYesterdayStock();
 
-            if(yesterday != null && before != null) {
+            boolean live = true;                                   //持有期內每天的股票信息必须有 否则不持有该股票
+            for(int j=0; j<dates.size(); ++j) {
+                StockPO po = stockPool.getStocksList().get(i).getStockByDate(dates.get(j));
+                if(po == null) {
+                    live = false;
+                    break;
+                }
+            }
+
+            if(live && yesterday != null && before != null) {
                 //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
                 double yield = (yesterday.getADJ()-before.getADJ())/before.getADJ();
 
@@ -27,17 +36,11 @@ public class MomentumDriveStrategy implements Strategy {
             }
         }
 
-
-        System.out.println("  " +stockPool.getStocksList().size());
-        System.out.println("  " +stockYields.size());
-        System.out.println("  " + (stockPool.getStocksList().get(0).getBeforeStockPO() == null));
-        System.out.println("  " + (stockPool.getStocksList().get(0).getYesterdayStock() == null));
-
         return stockYields;
     }
 
     @Override
-    public ArrayList<StockYield> rebalanceHoldingStocks(StockPool stockPool, String beforeDate, String today) {
+    public ArrayList<StockYield> rebalanceHoldingStocks(StockPool stockPool, String beforeDate, String today, ArrayList<String> dates) {
 
         ArrayList<StockYield> stockYields = new ArrayList<>();
 
@@ -45,7 +48,16 @@ public class MomentumDriveStrategy implements Strategy {
             StockPO before = stockPool.getStocksList().get(i).getStockByDate(beforeDate);
             StockPO yesterday = stockPool.getStocksList().get(i).getStockByDate(today);
 
-            if(yesterday != null && before != null) {
+            boolean live = true;                                   //持有期內每天的股票信息必须有 否则不持有该股票
+            for(int j=0; j<dates.size(); ++j) {
+                StockPO po = stockPool.getStocksList().get(i).getStockByDate(dates.get(j));
+                if(po == null) {
+                    live = false;
+                    break;
+                }
+            }
+
+            if(live && yesterday != null && before != null) {
                 //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
                 double yield = (yesterday.getADJ()-before.getADJ())/before.getADJ();
 

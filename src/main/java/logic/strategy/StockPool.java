@@ -23,7 +23,7 @@ public class StockPool {
 
     private ArrayList<BaseCumulativeYieldPO> blockBaseRaito;
 
-    private HashMap<String, Stock> stocksMap;       //key是股票code
+    private HashMap<String, Stock> stocksMap = new HashMap<>();       //key是股票code
     private ArrayList<Stock> stocksList = new ArrayList<>();
 
     private int tradeDays;   //时间区间內的交易日数，即投资天数
@@ -126,10 +126,6 @@ public class StockPool {
      */
     public void initStocksFromData(ArrayList<ArrayList<StockPO>> allStockPOs) {
 
-System.out.println(allStockPOs.size());
-System.out.println(allStockPOs.get(0).size());
-System.out.println(allStockPOs.get(1).size());
-
         int index = 0;          //记录size最大的下标index
         for(int i=0; i<allStockPOs.size(); ++i) {
             if(allStockPOs.get(i) != null && allStockPOs.get(i).size() != 0) {
@@ -147,11 +143,7 @@ System.out.println(allStockPOs.get(1).size());
             }
         }
 
-System.out.println(index);
-
         this.indexStocks = allStockPOs.get(index);
-
-System.out.println(indexStocks.size());
     }
 
 

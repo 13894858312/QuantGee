@@ -23,7 +23,7 @@ public class MeanReversionStrategy implements Strategy {
 	private ArrayList<HashMap<String, AverageLineVO>> allAverageLine = new ArrayList<>();
 
     @Override
-    public ArrayList<StockYield> initHoldingStocks(StockPool stockPool) {
+    public ArrayList<StockYield> initHoldingStocks(StockPool stockPool,  ArrayList<String> dates) {
     	
     	ArrayList<StockYield> stockYields = new ArrayList<>();
     	
@@ -76,8 +76,8 @@ public class MeanReversionStrategy implements Strategy {
     }
 
     @Override
-    public ArrayList<StockYield> rebalanceHoldingStocks(StockPool stockPool, String beforeDate, String today) {
-    	
+    public ArrayList<StockYield> rebalanceHoldingStocks(StockPool stockPool, String beforeDate, String today,  ArrayList<String> dates) {
+
     	ArrayList<StockYield> stockYields = new ArrayList<>();
 
         for(int i = 0; i<stockPool.getStocksList().size(); ++i) {
@@ -121,7 +121,7 @@ public class MeanReversionStrategy implements Strategy {
 
         //如果总天数小于均线图的时间间隔出错
         ArrayList<StockPO> stockPOS = stockDataDao.getStockPOsByTimeInterval(DateHelper.getInstance().dateTransToString(startDate),
-                DateHelper.getInstance().dateTransToString(endDate), stockCode);
+                DateHelper.getInstance().dateTransToString(endDate), stockCode,false);
 
         if(dayNums > stockPOS.size()) {
             return null;

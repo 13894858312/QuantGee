@@ -32,7 +32,7 @@ public class DataCalculation implements DataCalculationService {
                 : "logic.calculation.DataCalculation.getStockInfoByCode参数异常";
 
         ArrayList<StockPO> stockPOs = this.stockDataDao.getStockPOsByTimeInterval(DateHelper.getInstance().dateTransToString(startDate),
-                DateHelper.getInstance().dateTransToString(endDate), stockCode);
+                DateHelper.getInstance().dateTransToString(endDate), stockCode, false);
 
         if (stockPOs == null || stockPOs.size() == 0) {
             return null;

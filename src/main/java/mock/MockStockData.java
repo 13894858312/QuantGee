@@ -43,7 +43,7 @@ public class MockStockData implements StockDataDao {
 
     }
 
-    public ArrayList<StockPO> getStockPOsByTimeInterval(String startdate, String endDate, String stockCode) {
+    public ArrayList<StockPO> getStockPOsByTimeInterval(String startdate, String endDate, String stockCode, boolean notST) {
 
         ArrayList<StockPO> stockPOs = new ArrayList<StockPO>();
 
@@ -77,12 +77,12 @@ public class MockStockData implements StockDataDao {
     }
 
     @Override
-    public ArrayList<ArrayList<StockPO>> getStockPOsByBlockName(String startDate, String endDate, String blockName) {
+    public ArrayList<ArrayList<StockPO>> getStockPOsByBlockName(String startDate, String endDate, String blockName, boolean notST) {
         return null;
     }
 
     @Override
-    public ArrayList<ArrayList<StockPO>> getAllStockPO(String startDate, String endDate) {
+    public ArrayList<ArrayList<StockPO>> getAllStockPO(String startDate, String endDate, boolean notST) {
         return null;
     }
 
