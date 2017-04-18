@@ -1,5 +1,7 @@
 package vo;
 
+import logic.tools.MathHelper;
+
 import java.util.ArrayList;
 
 /**
@@ -31,12 +33,12 @@ public class CumulativeYieldGraphVO {
                                   double beta, double sharpeRatio, double maxDrawdown,
                                   ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS,
                                   ArrayList<CumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS) {
-        this.annualRevenue = annualRevenue;
-        this.baseAnnualRevenue = baseAnnualRevenue;
+        this.annualRevenue = MathHelper.formatData(annualRevenue*100,2);
+        this.baseAnnualRevenue = MathHelper.formatData(baseAnnualRevenue*100,2);
         this.alpha = alpha;
         this.beta = beta;
         this.sharpeRatio = sharpeRatio;
-        this.maxDrawdown = maxDrawdown;
+        this.maxDrawdown = MathHelper.formatData(maxDrawdown*100,2);
         this.cumulativeYieldGraphDataVOS = cumulativeYieldGraphDataVOS;
         this.baseCumulativeYieldGraphDataVOS = baseCumulativeYieldGraphDataVOS;
     }

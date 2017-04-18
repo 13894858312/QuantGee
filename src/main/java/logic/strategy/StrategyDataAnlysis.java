@@ -40,7 +40,6 @@ public class StrategyDataAnlysis {
         ArrayList<YieldHistogramGraphDataVO> data = calculatePeriodYieldNum(maxYield, yieldPerPeriod);
 
         double winRate = (double)positiveEarningNum /(double)(positiveEarningNum+negativeEarningNum);
-        winRate = MathHelper.formatData(winRate,4);
         YieldHistogramGraphVO yieldHistogramGraphVO = new YieldHistogramGraphVO(positiveEarningNum, negativeEarningNum, winRate,data);
 
         return yieldHistogramGraphVO;
@@ -80,7 +79,7 @@ public class StrategyDataAnlysis {
      */
     public double analyseAbnormalReturn(double income, double initFund, double baseYield) {
         double result = (income-initFund)/initFund - baseYield;
-        return MathHelper.formatData(result,4);
+        return result;
     }
 
 
@@ -141,7 +140,7 @@ public class StrategyDataAnlysis {
      */
     private double calculateAnnualRevenue(double income, double initFund, int tradeDays) {
         double annualRevenue = (((income-initFund)/initFund) / tradeDays) * 365;
-        return MathHelper.formatData(annualRevenue,4);
+        return annualRevenue;
     }
 
 
@@ -154,7 +153,7 @@ public class StrategyDataAnlysis {
      */
     private double calculateAlpha(double annualRevenue, double baseAnnualRevenue, double beta) {
         double alpha = (annualRevenue - RF) - beta * (baseAnnualRevenue - RF);
-        return MathHelper.formatData(alpha,4);
+        return MathHelper.formatData(alpha,3);
     }
 
     /**
@@ -176,7 +175,7 @@ public class StrategyDataAnlysis {
 //        System.out.println("  "+MathHelper.variance(strategy));
 
         double sharpeRatio = (annualRevenue - RF)/Math.sqrt(MathHelper.variance(strategy));
-        return MathHelper.formatData(sharpeRatio,4);
+        return MathHelper.formatData(sharpeRatio,3);
     }
 
     /**
@@ -198,7 +197,7 @@ public class StrategyDataAnlysis {
         }
 
         double beta = MathHelper.covariance(strategy, base)/MathHelper.variance(base);
-        return MathHelper.formatData(beta,4);
+        return MathHelper.formatData(beta,3);
     }
 
 
@@ -218,7 +217,7 @@ public class StrategyDataAnlysis {
 
         baseAnnualRevenue = (baseAnnualRevenue/tradeDays) * 365;
 
-        return MathHelper.formatData(baseAnnualRevenue,4);
+        return baseAnnualRevenue;
     }
 
     /**
@@ -249,7 +248,7 @@ public class StrategyDataAnlysis {
             }
         }
 
-        return MathHelper.formatData(maxDrawdown,4);
+        return maxDrawdown;
     }
 
     public double analyseWinRate(ArrayList<Double> baseYield) {

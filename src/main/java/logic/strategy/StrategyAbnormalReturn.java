@@ -103,8 +103,6 @@ System.out.println(this.abnormalReturnGraphDataVOS.size());
             }
         }
 
-        bestAbnormalReturn = MathHelper.formatData(bestAbnormalReturn,4);
-        bestStategyWinRate = MathHelper.formatData(bestStategyWinRate,4);
         this.abnormalReturnGraphVO = new AbnormalReturnGraphVO(isHoldingPeriod, bestHoldingPeriod, bestReturnPeriod,
                 bestAbnormalReturn,bestStategyWinRate, this.abnormalReturnGraphDataVOS);
     }

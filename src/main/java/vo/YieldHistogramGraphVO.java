@@ -1,5 +1,7 @@
 package vo;
 
+import logic.tools.MathHelper;
+
 import java.util.ArrayList;
 
 /**
@@ -25,7 +27,7 @@ public class YieldHistogramGraphVO {
                                  ArrayList<YieldHistogramGraphDataVO> yieldHistogramGraphDataVOS) {
         this.positiveEarningNum = positiveEarningNum;
         this.negativeEarningNum = negativeEarningNum;
-        this.winRate = winRate;
+        this.winRate = MathHelper.formatData(winRate*100, 2);
         this.yieldHistogramGraphDataVOS = yieldHistogramGraphDataVOS;
     }
 }

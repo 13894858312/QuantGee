@@ -19,10 +19,10 @@ public class StrategyCalculationTest {
     public void getStrategyBackTestingGraphInfo() throws Exception {
         Date startDate = DateHelper.getInstance().stringTransToDate("2/1/10");
         Date endDate = DateHelper.getInstance().stringTransToDate("4/10/12");
-        StrategyInputVO strategyInputVO = new StrategyInputVO(startDate, endDate, 20, 20, 0.2);
+        StrategyInputVO strategyInputVO = new StrategyInputVO(startDate, endDate, 20, 20, 0.2,false);
 
         StrategyCalculationService s = new StrategyCalculation();
-        BackTestingResultVO backTestingResultVO = s.getStrategyBackTestingGraphInfo(StrategyType.MOMENTUM_DRIVEN, strategyInputVO);
+        BackTestingResultVO backTestingResultVO = s.getStrategyBackTestingGraphInfo(StrategyType.MEAN_REVERSION, strategyInputVO);
 
         System.out.println();
         System.out.println("result:");
@@ -42,7 +42,7 @@ public class StrategyCalculationTest {
     public void getAbnormalReturnGraphInfo() throws Exception {
         Date startDate = DateHelper.getInstance().stringTransToDate("4/2/12");
         Date endDate = DateHelper.getInstance().stringTransToDate("9/3/12");
-        StrategyInputVO strategyInputVO = new StrategyInputVO(startDate, endDate, 10, 10, 0.2);
+        StrategyInputVO strategyInputVO = new StrategyInputVO(startDate, endDate, 10, 10, 0.2,false);
 
         StrategyCalculationService s = new StrategyCalculation();
         AbnormalReturnGraphVO abnormalReturnGraphVO = s.getAbnormalReturnGraphInfo(StrategyType.MOMENTUM_DRIVEN, strategyInputVO, true);

@@ -1,5 +1,7 @@
 package vo;
 
+import logic.tools.MathHelper;
+
 import java.util.ArrayList;
 
 /**
@@ -29,8 +31,8 @@ public class AbnormalReturnGraphVO {
         this.isHoldingPeriodFixed = isHoldingPeriodFixed;
         this.bestHoldingPeriod = bestHoldingPeriod;
         this.bestReturnPeriod = bestReturnPeriod;
-        this.bestAbnormalReturn = bestAbnormalReturn;
-        this.bestStategyWinRate = bestStategyWinRate;
+        this.bestAbnormalReturn = MathHelper.formatData(bestAbnormalReturn*100, 2);
+        this.bestStategyWinRate = MathHelper.formatData(bestStategyWinRate*100, 2);
         this.abnormalReturnGraphDataVOS = abnormalReturnGraphDataVOS;
     }
 }

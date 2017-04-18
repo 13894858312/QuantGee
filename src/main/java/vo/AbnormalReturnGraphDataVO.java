@@ -1,5 +1,7 @@
 package vo;
 
+import logic.tools.MathHelper;
+
 /**
  * Created by Mark.W on 2017/3/23.
  * 超额收益率和策略胜率图的坐标信息
