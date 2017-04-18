@@ -20,11 +20,11 @@ public class ExcessEarning extends Pane{
         this.getStylesheets().add("/css/yieldArea.css");
         //x-xAxis
         final NumberAxis xAxis = new NumberAxis();
-        xAxis.setLabel("Date");
+        xAxis.setLabel("Date (day)");
 
         //y-yAxis
         final NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("ExcessEarning Yield");
+        yAxis.setLabel("ExcessEarning Yield (%)");
 
         /* chart */
         final AreaChart<Number, Number> lc = new AreaChart<Number, Number>(xAxis, yAxis);
@@ -38,12 +38,12 @@ public class ExcessEarning extends Pane{
         if(!judge) {
             for (int i = 0; i <abnormalReturnGraphDataVOArrayList.size(); i++) {
                 AbnormalReturnGraphDataVO abnormalReturnGraphDataVO = abnormalReturnGraphDataVOArrayList.get(i);
-                series.getData().add(new XYChart.Data<Number, Number>(abnormalReturnGraphDataVO.holdingPeriod, abnormalReturnGraphDataVO.abnormalReturn));
+                series.getData().add(new XYChart.Data<Number, Number>(abnormalReturnGraphDataVO.holdingPeriod, abnormalReturnGraphDataVO.abnormalReturn*100));
             }
         }else{
             for (int i = 0; i <abnormalReturnGraphDataVOArrayList.size(); i++) {
                 AbnormalReturnGraphDataVO abnormalReturnGraphDataVO = abnormalReturnGraphDataVOArrayList.get(i);
-                series.getData().add(new XYChart.Data<Number, Number>(abnormalReturnGraphDataVO.returnPeriod, abnormalReturnGraphDataVO.abnormalReturn));
+                series.getData().add(new XYChart.Data<Number, Number>(abnormalReturnGraphDataVO.returnPeriod, abnormalReturnGraphDataVO.abnormalReturn*100));
             }
         }
 

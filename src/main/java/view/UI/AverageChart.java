@@ -53,12 +53,11 @@ public class AverageChart extends Pane{
             this.getStylesheets().add("/css/averageChart.css");
             //x-xAxis
             final CategoryAxis xAxis = new CategoryAxis();
-            xAxis.setLabel("Day");
+            xAxis.setLabel("Day (day)");
 
             //y-yAxis
             final NumberAxis yAxis = new NumberAxis();
-            yAxis.setLabel("Cumulative Yield");
-            yAxis.setForceZeroInRange(false);
+            yAxis.setLabel("Cumulative Yield (%)");
 
             //chart
             final LineChart<String, Number> averageLineChart = new LineChart<String, Number>(xAxis, yAxis);
@@ -69,17 +68,17 @@ public class AverageChart extends Pane{
             //date
             XYChart.Series<String, Number> series1 = new XYChart.Series<String, Number>();
             series1.setName("Basic Yield");
-            for (int i = cumulativeYieldGraphDataVOArrayList1.size() - 1; i >= 0; i--) {
+            for (int i = 0; i <cumulativeYieldGraphDataVOArrayList1.size() ; i++) {
                 CumulativeYieldGraphDataVO cumulativeYieldGraphDataVO = cumulativeYieldGraphDataVOArrayList1.get(i);
                 series1.getData().add(new XYChart.Data<String, Number>(
-                        DateHelper.getInstance().dateTransToString(cumulativeYieldGraphDataVO.date), cumulativeYieldGraphDataVO.ratio));
+                        DateHelper.getInstance().dateTransToString(cumulativeYieldGraphDataVO.date), cumulativeYieldGraphDataVO.ratio*100));
             }
             XYChart.Series<String, Number> series2 = new XYChart.Series<String, Number>();
             series2.setName("Strategy Yield");
-            for (int i = cumulativeYieldGraphDataVOArrayList2.size() - 1; i >= 0; i--) {
+            for (int i = 0; i <cumulativeYieldGraphDataVOArrayList2.size() ; i++) {
                 CumulativeYieldGraphDataVO cumulativeYieldGraphDataVO = cumulativeYieldGraphDataVOArrayList2.get(i);
                 series2.getData().add(new XYChart.Data<String, Number>(
-                    DateHelper.getInstance().dateTransToString(cumulativeYieldGraphDataVO.date), cumulativeYieldGraphDataVO.ratio));
+                    DateHelper.getInstance().dateTransToString(cumulativeYieldGraphDataVO.date), cumulativeYieldGraphDataVO.ratio*100));
             }
 
 
