@@ -3,7 +3,9 @@ package view.UI;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import logic.tools.DateHelper;
 import javafx.scene.chart.XYChart;
 import vo.AverageLineVO;
@@ -53,37 +55,66 @@ public class AverageChart extends Pane{
             this.getStylesheets().add("/css/averageChart.css");
             //x-xAxis
             final CategoryAxis xAxis = new CategoryAxis();
-            xAxis.setLabel("Day (day)");
+            xAxis.setLabel("日期 (天)");
 
             //y-yAxis
             final NumberAxis yAxis = new NumberAxis();
-            yAxis.setLabel("Cumulative Yield (%)");
+            yAxis.setLabel("累计收益率 (%)");
 
             //chart
             final LineChart<String, Number> averageLineChart = new LineChart<String, Number>(xAxis, yAxis);
             averageLineChart.setPrefSize(width, height);
 //            averageLineChart.setCreateSymbols(false);
-            averageLineChart.setTitle("Cumulative Yield Graph");
 
             //date
             XYChart.Series<String, Number> series1 = new XYChart.Series<String, Number>();
-            series1.setName("Basic Yield");
+            series1.setName("基准收益率");
             for (int i = 0; i <cumulativeYieldGraphDataVOArrayList1.size() ; i++) {
                 CumulativeYieldGraphDataVO cumulativeYieldGraphDataVO = cumulativeYieldGraphDataVOArrayList1.get(i);
                 series1.getData().add(new XYChart.Data<String, Number>(
                         DateHelper.getInstance().dateTransToString(cumulativeYieldGraphDataVO.date), cumulativeYieldGraphDataVO.ratio*100));
+                Circle circle = new Circle(1);
+                series1.getData().get(i).setNode(circle);
             }
             XYChart.Series<String, Number> series2 = new XYChart.Series<String, Number>();
-            series2.setName("Strategy Yield");
+            series2.setName("策略收益率");
             for (int i = 0; i <cumulativeYieldGraphDataVOArrayList2.size() ; i++) {
                 CumulativeYieldGraphDataVO cumulativeYieldGraphDataVO = cumulativeYieldGraphDataVOArrayList2.get(i);
                 series2.getData().add(new XYChart.Data<String, Number>(
                     DateHelper.getInstance().dateTransToString(cumulativeYieldGraphDataVO.date), cumulativeYieldGraphDataVO.ratio*100));
+                Circle circle = new Circle(1);
+                series2.getData().get(i).setNode(circle);
             }
 
 
+
             averageLineChart.getData().addAll(series1,series2);
+        for (XYChart.Data<String, Number> d : series1.getData()) {
+            Tooltip.install(d.getNode(), new Tooltip(
+                    d.getXValue().toString() + "\n" +
+                            "Number Of Events : " + d.getYValue()));
+
+            //Adding class on hover
+            d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));
+
+            //Removing class on exit
+            d.getNode().setOnMouseExited(event -> d.getNode().getStyleClass().remove("onHover"));
+        }
+
+        for (XYChart.Data<String, Number> d : series2.getData()) {
+            Tooltip.install(d.getNode(), new Tooltip(
+                    d.getXValue().toString() + "\n" +
+                            "Number Of Events : " + d.getYValue()));
+
+            //Adding class on hover
+            d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));
+
+            //Removing class on exit
+            d.getNode().setOnMouseExited(event -> d.getNode().getStyleClass().remove("onHover"));
+        }
             getChildren().add(averageLineChart);
+
+
     }
 
 

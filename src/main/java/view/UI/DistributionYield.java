@@ -23,29 +23,27 @@ public class DistributionYield extends Pane {
         //x-xAxis
         final CategoryAxis xAxis = new CategoryAxis();
         xAxis.setTickLabelGap(2);
-        xAxis.setLabel("Yield");
+        xAxis.setLabel("收益率");
 
         //y-yAxis
         final NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Number");
+        yAxis.setLabel("频数 (个)");
 
         //chart
         final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
-        bc.setCategoryGap(10);
+        bc.setCategoryGap(5);
         bc.setBarGap(3);
         bc.setPrefSize(width, height);
-        bc.setTitle("Distribution Yield Chart");
 
         XYChart.Series<String, Number> series_plus = new XYChart.Series<>();
         XYChart.Series<String, Number> series_minus = new XYChart.Series<>();
         series_minus.setName("负收益周期数");
         series_plus.setName("正收益周期数");
-        System.out.print(yieldHistogramGraphDataVOArrayList.size());
         for(int i = 0;i<yieldHistogramGraphDataVOArrayList.size();i++){
             YieldHistogramGraphDataVO yieldHistogramGraphDataVO = yieldHistogramGraphDataVOArrayList.get(i);
-            series_minus.getData().add(new XYChart.Data<String, Number>(String.valueOf(yieldHistogramGraphDataVO.startRate*100)+"% - "+String.valueOf(yieldHistogramGraphDataVO.endRate*100)+"%",
+            series_minus.getData().add(new XYChart.Data<String, Number>(String.valueOf(yieldHistogramGraphDataVO.startRate)+"% - "+String.valueOf(yieldHistogramGraphDataVO.endRate)+"%",
                     yieldHistogramGraphDataVO.negativeFrequency));
-            series_plus.getData().add(new XYChart.Data<String, Number>(String.valueOf(yieldHistogramGraphDataVO.startRate*100)+"% - "+String.valueOf(yieldHistogramGraphDataVO.endRate*100)+"%",
+            series_plus.getData().add(new XYChart.Data<String, Number>(String.valueOf(yieldHistogramGraphDataVO.startRate)+"% - "+String.valueOf(yieldHistogramGraphDataVO.endRate)+"%",
                     yieldHistogramGraphDataVO.positiveFrequency));
         }
 //        for(int i=0;i<test1.length;i++){

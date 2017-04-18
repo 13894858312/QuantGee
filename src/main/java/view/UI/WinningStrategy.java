@@ -18,21 +18,20 @@ public class WinningStrategy extends Pane {
         this.getStylesheets().add("/css/yieldArea.css");
         //x-xAxis
         final NumberAxis xAxis = new NumberAxis();
-        xAxis.setLabel("Date (day)");
+        xAxis.setLabel("日期 (day)");
 
         //y-yAxis
         final NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("WinningStrategy Yield (%)");
+        yAxis.setLabel("策略胜率 (%)");
 
         /* chart */
         final AreaChart<Number, Number> lc = new AreaChart<Number, Number>(xAxis, yAxis);
         lc.setCreateSymbols(false);
         lc.setPrefSize(width, height);
-        lc.setTitle("WinningStrategy Yield Chart");
 
         //data
         XYChart.Series<Number, Number> series = new XYChart.Series<Number, Number>();
-        series.setName("Date");
+        series.setName("日期");
         if(!judge) {
             for (int i = 0; i <abnormalReturnGraphDataVOArrayList.size(); i++) {
                 AbnormalReturnGraphDataVO abnormalReturnGraphDataVO = abnormalReturnGraphDataVOArrayList.get(i);
