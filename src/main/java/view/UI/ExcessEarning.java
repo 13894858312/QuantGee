@@ -20,7 +20,6 @@ public class ExcessEarning extends Pane{
         this.getStylesheets().add("/css/yieldArea.css");
         //x-xAxis
         final NumberAxis xAxis = new NumberAxis();
-        xAxis.setLabel("日期 (天)");
 
         //y-yAxis
         final NumberAxis yAxis = new NumberAxis();
@@ -33,16 +32,20 @@ public class ExcessEarning extends Pane{
 
         //data
         XYChart.Series<Number, Number> series = new XYChart.Series<Number, Number>();
-        series.setName("日期");
+
         if(!judge) {
             for (int i = 0; i <abnormalReturnGraphDataVOArrayList.size(); i++) {
                 AbnormalReturnGraphDataVO abnormalReturnGraphDataVO = abnormalReturnGraphDataVOArrayList.get(i);
                 series.getData().add(new XYChart.Data<Number, Number>(abnormalReturnGraphDataVO.holdingPeriod, abnormalReturnGraphDataVO.abnormalReturn*100));
+                xAxis.setLabel("持有期日期 (天)");
+                series.setName("持有期日期");
             }
         }else{
             for (int i = 0; i <abnormalReturnGraphDataVOArrayList.size(); i++) {
                 AbnormalReturnGraphDataVO abnormalReturnGraphDataVO = abnormalReturnGraphDataVOArrayList.get(i);
                 series.getData().add(new XYChart.Data<Number, Number>(abnormalReturnGraphDataVO.returnPeriod, abnormalReturnGraphDataVO.abnormalReturn*100));
+                xAxis.setLabel("形成期日期 (天)");
+                series.setName("形成期日期");
             }
         }
 
