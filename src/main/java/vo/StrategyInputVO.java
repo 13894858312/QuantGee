@@ -34,13 +34,14 @@ public class StrategyInputVO {
      * @param holdingStockNum 每次调仓持有的股票数量
      */
     public StrategyInputVO(Date startDate, Date endDate, int holdingPeriod,
-                           int returnPeriod, int holdingStockNum) {
+                           int returnPeriod, int holdingStockNum, boolean notST) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.holdingPeriod = holdingPeriod;
         this.returnPeriod = returnPeriod;
         this.holdingStockNum = holdingStockNum;
         this.strategyInputType = StrategyInputType.ALL;
+        this.notST = notST;
     }
 
 
@@ -54,7 +55,7 @@ public class StrategyInputVO {
      * @param holdingStockNum 每次调仓持有的股票数量
      */
     public StrategyInputVO(Date startDate, Date endDate, BlockType blockType, int holdingPeriod,
-                           int returnPeriod, int holdingStockNum) {
+                           int returnPeriod, int holdingStockNum,boolean notST) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.blockType = blockType;
@@ -62,6 +63,7 @@ public class StrategyInputVO {
         this.returnPeriod = returnPeriod;
         this.holdingStockNum = holdingStockNum;
         this.strategyInputType = StrategyInputType.SPECIFIC_BLOCK;
+        this.notST = notST;
     }
 
     /**
@@ -74,7 +76,7 @@ public class StrategyInputVO {
      * @param holdingStockNum 每次调仓持有的股票数量
      */
     public StrategyInputVO(Date startDate, Date endDate, ArrayList<String> stockNames, int holdingPeriod,
-                           int returnPeriod, int holdingStockNum) {
+                           int returnPeriod, int holdingStockNum, boolean notST) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.stockNames = stockNames;
@@ -82,6 +84,7 @@ public class StrategyInputVO {
         this.returnPeriod = returnPeriod;
         this.holdingStockNum = holdingStockNum;
         this.strategyInputType = StrategyInputType.SPECIFIC_STOCKS;
+        this.notST = notST;
     }
 
     /**
@@ -91,8 +94,8 @@ public class StrategyInputVO {
      * @param holdingPeriod 调仓周期
      * @param returnPeriod 基准收益率计算周期
      */
-    public StrategyInputVO(Date startDate, Date endDate, int holdingPeriod, int returnPeriod, double ratio) {
-        this(startDate, endDate, holdingPeriod, returnPeriod, 0);
+    public StrategyInputVO(Date startDate, Date endDate, int holdingPeriod, int returnPeriod, double ratio,boolean notST) {
+        this(startDate, endDate, holdingPeriod, returnPeriod, 0,notST);
         this.ratio = ratio;
     }
 
@@ -106,8 +109,8 @@ public class StrategyInputVO {
      * @param returnPeriod 基准收益率计算周期
      */
     public StrategyInputVO(Date startDate, Date endDate, BlockType blockType,
-                           int holdingPeriod, int returnPeriod, double ratio) {
-        this(startDate,endDate,blockType,holdingPeriod,returnPeriod, 0);
+                           int holdingPeriod, int returnPeriod, double ratio,boolean notST) {
+        this(startDate,endDate,blockType,holdingPeriod,returnPeriod, 0,notST);
         this.ratio = ratio;
     }
 
@@ -120,8 +123,8 @@ public class StrategyInputVO {
      * @param returnPeriod 基准收益率计算周期
      */
     public StrategyInputVO(Date startDate, Date endDate,ArrayList<String> stockNames,
-                           int holdingPeriod, int returnPeriod, double ratio) {
-        this(startDate, endDate, stockNames, holdingPeriod, returnPeriod,0);
+                           int holdingPeriod, int returnPeriod, double ratio,boolean notST) {
+        this(startDate, endDate, stockNames, holdingPeriod, returnPeriod,0,notST);
         this.ratio = ratio;
     }
 
