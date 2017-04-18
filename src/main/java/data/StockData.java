@@ -492,7 +492,7 @@ public class StockData implements StockDataDao{
 			while ((line=br.readLine())!=null) {
 				
 				String[] strings = line.split("\\t");
-				
+
 				if (inTimeRange) {
 					if (strings[1].equals(startDate)) {
 						inTimeRange = false;
