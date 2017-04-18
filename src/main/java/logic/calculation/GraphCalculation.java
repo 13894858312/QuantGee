@@ -129,7 +129,7 @@ public class GraphCalculation implements GraphCalculationService {
                 all += stockPOS.get(j).getClosePrice();
             }
 
-            double average = MathHelper.formatData(all/dayNums, 2);
+            double average = MathHelper.formatData(all/(double)dayNums, 2);
 
             result.add(new AverageLineVO(stockPOS.get(i).getStockCode(), stockPOS.get(i).getStockName(),averageLineType, date, average));
         }

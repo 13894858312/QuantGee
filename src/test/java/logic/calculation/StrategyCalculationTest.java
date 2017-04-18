@@ -3,10 +3,7 @@ package logic.calculation;
 import logic.tools.DateHelper;
 import logicService.StrategyCalculationService;
 import org.junit.Test;
-import vo.AbnormalReturnGraphVO;
-import vo.BackTestingResultVO;
-import vo.StrategyInputVO;
-import vo.StrategyType;
+import vo.*;
 
 import java.util.Date;
 
@@ -17,12 +14,12 @@ import java.util.Date;
 public class StrategyCalculationTest {
     @Test
     public void getStrategyBackTestingGraphInfo() throws Exception {
-        Date startDate = DateHelper.getInstance().stringTransToDate("2/1/10");
-        Date endDate = DateHelper.getInstance().stringTransToDate("4/10/12");
-        StrategyInputVO strategyInputVO = new StrategyInputVO(startDate, endDate, 20, 20, 0.2,false);
+        Date startDate = DateHelper.getInstance().stringTransToDate("3/2/10");
+        Date endDate = DateHelper.getInstance().stringTransToDate("9/1/10");
+        StrategyInputVO strategyInputVO = new StrategyInputVO(startDate, endDate, BlockType.MAIN_BLOCK, 10, 10, 0.2, false);
 
         StrategyCalculationService s = new StrategyCalculation();
-        BackTestingResultVO backTestingResultVO = s.getStrategyBackTestingGraphInfo(StrategyType.MEAN_REVERSION, strategyInputVO);
+        BackTestingResultVO backTestingResultVO = s.getStrategyBackTestingGraphInfo(StrategyType.MOMENTUM_DRIVEN, strategyInputVO);
 
         System.out.println();
         System.out.println("result:");
