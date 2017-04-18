@@ -16,18 +16,6 @@ import java.util.ArrayList;
  * Created by Administrator on 2017/4/15.
  */
 public class DistributionYield extends Pane {
-    double [][] test1 = new double[][]{
-            {0,5,10,-10,1},
-            {0,5,20,-20,2},
-            {0,5,30,-30,2.5},
-            {0,5,40,-40,3},
-            {0,5,50,-50,3.5},
-            {0,5,60,-60,4},
-            {5,10,10,-10,5.8},
-            {5,10,10,-10,6.5},
-            {5,10,10,-10,7},
-            {5,10,10,-10,8},
-    };
     public DistributionYield(ArrayList<YieldHistogramGraphDataVO> yieldHistogramGraphDataVOArrayList, int width, int height){
 
         this.getStylesheets().add("/css/distributionYield.css");
@@ -52,15 +40,19 @@ public class DistributionYield extends Pane {
         XYChart.Series<String, Number> series_minus = new XYChart.Series<>();
         series_minus.setName("负收益周期数");
         series_plus.setName("正收益周期数");
-//        for(int i = yieldHistogramGraphDataVOArrayList.size()-1;i>=0;i--){
-//            YieldHistogramGraphDataVO yieldHistogramGraphDataVO = yieldHistogramGraphDataVOArrayList.get(i);
-////            series_minus.getData().add(new XYChart.Data<>())
-//        }
-        for(int i=0;i<test1.length;i++){
-            double [] date = test1[i];
-            series_minus.getData().add(new XYChart.Data<String, Number>(String.valueOf(date[4])+"%", Math.abs(date[3])));
-            series_plus.getData().add(new XYChart.Data<String, Number>(String.valueOf(date[4])+"%", date[2]));
+        System.out.print(yieldHistogramGraphDataVOArrayList.size());
+        for(int i = 0;i<yieldHistogramGraphDataVOArrayList.size();i++){
+            YieldHistogramGraphDataVO yieldHistogramGraphDataVO = yieldHistogramGraphDataVOArrayList.get(i);
+            series_minus.getData().add(new XYChart.Data<String, Number>(String.valueOf(yieldHistogramGraphDataVO.startRate*100)+"% - "+String.valueOf(yieldHistogramGraphDataVO.endRate*100)+"%",
+                    yieldHistogramGraphDataVO.negativeFrequency));
+            series_plus.getData().add(new XYChart.Data<String, Number>(String.valueOf(yieldHistogramGraphDataVO.startRate*100)+"% - "+String.valueOf(yieldHistogramGraphDataVO.endRate*100)+"%",
+                    yieldHistogramGraphDataVO.positiveFrequency));
         }
+//        for(int i=0;i<test1.length;i++){
+//            double [] date = test1[i];
+//            series_minus.getData().add(new XYChart.Data<String, Number>(String.valueOf(date[4])+"%", Math.abs(date[3])));
+//            series_plus.getData().add(new XYChart.Data<String, Number>(String.valueOf(date[4])+"%", date[2]));
+//        }
         //data
 
         bc.getData().addAll(series_minus,series_plus);

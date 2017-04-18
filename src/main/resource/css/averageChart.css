@@ -2,6 +2,13 @@
     -fx-background-color: black;
     -fx-stroke-width: 0px;
 }
+.chart-line-symbol{
+    -fx-background-color: #f3622d, white;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+
+}
 .chart-legend{
     -fx-background-color: transparent;
 }
