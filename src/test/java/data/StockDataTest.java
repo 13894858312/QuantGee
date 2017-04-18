@@ -140,8 +140,8 @@ public class StockDataTest {
 	@Test
 	public void testGetBaseYieldByBlockName2(){
 		StockData stockData = new StockData();
-		ArrayList<BaseCumulativeYieldPO> data = stockData.getBaseYieldByBlockName("399005", "2/10/05", "4/29/14");
-		assertEquals(2004, data.size());
+		ArrayList<BaseCumulativeYieldPO> data = stockData.getBaseYieldByBlockName("399005", "2/3/12", "4/29/13");
+		assertEquals(300, data.size());
 	}
 	
 	@Test

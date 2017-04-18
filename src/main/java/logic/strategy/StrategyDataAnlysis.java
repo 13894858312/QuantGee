@@ -91,12 +91,6 @@ public class StrategyDataAnlysis {
      */
     private ArrayList<YieldHistogramGraphDataVO> calculatePeriodYieldNum(double maxYield, ArrayList<Double> yieldPerPeriod) {
 
-        System.out.println(yieldPerPeriod.size());
-
-        for(int i=0; i<yieldPerPeriod.size(); ++i) {
-            System.out.println(yieldPerPeriod.get(i));
-        }
-
         int n = (int)(maxYield * 100) / interval + 1;
 
         int[] positiveYields = new int[n];          //正收益数量
@@ -130,13 +124,6 @@ public class StrategyDataAnlysis {
                     }
                 }
             }
-        }
-
-        for(int i = 0; i<positiveYields.length; ++i) {
-            System.out.println("p" + positiveYields[i]);
-        }
-        for(int i = 0; i<negativeYields.length; ++i) {
-            System.out.println("n" + negativeYields[i]);
         }
 
         ArrayList<YieldHistogramGraphDataVO> yieldHistogramGraphDataVOS = new ArrayList<>();
@@ -187,12 +174,6 @@ public class StrategyDataAnlysis {
             strategy[i] = strategyYield.get(i).ratio;
         }
 
-//        for(int i=0; i<strategy.length; ++i) {
-//            System.out.println(strategy[i]);
-//        }
-//        System.out.println("annualRevenue: " + annualRevenue);
-//        System.out.println("  "+MathHelper.variance(strategy));
-
         double sharpeRatio = (annualRevenue - RF)/Math.sqrt(MathHelper.variance(strategy));
         return MathHelper.formatData(sharpeRatio,3);
     }
@@ -205,6 +186,7 @@ public class StrategyDataAnlysis {
      */
     private double calculateBeta(ArrayList<CumulativeYieldGraphDataVO> strategyYield,
                                 ArrayList<CumulativeYieldGraphDataVO> baseYield) {
+
         double[] strategy = new double[strategyYield.size()];
         for(int i=0; i<strategyYield.size(); ++i) {
             strategy[i] = strategyYield.get(i).ratio;
@@ -214,6 +196,9 @@ public class StrategyDataAnlysis {
         for(int i=0; i<baseYield.size(); ++i) {
             base[i] = baseYield.get(i).ratio;
         }
+
+
+        System.out.println("baseYield:    " + baseYield.size());
 
         double beta = MathHelper.covariance(strategy, base)/MathHelper.variance(base);
         return MathHelper.formatData(beta,3);
