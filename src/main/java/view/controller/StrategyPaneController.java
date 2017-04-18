@@ -52,6 +52,11 @@ public class StrategyPaneController {
 //    private Label turnover;
 
     @FXML
+    private Label bestAbnormalReturn;
+    @FXML
+    private Label bestStrategyWinRate;
+
+    @FXML
     private Label positive;
     @FXML
     private Label negative;
@@ -73,8 +78,8 @@ public class StrategyPaneController {
         YieldHistogramGraphVO yieldHistogramGraphVO = backTestingResultVO.yieldHistogramGraphVO;
 
         //a
-        year.setText(Double.toString(cumulativeYieldGraphVO.annualRevenue * 100));
-        base.setText(Double.toString(cumulativeYieldGraphVO.baseAnnualRevenue * 100));
+        year.setText(Double.toString(cumulativeYieldGraphVO.annualRevenue ));
+        base.setText(Double.toString(cumulativeYieldGraphVO.baseAnnualRevenue ));
         sharp.setText(Double.toString(cumulativeYieldGraphVO.sharpeRatio ));
         alpha.setText(Double.toString(cumulativeYieldGraphVO.alpha ));
         beta.setText(Double.toString(cumulativeYieldGraphVO.beta ));
@@ -83,6 +88,9 @@ public class StrategyPaneController {
         Pane a = graph.getCumulativeYieldChart(cumulativeYieldGraphVO.baseCumulativeYieldGraphDataVOS , cumulativeYieldGraphVO.cumulativeYieldGraphDataVOS ,660 , 400);
         graphA.getChildren().addAll(a);
 
+        //b
+        bestAbnormalReturn.setText(Double.toString(abnormalReturnGraphVO.bestAbnormalReturn));
+        bestStrategyWinRate.setText(Double.toString(abnormalReturnGraphVO.bestStategyWinRate));
         //b0
         Pane b0 = graph.getExcessEarning(judge , abnormalReturnGraphVO.abnormalReturnGraphDataVOS , 660 , 360);
         graphB_0.getChildren().addAll(b0);
@@ -93,7 +101,7 @@ public class StrategyPaneController {
         //c
         positive.setText(Double.toString(yieldHistogramGraphVO.positiveEarningNum));
         negative.setText(Double.toString(yieldHistogramGraphVO.negativeEarningNum));
-        win.setText(Double.toString(yieldHistogramGraphVO.winRate * 100));
+        win.setText(Double.toString(yieldHistogramGraphVO.winRate));
 
         Pane c = graph.getDistributionYield(yieldHistogramGraphVO.yieldHistogramGraphDataVOS , 660 , 400 );
         graphC.getChildren().addAll(c);

@@ -30,6 +30,9 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * 策略输入框
@@ -51,6 +54,8 @@ public class StrategyInputController {
 
     @FXML private DatePicker startPicker;
     @FXML private DatePicker endPicker;
+
+    @FXML private CheckBox deleteST;
 
     @FXML private TextField hold;
     @FXML private TextField make_TextField;
@@ -97,7 +102,7 @@ public class StrategyInputController {
                             if (Item.isBefore(MIN) || Item.isAfter(MAX) ||
                                     Item.getDayOfWeek().equals(DayOfWeek.SATURDAY) || Item.getDayOfWeek().equals(DayOfWeek.SUNDAY)){
                                 setDisable(true);
-                                setStyle("-fx-background-color: #ffc0cb;");
+                                setStyle("-fx-background-color: #666666;");
                             }
                             long p = ChronoUnit.DAYS.between(
                                     MIN, Item
@@ -206,6 +211,13 @@ public class StrategyInputController {
         StrategyInputVO strategyInputVO = getInput();
         //错误则结束
         if(strategyInputVO == null){return;}
+/*
+        ExecutorService pool = Executors.newFixedThreadPool(1);
+        LoadingThread loadingThread = new LoadingThread(strategyType , strategyInputVO , isHold);
+        Future future = pool.submit(loadingThread);
+
+*/
+
 
         BackTestingResultVO backTestingResultVO = strategyCalculationService
                 .getStrategyBackTestingGraphInfo(strategyType , strategyInputVO );
@@ -216,6 +228,7 @@ public class StrategyInputController {
             showMessage("无结果");
             return;
         }
+
 
         //一切正常则显示策略界面
         showResult(backTestingResultVO , abnormalReturnGraphVO);
@@ -512,6 +525,8 @@ public class StrategyInputController {
         Date startDate = Helper.localDateToDate(startLocalDate);
         Date endDate = Helper.localDateToDate(endLocalDate);
 
+        boolean isDelete = deleteST.isSelected();
+
         int holdInt;
         try{
             holdInt = new Integer(hold.getText().trim());
@@ -557,14 +572,14 @@ public class StrategyInputController {
                 if(stockNames == null){
                     return null;
                 }
-                return new StrategyInputVO(startDate , endDate , stockNames , holdInt , makeInt , holdNum/100);
+                return new StrategyInputVO(startDate , endDate , stockNames , holdInt , makeInt , holdNum/100 , isDelete);
             }else if( stockPoolType == 1)//选择板块
             {
                 blockType = strategyBoardController.getBlockType();
-                return  new StrategyInputVO(startDate , endDate , blockType , holdInt , makeInt ,holdNum/100 );
+                return  new StrategyInputVO(startDate , endDate , blockType , holdInt , makeInt ,holdNum/100 ,isDelete );
             }else if( stockPoolType == 0)//选择全部
             {
-                return new StrategyInputVO(startDate , endDate , holdInt , makeInt , holdNum/100 );
+                return new StrategyInputVO(startDate , endDate , holdInt , makeInt , holdNum/100 , isDelete );
             }else{
                 //输入文件
                 if(file == null){
@@ -575,7 +590,7 @@ public class StrategyInputController {
                 if(stockNames == null){
                     return null;
                 }
-                return new StrategyInputVO(startDate , endDate , stockNames , holdInt , makeInt , holdNum/100);
+                return new StrategyInputVO(startDate , endDate , stockNames , holdInt , makeInt , holdNum/100 ,isDelete);
             }
 
         }else{
@@ -601,15 +616,15 @@ public class StrategyInputController {
                 if(stockNames == null){
                     return null;
                 }
-                return new StrategyInputVO(startDate , endDate , stockNames , holdInt , makeInt , holdNum);
+                return new StrategyInputVO(startDate , endDate , stockNames , holdInt , makeInt , holdNum ,isDelete);
 
             }else if(stockPoolType == 1)//选择板块
             {
                 blockType = strategyBoardController.getBlockType();
-                return new StrategyInputVO(startDate , endDate , blockType , holdInt , makeInt , (int) holdNum);
+                return new StrategyInputVO(startDate , endDate , blockType , holdInt , makeInt , (int) holdNum ,isDelete);
             }else if(stockPoolType == 0){
                 //全部股票
-                return new StrategyInputVO(startDate , endDate , holdInt , makeInt ,(int) holdNum);
+                return new StrategyInputVO(startDate , endDate , holdInt , makeInt ,(int) holdNum , isDelete);
             }else{
                 //输入文件
                 if(file == null){
@@ -620,7 +635,7 @@ public class StrategyInputController {
                 if(stockNames == null){
                     return null;
                 }
-                return new StrategyInputVO(startDate , endDate , stockNames , holdInt , makeInt , holdNum/100);
+                return new StrategyInputVO(startDate , endDate , stockNames , holdInt , makeInt , holdNum/100 , isDelete);
             }
 
         }

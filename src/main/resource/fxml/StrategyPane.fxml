@@ -8,7 +8,7 @@
    <children>
       <ScrollPane prefHeight="750.0" prefWidth="750.0" styleClass="RootPane">
          <content>
-            <VBox maxWidth="740.0" prefHeight="1950.0" prefWidth="740.0" styleClass="RootPane">
+            <VBox maxWidth="740.0" prefHeight="2000.0" prefWidth="740.0" styleClass="RootPane">
                <children>
                   <AnchorPane prefHeight="50.0" prefWidth="740.0">
                      <children>
@@ -25,18 +25,19 @@
                               <Label fx:id="year" text="--" />
                               <Label text="\%  基准收益率：" />
                               <Label fx:id="base" text="--" />
-                              <Label text="\%  阿尔法：" />
-                              <Label fx:id="alpha" text="--" />
-                              <Label text="  贝塔：" />
-                              <Label fx:id="beta" text="--" />
+                              <Label text="\%  最大回撤：" />
+                              <Label fx:id="max" text="--" />
+                              <Label text="\%" />
                            </children>
                         </HBox>
                         <HBox layoutX="30.0" layoutY="50.0" prefHeight="30.0" prefWidth="660.0">
                            <children>
-                              <Label text="夏普比率：" />
+                              <Label text="阿尔法：" />
+                              <Label fx:id="alpha" text="--" />
+                              <Label text="  贝塔：" />
+                              <Label fx:id="beta" text="--" />
+                              <Label text="  夏普比率：" />
                               <Label fx:id="sharp" text="--" />
-                              <Label text="  最大回撤：" />
-                              <Label fx:id="max" text="--" />
                            </children>
                         </HBox>
                      </children></AnchorPane>
@@ -46,10 +47,19 @@
                         <Separator layoutX="10.0" layoutY="45.0" prefWidth="720.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="800.0" prefWidth="200.0" styleClass="RootPane">
+                  <AnchorPane prefHeight="850.0" prefWidth="200.0" styleClass="RootPane">
                      <children>
-                        <AnchorPane fx:id="graphB_0" layoutX="30.0" layoutY="20.0" prefHeight="360.0" prefWidth="660.0" styleClass="SharePane" />
-                        <AnchorPane fx:id="graphB_1" layoutX="30.0" layoutY="420.0" prefHeight="360.0" prefWidth="660.0" styleClass="SharePane" />
+                        <HBox layoutX="30.0" layoutY="20.0" prefHeight="30.0" prefWidth="660.0">
+                           <children>
+                              <Label text="最优超额收益率:" />
+                              <Label fx:id="bestAbnormalReturn" text="--" />
+                              <Label text="\% 最优策略胜率：" />
+                              <Label fx:id="estStrategyWinRate" text="--" />
+                              <Label text="\%" />
+                           </children>
+                        </HBox>
+                        <AnchorPane fx:id="graphB_0" layoutX="30.0" layoutY="60.0" prefHeight="360.0" prefWidth="660.0" styleClass="SharePane" />
+                        <AnchorPane fx:id="graphB_1" layoutX="30.0" layoutY="460.0" prefHeight="360.0" prefWidth="660.0" styleClass="SharePane" />
                      </children></AnchorPane>
                   <AnchorPane prefHeight="50.0" prefWidth="740.0">
                      <children>
@@ -68,7 +78,7 @@
                               <Label fx:id="negative" text="--" />
                               <Label text="  赢率：" />
                               <Label fx:id="win" text="--" />
-                              <Label text=" \%" />
+                              <Label text=" %" />
                            </children>
                         </HBox>
                      </children></AnchorPane>

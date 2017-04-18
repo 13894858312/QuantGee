@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane styleClass="loader-inner ball-grid-pulse" stylesheets="@../css/ball_pulse.css">
+    <children>
+        <Pane></Pane>
+        <Pane></Pane>
+        <Pane></Pane>
+        <Pane></Pane>
+        <Pane></Pane>
+        <Pane></Pane>
+        <Pane></Pane>
+        <Pane></Pane>
+        <Pane></Pane>
+    </children>>
+</Pane>
