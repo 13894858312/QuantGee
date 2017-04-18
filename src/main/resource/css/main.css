@@ -42,7 +42,7 @@
 
 /*左侧三个tab里的搜索按钮*/
 .SearchButton{
-    -fx-background-color: #555555;
+    -fx-background-color: rgb(102,160,208);
     -fx-border-radius: 0;
     -fx-background-radius: 0;
     -fx-opacity: 1;
@@ -257,4 +257,16 @@
 #SIPane{
     -fx-background-color: #444444;
     -fx-border-color:#aaaaaa;
+}
+
+.Red{
+    -fx-text-fill: red;
+}
+
+.Green{
+    -fx-text-fill:forestgreen;
+}
+
+.Blue{
+    -fx-text-fill: dodgerblue;
 }

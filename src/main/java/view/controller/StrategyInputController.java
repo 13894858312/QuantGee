@@ -219,6 +219,7 @@ public class StrategyInputController {
 
         loading.setVisible(true);
 
+        /*
         ExecutorService pool = Executors.newFixedThreadPool(1);
         Search search = new Search(strategyType , strategyInputVO , isHold);
         Future<AandBVO> future = pool.submit(search);
@@ -239,7 +240,7 @@ public class StrategyInputController {
 
             //一切正常则显示策略界面
             showResult(backTestingResultVO , abnormalReturnGraphVO);
-            //关闭搜索栏结束线程
+            //关闭搜索栏
             close();
 
         }catch (Exception e){
@@ -248,6 +249,20 @@ public class StrategyInputController {
             showMessage("出错，请重试");
             return;
         }
+*/
+        BackTestingResultVO backTestingResultVO = strategyCalculationService.getStrategyBackTestingGraphInfo(strategyType , strategyInputVO);
+        AbnormalReturnGraphVO abnormalReturnGraphVO = strategyCalculationService.getAbnormalReturnGraphInfo(strategyType , strategyInputVO , isHold);
+
+        //没有返回值则弹出对话框并结束
+        if(backTestingResultVO == null || strategyInputVO == null){
+            showMessage("无结果");
+            return;
+        }
+
+        //一切正常则显示策略界面
+        showResult(backTestingResultVO , abnormalReturnGraphVO);
+        //关闭搜索栏
+        close();
 
     }
 

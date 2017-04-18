@@ -23,18 +23,17 @@ public class DistributionYield extends Pane {
         //x-xAxis
         final CategoryAxis xAxis = new CategoryAxis();
         xAxis.setTickLabelGap(2);
-        xAxis.setLabel("Yield");
+        xAxis.setLabel("收益率");
 
         //y-yAxis
         final NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Number");
+        yAxis.setLabel("频数 (个)");
 
         //chart
         final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
-        bc.setCategoryGap(10);
+        bc.setCategoryGap(5);
         bc.setBarGap(3);
         bc.setPrefSize(width, height);
-        bc.setTitle("Distribution Yield Chart");
 
         XYChart.Series<String, Number> series_plus = new XYChart.Series<>();
         XYChart.Series<String, Number> series_minus = new XYChart.Series<>();
