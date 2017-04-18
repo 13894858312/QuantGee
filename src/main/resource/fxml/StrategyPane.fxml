@@ -54,7 +54,7 @@
                               <Label text="最优超额收益率:" />
                               <Label fx:id="bestAbnormalReturn" text="--" />
                               <Label text="\% 最优策略胜率：" />
-                              <Label fx:id="estStrategyWinRate" text="--" />
+                              <Label fx:id="bestStrategyWinRate" text="--" />
                               <Label text="\%" />
                            </children>
                         </HBox>

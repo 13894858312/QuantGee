@@ -5,11 +5,12 @@ package vo;
  */
 public class AandBVO {
 
-    BackTestingResultVO backTestingResultVO;
-    AbnormalReturnGraphVO abnormalReturnGraphVO;
+    public BackTestingResultVO backTestingResultVO;
+    public AbnormalReturnGraphVO abnormalReturnGraphVO;
 
     public AandBVO(BackTestingResultVO backTestingResultVO , AbnormalReturnGraphVO abnormalReturnGraphVO){
         this.abnormalReturnGraphVO = abnormalReturnGraphVO;
         this.backTestingResultVO = backTestingResultVO;
     }
+
 }

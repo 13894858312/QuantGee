@@ -102,7 +102,7 @@ public class StrategyInputController {
                             if (Item.isBefore(MIN) || Item.isAfter(MAX) ||
                                     Item.getDayOfWeek().equals(DayOfWeek.SATURDAY) || Item.getDayOfWeek().equals(DayOfWeek.SUNDAY)){
                                 setDisable(true);
-                                setStyle("-fx-background-color: #666666;");
+                                setStyle("-fx-background-color: #999999;");
                             }
                             long p = ChronoUnit.DAYS.between(
                                     MIN, Item
@@ -211,14 +211,36 @@ public class StrategyInputController {
         StrategyInputVO strategyInputVO = getInput();
         //错误则结束
         if(strategyInputVO == null){return;}
-/*
+
         ExecutorService pool = Executors.newFixedThreadPool(1);
         LoadingThread loadingThread = new LoadingThread(strategyType , strategyInputVO , isHold);
-        Future future = pool.submit(loadingThread);
+        Future<AandBVO> future = pool.submit(loadingThread);
 
-*/
+        try {
 
+            AandBVO aandBVO = future.get();
+            BackTestingResultVO backTestingResultVO = aandBVO.backTestingResultVO;
+            AbnormalReturnGraphVO abnormalReturnGraphVO = aandBVO.abnormalReturnGraphVO;
 
+            pool.shutdown();
+
+            //没有返回值则弹出对话框并结束
+            if(backTestingResultVO == null || strategyInputVO == null){
+                showMessage("无结果");
+                return;
+            }
+
+            //一切正常则显示策略界面
+            showResult(backTestingResultVO , abnormalReturnGraphVO);
+            //关闭搜索栏结束线程
+            close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+            showMessage("出错，请重试");
+            return;
+        }
+/*
         BackTestingResultVO backTestingResultVO = strategyCalculationService
                 .getStrategyBackTestingGraphInfo(strategyType , strategyInputVO );
         AbnormalReturnGraphVO abnormalReturnGraphVO = strategyCalculationService.getAbnormalReturnGraphInfo(strategyType , strategyInputVO , isHold);
@@ -234,7 +256,7 @@ public class StrategyInputController {
         showResult(backTestingResultVO , abnormalReturnGraphVO);
         //关闭搜索栏
         close();
-
+*/
     }
 
     /*

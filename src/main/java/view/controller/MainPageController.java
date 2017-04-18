@@ -64,7 +64,7 @@ public class MainPageController{
                             if (Item.isBefore(MIN) || Item.isAfter(MAX)||
                                     Item.getDayOfWeek().equals(DayOfWeek.SATURDAY) || Item.getDayOfWeek().equals(DayOfWeek.SUNDAY)){
                                 setDisable(true);
-                                setStyle("-fx-background-color: #666666;");
+                                setStyle("-fx-background-color: #999999;");
                             }
                             long p = ChronoUnit.DAYS.between(
                                     MIN, Item

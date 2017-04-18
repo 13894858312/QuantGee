@@ -62,7 +62,7 @@
             <Label fx:id="perLabel1" text="  %" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <Label fx:id="holdLabel" text="持有期" visible="false" GridPane.rowIndex="4" />
             <Label fx:id="makeLabel" text="形成期" visible="false" GridPane.rowIndex="5" />
-            <CheckBox fx:id="deleteST" mnemonicParsing="false" text="yes" textFill="WHITE" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+            <CheckBox fx:id="deleteST" mnemonicParsing="false" text="排除ST股" textFill="WHITE" GridPane.columnSpan="2" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Button layoutX="360.0" layoutY="330.0" mnemonicParsing="false" onAction="#search" styleClass="StrategyButton" text="搜  索" />
