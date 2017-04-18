@@ -91,6 +91,12 @@ public class StrategyDataAnlysis {
      */
     private ArrayList<YieldHistogramGraphDataVO> calculatePeriodYieldNum(double maxYield, ArrayList<Double> yieldPerPeriod) {
 
+        System.out.println(yieldPerPeriod.size());
+
+        for(int i=0; i<yieldPerPeriod.size(); ++i) {
+            System.out.println(yieldPerPeriod.get(i));
+        }
+
         int n = (int)(maxYield * 100) / interval + 1;
 
         int[] positiveYields = new int[n];          //正收益数量
@@ -105,9 +111,9 @@ public class StrategyDataAnlysis {
 
         for(int i=0; i<yieldPerPeriod.size(); ++i) {
             if(yieldPerPeriod.get(i) >= 0) {
-                for(int j=1; j<positiveYields.length; ++j) {
-                    double d1 = (double)j/100 * interval;
-                    double d2 = (double)(j-1)/100 * interval;
+                for(int j=0; j<positiveYields.length; ++j) {
+                    double d1 = (double)j/(double)100 * interval;
+                    double d2 = (double)(j+1)/(double)100 * interval;
                     if(yieldPerPeriod.get(i) >= d1 && yieldPerPeriod.get(i) < d2) {
                         positiveYields[j] ++;
                         break;
@@ -115,9 +121,9 @@ public class StrategyDataAnlysis {
                 }
             } else {
                 double temp = -yieldPerPeriod.get(i);
-                for(int j=1; j<negativeYields.length; ++j) {
-                    double d1 = (double)j/100 * interval;
-                    double d2 = (double)(j-1)/100 * interval;
+                for(int j=0; j<negativeYields.length; ++j) {
+                    double d1 = (double)j/(double)100 * interval;
+                    double d2 = (double)(j+1)/(double)100 * interval;
                     if(temp >= d1 && temp < d2) {
                         negativeYields[j] ++;
                         break;
@@ -126,11 +132,18 @@ public class StrategyDataAnlysis {
             }
         }
 
+        for(int i = 0; i<positiveYields.length; ++i) {
+            System.out.println("p" + positiveYields[i]);
+        }
+        for(int i = 0; i<negativeYields.length; ++i) {
+            System.out.println("n" + negativeYields[i]);
+        }
+
         ArrayList<YieldHistogramGraphDataVO> yieldHistogramGraphDataVOS = new ArrayList<>();
 
         for(int i = 0;i<positiveYields.length; ++i) {
-            double startRate = (double)i/100 * interval;
-            double endRate = (double)(i+1)/100 * interval;
+            double startRate = (double)i/(double)100 * interval;
+            double endRate = (double)(i+1)/(double)100 * interval;
             yieldHistogramGraphDataVOS.add(new YieldHistogramGraphDataVO(startRate, endRate, positiveYields[i], negativeYields[i]));
         }
 
