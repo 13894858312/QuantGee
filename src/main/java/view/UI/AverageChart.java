@@ -3,7 +3,9 @@ package view.UI;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import logic.tools.DateHelper;
 import javafx.scene.chart.XYChart;
 import vo.AverageLineVO;
@@ -72,6 +74,8 @@ public class AverageChart extends Pane{
                 CumulativeYieldGraphDataVO cumulativeYieldGraphDataVO = cumulativeYieldGraphDataVOArrayList1.get(i);
                 series1.getData().add(new XYChart.Data<String, Number>(
                         DateHelper.getInstance().dateTransToString(cumulativeYieldGraphDataVO.date), cumulativeYieldGraphDataVO.ratio*100));
+                Circle circle = new Circle(1);
+                series1.getData().get(i).setNode(circle);
             }
             XYChart.Series<String, Number> series2 = new XYChart.Series<String, Number>();
             series2.setName("Strategy Yield");
@@ -79,11 +83,39 @@ public class AverageChart extends Pane{
                 CumulativeYieldGraphDataVO cumulativeYieldGraphDataVO = cumulativeYieldGraphDataVOArrayList2.get(i);
                 series2.getData().add(new XYChart.Data<String, Number>(
                     DateHelper.getInstance().dateTransToString(cumulativeYieldGraphDataVO.date), cumulativeYieldGraphDataVO.ratio*100));
+                Circle circle = new Circle(1);
+                series2.getData().get(i).setNode(circle);
             }
 
 
+
             averageLineChart.getData().addAll(series1,series2);
+        for (XYChart.Data<String, Number> d : series1.getData()) {
+            Tooltip.install(d.getNode(), new Tooltip(
+                    d.getXValue().toString() + "\n" +
+                            "Number Of Events : " + d.getYValue()));
+
+            //Adding class on hover
+            d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));
+
+            //Removing class on exit
+            d.getNode().setOnMouseExited(event -> d.getNode().getStyleClass().remove("onHover"));
+        }
+
+        for (XYChart.Data<String, Number> d : series2.getData()) {
+            Tooltip.install(d.getNode(), new Tooltip(
+                    d.getXValue().toString() + "\n" +
+                            "Number Of Events : " + d.getYValue()));
+
+            //Adding class on hover
+            d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));
+
+            //Removing class on exit
+            d.getNode().setOnMouseExited(event -> d.getNode().getStyleClass().remove("onHover"));
+        }
             getChildren().add(averageLineChart);
+
+
     }
 
 
