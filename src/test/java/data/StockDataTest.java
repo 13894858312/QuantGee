@@ -134,11 +134,20 @@ public class StockDataTest {
 	public void testGetBaseYieldByBlockName1(){
 		StockData stockData = new StockData();
 		ArrayList<BaseCumulativeYieldPO> data = stockData.getBaseYieldByBlockName("000300", "4/13/14", "4/29/14");
+		assertEquals(12, data.size());
 	}
 	
 	@Test
 	public void testGetBaseYieldByBlockName2(){
 		StockData stockData = new StockData();
 		ArrayList<BaseCumulativeYieldPO> data = stockData.getBaseYieldByBlockName("399005", "2/10/05", "4/29/14");
+		assertEquals(2004, data.size());
+	}
+	
+	@Test
+	public void testGetBaseYieldByBlockName3(){
+		StockData stockData = new StockData();
+		ArrayList<BaseCumulativeYieldPO> data = stockData.getBaseYieldByBlockName("399006", "2/10/05", "4/29/14");
+		assertEquals(945, data.size());
 	}
 }
