@@ -55,21 +55,20 @@ public class AverageChart extends Pane{
             this.getStylesheets().add("/css/averageChart.css");
             //x-xAxis
             final CategoryAxis xAxis = new CategoryAxis();
-            xAxis.setLabel("Day (day)");
+            xAxis.setLabel("日期 (天)");
 
             //y-yAxis
             final NumberAxis yAxis = new NumberAxis();
-            yAxis.setLabel("Cumulative Yield (%)");
+            yAxis.setLabel("累计收益率 (%)");
 
             //chart
             final LineChart<String, Number> averageLineChart = new LineChart<String, Number>(xAxis, yAxis);
             averageLineChart.setPrefSize(width, height);
 //            averageLineChart.setCreateSymbols(false);
-            averageLineChart.setTitle("Cumulative Yield Graph");
 
             //date
             XYChart.Series<String, Number> series1 = new XYChart.Series<String, Number>();
-            series1.setName("Basic Yield");
+            series1.setName("基准收益率");
             for (int i = 0; i <cumulativeYieldGraphDataVOArrayList1.size() ; i++) {
                 CumulativeYieldGraphDataVO cumulativeYieldGraphDataVO = cumulativeYieldGraphDataVOArrayList1.get(i);
                 series1.getData().add(new XYChart.Data<String, Number>(
@@ -78,7 +77,7 @@ public class AverageChart extends Pane{
                 series1.getData().get(i).setNode(circle);
             }
             XYChart.Series<String, Number> series2 = new XYChart.Series<String, Number>();
-            series2.setName("Strategy Yield");
+            series2.setName("策略收益率");
             for (int i = 0; i <cumulativeYieldGraphDataVOArrayList2.size() ; i++) {
                 CumulativeYieldGraphDataVO cumulativeYieldGraphDataVO = cumulativeYieldGraphDataVOArrayList2.get(i);
                 series2.getData().add(new XYChart.Data<String, Number>(

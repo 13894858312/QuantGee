@@ -28,6 +28,7 @@
 }
 .default-color0.chart-bar{
     -fx-bar-fill: red;
+    -fx-stroke-width: 1px;
 }
 
 .default-color1.chart-bar{
