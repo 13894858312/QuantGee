@@ -13,13 +13,13 @@ public class SwitchBlockType {
 
         switch (blockType) {
             case MAIN_BLOCK:
-                result = "主板";
+                result = "000300";
                 break;
             case MIDDLE_SMALL_BLOCK:
-                result = "中小板";
+                result = "399005";
                 break;
             case STARTUP_BLOCK:
-                result = "创业板";
+                result = "399006";
                 break;
         }
 
