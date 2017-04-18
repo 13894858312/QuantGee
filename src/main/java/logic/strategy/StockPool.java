@@ -100,14 +100,14 @@ public class StockPool {
 
             if(strategyInputVO.strategyInputType == StrategyInputType.ALL) {
                 //选择所有股票构造股票池
-                allStockPOs = this.stockDataDao.getAllStockPO(s, e, true);
+                allStockPOs = this.stockDataDao.getAllStockPO(s, e, this.strategyInputVO.notST);
             } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK) {
                 //选择指定板块股票构造股票池
-                allStockPOs = this.stockDataDao.getStockPOsByBlockName(s, e, SwitchBlockType.getBlockName(strategyInputVO.blockType),true);
+                allStockPOs = this.stockDataDao.getStockPOsByBlockName(s, e, SwitchBlockType.getBlockName(strategyInputVO.blockType),this.strategyInputVO.notST);
             } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_STOCKS) {
                 //选择指定股票构造股票池
                 for(int i=0; i<strategyInputVO.stockNames.size(); ++i) {
-                    ArrayList<StockPO> stockPOS = this.stockDataDao.getStockPOsByTimeInterval(s, e, strategyInputVO.stockNames.get(i), true);
+                    ArrayList<StockPO> stockPOS = this.stockDataDao.getStockPOsByTimeInterval(s, e, strategyInputVO.stockNames.get(i), this.strategyInputVO.notST);
                     if(stockPOS != null && stockPOS.size() != 0) {
                         allStockPOs.add(stockPOS);
                     }

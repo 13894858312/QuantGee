@@ -468,7 +468,7 @@ public class StockData implements StockDataDao{
 		
 		String path = System.getProperty("user.dir");
 		path.replace("\\\\", "/");
-		path = path+"/all_stock_data/Block_Name/"+blockName+".txt";
+		path = path+"/all_stock_data/all_data_by_name/"+blockName+".txt";
 		File file = new File(path);
 		
 
