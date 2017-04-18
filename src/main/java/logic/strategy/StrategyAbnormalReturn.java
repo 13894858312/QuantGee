@@ -43,9 +43,6 @@ public class StrategyAbnormalReturn {
     public void start() {
         StrategyBackTesting strategyBackTesting;
 
-        System.out.println("START_PERIOD: " + START_PERIOD);
-        System.out.println("END_PERIOD: " + END_PERIOD);
-
         if(isHoldingPeriod) {
             this.abnormalReturnGraphDataVOS.add(new AbnormalReturnGraphDataVO(period, 0, 0, 0));
         } else {
@@ -87,8 +84,6 @@ public class StrategyAbnormalReturn {
 
         double bestAbnormalReturn = abnormalReturnGraphDataVOS.get(0).abnormalReturn;  //最优的超额收益率
         double bestStategyWinRate = abnormalReturnGraphDataVOS.get(0).stategyWinRate;   //最优的策略胜率
-
-System.out.println(this.abnormalReturnGraphDataVOS.size());
 
         //计算以上最优的数据
         for(int i=0; i<this.abnormalReturnGraphDataVOS.size(); ++i) {

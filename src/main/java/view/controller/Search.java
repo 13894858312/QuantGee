@@ -9,7 +9,7 @@ import java.util.concurrent.Callable;
 /**
  * Created by wangxue on 2017/4/18.
  */
-public class LoadingThread implements Callable {
+public class Search implements Callable {
 
     private StrategyCalculationService strategyCalculationService;
     private StrategyType strategyType;
@@ -18,7 +18,7 @@ public class LoadingThread implements Callable {
     private BackTestingResultVO backTestingResultVO;
     private AbnormalReturnGraphVO abnormalReturnGraphVO;
 
-    public LoadingThread(StrategyType strategyType , StrategyInputVO strategyInputVO ,boolean isHold){
+    public Search(StrategyType strategyType , StrategyInputVO strategyInputVO , boolean isHold){
         strategyCalculationService = new StrategyCalculation();
         this.strategyType = strategyType;
         this.strategyInputVO = strategyInputVO;
