@@ -43,7 +43,6 @@ public class MathHelper {
             }
         }
 
-
         double cov = MathHelper.average(data1) - average1 * average2;
 
         return cov;
@@ -68,18 +67,11 @@ public class MathHelper {
 
 
     public static double average(double[] data) {
-
-
         double sum = 0;
         for(int i=0; i<data.length; ++i) {
             sum += data[i];
         }
-        double temp = sum/data.length;
-
-        System.out.println(sum);
-        System.out.println(data.length);
-
-        return MathHelper.formatData(temp, 2);
+        return sum/data.length;
     }
 
     /**
