@@ -16,10 +16,10 @@ public class StrategyCalculationTest {
     public void getStrategyBackTestingGraphInfo() throws Exception {
         Date startDate = DateHelper.getInstance().stringTransToDate("3/8/13");
         Date endDate = DateHelper.getInstance().stringTransToDate("3/19/14");
-        StrategyInputVO strategyInputVO = new StrategyInputVO(startDate, endDate, BlockType.MAIN_BLOCK,20, 20, 0.2, true);
+        StrategyInputVO strategyInputVO = new StrategyInputVO(startDate, endDate, 20, 20, 100, true);
 
         StrategyCalculationService s = new StrategyCalculation();
-        BackTestingResultVO backTestingResultVO = s.getStrategyBackTestingGraphInfo(StrategyType.MOMENTUM_DRIVEN, strategyInputVO);
+        BackTestingResultVO backTestingResultVO = s.getStrategyBackTestingGraphInfo(StrategyType.MEAN_REVERSION, strategyInputVO);
 
         System.out.println();
         System.out.println("result:");
