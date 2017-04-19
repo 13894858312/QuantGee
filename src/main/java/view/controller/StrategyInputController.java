@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import logic.calculation.StrategyCalculation;
+import logicService.StockInfoService;
 import logicService.StrategyCalculationService;
 import vo.*;
 
@@ -42,6 +43,7 @@ public class StrategyInputController {
 
     private StrategyCalculationService strategyCalculationService;
     private MainPageController mainPageController;
+    private StockInfoService stockInfoService ;
 
     @FXML private Pane root;
 
@@ -120,6 +122,10 @@ public class StrategyInputController {
                     };
                 }
             };
+
+    public StrategyInputController(){
+        stockInfoService = new StockInfoServiceImp();
+    }
     
     public void init(MainPageController mainPageController){
 
@@ -381,11 +387,17 @@ public class StrategyInputController {
         scrollPane.setDisable(true);
         hBox.setVisible(false);
 
+        String temp = "您已选择股票：\n";
+        ArrayList<String> allNames = stockInfoService.getAllStockInfo();
+        for(String s :allNames){
+            temp+=s + "\n";
+        }
+        txtLib.setText(temp);
+
         //清空其他controller
         strategyBoardController = null;
         stocks = null;
         strategyStockControllers = null;
-        txtLib.setText("");
 
     }
 
