@@ -270,3 +270,7 @@
 .Blue{
     -fx-text-fill: dodgerblue;
 }
+
+.Left{
+    -fx-text-alignment: center-left;
+}
