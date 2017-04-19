@@ -395,72 +395,6 @@ public class StockData implements StockDataDao{
 		
 	}
 
-//	public ArrayList<ArrayList<StockPO>> getAllStockPO1(String startDate, String endDate) {
-//		
-//		ArrayList<ArrayList<StockPO>> allDatas = new ArrayList<ArrayList<StockPO>>();
-//		
-//		//查询“股票历史数据ALL.txt”
-//		String path = System.getProperty("user.dir");
-//		path.replace("\\\\", "/");
-//		File file = new File(path+"/all_stock_data/股票历史数据ALL.txt");
-//		
-//		BufferedReader br;
-//		
-//		try {
-//			
-//			br = new BufferedReader(new FileReader(file));
-//			
-//			String line = br.readLine();		//第一行舍弃
-//			String code = "";					//记录股票代码
-//			
-//			ArrayList<StockPO> stockPOs = new ArrayList<StockPO>();		//记录当前股票信息
-//
-//			while((line = br.readLine()) != null) {
-//				
-//				String[] strings  = line.split("\\t");
-//				
-//				int i = 0;
-//				//判断是否是新股票
-//				if (!code.equals(strings[8])) {
-//
-//					code = strings[8];
-//					if (!stockPOs.isEmpty()) {
-//						ArrayList<StockPO> datas = new ArrayList<>();
-//						datas.addAll(stockPOs);
-//						allDatas.add(datas);
-//						i++;
-//					}
-//					
-////					if (!allDatas.isEmpty()) {
-////						System.out.println(allDatas.get(i-1).get(0).getCodeNumber());
-////					}
-//					
-//					stockPOs = new ArrayList<>();
-//					continue;
-//				}
-//				
-//				//将股票信息存入Arraylist
-//				stockPOs.add(new StockPO(strings[1],Double.parseDouble(strings[2]),
-//						Double.parseDouble(strings[3]),Double.parseDouble(strings[4]),
-//						Double.parseDouble(strings[5]),Integer.parseInt(strings[6]),
-//						Double.parseDouble(strings[7]),strings[8],strings[9],strings[10]));
-//				
-//				
-//			}
-//			
-//			//加入最后一次股票数据
-//			allDatas.add(stockPOs);
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		
-//		return allDatas;
-//	}
 
 	@Override
 	public ArrayList<BaseCumulativeYieldPO> getBaseYieldByBlockName(String blockName, String startDate, String endDate) {
@@ -524,5 +458,35 @@ public class StockData implements StockDataDao{
 		}
 
 		return null;
+	}
+
+	@Override
+	public ArrayList<String> getAllStockName() {
+		
+		ArrayList<String> name = new ArrayList<>();
+		
+		//在Block_Name中获取所有股票编码
+		String path = System.getProperty("user.dir");
+		path.replace("\\\\", "/");
+		File file = new File(path+"/all_stock_data/all_data_by_name/fileName.txt");
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line = "";
+			
+			while((line = br.readLine()) != null) {
+				String[] strings = line.split(":");
+				
+				String data = strings[0]+"---"+strings[1];
+				
+				name.add(data);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return name;
 	}
 }

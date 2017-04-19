@@ -150,4 +150,13 @@ public class StockDataTest {
 		ArrayList<BaseCumulativeYieldPO> data = stockData.getBaseYieldByBlockName("399006", "2/10/05", "4/29/14");
 		assertEquals(945, data.size());
 	}
+	
+	@Test
+	public void testGetAllStockName(){
+		StockData stockData = new StockData();
+		ArrayList<String> data = stockData.getAllStockName();
+		for (String string : data) {
+			System.out.println(string);
+		}
+	}
 }

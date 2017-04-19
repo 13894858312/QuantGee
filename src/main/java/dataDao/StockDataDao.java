@@ -74,4 +74,10 @@ public interface StockDataDao {
      */
     public ArrayList<BaseCumulativeYieldPO> getBaseYieldByBlockName(String blockName, String startDate, String endDate);
 
+    /**
+     * 获取所有股票名称和代码
+     * @return
+     */
+    public ArrayList<String> getAllStockName();
+    
 }
