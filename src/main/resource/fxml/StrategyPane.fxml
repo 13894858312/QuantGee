@@ -51,11 +51,16 @@
                      <children>
                         <HBox layoutX="30.0" layoutY="20.0" prefHeight="30.0" prefWidth="660.0">
                            <children>
-                              <Label text="最优超额收益率:" />
+                              <Label text="最优超额收益率: " />
                               <Label fx:id="bestAbnormalReturn" styleClass="Red" text="--" />
                               <Label text=" %    最优策略胜率：" />
                               <Label fx:id="bestStrategyWinRate" styleClass="Blue" text="--" />
                               <Label text=" %" />
+                              <Label text="   最佳持有期 : " />
+                              <Label fx:id="bestHold" styleClass="Red" text="--" />
+                              <Label text=" 日   最佳形成期 : " />
+                              <Label fx:id="bestMake" styleClass="Blue" text="--" />
+                              <Label text=" 日" />
                            </children>
                         </HBox>
                         <AnchorPane fx:id="graphB_0" layoutX="30.0" layoutY="60.0" prefHeight="360.0" prefWidth="660.0" styleClass="SharePane" />

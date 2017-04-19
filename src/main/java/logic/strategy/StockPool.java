@@ -167,7 +167,7 @@ public class StockPool {
 
         for(int i=0; i<this.blockBaseRaito.size(); ++i) {
             cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(DateHelper.getInstance().stringTransToDate(blockBaseRaito.get(i).getDate()),
-                    blockBaseRaito.get(i).getBaseRatio()));
+                    blockBaseRaito.get(i).getBaseRatio()/100));
         }
 
         return  cumulativeYieldGraphDataVOS;

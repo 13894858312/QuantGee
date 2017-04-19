@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import logic.calculation.StrategyCalculation;
+import logicService.StockInfoService;
 import logicService.StrategyCalculationService;
 import vo.*;
 
@@ -42,6 +43,7 @@ public class StrategyInputController {
 
     private StrategyCalculationService strategyCalculationService;
     private MainPageController mainPageController;
+    private StockInfoService stockInfoService ;
 
     @FXML private Pane root;
 
@@ -52,6 +54,8 @@ public class StrategyInputController {
     @FXML private ImageView loading;
 
     @FXML private HBox hBox;
+    @FXML private Label l1;
+    @FXML private Label l2;
     @FXML private Label num;
 
     @FXML private Label txtLib;
@@ -118,6 +122,10 @@ public class StrategyInputController {
                     };
                 }
             };
+
+    public StrategyInputController(){
+        stockInfoService = new StockInfoServiceImp();
+    }
     
     public void init(MainPageController mainPageController){
 
@@ -281,6 +289,7 @@ public class StrategyInputController {
 
         //一切正常则显示策略界面
         showResult(backTestingResultVO , abnormalReturnGraphVO);
+        loading.setVisible(false);
         return;
     }
 
@@ -378,11 +387,17 @@ public class StrategyInputController {
         scrollPane.setDisable(true);
         hBox.setVisible(false);
 
+        String temp = "您已选择股票：\n";
+        ArrayList<String> allNames = stockInfoService.getAllStockInfo();
+        for(String s :allNames){
+            temp+=s + "\n";
+        }
+        txtLib.setText(temp);
+
         //清空其他controller
         strategyBoardController = null;
         stocks = null;
         strategyStockControllers = null;
-        txtLib.setText("");
 
     }
 
@@ -442,6 +457,7 @@ public class StrategyInputController {
 
         //清空其他controller
         strategyBoardController = null;
+        hBox.setVisible(true);
         txtLib.setText("");
 
     }
@@ -696,12 +712,12 @@ public class StrategyInputController {
     }
 
     private ArrayList<String> getStockNames(){
-/*
+
         if(count < 100){
             showMessage("至少需要输入100支股票");
             return null;
         }
-*/
+
         ArrayList<String> stockNames = new ArrayList<>();
         for(int i = 0 ; i < count ; i++ ) {
             String name = strategyStockControllers.get(i).getBlockName();
@@ -748,7 +764,7 @@ public class StrategyInputController {
     private void getFile() {
 
         blockPane.getChildren().clear();
-        hBox.setVisible(false);
+
         strategyStockControllers = null;
         stocks = null;
         strategyBoardController = null;
@@ -766,7 +782,8 @@ public class StrategyInputController {
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
                 String string = bufferedReader.readLine();
                 bufferedReader.close();
-                String temp = "股票代码为：\n" + string.replace(" ", "\n");
+
+                String temp = "已选择" + string.split(" ").length + "支股票,股票代码为：\n" + string.replace(" ", "\n");
                 txtLib.setText(temp);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -784,12 +801,14 @@ public class StrategyInputController {
                 String string = bufferedReader.readLine().trim();
                 bufferedReader.close();
                 String[] strings = string.split(" ");
+                if(strings.length < 100){
+                    showMessage("股票数量不足100，请重新选择文件");
+                    return null;
+                }
                 ArrayList<String> names = new ArrayList<String>();
-                String temp = "股票代码为：\n" ;
                 for (int i = 0; i < strings.length; i++) {
                     names.add(strings[i]);
                 }
-                txtLib.setText(temp);
                 return names;
             } catch (IOException e) {
                 showMessage("出现错误，请检查输入文件");
@@ -798,6 +817,7 @@ public class StrategyInputController {
         }
 
         return null;
+
     }
 
 }
