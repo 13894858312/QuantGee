@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import logic.calculation.StrategyCalculation;
+import logicService.StockInfoService;
 import logicService.StrategyCalculationService;
 import vo.*;
 
@@ -42,6 +43,7 @@ public class StrategyInputController {
 
     private StrategyCalculationService strategyCalculationService;
     private MainPageController mainPageController;
+    private StockInfoService stockInfoService ;
 
     @FXML private Pane root;
 
@@ -52,6 +54,8 @@ public class StrategyInputController {
     @FXML private ImageView loading;
 
     @FXML private HBox hBox;
+    @FXML private Label l1;
+    @FXML private Label l2;
     @FXML private Label num;
 
     @FXML private Label txtLib;
@@ -119,9 +123,8 @@ public class StrategyInputController {
                 }
             };
 
-
     public StrategyInputController(){
-        strategyCalculationService = new StrategyCalculation();
+        stockInfoService = new StockInfoServiceImp();
     }
     
     public void init(MainPageController mainPageController){
@@ -217,15 +220,22 @@ public class StrategyInputController {
         //错误则结束
         if(strategyInputVO == null){return;}
 
-        loading.setVisible(true);
-
-        /*
-        ExecutorService pool = Executors.newFixedThreadPool(1);
+/*
+        ExecutorService pool = Executors.newFixedThreadPool(2);
         Search search = new Search(strategyType , strategyInputVO , isHold);
+        Loading loadingView = new Loading((Stage) root.getScene().getWindow());
+        Future<Stage> future1 = pool.submit(loadingView);
         Future<AandBVO> future = pool.submit(search);
+
+        Stage stage = new Stage() ;
 
         try {
 
+            stage = future1.get();
+
+            while (!future1.isDone()){
+                future.wait(200);
+            }
             AandBVO aandBVO = future.get();
             BackTestingResultVO backTestingResultVO = aandBVO.backTestingResultVO;
             AbnormalReturnGraphVO abnormalReturnGraphVO = aandBVO.abnormalReturnGraphVO;
@@ -238,32 +248,49 @@ public class StrategyInputController {
                 return;
             }
 
+
             //一切正常则显示策略界面
             showResult(backTestingResultVO , abnormalReturnGraphVO);
-            //关闭搜索栏
-            close();
 
         }catch (Exception e){
             e.printStackTrace();
-            loading.setVisible(false);
             showMessage("出错，请重试");
+            stage.close();
             return;
         }
+
+        //关闭搜索栏
+        stage.close();
+        close();
 */
+        loading.setVisible(true);
+        MainController.getStage().show();
+
+        getVO(strategyInputVO);
+
+        //关闭搜索栏
+        loading.setVisible(false);
+        close();
+
+    }
+
+    private void getVO(StrategyInputVO strategyInputVO){
+
+        strategyCalculationService = new StrategyCalculation();
         BackTestingResultVO backTestingResultVO = strategyCalculationService.getStrategyBackTestingGraphInfo(strategyType , strategyInputVO);
         AbnormalReturnGraphVO abnormalReturnGraphVO = strategyCalculationService.getAbnormalReturnGraphInfo(strategyType , strategyInputVO , isHold);
 
         //没有返回值则弹出对话框并结束
         if(backTestingResultVO == null || strategyInputVO == null){
             showMessage("无结果");
+            loading.setVisible(false);
             return;
         }
 
         //一切正常则显示策略界面
         showResult(backTestingResultVO , abnormalReturnGraphVO);
-        //关闭搜索栏
-        close();
-
+        loading.setVisible(false);
+        return;
     }
 
     /*
@@ -315,6 +342,7 @@ public class StrategyInputController {
         //数据清空
         hold.setText("请输入整数天");
         make_ChoiceBox.setValue("5天");
+        isHold = true;
 
         //策略更改
         strategyType = StrategyType.MOMENTUM_DRIVEN;
@@ -359,11 +387,17 @@ public class StrategyInputController {
         scrollPane.setDisable(true);
         hBox.setVisible(false);
 
+        String temp = "您已选择股票：\n";
+        ArrayList<String> allNames = stockInfoService.getAllStockInfo();
+        for(String s :allNames){
+            temp+=s + "\n";
+        }
+        txtLib.setText(temp);
+
         //清空其他controller
         strategyBoardController = null;
         stocks = null;
         strategyStockControllers = null;
-        txtLib.setText("");
 
     }
 
@@ -423,6 +457,7 @@ public class StrategyInputController {
 
         //清空其他controller
         strategyBoardController = null;
+        hBox.setVisible(true);
         txtLib.setText("");
 
     }
@@ -517,6 +552,7 @@ public class StrategyInputController {
             e.printStackTrace();
         }
 
+        dialog.setAlwaysOnTop(true);
         dialog.centerOnScreen();
         dialog.initStyle(StageStyle.UNDECORATED);
         dialog.setResizable(false);
@@ -676,12 +712,12 @@ public class StrategyInputController {
     }
 
     private ArrayList<String> getStockNames(){
-/*
+
         if(count < 100){
             showMessage("至少需要输入100支股票");
             return null;
         }
-*/
+
         ArrayList<String> stockNames = new ArrayList<>();
         for(int i = 0 ; i < count ; i++ ) {
             String name = strategyStockControllers.get(i).getBlockName();
@@ -728,7 +764,7 @@ public class StrategyInputController {
     private void getFile() {
 
         blockPane.getChildren().clear();
-        hBox.setVisible(false);
+
         strategyStockControllers = null;
         stocks = null;
         strategyBoardController = null;
@@ -746,7 +782,8 @@ public class StrategyInputController {
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
                 String string = bufferedReader.readLine();
                 bufferedReader.close();
-                String temp = "股票代码为：\n" + string.replace(" ", "\n");
+
+                String temp = "已选择" + string.split(" ").length + "支股票,股票代码为：\n" + string.replace(" ", "\n");
                 txtLib.setText(temp);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -764,12 +801,14 @@ public class StrategyInputController {
                 String string = bufferedReader.readLine().trim();
                 bufferedReader.close();
                 String[] strings = string.split(" ");
+                if(strings.length < 100){
+                    showMessage("股票数量不足100，请重新选择文件");
+                    return null;
+                }
                 ArrayList<String> names = new ArrayList<String>();
-                String temp = "股票代码为：\n" ;
                 for (int i = 0; i < strings.length; i++) {
                     names.add(strings[i]);
                 }
-                txtLib.setText(temp);
                 return names;
             } catch (IOException e) {
                 showMessage("出现错误，请检查输入文件");
@@ -778,6 +817,7 @@ public class StrategyInputController {
         }
 
         return null;
+
     }
 
 }

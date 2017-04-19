@@ -71,13 +71,22 @@ public class StockPool {
      * @param date date
      * @return StockPO
      */
-    public StockPO getStockByCodeAndDate(String stockCode, String date) {
+    public StockPO getStockPOByCodeAndDate(String stockCode, String date) {
        Stock temp = this.stocksMap.get(stockCode);
        if(temp != null) {
            return temp.getStockByDate(date);
        }
 
        return null;
+    }
+
+    /**
+     * 根据股票代码和时间获取股票数据
+     * @param stockCode stockCode
+     * @return Stock
+     */
+    public Stock getStockByCode(String stockCode) {
+        return this.stocksMap.get(stockCode);
     }
 
 
@@ -158,7 +167,7 @@ public class StockPool {
 
         for(int i=0; i<this.blockBaseRaito.size(); ++i) {
             cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(DateHelper.getInstance().stringTransToDate(blockBaseRaito.get(i).getDate()),
-                    blockBaseRaito.get(i).getBaseRatio()));
+                    blockBaseRaito.get(i).getBaseRatio()/100));
         }
 
         return  cumulativeYieldGraphDataVOS;

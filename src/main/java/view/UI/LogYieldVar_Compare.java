@@ -19,11 +19,11 @@ public class LogYieldVar_Compare extends Pane{
 
         //x-xAxis
         final CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Name Of Share");
+        xAxis.setLabel("股票名称");
 
         //y-yAxis
         final NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("LogYieldVar");
+        yAxis.setLabel("对数收益率方差");
 
         //chart
         final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
@@ -33,7 +33,7 @@ public class LogYieldVar_Compare extends Pane{
 
         //data
         XYChart.Series<String, Number> series_LogYieldVar = new XYChart.Series<String, Number>();
-        series_LogYieldVar.setName("LogYieldVar");
+        series_LogYieldVar.setName("对数收益率方差");
         series_LogYieldVar.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName+"\n"+"("+ DateHelper.getInstance().getDealDate(stockVO1.logarithmYieldVariance)+")", stockVO1.logarithmYieldVariance));
         series_LogYieldVar.getData().add(new XYChart.Data<String, Number>(stockVO2.stockName+"\n"+"("+ DateHelper.getInstance().getDealDate(stockVO2.logarithmYieldVariance)+")", stockVO2.logarithmYieldVariance));
 

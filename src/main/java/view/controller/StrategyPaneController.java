@@ -55,6 +55,10 @@ public class StrategyPaneController {
     private Label bestAbnormalReturn;
     @FXML
     private Label bestStrategyWinRate;
+    @FXML
+    private Label bestHold;
+    @FXML
+    private Label bestMake;
 
     @FXML
     private Label positive;
@@ -91,6 +95,8 @@ public class StrategyPaneController {
         //b
         bestAbnormalReturn.setText(Double.toString(abnormalReturnGraphVO.bestAbnormalReturn));
         bestStrategyWinRate.setText(Double.toString(abnormalReturnGraphVO.bestStategyWinRate));
+        bestHold.setText(Integer.toString(abnormalReturnGraphVO.bestHoldingPeriod));
+        bestMake.setText(Integer.toString(abnormalReturnGraphVO.bestReturnPeriod));
         //b0
         Pane b0 = graph.getExcessEarning(judge , abnormalReturnGraphVO.abnormalReturnGraphDataVOS , 660 , 360);
         graphB_0.getChildren().addAll(b0);
