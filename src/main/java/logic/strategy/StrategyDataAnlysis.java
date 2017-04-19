@@ -197,9 +197,6 @@ public class StrategyDataAnlysis {
             base[i] = baseYield.get(i).ratio;
         }
 
-
-        System.out.println("baseYield:    " + baseYield.size());
-
         double beta = MathHelper.covariance(strategy, base)/MathHelper.variance(base);
         return MathHelper.formatData(beta,3);
     }
