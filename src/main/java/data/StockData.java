@@ -24,7 +24,6 @@ public class StockData implements StockDataDao{
 		}
 		
 		String path = System.getProperty("user.dir");
-		path.replace("\\\\", "/");
 		String[] newDate = date.split("/");
 		
 		path  = path+"/all_stock_data/all_data_by_year/"+newDate[2]+".txt";
@@ -62,7 +61,6 @@ public class StockData implements StockDataDao{
 		
 		ArrayList<StockPO> stockPOS = new ArrayList<StockPO>();
 		String path = System.getProperty("user.dir");
-		path.replace("\\\\", "/");
 		String[] newDate = date.split("/");
 		
 		path  = path+"/all_stock_data/all_data_by_year/"+newDate[2]+".txt";
@@ -97,10 +95,8 @@ public class StockData implements StockDataDao{
 	}
 	
 	public ArrayList<StockPO> getStockPOsByTimeInterval(String startDate, String endDate, String stockCode,boolean notST) {
-		
 		ArrayList<StockPO> stockPOS = new ArrayList<StockPO>();
 		String path = System.getProperty("user.dir");
-		path.replace("\\\\", "/");
 		if (notST&&getFileNameByCode(stockCode).contains("ST")) {
 			return null;
 		}
@@ -179,7 +175,6 @@ public class StockData implements StockDataDao{
 	public String getStockCodeByName(String stockName) {
 		
 		String path = System.getProperty("user.dir");
-		path.replace("\\\\", "/");
 		File file = new File(path+"/all_stock_data/all_data_by_name/fileName.txt");
 
 		try {
@@ -203,8 +198,15 @@ public class StockData implements StockDataDao{
 	}
 	
 	public String getFileNameByCode(String stockCode) {
+		
+		if (stockCode.contains("2001")&&stockCode.length()==5) {
+			stockCode = stockCode.substring(1);
+		}
+		if (stockCode.contains("300001")&&stockCode.length()==7) {
+			stockCode = stockCode.substring(1);
+		}
+		
 		String path = System.getProperty("user.dir");
-		path.replace("\\\\", "/");
 		File file = new File(path+"/all_stock_data/all_data_by_name/fileName.txt");
 
 		try {
@@ -325,7 +327,6 @@ public class StockData implements StockDataDao{
 		
 		//在Block_Name中获取当前板块的所有股票编码
 		String path = System.getProperty("user.dir");
-		path.replace("\\\\", "/");
 		File file = new File(path+"/all_stock_data/Block_Name/"+blockName+".txt");
 		
 		try {
@@ -361,7 +362,6 @@ public class StockData implements StockDataDao{
 		
 		//在Block_Name中获取所有股票编码
 		String path = System.getProperty("user.dir");
-		path.replace("\\\\", "/");
 		File file = new File(path+"/all_stock_data/all_data_by_name/fileName.txt");
 		
 		try {
@@ -402,7 +402,6 @@ public class StockData implements StockDataDao{
 		ArrayList<BaseCumulativeYieldPO>  yielPOs  = new ArrayList<>();
 		
 		String path = System.getProperty("user.dir");
-		path.replace("\\\\", "/");
 		path = path+"/all_stock_data/all_data_by_name/"+blockName+".txt";
 		File file = new File(path);
 		
@@ -467,7 +466,6 @@ public class StockData implements StockDataDao{
 		
 		//在Block_Name中获取所有股票编码
 		String path = System.getProperty("user.dir");
-		path.replace("\\\\", "/");
 		File file = new File(path+"/all_stock_data/all_data_by_name/fileName.txt");
 		
 		try {
