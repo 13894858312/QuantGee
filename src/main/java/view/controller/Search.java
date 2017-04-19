@@ -23,6 +23,9 @@ public class Search extends Thread {
     private Pane root;
     private MainPageController mainPageController;
 
+    private BackTestingResultVO backTestingResultVO;
+    private AbnormalReturnGraphVO abnormalReturnGraphVO;
+
     public Search(StrategyType strategyType , StrategyInputVO strategyInputVO , boolean isHold , Pane root , MainPageController mainPageController){
         strategyCalculationService = new StrategyCalculation();
         this.strategyType = strategyType;
@@ -34,16 +37,18 @@ public class Search extends Thread {
 
     @Override
     public void run() {
+         try {
+             backTestingResultVO = strategyCalculationService
+                    .getStrategyBackTestingGraphInfo(strategyType, strategyInputVO);
+             abnormalReturnGraphVO = strategyCalculationService.getAbnormalReturnGraphInfo(strategyType, strategyInputVO, isHold);
 
-        BackTestingResultVO backTestingResultVO = strategyCalculationService
-                .getStrategyBackTestingGraphInfo(strategyType , strategyInputVO );
-        AbnormalReturnGraphVO abnormalReturnGraphVO = strategyCalculationService.getAbnormalReturnGraphInfo(strategyType , strategyInputVO , isHold);
+            if (backTestingResultVO == null || strategyInputVO == null) {throw new Exception();}
 
-        if(backTestingResultVO == null || strategyInputVO == null){
-            mainPageController.showMessage("无数据");
-            return;
-        }
-
+         }catch (Exception e){
+             mainPageController.showMessage("无数据");
+             ((Stage) root.getScene().getWindow()).close();
+             return;
+         }
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
