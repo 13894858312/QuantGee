@@ -155,7 +155,7 @@ public class DataCalculation implements DataCalculationService {
 
             if(rate < 0.105 && rate > -0.105) {
 
-                if (rate >= -0.1) {
+                if (rate <= -0.1) {
                     rateNums[0]++;
                 } else if (rate > -0.1 && rate < -0.05) {
                     rateNums[1]++;
