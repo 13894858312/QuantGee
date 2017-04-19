@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import logic.tools.DateHelper;
+import logic.tools.MathHelper;
 import vo.AbnormalReturnGraphDataVO;
 import vo.StockDailyInfoVO;
 
@@ -61,7 +62,7 @@ public class ExcessEarning extends Pane{
         for (XYChart.Data<Number, Number> d : series.getData()) {
             Tooltip.install(d.getNode(), new Tooltip(
                     series.getName() + " :" + d.getXValue().toString() + "\n" +
-                            "超额收益率 : " + "\n" + d.getYValue()));
+                            "超额收益率 : " + "\n" + MathHelper.formatData((double)d.getYValue(),4) + "%"));
 
             //Adding class on hover
             d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));

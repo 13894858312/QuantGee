@@ -36,15 +36,15 @@ public class Range_Compare extends Pane{
         series_DecreaseRange.setName("跌幅");
 
         if(stockVO1.rate<0){
-            series_DecreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName+"\n"+"("+stockVO1.rate+")", Math.abs(stockVO1.rate*100)));
+            series_DecreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName+"\n"+"("+stockVO1.rate*100+")", Math.abs(stockVO1.rate*100)));
         }else{
-            series_IncreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName+"\n"+"("+stockVO1.rate+")", stockVO1.rate*100));
+            series_IncreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName+"\n"+"("+stockVO1.rate*100+")", stockVO1.rate*100));
         }
 
         if(stockVO2.rate<0){
-            series_DecreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO2.stockName+"\n"+"("+stockVO2.rate+")", Math.abs(stockVO2.rate)));
+            series_DecreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO2.stockName+"\n"+"("+stockVO2.rate*100+")", Math.abs(stockVO2.rate)));
         }else{
-            series_IncreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO2.stockName+"\n"+"("+stockVO2.rate+")", stockVO2.rate));
+            series_IncreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO2.stockName+"\n"+"("+stockVO2.rate*100+")", stockVO2.rate));
         }
 
         bc.getData().addAll(series_IncreaseRange, series_DecreaseRange);

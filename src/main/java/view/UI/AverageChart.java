@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import logic.tools.DateHelper;
 import javafx.scene.chart.XYChart;
+import logic.tools.MathHelper;
 import vo.AverageLineVO;
 import vo.CumulativeYieldGraphDataVO;
 
@@ -65,7 +66,7 @@ public class AverageChart extends Pane{
             for (XYChart.Data<String, Number> d : series1.getData()) {
                 Tooltip.install(d.getNode(), new Tooltip(
                         d.getXValue().toString() + "\n" +
-                                "累计收益率 : " + "\n" + d.getYValue()));
+                                "累计收益率 : " + "\n" + MathHelper.formatData((double)d.getYValue(),4) + "%"));
 
                 //Adding class on hover
                 d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));
@@ -77,7 +78,7 @@ public class AverageChart extends Pane{
             for (XYChart.Data<String, Number> d : series2.getData()) {
                 Tooltip.install(d.getNode(), new Tooltip(
                         d.getXValue().toString() + "\n" +
-                                "累计收益率 : "+ "\n" + d.getYValue()));
+                                "累计收益率 : "+ "\n" + MathHelper.formatData((double)d.getYValue(),4) + "%"));
 
                 //Adding class on hover
                 d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));

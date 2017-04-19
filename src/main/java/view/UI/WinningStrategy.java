@@ -8,6 +8,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import logic.tools.MathHelper;
 import vo.AbnormalReturnGraphDataVO;
 
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class WinningStrategy extends Pane {
         for (XYChart.Data<Number, Number> d : series.getData()) {
             Tooltip.install(d.getNode(), new Tooltip(
                     series.getName() + " :" + d.getXValue().toString() + "\n" +
-                            "策略胜率 : " + "\n" + d.getYValue()));
+                            "策略胜率 : " + "\n" + MathHelper.formatData((double)d.getYValue(),4) + "%"));
 
             //Adding class on hover
             d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));
