@@ -17,7 +17,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
-import logic.calculation.StockServiceServiceImp;
+import logic.calculation.StockInfoServiceImp;
 import logic.calculation.StrategyCalculation;
 import logicService.StockInfoService;
 import logicService.StrategyCalculationService;
@@ -157,6 +157,7 @@ public class StrategyInputController {
         //载入股票池选项
         stockPool.setItems(FXCollections.observableArrayList("所有股票","选择板块","选择股票","选择文件"));
         stockPool.setValue("所有股票");
+        setAllStocks();
         stockPool.getSelectionModel().selectedIndexProperty().addListener(
                 new ChangeListener<Number>() {
                     @Override
@@ -385,7 +386,6 @@ public class StrategyInputController {
     private void setAllStocks(){
 
         blockPane.getChildren().clear();
-        scrollPane.setDisable(true);
         hBox.setVisible(false);
 
         String temp = "您已选择股票：\n";
@@ -405,7 +405,6 @@ public class StrategyInputController {
     private void setChosenBlocks(){
 
         blockPane.getChildren().clear();
-        scrollPane.setDisable(false);
         hBox.setVisible(false);
         txtLib.setText("");
 
@@ -432,7 +431,6 @@ public class StrategyInputController {
     private void setChosenStocks(){
 
         blockPane.getChildren().clear();
-        scrollPane.setDisable(false);
         showHBox();
 
         stocks = new ArrayList<HBox>();
