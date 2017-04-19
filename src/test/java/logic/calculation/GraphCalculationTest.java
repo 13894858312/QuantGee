@@ -51,8 +51,8 @@ public class GraphCalculationTest {
     @Test
     public void getAverageLineInfoByCode() throws Exception {
 
-        Date date1 = DateHelper.getInstance().stringTransToDate("3/3/17");
-        Date date2 = DateHelper.getInstance().stringTransToDate("3/13/17");
+        Date date1 = DateHelper.getInstance().stringTransToDate("2/2/14");
+        Date date2 = DateHelper.getInstance().stringTransToDate("4/28/14");
 
         ArrayList<AverageLineVO> averageLineVOS = this.graphCalculation.getAverageLineInfoByCode(date1, date2, "3", AverageLineType.DAYS_5);
 
