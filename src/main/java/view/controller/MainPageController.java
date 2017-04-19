@@ -256,8 +256,8 @@ public class MainPageController{
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.initStyle(StageStyle.UNDECORATED);
-            stage.alwaysOnTopProperty();
             stage.centerOnScreen();
+            stage.initOwner(MainController.getStage());
             stage.show();
 
             StrategyInputController strategyInputController = rootLoader.getController();
@@ -299,6 +299,7 @@ public class MainPageController{
             e.printStackTrace();
         }
 
+        dialog.setAlwaysOnTop(true);
         dialog.centerOnScreen();
         dialog.initStyle(StageStyle.UNDECORATED);
         dialog.setResizable(false);

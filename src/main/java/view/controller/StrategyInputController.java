@@ -118,11 +118,6 @@ public class StrategyInputController {
                     };
                 }
             };
-
-
-    public StrategyInputController(){
-        strategyCalculationService = new StrategyCalculation();
-    }
     
     public void init(MainPageController mainPageController){
 
@@ -217,15 +212,22 @@ public class StrategyInputController {
         //错误则结束
         if(strategyInputVO == null){return;}
 
-        loading.setVisible(true);
-
-        /*
-        ExecutorService pool = Executors.newFixedThreadPool(1);
+/*
+        ExecutorService pool = Executors.newFixedThreadPool(2);
         Search search = new Search(strategyType , strategyInputVO , isHold);
+        Loading loadingView = new Loading((Stage) root.getScene().getWindow());
+        Future<Stage> future1 = pool.submit(loadingView);
         Future<AandBVO> future = pool.submit(search);
+
+        Stage stage = new Stage() ;
 
         try {
 
+            stage = future1.get();
+
+            while (!future1.isDone()){
+                future.wait(200);
+            }
             AandBVO aandBVO = future.get();
             BackTestingResultVO backTestingResultVO = aandBVO.backTestingResultVO;
             AbnormalReturnGraphVO abnormalReturnGraphVO = aandBVO.abnormalReturnGraphVO;
@@ -238,32 +240,48 @@ public class StrategyInputController {
                 return;
             }
 
+
             //一切正常则显示策略界面
             showResult(backTestingResultVO , abnormalReturnGraphVO);
-            //关闭搜索栏
-            close();
 
         }catch (Exception e){
             e.printStackTrace();
-            loading.setVisible(false);
             showMessage("出错，请重试");
+            stage.close();
             return;
         }
+
+        //关闭搜索栏
+        stage.close();
+        close();
 */
+        loading.setVisible(true);
+        MainController.getStage().show();
+
+        getVO(strategyInputVO);
+
+        //关闭搜索栏
+        loading.setVisible(false);
+        close();
+
+    }
+
+    private void getVO(StrategyInputVO strategyInputVO){
+
+        strategyCalculationService = new StrategyCalculation();
         BackTestingResultVO backTestingResultVO = strategyCalculationService.getStrategyBackTestingGraphInfo(strategyType , strategyInputVO);
         AbnormalReturnGraphVO abnormalReturnGraphVO = strategyCalculationService.getAbnormalReturnGraphInfo(strategyType , strategyInputVO , isHold);
 
         //没有返回值则弹出对话框并结束
         if(backTestingResultVO == null || strategyInputVO == null){
             showMessage("无结果");
+            loading.setVisible(false);
             return;
         }
 
         //一切正常则显示策略界面
         showResult(backTestingResultVO , abnormalReturnGraphVO);
-        //关闭搜索栏
-        close();
-
+        return;
     }
 
     /*
@@ -315,6 +333,7 @@ public class StrategyInputController {
         //数据清空
         hold.setText("请输入整数天");
         make_ChoiceBox.setValue("5天");
+        isHold = true;
 
         //策略更改
         strategyType = StrategyType.MOMENTUM_DRIVEN;
@@ -517,6 +536,7 @@ public class StrategyInputController {
             e.printStackTrace();
         }
 
+        dialog.setAlwaysOnTop(true);
         dialog.centerOnScreen();
         dialog.initStyle(StageStyle.UNDECORATED);
         dialog.setResizable(false);

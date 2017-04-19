@@ -15,8 +15,6 @@ public class Search implements Callable {
     private StrategyType strategyType;
     private StrategyInputVO strategyInputVO;
     private boolean isHold;
-    private BackTestingResultVO backTestingResultVO;
-    private AbnormalReturnGraphVO abnormalReturnGraphVO;
 
     public Search(StrategyType strategyType , StrategyInputVO strategyInputVO , boolean isHold){
         strategyCalculationService = new StrategyCalculation();

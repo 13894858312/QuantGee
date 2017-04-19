@@ -42,33 +42,33 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <DatePicker fx:id="startPicker" styleClass="Picker" GridPane.columnIndex="1" />
-            <DatePicker fx:id="endPicker" styleClass="Picker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="开始日期" />
+            <DatePicker fx:id="startPicker" styleClass="Picker" GridPane.columnIndex="1" />
             <Label text="结束日期" GridPane.rowIndex="1" />
-            <TextField fx:id="hold" onMouseClicked="#selectHoldText" prefHeight="27.0" prefWidth="114.0" text="请输入整数天" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ChoiceBox fx:id="strategyPicker" prefHeight="27.0" prefWidth="199.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="endPicker" styleClass="Picker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="策略" GridPane.rowIndex="2" />
-            <TextField fx:id="make_TextField" onMouseClicked="#selectMakeText" text="请输入整数天" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ChoiceBox fx:id="make_ChoiceBox" prefWidth="150.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ChoiceBox fx:id="strategyPicker" prefHeight="27.0" prefWidth="199.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <CheckBox fx:id="deleteST" mnemonicParsing="false" text="排除ST股" textFill="WHITE" GridPane.columnSpan="2" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font></CheckBox>
             <CheckBox fx:id="chooseHold" mnemonicParsing="false" onAction="#chooseHoldFunc" text="持有期" textFill="WHITE" GridPane.rowIndex="4">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
+            <Label fx:id="holdLabel" text="持有期" visible="false" GridPane.rowIndex="4" />
+            <TextField fx:id="hold" onMouseClicked="#selectHoldText" prefHeight="27.0" prefWidth="114.0" text="请输入整数天" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <CheckBox fx:id="chooseMake" mnemonicParsing="false" onAction="#chooseMakeFunc" text="形成期" textFill="WHITE" GridPane.rowIndex="5">
                <font>
                   <Font size="14.0" />
                </font></CheckBox>
+            <Label fx:id="makeLabel" text="形成期" visible="false" GridPane.rowIndex="5" />
+            <TextField fx:id="make_TextField" onMouseClicked="#selectMakeText" text="请输入整数天" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ChoiceBox fx:id="make_ChoiceBox" prefWidth="150.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label fx:id="perLabel" text="持有比例" GridPane.rowIndex="6" />
             <TextField fx:id="perField" onMouseClicked="#selectPerText" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Label fx:id="perLabel1" text="  %" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <Label fx:id="holdLabel" text="持有期" visible="false" GridPane.rowIndex="4" />
-            <Label fx:id="makeLabel" text="形成期" visible="false" GridPane.rowIndex="5" />
-            <CheckBox fx:id="deleteST" mnemonicParsing="false" text="排除ST股" textFill="WHITE" GridPane.columnSpan="2" GridPane.rowIndex="3">
-               <font>
-                  <Font size="14.0" />
-               </font></CheckBox>
          </children>
       </GridPane>
       <Button layoutX="360.0" layoutY="330.0" mnemonicParsing="false" onAction="#search" styleClass="StrategyButton" text="搜  索" />
