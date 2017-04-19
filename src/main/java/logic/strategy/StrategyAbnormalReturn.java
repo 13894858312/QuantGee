@@ -35,7 +35,8 @@ public class StrategyAbnormalReturn {
         this.period = period;
         this.isHoldingPeriod = isHoldingPeriod;
         this.strategy = strategy;
-        this.END_PERIOD = stockPool.getTradeDays()/2;           //最高值取交易日除以二
+
+        this.END_PERIOD = Math.min(stockPool.getTradeDays()/2, 80);           //最高值取交易日除以二
 
         this.abnormalReturnGraphDataVOS = new ArrayList<>();
     }

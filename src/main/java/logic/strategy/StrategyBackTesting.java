@@ -181,7 +181,7 @@ System.out.println("  holdingStocks-size: " + this.holdingStocks.size());
 
         double yield = 0;
         for(int i = 0; i<this.holdingStocks.size(); ++i) {
-            StockPO stockPO = stockPool.getStockByCodeAndDate(this.holdingStocks.get(i).getStockCode(), date);
+            StockPO stockPO = stockPool.getStockPOByCodeAndDate(this.holdingStocks.get(i).getStockCode(), date);
 
             if(stockPO != null) {  //如果该天的股票数据没有 暂时放弃该股票
                 yield += holdingStocks.get(i).getNumOfStock() * stockPO.getADJ();
@@ -257,7 +257,7 @@ System.out.println("       StockYield-size:" + stockYields.size());
         double moneyEachStock = income/this.holdingStockNum;
         for(int i=0; i<stockYields.size(); ++ i) {
 
-            StockPO stockPO = this.stockPool.getStockByCodeAndDate(stockYields.get(i).getStockCode(), date);
+            StockPO stockPO = this.stockPool.getStockPOByCodeAndDate(stockYields.get(i).getStockCode(), date);
 
             if(stockPO != null) {
                 double adj = stockPO.getADJ();
@@ -283,10 +283,10 @@ System.out.println("        买入后size:" + this.holdingStocks.size());
 
         for (int i = 0; i < this.holdingStocks.size(); ++i) {
             double numOfStock = this.holdingStocks.get(i).getNumOfStock();
-            StockPO stockPO = this.stockPool.getStockByCodeAndDate(this.holdingStocks.get(i).getStockCode(), date);
+            StockPO stockPO = this.stockPool.getStockPOByCodeAndDate(this.holdingStocks.get(i).getStockCode(), date);
 
             if (stockPO != null) {
-                double adj = this.stockPool.getStockByCodeAndDate(this.holdingStocks.get(i).getStockCode(), date).getADJ();
+                double adj = this.stockPool.getStockPOByCodeAndDate(this.holdingStocks.get(i).getStockCode(), date).getADJ();
                 income += numOfStock * adj;
             }
         }
