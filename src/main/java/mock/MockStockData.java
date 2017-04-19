@@ -90,4 +90,9 @@ public class MockStockData implements StockDataDao {
     public ArrayList<BaseCumulativeYieldPO> getBaseYieldByBlockName(String blockName, String startDate, String endDate) {
         return null;
     }
+
+    @Override
+    public ArrayList<String> getAllStockName() {
+        return null;
+    }
 }

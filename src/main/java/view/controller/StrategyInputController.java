@@ -17,6 +17,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import logic.calculation.StockInfoServiceImp;
 import logic.calculation.StrategyCalculation;
 import logicService.StockInfoService;
 import logicService.StrategyCalculationService;
