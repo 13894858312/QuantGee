@@ -13,12 +13,12 @@
          <content>
             <AnchorPane fx:id="leftPane" maxWidth="298.0" minHeight="310.0" minWidth="298.0" styleClass="RootPane">
                <children>
+                  <Label fx:id="txtLib" layoutX="5.0" layoutY="10.0" wrapText="true" />
                   <HBox fx:id="hBox" layoutX="5.0" layoutY="10.0" prefHeight="30.0" prefWidth="280.0" visible="false">
                      <children>
-                        <Label fx:id="txtLib" visible="false" wrapText="true" />
-                        <Label text="已选择" />
+                        <Label fx:id="l1" text="已选择" />
                         <Label fx:id="num" text="0" />
-                        <Label text="支股票（最少需选择100支）" />
+                        <Label fx:id="l2" text="支股票（最少需选择100支）" />
                      </children>
                   </HBox>
                   <VBox fx:id="blockPane" layoutY="50.0" minHeight="50.0" minWidth="290.0" />
