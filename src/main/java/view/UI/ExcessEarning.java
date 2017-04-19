@@ -4,7 +4,10 @@ import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import logic.tools.DateHelper;
 import vo.AbnormalReturnGraphDataVO;
 import vo.StockDailyInfoVO;
@@ -27,7 +30,6 @@ public class ExcessEarning extends Pane{
 
         /* chart */
         final AreaChart<Number, Number> lc = new AreaChart<Number, Number>(xAxis, yAxis);
-        lc.setCreateSymbols(false);
         lc.setPrefSize(width, height);
 
         //data
@@ -35,21 +37,38 @@ public class ExcessEarning extends Pane{
 
         if(!judge) {
             for (int i = 0; i <abnormalReturnGraphDataVOArrayList.size(); i++) {
+                Circle circle = new Circle(1);
+                circle.setFill(Color.rgb(2,226,244));
                 AbnormalReturnGraphDataVO abnormalReturnGraphDataVO = abnormalReturnGraphDataVOArrayList.get(i);
                 series.getData().add(new XYChart.Data<Number, Number>(abnormalReturnGraphDataVO.holdingPeriod, abnormalReturnGraphDataVO.abnormalReturn*100));
                 xAxis.setLabel("持有期日期 (天)");
                 series.setName("持有期日期");
+                series.getData().get(i).setNode(circle);
             }
         }else{
             for (int i = 0; i <abnormalReturnGraphDataVOArrayList.size(); i++) {
+                Circle circle = new Circle(1);
+                circle.setFill(Color.rgb(2,226,244));
                 AbnormalReturnGraphDataVO abnormalReturnGraphDataVO = abnormalReturnGraphDataVOArrayList.get(i);
                 series.getData().add(new XYChart.Data<Number, Number>(abnormalReturnGraphDataVO.returnPeriod, abnormalReturnGraphDataVO.abnormalReturn*100));
                 xAxis.setLabel("形成期日期 (天)");
                 series.setName("形成期日期");
+                series.getData().get(i).setNode(circle);
             }
         }
 
         lc.getData().addAll(series);
+        for (XYChart.Data<Number, Number> d : series.getData()) {
+            Tooltip.install(d.getNode(), new Tooltip(
+                    series.getName() + " :" + d.getXValue().toString() + "\n" +
+                            "超额收益率 : " + "\n" + d.getYValue()));
+
+            //Adding class on hover
+            d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));
+
+            //Removing class on exit
+            d.getNode().setOnMouseExited(event -> d.getNode().getStyleClass().remove("onHover"));
+        }
         getChildren().add(lc);
     }
 }
