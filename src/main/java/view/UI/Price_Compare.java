@@ -21,26 +21,25 @@ public class Price_Compare extends Pane{
 
         //x-xAxis
         final CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Name Of Share");
+        xAxis.setLabel("股票名称");
 
         //y-yAxis
         final NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Price");
+        yAxis.setLabel("价格");
 
         //chart
         final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
         bc.setCategoryGap(20);
         bc.setBarGap(3);
         bc.setPrefSize(width, height);
-        bc.setTitle("Comparision Of Price");
 
         //data
         XYChart.Series<String, Number> series_MaxPrice = new XYChart.Series<String, Number>();
         XYChart.Series<String, Number> series_MinPrice = new XYChart.Series<String, Number>();
         XYChart.Series<String, Number> series_ClosePrice = new XYChart.Series<String, Number>();
-        series_MaxPrice.setName("MaxPrice");
-        series_MinPrice.setName("MinPrice");
-        series_ClosePrice.setName("ClosePrice");
+        series_MaxPrice.setName("最高价");
+        series_MinPrice.setName("最低价");
+        series_ClosePrice.setName("收盘价");
         for(int i=0;i<stockVOArrayList.size();i++){
             StockVO stockVO = stockVOArrayList.get(i);
             ArrayList<StockDailyInfoVO> stockDailyInfoVOArrayList = stockVO.stockDailyInfoVOs;
