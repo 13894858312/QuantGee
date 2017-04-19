@@ -19,24 +19,23 @@ public class LogYield_Compare extends Pane {
         this.getStylesheets().add("/css/logYield_Compare.css");
         //x-xAxis
         final CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Date");
+        xAxis.setLabel("日期 (天)");
 
         //y-yAxis
         final NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Logarithmic Yield");
+        yAxis.setLabel("对数收益率 (%)");
 
         /* chart */
         final AreaChart<String, Number> lc = new AreaChart<String, Number>(xAxis, yAxis);
         lc.setCreateSymbols(false);
         lc.setPrefSize(width, height);
-        lc.setTitle("Logarithmic Yield Of Shares");
 
         //data
         XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
-        series.setName("Logarithm Yield");
+        series.setName("对数收益率");
         for(int i=stockDailyInfoVOArrayList.size()-1;i>=0;i--){
             StockDailyInfoVO stockDailyInfoVO = stockDailyInfoVOArrayList.get(i);
-            series.getData().add(new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(stockDailyInfoVO.date), stockDailyInfoVO.logarithmYield));
+            series.getData().add(new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(stockDailyInfoVO.date), stockDailyInfoVO.logarithmYield*100));
         }
 
         lc.getData().addAll(series);

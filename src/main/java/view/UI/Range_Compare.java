@@ -17,11 +17,11 @@ public class Range_Compare extends Pane{
         this.getStylesheets().add("/css/range_Compare.css");
         //x-xAxis
         final CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("N股票名称");
+        xAxis.setLabel("股票名称");
 
         //y-yAxis
         final NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("涨跌幅");
+        yAxis.setLabel("涨跌幅 (%)");
 
         //chart
         final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
@@ -36,9 +36,9 @@ public class Range_Compare extends Pane{
         series_DecreaseRange.setName("跌幅");
 
         if(stockVO1.rate<0){
-            series_DecreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName+"\n"+"("+stockVO1.rate+")", Math.abs(stockVO1.rate)));
+            series_DecreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName+"\n"+"("+stockVO1.rate+")", Math.abs(stockVO1.rate*100)));
         }else{
-            series_IncreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName+"\n"+"("+stockVO1.rate+")", stockVO1.rate));
+            series_IncreaseRange.getData().add(new XYChart.Data<String, Number>(stockVO1.stockName+"\n"+"("+stockVO1.rate+")", stockVO1.rate*100));
         }
 
         if(stockVO2.rate<0){
