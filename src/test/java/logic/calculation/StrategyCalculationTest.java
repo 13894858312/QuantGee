@@ -14,12 +14,12 @@ import java.util.Date;
 public class StrategyCalculationTest {
     @Test
     public void getStrategyBackTestingGraphInfo() throws Exception {
-        Date startDate = DateHelper.getInstance().stringTransToDate("2/2/10");
-        Date endDate = DateHelper.getInstance().stringTransToDate("4/5/11");
-        StrategyInputVO strategyInputVO = new StrategyInputVO(startDate, endDate, 10, 5, 50, false);
+        Date startDate = DateHelper.getInstance().stringTransToDate("3/27/13");
+        Date endDate = DateHelper.getInstance().stringTransToDate("3/19/14");
+        StrategyInputVO strategyInputVO = new StrategyInputVO(startDate, endDate, BlockType.MIDDLE_SMALL_BLOCK,20, 5, 0.2, true);
 
         StrategyCalculationService s = new StrategyCalculation();
-        BackTestingResultVO backTestingResultVO = s.getStrategyBackTestingGraphInfo(StrategyType.MEAN_REVERSION, strategyInputVO);
+        BackTestingResultVO backTestingResultVO = s.getStrategyBackTestingGraphInfo(StrategyType.MOMENTUM_DRIVEN, strategyInputVO);
 
         System.out.println();
         System.out.println("result:");
@@ -39,10 +39,10 @@ public class StrategyCalculationTest {
     public void getAbnormalReturnGraphInfo() throws Exception {
         Date startDate = DateHelper.getInstance().stringTransToDate("2/2/10");
         Date endDate = DateHelper.getInstance().stringTransToDate("4/5/11");
-        StrategyInputVO strategyInputVO = new StrategyInputVO(startDate, endDate, 10, 5, 50,false);
+        StrategyInputVO strategyInputVO = new StrategyInputVO(startDate, endDate, 10, 10, 0.2,true);
 
         StrategyCalculationService s = new StrategyCalculation();
-        AbnormalReturnGraphVO abnormalReturnGraphVO = s.getAbnormalReturnGraphInfo(StrategyType.MEAN_REVERSION, strategyInputVO, true);
+        AbnormalReturnGraphVO abnormalReturnGraphVO = s.getAbnormalReturnGraphInfo(StrategyType.MOMENTUM_DRIVEN, strategyInputVO, true);
 
         System.out.println();
         System.out.println("bestHoldingPeriod: " + abnormalReturnGraphVO.bestHoldingPeriod);
