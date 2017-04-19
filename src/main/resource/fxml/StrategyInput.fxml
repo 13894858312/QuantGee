@@ -13,7 +13,7 @@
          <content>
             <AnchorPane fx:id="leftPane" maxWidth="298.0" minHeight="310.0" minWidth="298.0" styleClass="RootPane">
                <children>
-                  <Label fx:id="txtLib" layoutX="5.0" layoutY="10.0" styleClass="Left" wrapText="true" />
+                  <Label fx:id="txtLib" layoutX="5.0" layoutY="10.0" styleClass="Left" wrapText="true" text=" "/>
                   <HBox fx:id="hBox" layoutX="5.0" layoutY="10.0" prefHeight="30.0" prefWidth="280.0" visible="false">
                      <children>
                         <Label fx:id="l1" text="已选择" />

@@ -46,6 +46,7 @@ public class Loading implements Callable {
             public void run() {
                 //更新JavaFX的主线程的代码放在此处
                 stage.show();
+
             }
         });
 
