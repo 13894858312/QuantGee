@@ -44,7 +44,7 @@ public class AverageChart extends Pane{
                 series1.getData().add(new XYChart.Data<String, Number>(
                         DateHelper.getInstance().dateTransToString(cumulativeYieldGraphDataVO.date), cumulativeYieldGraphDataVO.ratio*100));
                 Circle circle = new Circle(1);
-                circle.setFill(Color.rgb(255,255,255));
+                circle.setFill(Color.rgb(148,56,71));
                 series1.getData().get(i).setNode(circle);
             }
             XYChart.Series<String, Number> series2 = new XYChart.Series<String, Number>();
@@ -54,7 +54,7 @@ public class AverageChart extends Pane{
                 series2.getData().add(new XYChart.Data<String, Number>(
                     DateHelper.getInstance().dateTransToString(cumulativeYieldGraphDataVO.date), cumulativeYieldGraphDataVO.ratio*100));
                 Circle circle = new Circle(1);
-                circle.setFill(Color.rgb(0,255,0));
+                circle.setFill(Color.rgb(170,241,227));
                 series2.getData().get(i).setNode(circle);
             }
 
