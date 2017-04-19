@@ -45,11 +45,11 @@ public class AdvCandleStickChart extends Pane {
         final CategoryAxis xAxis = new CategoryAxis();
 //        final NumberAxis xAxis = new NumberAxis(0, 32, 1);
 //        xAxis.setMinorTickCount(0);
-        xAxis.setLabel("日期");
+        xAxis.setLabel("日期 (天)");
 
         // y-axis:
         final NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("价格");
+        yAxis.setLabel("价格 (元)");
         yAxis.setForceZeroInRange(false);
 
         // chart:
