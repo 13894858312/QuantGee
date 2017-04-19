@@ -1,5 +1,5 @@
 .chart{
-    -fx-background-color: white;
+    -fx-background-color: black;
     -fx-stroke-width: 0px;
 }
 .chart-plot-background{
@@ -16,13 +16,13 @@
 }
 
 .chart-vertical-grid-lines {
-    -fx-stroke: white;
+    -fx-stroke: black;
     /*derive(-fx-background, -10%);*/
     -fx-stroke-dash-array: 0.1em, 0.1em;
 }
 
 .chart-horizontal-grid-lines {
-    -fx-stroke: white;
+    -fx-stroke: black;
     /*derive(-fx-background, -10%);*/
     -fx-stroke-dash-array: 0.1em, 0.1em;
 }
@@ -45,8 +45,8 @@
 }
 .axis{
     -fx-font-size:1.2em;
-    -fx-tick-label-fill: black;
+    -fx-tick-label-fill: white;
 }
 .axis-label{
-    -fx-text-fill: black;
+    -fx-text-fill: white;
 }

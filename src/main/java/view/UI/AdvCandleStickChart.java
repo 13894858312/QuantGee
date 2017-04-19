@@ -45,18 +45,17 @@ public class AdvCandleStickChart extends Pane {
         final CategoryAxis xAxis = new CategoryAxis();
 //        final NumberAxis xAxis = new NumberAxis(0, 32, 1);
 //        xAxis.setMinorTickCount(0);
-        xAxis.setLabel("Day");
+        xAxis.setLabel("日期");
 
         // y-axis:
         final NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Price");
-        yAxis.setForceZeroInRange(true);
+        yAxis.setLabel("价格");
+        yAxis.setForceZeroInRange(false);
 
         // chart:
         bc = new CandleStickChart(xAxis, yAxis);
         bc.setPrefSize(width, height);
         bc.setLegendVisible(false);
-        bc.setTitle("Custom Candle Stick Chart");
 
         // add starting data
         XYChart.Series<String, Number> series1 = new XYChart.Series<String, Number>();
@@ -82,45 +81,90 @@ public class AdvCandleStickChart extends Pane {
 
         if(averageLineVOArrayList1 != null) {
             for (int i = averageLineVOArrayList1.size()-1; i >= 0; i--) {
+                int temp = 0;
                 AverageLineVO averageLineVO = averageLineVOArrayList1.get(i);
+                for(int j = kLineVOArrayList.size() - 1; j >= 0; j--){
+                    KLineVO day = kLineVOArrayList.get(j);
+                    if(DateHelper.getInstance().dateTransToString(day.date).equals(DateHelper.getInstance().dateTransToString(averageLineVO.date))){
+                        temp = j;
+                        break;
+                    }
+                }
+                KLineVO kLineVO = kLineVOArrayList.get(temp);
                 series2.getData().add(
-                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date), 0, new CandleStickExtraValues(averageLineVO.averageValue))
+                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date), kLineVO.openPrice, new CandleStickExtraValues(kLineVO.closePrice,kLineVO.maxValue,kLineVO.minValue,averageLineVO.averageValue))
                 );
             }
         }
 
         if(averageLineVOArrayList2 != null) {
+            int temp = 0;
             for (int i = averageLineVOArrayList2.size()-1; i >= 0; i--) {
                 AverageLineVO averageLineVO = averageLineVOArrayList2.get(i);
+                for(int j = kLineVOArrayList.size() - 1; j >= 0; j--){
+                    KLineVO day = kLineVOArrayList.get(j);
+                    if(DateHelper.getInstance().dateTransToString(day.date).equals(DateHelper.getInstance().dateTransToString(averageLineVO.date))){
+                        temp = j;
+                        break;
+                    }
+                }
+                KLineVO kLineVO = kLineVOArrayList.get(temp);
                 series3.getData().add(
-                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date), 0, new CandleStickExtraValues(averageLineVO.averageValue))
+                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date), kLineVO.openPrice, new CandleStickExtraValues(kLineVO.closePrice,kLineVO.maxValue,kLineVO.minValue,averageLineVO.averageValue))
                 );
             }
         }
 
         if(averageLineVOArrayList3 != null)
         for(int i = averageLineVOArrayList3.size()-1; i >= 0; i--){
+            int temp = 0;
             AverageLineVO averageLineVO = averageLineVOArrayList3.get(i);
+            for(int j = kLineVOArrayList.size() - 1; j >= 0; j--){
+                KLineVO day = kLineVOArrayList.get(j);
+                if(DateHelper.getInstance().dateTransToString(day.date).equals(DateHelper.getInstance().dateTransToString(averageLineVO.date))){
+                    temp = j;
+                    break;
+                }
+            }
+            KLineVO kLineVO = kLineVOArrayList.get(temp);
             series4.getData().add(
-                    new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date),0, new CandleStickExtraValues(averageLineVO.averageValue))
+                    new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date),kLineVO.openPrice, new CandleStickExtraValues(kLineVO.closePrice,kLineVO.maxValue,kLineVO.minValue,averageLineVO.averageValue))
             );
         }
 
         if(averageLineVOArrayList4 != null) {
             for (int i = averageLineVOArrayList4.size()-1; i >= 0; i--) {
+                int temp = 0;
                 AverageLineVO averageLineVO = averageLineVOArrayList4.get(i);
+                for(int j = kLineVOArrayList.size() - 1; j >= 0; j--){
+                    KLineVO day = kLineVOArrayList.get(j);
+                    if(DateHelper.getInstance().dateTransToString(day.date).equals(DateHelper.getInstance().dateTransToString(averageLineVO.date))){
+                        temp = j;
+                        break;
+                    }
+                }
+                KLineVO kLineVO = kLineVOArrayList.get(temp);
 //                System.out.println(DateHelper.getInstance().dateTransToString(averageLineVO.date)+" "+averageLineVO.averageValue);
                 series5.getData().add(
-                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date), 0, new CandleStickExtraValues(averageLineVO.averageValue))
+                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date), kLineVO.openPrice, new CandleStickExtraValues(kLineVO.closePrice,kLineVO.maxValue,kLineVO.minValue,averageLineVO.averageValue))
                 );
             }
         }
 
         if(averageLineVOArrayList5 != null) {
             for (int i = averageLineVOArrayList5.size()-1; i >= 0; i--) {
+                int temp = 0;
                 AverageLineVO averageLineVO = averageLineVOArrayList5.get(i);
+                for(int j = kLineVOArrayList.size() - 1; j >= 0; j--){
+                    KLineVO day = kLineVOArrayList.get(j);
+                    if(DateHelper.getInstance().dateTransToString(day.date).equals(DateHelper.getInstance().dateTransToString(averageLineVO.date))){
+                        temp = j;
+                        break;
+                    }
+                }
+                KLineVO kLineVO = kLineVOArrayList.get(temp);
                 series6.getData().add(
-                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date), 0, new CandleStickExtraValues(averageLineVO.averageValue))
+                        new XYChart.Data<String, Number>(DateHelper.getInstance().dateTransToString(averageLineVO.date), kLineVO.openPrice, new CandleStickExtraValues(kLineVO.closePrice,kLineVO.maxValue,kLineVO.minValue,averageLineVO.averageValue))
                 );
             }
         }
@@ -131,7 +175,7 @@ public class AdvCandleStickChart extends Pane {
 
             bc.setData(data);
         } else {
-            bc.getData().add(series1);
+            bc.getData().addAll(series1);
         }
 
         getChildren().add(bc);
@@ -427,7 +471,10 @@ public class AdvCandleStickChart extends Pane {
             this.low = low;
         }
 
-        public CandleStickExtraValues(double average){
+        public CandleStickExtraValues(double close, double high, double low, double average){
+            this.close = close;
+            this.high = high;
+            this.low = low;
             this.average = average;
         }
 
