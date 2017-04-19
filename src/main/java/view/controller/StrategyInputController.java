@@ -762,6 +762,7 @@ public class StrategyInputController {
 
     private void getFile() {
 
+        hBox.setVisible(false);
         blockPane.getChildren().clear();
 
         strategyStockControllers = null;
