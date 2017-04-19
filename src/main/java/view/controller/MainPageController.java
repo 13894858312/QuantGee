@@ -282,7 +282,7 @@ public class MainPageController{
         end_2.setValue(MAX);
     }
 
-    private void showMessage(String str){
+    public void showMessage(String str){
 
         Stage dialog = new Stage();
 

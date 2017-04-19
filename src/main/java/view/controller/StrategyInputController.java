@@ -224,6 +224,23 @@ public class StrategyInputController {
         if(strategyInputVO == null){return;}
 
         loading.setVisible(true);
+
+
+        Search search = new Search(strategyType,strategyInputVO,isHold,root,mainPageController);
+        //try{
+          //while(!loading.isVisible()){
+            //  search.sleep(100);
+         //}
+        //}catch (Exception e){
+          //  e.printStackTrace();
+        //}
+
+        search.setDaemon(false);
+        search.start();
+
+//        if(search.getState() == Thread.State.TERMINATED) {
+//            close();
+//        }
 /*
         try {
 
@@ -249,24 +266,28 @@ public class StrategyInputController {
             return;
         }
 
-        */
-
-        getVO(strategyInputVO);
-
-        //一切正常则显示策略界面
-        AandBVO aandBVO = getVO(strategyInputVO);
-        if(aandBVO == null){
+        AandBVO aandBVO;
+        try{
+            aandBVO = getVO(strategyInputVO);
+            //一切正常则显示策略界面
+            if(aandBVO == null){
+                loading.setVisible(false);
+                return;
+            }
+            showResult(aandBVO.backTestingResultVO , aandBVO.abnormalReturnGraphVO);
+        }catch (Exception e){
+            loading.setVisible(false);
             return;
         }
-        showResult(aandBVO.backTestingResultVO , aandBVO.abnormalReturnGraphVO);
 
         //关闭搜索栏
         loading.setVisible(false);
         close();
+        */
 
     }
 
-    private AandBVO getVO(StrategyInputVO strategyInputVO){
+    private AandBVO getVO(StrategyInputVO strategyInputVO) throws Exception{
 
         strategyCalculationService = new StrategyCalculation();
         BackTestingResultVO backTestingResultVO = strategyCalculationService.getStrategyBackTestingGraphInfo(strategyType , strategyInputVO);
@@ -730,7 +751,7 @@ public class StrategyInputController {
 
     /*
     显示strategypane
-     */
+
     private void showResult(BackTestingResultVO backTestingResultVO , AbnormalReturnGraphVO abnormalReturnGraphVO){
 
         try{
@@ -746,7 +767,7 @@ public class StrategyInputController {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
     private void getFile() {
 
