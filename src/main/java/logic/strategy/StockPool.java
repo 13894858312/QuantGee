@@ -113,6 +113,7 @@ public class StockPool {
             } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_BLOCK) {
                 //选择指定板块股票构造股票池
                 allStockPOs = this.stockDataDao.getStockPOsByBlockName(s, e, SwitchBlockType.getBlockName(strategyInputVO.blockType), this.strategyInputVO.notST);
+                System.out.println(SwitchBlockType.getBlockName(strategyInputVO.blockType));
             } else if(strategyInputVO.strategyInputType == StrategyInputType.SPECIFIC_STOCKS) {
                 //选择指定股票构造股票池
                 for(int i=0; i<strategyInputVO.stockNames.size(); ++i) {
