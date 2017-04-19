@@ -17,6 +17,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import logic.calculation.StockServiceServiceImp;
 import logic.calculation.StrategyCalculation;
 import logicService.StockInfoService;
 import logicService.StrategyCalculationService;
@@ -124,7 +125,7 @@ public class StrategyInputController {
             };
 
     public StrategyInputController(){
-        stockInfoService = new StockInfoServiceImp();
+        stockInfoService = new StockServiceServiceImp();
     }
     
     public void init(MainPageController mainPageController){
