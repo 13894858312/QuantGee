@@ -40,8 +40,12 @@
 .default-color1.chart-legend-item-symbol{
     -fx-background-color: green;
 }
+.chart-legend{
+    -fx-background-color: black;
+}
 .chart-legend-item{
-    -fx-text-fill: black;
+    -fx-background-color: black;
+    -fx-text-fill: white;
 }
 .axis{
     -fx-font-size:1.2em;
