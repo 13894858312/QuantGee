@@ -1,4 +1,6 @@
-package service;
+package service.trade;
+
+import bean.Trade;
 
 /**
  * Created by Mark.W on 2017/5/5.

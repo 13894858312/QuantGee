@@ -1,4 +1,4 @@
-package service;
+package service.strategy;
 
 /**
  * Created by Mark.W on 2017/5/5.
