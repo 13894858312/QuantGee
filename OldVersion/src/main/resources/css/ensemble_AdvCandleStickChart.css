@@ -1,0 +1,97 @@
+.candlestick-tooltip-label{
+    -fx-font-size: 0.75em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #666666;
+    -fx-padding: 2 5 2 0;
+}
+.candlestick-average-line1{
+    -fx-stroke: rgb(255,255,255);
+    -fx-stroke-width: 1px;
+}
+.candlestick-average-line2{
+    -fx-stroke: rgb(255,255,11);
+    -fx-stroke-width: 1px;
+}
+.candlestick-average-line3{
+    -fx-stroke: rgb(255, 128, 255);
+    -fx-stroke-width: 1px;
+}
+.candlestick-average-line4{
+    -fx-stroke: rgb(0,230,0);
+    -fx-stroke-width: 1px;
+}
+.candlestick-average-line5{
+    -fx-stroke: rgb(2,226,244);
+    -fx-stroke-width: 1px;
+}
+.candlestick-candle {
+    -fx-effect: dropshadow( two-pass-box , rgba(0,0,0,0.4) , 10, 0.0 , 2 , 4 );
+    -fx-background-color: black;
+}
+.candlestick-line.close-above-open  {
+    -fx-stroke: rgb(84,252,252);
+    -fx-stroke-width: 1px;
+}
+.candlestick-line.open-above-close {
+    -fx-stroke: rgb(255,50,50);
+    -fx-stroke-width: 1px;
+}
+.candlestick-bar {
+    -fx-padding: 3;
+    -demo-bar-fill: red;
+    /*-fx-background-color: linear-gradient(derive(-demo-bar-fill,-30%), derive(-demo-bar-fill,-40%)),*/
+    /*linear-gradient(derive(-demo-bar-fill,100%), derive(-demo-bar-fill, 10%)),*/
+    /*linear-gradient(derive(-demo-bar-fill,30%), derive(-demo-bar-fill,-10%));*/
+    -fx-background-insets: 0,1,2;
+}
+.candlestick-bar.close-above-open {
+    -fx-background-color: rgb(84,252,252);
+}
+.candlestick-bar.open-above-close {
+    -fx-background-color: black;
+    -fx-border-color: rgb(255,50,50);
+}
+.chart{
+    -fx-background-color: black;
+    -fx-stroke-width: 0px;
+}
+.chart-legend{
+    -fx-background-color: transparent;
+}
+.chart-plot-background{
+    -fx-background-color: transparent;
+}
+.chart-alternative-row-fill {
+    -fx-fill: null;
+    -fx-stroke: null;
+}
+
+.chart-alternative-column-fill {
+    -fx-fill: null;
+    -fx-stroke: null;
+}
+
+.chart-vertical-zero-line,
+.chart-horizontal-zero-line {
+    -fx-stroke: derive(-fx-text-background-color, 40%);
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: black;
+    /*derive(-fx-background, -10%);*/
+    -fx-stroke-dash-array: 0.1em, 0.1em;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: black;
+    /*derive(-fx-background, -10%);*/
+    -fx-stroke-dash-array: 0.1em, 0.1em;
+}
+.axis{
+    -fx-font-size:1.2em;
+    -fx-tick-label-fill: white;
+}
+.axis-label{
+    -fx-text-fill: white;
+}
+

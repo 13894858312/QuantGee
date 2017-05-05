@@ -6,7 +6,11 @@
 
     <groupId>nju.software</groupId>
     <artifactId>QuantGee</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>OldVersion</module>
+    </modules>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
