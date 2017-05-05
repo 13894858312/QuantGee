@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	30.31	30.96	30.28	30.86	422400	30.86	300171	东富龙	SZ
 1	4/28/14	31.5	31.78	30.26	30.3	893000	30.3	300171	东富龙	SZ
 2	4/25/14	32.2	33.17	31.5	31.5	1555900	31.5	300171	东富龙	SZ

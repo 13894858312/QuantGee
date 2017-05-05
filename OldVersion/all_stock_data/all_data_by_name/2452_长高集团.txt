@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	7.48	7.79	7.45	7.68	1884300	7.68	2452	长高集团	SZ
 1	4/28/14	7.6	7.69	7.48	7.51	2164300	7.51	2452	长高集团	SZ
 2	4/25/14	8.28	8.46	7.8	7.8	3218500	7.8	2452	长高集团	SZ

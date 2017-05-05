@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	7.98	8.05	7.66	8.04	5301500	8.04	2228	合兴包装	SZ
 1	4/28/14	7.5	8.13	7.45	7.93	8840000	7.93	2228	合兴包装	SZ
 2	4/25/14	7.66	7.71	7.44	7.56	2250500	7.56	2228	合兴包装	SZ

@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	10	10.2	9.86	10.2	1939700	10.2	2184	海得控制	SZ
 1	4/28/14	10.35	10.35	9.76	10	3895400	10	2184	海得控制	SZ
 2	4/25/14	11.6	11.71	10.49	10.49	3731400	10.49	2184	海得控制	SZ

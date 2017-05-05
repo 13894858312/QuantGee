@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	10.79	11	10.7	10.88	5241100	10.88	2224	三 力 士	SZ
 1	4/28/14	11.89	11.89	10.94	10.94	8657400	10.94	2224	三 力 士	SZ
 2	4/25/14	12.47	12.7	12.14	12.15	10655500	12.15	2224	三 力 士	SZ

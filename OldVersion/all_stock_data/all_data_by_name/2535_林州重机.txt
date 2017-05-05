@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	6.97	7.12	6.92	7.04	5351200	7.04	2535	林州重机	SZ
 1	4/28/14	7.25	7.3	6.96	6.96	5148100	6.96	2535	林州重机	SZ
 2	4/25/14	7.72	7.86	7.18	7.2	4832800	7.2	2535	林州重机	SZ

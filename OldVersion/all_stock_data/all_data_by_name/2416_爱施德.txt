@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	12.06	12.4	12.05	12.34	4131800	12.34	2416	爱施德	SZ
 1	4/28/14	13.04	13.04	12.05	12.07	6362500	12.07	2416	爱施德	SZ
 2	4/25/14	13.53	13.59	13.24	13.26	3475000	13.26	2416	爱施德	SZ

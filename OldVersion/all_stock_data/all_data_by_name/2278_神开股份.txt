@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	10.23	10.39	10.08	10.34	2112800	10.34	2278	神开股份	SZ
 1	4/28/14	10.9	10.95	10.19	10.22	3396400	10.22	2278	神开股份	SZ
 2	4/25/14	11.47	11.5	10.94	10.98	3759000	10.98	2278	神开股份	SZ

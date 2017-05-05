@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	13.42	13.63	13.36	13.6	594800	13.6	300125	易世达	SZ
 1	4/28/14	13.52	13.73	13.35	13.41	1130800	13.41	300125	易世达	SZ
 2	4/25/14	13.77	13.96	13.51	13.52	1000700	13.52	300125	易世达	SZ

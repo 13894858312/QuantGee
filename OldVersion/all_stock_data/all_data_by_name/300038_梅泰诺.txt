@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	17.02	17.22	16.8	17.09	949300	17.09	300038	梅泰诺	SZ
 1	4/28/14	17.01	17.29	16.7	17.1	1493200	17.1	300038	梅泰诺	SZ
 2	4/25/14	17.51	17.51	17.02	17.1	852900	17.1	300038	梅泰诺	SZ

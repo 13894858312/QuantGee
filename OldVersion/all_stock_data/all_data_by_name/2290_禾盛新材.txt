@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	12.71	13.15	12.67	12.94	4272900	12.94	2290	禾盛新材	SZ
 1	4/28/14	13.02	13.2	12.74	12.77	5028600	12.77	2290	禾盛新材	SZ
 2	4/25/14	13.8	14.1	13.31	13.31	8097200	13.31	2290	禾盛新材	SZ

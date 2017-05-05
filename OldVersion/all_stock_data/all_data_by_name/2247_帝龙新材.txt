@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	7.9	8.18	7.84	8.13	1754800	8.13	2247	帝龙新材	SZ
 1	4/28/14	8.4	8.4	7.8	7.9	2481000	7.9	2247	帝龙新材	SZ
 2	4/25/14	8.46	8.56	8.35	8.4	1455800	8.4	2247	帝龙新材	SZ

@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	7.47	7.7	7.47	7.64	12677500	7.37	12	南 玻Ａ	SZ
 1	4/28/14	7.48	7.64	7.37	7.44	16178400	7.18	12	南 玻Ａ	SZ
 2	4/25/14	7.51	7.58	7.39	7.4	8749900	7.14	12	南 玻Ａ	SZ

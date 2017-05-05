@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	52.8	55.98	52.51	54.49	1301000	54.49	2174	梅 花 伞	SZ
 1	4/28/14	53	54.11	51.02	52.9	1469300	52.9	2174	梅 花 伞	SZ
 2	4/25/14	54.68	57	54	54.97	1371800	54.97	2174	梅 花 伞	SZ

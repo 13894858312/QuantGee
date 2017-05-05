@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	21.15	21.65	21.01	21.37	11624300	21.37	300027	华谊兄弟	SZ
 1	4/28/14	22.17	22.19	21.13	21.17	17575300	21.17	300027	华谊兄弟	SZ
 2	4/25/14	23	23	22.41	22.46	13455600	22.37	300027	华谊兄弟	SZ

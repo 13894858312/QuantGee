@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	3.31	3.38	3.31	3.38	9893200	3.38	300111	向日葵	SZ
 1	4/28/14	3.43	3.46	3.3	3.31	18299200	3.31	300111	向日葵	SZ
 2	4/25/14	3.58	3.59	3.45	3.46	13886500	3.46	300111	向日葵	SZ

@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	4.53	4.6	4.53	4.59	1504800	4.59	300064	豫金刚石	SZ
 1	4/28/14	4.54	4.62	4.52	4.54	2660300	4.54	300064	豫金刚石	SZ
 2	4/25/14	4.71	4.71	4.58	4.58	3905700	4.58	300064	豫金刚石	SZ

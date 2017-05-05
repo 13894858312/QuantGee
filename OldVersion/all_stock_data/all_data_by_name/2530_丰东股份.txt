@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	5.75	5.83	5.62	5.77	1147500	5.77	2530	丰东股份	SZ
 1	4/28/14	5.91	5.92	5.68	5.78	1073000	5.78	2530	丰东股份	SZ
 2	4/25/14	6.15	6.17	5.9	5.93	1446400	5.93	2530	丰东股份	SZ

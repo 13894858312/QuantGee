@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	6.9	7.08	6.9	7.08	1064900	7.08	300018	中元华电	SZ
 1	4/28/14	7.25	7.27	6.89	6.91	2439200	6.91	300018	中元华电	SZ
 2	4/25/14	7.58	7.65	7.27	7.27	1846900	7.27	300018	中元华电	SZ

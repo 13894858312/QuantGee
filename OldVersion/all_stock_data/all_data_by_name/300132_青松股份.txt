@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	11.56	12.12	11.54	11.77	445400	11.77	300132	青松股份	SZ
 1	4/28/14	12.48	12.48	11.49	11.76	555000	11.76	300132	青松股份	SZ
 2	4/25/14	12.06	12.06	11.71	11.71	857000	11.71	300132	青松股份	SZ

@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	10.53	10.8	10.52	10.79	1728600	10.79	300112	万讯自控	SZ
 1	4/28/14	10.8	10.9	10.44	10.53	2260300	10.53	300112	万讯自控	SZ
 2	4/25/14	11.36	11.56	10.98	10.99	2208100	10.99	300112	万讯自控	SZ

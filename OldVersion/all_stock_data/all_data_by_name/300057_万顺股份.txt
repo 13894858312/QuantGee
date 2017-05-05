@@ -1,4 +1,4 @@
-﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
+﻿﻿Serial	Date	Open	High	Low	Close	Volume	Adj Close	code	name	market
 0	4/29/14	9.41	9.54	9.32	9.47	4612600	9.47	300057	万顺股份	SZ
 1	4/28/14	10.05	10.15	9.15	9.34	4641500	9.34	300057	万顺股份	SZ
 2	4/25/14	10.69	10.7	10.05	10.05	2614700	10.05	300057	万顺股份	SZ
