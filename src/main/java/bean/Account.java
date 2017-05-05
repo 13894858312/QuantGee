@@ -1,4 +1,4 @@
-package Bean;
+package bean;
 
 /**
  * Created by PC on 2017/5/5.
