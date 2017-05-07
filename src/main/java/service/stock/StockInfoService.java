@@ -1,7 +1,7 @@
 package service.stock;
 
-
-import logic.strategy.Stock;
+import bean.Stock;
+import input.CollectStockInput;
 
 import java.util.ArrayList;
 
@@ -10,18 +10,46 @@ import java.util.ArrayList;
  */
 public interface StockInfoService {
 
+    /**
+     * 获取所有股票
+     * @return ArrayList<Stock>
+     */
     public ArrayList<Stock> getAllStocks();
 
-    public String getStockByCode(String stockCode);
+    /**
+     * 根据股票代码获取单只股票信息
+     * @param stockCode 股票代码
+     * @return Stock
+     */
+    public Stock getStockByCode(String stockCode);
 
     /**
-        * 实时获取数据
-     * @param stockCode
-     * @return
-             */
-    public String getCurrentStock(String stockCode);
+     * 实时获取股票数据
+     * @param stockCode 股票代码
+     * @return Stock
+     */
+    public Stock getCurrentStock(String stockCode);
 
+
+    /**
+     * 获取个人收藏的股票信息
+     * @param userID 用户id
+     * @return 股票信息列表
+     */
     public ArrayList<Stock> getCollectedStockCode(String userID);
 
-    public boolean collectStock();
+
+    /**
+     * 个人收藏股票
+     * @param collectStockInput userid和股票代码
+     * @return boolean
+     */
+    public boolean collectStock(CollectStockInput collectStockInput);
+
+    /**
+     * 删除收藏的股票
+     * @param collectStockInput userid和股票代码
+     * @return boolean
+     */
+    public boolean deleteCollectedStock(CollectStockInput collectStockInput);
 }
