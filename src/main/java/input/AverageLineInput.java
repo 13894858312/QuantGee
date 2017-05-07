@@ -5,8 +5,4 @@ package input;
  */
 public class AverageLineInput {
 
-    public AverageLineInput(){
-
-    }
-
 }

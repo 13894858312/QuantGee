@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public interface NewsService {
     /**
      * 获取新闻动态信息
-     * @return返回新闻动态的ArrayList
+     * @return 返回新闻动态的ArrayList
      */
     public ArrayList<News> getNews();
 }
