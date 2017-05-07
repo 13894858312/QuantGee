@@ -5,14 +5,16 @@ package service.strategy;
  */
 public interface StrategyService {
 
-    public String addStrategy();
+    public boolean deleteMyStrategy();
 
-    public String deleteStrategy();
+    public StrategyBackTesting getStrategyBackTesting(StrategyInput strategyInput);
 
-    public String strategyBackTesting();
+    public boolean addMyStartegy(Strategy strategy);
 
-    public String addStrategyLib();
+    public ArrayList<Strategy> getMyStrategy();
 
+    public ArrayList<Stock> getCollectedStrategy(String userID);
 
+    public boolean collectStrategy();
 
 }

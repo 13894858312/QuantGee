@@ -1,16 +1,27 @@
 package service.stock;
 
+
+import logic.strategy.Stock;
+
+import java.util.ArrayList;
+
 /**
  * Created by Mark.W on 2017/5/5.
  */
 public interface StockInfoService {
+
+    public ArrayList<Stock> getAllStocks();
+
+    public String getStockByCode(String stockCode);
+
     /**
-     * 获取所有股票的名字和代码
-     * @return 股票信息
-     */
-    public String getAllStockInfo();
+        * 实时获取数据
+     * @param stockCode
+     * @return
+             */
+    public String getCurrentStock(String stockCode);
 
-    public String getStockInfoByCode(String stockCode);
+    public ArrayList<Stock> getCollectedStockCode(String userID);
 
-    public String getCurrentStockInfo(String stockCode);
+    public boolean collectStock();
 }

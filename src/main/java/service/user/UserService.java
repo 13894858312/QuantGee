@@ -5,17 +5,12 @@ package service.user;
  */
 public interface UserService {
 
-    public String getCollectedStockCode(String userID);
+    public boolean updateUserInfo(User user);
 
-    public String getCollectedStrategy(String userID);
+    public ArrayList<User> getFriends();
 
-    public String collectStock();
+    public boolean addFriends();
 
-    public String collectStrategy();
+    public boolean deleteFriends();
 
-    public String getFriends();
-
-    public String addFriends();
-
-    public String deleteFriends();
 }

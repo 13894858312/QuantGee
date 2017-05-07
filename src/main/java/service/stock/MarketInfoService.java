@@ -5,13 +5,10 @@ package service.stock;
  */
 public interface MarketInfoService {
 
-    public String getKLineInfoByName();
+    public KLine getKLine(KLineInput kLineInput);
 
-    public String getKLineInfoByCode();
+    public AverageLine getAverageLine(AverageLineInput averageLineInput);
 
-    public String getAverageLineInfoByName();
+    public Histogram getHistogram(HistogramInput histogramInput);
 
-    public String getAverageLineInfoByCode();
-
-    public String getHistogram();
 }
