@@ -11,6 +11,11 @@ import java.util.ArrayList;
  */
 public interface SearchStockService {
 
+    /**
+     * 搜索股票
+     * @param searchInput 股票输入
+     * @return ArrayList<Stock>
+     */
     public ArrayList<Stock> searchStock(SearchInput searchInput);
 
 }

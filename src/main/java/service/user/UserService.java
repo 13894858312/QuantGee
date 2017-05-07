@@ -18,3 +18,4 @@ public interface UserService {
 
     public boolean deleteFriends(FriendsInput friendsInput);
 }
+
