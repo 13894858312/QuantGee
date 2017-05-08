@@ -12,5 +12,9 @@
   </head>
   <body>
   this.is a test!!!
+  <script language="javascript" type="text/javascript">
+      // 以下方式定时跳转
+      setTimeout("javascript:location.href='jump.jsp'", 5000);
+  </script>
   </body>
 </html>
