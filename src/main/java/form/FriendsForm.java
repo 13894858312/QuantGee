@@ -1,13 +1,13 @@
-package input;
+package form;
 
 /**
  * Created by Mark.W on 2017/5/7.
  */
-public class FriendsInput {
+public class FriendsForm {
     private String userID;
     private String friendID;
 
-    public FriendsInput(String userID, String friendID) {
+    public FriendsForm(String userID, String friendID) {
         this.userID = userID;
         this.friendID = friendID;
     }

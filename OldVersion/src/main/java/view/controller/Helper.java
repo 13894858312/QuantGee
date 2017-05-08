@@ -17,10 +17,10 @@ public class Helper {
         input = input.trim();
 /*
         //若六位数字则为股票代码
-        if(input.length() == 6){
+        if(form.length() == 6){
             boolean isNum = true;
             for(int i = 0 ; i < 6 ; i ++ ){
-                if( input.charAt(i) >'9' || input.charAt(i) < '0'){
+                if( form.charAt(i) >'9' || form.charAt(i) < '0'){
                     isNum = false;
                     break;
                 }

@@ -1,7 +1,7 @@
 package service.stock;
 
 import bean.Stock;
-import input.CollectStockInput;
+import form.CollectStockForm;
 
 import java.util.ArrayList;
 
@@ -41,15 +41,15 @@ public interface StockInfoService {
 
     /**
      * 个人收藏股票
-     * @param collectStockInput userid和股票代码
+     * @param collectStockForm userid和股票代码
      * @return boolean
      */
-    public boolean collectStock(CollectStockInput collectStockInput);
+    public boolean collectStock(CollectStockForm collectStockForm);
 
     /**
      * 删除收藏的股票
-     * @param collectStockInput userid和股票代码
+     * @param collectStockForm userid和股票代码
      * @return boolean
      */
-    public boolean deleteCollectedStock(CollectStockInput collectStockInput);
+    public boolean deleteCollectedStock(CollectStockForm collectStockForm);
 }

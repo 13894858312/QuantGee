@@ -1,7 +1,7 @@
 package service.user;
 
 import bean.User;
-import input.FriendsInput;
+import form.FriendsForm;
 
 import java.util.ArrayList;
 
@@ -33,16 +33,16 @@ public interface UserService {
     
     /**
      * 添加好友
-     * @param friendsInput 
+     * @param friendsForm
      * @return boolean 是否添加成功
      */
-    public boolean addFriends(FriendsInput friendsInput);
+    public boolean addFriends(FriendsForm friendsForm);
 
     /**
      * 删除好友
-     * @param friendsInput
+     * @param friendsForm
      * @return boolean 是否删除成功
      */
-    public boolean deleteFriends(FriendsInput friendsInput);
+    public boolean deleteFriends(FriendsForm friendsForm);
 }
 
