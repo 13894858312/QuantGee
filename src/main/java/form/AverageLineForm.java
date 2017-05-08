@@ -1,7 +1,8 @@
-package input;
+package form;
 
 /**
  * Created by wangxue on 2017/5/7.
  */
-public class StrategyInput {
+public class AverageLineForm {
+
 }

@@ -1,6 +1,5 @@
 package DAO.strategyDAO;
 
-import input.StrategyInput;
 import logic.strategy.Strategy;
 
 import java.util.ArrayList;

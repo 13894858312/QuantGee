@@ -2,8 +2,8 @@ package service.strategy;
 
 import bean.Strategy;
 import bean.StrategyBackTesting;
-import input.CollectStrategyInput;
-import input.StrategyInput;
+import form.CollectStrategyForm;
+import form.StrategyForm;
 
 import java.util.ArrayList;
 
@@ -14,10 +14,10 @@ public interface StrategyService {
 
     /**
      * 股票回测
-     * @param strategyInput 股票回测输入信息
+     * @param strategyForm 股票回测输入信息
      * @return  StrategyBackTesting
      */
-    public StrategyBackTesting getStrategyBackTesting(StrategyInput strategyInput);
+    public StrategyBackTesting getStrategyBackTesting(StrategyForm strategyForm);
 
     /**
      * 添加自己的量化策略
@@ -35,10 +35,10 @@ public interface StrategyService {
 
     /**
      * 删除自己的策略
-     * @param collectStrategyInput userid和策略id
+     * @param collectStrategyForm userid和策略id
      * @return boolean
      */
-    public boolean deleteMyStrategy(CollectStrategyInput collectStrategyInput);
+    public boolean deleteMyStrategy(CollectStrategyForm collectStrategyForm);
 
 
 
@@ -51,17 +51,17 @@ public interface StrategyService {
 
     /**
      * 收藏策略
-     * @param collectStrategyInput userid和策略id
+     * @param collectStrategyForm userid和策略id
      * @return boolean
      */
-    public boolean collectStrategy(CollectStrategyInput collectStrategyInput);
+    public boolean collectStrategy(CollectStrategyForm collectStrategyForm);
 
     /**
      * 删除收藏的策略
-     * @param collectStrategyInput userid和策略id
+     * @param collectStrategyForm userid和策略id
      * @return boolean
      */
-    public boolean deleteCollectedStrategy(CollectStrategyInput collectStrategyInput);
+    public boolean deleteCollectedStrategy(CollectStrategyForm collectStrategyForm);
 
 
 
