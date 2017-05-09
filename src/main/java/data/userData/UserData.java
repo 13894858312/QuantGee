@@ -1,7 +1,7 @@
 package data.userData;
 
 import DAO.userDAO.UserDAO;
-import PO.UserPO;
+import po.UserPO;
 
 /**
  * Created by wangxue on 2017/5/5.

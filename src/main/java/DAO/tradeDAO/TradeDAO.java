@@ -1,6 +1,6 @@
 package DAO.tradeDAO;
 
-import PO.TradePO;
+import po.TradePO;
 import java.util.ArrayList;
 
 /**

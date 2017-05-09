@@ -1,6 +1,6 @@
 package DAO.stockInfoDAO;
 
-import PO.StockPO;
+import po.StockPO;
 
 import java.util.ArrayList;
 

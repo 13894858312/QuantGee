@@ -1,7 +1,7 @@
 package data.strategyData;
 
 import DAO.strategyDAO.StrategyDAO;
-import PO.StrategyPO;
+import po.StrategyPO;
 
 import java.util.ArrayList;
 

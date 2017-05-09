@@ -1,7 +1,7 @@
 package data.tradeData;
 
 import DAO.tradeDAO.TradeDAO;
-import PO.TradePO;
+import po.TradePO;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
 package DAO.strategyDAO;
 
-import PO.StrategyPO;
+import po.StrategyPO;
 import java.util.ArrayList;
 
 /**

@@ -1,9 +1,6 @@
 package DAO.userDAO;
 
-import PO.UserPO;
-
-import javax.jws.soap.SOAPBinding;
-import java.util.ArrayList;
+import po.UserPO;
 
 /**
  * Created by wangxue on 2017/5/5.
