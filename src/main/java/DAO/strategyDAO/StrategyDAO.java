@@ -60,5 +60,18 @@ public interface StrategyDAO {
      */
     public StrategyPO getStrategy(String strategyID);
 
+    /**
+     * 用户登录策略
+     * @param userID
+     * @param strategyID
+     * @return boolean 是否成功
+     */
+    public boolean postStrategy(String userID , String strategyID);
+
+    /**
+     * 得到所有登录的策略
+     * @return ArrayList<Strategy> 策略列表
+     */
+    public ArrayList<StrategyPO> getAllPostStrategy();
 
 }
