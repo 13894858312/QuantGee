@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * 管理员获取网站用户注册信息
  */
-public class UserAnalysisDataForm {
+public class UserAnalysisDataVO {
 
 	private int userNum;								//总的用户数量
 	private Map<String, Integer> registerNumByTime;		//按时间获取注册数量

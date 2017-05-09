@@ -12,7 +12,7 @@ public interface MarketInfoService {
      * @param kLineForm K线图的输入（股票代码、日期）
      * @return 返回K线图的对象（包含K线图的所有数据）
      */
-    public KLineVO getKLine(KLineForm kLineForm);
+    public KLineVO getKLine(KLineInputVO kLineForm);
 
     /**
      * 获取均线图的输入

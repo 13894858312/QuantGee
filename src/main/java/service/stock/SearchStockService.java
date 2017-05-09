@@ -2,7 +2,7 @@ package service.stock;
 
 
 import bean.Stock;
-import vo.SearchForm;
+import vo.SearchVO;
 
 import java.util.ArrayList;
 
@@ -13,9 +13,9 @@ public interface SearchStockService {
 
     /**
      * 搜索股票
-     * @param searchForm 股票输入
+     * @param searchVO 股票输入
      * @return ArrayList<Stock>
      */
-    public ArrayList<Stock> searchStock(SearchForm searchForm);
+    public ArrayList<Stock> searchStock(SearchVO searchVO);
 
 }

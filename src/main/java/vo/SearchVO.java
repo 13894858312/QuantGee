@@ -3,7 +3,7 @@ package vo;
 /**
  * Created by wangxue on 2017/5/7.
  */
-public class SearchForm {
+public class SearchVO {
 
     private String stockCode;
     private String date;

@@ -4,7 +4,7 @@ import data.StockData;
 import dataDao.StockDataDao;
 import logicService.GraphCalculationService;
 import po.StockPO;
-import temp.tools.AverageLineType;
+import vo.AverageLineType;
 import temp.tools.DateHelper;
 import temp.tools.MathHelper;
 import temp.tools.SwitchAverageLineType;

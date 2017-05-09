@@ -3,7 +3,7 @@ package vo;
 /**
  * Created by Mark.W on 2017/5/9.
  */
-public class UserForm {
+public class UserVO {
 
     private String AccountID;		//账号
     private String userName;		//用户昵称

@@ -1,7 +1,7 @@
 package logic.admin;
 
-import vo.UserAnalysisDataForm;
-import vo.UserAccoutForm;
+import vo.UserAccountVO;
+import vo.UserAnalysisDataVO;
 import service.admin.AdminService;
 
 /**
@@ -12,12 +12,12 @@ public class AdminServiceImp implements AdminService{
 
 
     @Override
-    public UserAccoutForm searchUser(String userID) {
+    public UserAccountVO searchUser(String userID) {
         return null;
     }
 
     @Override
-    public UserAnalysisDataForm getUserAnalysisData() {
+    public UserAnalysisDataVO getUserAnalysisData() {
         return null;
     }
 }

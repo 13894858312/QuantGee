@@ -40,8 +40,6 @@ public interface StrategyService {
      */
     public boolean deleteMyStrategy(CollectStrategyForm collectStrategyForm);
 
-
-
     /**
      * 获取所有收藏的策略
      * @param userID userid
