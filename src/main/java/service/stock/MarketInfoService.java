@@ -1,10 +1,7 @@
 package service.stock;
 
-import bean.AverageLine;
 import bean.Histogram;
-import form.AverageLineForm;
-import form.HistogramForm;
-import form.KLineForm;
+import vo.*;
 
 /**
  * Created by Mark.W on 2017/5/5.
@@ -15,14 +12,14 @@ public interface MarketInfoService {
      * @param kLineForm K线图的输入（股票代码、日期）
      * @return 返回K线图的对象（包含K线图的所有数据）
      */
-    public KLine getKLine(KLineForm kLineForm);
+    public KLineVO getKLine(KLineForm kLineForm);
 
     /**
      * 获取均线图的输入
      * @param averageLineForm 均线图的输入（股票代码、日期）
      * @return 返回均线的对象（包含均线的所有数据）
      */
-    public AverageLine getAverageLine(AverageLineForm averageLineForm);
+    public AverageLineVO getAverageLine(AverageLineForm averageLineForm);
 
     /**
      * 获取直方图的输入

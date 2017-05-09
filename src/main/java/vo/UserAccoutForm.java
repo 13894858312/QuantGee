@@ -1,4 +1,4 @@
-package form;
+package vo;
 
 /**
  * Created by Mark.W on 2017/5/9.

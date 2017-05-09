@@ -1,6 +1,6 @@
 package service.user;
 
-import form.UserForm;
+import vo.UserForm;
 
 /**
  * Created by Mark.W on 2017/5/5.

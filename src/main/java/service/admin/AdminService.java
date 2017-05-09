@@ -1,7 +1,7 @@
 package service.admin;
 
-import form.UserAnalysisDataForm;
-import form.UserAccoutForm;
+import vo.UserAnalysisDataForm;
+import vo.UserAccoutForm;
 
 /**
  * Created by Mark.W on 2017/5/5.

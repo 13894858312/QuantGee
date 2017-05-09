@@ -5,7 +5,7 @@ import logic.tools.DateHelper;
 import org.junit.Before;
 import org.junit.Test;
 import vo.AverageLineVO;
-import form.KLine;
+import vo.KLineVO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,23 +28,23 @@ public class GraphCalculationTest {
     public void getKLineInfoByCode() throws Exception {
 
         Date date = DateHelper.getInstance().stringTransToDate("3/3/17");
-        ArrayList<KLine> kLineVOs = this.graphCalculation.getKLineInfoByCode(date, date, "1");
+        ArrayList<KLineVO> kLineVOVOS = this.graphCalculation.getKLineInfoByCode(date, date, "1");
 
-        assertEquals("1", kLineVOs.get(0).stockCode);
+        assertEquals("1", kLineVOVOS.get(0).stockCode);
 
-        assertEquals(true, kLineVOs.get(0).isPositive);
+        assertEquals(true, kLineVOVOS.get(0).isPositive);
 
-        assertEquals(20, kLineVOs.get(0).upperShadow,0);
+        assertEquals(20, kLineVOVOS.get(0).upperShadow,0);
 
-        assertEquals(0, kLineVOs.get(0).lowerShadow,0);
+        assertEquals(0, kLineVOVOS.get(0).lowerShadow,0);
 
-        assertEquals(150, kLineVOs.get(0).maxValue,0);
+        assertEquals(150, kLineVOVOS.get(0).maxValue,0);
 
-        assertEquals(90, kLineVOs.get(0).minValue,0);
+        assertEquals(90, kLineVOVOS.get(0).minValue,0);
 
-        assertEquals(90, kLineVOs.get(0).openPrice,0);
+        assertEquals(90, kLineVOVOS.get(0).openPrice,0);
 
-        assertEquals(130, kLineVOs.get(0).closePrice,0);
+        assertEquals(130, kLineVOVOS.get(0).closePrice,0);
 
     }
 

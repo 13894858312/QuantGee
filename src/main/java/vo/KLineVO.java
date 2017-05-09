@@ -1,4 +1,4 @@
-package form;
+package vo;
 
 import java.util.Date;
 
@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by Mark.W on 2017/3/5.
  * k线图的数据
  */
-public class KLine {
+public class KLineVO {
     /**
      * @param stockCode 股票代码
      * @param stockName 股票名称

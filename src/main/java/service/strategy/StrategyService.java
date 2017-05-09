@@ -2,8 +2,8 @@ package service.strategy;
 
 import bean.Strategy;
 import bean.StrategyBackTesting;
-import form.CollectStrategyForm;
-import form.StrategyForm;
+import vo.CollectStrategyForm;
+import vo.StrategyForm;
 
 import java.util.ArrayList;
 

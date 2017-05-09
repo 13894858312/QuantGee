@@ -1,4 +1,4 @@
-package form;
+package vo;
 
 import java.util.Map;
 

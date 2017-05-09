@@ -1,4 +1,4 @@
-package temp.vo;
+package vo;
 
 
 import logic.tools.AverageLineType;

@@ -1,7 +1,7 @@
 package logic.admin;
 
-import form.UserAnalysisDataForm;
-import form.UserAccoutForm;
+import vo.UserAnalysisDataForm;
+import vo.UserAccoutForm;
 import service.admin.AdminService;
 
 /**

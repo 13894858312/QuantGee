@@ -1,6 +1,6 @@
 package logic.user;
 
-import form.UserForm;
+import vo.UserForm;
 import service.user.UserService;
 
 /**
