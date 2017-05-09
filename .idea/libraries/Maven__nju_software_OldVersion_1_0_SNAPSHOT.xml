@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: nju.software:OldVersion:1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/nju/software/OldVersion/1.0-SNAPSHOT/OldVersion-1.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/nju/software/OldVersion/1.0-SNAPSHOT/OldVersion-1.0-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/nju/software/OldVersion/1.0-SNAPSHOT/OldVersion-1.0-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
