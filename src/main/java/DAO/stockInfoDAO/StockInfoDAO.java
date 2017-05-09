@@ -1,6 +1,6 @@
 package DAO.stockInfoDAO;
 
-import bean.Stock;
+import PO.StockPO;
 
 import java.util.ArrayList;
 
@@ -12,9 +12,9 @@ public interface StockInfoDAO {
     /**
      * 按股票代码获得股票信息
      * @param code 股票代码
-     * @return Stock 股票信息
+     * @return StockPO 股票信息
      */
-    public Stock getStockInfo(String code);
+    public StockPO getStockInfo(String code);
 
     /**
      * 获得票信息
@@ -22,9 +22,9 @@ public interface StockInfoDAO {
      * @param startDate 开始日期
      * @param endDate 结束日期
      * @param kType k线图类型
-     * @return Stock 股票信息
+     * @return StockPO 股票信息
      */
-    public Stock getStockInfo(String code , String startDate , String endDate , String kType);
+    public StockPO getStockInfo(String code , String startDate , String endDate , String kType);
 
     /**
      * 按行业获取全部股票代码
@@ -48,9 +48,9 @@ public interface StockInfoDAO {
     /**
      * 按用户ID获得全部收藏股票信息
      * @param userID 用户ID
-     * @return ArrayList<Stock> 全部收藏股票信息
+     * @return ArrayList<StockPO> 全部收藏股票信息
      */
-    public ArrayList<Stock> getCollectedStocks(String userID);
+    public ArrayList<StockPO> getCollectedStocks(String userID);
 
     /**
      * 添加收藏股票
