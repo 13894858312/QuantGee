@@ -1,0 +1,102 @@
+.header {
+    background: #252525;
+    width: 100%;
+    height: 64px;
+    font-size: 14px;
+}
+
+.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.w1200 {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.header .hdlogo {
+    float: left;
+    width: 246px;
+}
+
+.header .nav {
+    float: left;
+    margin: 18px 0 0 17px;
+}
+
+.sub-nav {
+    position: absolute;
+    right: 500px;
+    top: 64px;
+    width: 216px;
+    background: #fff;
+    box-shadow: 0 0 5px #ebeaeb;
+}
+
+.sub-nav .triangle {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-color: transparent transparent #fff transparent;
+    border-style: dotted dashed solid dashed;
+}
+
+.sub-nav .channel {
+    padding: 4px;
+}
+.clearfix {
+    zoom: 1;
+}
+.sub-nav .channel li.cur {
+    background: #f0f5f5;
+}
+.sub-nav .channel li {
+    float: left;
+    width: 104px;
+    height: 36px;
+    line-height: 36px;
+}
+.sub-nav {
+    position: absolute;
+    right: 500px;
+    top: 64px;
+    width: 216px;
+    background: #fff;
+    -webkit-box-shadow: 0 0 5px #ebeaeb;
+    -moz-box-shadow: 0 0 5px #ebeaeb;
+    box-shadow: 0 0 5px #ebeaeb;
+}
+
+.sub-nav .triangle {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-color: transparent transparent #fff transparent;
+    border-style: dotted dashed solid dashed;
+}
+
+.header .login-box {
+    float: right;
+    line-height: 64px;
+    padding-left: 25px;
+    background: url(http://i.thsi.cn/images/q/login.jpg) 0 50% no-repeat;
+}
+
+.header .logined_box {
+    height: 64px;
+    color: #fff;
+}
+.hide {
+    display: none;
+}
+
+.fr {
+    float: right;
+}
