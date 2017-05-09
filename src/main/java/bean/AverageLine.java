@@ -11,7 +11,7 @@ public class AverageLine {
      */
     private String stockName;
     private String averageDate;
-    private AverageType averageType;
+    private String averageType;
 
     public String getStockName(){
         return stockName;
@@ -27,5 +27,13 @@ public class AverageLine {
 
     public void setAverageDate(String averageDate){
         this.averageDate = averageDate;
+    }
+
+    public String getAverageType(){
+        return averageType;
+    }
+
+    public void setAverageType(String averageType){
+        this.averageType = averageType;
     }
 }

@@ -18,10 +18,10 @@ public class KLine {
     private String stockName;
     private String startDate;
     private String endDate;
-    private double openPrice;
-    private double closePrice;
-    private double lowPrice;
-    private double highPrice;
+    private Double openPrice;
+    private Double closePrice;
+    private Double lowPrice;
+    private Double highPrice;
 
     public String getStockName(){
         return stockName;
