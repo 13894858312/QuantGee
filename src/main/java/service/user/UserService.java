@@ -1,6 +1,6 @@
 package service.user;
 
-import vo.UserVO;
+import vo.user.UserVO;
 
 /**
  * Created by Mark.W on 2017/5/5.

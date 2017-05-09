@@ -1,4 +1,4 @@
-package vo;
+package vo.strategy;
 
 /**
  * Created by wangxue on 2017/5/7.

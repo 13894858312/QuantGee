@@ -1,6 +1,6 @@
 package temp.tools;
 
-import vo.AverageLineType;
+import vo.stock.AverageLineType;
 
 /**
  * 均线图的种类转换
