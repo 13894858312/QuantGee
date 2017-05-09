@@ -1,6 +1,6 @@
 package logic.user;
 
-import vo.UserForm;
+import vo.user.UserVO;
 import service.user.UserService;
 
 /**
@@ -9,12 +9,12 @@ import service.user.UserService;
 public class UserServiceImp implements UserService {
 
     @Override
-    public boolean updateUserInfo(UserForm userForm) {
+    public boolean updateUserInfo(UserVO userVO) {
         return false;
     }
 
     @Override
-    public UserForm getUserInfo(String accountID) {
+    public UserVO getUserInfo(String accountID) {
         return null;
     }
 }

@@ -1,15 +1,15 @@
-package bean;
+package po;
 
 /**
  * Created by PC on 2017/5/5.
  */
-public class Trade {
+public class TradePO {
 	
 	private String time;	//操作时间
 	private String stockCode;	//操作的股票代码
 	private String userID;		//操作用户
-	private int action;		//0表示买。1表示卖
-	private int numOfStock;		//买卖数量
+	private Integer action;		//0表示买。1表示卖
+	private Integer numOfStock;		//买卖数量
 	
 	public String getTime() {
 		return time;

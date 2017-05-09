@@ -1,10 +1,9 @@
-package bean;
+package po;
 
 /**
  * Created by PC on 2017/5/5.
- * 界面展示不能展示password
  */
-public class Account {
+public class AccountPO {
 
     private String accountID;
     private String password;

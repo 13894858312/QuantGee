@@ -1,8 +1,8 @@
-package bean;
+package po;
 
 import java.util.ArrayList;
 
-public class User {
+public class UserPO {
 
 	private String AccountID;		//账号	
 	private String userName;		//用户昵称
