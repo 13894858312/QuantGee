@@ -2,7 +2,7 @@ package service.stock;
 
 
 import bean.Stock;
-import vo.SearchVO;
+import vo.stock.SearchVO;
 
 import java.util.ArrayList;
 

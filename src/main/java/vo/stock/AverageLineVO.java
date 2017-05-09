@@ -1,5 +1,7 @@
-package vo;
+package vo.stock;
 
+
+import java.util.ArrayList;
 
 /**
  * Created by Mark.W on 2017/3/5.
@@ -9,8 +11,7 @@ public class AverageLineVO {
     private String stockCode;
     private String stockName;
     private AverageLineType averageLineType;
-    private String date;
-    private double averageValue;
+    private ArrayList<AverageLineDataVO> averageLineDataVOS;
 
     public AverageLineVO() {}
 
@@ -18,16 +19,14 @@ public class AverageLineVO {
      * @param stockCode 股票代码
      * @param stockName 股票名称
      * @param averageLineType 类型
-     * @param date 时间
-     * @param averageValue 对应平均值
+     * @param averageLineDataVOS 均线图每日具体数据
      */
     public AverageLineVO(String stockCode, String stockName, AverageLineType averageLineType,
-                         String date, double averageValue) {
+                         ArrayList<AverageLineDataVO> averageLineDataVOS) {
         this.stockCode = stockCode;
         this.stockName = stockName;
         this.averageLineType = averageLineType;
-        this.date = date;
-        this.averageValue = averageValue;
+        this.averageLineDataVOS = averageLineDataVOS;
     }
 
     public String getStockCode() {
@@ -54,19 +53,11 @@ public class AverageLineVO {
         this.averageLineType = averageLineType;
     }
 
-    public String getDate() {
-        return date;
+    public ArrayList<AverageLineDataVO> getAverageLineDataVOS() {
+        return averageLineDataVOS;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public double getAverageValue() {
-        return averageValue;
-    }
-
-    public void setAverageValue(double averageValue) {
-        this.averageValue = averageValue;
+    public void setAverageLineDataVOS(ArrayList<AverageLineDataVO> averageLineDataVOS) {
+        this.averageLineDataVOS = averageLineDataVOS;
     }
 }

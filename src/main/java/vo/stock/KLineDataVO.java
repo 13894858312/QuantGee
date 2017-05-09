@@ -1,15 +1,23 @@
-package vo;
-
-import java.util.Date;
+package vo.stock;
 
 /**
- * Created by Mark.W on 2017/3/5.
- * k线图的数据
+ * Created by Mark.W on 2017/5/9.
+ * k线图具体的每日数据
  */
-public class KLineVO {
+public class KLineDataVO {
+
+    private boolean isPositive;
+    private String date;
+    private double upperShadow;
+    private double lowerShadow;
+    private double maxValue;
+    private double minValue;
+    private double openPrice;
+    private double closePrice;
+
+    public KLineDataVO() {}
+
     /**
-     * @param stockCode 股票代码
-     * @param stockName 股票名称
      * @param isPositive 是否为阳线
      * @param date 时间
      * @param upperShadow 上影线值
@@ -19,31 +27,16 @@ public class KLineVO {
      * @param openPrice   开盘价
      * @param closePrice   收盘价
      */
-    private String stockCode;
-    private String stockName;
-    private boolean isPositive;
-    private Date date;
-    private double upperShadow;
-    private double lowerShadow;
-    private double maxValue;
-    private double minValue;
-    private double openPrice;
-    private double closePrice;
-
-    public String getStockCode() {
-        return stockCode;
-    }
-
-    public void setStockCode(String stockCode) {
-        this.stockCode = stockCode;
-    }
-
-    public String getStockName() {
-        return stockName;
-    }
-
-    public void setStockName(String stockName) {
-        this.stockName = stockName;
+    public KLineDataVO(boolean isPositive, String date, double upperShadow, double lowerShadow,
+                       double maxValue, double minValue, double openPrice, double closePrice) {
+        this.isPositive = isPositive;
+        this.date = date;
+        this.upperShadow = upperShadow;
+        this.lowerShadow = lowerShadow;
+        this.maxValue = maxValue;
+        this.minValue = minValue;
+        this.openPrice = openPrice;
+        this.closePrice = closePrice;
     }
 
     public boolean isPositive() {
@@ -54,11 +47,11 @@ public class KLineVO {
         isPositive = positive;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

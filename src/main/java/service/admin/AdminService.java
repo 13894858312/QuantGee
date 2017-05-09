@@ -1,7 +1,7 @@
 package service.admin;
 
-import vo.UserAccountVO;
-import vo.UserAnalysisDataVO;
+import vo.admin.UserAccountVO;
+import vo.admin.UserAnalysisDataVO;
 
 /**
  * Created by Mark.W on 2017/5/5.

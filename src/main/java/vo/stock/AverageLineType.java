@@ -1,4 +1,4 @@
-package vo;
+package vo.stock;
 
 /**
  * Created by Mark.W on 2017/3/5 .

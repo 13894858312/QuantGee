@@ -1,7 +1,7 @@
 package logic.admin;
 
-import vo.UserAccountVO;
-import vo.UserAnalysisDataVO;
+import vo.admin.UserAccountVO;
+import vo.admin.UserAnalysisDataVO;
 import service.admin.AdminService;
 
 /**

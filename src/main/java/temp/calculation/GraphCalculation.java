@@ -4,12 +4,12 @@ import data.StockData;
 import dataDao.StockDataDao;
 import logicService.GraphCalculationService;
 import po.StockPO;
-import vo.AverageLineType;
+import vo.stock.AverageLineType;
 import temp.tools.DateHelper;
 import temp.tools.MathHelper;
 import temp.tools.SwitchAverageLineType;
-import vo.AverageLineVO;
-import vo.KLineVO;
+import vo.stock.AverageLineVO;
+import vo.stock.KLineVO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,8 +33,8 @@ public class GraphCalculation implements GraphCalculationService {
      * 首先找到该日的最高和最低价，垂直地连成一条直线;然后再找出当日的开 市和收市价，把这两个价位连接成一条狭长的长方柱体(实体)。
      * 假如当日的收 市价较开市价为高(即低开高收)，我们便以红色来表示，或是在柱体上留白， 这种柱体就称之为“阳线”。
      * 如果当日的收市价较开市价为低(即高开低收)，我 们则以绿色表示，又或是在柱上涂黑色，这柱体就是“阴线”。
-     * 在 K 线图中，从实体向上延伸的细线叫上影线。在阳线中，它是当日最高价与 收盘价之差;在阴线中，它是当日最高价与开盘价之差。
-     * 在 K 线图中，从实体向下延伸的细线叫下影线。在阳线中，它是当日开盘价与 最低价之差;在阴线中，它是当日收盘价与最低价之差。
+     * 在 K 线图中，从实体向上延伸的细线叫上影线。在阳线中，它是当日最高价与 收盘价之差; 在阴线中，它是当日最高价与开盘价之差。
+     * 在 K 线图中，从实体向下延伸的细线叫下影线。在阳线中，它是当日开盘价与 最低价之差; 在阴线中，它是当日收盘价与最低价之差。
      */
     public ArrayList<KLineVO> getKLineInfoByCode(Date startDate, Date endDate, String stockCode) {
 
