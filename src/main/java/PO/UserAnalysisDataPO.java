@@ -1,8 +1,8 @@
-package bean;
+package PO;
 
 import java.util.Map;
 
-public class UserAnalysisData {
+public class UserAnalysisDataPO {
 	
 	private Map<String, Integer> registerNumByTime;		//按时间获取注册数量
 

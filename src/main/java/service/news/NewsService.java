@@ -1,7 +1,5 @@
 package service.news;
 
-import bean.News;
-
 import java.util.ArrayList;
 
 /**

@@ -1,7 +1,7 @@
 package data.tradeData;
 
 import DAO.tradeDAO.TradeDAO;
-import bean.Trade;
+import PO.TradePO;
 
 import java.util.ArrayList;
 
@@ -11,12 +11,12 @@ import java.util.ArrayList;
 public class TradeData implements TradeDAO {
 
     @Override
-    public boolean addTradeInfo(Trade trade) {
+    public boolean addTradeInfo(TradePO trade) {
         return false;
     }
 
     @Override
-    public ArrayList<Trade> getUserTradeList(String userID) {
+    public ArrayList<TradePO> getUserTradeList(String userID) {
         return null;
     }
 

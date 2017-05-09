@@ -1,6 +1,6 @@
 package service.stock;
 
-import bean.Stock;
+import PO.Stock;
 import form.CollectStockForm;
 
 import java.util.ArrayList;

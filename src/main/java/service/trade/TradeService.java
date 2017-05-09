@@ -1,6 +1,6 @@
 package service.trade;
 
-import bean.Trade;
+import PO.TradePO;
 
 import java.util.ArrayList;
 
@@ -14,20 +14,20 @@ public interface TradeService {
 	 * @param userID	用户名
 	 * @return ArrayList<Trade> 交易记录
 	 */
-    public ArrayList<Trade> getTrades(String userID);
+    public ArrayList<TradePO> getTrades(String userID);
 
     /**
      * 购买股票
      * @param trade		购买信息（股票代码、时间、数量等）
      * @return boolean 是否购买成功
      */
-    public boolean buyStock(Trade trade);
+    public boolean buyStock(TradePO trade);
 
     /**
      * 卖出股票
      * @param trade		卖出信息（股票代码、时间、数量等）
      * @returnboolean 是否卖出成功
      */
-    public boolean sellStock(Trade trade);
+    public boolean sellStock(TradePO trade);
 
 }

@@ -1,8 +1,5 @@
 package service.stock;
 
-import bean.AverageLine;
-import bean.Histogram;
-import bean.KLine;
 import form.AverageLineForm;
 import form.HistogramForm;
 import form.KLineForm;
@@ -23,7 +20,7 @@ public interface MarketInfoService {
      * @param averageLineForm 均线图的输入（股票代码、日期）
      * @return 返回均线的对象（包含均线的所有数据）
      */
-    public AverageLine getAverageLine(AverageLineForm averageLineForm);
+    public AverageLinePO getAverageLine(AverageLineForm averageLineForm);
 
     /**
      * 获取直方图的输入

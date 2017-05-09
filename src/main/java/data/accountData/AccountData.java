@@ -1,7 +1,7 @@
 package data.accountData;
 
 import DAO.accountDAO.AccountDAO;
-import bean.Account;
+import PO.AccountPO;
 
 /**
  * Created by wangxue on 2017/5/5.
@@ -9,12 +9,12 @@ import bean.Account;
 public class AccountData implements AccountDAO {
 
     @Override
-    public boolean addAccount(Account account) {
+    public boolean addAccount(AccountPO accountPO) {
         return false;
     }
 
     @Override
-    public boolean updateAccount(Account account) {
+    public boolean updateAccount(AccountPO accountPO) {
         return false;
     }
 }

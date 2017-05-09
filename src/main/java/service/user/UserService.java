@@ -1,6 +1,6 @@
 package service.user;
 
-import bean.User;
+import PO.User;
 import form.FriendsForm;
 
 import java.util.ArrayList;

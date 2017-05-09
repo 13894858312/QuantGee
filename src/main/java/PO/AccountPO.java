@@ -1,9 +1,9 @@
-package bean;
+package PO;
 
 /**
  * Created by PC on 2017/5/5.
  */
-public class Account {
+public class AccountPO {
 
     private String accountID;
     private String password;

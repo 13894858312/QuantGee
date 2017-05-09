@@ -1,7 +1,7 @@
 package data.stockInfoData;
 
 import DAO.stockInfoDAO.StockInfoDAO;
-import bean.Stock;
+import PO.Stock;
 
 import java.util.ArrayList;
 

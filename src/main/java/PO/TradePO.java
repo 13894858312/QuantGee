@@ -1,9 +1,9 @@
-package bean;
+package PO;
 
 /**
  * Created by PC on 2017/5/5.
  */
-public class Trade {
+public class TradePO {
 	
 	private String time;	//操作时间
 	private String stockCode;	//操作的股票代码

@@ -1,7 +1,7 @@
 package service.strategy;
 
-import bean.Strategy;
-import bean.StrategyBackTesting;
+import PO.Strategy;
+import PO.StrategyPO;
 import form.CollectStrategyForm;
 import form.StrategyForm;
 
@@ -24,14 +24,14 @@ public interface StrategyService {
      * @param strategy Strategy
      * @return boolean
      */
-    public boolean addMyStartegy(Strategy strategy);
+    public boolean addMyStartegy(StrategyPO strategy);
 
     /**
      * 获取我自己的的所有策略
      * @param userID
      * @return
      */
-    public ArrayList<Strategy> getMyStrategy(String userID);
+    public ArrayList<StrategyPO> getMyStrategy(String userID);
 
     /**
      * 删除自己的策略
@@ -47,7 +47,7 @@ public interface StrategyService {
      * @param userID userid
      * @return  ArrayList<Strategy>
      */
-    public ArrayList<Strategy> getCollectedStrategy(String userID);
+    public ArrayList<StrategyPO> getCollectedStrategy(String userID);
 
     /**
      * 收藏策略

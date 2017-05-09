@@ -45,4 +45,14 @@ public class StrategyData implements StrategyDAO {
         return null;
     }
 
+    @Override
+    public boolean postStrategy(String userID, String strategyID) {
+        return false;
+    }
+
+    @Override
+    public ArrayList<Strategy> getAllPostStrategy() {
+        return null;
+    }
+
 }

@@ -1,6 +1,6 @@
-package bean;
+package PO;
 
-public class Stock {
+public class StockPO {
 
 	private String date;
     private Double openPrice;
