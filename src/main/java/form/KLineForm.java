@@ -5,14 +5,10 @@ package form;
  */
 public class KLineForm {
 
-    //股票代码，即6位数字代码
-    String code;
-    //开始日期，格式为"YYYY-MM-DD"
-    String startDate;
-    //结束日期，格式为"YYYY-MM-DD"
-    String endDate;
-    //数据类型，D=日k线 W=周 M=月 5=5分钟 15=15分钟 30=30分钟 60=60分钟，默认为D
-    String kType = "D";
+    String code;    //股票代码，即6位数字代码
+    String startDate; //开始日期，格式为"YYYY-MM-DD"
+    String endDate;   //结束日期，格式为"YYYY-MM-DD"
+    String kType = "D"; //数据类型，D=日k线 W=周 M=月 5=5分钟 15=15分钟 30=30分钟 60=60分钟，默认为D
 
     public KLineForm(String code , String startDate , String endDate){
         this.code = code;

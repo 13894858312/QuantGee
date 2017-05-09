@@ -5,7 +5,7 @@ import logic.tools.DateHelper;
 import org.junit.Before;
 import org.junit.Test;
 import vo.AverageLineVO;
-import vo.KLineVO;
+import form.KLine;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,7 +28,7 @@ public class GraphCalculationTest {
     public void getKLineInfoByCode() throws Exception {
 
         Date date = DateHelper.getInstance().stringTransToDate("3/3/17");
-        ArrayList<KLineVO> kLineVOs = this.graphCalculation.getKLineInfoByCode(date, date, "1");
+        ArrayList<KLine> kLineVOs = this.graphCalculation.getKLineInfoByCode(date, date, "1");
 
         assertEquals("1", kLineVOs.get(0).stockCode);
 

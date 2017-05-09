@@ -2,7 +2,6 @@ package service.stock;
 
 import bean.AverageLine;
 import bean.Histogram;
-import bean.KLine;
 import form.AverageLineForm;
 import form.HistogramForm;
 import form.KLineForm;

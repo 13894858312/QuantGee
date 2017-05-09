@@ -5,6 +5,7 @@ import bean.Account;
 
 /**
  * Created by Mark.W on 2017/5/5.
+ * 用户登陆登出注册修改密码的接口
  */
 public interface AccountService {
 

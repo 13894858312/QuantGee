@@ -2,6 +2,7 @@ package bean;
 
 /**
  * Created by PC on 2017/5/5.
+ * 界面展示不能展示password
  */
 public class Account {
 

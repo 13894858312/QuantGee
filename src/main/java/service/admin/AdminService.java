@@ -1,6 +1,7 @@
 package service.admin;
 
-import bean.UserAnalysisData;
+import form.UserAnalysisDataForm;
+import form.UserAccoutForm;
 
 /**
  * Created by Mark.W on 2017/5/5.
@@ -9,13 +10,13 @@ public interface AdminService {
     /**
      * 搜索用户
      * @param userID 用户ID
-     * @return 搜索到该用户则返回true,否则返回false
+     * @return UserAccoutForm
      */
-    public boolean searchUser(String userID);
+    public UserAccoutForm searchUser(String userID);
 
     /**
      * 获取网站数据分析的结果
      * @return 返回到截止日期为止的用户数量
      */
-    public UserAnalysisData getUserAnalysisData();
+    public UserAnalysisDataForm getUserAnalysisData();
 }
