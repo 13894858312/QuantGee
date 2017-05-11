@@ -1,55 +1,41 @@
 package service.stock;
 
-import bean.Stock;
-import vo.stock.CollectStockForm;
+import vo.stock.*;
 
 import java.util.ArrayList;
 
 /**
  * Created by Mark.W on 2017/5/5.
+ * 个股信息的接口
  */
 public interface StockInfoService {
 
     /**
-     * 获取所有股票
+     * 获取所有股票的实时信息
+     * 用于列表展示
      * @return ArrayList<Stock>
      */
-    public ArrayList<Stock> getAllStocks();
+    public ArrayList<StockCurrentVO> getAllRealTimeStocks();
 
     /**
-     * 根据股票代码获取单只股票信息
+     * 根据股票代码获取指定个股实时数据
      * @param stockCode 股票代码
-     * @return Stock
+     * @return StockCurrentVO
      */
-    public Stock getStockByCode(String stockCode);
+    public StockCurrentVO getRealTimeStockInfo(String stockCode);
 
     /**
-     * 实时获取股票数据
+     * 获取指定时间段和股票代码股票历史数据
+     * 包括股票k线图 均线图 成交量直方图 的历史数据
+     * @return ArrayList<StockHistoricalVO>
+     */
+    public ArrayList<StockHistoricalVO> getStockHistoricalInfo(StockInputVO stockInputVO);
+
+    /**
+     * 股票走势预测
      * @param stockCode 股票代码
-     * @return Stock
+     * @return StockPredictionVO
      */
-    public Stock getCurrentStock(String stockCode);
+    public StockPredictionVO predictStockTrend(String stockCode);
 
-
-    /**
-     * 获取个人收藏的股票信息
-     * @param userID 用户id
-     * @return 股票信息列表
-     */
-    public ArrayList<Stock> getCollectedStockCode(String userID);
-
-
-    /**
-     * 个人收藏股票
-     * @param collectStockForm userid和股票代码
-     * @return boolean
-     */
-    public boolean collectStock(CollectStockForm collectStockForm);
-
-    /**
-     * 删除收藏的股票
-     * @param collectStockForm userid和股票代码
-     * @return boolean
-     */
-    public boolean deleteCollectedStock(CollectStockForm collectStockForm);
 }
