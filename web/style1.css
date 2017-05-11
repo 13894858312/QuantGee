@@ -1,0 +1,86 @@
+.head {
+    margin: 22px 0;
+}
+.hcharts-list {
+    float: left;
+    width: 230px;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button {
+    margin: 0;
+    padding: 0;
+}
+div {
+    display: block;
+}
+
+.hcharts-list .cur {
+    background: #fff;
+    border-left: 6px solid #f8f8f8;
+    width: 224px;
+}
+.hcharts-list .item {
+    padding-top: 27px;
+    height: 99px;
+    background: #f8f8f8;
+    text-align: center;
+    cursor: pointer;
+}
+
+.hcharts-list .item h3 {
+    display: inline-block;
+    padding-left: 33px;
+}
+.hcharts-list .cur h3, .hcharts-list .cur .arr-rise, .hcharts-list .cur .arr-fall {
+    background: url(http://i.thsi.cn/images/q/hssc-icons2.jpg) no-repeat;
+}
+
+.hcharts h3 {
+    line-height: 26px;
+    color: #444;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+h3 {
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.hcharts-list .item .detail {
+    margin-top: 20px;
+    line-height: 16px;
+    height: 16px;
+    overflow: hidden;
+    color: #969696;
+}
+p {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.hcharts-list .item .detail span {
+    margin: 0 10px;
+}
+.c-rise {
+    color: #d75442 !important;
+}
+
+.hcharts-list .item .detail span {
+    margin: 0 10px;
+}
+.c-fall {
+    color: #59b881 !important;
+}
+
+.hcharts-list h3.icon2 {
+    background-position: 0 -26px;
+}
+
+.hcharts-list h3.icon3 {
+    background-position: 0 -52px;
+}

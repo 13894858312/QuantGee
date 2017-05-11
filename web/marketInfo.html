@@ -3,8 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>MarketInfo</title>
+    <script>
+        function s1(x) {
+            x.style.backgroundColor="#fff";
+            x.style.borderLeft="6px solid #000";
+        }
+
+        function s2(x) {
+            x.style="#f8f8f8";
+            x.style.borderLeft="6px solid #f8f8f8";
+        }
+    </script>
     <style type="text/css">
         @import "style.css";
+        @import "style1.css";
     </style>
 </head>
 <body>
@@ -103,6 +115,50 @@
 
     </div>
 
+</div>
+<div class="container w1200">
+    <div class="head">
+        <h2>大盘行情</h2>
+    </div>
+    <div class="box">
+        <div class="head">
+            <h2>大盘行情</h2>
+        </div>
+        <div class="body">
+            <div class="hcharts clearfix">
+                <div class="hcharts-left tab-hv-box">
+                    <div class="hcharts-list">
+                        <div class="hcharts-left tab-hav-box">
+                            <div class="hcharts-list">
+                                <div class="item tab-hv-trigger cur" onmouseover="s1(this)" onmouseout="s2(this)">
+                                    <h3 class="icons1">涨跌分布</h3>
+                                    <p class="detail">
+                                        <span class="c-rise">上涨：0支</span>
+                                        <span class="c-fall">下跌：0支</span>
+                                    </p>
+                                </div>
+                                <div class="item tab-hv-trigger cur" onmouseover="s1(this)" onmouseout="s2(this)">
+                                    <h3 class="icon2">涨跌停</h3>
+                                    <p class="detail">
+                                        <span class="c-rise">涨停：0支</span>
+                                        <span class="c-fall">跌停：0支</span>
+                                    </p>
+                                </div>
+                                <div class="item tab-hv-trigger cur" onmouseover="s1(this)" onmouseout="s2(this)">
+                                    <h3 class="icon3">今日成交量</h3>
+                                    <p class="detail">
+                                        <span class="c-rise">买入：0手</span>
+                                        <span class="c-fall">卖出：0手</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
