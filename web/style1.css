@@ -1,3 +1,10 @@
+.container {
+    padding: 65px 0 22px 0;
+}
+.w1200 {
+    width: 1200px;
+    margin: 0 auto;
+}
 .head {
     margin: 22px 0;
 }
@@ -83,4 +90,16 @@ p {
 
 .hcharts-list h3.icon3 {
     background-position: 0 -52px;
+}
+.hcharts-list0 {
+    margin-left: 0px;
+    width: 100px;
+}
+.hcharts-list0-middle{
+    margin-left: 100px;
+    width: 815px;
+}
+.hcharts-list0-right{
+    margin-left: 935px;
+    width: 265px;
 }
