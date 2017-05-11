@@ -1,6 +1,6 @@
 package service.stock;
 
-import vo.stock.CollectStockInputVO;
+import vo.stock.StockCollectInputVO;
 import vo.stock.StockCurrentVO;
 
 import java.util.ArrayList;
@@ -20,15 +20,15 @@ public interface CollectStockService {
 
     /**
      * 个人收藏股票
-     * @param collectStockInputVO userid和股票代码
+     * @param stockCollectInputVO userid和股票代码
      * @return boolean
      */
-    public boolean collectStock(CollectStockInputVO collectStockInputVO);
+    public boolean collectStock(StockCollectInputVO stockCollectInputVO);
 
     /**
      * 删除收藏的股票
-     * @param collectStockInputVO userid和股票代码
+     * @param stockCollectInputVO userid和股票代码
      * @return boolean
      */
-    public boolean deleteCollectedStock(CollectStockInputVO collectStockInputVO);
+    public boolean deleteCollectedStock(StockCollectInputVO stockCollectInputVO);
 }

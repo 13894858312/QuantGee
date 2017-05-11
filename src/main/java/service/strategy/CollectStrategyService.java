@@ -1,6 +1,9 @@
 package service.strategy;
 
-import vo.strategy.CollectStrategyForm;
+import vo.strategy.StrategyUserInputVO;
+import vo.strategy.StrategyVO;
+
+import java.util.ArrayList;
 
 /**
  * Created by Mark.W on 2017/5/11.
@@ -12,20 +15,20 @@ public interface CollectStrategyService {
      * @param userID userid
      * @return  ArrayList<Strategy>
      */
-    public ArrayList<Strategy> getCollectedStrategy(String userID);
+    public ArrayList<StrategyVO> getCollectedStrategys(String userID);
 
     /**
      * 收藏策略
-     * @param collectStrategyForm userid和策略id
+     * @param strategyUserInputVO userid和策略id
      * @return boolean
      */
-    public boolean collectStrategy(CollectStrategyForm collectStrategyForm);
+    public boolean collectStrategy(StrategyUserInputVO strategyUserInputVO);
 
     /**
      * 删除收藏的策略
-     * @param collectStrategyForm userid和策略id
+     * @param strategyUserInputVO userid和策略id
      * @return boolean
      */
-    public boolean deleteCollectedStrategy(CollectStrategyForm collectStrategyForm);
+    public boolean deleteCollectedStrategy(StrategyUserInputVO strategyUserInputVO);
 
 }
