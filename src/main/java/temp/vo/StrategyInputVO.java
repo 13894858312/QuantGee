@@ -10,20 +10,7 @@ import java.util.Date;
  * 策略计算输入的信息类
  */
 public class StrategyInputVO {
-    public StrategyInputType strategyInputType;
-    public BlockType blockType;
-    public ArrayList<String> stockNames;
 
-    public Date startDate;
-    public Date endDate; //回测区间
-
-    public int holdingPeriod; //调仓周期 (持有期）
-    public int returnPeriod; //基准收益率计算周期 (形成期)
-                                //若是均值回归策略，则是N日移动均线
-    public int holdingStockNum; //每次调仓持有的股票数量
-
-    public double ratio; //持有比例
-    public boolean notST;   //排除st
 
     /**
      * 均值回归策略回测所有股票的构造方法

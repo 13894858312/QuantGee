@@ -1,11 +1,9 @@
 package temp.strategy;
 
 import po.StockPO;
-import vo.stock.AverageLineType;
 import temp.tools.DateHelper;
 import temp.tools.MathHelper;
 import temp.tools.SwitchAverageLineType;
-import vo.stock.AverageLineVO;
 
 import java.util.ArrayList;
 import java.util.Date;

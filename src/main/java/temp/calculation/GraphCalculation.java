@@ -4,12 +4,9 @@ import data.StockData;
 import dataDao.StockDataDao;
 import logicService.GraphCalculationService;
 import po.StockPO;
-import vo.stock.AverageLineType;
 import temp.tools.DateHelper;
 import temp.tools.MathHelper;
 import temp.tools.SwitchAverageLineType;
-import vo.stock.AverageLineVO;
-import vo.stock.KLineVO;
 
 import java.util.ArrayList;
 import java.util.Date;
