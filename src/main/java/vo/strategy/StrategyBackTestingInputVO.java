@@ -10,8 +10,8 @@ public class StrategyBackTestingInputVO {
     public String startDate;
     public String endDate; //回测区间
 
-    public StrategyInputType strategyInputType;
-    public BlockType blockType;
+    //public StrategyInputType strategyInputType;
+    //public BlockType blockType;
     public ArrayList<String> stockNames;
 
 
