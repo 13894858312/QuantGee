@@ -1,8 +1,8 @@
 package logic.user;
 
 import DAO.accountDAO.AccountDAO;
-import bean.Account;
 import service.user.AccountService;
+import vo.user.AccountVO;
 
 /**
  * Created by Mark.W on 2017/5/9.
@@ -20,22 +20,22 @@ public class AccountServiceImp implements AccountService{
     }
 
     @Override
-    public boolean register(Account account) {
+    public boolean register(AccountVO account) {
         return false;
     }
 
     @Override
-    public boolean login(Account account) {
+    public boolean login(AccountVO account) {
         return false;
     }
 
     @Override
-    public boolean modifyPassword(Account account) {
+    public boolean modifyPassword(AccountVO account) {
         return false;
     }
 
     @Override
-    public boolean logout(Account account) {
+    public boolean logout(AccountVO account) {
         return false;
     }
 }
