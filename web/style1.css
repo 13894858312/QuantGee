@@ -23,7 +23,7 @@ div {
 .hcharts-list .cur {
     background: #fff;
     border-left: 6px solid #f8f8f8;
-    width: 224px;
+    width: 160px;
 }
 .hcharts-list .item {
     padding-top: 27px;
@@ -92,14 +92,57 @@ p {
     background-position: 0 -52px;
 }
 .hcharts-list0 {
-    margin-left: 0px;
-    width: 100px;
+    float: left;
+    background: #f8f8f8;
+    width: 115px;
+    height: 350px;
+    padding: 22px 25px;
+    margin-bottom: 20px;
 }
 .hcharts-list0-middle{
-    margin-left: 100px;
-    width: 815px;
+    float: left;
+    background: #f8f8f8;
+    width: 900px;
+    height: 200px;
+    padding: 22px 25px;
+    margin-left: 20px;
 }
-.hcharts-list0-right{
-    margin-left: 935px;
-    width: 265px;
+.hcharts-list0-middle1{
+    float: left;
+    background: #f8f8f8;
+    width: 900px;
+    height: 96px;
+    padding: 22px 25px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 20px;
 }
+
+.middle{
+    margin-top: 20px;
+}
+.hcharts{
+    margin-top: 30px;
+}
+.hcharts-cont{
+    position: absolute;
+    margin-left: 186px;
+    float: left;
+    width: 710px;
+    padding: 0 20px;
+    height: 378px;
+    background: #f8f8f8;
+}
+.hcharts-right{
+    position: absolute;
+    margin-left: 956px;
+    float: left;
+    width: 140px;
+    padding: 0 20px;
+    height: 378px;
+    background: #f8f8f8;
+}
+.clearfix {
+    zoom: 1;
+}
+
