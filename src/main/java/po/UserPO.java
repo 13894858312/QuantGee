@@ -4,19 +4,37 @@ import java.util.ArrayList;
 
 public class UserPO {
 
-	private String AccountID;		//账号	
+	private String accountID;		//账号
 	private String userName;		//用户昵称
 	private String phoneNumber;		//电话号码
-	private ArrayList<String> collectStcokCode;		//收藏的股票代码
+	private ArrayList<String> collectStockCode;		//收藏的股票代码
 	private ArrayList<String> collectStrategy;		//收藏的股票策略
-	private ArrayList<String> friendsID;			//好友列表
+
+	public UserPO(){}
+
+    /**
+     *
+     * @param accountID 账号
+     * @param userName 用户昵称
+     * @param phoneNumber 电话号码
+     * @param collectStockCode 收藏的股票代码
+     * @param collectStrategy 收藏的股票策略
+     */
+	public UserPO(String accountID , String userName , String phoneNumber ,
+                  ArrayList<String> collectStockCode , ArrayList<String> collectStrategy){
+        this.accountID = accountID;
+        this.userName = userName;
+        this.phoneNumber = phoneNumber;
+        this.collectStockCode = collectStockCode;
+        this.collectStrategy = collectStrategy;
+    }
 
 	public String getAccountID() {
-		return AccountID;
+		return accountID;
 	}
 	
 	public void setAccountID(String accountID) {
-		AccountID = accountID;
+		this.accountID = accountID;
 	}
 	
 	public String getUserName() {
@@ -36,11 +54,11 @@ public class UserPO {
 	}
 	
 	public ArrayList<String> getCollectStcokCode() {
-		return collectStcokCode;
+		return collectStockCode;
 	}
 	
 	public void setCollectStcokCode(ArrayList<String> collectStcokCode) {
-		this.collectStcokCode = collectStcokCode;
+		this.collectStockCode = collectStcokCode;
 	}
 	
 	public ArrayList<String> getCollectStrategy() {
@@ -49,14 +67,6 @@ public class UserPO {
 	
 	public void setCollectStrategy(ArrayList<String> collectStrategy) {
 		this.collectStrategy = collectStrategy;
-	}
-	
-	public ArrayList<String> getFriendsID() {
-		return friendsID;
-	}
-	
-	public void setFriendsID(ArrayList<String> friendsID) {
-		this.friendsID = friendsID;
 	}
 	
 }

@@ -9,7 +9,23 @@ public class AccountPO {
     private String password;
     private String registerDate;
     private String identity;
-    
+
+    public AccountPO(){}
+
+    /**
+     *
+     * @param accountID 用户ID
+     * @param password 密码
+     * @param registerDate 注册日期
+     * @param identity 用户身份
+     */
+    public AccountPO(String accountID , String password , String registerDate , String identity){
+        this.accountID = accountID;
+        this.password = password;
+        this.registerDate = registerDate;
+        this.identity = identity;
+    }
+
 	public String getAccountID() {
 		return accountID;
 	}

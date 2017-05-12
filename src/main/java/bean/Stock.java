@@ -1,15 +1,23 @@
-package po;
+package bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Id;
+/**
+ * Created by wangxue on 2017/5/12.
+ */
+public class Stock {
 
-public class StockPO {
+//    private String date;
+//    private Double openPrice;
+//    private Double maxValue;
+//    private Double minValue;
+//    private Double closePrice;
+//    private Integer volume;
+//    private Double ADJ;
+//    private String stockCode;
+//    private String stockName;
+//    private String stockMarket;
+//    private String blockName;
 
     private String stockCode;
-    private String stockName;
-    private String stockMarket;
-
     private String date;
     private double open;
     private double high;
@@ -26,76 +34,12 @@ public class StockPO {
     private double v_ma20;
     private double turnover;
 
-    public StockPO(){}
-
-    /**
-     *
-     * @param stockCode 股票代码
-     * @param stockName 股票名称
-     * @param stockMarket 股票市场
-     * @param date  日期
-     * @param open 开盘价
-     * @param high 最高价
-     * @param close 收盘价
-     * @param low 最低价
-     * @param volume 成交量
-     * @param price_change 价格变动
-     * @param p_change 涨跌幅
-     * @param ma5 五日均价
-     * @param ma10 十日均价
-     * @param ma20 二十日均价
-     * @param v_ma5 五日均量
-     * @param v_ma10 十日均量
-     * @param v_ma20 二十日均量
-     * @param turnover 换手率
-     */
-    public StockPO(String stockCode , String stockName , String stockMarket ,
-                   String date , double open , double high , double close , double low,
-                   int volume , double price_change , double p_change ,
-                   double ma5 , double ma10 , double ma20 , double v_ma5 ,
-                   double v_ma10 , double v_ma20 , double turnover){
-        this.stockCode = stockCode;
-        this.stockName = stockName;
-        this.stockMarket = stockMarket;
-
-        this.date = date;
-        this.open = open;
-        this.high = high;
-        this.close = close;
-        this.low = low;
-        this.volume = volume;
-        this.price_change = price_change;
-        this.p_change = p_change;
-        this.ma5 = ma5;
-        this.ma10 = ma10;
-        this.ma20 = ma20;
-        this.v_ma5 = v_ma5;
-        this.v_ma10 = v_ma10;
-        this.v_ma20 = v_ma20;
-    }
-
     public String getStockCode() {
         return stockCode;
     }
 
     public void setStockCode(String stockCode) {
         this.stockCode = stockCode;
-    }
-
-    public String getStockName() {
-        return stockName;
-    }
-
-    public void setStockName(String stockName) {
-        this.stockName = stockName;
-    }
-
-    public String getStockMarket() {
-        return stockMarket;
-    }
-
-    public void setStockMarket(String stockMarket) {
-        this.stockMarket = stockMarket;
     }
 
     public String getDate() {

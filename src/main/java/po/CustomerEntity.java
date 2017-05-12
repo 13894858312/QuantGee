@@ -3,10 +3,10 @@ package po;
 import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/5/10.
+ * Created by wangxue on 2017/5/12.
  */
 @Entity
-@Table(name = "customer", schema = "demo", catalog = "")
+@Table(name = "customer", schema = "demo")
 public class CustomerEntity {
     private int id;
     private String name;
@@ -15,7 +15,7 @@ public class CustomerEntity {
     private String city;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -25,7 +25,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "name", nullable = true, length = 20)
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -35,7 +35,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "age", nullable = true)
+    @Column(name = "age")
     public Integer getAge() {
         return age;
     }
@@ -45,7 +45,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "sex", nullable = true, length = 2)
+    @Column(name = "sex")
     public String getSex() {
         return sex;
     }
@@ -55,7 +55,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "city", nullable = true, length = 20)
+    @Column(name = "city")
     public String getCity() {
         return city;
     }
