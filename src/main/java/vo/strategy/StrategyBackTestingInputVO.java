@@ -1,7 +1,5 @@
 package vo.strategy;
 
-import temp.vo.BlockType;
-
 import java.util.ArrayList;
 
 /**
