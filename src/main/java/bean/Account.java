@@ -6,24 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/12.
+ * Created by wangxue on 2017/5/13.
  */
 @Entity
 public class Account {
-
-    private String accountID;
     private String password;
     private String registerDate;
-    private Integer identity;
+    private int identity;
     private String accountId;
-
-    public String getAccountID() {
-        return accountID;
-    }
-
-    public void setAccountID(String accountID) {
-        this.accountID = accountID;
-    }
 
     @Basic
     @Column(name = "password", nullable = false, length = 32)
@@ -47,7 +37,7 @@ public class Account {
 
     @Basic
     @Column(name = "identity", nullable = false)
-    public Integer getIdentity() {
+    public int getIdentity() {
         return identity;
     }
 
@@ -56,7 +46,7 @@ public class Account {
     }
 
     @Id
-    @Column(name = "accountID", nullable = false, length = 20)
+    @Column(name = "accountId", nullable = false, length = 20)
     public String getAccountId() {
         return accountId;
     }
@@ -72,10 +62,10 @@ public class Account {
 
         Account account = (Account) o;
 
+        if (identity != account.identity) return false;
         if (password != null ? !password.equals(account.password) : account.password != null) return false;
         if (registerDate != null ? !registerDate.equals(account.registerDate) : account.registerDate != null)
             return false;
-        if (identity != null ? !identity.equals(account.identity) : account.identity != null) return false;
         if (accountId != null ? !accountId.equals(account.accountId) : account.accountId != null) return false;
 
         return true;
@@ -83,10 +73,10 @@ public class Account {
 
     @Override
     public int hashCode() {
-        int result = accountId != null ? accountId.hashCode() : 0;
-        result = 31 * result + (password != null ? password.hashCode() : 0);
+        int result = password != null ? password.hashCode() : 0;
         result = 31 * result + (registerDate != null ? registerDate.hashCode() : 0);
-        result = 31 * result + (identity != null ? identity.hashCode() : 0);
+        result = 31 * result + identity;
+        result = 31 * result + (accountId != null ? accountId.hashCode() : 0);
         return result;
     }
 }

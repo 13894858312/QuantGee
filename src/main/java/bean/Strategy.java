@@ -6,22 +6,24 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/12.
+ * Created by wangxue on 2017/5/13.
  */
 @Entity
 public class Strategy {
-
-
-    private Integer strategyID;
+    private int strategyId;
     private String strategyName;
-    /**
-     * custom 自定义策略
-     * momentum 动量策略
-     * mean     均值回归策略
-     */
     private String strategyType;
     private String strategyContent;
-    private int strategyId;
+
+    @Id
+    @Column(name = "strategyID", nullable = false)
+    public int getStrategyId() {
+        return strategyId;
+    }
+
+    public void setStrategyId(int strategyId) {
+        this.strategyId = strategyId;
+    }
 
     @Basic
     @Column(name = "strategyName", nullable = false, length = 20)
@@ -34,24 +36,6 @@ public class Strategy {
     }
 
     @Basic
-    @Column(name = "strategyContent", nullable = false, length = 10)
-    public String getStrategyContent() {
-        return strategyContent;
-    }
-
-    public void setStrategyContent(String strategyContent) {
-        this.strategyContent = strategyContent;
-    }
-
-    public Integer getStrategyID() {
-        return strategyID;
-    }
-
-    public void setStrategyID(Integer strategyID) {
-        this.strategyID = strategyID;
-    }
-
-    @Basic
     @Column(name = "strategyType", nullable = false, length = 10)
     public String getStrategyType() {
         return strategyType;
@@ -61,14 +45,14 @@ public class Strategy {
         this.strategyType = strategyType;
     }
 
-    @Id
-    @Column(name = "strategyID", nullable = false)
-    public int getStrategyId() {
-        return strategyId;
+    @Basic
+    @Column(name = "strategyContent", nullable = false, length = 10)
+    public String getStrategyContent() {
+        return strategyContent;
     }
 
-    public void setStrategyId(int strategyId) {
-        this.strategyId = strategyId;
+    public void setStrategyContent(String strategyContent) {
+        this.strategyContent = strategyContent;
     }
 
     @Override

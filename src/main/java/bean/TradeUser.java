@@ -1,67 +1,17 @@
 package bean;
 
-import po.TradePO;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 
 /**
- * Created by wangxue on 2017/5/12.
+ * Created by wangxue on 2017/5/13.
  */
 @Entity
 @IdClass(TradeUserPK.class)
 public class TradeUser {
-
-    private String userID;
-    private String stockCode;
-    private Integer currentHoldingNum;
-    private Double currentYield;
     private String userId;
     private String stockId;
-
-    public void setCurrentHoldingNum(int currentHoldingNum) {
-        this.currentHoldingNum = currentHoldingNum;
-    }
-
-    public void setCurrentYield(double currentYield) {
-        this.currentYield = currentYield;
-    }
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
-    public String getStockCode() {
-        return stockCode;
-    }
-
-    public void setStockCode(String stockCode) {
-        this.stockCode = stockCode;
-    }
-
-    @Basic
-    @Column(name = "currentHoldingNum", nullable = false)
-    public Integer getCurrentHoldingNum() {
-        return currentHoldingNum;
-    }
-
-    public void setCurrentHoldingNum(Integer currentHoldingNum) {
-        this.currentHoldingNum = currentHoldingNum;
-    }
-
-    @Basic
-    @Column(name = "currentYield", nullable = false, precision = 0)
-    public Double getCurrentYield() {
-        return currentYield;
-    }
-
-    public void setCurrentYield(Double currentYield) {
-        this.currentYield = currentYield;
-    }
+    private int currentHoldingNum;
+    private double currentYield;
 
     @Id
     @Column(name = "userID", nullable = false, length = 20)
@@ -83,6 +33,26 @@ public class TradeUser {
         this.stockId = stockId;
     }
 
+    @Basic
+    @Column(name = "currentHoldingNum", nullable = false)
+    public int getCurrentHoldingNum() {
+        return currentHoldingNum;
+    }
+
+    public void setCurrentHoldingNum(int currentHoldingNum) {
+        this.currentHoldingNum = currentHoldingNum;
+    }
+
+    @Basic
+    @Column(name = "currentYield", nullable = false, precision = 0)
+    public double getCurrentYield() {
+        return currentYield;
+    }
+
+    public void setCurrentYield(double currentYield) {
+        this.currentYield = currentYield;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -90,10 +60,8 @@ public class TradeUser {
 
         TradeUser tradeUser = (TradeUser) o;
 
-        if (currentHoldingNum != null ? !currentHoldingNum.equals(tradeUser.currentHoldingNum) : tradeUser.currentHoldingNum != null)
-            return false;
-        if (currentYield != null ? !currentYield.equals(tradeUser.currentYield) : tradeUser.currentYield != null)
-            return false;
+        if (currentHoldingNum != tradeUser.currentHoldingNum) return false;
+        if (Double.compare(tradeUser.currentYield, currentYield) != 0) return false;
         if (userId != null ? !userId.equals(tradeUser.userId) : tradeUser.userId != null) return false;
         if (stockId != null ? !stockId.equals(tradeUser.stockId) : tradeUser.stockId != null) return false;
 
@@ -102,10 +70,13 @@ public class TradeUser {
 
     @Override
     public int hashCode() {
-        int result = userId != null ? userId.hashCode() : 0;
+        int result;
+        long temp;
+        result = userId != null ? userId.hashCode() : 0;
         result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
-        result = 31 * result + (currentHoldingNum != null ? currentHoldingNum.hashCode() : 0);
-        result = 31 * result + (currentYield != null ? currentYield.hashCode() : 0);
+        result = 31 * result + currentHoldingNum;
+        temp = Double.doubleToLongBits(currentYield);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 }

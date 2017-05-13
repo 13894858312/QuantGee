@@ -6,31 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/12.
+ * Created by wangxue on 2017/5/13.
  */
 @Entity
 public class CollectStock {
-
-    private String userID;
-    private String stockID;
     private String userId;
     private String stockId;
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
-    public String getStockID() {
-        return stockID;
-    }
-
-    public void setStockID(String stockID) {
-        this.stockID = stockID;
-    }
 
     @Id
     @Column(name = "userID", nullable = false, length = 20)

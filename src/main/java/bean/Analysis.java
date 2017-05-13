@@ -6,27 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/12.
+ * Created by wangxue on 2017/5/13.
  */
 @Entity
 public class Analysis {
-
-    private Integer num;
     private String date;
-
-    public void setNum(int num) {
-        this.num = num;
-    }
-
-    @Basic
-    @Column(name = "num", nullable = false)
-    public Integer getNum() {
-        return num;
-    }
-
-    public void setNum(Integer num) {
-        this.num = num;
-    }
+    private int num;
 
     @Id
     @Column(name = "date", nullable = false, length = 10)
@@ -38,6 +23,16 @@ public class Analysis {
         this.date = date;
     }
 
+    @Basic
+    @Column(name = "num", nullable = false)
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,7 +40,7 @@ public class Analysis {
 
         Analysis analysis = (Analysis) o;
 
-        if (num != null ? !num.equals(analysis.num) : analysis.num != null) return false;
+        if (num != analysis.num) return false;
         if (date != null ? !date.equals(analysis.date) : analysis.date != null) return false;
 
         return true;
@@ -54,7 +49,7 @@ public class Analysis {
     @Override
     public int hashCode() {
         int result = date != null ? date.hashCode() : 0;
-        result = 31 * result + (num != null ? num.hashCode() : 0);
+        result = 31 * result + num;
         return result;
     }
 }

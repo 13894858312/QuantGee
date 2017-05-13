@@ -6,42 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/12.
+ * Created by wangxue on 2017/5/13.
  */
 @Entity
 public class MarketInfo {
-
-    private String stockCode;
-    private String stockName;
-    private String stockMarket;
     private String stockId;
     private String srockName;
-
-    public String getStockCode() {
-        return stockCode;
-    }
-
-    public void setStockCode(String stockCode) {
-        this.stockCode = stockCode;
-    }
-
-    public String getStockName() {
-        return stockName;
-    }
-
-    public void setStockName(String stockName) {
-        this.stockName = stockName;
-    }
-
-    @Basic
-    @Column(name = "stockMarket", nullable = true, length = 10)
-    public String getStockMarket() {
-        return stockMarket;
-    }
-
-    public void setStockMarket(String stockMarket) {
-        this.stockMarket = stockMarket;
-    }
+    private String stockMarket;
 
     @Id
     @Column(name = "stockID", nullable = false, length = 6)
@@ -63,6 +34,16 @@ public class MarketInfo {
         this.srockName = srockName;
     }
 
+    @Basic
+    @Column(name = "stockMarket", nullable = true, length = 10)
+    public String getStockMarket() {
+        return stockMarket;
+    }
+
+    public void setStockMarket(String stockMarket) {
+        this.stockMarket = stockMarket;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,9 +51,9 @@ public class MarketInfo {
 
         MarketInfo that = (MarketInfo) o;
 
-        if (stockMarket != null ? !stockMarket.equals(that.stockMarket) : that.stockMarket != null) return false;
         if (stockId != null ? !stockId.equals(that.stockId) : that.stockId != null) return false;
         if (srockName != null ? !srockName.equals(that.srockName) : that.srockName != null) return false;
+        if (stockMarket != null ? !stockMarket.equals(that.stockMarket) : that.stockMarket != null) return false;
 
         return true;
     }
