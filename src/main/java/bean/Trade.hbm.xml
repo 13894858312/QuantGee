@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="bean.Trade" table="Trade" schema="quant_gee">
+        <id name="tradeId">
+            <column name="tradeID" sql-type="int(11)"/>
+        </id>
+        <property name="userId">
+            <column name="userID" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="time">
+            <column name="time" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="stockId">
+            <column name="stockID" sql-type="varchar(6)" length="6"/>
+        </property>
+        <property name="action">
+            <column name="action" sql-type="int(11)"/>
+        </property>
+        <property name="numOfStock">
+            <column name="numOfStock" sql-type="int(11)"/>
+        </property>
+    </class>
+</hibernate-mapping>
