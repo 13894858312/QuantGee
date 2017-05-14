@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="bean.Trade" table="Trade" schema="quant_gee">
+        <id name="tradeId" column="tradeID"/>
+        <property name="userId" column="userID"/>
+        <property name="time" column="time"/>
+        <property name="stockId" column="stockID"/>
+        <property name="action" column="action"/>
+        <property name="numOfStock" column="numOfStock"/>
+    </class>
+</hibernate-mapping>

@@ -5,7 +5,7 @@
 <hibernate-configuration>
   <session-factory>
       <!-- 指定方言-->
-      <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+      <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
       <!-- 数据库驱动 -->
       <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
       <!-- 指定连接数据库的url，hibernate连接的数据库名 -->
@@ -15,11 +15,11 @@
       <!-- 指定连接数据库的密码 -->
       <property name="connection.password">19961112</property>
       <!-- 根据需要自动创建数据库 -->
-      <property name="hibernate.hbm2ddl.auto">update</property>
+      <property name="hbm2ddl.auto">update</property>
       <!-- 显示Hibernate持久化操作所生成的SQL语句 -->
       <property name="show_sql">true</property>
       <!-- 将SQL脚本进行格式化后再输出 -->
-      <property name="hibernate.format_sql">true</property>
+      <property name="format_sql">true</property>
       <!--jdbc.fetch_size是指Hibernate每次从数据库中取出并放到JDBC的Statement中的记录条数。Fetch Size设的越大，读数据库的次数越少，速度越快，Fetch Size越小，读数据库的次数越多，速度越慢-->
       <property name="jdbc.fetch_size">50 </property>
       <!--jdbc.batch_size是指Hibernate批量插入,删除和更新时每次操作的记录数。Batch Size越大，批量操作的向数据库发送Sql的次数越少，速度就越快，同样耗用内存就越大-->
@@ -31,7 +31,26 @@
       <!--connection.characterEncoding连接数据库时数据的传输字符集编码方式，最好设置为gbk，用gb2312有的字符不全-->
       <property name="connection.characterEncoding">gbk </property>
 
-      <mapping resource="bean/all.hbm.xml"/>
+      <mapping class="bean.Account"/>
+      <mapping class="bean.Analysis"/>
+      <mapping class="bean.CollectStock"/>
+      <mapping class="bean.CollectStrategy"/>
+      <mapping class="bean.MarketInfo"/>
+      <mapping class="bean.Stock"/>
+      <mapping class="bean.Strategy"/>
+      <mapping class="bean.Trade"/>
+      <mapping class="bean.TradeUser"/>
+      <mapping class="bean.User"/>
+      <mapping resource="bean/Account.hbm.xml"/>
+      <mapping resource="bean/Analysis.hbm.xml"/>
+      <mapping resource="bean/CollectStock.hbm.xml"/>
+      <mapping resource="bean/CollectStrategy.hbm.xml"/>
+      <mapping resource="bean/MarketInfo.hbm.xml"/>
+      <mapping resource="bean/Stock.hbm.xml"/>
+      <mapping resource="bean/Strategy.hbm.xml"/>
+      <mapping resource="bean/Trade.hbm.xml"/>
+      <mapping resource="bean/TradeUser.hbm.xml"/>
+      <mapping resource="bean/User.hbm.xml"/>
   </session-factory>
 
 </hibernate-configuration>

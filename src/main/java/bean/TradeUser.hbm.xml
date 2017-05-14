@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="bean.TradeUser" table="TradeUser" schema="quant_gee">
+        <composite-id mapped="true" class="bean.TradeUserPK">
+            <key-property name="userId" column="userID"/>
+            <key-property name="stockId" column="stockID"/>
+        </composite-id>
+        <property name="currentHoldingNum" column="currentHoldingNum"/>
+        <property name="currentYield" column="currentYield"/>
+    </class>
+</hibernate-mapping>

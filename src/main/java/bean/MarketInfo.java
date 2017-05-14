@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/13.
+ * Created by wangxue on 2017/5/14.
  */
 @Entity
 public class MarketInfo {
@@ -15,7 +15,7 @@ public class MarketInfo {
     private String stockMarket;
 
     @Id
-    @Column(name = "stockID", nullable = false, length = 6)
+    @Column(name = "stockID")
     public String getStockId() {
         return stockId;
     }
@@ -25,7 +25,7 @@ public class MarketInfo {
     }
 
     @Basic
-    @Column(name = "srockName", nullable = false, length = 10)
+    @Column(name = "srockName")
     public String getSrockName() {
         return srockName;
     }
@@ -35,7 +35,7 @@ public class MarketInfo {
     }
 
     @Basic
-    @Column(name = "stockMarket", nullable = true, length = 10)
+    @Column(name = "stockMarket")
     public String getStockMarket() {
         return stockMarket;
     }

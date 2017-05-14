@@ -6,14 +6,24 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/13.
+ * Created by wangxue on 2017/5/14.
  */
 @Entity
 public class Account {
+    private String accountId;
     private String password;
     private String registerDate;
-    private int identity;
-    private String accountId;
+    private String identity;
+
+    @Id
+    @Column(name = "accountId", nullable = false, length = 20)
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
 
     @Basic
     @Column(name = "password", nullable = false, length = 32)
@@ -36,23 +46,13 @@ public class Account {
     }
 
     @Basic
-    @Column(name = "identity", nullable = false)
-    public int getIdentity() {
+    @Column(name = "identity", nullable = false, length = 10)
+    public String getIdentity() {
         return identity;
     }
 
-    public void setIdentity(int identity) {
+    public void setIdentity(String identity) {
         this.identity = identity;
-    }
-
-    @Id
-    @Column(name = "accountId", nullable = false, length = 20)
-    public String getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
     }
 
     @Override
@@ -63,20 +63,20 @@ public class Account {
         Account account = (Account) o;
 
         if (identity != account.identity) return false;
+        if (accountId != null ? !accountId.equals(account.accountId) : account.accountId != null) return false;
         if (password != null ? !password.equals(account.password) : account.password != null) return false;
         if (registerDate != null ? !registerDate.equals(account.registerDate) : account.registerDate != null)
             return false;
-        if (accountId != null ? !accountId.equals(account.accountId) : account.accountId != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = password != null ? password.hashCode() : 0;
+        int result = accountId != null ? accountId.hashCode() : 0;
+        result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (registerDate != null ? registerDate.hashCode() : 0);
-        result = 31 * result + identity;
-        result = 31 * result + (accountId != null ? accountId.hashCode() : 0);
+        result = 31 * result + (identity != null ? identity.hashCode() : 0);
         return result;
     }
 }

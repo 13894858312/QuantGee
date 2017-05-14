@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/13.
+ * Created by wangxue on 2017/5/14.
  */
 @Entity
 public class Trade {
@@ -18,7 +18,7 @@ public class Trade {
     private int numOfStock;
 
     @Id
-    @Column(name = "tradeID", nullable = false)
+    @Column(name = "tradeID")
     public int getTradeId() {
         return tradeId;
     }
@@ -28,7 +28,7 @@ public class Trade {
     }
 
     @Basic
-    @Column(name = "userID", nullable = false, length = 20)
+    @Column(name = "userID")
     public String getUserId() {
         return userId;
     }
@@ -38,7 +38,7 @@ public class Trade {
     }
 
     @Basic
-    @Column(name = "time", nullable = false, length = 20)
+    @Column(name = "time")
     public String getTime() {
         return time;
     }
@@ -48,7 +48,7 @@ public class Trade {
     }
 
     @Basic
-    @Column(name = "stockID", nullable = false, length = 6)
+    @Column(name = "stockID")
     public String getStockId() {
         return stockId;
     }
@@ -58,7 +58,7 @@ public class Trade {
     }
 
     @Basic
-    @Column(name = "action", nullable = false)
+    @Column(name = "action")
     public int getAction() {
         return action;
     }
@@ -68,7 +68,7 @@ public class Trade {
     }
 
     @Basic
-    @Column(name = "numOfStock", nullable = false)
+    @Column(name = "numOfStock")
     public int getNumOfStock() {
         return numOfStock;
     }

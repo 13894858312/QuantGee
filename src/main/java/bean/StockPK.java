@@ -5,13 +5,13 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by wangxue on 2017/5/13.
+ * Created by wangxue on 2017/5/14.
  */
 public class StockPK implements Serializable {
     private String stockCode;
     private String date;
 
-    @Column(name = "stockCode", nullable = false, length = 6)
+    @Column(name = "stockCode")
     @Id
     public String getStockCode() {
         return stockCode;
@@ -21,7 +21,7 @@ public class StockPK implements Serializable {
         this.stockCode = stockCode;
     }
 
-    @Column(name = "date", nullable = false, length = 10)
+    @Column(name = "date")
     @Id
     public String getDate() {
         return date;

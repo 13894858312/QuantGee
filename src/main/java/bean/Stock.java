@@ -3,7 +3,7 @@ package bean;
 import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/5/13.
+ * Created by wangxue on 2017/5/14.
  */
 @Entity
 @IdClass(StockPK.class)
@@ -26,7 +26,7 @@ public class Stock {
     private Double turnover;
 
     @Id
-    @Column(name = "stockCode", nullable = false, length = 6)
+    @Column(name = "stockCode")
     public String getStockCode() {
         return stockCode;
     }
@@ -36,7 +36,7 @@ public class Stock {
     }
 
     @Id
-    @Column(name = "date", nullable = false, length = 10)
+    @Column(name = "date")
     public String getDate() {
         return date;
     }
@@ -46,7 +46,7 @@ public class Stock {
     }
 
     @Basic
-    @Column(name = "open", nullable = true, precision = 0)
+    @Column(name = "open")
     public Double getOpen() {
         return open;
     }
@@ -56,7 +56,7 @@ public class Stock {
     }
 
     @Basic
-    @Column(name = "high", nullable = true, precision = 0)
+    @Column(name = "high")
     public Double getHigh() {
         return high;
     }
@@ -66,7 +66,7 @@ public class Stock {
     }
 
     @Basic
-    @Column(name = "close", nullable = true, precision = 0)
+    @Column(name = "close")
     public Double getClose() {
         return close;
     }
@@ -76,7 +76,7 @@ public class Stock {
     }
 
     @Basic
-    @Column(name = "low", nullable = true, precision = 0)
+    @Column(name = "low")
     public Double getLow() {
         return low;
     }
@@ -86,7 +86,7 @@ public class Stock {
     }
 
     @Basic
-    @Column(name = "volume", nullable = true)
+    @Column(name = "volume")
     public Integer getVolume() {
         return volume;
     }
@@ -96,7 +96,7 @@ public class Stock {
     }
 
     @Basic
-    @Column(name = "price_change", nullable = true, precision = 0)
+    @Column(name = "price_change")
     public Double getPriceChange() {
         return priceChange;
     }
@@ -106,7 +106,7 @@ public class Stock {
     }
 
     @Basic
-    @Column(name = "p_change", nullable = true, precision = 0)
+    @Column(name = "p_change")
     public Double getpChange() {
         return pChange;
     }
@@ -116,7 +116,7 @@ public class Stock {
     }
 
     @Basic
-    @Column(name = "ma5", nullable = true, precision = 0)
+    @Column(name = "ma5")
     public Double getMa5() {
         return ma5;
     }
@@ -126,7 +126,7 @@ public class Stock {
     }
 
     @Basic
-    @Column(name = "ma10", nullable = true, precision = 0)
+    @Column(name = "ma10")
     public Double getMa10() {
         return ma10;
     }
@@ -136,7 +136,7 @@ public class Stock {
     }
 
     @Basic
-    @Column(name = "ma20", nullable = true, precision = 0)
+    @Column(name = "ma20")
     public Double getMa20() {
         return ma20;
     }
@@ -146,7 +146,7 @@ public class Stock {
     }
 
     @Basic
-    @Column(name = "v_ma5", nullable = true, precision = 0)
+    @Column(name = "v_ma5")
     public Double getvMa5() {
         return vMa5;
     }
@@ -156,7 +156,7 @@ public class Stock {
     }
 
     @Basic
-    @Column(name = "v_ma10", nullable = true, precision = 0)
+    @Column(name = "v_ma10")
     public Double getvMa10() {
         return vMa10;
     }
@@ -166,7 +166,7 @@ public class Stock {
     }
 
     @Basic
-    @Column(name = "v_ma20", nullable = true, precision = 0)
+    @Column(name = "v_ma20")
     public Double getvMa20() {
         return vMa20;
     }
@@ -176,7 +176,7 @@ public class Stock {
     }
 
     @Basic
-    @Column(name = "turnover", nullable = true, precision = 0)
+    @Column(name = "turnover")
     public Double getTurnover() {
         return turnover;
     }
