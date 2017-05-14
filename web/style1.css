@@ -5,8 +5,26 @@
     width: 1200px;
     margin: 0 auto;
 }
-.head {
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.head{
     margin: 22px 0;
+}
+.head h2 {
+    height: 21px;
+    line-height: 21px;
+    font-weight: 700;
+    border-left: 6px solid #528fcc;
+    padding-left: 10px;
+    font-size: 18px;
+    overflow: hidden;
+
 }
 .hcharts-list {
     float: left;
@@ -97,7 +115,6 @@ p {
     width: 115px;
     height: 350px;
     padding: 22px 25px;
-    margin-bottom: 20px;
 }
 .hcharts-list0-middle{
     float: left;
@@ -116,10 +133,6 @@ p {
     margin-top: 10px;
     margin-left: 20px;
     margin-bottom: 20px;
-}
-
-.middle{
-    margin-top: 20px;
 }
 .hcharts{
     margin-top: 30px;
@@ -142,7 +155,28 @@ p {
     height: 378px;
     background: #f8f8f8;
 }
-.clearfix {
-    zoom: 1;
+.graph-left{
+    float: left;
+    background: #f8f8f8;
+    width: 310px;
+    height: 200px;
+    padding: 22px 25px;
 }
+.graph-middle{
+    float: left;
+    background: #f8f8f8;
+    width: 310px;
+    height: 200px;
+    padding: 22px 25px;
+    margin-left: 29px;
+}
+.graph-right{
+    float: left;
+    background: #f8f8f8;
+    width: 310px;
+    height: 200px;
+    padding: 22px 25px;
+    margin-left: 29px;
+}
+
 
