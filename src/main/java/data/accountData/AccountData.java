@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import po.AccountPO;
+import po.UserAnalysisDataPO;
 
 /**
  * Created by wangxue on 2017/5/5.
@@ -16,7 +16,7 @@ import po.AccountPO;
 public class AccountData implements AccountDAO {
 
     @Override
-    public boolean addAccount(AccountPO accountPO) {
+    public boolean addAccount(Account account) {
         try{
             Configuration configuration = new Configuration();
             configuration.configure();
@@ -25,12 +25,6 @@ public class AccountData implements AccountDAO {
             SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
-
-            Account account = new Account();
-            account.setRegisterDate(accountPO.getRegisterDate());
-            account.setIdentity(accountPO.getIdentity());
-            account.setAccountId(accountPO.getAccountID());
-            account.setPassword(accountPO.getPassword());
 
             session.save(account);
 
@@ -46,7 +40,7 @@ public class AccountData implements AccountDAO {
     }
 
     @Override
-    public boolean updateAccount(AccountPO accountPO) {
+    public boolean updateAccount(Account account) {
         try{
             Configuration configuration = new Configuration();
             configuration.configure();
@@ -55,12 +49,6 @@ public class AccountData implements AccountDAO {
             SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
-
-            Account account = new Account();
-            account.setRegisterDate(accountPO.getRegisterDate());
-            account.setIdentity(accountPO.getIdentity());
-            account.setAccountId(accountPO.getAccountID());
-            account.setPassword(accountPO.getPassword());
 
             session.update(account);
 
@@ -73,6 +61,11 @@ public class AccountData implements AccountDAO {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public UserAnalysisDataPO getUserAnalysisData() {
+        return null;
     }
 
 }

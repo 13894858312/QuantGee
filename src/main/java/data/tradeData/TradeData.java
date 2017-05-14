@@ -1,7 +1,8 @@
 package data.tradeData;
 
 import DAO.tradeDAO.TradeDAO;
-import po.TradePO;
+import bean.Trade;
+import po.HoldingStocksPO;
 
 import java.util.ArrayList;
 
@@ -11,13 +12,28 @@ import java.util.ArrayList;
 public class TradeData implements TradeDAO{
 
     @Override
-    public boolean addTradeInfo(TradePO tradePO) {
+    public boolean addTradeInfo(Trade trade) {
         return false;
     }
 
     @Override
-    public ArrayList<TradePO> getUserTradeList(String userID) {
+    public ArrayList<Trade> getUserTradeList(String userID) {
         return null;
+    }
+
+    @Override
+    public HoldingStocksPO getHoldingStocks(String userID) {
+        return null;
+    }
+
+    @Override
+    public boolean addHoldingStock(String userID, String stockID, int num, int cost) {
+        return false;
+    }
+
+    @Override
+    public boolean sellHoldingStock(String userID, String stockID, int num, int cost) {
+        return false;
     }
 
 }

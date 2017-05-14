@@ -1,5 +1,8 @@
 package po;
 
+import bean.Trade;
+import bean.TradeUser;
+
 import java.util.ArrayList;
 
 /**
@@ -11,7 +14,7 @@ public class TradeUserPO {
     private String stockCode;
     private Integer currentHoldingNum;
     private Double currentYield;
-    private ArrayList<TradePO> tradePOs = new ArrayList<>();
+    private ArrayList<Trade> trades = new ArrayList<>();
 
     public TradeUserPO() {}
 
@@ -20,15 +23,23 @@ public class TradeUserPO {
      * @param stockCode 股票代码
      * @param currentHoldingNum 当前持有的股数
      * @param currentYield 当前收益率
-     * @param tradePOs 对于该股票所有的交易记录
+     * @param trades 对于该股票所有的交易记录
      */
     public TradeUserPO(String userID, String stockCode, int currentHoldingNum, String buyTime,
-                       double currentYield, ArrayList<TradePO> tradePOs) {
+                       double currentYield, ArrayList<Trade> trades) {
         this.userID = userID;
         this.stockCode = stockCode;
         this.currentHoldingNum = currentHoldingNum;
         this.currentYield = currentYield;
-        this.tradePOs = tradePOs;
+        this.trades = trades;
+    }
+
+    public TradeUserPO(TradeUser tradeUser, ArrayList<Trade> trades){
+        this.userID = tradeUser.getUserId();
+        this.stockCode = tradeUser.getStockId();
+        this.currentHoldingNum = tradeUser.getCurrentHoldingNum();
+        this.currentYield = tradeUser.getCurrentYield();
+        this.trades = trades;
     }
 
     public String getUserID() {
@@ -63,12 +74,12 @@ public class TradeUserPO {
         this.currentYield = currentYield;
     }
 
-    public ArrayList<TradePO> getTradeRecordVOS() {
-        return tradePOs;
+    public ArrayList<Trade> getTradeRecordVOS() {
+        return trades;
     }
 
-    public void setTradeRecordVOS(ArrayList<TradePO> tradeRecordVOS) {
-        this.tradePOs = tradeRecordVOS;
+    public void setTradeRecordVOS(ArrayList<Trade> tradeRecordVOS) {
+        this.trades = tradeRecordVOS;
     }
 
 }

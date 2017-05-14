@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="bean.UserMoney" table="UserMoney" schema="quant_gee">
+        <id name="userId" column="userID"/>
+        <property name="remainMoney" column="remainMoney"/>
+    </class>
+</hibernate-mapping>

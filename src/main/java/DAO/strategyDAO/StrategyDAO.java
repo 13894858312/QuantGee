@@ -1,6 +1,7 @@
 package DAO.strategyDAO;
 
-import po.StrategyPO;
+import bean.Strategy;
+
 import java.util.ArrayList;
 
 /**
@@ -13,7 +14,7 @@ public interface StrategyDAO {
      * @param strategy 要创建的策略
      * @return boolean 是否添加成功
      */
-    public boolean addStrategy(StrategyPO strategy);
+    public boolean addStrategy(Strategy strategy);
 
     /**
      * 删除策略
@@ -26,9 +27,9 @@ public interface StrategyDAO {
     /**
      * 得到用户创建的全部策略
      * @param userID 用户ID
-     * @return ArrayList<StrategyPO> 策略列表
+     * @return ArrayList<Strategy> 策略列表
      */
-    public ArrayList<StrategyPO> getUserStrategy(String userID);
+    public ArrayList<Strategy> getUserStrategy(String userID);
 
     /**
      * 添加收藏策略
@@ -51,14 +52,14 @@ public interface StrategyDAO {
      * @param userID 用户ID
      * @return ArrayList<StrategyPO> 策略列表
      */
-    public ArrayList<StrategyPO> getUserCollectedStrategy(String userID);
+    public ArrayList<Strategy> getUserCollectedStrategy(String userID);
 
     /**
      * 按策略编号得到策略信息
      * @param strategyID 策略编号
      * @return StrategyPO 策略信息
      */
-    public StrategyPO getStrategy(String strategyID);
+    public Strategy getStrategy(String strategyID);
 
     /**
      * 用户登录策略
@@ -72,6 +73,6 @@ public interface StrategyDAO {
      * 得到所有登录的策略
      * @return ArrayList<Strategy> 策略列表
      */
-    public ArrayList<StrategyPO> getAllPostStrategy();
+    public ArrayList<Strategy> getAllPostStrategy();
 
 }

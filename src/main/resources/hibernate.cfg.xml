@@ -51,6 +51,10 @@
       <mapping resource="bean/Trade.hbm.xml"/>
       <mapping resource="bean/TradeUser.hbm.xml"/>
       <mapping resource="bean/User.hbm.xml"/>
+      <mapping resource="bean/HoldingStocks.hbm.xml"/>
+      <mapping class="bean.HoldingStocks"/>
+      <mapping resource="bean/UserMoney.hbm.xml"/>
+      <mapping class="bean.UserMoney"/>
   </session-factory>
 
 </hibernate-configuration>

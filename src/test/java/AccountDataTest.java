@@ -1,7 +1,7 @@
 import DAO.accountDAO.AccountDAO;
+import bean.Account;
 import data.accountData.AccountData;
 import org.junit.Test;
-import po.AccountPO;
 
 /**
  * Created by wangxue on 2017/5/14.
@@ -10,14 +10,14 @@ public class AccountDataTest {
 
     @Test
     public void insertTest(){
-        AccountPO accountPO = new AccountPO("000000","password","2016-11-11","1");
+        Account account = new Account();
         AccountDAO accountDAO = new AccountData();
-        accountDAO.addAccount(accountPO);
+        accountDAO.addAccount(account);
     }
 
     @Test
     public void updateTest(){
-        AccountPO accountPO = new AccountPO("111111","password","2016-12-23","2");
+        Account accountPO = new Account();
         AccountDAO accountDAO = new AccountData();
         accountDAO.updateAccount(accountPO);
     }

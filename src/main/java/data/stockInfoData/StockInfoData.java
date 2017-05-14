@@ -1,7 +1,14 @@
 package data.stockInfoData;
 
 import DAO.stockInfoDAO.StockInfoDAO;
-import po.StockPO;
+import bean.MarketInfo;
+import bean.Stock;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
 import java.util.ArrayList;
 
@@ -11,12 +18,36 @@ import java.util.ArrayList;
 public class StockInfoData implements StockInfoDAO{
 
     @Override
-    public StockPO getStockInfo(String code) {
+    public ArrayList<Stock> getStockInfo(String code) {
+        try{
+            Configuration configuration = new Configuration();
+            configuration.configure();
+            configuration.addClass(MarketInfo.class);
+            configuration.addClass(Stock.class);
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+
+            transaction.commit();
+            session.close();
+            sessionFactory.close();
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
         return null;
     }
 
     @Override
-    public StockPO getStockInfo(String code, String startDate, String endDate, String kType) {
+    public ArrayList<Stock> getStockInfo(String code, String startDate, String endDate, String kType) {
+        return null;
+    }
+
+    @Override
+    public MarketInfo getMarketInfo(String stockCode){
         return null;
     }
 
@@ -36,7 +67,7 @@ public class StockInfoData implements StockInfoDAO{
     }
 
     @Override
-    public ArrayList<StockPO> getCollectedStocks(String userID) {
+    public ArrayList<Stock> getCollectedStocks(String userID) {
         return null;
     }
 

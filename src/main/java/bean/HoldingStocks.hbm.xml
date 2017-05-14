@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="bean.HoldingStocks" table="HoldingStocks" schema="quant_gee">
+        <composite-id mapped="true" class="bean.HoldingStocksPK">
+            <key-property name="stockCode" column="stockCode"/>
+            <key-property name="userId" column="userID"/>
+        </composite-id>
+        <property name="holdNum" column="holdNum"/>
+    </class>
+</hibernate-mapping>

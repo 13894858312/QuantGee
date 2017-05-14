@@ -1,7 +1,7 @@
 package data.strategyData;
 
 import DAO.strategyDAO.StrategyDAO;
-import po.StrategyPO;
+import bean.Strategy;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class StrategyData implements StrategyDAO {
 
     @Override
-    public boolean addStrategy(StrategyPO strategy) {
+    public boolean addStrategy(Strategy strategy) {
         return false;
     }
 
@@ -21,7 +21,7 @@ public class StrategyData implements StrategyDAO {
     }
 
     @Override
-    public ArrayList<StrategyPO> getUserStrategy(String userID) {
+    public ArrayList<Strategy> getUserStrategy(String userID) {
         return null;
     }
 
@@ -36,12 +36,12 @@ public class StrategyData implements StrategyDAO {
     }
 
     @Override
-    public ArrayList<StrategyPO> getUserCollectedStrategy(String userID) {
+    public ArrayList<Strategy> getUserCollectedStrategy(String userID) {
         return null;
     }
 
     @Override
-    public StrategyPO getStrategy(String strategyID) {
+    public Strategy getStrategy(String strategyID) {
         return null;
     }
 
@@ -51,7 +51,7 @@ public class StrategyData implements StrategyDAO {
     }
 
     @Override
-    public ArrayList<StrategyPO> getAllPostStrategy() {
+    public ArrayList<Strategy> getAllPostStrategy() {
         return null;
     }
 
