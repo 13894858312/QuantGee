@@ -1,7 +1,7 @@
 package data.userData;
 
 import DAO.userDAO.UserDAO;
-import po.UserPO;
+import bean.User;
 
 /**
  * Created by wangxue on 2017/5/5.
@@ -9,12 +9,12 @@ import po.UserPO;
 public class UserData implements UserDAO{
 
     @Override
-    public boolean updateUserInfo(UserPO userPO) {
+    public boolean updateUserInfo(User user) {
         return false;
     }
 
     @Override
-    public UserPO searchUser(String userID) {
+    public User searchUser(String userID) {
         return null;
     }
 

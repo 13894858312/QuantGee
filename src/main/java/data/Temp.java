@@ -27,8 +27,13 @@ public class Temp {
 
         String hql = "SELECT m.stockID FROM MarketInfo m";
             Query query = session.createQuery(hql);
+            List<String> list = query.list();
 
-        transaction.commit();
+            for(String l:list){
+                System.out.print(l+",");
+            }
+
+            transaction.commit();
         session.close();
         sessionFactory.close();
 
