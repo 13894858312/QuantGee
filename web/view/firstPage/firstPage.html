@@ -3,8 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>FirstPage</title>
+    <style type="text/css">
+        @import url("../../css/firstPage.css");
+    </style>
+    <script>
+        function s1(x) {
+            x.style.backgroundColor = "#cfcfcf";
+            x.style.borderTop = "5px solid #000000";
+        }
+        function s2(x) {
+            x.style.backgroundColor = "transparent";
+            x.style.borderTop = "5px solid transparent";
+        }
+    </script>
 </head>
-<body background="../../image/背景.jpg" style=" background-repeat:no-repeat ;background-size:100% 100%; background-attachment: fixed;">
+<body background="../../image/首页.jpg" style="background-repeat:no-repeat ;
+    background-size: 100% 100%;
+    background-attachment: fixed;">
+    <div class="box">
+        <div class="item1" onmouseover="s1(this)" onmouseout="s2(this)">
+            <a href="">大盘行情</a>
+        </div>
+        <div class="text-left">
+            <span class="left">My</span>
+        </div>
+        <div class="text-right">
+            <span class="right">QuantGee</span>
+        </div>
 
+
+    </div>
 </body>
 </html>
