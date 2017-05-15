@@ -26,7 +26,7 @@ public class HoldingStocksPO {
 
     public HoldingStocksPO(ArrayList<HoldingStocks> holdingStockses , UserMoney userMoney){
         this.userID = userMoney.getUserId();
-        this.remainMoney = userMoney.getRemainMoney();
+        //this.remainMoney = userMoney.getRemainMoney();
         stockAndNum = new HashMap<String, Integer>();
         if(holdingStockses!=null && holdingStockses.size()>0){
              for(HoldingStocks holdingStocks : holdingStockses) {
