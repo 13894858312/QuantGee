@@ -1,25 +1,16 @@
 package bean;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by wangxue on 2017/5/14.
+ * Created by wangxue on 2017/5/15.
  */
 public class StockPK implements Serializable {
-    private String stockCode;
     private String date;
-
-    @Column(name = "stockCode")
-    @Id
-    public String getStockCode() {
-        return stockCode;
-    }
-
-    public void setStockCode(String stockCode) {
-        this.stockCode = stockCode;
-    }
+    private String stockId;
 
     @Column(name = "date")
     @Id
@@ -31,6 +22,17 @@ public class StockPK implements Serializable {
         this.date = date;
     }
 
+    @Column(name = "stockID")
+    @Basic
+    @Id
+    public String getStockId() {
+        return stockId;
+    }
+
+    public void setStockId(String stockId) {
+        this.stockId = stockId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -38,16 +40,16 @@ public class StockPK implements Serializable {
 
         StockPK stockPK = (StockPK) o;
 
-        if (stockCode != null ? !stockCode.equals(stockPK.stockCode) : stockPK.stockCode != null) return false;
         if (date != null ? !date.equals(stockPK.date) : stockPK.date != null) return false;
+        if (stockId != null ? !stockId.equals(stockPK.stockId) : stockPK.stockId != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = stockCode != null ? stockCode.hashCode() : 0;
-        result = 31 * result + (date != null ? date.hashCode() : 0);
+        int result = date != null ? date.hashCode() : 0;
+        result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
         return result;
     }
 }

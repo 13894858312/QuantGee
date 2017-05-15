@@ -1,4 +1,4 @@
-package tushare2Java;
+package tushare2java;
 
 /**
  * Created by wangxue on 2017/5/15.

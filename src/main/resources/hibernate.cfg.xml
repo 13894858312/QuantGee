@@ -9,11 +9,9 @@
       <!-- 数据库驱动 -->
       <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
       <!-- 指定连接数据库的url，hibernate连接的数据库名 -->
-      <property name="connection.url">jdbc:mysql://localhost:3306/quant_gee</property>
+      <property name="connection.url">jdbc:mysql://localhost:3306/quantgee_data</property>
       <!-- 指定连接数据库的用户名 -->
-      <property name="connection.username">root</property>
       <!-- 指定连接数据库的密码 -->
-      <property name="connection.password">19961112</property>
       <!-- 根据需要自动创建数据库 -->
       <property name="hbm2ddl.auto">update</property>
       <!-- 显示Hibernate持久化操作所生成的SQL语句 -->
@@ -32,29 +30,32 @@
       <property name="connection.characterEncoding">gbk </property>
 
       <mapping class="bean.Account"/>
-      <mapping class="bean.Analysis"/>
-      <mapping class="bean.CollectStock"/>
-      <mapping class="bean.CollectStrategy"/>
-      <mapping class="bean.MarketInfo"/>
-      <mapping class="bean.Stock"/>
-      <mapping class="bean.Strategy"/>
-      <mapping class="bean.Trade"/>
-      <mapping class="bean.TradeUser"/>
-      <mapping class="bean.User"/>
       <mapping resource="bean/Account.hbm.xml"/>
+      <mapping class="bean.Analysis"/>
       <mapping resource="bean/Analysis.hbm.xml"/>
+      <mapping class="bean.CollectStock"/>
       <mapping resource="bean/CollectStock.hbm.xml"/>
+      <mapping class="bean.CollectStrategy"/>
       <mapping resource="bean/CollectStrategy.hbm.xml"/>
+      <mapping resource="bean/HoldingStock.hbm.xml"/>
+      <mapping class="bean.HoldingStock"/>
+      <mapping class="bean.MarketInfo"/>
       <mapping resource="bean/MarketInfo.hbm.xml"/>
-      <mapping resource="bean/Stock.hbm.xml"/>
+      <mapping class="bean.News"/>
+      <mapping resource="bean/News.hbm.xml"/>
+      <mapping class="bean.Strategy"/>
       <mapping resource="bean/Strategy.hbm.xml"/>
+      <mapping class="bean.Trade"/>
       <mapping resource="bean/Trade.hbm.xml"/>
+      <mapping class="bean.TradeUser"/>
       <mapping resource="bean/TradeUser.hbm.xml"/>
+      <mapping class="bean.User"/>
       <mapping resource="bean/User.hbm.xml"/>
-      <mapping resource="bean/HoldingStocks.hbm.xml"/>
-      <mapping class="bean.HoldingStocks"/>
-      <mapping resource="bean/UserMoney.hbm.xml"/>
       <mapping class="bean.UserMoney"/>
+      <mapping resource="bean/UserMoney.hbm.xml"/>
+      <mapping class="bean.Stock"/>
+      <mapping resource="bean/Stock.hbm.xml"/>
+
   </session-factory>
 
 </hibernate-configuration>

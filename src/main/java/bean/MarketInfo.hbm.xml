@@ -4,9 +4,9 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="bean.MarketInfo" table="MarketInfo" schema="quant_gee">
-        <id name="stockId" column="stockID"/>
-        <property name="srockName" column="srockName"/>
-        <property name="stockMarket" column="stockMarket"/>
+    <class name="bean.MarketInfo" table="MarketInfo" schema="quantgee_data">
+        <id name="stockID" column="code"/>
+        <property name="stockName" column="name"/>
+        <property name="market" column="c_name"/>
     </class>
 </hibernate-mapping>

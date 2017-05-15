@@ -3,18 +3,17 @@ package bean;
 import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/5/14.
+ * Created by wangxue on 2017/5/15.
  */
 @Entity
 @IdClass(StockPK.class)
 public class Stock {
-    private String stockCode;
+    private Double volume;
     private String date;
     private Double open;
     private Double high;
     private Double close;
     private Double low;
-    private Integer volume;
     private Double priceChange;
     private Double pChange;
     private Double ma5;
@@ -23,16 +22,16 @@ public class Stock {
     private Double vMa5;
     private Double vMa10;
     private Double vMa20;
-    private Double turnover;
+    private String stockId;
 
-    @Id
-    @Column(name = "stockCode")
-    public String getStockCode() {
-        return stockCode;
+    @Basic
+    @Column(name = "volume")
+    public Double getVolume() {
+        return volume;
     }
 
-    public void setStockCode(String stockCode) {
-        this.stockCode = stockCode;
+    public void setVolume(Double volume) {
+        this.volume = volume;
     }
 
     @Id
@@ -83,16 +82,6 @@ public class Stock {
 
     public void setLow(Double low) {
         this.low = low;
-    }
-
-    @Basic
-    @Column(name = "volume")
-    public Integer getVolume() {
-        return volume;
-    }
-
-    public void setVolume(Integer volume) {
-        this.volume = volume;
     }
 
     @Basic
@@ -175,14 +164,15 @@ public class Stock {
         this.vMa20 = vMa20;
     }
 
+    @Id
     @Basic
-    @Column(name = "turnover")
-    public Double getTurnover() {
-        return turnover;
+    @Column(name = "stockID")
+    public String getStockId() {
+        return stockId;
     }
 
-    public void setTurnover(Double turnover) {
-        this.turnover = turnover;
+    public void setStockId(String stockId) {
+        this.stockId = stockId;
     }
 
     @Override
@@ -192,13 +182,12 @@ public class Stock {
 
         Stock stock = (Stock) o;
 
-        if (stockCode != null ? !stockCode.equals(stock.stockCode) : stock.stockCode != null) return false;
+        if (volume != null ? !volume.equals(stock.volume) : stock.volume != null) return false;
         if (date != null ? !date.equals(stock.date) : stock.date != null) return false;
         if (open != null ? !open.equals(stock.open) : stock.open != null) return false;
         if (high != null ? !high.equals(stock.high) : stock.high != null) return false;
         if (close != null ? !close.equals(stock.close) : stock.close != null) return false;
         if (low != null ? !low.equals(stock.low) : stock.low != null) return false;
-        if (volume != null ? !volume.equals(stock.volume) : stock.volume != null) return false;
         if (priceChange != null ? !priceChange.equals(stock.priceChange) : stock.priceChange != null) return false;
         if (pChange != null ? !pChange.equals(stock.pChange) : stock.pChange != null) return false;
         if (ma5 != null ? !ma5.equals(stock.ma5) : stock.ma5 != null) return false;
@@ -207,20 +196,19 @@ public class Stock {
         if (vMa5 != null ? !vMa5.equals(stock.vMa5) : stock.vMa5 != null) return false;
         if (vMa10 != null ? !vMa10.equals(stock.vMa10) : stock.vMa10 != null) return false;
         if (vMa20 != null ? !vMa20.equals(stock.vMa20) : stock.vMa20 != null) return false;
-        if (turnover != null ? !turnover.equals(stock.turnover) : stock.turnover != null) return false;
+        if (stockId != null ? !stockId.equals(stock.stockId) : stock.stockId != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = stockCode != null ? stockCode.hashCode() : 0;
+        int result = volume != null ? volume.hashCode() : 0;
         result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (open != null ? open.hashCode() : 0);
         result = 31 * result + (high != null ? high.hashCode() : 0);
         result = 31 * result + (close != null ? close.hashCode() : 0);
         result = 31 * result + (low != null ? low.hashCode() : 0);
-        result = 31 * result + (volume != null ? volume.hashCode() : 0);
         result = 31 * result + (priceChange != null ? priceChange.hashCode() : 0);
         result = 31 * result + (pChange != null ? pChange.hashCode() : 0);
         result = 31 * result + (ma5 != null ? ma5.hashCode() : 0);
@@ -229,7 +217,7 @@ public class Stock {
         result = 31 * result + (vMa5 != null ? vMa5.hashCode() : 0);
         result = 31 * result + (vMa10 != null ? vMa10.hashCode() : 0);
         result = 31 * result + (vMa20 != null ? vMa20.hashCode() : 0);
-        result = 31 * result + (turnover != null ? turnover.hashCode() : 0);
+        result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
         return result;
     }
 }

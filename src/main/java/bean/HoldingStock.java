@@ -3,24 +3,14 @@ package bean;
 import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/5/14.
+ * Created by wangxue on 2017/5/15.
  */
 @Entity
-@IdClass(HoldingStocksPK.class)
-public class HoldingStocks {
-    private String stockCode;
+@IdClass(HoldingStockPK.class)
+public class HoldingStock {
     private String userId;
+    private String stockId;
     private int holdNum;
-
-    @Id
-    @Column(name = "stockCode")
-    public String getStockCode() {
-        return stockCode;
-    }
-
-    public void setStockCode(String stockCode) {
-        this.stockCode = stockCode;
-    }
 
     @Id
     @Column(name = "userID")
@@ -30,6 +20,16 @@ public class HoldingStocks {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    @Id
+    @Column(name = "stockID")
+    public String getStockId() {
+        return stockId;
+    }
+
+    public void setStockId(String stockId) {
+        this.stockId = stockId;
     }
 
     @Basic
@@ -47,19 +47,19 @@ public class HoldingStocks {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        HoldingStocks that = (HoldingStocks) o;
+        HoldingStock that = (HoldingStock) o;
 
         if (holdNum != that.holdNum) return false;
-        if (stockCode != null ? !stockCode.equals(that.stockCode) : that.stockCode != null) return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
+        if (stockId != null ? !stockId.equals(that.stockId) : that.stockId != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = stockCode != null ? stockCode.hashCode() : 0;
-        result = 31 * result + (userId != null ? userId.hashCode() : 0);
+        int result = userId != null ? userId.hashCode() : 0;
+        result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
         result = 31 * result + holdNum;
         return result;
     }

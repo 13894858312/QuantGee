@@ -3,7 +3,7 @@ package bean;
 import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/5/14.
+ * Created by wangxue on 2017/5/15.
  */
 @Entity
 @IdClass(TradeUserPK.class)
@@ -39,8 +39,8 @@ public class TradeUser {
         return currentHoldingNum;
     }
 
-    public void setCurrentHoldingNum(int currentHoldingNum) {
-        this.currentHoldingNum = currentHoldingNum;
+    public void setCurrentHoldingNum(int currentHoldingName) {
+        this.currentHoldingNum = currentHoldingName;
     }
 
     @Basic

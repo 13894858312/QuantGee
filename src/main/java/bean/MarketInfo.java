@@ -6,42 +6,50 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/14.
+ * Created by wangxue on 2017/5/15.
  */
 @Entity
 public class MarketInfo {
-    private String stockId;
-    private String srockName;
-    private String stockMarket;
+    private String stockID;
+    private String stockName;
+    private String market;
+
+    public String getMarket() {
+        return market;
+    }
+
+    public void setMarket(String market) {
+        this.market = market;
+    }
 
     @Id
-    @Column(name = "stockID")
-    public String getStockId() {
-        return stockId;
+    @Column(name = "code")
+    public String getStockID() {
+        return stockID;
     }
 
-    public void setStockId(String stockId) {
-        this.stockId = stockId;
-    }
-
-    @Basic
-    @Column(name = "srockName")
-    public String getSrockName() {
-        return srockName;
-    }
-
-    public void setSrockName(String srockName) {
-        this.srockName = srockName;
+    public void setStockID(String code) {
+        this.stockID = code;
     }
 
     @Basic
-    @Column(name = "stockMarket")
-    public String getStockMarket() {
-        return stockMarket;
+    @Column(name = "name")
+    public String getStockName() {
+        return stockName;
     }
 
-    public void setStockMarket(String stockMarket) {
-        this.stockMarket = stockMarket;
+    public void setStockName(String name) {
+        this.stockName = name;
+    }
+
+    @Basic
+    @Column(name = "c_name")
+    public String getcMarket() {
+        return market;
+    }
+
+    public void setcMarket(String cName) {
+        this.market = cName;
     }
 
     @Override
@@ -51,18 +59,18 @@ public class MarketInfo {
 
         MarketInfo that = (MarketInfo) o;
 
-        if (stockId != null ? !stockId.equals(that.stockId) : that.stockId != null) return false;
-        if (srockName != null ? !srockName.equals(that.srockName) : that.srockName != null) return false;
-        if (stockMarket != null ? !stockMarket.equals(that.stockMarket) : that.stockMarket != null) return false;
+        if (stockID != null ? !stockID.equals(that.stockID) : that.stockID != null) return false;
+        if (stockName != null ? !stockName.equals(that.stockName) : that.stockName != null) return false;
+        if (market != null ? !market.equals(that.market) : that.market != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = stockId != null ? stockId.hashCode() : 0;
-        result = 31 * result + (srockName != null ? srockName.hashCode() : 0);
-        result = 31 * result + (stockMarket != null ? stockMarket.hashCode() : 0);
+        int result = stockID != null ? stockID.hashCode() : 0;
+        result = 31 * result + (stockName != null ? stockName.hashCode() : 0);
+        result = 31 * result + (market != null ? market.hashCode() : 0);
         return result;
     }
 }

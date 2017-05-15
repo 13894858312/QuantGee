@@ -4,7 +4,7 @@
 //import dataDao.StockDataDao;
 //import logicService.DataCalculationService;
 //import po.StockPO;
-//import temp.tools.DateHelper;
+//import logic.tools.DateHelper;
 //import vo.MarketInfoVO;
 //import vo.StockDailyInfoVO;
 //import vo.StockVO;
@@ -71,11 +71,11 @@
 //            temp[i] = stockDailyInfoVOs.get(i).logarithmYield;
 //        }
 //
-//        logarithmYieldVariance = temp.tools.MathHelper.sampleVariance(temp);
+//        logarithmYieldVariance = logic.tools.MathHelper.sampleVariance(temp);
 //
 //        double rate = 0;
 //        rate = (stockPOs.get(stockPOs.size() - 1).getADJ() - stockPOs.get(0).getADJ()) / stockPOs.get(0).getADJ();
-//        rate = temp.tools.MathHelper.formatData(rate, 2);
+//        rate = logic.tools.MathHelper.formatData(rate, 2);
 //
 //
 //        StockVO stockVO = new StockVO(stockPOs.get(0).getStockCode(), stockPOs.get(0).getStockName(),

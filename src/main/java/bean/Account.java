@@ -6,27 +6,27 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/14.
+ * Created by wangxue on 2017/5/15.
  */
 @Entity
 public class Account {
-    private String accountId;
+    private String userId;
     private String password;
     private String registerDate;
-    private String identity;
+    private int isLogIn;
 
     @Id
-    @Column(name = "accountId", nullable = false, length = 20)
-    public String getAccountId() {
-        return accountId;
+    @Column(name = "userID")
+    public String getUserId() {
+        return userId;
     }
 
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     @Basic
-    @Column(name = "password", nullable = false, length = 32)
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -36,23 +36,13 @@ public class Account {
     }
 
     @Basic
-    @Column(name = "registerDate", nullable = false, length = 10)
+    @Column(name = "registerDate")
     public String getRegisterDate() {
         return registerDate;
     }
 
     public void setRegisterDate(String registerDate) {
         this.registerDate = registerDate;
-    }
-
-    @Basic
-    @Column(name = "identity", nullable = false, length = 10)
-    public String getIdentity() {
-        return identity;
-    }
-
-    public void setIdentity(String identity) {
-        this.identity = identity;
     }
 
     @Override
@@ -62,8 +52,7 @@ public class Account {
 
         Account account = (Account) o;
 
-        if (identity != account.identity) return false;
-        if (accountId != null ? !accountId.equals(account.accountId) : account.accountId != null) return false;
+        if (userId != null ? !userId.equals(account.userId) : account.userId != null) return false;
         if (password != null ? !password.equals(account.password) : account.password != null) return false;
         if (registerDate != null ? !registerDate.equals(account.registerDate) : account.registerDate != null)
             return false;
@@ -73,10 +62,19 @@ public class Account {
 
     @Override
     public int hashCode() {
-        int result = accountId != null ? accountId.hashCode() : 0;
+        int result = userId != null ? userId.hashCode() : 0;
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (registerDate != null ? registerDate.hashCode() : 0);
-        result = 31 * result + (identity != null ? identity.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "isLogIn")
+    public int getIsLogIn() {
+        return isLogIn;
+    }
+
+    public void setIsLogIn(int isLogIn) {
+        this.isLogIn = isLogIn;
     }
 }
