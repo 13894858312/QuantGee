@@ -77,7 +77,7 @@
     <div class="body">
       <div class="middle clearfix">
         <div class="hcharts-list0">
-
+            <iframe src="candlestick-sh.html" scrolling="yes"></iframe>
         </div>
         <div class="hcharts-list0-middle">
 
