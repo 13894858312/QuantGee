@@ -1,6 +1,8 @@
 package logic.stock;
 
 import DAO.stockInfoDAO.StockInfoDAO;
+import bean.MarketInfo;
+import bean.Stock;
 import service.stock.StockInfoService;
 import vo.stock.StockCurrentVO;
 import vo.stock.StockHistoricalVO;
@@ -18,7 +20,37 @@ public class StockInfoServiceImp implements StockInfoService{
 
     @Override
     public ArrayList<StockCurrentVO> getAllRealTimeStocks() {
-       return null;
+        ArrayList<String> codes = stockInfoDAO.getAllStockCodes();
+        MarketInfo marketInfo = null;
+        Stock stock = null;
+
+        if(codes == null || codes.size() == 0) {
+            return null;
+        }
+
+        ArrayList<StockCurrentVO> stockCurrentVOS = new ArrayList<>();
+        for(String code : codes) {
+            marketInfo = stockInfoDAO.getMarketInfo(code);
+            stock = stockInfoDAO.getStockRealTimeInfo(code);
+
+            StockCurrentVO stockCurrentVO = new StockCurrentVO();
+            stockCurrentVO.setStockCode(marketInfo.getStockID());
+            stockCurrentVO.setStockName(marketInfo.getStockName());
+            stockCurrentVO.setStockMarket(marketInfo.getcMarket());
+            stockCurrentVO.setOpen(stock.getOpen());
+            stockCurrentVO.setClose(stock.getClose());
+            stockCurrentVO.setLow(stock.getLow());
+            stockCurrentVO.setHigh(stock.getHigh());
+            stockCurrentVO.setVolume(stock.getVolume());
+            stockCurrentVO.setP_change(stock.getpChange());
+            stockCurrentVO.setPrice_change(stock.getPriceChange());
+//            stockCurrentVO.setTurnover(stock.getTurnOver());
+            //缺少换手率数据
+
+            stockCurrentVOS.add(stockCurrentVO);
+        }
+
+       return stockCurrentVOS;
     }
 
     @Override

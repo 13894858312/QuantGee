@@ -11,6 +11,13 @@ import java.util.ArrayList;
 public interface StockInfoDAO {
 
     /**
+     * 获取某一只股票的实时信息
+     * @param code 股票代码
+     * @return 股票信息
+     */
+    public Stock getStockRealTimeInfo(String code);
+
+    /**
      * 按股票代码获得股票信息
      * @param code 股票代码
      * @return  股票信息
