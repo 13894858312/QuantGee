@@ -45,8 +45,16 @@ public class AccountServiceImp implements AccountService{
 
     @Override
     public boolean modifyPassword(AccountVO accountVO) {
-        Account account = TransferHelper.transToAccount(accountVO);
-        return accountDAO.updateAccount(account);
+        if(accountVO != null) {
+            Account account = accountDAO.getAccount(accountVO.getAccountID());
+
+            account.setPassword(accountVO.getPassword());
+            if(accountDAO.updateAccount(account)) {        //更新密码
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
