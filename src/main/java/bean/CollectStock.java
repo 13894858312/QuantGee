@@ -1,14 +1,15 @@
 package bean;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 
 /**
- * Created by wangxue on 2017/5/14.
+ * Created by wangxue on 2017/5/15.
  */
 @Entity
+@IdClass(CollectStockPK.class)
 public class CollectStock {
     private String userId;
     private String stockId;
@@ -23,7 +24,7 @@ public class CollectStock {
         this.userId = userId;
     }
 
-    @Basic
+    @Id
     @Column(name = "stockID")
     public String getStockId() {
         return stockId;

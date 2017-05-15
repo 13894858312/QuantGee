@@ -4,10 +4,10 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="bean.HoldingStocks" table="HoldingStocks" schema="quant_gee">
-        <composite-id mapped="true" class="bean.HoldingStocksPK">
-            <key-property name="stockCode" column="stockCode"/>
+    <class name="bean.HoldingStock" table="HoldingStock" schema="quantgee_data">
+        <composite-id mapped="true" class="bean.HoldingStockPK">
             <key-property name="userId" column="userID"/>
+            <key-property name="stockId" column="stockID"/>
         </composite-id>
         <property name="holdNum" column="holdNum"/>
     </class>

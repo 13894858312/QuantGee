@@ -4,10 +4,10 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="bean.Trade" table="Trade" schema="quant_gee">
-        <id name="tradeId" column="tradeID"/>
+    <class name="bean.Trade" table="Trade" schema="quantgee_data">
+        <id name="trageId" column="trageID"/>
         <property name="userId" column="userID"/>
-        <property name="time" column="time"/>
+        <property name="ime" column="ime"/>
         <property name="stockId" column="stockID"/>
         <property name="action" column="action"/>
         <property name="numOfStock" column="numOfStock"/>

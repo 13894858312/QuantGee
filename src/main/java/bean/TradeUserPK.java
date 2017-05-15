@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by wangxue on 2017/5/14.
+ * Created by wangxue on 2017/5/15.
  */
 public class TradeUserPK implements Serializable {
     private String userId;

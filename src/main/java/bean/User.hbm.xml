@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="bean.User" table="User" schema="quant_gee">
+    <class name="bean.User" table="User" schema="quantgee_data">
         <id name="userId" column="userID"/>
         <property name="alterName" column="alterName"/>
         <property name="phoneNumber" column="phoneNumber"/>

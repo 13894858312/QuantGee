@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="bean.TradeUser" table="TradeUser" schema="quant_gee">
+    <class name="bean.TradeUser" table="TradeUser" schema="quantgee_data">
         <composite-id mapped="true" class="bean.TradeUserPK">
             <key-property name="userId" column="userID"/>
             <key-property name="stockId" column="stockID"/>

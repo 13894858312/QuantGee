@@ -1,6 +1,6 @@
 package po;
 
-import bean.HoldingStocks;
+import bean.HoldingStock;
 import bean.UserMoney;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class HoldingStocksPO {
 
     private String userID;
     private Map<String , Integer> stockAndNum;
-    private int remainMoney;
+    private double remainMoney;
 
     public HoldingStocksPO(){}
 
@@ -24,13 +24,13 @@ public class HoldingStocksPO {
         this.remainMoney = remainMoney;
     }
 
-    public HoldingStocksPO(ArrayList<HoldingStocks> holdingStockses , UserMoney userMoney){
+    public HoldingStocksPO(ArrayList<HoldingStock> holdingStocks , UserMoney userMoney){
         this.userID = userMoney.getUserId();
         this.remainMoney = userMoney.getRemainMoney();
         stockAndNum = new HashMap<String, Integer>();
-        if(holdingStockses!=null && holdingStockses.size()>0){
-             for(HoldingStocks holdingStocks : holdingStockses) {
-                 stockAndNum.put(holdingStocks.getStockCode(), holdingStocks.getHoldNum());
+        if(holdingStocks!=null && holdingStocks.size()>0){
+             for(HoldingStock holdingStock : holdingStocks) {
+                 stockAndNum.put(holdingStock.getStockId(), holdingStock.getHoldNum());
              }
         }
     }

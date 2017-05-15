@@ -6,12 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/14.
+ * Created by wangxue on 2017/5/15.
  */
 @Entity
 public class UserMoney {
     private String userId;
-    private Double remainMoney;
+    private double remainMoney;
 
     @Id
     @Column(name = "userID")
@@ -25,11 +25,11 @@ public class UserMoney {
 
     @Basic
     @Column(name = "remainMoney")
-    public Double getRemainMoney() {
+    public double getRemainMoney() {
         return remainMoney;
     }
 
-    public void setRemainMoney(Double remainMoney) {
+    public void setRemainMoney(double remainMoney) {
         this.remainMoney = remainMoney;
     }
 
@@ -40,7 +40,7 @@ public class UserMoney {
 
         UserMoney userMoney = (UserMoney) o;
 
-        if (remainMoney != userMoney.remainMoney) return false;
+        if (Double.compare(userMoney.remainMoney, remainMoney) != 0) return false;
         if (userId != null ? !userId.equals(userMoney.userId) : userMoney.userId != null) return false;
 
         return true;
@@ -48,8 +48,11 @@ public class UserMoney {
 
     @Override
     public int hashCode() {
-        int result = userId != null ? userId.hashCode() : 0;
-        result = 31 * result + (remainMoney != null ? remainMoney.hashCode() : 0);
+        int result;
+        long temp;
+        result = userId != null ? userId.hashCode() : 0;
+        temp = Double.doubleToLongBits(remainMoney);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 }

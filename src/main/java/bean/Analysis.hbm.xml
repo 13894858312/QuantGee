@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="bean.Analysis" table="Analysis" schema="quant_gee">
+    <class name="bean.Analysis" table="Analysis" schema="quantgee_data">
         <id name="date" column="date"/>
         <property name="num" column="num"/>
     </class>

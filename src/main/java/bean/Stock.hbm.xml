@@ -4,16 +4,13 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="bean.Stock" table="Stock" schema="quant_gee">
-        <composite-id mapped="true" class="bean.StockPK">
-            <key-property name="stockCode" column="stockCode"/>
-            <key-property name="date" column="date"/>
-        </composite-id>
+    <class name="bean.Stock" table="Stock" schema="quantgee_data">
+        <id name="date" column="date"/>
+        <property name="volume" column="volume"/>
         <property name="open" column="open"/>
         <property name="high" column="high"/>
         <property name="close" column="close"/>
         <property name="low" column="low"/>
-        <property name="volume" column="volume"/>
         <property name="priceChange" column="price_change"/>
         <property name="pChange" column="p_change"/>
         <property name="ma5" column="ma5"/>
@@ -22,6 +19,6 @@
         <property name="vMa5" column="v_ma5"/>
         <property name="vMa10" column="v_ma10"/>
         <property name="vMa20" column="v_ma20"/>
-        <property name="turnover" column="turnover"/>
+        <property name="stockId" column="stockID"/>
     </class>
 </hibernate-mapping>

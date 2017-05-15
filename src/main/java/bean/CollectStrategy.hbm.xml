@@ -4,8 +4,10 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="bean.CollectStrategy" table="CollectStrategy" schema="quant_gee">
-        <id name="userId" column="userID"/>
-        <property name="strategyId" column="strategyID"/>
+    <class name="bean.CollectStrategy" table="CollectStrategy" schema="quantgee_data">
+        <composite-id mapped="true" class="bean.CollectStrategyPK">
+            <key-property name="userId" column="userID"/>
+            <key-property name="strategyId" column="strategyID"/>
+        </composite-id>
     </class>
 </hibernate-mapping>
