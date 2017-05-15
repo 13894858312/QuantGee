@@ -23,6 +23,13 @@ public interface AccountDAO {
     public boolean updateAccount(Account account);
 
     /**
+     * 获取用户账号信息
+     * @param userID 用户id
+     * @return  Account
+     */
+    public Account getAccount(String userID);
+
+    /**
      * 获取网站数据分析的结果
      * @return 返回到截止日期为止的用户数量
      */
