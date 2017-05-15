@@ -113,25 +113,25 @@ p {
     float: left;
     background: #f8f8f8;
     width: 115px;
-    height: 350px;
+    height: 450px;
     padding: 22px 25px;
 }
 .hcharts-list0-middle{
     float: left;
     background: #f8f8f8;
     width: 900px;
-    height: 200px;
+    height: 450px;
     padding: 22px 25px;
     margin-left: 20px;
 }
 .hcharts-list0-middle1{
     float: left;
+    clear: both;
     background: #f8f8f8;
-    width: 900px;
-    height: 96px;
+    width: 1070px;
+    height: 150px;
     padding: 22px 25px;
     margin-top: 10px;
-    margin-left: 20px;
     margin-bottom: 20px;
 }
 .hcharts{
