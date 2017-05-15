@@ -32,74 +32,18 @@
 
         <div class="nav">
 
-            <a href="http://q.10jqka.com.cn/"  data-type="hssc" class="arr-trigger">大盘行情</a>
-            <a href="http://q.10jqka.com.cn/hk/" >个股信息</a>
-            <a href="http://q.10jqka.com.cn/usa/" >板块资讯</a>
-            <a href="http://q.10jqka.com.cn/global/" >策略大全</a>
-            <a href="http://q.10jqka.com.cn/gn/" data-type="bk" class="arr-trigger ">模拟交易</a>
-            <a href="http://q.10jqka.com.cn/xsb/" target="_blank" >个人中心</a>
+            <a data-type="hssc" class="arr-trigger">大盘行情</a>
+            <a>个股信息</a>
+            <a>板块资讯</a>
+            <a>策略大全</a>
+            <a data-type="bk" class="arr-trigger ">模拟交易</a>
+            <a target="_blank" >个人中心</a>
 
-        </div>
-
-        <div class="sub-nav" data-type="sjzx" style="display: none;">
-
-            <div class="triangle"></div>
-
-            <ul class="channel clearfix">
-
-                <li class="cur"><a href="http://data.10jqka.com.cn/market/longhu/" target="_blank">龙虎榜</a></li>
-
-                <li><a href="http://data.10jqka.com.cn/market/dzjy/" target="_blank">大宗交易</a></li>
-
-                <li><a href="http://data.10jqka.com.cn/ipo/xgsgyzq/" target="_blank">新股申购</a></li>
-
-                <li><a href="http://data.10jqka.com.cn/market/xsjj/" target="_blank">限售解禁</a></li>
-
-                <li><a href="http://data.10jqka.com.cn/financial/yjyg/" target="_blank">财务分析</a></li>
-
-                <li><a href="http://data.10jqka.com.cn/hgt/hgtb/" target="_blank">沪港通</a></li>
-
-                <li><a href="http://data.10jqka.com.cn/funds/ggzjl/" target="_blank">资金流向</a></li>
-
-                <li><a href="http://data.10jqka.com.cn/tradetips/mrtbts/" target="_blank">交易提示</a></li>
-
-                <li><a href="http://data.10jqka.com.cn/rank/cxg/" target="_blank">技术选股</a></li>
-
-                <li><a href="http://data.10jqka.com.cn/market/ggsd/" target="_blank">公告速递</a></li>
-
-                <li><a href="http://data.10jqka.com.cn/market/rzrq/" target="_blank">融资融券</a></li>
-
-                <li><a href="http://data.10jqka.com.cn/gzqh/" target="_blank">股指期货</a></li>
-
-            </ul>
-
-        </div>
-
-        <div class="sub-nav" data-type="bk" style="display: none;">
-
-            <div class="triangle"></div>
-
-            <ul class="channel clearfix">
-                <li ><a href="http://q.10jqka.com.cn/gn/" target="_blank">概念板块</a></li>
-                <li ><a href="http://q.10jqka.com.cn/dy/" target="_blank">地域板块</a></li>
-                <li ><a href="http://q.10jqka.com.cn/thshy/" target="_blank">同花顺行业</a></li>
-                <li ><a href="http://q.10jqka.com.cn/zjhhy/" target="_blank">证监会行业</a></li>
-
-            </ul>
-        </div>
-
-        <div class="sub-nav" data-type="hssc" style="display: none;">
-            <div class="triangle"></div>
-            <ul class="channel clearfix">
-                <li class="cur"><a href="http://q.10jqka.com.cn/" target="_blank">沪深市场</a></li>
-                <li ><a href="http://q.10jqka.com.cn/zs/" target="_blank">沪深指数</a></li>
-                <li ><a href="http://q.10jqka.com.cn/index/fxjs/" target="_blank">风险警示</a></li>
-            </ul>
         </div>
 
         <div class="login-box">
 
-            <a href="http://upass.10jqka.com.cn/login?redir=HTTP_REFERER" target="_blank">登录</a>
+            <a target="_blank">登录</a>
 
         </div>
 
@@ -121,20 +65,20 @@
         <div class="head">
             <h2>大盘行情</h2>
         </div>
+
         <div class="body">
-            <div class="hcharts-list0">
-                <span>
-                    这里有一张K线均线图和成交量分布直方图
-                </span>
+            <div class="middle clearfix">
+                <div class="hcharts-list0">
+                    //提示展示K线均线和成交量直方图
+                </div>
+                <div class="hcharts-list0-middle">
+                    //K线图
+                </div>
+                <div class="hcharts-list0-middle1">
+                    //成交量直方图
+                </div>
+
             </div>
-            <div class="hcharts-list0-middle">
-                <span>111111111111</span>
-            </div>
-            <div class="hcharts-list0-right">
-                <span>2222222222222222222222</span>
-            </div>
-        </div>
-        <div class="body">
             <div class="hcharts clearfix">
                 <div class="hcharts-left tab-hv-box">
                     <div class="hcharts-list">
@@ -162,13 +106,61 @@
                                     </p>
                                 </div>
                             </div>
+                            <div class="hcharts-cont">
+                                //中间对应的数据图
+                            </div>
+                            <div class="hcharts-right">
+                                //简略的大盘分析和评级
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
+    <div class="box">
+        <div class="head"><h2>指数趋势</h2></div>
+        <div class="body">
+            <div class="graph-left">
+                //上证指数面积图
+            </div>
+            <div class="graph-middle">
+                //深证指数面积图
+            </div>
+            <div class="graph-right">
+                //创业板指数面积图
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="head1">
+            <h2>个股行情</h2>
+        </div>
+        <div class="body">
+            <div class="bar">
+                //个股信息菜单栏
+            </div>
+            <div class="table">
+                //个股信息表格
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="head1">
+            <h2>新闻动态</h2>
+        </div>
+        <div class="body">
+            <div class="left-news">
+                //左侧新闻栏
+            </div>
+            <div class="right-news">
+                //右侧新闻栏
+            </div>
+        </div>
+    </div>
+
+
 </div>
 </body>
 </html>
