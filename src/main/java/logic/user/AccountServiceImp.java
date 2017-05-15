@@ -33,7 +33,7 @@ public class AccountServiceImp implements AccountService{
             Account account = accountDAO.getAccount(accountVO.getAccountID());
 
             if(accountVO.getPassword().equals(account.getPassword())) {
-                account.setIsLogin(0);
+                account.setIsLogIn(1);
                 if(accountDAO.updateAccount(account)) {        //更新登陆状态
                     return true;
                 }
@@ -53,7 +53,12 @@ public class AccountServiceImp implements AccountService{
     public boolean logout(AccountVO accountVO) {
         if(accountVO != null) {
             Account account = accountDAO.getAccount(accountVO.getAccountID());
-            account.setIsLogin(0);
+
+            account.setIsLogIn(0);
+            if(accountDAO.updateAccount(account)) {        //更新登出状态
+                return true;
+            }
         }
+        return false;
     }
 }
