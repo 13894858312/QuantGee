@@ -74,7 +74,7 @@ public interface StockInfoDAO {
      * @param code 股票代码
      * @return boolean 是否取消成功
      */
-    public boolean removeCollectedStock(String userID , String code);
+    public boolean removeCollectedStock(String userID, String code);
 
     /**
      * 得到所有股票ID

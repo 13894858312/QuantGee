@@ -13,7 +13,6 @@ public class UserPO {
 	public UserPO(){}
 
     /**
-     *
      * @param accountID 账号
      * @param userName 用户昵称
      * @param phoneNumber 电话号码

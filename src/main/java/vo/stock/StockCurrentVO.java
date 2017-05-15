@@ -15,7 +15,7 @@ public class StockCurrentVO {
     private double close;
     private double low;
     private double high;
-    private int volume;
+    private double volume;
     private double price_change;
     private double p_change;
 
@@ -118,11 +118,11 @@ public class StockCurrentVO {
         this.high = high;
     }
 
-    public int getVolume() {
+    public double getVolume() {
         return volume;
     }
 
-    public void setVolume(int volume) {
+    public void setVolume(double volume) {
         this.volume = volume;
     }
 
