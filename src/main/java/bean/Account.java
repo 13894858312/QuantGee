@@ -13,7 +13,7 @@ public class Account {
     private String userId;
     private String password;
     private String registerDate;
-    private String identity;
+    private int isLogIn;
 
     @Id
     @Column(name = "userID")
@@ -45,16 +45,6 @@ public class Account {
         this.registerDate = registerDate;
     }
 
-    @Basic
-    @Column(name = "identity")
-    public String getIdentity() {
-        return identity;
-    }
-
-    public void setIdentity(String identity) {
-        this.identity = identity;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -66,7 +56,6 @@ public class Account {
         if (password != null ? !password.equals(account.password) : account.password != null) return false;
         if (registerDate != null ? !registerDate.equals(account.registerDate) : account.registerDate != null)
             return false;
-        if (identity != null ? !identity.equals(account.identity) : account.identity != null) return false;
 
         return true;
     }
@@ -76,7 +65,16 @@ public class Account {
         int result = userId != null ? userId.hashCode() : 0;
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (registerDate != null ? registerDate.hashCode() : 0);
-        result = 31 * result + (identity != null ? identity.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "isLogIn")
+    public int getIsLogIn() {
+        return isLogIn;
+    }
+
+    public void setIsLogIn(int isLogIn) {
+        this.isLogIn = isLogIn;
     }
 }

@@ -8,6 +8,6 @@
         <id name="userId" column="userID"/>
         <property name="password" column="password"/>
         <property name="registerDate" column="registerDate"/>
-        <property name="identity" column="identity"/>
+        <property name="isLogIn" column="isLogIn"/>
     </class>
 </hibernate-mapping>
