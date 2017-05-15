@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Jump</title>
-    <script src="graph.js"></script>
+    <script src="js/graph.js"></script>
 </head>
 <body>
     jump success
