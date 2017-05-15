@@ -1,14 +1,12 @@
 package bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by wangxue on 2017/5/15.
  */
 @Entity
+@IdClass(StockPK.class)
 public class Stock {
     private Double volume;
     private String date;
@@ -166,6 +164,7 @@ public class Stock {
         this.vMa20 = vMa20;
     }
 
+    @Id
     @Basic
     @Column(name = "stockID")
     public String getStockId() {
