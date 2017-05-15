@@ -36,7 +36,7 @@ public class Account {
     }
 
     @Basic
-    @Column(name = "registerDate")
+    @Column(name = "registerDate", updatable=false)
     public String getRegisterDate() {
         return registerDate;
     }
