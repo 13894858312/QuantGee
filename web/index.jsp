@@ -23,8 +23,8 @@
       }
   </script>
   <style type="text/css">
-    @import "style.css";
-    @import "style1.css";
+    @import "css/style.css";
+    @import "css/style1.css";
   </style>
 </head>
 <body>

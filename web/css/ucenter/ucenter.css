@@ -1,0 +1,1984 @@
+@charset "utf-8";
+body,
+p,
+h1,
+h2,
+ul,
+dl,
+dt,
+dd {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "Microsoft Yahei", "Hiragino Sans GB", STXihei, SimSun, Tahoma, Arial, sans-serif;
+	color: #444;
+	font-size: 12px;
+}
+
+a {
+	text-decoration: none;
+	color: #408cd7;
+	outline: 0;
+}
+
+ul li {
+	list-style: none;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+img {
+	border: 0;
+}
+
+.hide {
+	display: none;
+}
+
+i {
+	font-style: normal;
+}
+
+.header {
+	background-color: #333;
+	color: #fff;
+	height: 50px;
+}
+
+.header .p_center {
+	display: block;
+	line-height: 50px;
+	height: 48px;
+	font-size: 22px;
+	width: 300px;
+}
+
+.header .p_center .logo {
+	background: url("http://s.thsi.cn/css/article/images/logo2.png") no-repeat 13px -70px;
+	display: inline-block;
+	width: 134px;
+	height: 48px;
+	float: left;
+}
+
+.header a {
+	color: #fff;
+	display: inline-block;
+	text-decoration: none;
+	height: 100%;
+	line-height: 47px;
+	padding: 0 13px;
+	font-size: 14px;
+	*padding-right: 10px;
+}
+
+.header .sns_username {
+	max-width: 90px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 0 5px;
+	float: left;
+}
+
+.header .person {
+	float: left;
+	font-size: 18px;
+	*padding-left: 8px;
+}
+
+.header a:hover {
+	background: #222;
+}
+
+.info_panel {
+	height: 190px;
+	overflow: hidden;
+}
+
+.hd_right {
+	width: 255px;
+}
+
+.sns_username {
+	*float: left;
+}
+
+.header .art-collect {
+	*float: left;
+}
+
+.boundary {
+	*float: left;
+	*margin-top: 15px;
+}
+
+.info_panel .infos {
+	float: right;
+	color: #fff;
+	font-size: 24px;
+	margin-top: 45px;
+}
+
+.info_panel .infos p {
+	line-height: 57px;
+	letter-spacing: 1px;
+	margin-top: 0px;
+	*clear: both;
+	*float: right;
+	*width: 700px;
+	text-align: right;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.control {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+i.darr,
+i.uarr,
+.left_bar .inner li,
+.left_bar .outer li,
+.stockIcon i,
+.famouse .fchange {
+	background-image: url("http://i.thsi.cn/images/ucenter/website/icon2.png");
+	background-repeat: no-repeat;
+}
+
+.day {
+	background: url("http://i.thsi.cn/images/ucenter/website/back.png") no-repeat center;
+}
+
+.person_pic {
+	display: block;
+	color: #fff;
+	height: 140px;
+	text-indent: 20px;
+	margin-top: 25px;
+	line-height: 140px;
+	font-size: 36px;
+	font-weight: bold;
+	float: left;
+}
+
+.person_pic i {
+	display: block;
+	float: left;
+	width: 107px;
+	height: 107px;
+	border-radius: 54px;
+	margin-top: 10px;
+}
+
+.person_pic img {
+	display: block;
+	float: left;
+	width: 107px;
+	height: 107px;
+	border-radius: 54px;
+}
+
+.sible {
+	text-align: right;
+	overflow: hidden;
+	*width: 430px;
+	*float: right;
+}
+
+.sible label {
+	display: inline-block;
+	width: 137px;
+	text-align: center;
+	float: right;
+	overflow: hidden;
+}
+
+.sible label span {
+	display: block;
+	float: none;
+}
+
+.sible>span {
+	margin-left: 10px;
+	line-height: 57px;
+	*float: left;
+}
+
+.sible .c {
+	font-size: 40px;
+	font-weight: bold;
+	display: inline-block;
+	height: 60px;
+}
+
+ul.inner li a {
+	color: #444;
+	/* display: block;*/
+}
+
+.left_bar {
+	width: 210px;
+	float: left;
+}
+
+.left_bar hr {
+	border: 0;
+	height: 1px;
+	background-color: #e5e5e5;
+}
+
+.left_bar li {
+	line-height: 50px;
+	text-indent: 50px;
+	font-size: 18px;
+}
+
+.left_bar li:hover {
+	/*cursor: pointer;*/
+	color: #408cd7;
+}
+
+.left_bar li:hover a {
+	color: #408cd7;
+}
+
+.left_bar li.active {
+	color: #408cd7;
+}
+
+.left_bar li.active a {
+	color: #408cd7;
+}
+
+.left_bar .person_sel {
+	background-position: 6px -245px;
+}
+
+.left_bar .person_sel:hover,
+.left_bar .person_sel.active {
+	background-position: -237px -232px;
+}
+
+.left_bar .pconcern {
+	background-position: 5px -292px;
+}
+
+.left_bar .pconcern:hover,
+.left_bar .pconcern.active {
+	background-position: -239px -282px;
+}
+
+.left_bar .receive {
+	background-position: 5px -337px;
+}
+
+.left_bar .receive:hover,
+.left_bar .receive.active {
+	background-position: -239px -325px;
+}
+
+.left_bar .discuss {
+	background-position: 6px -376px;
+}
+
+.left_bar .discuss:hover,
+.left_bar .discuss.active {
+	background-position: -240px -376px;
+}
+
+.left_bar .tool {
+	outline: 0;
+	background-position: 5px -433px;
+}
+
+.left_bar .tool:hover,
+.left_bar .tool.active {
+	background-position: -240px -433px;
+}
+
+.left_bar .hqcenter {
+	background-position: 6px -482px;
+}
+
+.left_bar .hqcenter a {
+	color: #444;
+	/*display: block;*/
+}
+
+.left_bar .hqcenter:hover,
+.left_bar .hqcenter.active {
+	background-position: -240px -482px;
+}
+
+.left_bar .clcenter {
+	background-position: 6px -537px;
+}
+
+.left_bar .clcenter a {
+	color: #444;
+	/* display: block;*/
+}
+
+.left_bar .clcenter:hover,
+.left_bar .clcenter.active {
+	background-position: -239px -537px;
+}
+
+.left_bar .map {
+	background-position: 6px -608px;
+}
+
+.left_bar .map a {
+	color: #444;
+	/*display: block;*/
+}
+
+.left_bar .map:hover,
+.left_bar .map.active {
+	background-position: -239px -608px;
+}
+
+.lay_out {
+	margin-top: 20px;
+	overflow: hidden;
+}
+
+.right_content {
+	width: 960px;
+}
+
+.framebox {
+	margin-top: 20px;
+	overflow: hidden;
+	_width: 210px;
+}
+
+.framebox .wrap {
+	border-bottom: 2px solid #e5e5e5;
+	height: 34px;
+}
+
+.framebox h2 {
+	border-bottom: 2px solid #408cd7;
+	font-size: 16px;
+	color: #444;
+	line-height: 34px;
+	float: left;
+	font-weight: normal;
+	padding: 0 8px;
+}
+
+.framebox h2 a {
+	color: #444;
+	font-size: 16px;
+}
+
+i.darr,
+i.uarr {
+	display: block;
+	width: 20px;
+	height: 20px;
+}
+
+i.darr {
+	background-position: -264px -12px;
+}
+
+i.uarr {
+	background-position: -267px -62px;
+}
+
+.hot_stock table {
+	font-size: 14px;
+}
+
+.hot_stock thead th {
+	line-height: 35px;
+	color: #888;
+	text-align: left;
+}
+
+.hot_stock tbody a {
+	color: #444;
+}
+
+.hot_stock tbody td {
+	color: #444;
+	line-height: 30px;
+}
+
+.hqgreen {
+	color: #6ca584;
+}
+
+.hqred {
+	color: #d75442;
+}
+
+.equal {
+	color: #444;
+}
+
+.margin_none {
+	margin: 0;
+}
+
+.clearfix:after {
+	display: block;
+	content: "";
+	visibility: hidden;
+	clear: both;
+}
+
+.clearfix {
+	zoom: 1;
+}
+
+.bottom {
+	width: 100%;
+	background-color: #353535;
+}
+
+.bottom .erweima {
+	overflow: hidden;
+	color: #ccc;
+	padding: 15px;
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.bottom .item {
+	float: left;
+	width: 300px;
+}
+
+.bottom .item img {
+	float: left;
+}
+
+.bottom .item span {
+	display: block;
+	margin-left: 138px;
+	line-height: 31px;
+}
+
+.bottom .item .scan {
+	background: url("http://i.thsi.cn/images/home/v3/scan.png") no-repeat;
+	padding-left: 37px;
+	margin-top: 30px;
+}
+
+#footer {
+	clear: both;
+	overflow: hidden;
+	padding-top: 20px;
+	text-align: center;
+	width: 1200px;
+	margin: 0 auto;
+}
+
+#footer p {
+	margin: 0;
+	color: #777;
+}
+
+#footer a {
+	line-height: 24px;
+	color: #ccc;
+	text-decoration: none;
+}
+
+#footer span {
+	color: #999;
+	padding: 0 15px;
+}
+
+#footer .c333 {
+	line-height: 35px;
+}
+
+#footer .c333 a {
+	color: #777;
+}
+
+.bottom-link {
+	width: 100%;
+	background-color: #212121;
+}
+
+.loginedbox {
+	float: right;
+}
+
+.receivelist {
+	margin-bottom: 20px;
+}
+
+.receivelist ul {
+	margin-top: 15px;
+}
+
+.receivelist li {
+	line-height: normal;
+	text-indent: 0;
+	margin-bottom: 10px;
+}
+
+.receivelist i {
+	display: block;
+	float: left;
+	width: 20px;
+	height: 14px;
+	text-align: center;
+	line-height: 14px;
+	color: #fff;
+	background: #408cd7;
+	border-radius: 2px;
+	font-size: 12px;
+	margin-top: 3px;
+}
+
+.receivelist a {
+	display: block;
+	margin-left: 26px;
+	color: #444;
+	font-size: 14px;
+	*float: left;
+}
+
+.receivelist a:hover {
+	text-decoration: underline;
+}
+
+.rec_info li {
+	width: 312px;
+	border: 2px solid #c7daec;
+	height: 330px;
+	overflow: hidden;
+	position: relative;
+	float: left;
+	margin-right: 6px;
+	margin-bottom: 6px;
+}
+
+.rec_info li.n_info {
+	border: 0;
+	font-size: 16px;
+	height: 28px;
+	margin: 0;
+	text-align: center;
+	display: block;
+	float: none;
+	width: 100%;
+	background: #f8f8f8;
+	line-height: 28px;
+}
+
+.rec_info li.margin_none {
+	margin-right: 0;
+}
+
+.rec_info .txt {
+	padding: 0 10px;
+	width: 294px;
+}
+
+.rec_info .txt,
+.rec_info .shadow {
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 55px;
+	color: #fff;
+	font-size: 16px;
+}
+
+.rec_info .shadow {
+	background: #000;
+	opacity: 0.3;
+	filter: alpha(opacity=30);
+	width: 100%;
+}
+
+.rec_info .pic {
+	position: relative;
+	overflow: hidden;
+}
+
+.rec_info .pic img {
+	width: 312px;
+	height: 165px;
+	float: left;
+}
+
+.rec_info .txt_panel {
+	padding: 10px 10px 0 10px;
+}
+
+.rec_info .txt_panel a {
+	color: #666;
+	font-size: 14px;
+	display: block;
+	height: 88px;
+	overflow: hidden;
+}
+
+.rec_info .txt_panel span {
+	font-size: 12px;
+	color: #888;
+	float: right;
+	*margin-top: 0;
+}
+
+.rec_info .fix_btm {
+	position: absolute;
+	width: 100%;
+	bottom: 10px;
+	*left: 0;
+	*overflow: hidden;
+}
+
+.rec_info .rec_btn {
+	display: block;
+	width: 80px;
+	height: 28px;
+	text-align: center;
+	line-height: 28px;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	color: #666;
+	font-size: 12px;
+	float: left;
+	margin-left: 10px;
+	cursor: pointer;
+	*margin-top: 25px;
+}
+
+.rec_info .share_div {
+	overflow: hidden;
+	margin-left: 40px;
+	float: left;
+	*margin-top: 25px;
+}
+
+.rec_info .share_icon {
+	background: url("http://s.thsi.cn/css/comment/v3/images/share_icon.jpg") no-repeat;
+	text-indent: -1000px;
+	display: inline-block;
+	width: 26px;
+	margin-right: 8px;
+	height: 24px;
+}
+
+.rec_info .share_sina {
+	background-position: 0 -50px;
+}
+
+.rec_info .share_qqzone {
+	background-position: 0 -75px;
+}
+
+.rec_info span {
+	display: block;
+	float: right;
+	color: #666;
+	line-height: 28px;
+	margin-right: 10px;
+}
+
+.fix_btm span {
+	*margin-top: 25px;
+}
+
+.load_more_rec {
+	border: 1px solid #ddd;
+	background: #f8f8f8;
+	height: 48px;
+	line-height: 48px;
+	display: block;
+	text-align: center;
+	font-size: 16px;
+	margin: 20px 0;
+}
+
+.toolSlide {
+	width: 223px;
+	position: absolute;
+}
+
+.toolSlide ul {
+	border-top: 1px solid #e5e5e5;
+	border-left: 1px solid #e5e5e5;
+}
+
+.toolSlide ul li {
+	border-bottom: 1px solid #e5e5e5;
+	overflow: hidden;
+	*vertical-align: bottom;
+	*line-height: 35px;
+}
+
+.toolSlide ul li:hover a {
+	color: #444;
+}
+
+.toolSlide a {
+	display: block;
+	background-image: url("http://i.thsi.cn/images/home/v3/tool.png");
+	background-repeat: no-repeat;
+	line-height: 35px;
+	height: 35px;
+	color: #444;
+	border-right: 1px solid #e5e5e5;
+	text-indent: 35px;
+	float: left;
+	width: 110px;
+	font-size: 12px;
+	font-family: 'Simsun';
+	background-color: #fff;
+}
+
+.toolSlide a:hover {
+	background-color: #f5f5f5;
+}
+
+.toolSlide a.zaopan {
+	background-position: 3px -164px;
+}
+
+.toolSlide a.zaopan:hover {
+	background-position: 3px -137px;
+}
+
+.toolSlide a.ggsd {
+	background-position: 4px -193px;
+}
+
+.toolSlide a.ggsd:hover {
+	background-position: 3px -109px;
+}
+
+.toolSlide a.jhqb {
+	background-position: 4px -253px;
+}
+
+.toolSlide a.jhqb:hover {
+	background-position: 3px -56px;
+}
+
+.toolSlide a.bidu {
+	background-position: 4px -284px;
+}
+
+.toolSlide a.bidu:hover {
+	background-position: 3px -29px;
+}
+
+.toolSlide a.yaowen {
+	background-position: 4px -343px;
+}
+
+.toolSlide a.yaowen:hover {
+	background-position: 5px -788px;
+}
+
+.toolSlide a.fupan {
+	background-position: 4px -402px;
+}
+
+.toolSlide a.fupan:hover {
+	background-position: 5px -756px;
+}
+
+.toolSlide a.tzrl {
+	background-position: 5px -494px;
+}
+
+.toolSlide a.tzrl:hover {
+	background-position: 5px -494px;
+}
+
+.toolSlide a.pingtai {
+	background-position: 5px -521px;
+}
+
+.toolSlide a.pingtai:hover {
+	background-position: 4px -640px;
+}
+
+.toolSlide a.niucha {
+	background-position: 5px -222px;
+}
+
+.toolSlide a.niucha:hover {
+	background-position: 4px -82px;
+}
+
+.toolSlide a.baokan {
+	background-position: 4px -431px;
+}
+
+.toolSlide a.baokan:hover {
+	background-position: 4px -726px;
+}
+
+.toolSlide a.lhbang {
+	background-position: 6px -313px;
+}
+
+.toolSlide a.lhbang:hover {
+	background-position: 3px 0px;
+}
+
+.toolSlide a.zijin {
+	background-position: 4px -551px;
+}
+
+.toolSlide a.zijin:hover {
+	background-position: 4px -610px;
+}
+
+.famouse li {
+	text-indent: 0;
+	border-bottom: 1px solid #e5e5e5;
+	padding: 20px 0 12px 0;
+	overflow: hidden;
+}
+
+.famouse li:hover a {
+	color: #444;
+}
+
+.famouse .fchange {
+	float: right;
+	background-position: 0px -55px;
+	color: #666;
+	font-size: 12px;
+	line-height: 36px;
+	text-indent: 22px;
+}
+
+.famouse .toux {
+	float: left;
+	margin-top: 12px;
+}
+
+.famouse .toux img {
+	width: 66px;
+	height: 66px;
+	border-radius: 33px;
+	float: left;
+}
+
+.famouse .popu {
+	margin-left: 80px;
+	display: block;
+	font-size: 12px;
+	color: #408cd7;
+	line-height: normal;
+}
+
+.famouse .text {
+	display: block;
+	margin-left: 80px;
+	font-size: 12px;
+	color: #444;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 22px;
+}
+
+.famouse a.text:hover {
+	text-decoration: underline;
+}
+
+.famouse .infos {
+	margin-left: 80px;
+	overflow: hidden;
+}
+
+.famouse .infos .fname {
+	display: block;
+	text-indent: 0;
+	line-height: 32px;
+	color: #444;
+	font-size: 16px;
+	float: left;
+	max-width: 70px;
+	height: 32px;
+}
+
+.famouse .infos .fname:hover {
+	text-decoration: underline;
+}
+
+.famouse .infos .concern {
+	float: right;
+	background: #408cd7;
+	color: #fff;
+	width: 56px;
+	display: block;
+	text-align: center;
+	line-height: 18px;
+	font-size: 12px;
+	text-indent: 0;
+	border-radius: 2px;
+	margin-top: 7px;
+}
+
+.flash_panel {
+	position: relative;
+	*z-index: 10;
+}
+
+.flash_panel i.search {
+	display: block;
+	width: 35px;
+	height: 34px;
+	background-position: -16px -884px;
+	position: absolute;
+	right: 1px;
+	bottom: 3px;
+	z-index: 99;
+	background-color: #fff;
+}
+
+.flash_panel .item {
+	width: 215px;
+	float: left;
+	border-bottom-width: 3px;
+	border-bottom-style: solid;
+	margin-right: 27px;
+	padding: 10px 6px 5px 6px;
+}
+
+.flash_panel .item.hqgreen {
+	border-bottom-color: #6ca584;
+}
+
+.flash_panel .item.hqred {
+	border-bottom-color: #d75442;
+}
+
+.flash_panel .item.equal {
+	border-bottom-color: #444;
+}
+
+.flash_panel .item .zsname {
+	font-size: 18px;
+	display: block;
+}
+
+.flash_panel .item label {
+	display: block;
+	float: right;
+	margin-top: 9px;
+	*max-width: 62px;
+	_width: 62px;
+}
+
+.flash_panel .item label span {
+	display: block;
+	font-size: 14px;
+	margin-top: -3px;
+	*float: left;
+}
+
+.flash_panel .freshval {
+	font-size: 36px;
+	font-weight: bold;
+	font-family: 'Arial';
+	line-height: 54px;
+	*float: left;
+}
+
+.flash_panel .chuangye {
+	margin-right: 24px;
+}
+
+.data_panel {
+	margin-top: 20px;
+	border: 1px solid #e4f2ff;
+	/* overflow: hidden;*/
+	position: relative;
+	_width: 960px;
+	*overflow: hidden;
+}
+
+.data_panel .equal {
+	font-weight: bold;
+}
+
+.data_panel .expand {
+	clear: both;
+	height: 42px;
+}
+
+.data_panel .expand a {
+	display: block;
+	line-height: 42px;
+	float: right;
+	margin-right: 20px;
+	text-indent: 20px;
+	background-position: -252px -916px;
+	font-size: 14px;
+}
+
+.data_panel .expand a.close {
+	background-position: -19px -918px;
+}
+
+.data_panel i:hover {
+	cursor: pointer;
+}
+
+.data_panel .table_sort i:hover {
+	cursor: inherit;
+}
+
+.data_panel th {
+	color: #408cd7;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.data_panel th span {
+	padding: 4px;
+	/*background: #e4f2ff;*/
+	cursor: pointer;
+}
+
+.data_panel th span.type {
+	background: #fff;
+	padding: 0;
+}
+
+
+/*.data_panel th.table_sort:hover {
+  cursor: pointer;
+}*/
+
+.data_panel td,
+.data_panel th {
+	border-bottom: 1px solid #e4f2ff;
+	line-height: 48px;
+	background-color: #fff;
+	font-size: 14px;
+	text-align: center;
+	_height: 48px;
+}
+
+.data_panel .odd td {
+	background-color: #f7fbff;
+}
+
+.data_panel .selected td {
+	background: #CADAE9;
+}
+
+.data_panel .graph {
+	text-align: left;
+	padding-left: 20px;
+}
+
+table.colums {
+	/*position: absolute;*/
+	/*left: 0;*/
+	width: 482px;
+	float: left;
+}
+
+table.colums th {
+	text-align: right;
+}
+
+table.colums td {
+	/*width:49px;*/
+	text-align: right;
+}
+
+#stockdata td {
+	white-space: nowrap;
+	text-align: center;
+}
+
+#stockdata thead td {
+	color: #408cd7;
+}
+
+.stockboard,
+i.fresh,
+i.rmv,
+.arr_r i,
+.flash_panel .search,
+.expand a,
+.arr_l i {
+	background-image: url("http://i.thsi.cn/images/ucenter/website/icon2.png");
+	background-repeat: no-repeat;
+}
+
+.stocklist {
+	margin-top: 20px;
+}
+
+.stocklist .head {
+	font-size: 16px;
+	border-bottom: 1px solid #ddd;
+}
+
+.stocklist .head ul {
+	border-top: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	height: 38px;
+	float: left;
+}
+
+.stocklist .head ul li {
+	float: left;
+	background: #f8f8f8;
+	border-right: 1px solid #ddd;
+}
+
+.stocklist .head ul li.active {
+	background: #fff;
+}
+
+.stocklist .head ul li.active a {
+	line-height: 39px;
+}
+
+.stocklist .head a {
+	padding: 0 15px;
+	color: #444;
+	display: block;
+	line-height: 38px;
+}
+
+.stocklist .stockboard {
+	width: 107px;
+	text-indent: 30px;
+	background-position: -134px -55px;
+}
+
+.stocklist .stockIcon {
+	float: left;
+}
+
+.stocklist .stockIcon i {
+	display: block;
+	width: 74px;
+	height: 74px;
+	border-radius: 36px;
+	background-position: 0px -684px;
+	margin-top: 5px;
+	color: #fff;
+	line-height: 74px;
+	text-align: center;
+}
+
+.stocklist .lists li {
+	padding: 10px 0;
+}
+
+.stocklist .lists .detail {
+	margin-left: 96px;
+	font-size: 16px;
+	color: #333;
+}
+
+.stocklist .lists .detail .oneline {
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.stocklist .lists .detail div a:hover {
+	text-decoration: underline;
+}
+
+.stocklist .lists .lname {
+	/*display: block;*/
+	font-size: 16px;
+	line-height: 33px;
+}
+
+.stocklist .lists .lname:hover {
+	text-decoration: underline;
+}
+
+.stocklist .lists .ltitle {
+	color: #444;
+	font-weight: bold;
+	display: block;
+}
+
+.stocklist .lists .ltitle a:hover {
+	text-decoration: underline;
+}
+
+.stocklist .lists p {
+	font-size: 14px;
+}
+
+.stocklist .lists .detail .btm_op a:hover {
+	text-decoration: none;
+}
+
+.stocklist .lists .btm_op {
+	color: #888;
+	font-size: 12px;
+	border-bottom: 1px solid #e7e7e7;
+	padding-bottom: 10px;
+	margin-top: 10px;
+}
+
+.stocklist .lists .btm_op span {
+	*float: left;
+}
+
+.stocklist .lists .btm_op .time {
+	margin-right: 10px;
+}
+
+.stocklist .lists .btm_op .ops {
+	float: right;
+}
+
+.stocklist .lists .btm_op .ops a {
+	color: #888;
+	padding: 0 5px;
+}
+
+.stocklist .lists .btm_op .ops a.receive,
+.stocklist .lists .btm_op .ops a.share,
+.stocklist .lists .btm_op .ops a.comment {
+	color: #408cd7;
+}
+
+.stocklist .lists .btm_op .ops A.share {
+	*float: left;
+}
+
+.stocklist .lists .btm_op .ops a.comment:hover {
+	text-decoration: underline;
+}
+
+.ops #sns_share {
+	float: left;
+	*width: 80px;
+}
+
+.ops #sns_share>span {
+	*width: 85px;
+}
+
+[load-flag] {
+	text-align: center;
+	background-color: #f8f8f8;
+	border: 1px solid #ddd;
+	height: 28px;
+	line-height: 28px;
+	margin: 15px 0;
+	font-size: 16px;
+}
+
+[load-flag]:hover {
+	cursor: pointer;
+}
+
+table.codename {
+	width: 360px;
+	position: relative;
+}
+
+table.codename .type {
+	display: block;
+	background-position: 45px -945px;
+}
+
+
+/*table.codename .type:hover {
+  cursor: pointer;
+}*/
+
+table.codename .up {
+	background-position: -188px -948px;
+}
+
+table.codename td {
+	line-height: 48px;
+	text-align: center;
+}
+
+table.codename td label {
+	display: block;
+}
+
+table.codename td.hqred .arrflag {
+	background: #f7edeb url("http://i.thsi.cn/images/ucenter/website/sort.png") no-repeat 113px -186px;
+}
+
+table.codename td.hqgreen .arrflag {
+	background: #effbf4 url("http://i.thsi.cn/images/ucenter/website/sort.png") no-repeat 113px 2px;
+}
+
+table.codename td a span {
+	display: block;
+	line-height: normal;
+}
+
+table.codename td a span.name {
+	font-size: 16px;
+	color: #333;
+	width: 100px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+table.codename td a span.name:hover {
+	cursor: pointer;
+}
+
+table.codename td a span.code {
+	font-size: 12px;
+	color: #666;
+}
+
+table.codename td a span.code i {
+	background: #bb66ee;
+	color: #fff;
+	padding: 0 4px;
+	border-radius: 5px;
+}
+
+th.arr_l {
+	border-left: 1px solid #e4f2ff;
+}
+
+th.arr_l i {
+	display: block;
+	width: 32px;
+	height: 26px;
+	background-position: -241px -701px;
+	margin: 0 auto;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+th.arr_r {
+	border-right: 1px solid #e4f2ff;
+}
+
+th.arr_r i {
+	display: block;
+	width: 37px;
+	height: 21px;
+	background-position: -239px -767px;
+	margin: 0 auto;
+}
+
+i.rmv,
+i.fresh {
+	display: block;
+	width: 48px;
+	height: 48px;
+	margin: 0 auto;
+}
+
+i.fresh {
+	background-position: -235px -811px;
+}
+
+i.fresh:hover {
+	cursor: pointer;
+}
+
+i.rmv {
+	background-position: -7px -803px;
+}
+
+i.rmv:hover {
+	cursor: pointer;
+	background-position: -238px -870px;
+}
+
+table.operate {
+	width: 116px;
+	position: relative;
+}
+
+td.hqred,
+td.hqgreen {
+	font-weight: bold;
+}
+
+.loadmore {
+	color: #408cd7;
+}
+
+#search_input {
+	border: 1px solid #cccccc;
+	width: 198px;
+	height: 34px;
+	border-radius: 2px;
+	float: right;
+	line-height: 34px;
+	text-indent: 10px;
+	color: #aaa;
+}
+
+.sels {
+	position: absolute;
+}
+
+.sels ul {
+	width: 88px;
+	border: 1px solid #d5d4d5;
+}
+
+.sels ul li {
+	line-height: 33px;
+	background: #fff;
+	text-align: center;
+}
+
+.sels ul li:hover {
+	cursor: pointer;
+}
+
+.sels ul li.active {
+	background: #f7f7f7;
+}
+
+.sels .triangle {
+	position: absolute;
+	border-color: transparent transparent #dddcdc transparent;
+	left: 40px;
+	top: -11px;
+	border-style: solid;
+	z-index: 99;
+	border-width: 6px;
+}
+
+.sels .triangle i {
+	position: absolute;
+	border-width: 5px;
+	border-color: transparent transparent #fff transparent;
+	left: -5px;
+	top: -3px;
+	border-style: solid;
+}
+
+.section {
+	position: relative;
+	height: 38px;
+	margin-top: 60px;
+}
+
+.section .wrapSel {
+	position: relative;
+	height: 38px;
+}
+
+.autocompleteMine {
+	position: absolute;
+	left: 0;
+	z-index: 99;
+	color: #666;
+	border: 1px solid #e6e5e5;
+}
+
+.autocompleteMine li {
+	line-height: 33px;
+	background: #fff;
+	text-indent: 10px;
+}
+
+.autocompleteMine li:hover {
+	cursor: pointer;
+}
+
+.autocompleteMine li.selected {
+	background: #ddd;
+}
+
+.table_sort i {
+	display: inline-block;
+	width: 11px;
+	background-image: url("http://i.thsi.cn/images/ucenter/website/sort.png");
+	background-repeat: no-repeat;
+	height: 40px;
+	vertical-align: middle;
+	background-position: -5px -29px;
+	margin-right: 5px;
+}
+
+.table_sort i.desc {
+	background-position: -9px -136px;
+}
+
+.table_sort i.asc {
+	background-position: -11px -66px;
+}
+
+#stockframe {
+	width: 613px;
+	position: absolute;
+	z-index: 999;
+	background: #f5f5f5 url("http://s.thsi.cn/js/webHQ/1.1.5/loading-canvas.gif") no-repeat center;
+	padding: 5px 10px 15px 10px;
+	/*border: 1px solid #ddd;*/
+	border: 1px solid #7399bf;
+	height: 439px;
+}
+
+.flash_cont {
+	background: #fff;
+}
+
+.flash_cont .canvas_target_fun {
+	top: 376px;
+	left: 8px;
+	position: absolute;
+	z-index: 10;
+}
+
+.canvas_target_fun ul {
+	height: 30px;
+	line-height: 22px;
+	vertical-align: middle;
+	overflow: hidden
+}
+
+.canvas_target_fun ul .active a {
+	color: #1fa4c7
+}
+
+.canvas_target_fun ul li {
+	float: left;
+	display: block
+}
+
+.canvas_target_fun ul li a {
+	background: none repeat scroll 0 0 #fff;
+	color: #666;
+	height: 22px;
+	line-height: 22px;
+	padding: 0 6px;
+	text-decoration: none;
+	vertical-align: middle;
+	display: block;
+	overflow: hidden;
+	text-align: center
+}
+
+.khover {
+	position: absolute;
+	background: #fff;
+	width: 76px;
+	z-index: 10;
+	border: 1px solid #cdcdcd;
+	*left: 0;
+	*top: 21px;
+	*z-index: 99
+}
+
+.khover a {
+	display: block;
+	text-align: center;
+	background-color: #fff;
+}
+
+.khover a:hover {
+	background: #f6f6f6
+}
+
+.canvas_tab ul .khover a {
+	display: block;
+	line-height: 20px;
+	text-decoration: none;
+	text-align: middle;
+	text-align: center;
+	border: 0 none
+}
+
+.m_title {
+	height: 29px;
+	/*border: 1px solid #bbb;
+  border-bottom: 0;*/
+	padding: 5px;
+	background: #f8f8f8;
+}
+
+.canvas-list-arrow {
+	background: url(http://i.thsi.cn/images/home/s_v2.png) no-repeat right -393px;
+	text-indent: -1000px;
+}
+
+.m_title ul li {
+	float: left;
+	border: 1px solid #ccc;
+	padding: 0 5px;
+	margin-right: 5px;
+}
+
+.m_title ul li.tab_current a {
+	color: #408cd7;
+}
+
+.m_title ul li.fuquan-status {
+	padding: 0;
+	position: relative;
+}
+
+#stockframe .triangle {
+	height: 0;
+	line-height: 0;
+	position: absolute;
+	border-width: 14px 14px 0 0;
+	border-color: transparent #6b94bd;
+	border-style: solid;
+	_border-style: dashed solid dashed dashed;
+	z-index: 1114;
+}
+
+#stockframe .triangle .trangle_inner {
+	height: 0;
+	line-height: 0;
+	position: absolute;
+	top: -13px;
+	left: 2px;
+	border-width: 12px 12px 0 0;
+	border-color: transparent #f5f5f5;
+	border-style: solid;
+	_border-style: dashed solid dashed dashed;
+}
+
+.loadallcode,
+.my-fund {
+	cursor: pointer;
+}
+
+.nomore {
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	display: block;
+	line-height: 42px;
+	text-indent: 20px;
+	font-size: 14px;
+	color: #cccccc;
+}
+
+.loadallcode {
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	display: block;
+	line-height: 42px;
+	text-indent: 20px;
+	font-size: 14px;
+	color: #408cd7;
+}
+
+.my-fund {
+	position: absolute;
+	left: 100px;
+	bottom: 0px;
+	display: block;
+	line-height: 42px;
+	text-indent: 20px;
+	font-size: 14px;
+	color: #408cd7;
+}
+
+.nomore.hide,
+.my-fund.hide,
+.loadallcode.hide {
+	display: none;
+}
+
+#dialog {
+	position: fixed;
+	z-index: 99;
+	left: 50%;
+	top: 50%;
+}
+
+.dialog_mask {
+	position: fixed;
+	background: #000;
+	opacity: 0.05;
+	filter: alpha(opacity=5);
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: 300;
+}
+
+.dialog_panel {
+	z-index: 400;
+	position: fixed;
+	width: 400px;
+	height: 140px;
+}
+
+.dialog_title {
+	background-color: #408cd7;
+	color: #fff;
+	height: 28px;
+	line-height: 28px;
+	padding: 0 10px;
+	font-size: 14px;
+}
+
+.dialog_close {
+	background: url("http://i.thsi.cn/images/ucenter/website/close.png") no-repeat 4px 5px;
+	display: block;
+	float: right;
+	width: 17px;
+	height: 27px;
+}
+
+.dialog_content {
+	background: #fff;
+	overflow: hidden;
+	padding-bottom: 20px;
+}
+
+.dialog_content p {
+	text-align: center;
+	font-size: 20px;
+	color: #444;
+	margin: 20px 0;
+}
+
+.dialog_btm {
+	font-size: 14px;
+	text-align: center;
+}
+
+.dialog_btm a {
+	display: inline-block;
+	width: 66px;
+	height: 28px;
+	border-radius: 2px;
+	text-align: center;
+	line-height: 28px;
+	margin: 0 5px;
+}
+
+.dialog_btm a.d_confirm {
+	background: #d75442;
+	color: #fff;
+}
+
+.dialog_btm a.d_cancel {
+	background: #eaeaea;
+	color: #444;
+}
+
+.rmv_succeed {
+	font-size: 20px;
+	color: #444;
+	text-align: center;
+	background: #fff;
+	width: 180px;
+	height: 70px;
+	line-height: 70px;
+	border: 1px solid #c4c6ca;
+	box-shadow: 0px 0px 2px 2px #dee1e5;
+}
+
+.single_flash {
+	font-size: 18px;
+}
+
+#stockframe .stockname {
+	display: block;
+	color: #444;
+	background: #f8f8f8;
+	font-size: 18px;
+	/*text-indent: 20px;*/
+	/*border: 1px solid #ddd;*/
+	border-bottom: 0;
+	float: left;
+	/*width: 137px;*/
+	border-right: 0;
+	padding: 5px 6px;
+	position: relative;
+	z-index: 100;
+}
+
+.canvas_tab a {
+	color: #444;
+}
+
+#stockframe .m_title {
+	height: 29px;
+	/*border: 1px solid #bbb;
+  border-bottom: 0;*/
+	position: relative;
+	z-index: 99;
+}
+
+.rightCol .bottom {
+	display: block;
+	background: #f5f5f5 url("http://i.thsi.cn/images/home/v3/rightcol.png") no-repeat;
+	color: #777;
+	text-align: center;
+	height: 60px;
+	line-height: 91px;
+	text-decoration: none;
+	background-position: 7px -193px;
+	position: fixed;
+	width: 55px;
+	bottom: 2px;
+	z-index: 99;
+	right: 10px;
+	border: 1px solid #e5e5e5;
+	border-radius: 3px;
+}
+
+.rightCol .bottom:hover {
+	background-position: 10px -435px;
+}
+
+.rightCol a.top {
+	background-position: 12px -490px;
+}
+
+.rightCol a.top:hover {
+	background-position: 11px -545px;
+}
+
+#sns_share .share_icon {
+	background: url('../images/shareicons.png') no-repeat;
+	height: 29px;
+}
+
+#sns_share .share_sina {
+	background-position: 2px -3px;
+}
+
+#sns_share .share_qqzone {
+	background-position: 2px -34px;
+}
+
+.brandInfo {
+	text-align: center;
+	font-size: 38px;
+	display: none;
+	line-height: 3.5;
+	*display: none;
+	_display: block;
+}
+
+.brandInfo a {
+	color: #ff0000;
+}
+
+.brandInfo a.closebrand {
+	color: #444;
+	font-size: 14px;
+	line-height: 20px;
+	margin-top: 0px;
+}
+
+.placeholder {
+	color: #aaa;
+}
+
+.autocomplete {
+	color: #666;
+	border: 1px solid #e6e5e5;
+}
+
+.autocomplete dt,
+.autocomplete dd {
+	text-indent: 10px;
+	line-height: 33px;
+	background: #fff;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.autocomplete .selected {
+	background: #ddd;
+}
+
+
+/*.autocomplete dt:hover,*/
+
+.autocomplete dd:hover {
+	cursor: pointer;
+}
+
+.loading {
+	position: absolute;
+	width: 958px;
+	height: 219px;
+	left: 0;
+	z-index: 9999;
+	top: 0;
+	/*background: #FBF6F6;*/
+	opacity: 0.4;
+	color: #000;
+	font-size: 30px;
+	text-align: center;
+	padding-top: 47px;
+	z-index: 999;
+}
+
+.loading img {
+	margin-top: 20px;
+}
+
+.copyTr {
+	position: absolute;
+	border: 1px solid #e4f2ff;
+	*width: 958px;
+}
+
+.copyTr td {
+	font-size: 14px;
+	line-height: 48px;
+	min-width: 36px;
+	background: #fff;
+	opacity: 0.8;
+	filter: alpha(opacity=80);
+}
+
+.copyTr .odd td {
+	background: #f7fbff;
+	/*background: #ddd;*/
+}
+
+.copyTr .code {
+	text-align: left;
+}
+
+.copyTr td.graph {
+	text-align: left;
+	padding-left: 20px;
+	width: 100px;
+}
