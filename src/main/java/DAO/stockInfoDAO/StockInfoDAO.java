@@ -76,4 +76,10 @@ public interface StockInfoDAO {
      */
     public boolean removeCollectedStock(String userID , String code);
 
+    /**
+     * 得到所有股票ID
+     * @return 所有股票ID
+     */
+    public ArrayList<String> getAllStockCodes();
+
 }

@@ -11,15 +11,22 @@ public class AccountDataTest {
     @Test
     public void insertTest(){
         Account account = new Account();
+        account.setPassword("abcd");
+        account.setUserId("d1b");
+        account.setRegisterDate("2011");
+        account.setIsLogIn(0);
         AccountDAO accountDAO = new AccountData();
         accountDAO.addAccount(account);
     }
 
     @Test
     public void updateTest(){
-        Account accountPO = new Account();
+        Account account = new Account();
+        account.setUserId("db");
+        account.setIsLogIn(1);
+        account.setPassword("acs");
         AccountDAO accountDAO = new AccountData();
-        accountDAO.updateAccount(accountPO);
+        accountDAO.updateAccount(account);
     }
 
 }

@@ -64,6 +64,11 @@ public class AccountData implements AccountDAO {
     }
 
     @Override
+    public Account getAccount(String userID) {
+        return null;
+    }
+
+    @Override
     public UserAnalysisDataPO getUserAnalysisData() {
         return null;
     }

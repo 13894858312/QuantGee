@@ -81,4 +81,9 @@ public class StockInfoData implements StockInfoDAO{
         return false;
     }
 
+    @Override
+    public ArrayList<String> getAllStockCodes() {
+        return null;
+    }
+
 }
