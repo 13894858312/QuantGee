@@ -2,8 +2,6 @@ package logic.stock;
 
 import vo.stock.StockHistoricalVO;
 
-import java.util.HashMap;
-
 /**
  * Created by Mark.W on 2017/5/16.
  * 股票数据分析的类
@@ -41,6 +39,6 @@ public class StockDataCalculation {
         }
 
         return new KLineData(positive, upper, lower);
-
     }
+
 }
