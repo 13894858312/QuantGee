@@ -115,7 +115,7 @@ public class TransferHelper {
 
         stockCurrentVO.setStockCode(marketInfo.getStockID());
         stockCurrentVO.setStockName(marketInfo.getStockName());
-        stockCurrentVO.setStockMarket(marketInfo.getcMarket());
+        stockCurrentVO.setStockMarket(marketInfo.getMarket());
         stockCurrentVO.setOpen(stock.getOpen());
         stockCurrentVO.setClose(stock.getClose());
         stockCurrentVO.setLow(stock.getLow());
@@ -145,7 +145,7 @@ public class TransferHelper {
 
         historicalVO.setStockCode(marketInfo.getStockID());
         historicalVO.setStockName(marketInfo.getStockName());
-        historicalVO.setStockMarket(marketInfo.getcMarket());
+        historicalVO.setStockMarket(marketInfo.getMarket());
 
         //基础数据
         historicalVO.setDate(stock.getDate());

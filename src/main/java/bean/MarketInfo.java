@@ -6,21 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/15.
+ * Created by wangxue on 2017/5/16.
  */
 @Entity
 public class MarketInfo {
     private String stockID;
     private String stockName;
     private String market;
-
-    public String getMarket() {
-        return market;
-    }
-
-    public void setMarket(String market) {
-        this.market = market;
-    }
 
     @Id
     @Column(name = "code")
@@ -44,11 +36,11 @@ public class MarketInfo {
 
     @Basic
     @Column(name = "c_name")
-    public String getcMarket() {
+    public String getMarket() {
         return market;
     }
 
-    public void setcMarket(String cName) {
+    public void setMarket(String cName) {
         this.market = cName;
     }
 
