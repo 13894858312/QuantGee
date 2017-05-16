@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<title>个人中心</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="../../css/ucenter/main.css">
+		<link rel="stylesheet" href="../../css/ucenter/temp.css">
+	</head>
+
+	<body>
+		<div class="header">
+			<div class="control">
+				<span class="p_center fl">
+            <a href="/marketInfo.html" class="logo"></a>
+            <a href="my.html" target="_self" class="person">个人中心</a>
+        </span>
+			</div>
+		</div>
+
+		<div id="showcasebg" style="height: 613px;">
+			<div class="loginbox">
+				<h1>账号登录</h1>
+				<div>
+					<input type="text" id="txt_userName" value="请输入账号" maxlength="32">
+					<span><input type="text" id="txt_password" value="请输入密码" maxlength="32"></span>
+				</div>
+				<div id="longinSubmit" class="submit">登录</div>
+				<div class="forget">
+					<a href="/account/ForgetPassword" target="_parent">忘记密码？</a>
+				</div>
+				<input type="hidden" id="returnUrl" value="/">
+				<div class="registbox">
+					<span>没有账号？</span>
+					<a href="/account/register" target="_parent">免费注册&gt;&gt;</a>
+				</div>
+
+				<div class="tips accounttips">
+					<b>!</b>
+					<span>请输入账号，没有账号？<a href="/account/register" target="_parent">免费注册</a></span>
+					<div class="triangle"></div>
+				</div>
+				<div class="tips posswordtips">
+					<b>!</b>
+					<span>请输入密码，忘记密码？<a href="/account/ForgetPassword" target="_parent">找回密码</a></span>
+					<div class="triangle"></div>
+				</div>
+				<div class="tips errortips">
+					<b>!</b>
+					<span></span>
+					<div class="triangle"></div>
+				</div>
+			</div>
+
+			<div id="image_1" class="showcase" style="background-color:#5bc4f2; ">
+				<div class="showarea">
+					<img src="../../images/background.jpg" alt="" style="float:left;">
+				</div>
+			</div>
+
+		</div>
+	</body>
+	
+</html>
