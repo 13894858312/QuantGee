@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>MarketInfo</title>
-    <script src="echarts.js"></script>
-    <script>
+    <script src="echarts-2.2.7"></script>
+    <script type="application/javascript" language="JavaScript">
         function s1(x) {
             x.style.backgroundColor="#fff";
             x.style.borderLeft="6px solid #000";
+            document.getElementById("1").id = "main1";
+            alert(document.getElementById("main1").className);
         }
 
         function s2(x) {
             x.style="#f8f8f8";
             x.style.borderLeft="6px solid #f8f8f8";
+            var id = document.getElementsByClassName("hcharts-cont");
+            id.id = "";
         }
     </script>
     <style type="text/css">
@@ -72,10 +76,10 @@
                 <div class="hcharts-list0">
 
                 </div>
-                <div class="hcharts-list0-middle" id="main">
+                <div class="hcharts-list0-middle" id="kline">
                     //K线图
                 </div>
-                <script type="text/javascript" src="js/KLine.js"></script>
+                <script type="text/javascript" src="view/market/KLine.js"></script>
                 <div class="hcharts-list0-middle1">
                     //成交量直方图
                 </div>
@@ -108,9 +112,10 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="hcharts-cont">
+                            <div class="hcharts-cont" id="1">
                                 //中间对应的数据图
                             </div>
+
                             <div class="hcharts-right">
                                 //简略的大盘分析和评级
                             </div>
