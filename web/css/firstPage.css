@@ -5,7 +5,7 @@
 }
 .text-left{
     margin-left: 600px;
-    margin-top: 300px;
+    margin-top: 180px;
 }
 .left{
     color: black;
@@ -23,11 +23,16 @@
     font-size: 100px;
     font-family: "Microsoft Yahei", "Hiragino Sans GB", STXihei, SimSun, Tahoma, Arial, sans-serif;
 }
+.bar{
+    margin: 0;
+    padding: 0;
+}
 .item1{
+
     padding-left: 10px;
     padding-top: 10px;
     border-top: 5px solid transparent;
-    margin-left: 60%;
+    margin-left: 1180px;
     width: 110px;
     height: 40px;
     background: transparent;
@@ -40,4 +45,36 @@
 }
 a:link{
     text-decoration: none;
+}
+.item2{
+
+    padding-left: 10px;
+    padding-top: 10px;
+    border-top: 5px solid transparent;
+    margin-left: 1180px;
+    width: 110px;
+    height: 40px;
+    background: transparent;
+}
+.item2 a{
+    color: black;
+    font-size: 24px;
+    font-family: "Microsoft Yahei", "Hiragino Sans GB", STXihei, SimSun, Tahoma, Arial, sans-serif;
+    font-weight: bold;
+}
+.item3{
+
+    padding-left: 10px;
+    padding-top: 10px;
+    border-top: 5px solid transparent;
+    margin-left: 1180px;
+    width: 110px;
+    height: 40px;
+    background: transparent;
+}
+.item3 a{
+    color: black;
+    font-size: 24px;
+    font-family: "Microsoft Yahei", "Hiragino Sans GB", STXihei, SimSun, Tahoma, Arial, sans-serif;
+    font-weight: bold;
 }
