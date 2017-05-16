@@ -13,9 +13,52 @@
             x.style.fontWeight = "400";
             x.style.color = "#b7b7b7";
         }
+        function s3(x) {
+            x.style.backgroundColor="#e0eee0";
+            x.style.borderLeft="6px solid #000";
+            var graph1=document.getElementById("gram");
+            var graph2=document.getElementById("line");
+            var graph3=document.getElementById("line1");
+            graph1.style.display="block";
+            graph2.style.display="none";
+            graph3.style.display="none";
+        }
+        function s4(x) {
+            x.style.backgroundColor="#ffffff";
+            x.style.borderLeft="6px solid #ffffff";
+        }
+        function s5(x) {
+            x.style.backgroundColor="#e0eee0";
+            x.style.borderLeft="6px solid #000";
+            var graph1=document.getElementById("gram");
+            var graph2=document.getElementById("line");
+            var graph3=document.getElementById("line1");
+            graph1.style.display="none";
+            graph2.style.display="block";
+            graph3.style.display="none";
+        }
+        function s6(x) {
+            x.style.backgroundColor="#ffffff";
+            x.style.borderLeft="6px solid #ffffff";
+        }
+        function s7(x) {
+            x.style.backgroundColor="#e0eee0";
+            x.style.borderLeft="6px solid #000";
+            var graph1=document.getElementById("gram");
+            var graph2=document.getElementById("line");
+            var graph3=document.getElementById("line1");
+            graph1.style.display="none";
+            graph2.style.display="none";
+            graph3.style.display="block";
+        }
+        function s8(x) {
+            x.style.backgroundColor="#ffffff";
+            x.style.borderLeft="6px solid #ffffff";
+        }
     </script>
     <style type="text/css">
         @import "../../css/market/market.css";
+        @import "../../css/style1.css";
     </style>
 </head>
 <body>
@@ -81,11 +124,76 @@
                         <span class="d1"><input type="date"></span>
                         <span class="end">结束日期：</span>
                         <span class="d2"><input type="date"></span>
+                        <span class="button"><button type="button">查询</button></span>
                     </p>
                 </div>
                 <div class="klinegraph" id="kline"></div>
                 <script type="text/javascript" src="../../js/KLine.js"></script>
             </div>
+        <div class="box1">
+            <div class="head-img">
+                <img src="../../image/标签1.png" width="80" height="50">
+            </div>
+            <div class="head-text">
+                大盘数据
+            </div>
+        </div>
+        <div class="middle">
+            <div class="hcharts clearfix">
+                <div class="hcharts-left tab-hv-box">
+                    <div class="hcharts-list">
+                        <div class="hcharts-left tab-hav-box">
+                            <div class="hcharts-list">
+                                <div class="item tab-hv-trigger cur" onmouseover="s3(this)" onmouseout="s4(this)">
+                                    <h3 class="icons1" style="margin-left: 0px">涨跌分布</h3>
+                                    <p class="detail">
+                                        <span class="c-rise">上涨：0支</span>
+                                        <span class="c-fall">下跌：0支</span>
+                                    </p>
+                                </div>
+                                <div class="item tab-hv-trigger cur" onmouseover="s5(this)" onmouseout="s6(this)">
+                                    <h3 class="icon2">涨跌停</h3>
+                                    <p class="detail">
+                                        <span class="c-rise">涨停：0支</span>
+                                        <span class="c-fall">跌停：0支</span>
+                                    </p>
+                                </div>
+                                <div class="item tab-hv-trigger cur" onmouseover="s7(this)" onmouseout="s8(this)">
+                                    <h3 class="icon3">今日成交量</h3>
+                                    <p class="detail">
+                                        <span class="c-rise">买入：0手</span>
+                                        <span class="c-fall">卖出：0手</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="hcharts-cont1" id="gram"></div>
+                            <script type="text/javascript" src="../../js/gram.js"></script>
+                            <div class="hcharts-cont2" id="line"></div>
+                            <script type="text/javascript" src="../../js/line.js"></script>
+                            <div class="hcharts-cont3" id="line1"></div>
+                            <script type="text/javascript" src="../../js/line1.js"></script>
+                            <div class="hcharts-right" id="">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="g1" id="g1"></div>
+            <script type="text/javascript" src="../../js/g1.js"></script>
+            <div class="g2" id="g2"></div>
+            <script type="text/javascript" src="../../js/g2.js"></script>
+            <div class="g3" id="g3"></div>
+            <script type="text/javascript" src="../../js/g3.js"></script>
+        </div>
+        <div class="box2">
+            <div class="head-img">
+                <img src="../../image/标签1.png" width="80" height="50">
+            </div>
+            <div class="head-text">
+                个股行情
+            </div>
+        </div>
         </div>
 
 </body>

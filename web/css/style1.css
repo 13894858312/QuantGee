@@ -40,13 +40,13 @@ div {
 
 .hcharts-list .cur {
     background: #fff;
-    border-left: 6px solid #f8f8f8;
-    width: 160px;
+    border-left: 6px solid #ffffff;
+    width: 165px;
 }
 .hcharts-list .item {
     padding-top: 27px;
     height: 99px;
-    background: #f8f8f8;
+    background: #ffffff;
     text-align: center;
     cursor: pointer;
 }
@@ -136,7 +136,27 @@ p {
 .hcharts{
     margin-top: 30px;
 }
-.hcharts-cont{
+.hcharts-cont1{
+    position: absolute;
+    margin-left: 186px;
+    float: left;
+    width: 710px;
+    padding: 0 20px;
+    height: 378px;
+    background: #f8f8f8;
+}
+.hcharts-cont2{
+    display: none;
+    position: absolute;
+    margin-left: 186px;
+    float: left;
+    width: 710px;
+    padding: 0 20px;
+    height: 378px;
+    background: #f8f8f8;
+}
+.hcharts-cont3{
+    display: none;
     position: absolute;
     margin-left: 186px;
     float: left;
@@ -220,4 +240,27 @@ p {
     height: 300px;
     margin-left: 50px;
     margin-top: 20px;
+}
+.g1{
+    position: absolute;
+    float: left;
+    top: 450px;
+    width: 400px;
+    height: 300px;
+}
+.g2{
+    position: absolute;
+    float: left;
+    left: 420px;
+    top: 450px;
+    width: 400px;
+    height: 270px;
+}
+.g3{
+    position: absolute;
+    float: left;
+    left: 850px;
+    top: 450px;
+    width: 400px;
+    height: 300px;
 }

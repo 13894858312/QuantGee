@@ -13,7 +13,7 @@ for (var i = 0; i < 100; i++) {
 
 option = {
     title: {
-        text: '柱状图动画延迟'
+        text: '柱状图'
     },
     legend: {
         data: ['bar', 'bar2'],

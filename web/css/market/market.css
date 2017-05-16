@@ -353,3 +353,28 @@ p {
     height: 450px;
     background-color: #FFFFFF;
 }
+.button{
+    float: left;
+    margin-left: 60px;
+    margin-top: 10px;
+}
+.middle{
+    float: left;
+    clear: both;
+
+}
+.box1{
+    position: absolute;
+    float: left;
+    top: 610px;
+}
+.middle{
+    position: absolute;
+    float: left;
+    top: 635px;
+}
+.box2{
+    position: absolute;
+    float: left;
+    top: 1370px;
+}
