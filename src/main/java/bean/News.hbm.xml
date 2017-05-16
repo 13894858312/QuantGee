@@ -4,4 +4,12 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
+    <class name="bean.News" table="News" schema="quantgee_data">
+        <id name="index" column="index"/>
+        <property name="classify" column="classify" type="text"/>
+        <property name="title" column="title" type="text"/>
+        <property name="time" column="time" type="text"/>
+        <property name="url" column="url" type="text"/>
+        <property name="content" column="content" type="text"/>
+    </class>
 </hibernate-mapping>

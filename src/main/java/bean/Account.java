@@ -1,12 +1,9 @@
 package bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/5/15.
+ * Created by wangxue on 2017/5/16.
  */
 @Entity
 public class Account {
@@ -36,13 +33,23 @@ public class Account {
     }
 
     @Basic
-    @Column(name = "registerDate", updatable=false)
+    @Column(name = "registerDate", updatable = false)
     public String getRegisterDate() {
         return registerDate;
     }
 
     public void setRegisterDate(String registerDate) {
         this.registerDate = registerDate;
+    }
+
+    @Basic
+    @Column(name = "isLogIn")
+    public int getIsLogIn() {
+        return isLogIn;
+    }
+
+    public void setIsLogIn(int isLogIn) {
+        this.isLogIn = isLogIn;
     }
 
     @Override
@@ -52,6 +59,7 @@ public class Account {
 
         Account account = (Account) o;
 
+        if (isLogIn != account.isLogIn) return false;
         if (userId != null ? !userId.equals(account.userId) : account.userId != null) return false;
         if (password != null ? !password.equals(account.password) : account.password != null) return false;
         if (registerDate != null ? !registerDate.equals(account.registerDate) : account.registerDate != null)
@@ -65,16 +73,7 @@ public class Account {
         int result = userId != null ? userId.hashCode() : 0;
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (registerDate != null ? registerDate.hashCode() : 0);
+        result = 31 * result + isLogIn;
         return result;
-    }
-
-    @Basic
-    @Column(name = "isLogIn")
-    public int getIsLogIn() {
-        return isLogIn;
-    }
-
-    public void setIsLogIn(int isLogIn) {
-        this.isLogIn = isLogIn;
     }
 }
