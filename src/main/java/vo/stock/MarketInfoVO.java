@@ -3,41 +3,56 @@ package vo.stock;
 
 /**
  * Created by Mark.W on 2017/5/10.
- * 大盘信息的vo
+ * 大盘、板块和指定行业信息的vo
  */
 public class MarketInfoVO {
 
     private String date;
+    //时间  在表示实时数据时有用，如果表示的信息是历史数据则time属性为""
     private String time;
     private String marketType;
     private double price;
     private double volume;
     private int[] rateNums;
-    private int greaterThanFiveNum;
-    private int lessThanFiveNum;
 
-    public MarketInfoVO() {}
+    public MarketInfoVO() {
+    }
 
     /**
-     * @param date 日期
-     * @param time 时间
+     * 实时数据的构造方法
+     * @param date       日期
+     * @param time       时间  在表示实时数据时有用，如果表示的信息是历史数据则time属性为""
      * @param marketType 大盘类型
-     * @param price 价格即当前指数值
-     * @param volume 当日总成交量
-     * @param rateNums 数据依次为 跌停，-10%- -5%，-5%-0，0-5%，5%-10%， 涨停，
-     * @param greaterThanFiveNum  开盘‐收盘大于 5%*上一个交易日收盘价的股票个数
-     * @param lessThanFiveNum  开盘‐收盘小于‐5%*上一个交易日收盘价的股票个数
+     * @param price      价格即当前指数值
+     * @param volume     当日总成交量
+     * @param rateNums   数据依次为 跌停，-10%- -5%，-5%-0，0-5%，5%-10%， 涨停，
      */
-    public MarketInfoVO(String date, String time, String marketType, double price, double volume,
-                        int[] rateNums, int greaterThanFiveNum, int lessThanFiveNum) {
+    public MarketInfoVO(String date, String time, String marketType, double price,
+                        double volume, int[] rateNums) {
         this.date = date;
         this.time = time;
         this.marketType = marketType;
         this.price = price;
         this.volume = volume;
         this.rateNums = rateNums;
-        this.greaterThanFiveNum = greaterThanFiveNum;
-        this.lessThanFiveNum = lessThanFiveNum;
+    }
+
+    /**
+     * 历史数据的构造方法
+     * @param date       日期
+     * @param marketType 大盘类型
+     * @param price      价格即当前指数值
+     * @param volume     当日总成交量
+     * @param rateNums   数据依次为 跌停，-10%- -5%，-5%-0，0-5%，5%-10%， 涨停，
+     */
+    public MarketInfoVO(String date, String marketType, double price,
+                        double volume, int[] rateNums) {
+        this.date = date;
+        this.time = "";
+        this.marketType = marketType;
+        this.price = price;
+        this.volume = volume;
+        this.rateNums = rateNums;
     }
 
     public String getDate() {
@@ -88,23 +103,8 @@ public class MarketInfoVO {
         this.rateNums = rateNums;
     }
 
-    public int getGreaterThanFiveNum() {
-        return greaterThanFiveNum;
-    }
-
-    public void setGreaterThanFiveNum(int greaterThanFiveNum) {
-        this.greaterThanFiveNum = greaterThanFiveNum;
-    }
-
-    public int getLessThanFiveNum() {
-        return lessThanFiveNum;
-    }
-
-    public void setLessThanFiveNum(int lessThanFiveNum) {
-        this.lessThanFiveNum = lessThanFiveNum;
-    }
-
-    //    private String code;
+}
+//    private String code;
 //    private String name;
 //    private double change;
 //    private double open;
@@ -143,4 +143,3 @@ public class MarketInfoVO {
 //        this.amount = amount;
 //    }
 
-}

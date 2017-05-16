@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/5/15.
  */
-var myChart = echarts.init(document.getElementById('main'));
+var myChart = echarts.init(document.getElementById('kline'));
 var data0 = splitData([
     ['2013/1/24', 2320.26,2320.26,2287.3,2362.94],
     ['2013/1/25', 2300,2291.3,2288.26,2308.38],

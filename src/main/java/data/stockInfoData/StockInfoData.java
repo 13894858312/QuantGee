@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 public class StockInfoData implements StockInfoDAO{
 
+    /*****stock内容和tushare获取实时数据接口返回内容有差异******/
     @Override
     public Stock getStockRealTimeInfo(String code) {
         return null;
@@ -57,17 +58,17 @@ public class StockInfoData implements StockInfoDAO{
     }
 
     @Override
-    public ArrayList<String> getAllStocksByIndustry(String industryName) {
+    public ArrayList<String> getAllStockCodesByIndustry(String industryName) {
         return null;
     }
 
     @Override
-    public ArrayList<String> getAllSmeStocks() {
+    public Stock getStockInfo(String code, String date) {
         return null;
     }
 
     @Override
-    public ArrayList<String> getAllGemStocks() {
+    public ArrayList<String> getAllStockCodesByBlock(String blockName) {
         return null;
     }
 

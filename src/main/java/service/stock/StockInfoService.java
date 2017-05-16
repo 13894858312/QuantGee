@@ -32,6 +32,13 @@ public interface StockInfoService {
     public ArrayList<StockHistoricalVO> getStockHistoricalInfo(StockInputVO stockInputVO);
 
     /**
+     * 根据行业名称获取行业所有股票的实时数据
+     * @param industryName 行业名称
+     * @return 股票数据
+     */
+    public ArrayList<StockCurrentVO> getStocksByIndustry(String industryName);
+
+    /**
      * 股票走势预测
      * @param stockCode 股票代码
      * @return StockPredictionVO

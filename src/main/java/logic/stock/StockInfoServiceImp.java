@@ -88,6 +88,23 @@ public class StockInfoServiceImp implements StockInfoService{
     }
 
     @Override
+    public ArrayList<StockCurrentVO> getStocksByIndustry(String industryName) {
+        ArrayList<String> codes = stockInfoDAO.getAllStockCodesByIndustry(industryName);
+        if(codes == null || codes.size() == 0) {
+            return null;
+        }
+
+        ArrayList<StockCurrentVO> result = new ArrayList<>();
+
+        for(String code : codes) {
+            StockCurrentVO currentVO = getRealTimeStockInfo(code);
+            result.add(currentVO);
+        }
+
+        return result;
+    }
+
+    @Override
     public StockPredictionVO predictStockTrend(String stockCode) {
         return null;
     }
