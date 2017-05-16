@@ -18,6 +18,11 @@ import java.util.ArrayList;
 public class StockInfoData implements StockInfoDAO{
 
     @Override
+    public Stock getStockRealTimeInfo(String code) {
+        return null;
+    }
+
+    @Override
     public ArrayList<Stock> getStockInfo(String code) {
         try{
             Configuration configuration = new Configuration();
@@ -79,6 +84,11 @@ public class StockInfoData implements StockInfoDAO{
     @Override
     public boolean removeCollectedStock(String userID, String code) {
         return false;
+    }
+
+    @Override
+    public ArrayList<String> getAllStockCodes() {
+        return null;
     }
 
 }

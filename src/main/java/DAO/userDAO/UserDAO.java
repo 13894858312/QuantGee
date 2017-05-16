@@ -1,5 +1,6 @@
 package DAO.userDAO;
 
+import bean.User;
 import po.UserPO;
 
 /**
@@ -9,17 +10,17 @@ public interface UserDAO {
 
     /**
      * 修改用户信息
-     * @param userPO 用户信息
+     * @param user 用户信息
      * @return boolean 是否添加成功
      */
-    public boolean updateUserInfo(UserPO userPO);
+    public boolean updateUserInfo(User user);
 
     /**
      * 按ID搜索用户
      * @param userID 用户ID
      * @return User 用户信息
      */
-    public UserPO searchUser(String userID);
+    public User searchUser(String userID);
 
 
 

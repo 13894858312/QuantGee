@@ -9,12 +9,10 @@
 <html>
 <head>
     <title>Jump</title>
-    <script src="js/graph.js"></script>
+    <script src="echarts.js"></script>
 </head>
 <body>
-    jump success
-    <a href="index.jsp">
-        <input type="button" name="return">
-    </a>
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/script" src="js/KLine.js"></script>
 </body>
 </html>

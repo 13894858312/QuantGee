@@ -5,9 +5,9 @@
 <hibernate-mapping>
 
     <class name="bean.Account" table="Account" schema="quantgee_data">
-        <id name="userId" column="userID"/>
+        <id name="userId" column="userID" />
         <property name="password" column="password"/>
-        <property name="registerDate" column="registerDate"/>
-        <property name="identity" column="identity"/>
+        <property name="registerDate" column="registerDate" update="false"/>
+        <property name="isLogIn" column="isLogIn"/>
     </class>
 </hibernate-mapping>

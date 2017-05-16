@@ -1,5 +1,8 @@
 package logic.user;
 
+import DAO.userDAO.UserDAO;
+import bean.User;
+import logic.tools.TransferHelper;
 import vo.user.UserVO;
 import service.user.UserService;
 
@@ -8,13 +11,30 @@ import service.user.UserService;
  */
 public class UserServiceImp implements UserService {
 
+    private UserDAO userDAO;
+
     @Override
     public boolean updateUserInfo(UserVO userVO) {
+        User user = TransferHelper.transToUser(userVO);
+        if(user != null) {
+            if(userDAO.updateUserInfo(user)) {
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public UserVO getUserInfo(String accountID) {
-        return null;
+        User user = userDAO.searchUser(accountID);
+        return TransferHelper.transToUserVO(user);
+    }
+
+    public UserDAO getUserDAO() {
+        return userDAO;
+    }
+
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
 }

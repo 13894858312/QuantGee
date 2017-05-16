@@ -1,0 +1,80 @@
+.box{
+    opacity:0.7;
+    filter:"alpha(opacity=50)";
+    -ms-filter:"alpha(opacity=50)";
+}
+.text-left{
+    margin-left: 600px;
+    margin-top: 180px;
+}
+.left{
+    color: black;
+    text-align: center;
+    font-size: 100px;
+    font-family: "Microsoft Yahei", "Hiragino Sans GB", STXihei, SimSun, Tahoma, Arial, sans-serif;
+}
+.text-right{
+    margin-left: 820px;
+    margin-top: -130px;
+}
+.right{
+    color: #c0a16b;
+    text-align: center;
+    font-size: 100px;
+    font-family: "Microsoft Yahei", "Hiragino Sans GB", STXihei, SimSun, Tahoma, Arial, sans-serif;
+}
+.bar{
+    margin: 0;
+    padding: 0;
+}
+.item1{
+
+    padding-left: 10px;
+    padding-top: 10px;
+    border-top: 5px solid transparent;
+    margin-left: 1180px;
+    width: 110px;
+    height: 40px;
+    background: transparent;
+}
+.item1 a{
+    color: black;
+    font-size: 24px;
+    font-family: "Microsoft Yahei", "Hiragino Sans GB", STXihei, SimSun, Tahoma, Arial, sans-serif;
+    font-weight: bold;
+}
+a:link{
+    text-decoration: none;
+}
+.item2{
+
+    padding-left: 10px;
+    padding-top: 10px;
+    border-top: 5px solid transparent;
+    margin-left: 1180px;
+    width: 110px;
+    height: 40px;
+    background: transparent;
+}
+.item2 a{
+    color: black;
+    font-size: 24px;
+    font-family: "Microsoft Yahei", "Hiragino Sans GB", STXihei, SimSun, Tahoma, Arial, sans-serif;
+    font-weight: bold;
+}
+.item3{
+
+    padding-left: 10px;
+    padding-top: 10px;
+    border-top: 5px solid transparent;
+    margin-left: 1180px;
+    width: 110px;
+    height: 40px;
+    background: transparent;
+}
+.item3 a{
+    color: black;
+    font-size: 24px;
+    font-family: "Microsoft Yahei", "Hiragino Sans GB", STXihei, SimSun, Tahoma, Arial, sans-serif;
+    font-weight: bold;
+}
