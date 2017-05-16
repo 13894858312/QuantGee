@@ -125,7 +125,7 @@
 //        //计算当日总交易量
 //        int j = 0;          //yesterdayStockMarket遍历的下标
 //        double allVolume = 0;
-//        int[] rateNums = new int[6]; //数据依次为跌停，-10%- -5%，-5%-0，0-5%，5%-10%，涨停
+//
 //        for (int i = 0; i < rateNums.length; ++i) {  //初始化
 //            rateNums[i] = 0;
 //        }
@@ -152,22 +152,6 @@
 //
 //            double rate = (todayStockMarket.get(i).getADJ() - yesterdayStockMarket.get(j).getADJ()) / yesterdayStockMarket.get(j).getADJ();
 //
-//            if(rate < 0.105 && rate > -0.105) {
-//
-//                if (rate <= -0.1) {
-//                    rateNums[0]++;
-//                } else if (rate > -0.1 && rate < -0.05) {
-//                    rateNums[1]++;
-//                } else if (rate >= -0.05 && rate < 0) {
-//                    rateNums[2]++;
-//                } else if (rate > 0 && rate <= 0.05) {
-//                    rateNums[3]++;
-//                } else if (rate > 0.05 && rate < 0.1) {
-//                    rateNums[4]++;
-//                } else if (rate >= 0.1) {
-//                    rateNums[5]++;
-//                }
-//            }
 //
 //            if ((todayStockMarket.get(i).getOpenPrice() - todayStockMarket.get(i).getClosePrice()) >
 //                    0.05 * yesterdayStockMarket.get(j).getClosePrice()) {

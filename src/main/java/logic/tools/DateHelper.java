@@ -1,27 +1,24 @@
-//package logic.tools;
-//
-//
-//import java.text.ParseException;
-//import java.text.SimpleDateFormat;
-//import java.util.Calendar;
-//import java.util.Date;
-//
-///**
-// * Created by Mark.W on 2017/3/6.
-// * 日期计算的帮助类
-// */
-//public class DateHelper {
-//
-//    private static DateHelper dateHelper;
-//
-//    public static DateHelper getInstance() {
-//        if(dateHelper == null) {
-//            dateHelper = new DateHelper();
-//        }
-//
-//        return dateHelper;
-//    }
-//
+package logic.tools;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * Created by Mark.W on 2017/3/6.
+ * 日期计算的帮助类
+ */
+public class DateHelper {
+    private static final String DATE_FORMAT = "YYYY-MM-DD";//可以方便地修改日期格式
+
+    public static String getNowDate() {
+        Date now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+        String date = dateFormat.format(now);
+        return date;
+    }
+}
+
+
 //    /**
 //     * 给定日期计算下一个交易日（除去周末）
 //     * @param date 日期

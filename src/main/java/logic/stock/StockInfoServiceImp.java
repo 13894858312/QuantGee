@@ -3,6 +3,7 @@ package logic.stock;
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.MarketInfo;
 import bean.Stock;
+import logic.tools.TransferHelper;
 import service.stock.StockInfoService;
 import vo.stock.StockCurrentVO;
 import vo.stock.StockHistoricalVO;
@@ -18,6 +19,8 @@ public class StockInfoServiceImp implements StockInfoService{
 
     private StockInfoDAO stockInfoDAO;
 
+    private StockDataCalculation stockCalculation;
+
     @Override
     public ArrayList<StockCurrentVO> getAllRealTimeStocks() {
         ArrayList<String> codes = stockInfoDAO.getAllStockCodes();
@@ -30,23 +33,7 @@ public class StockInfoServiceImp implements StockInfoService{
 
         ArrayList<StockCurrentVO> stockCurrentVOS = new ArrayList<>();
         for(String code : codes) {
-            marketInfo = stockInfoDAO.getMarketInfo(code);
-            stock = stockInfoDAO.getStockRealTimeInfo(code);
-
-            StockCurrentVO stockCurrentVO = new StockCurrentVO();
-            stockCurrentVO.setStockCode(marketInfo.getStockID());
-            stockCurrentVO.setStockName(marketInfo.getStockName());
-            stockCurrentVO.setStockMarket(marketInfo.getcMarket());
-            stockCurrentVO.setOpen(stock.getOpen());
-            stockCurrentVO.setClose(stock.getClose());
-            stockCurrentVO.setLow(stock.getLow());
-            stockCurrentVO.setHigh(stock.getHigh());
-            stockCurrentVO.setVolume(stock.getVolume());
-            stockCurrentVO.setP_change(stock.getpChange());
-            stockCurrentVO.setPrice_change(stock.getPriceChange());
-//            stockCurrentVO.setTurnover(stock.getTurnOver());
-            //缺少换手率数据
-
+            StockCurrentVO stockCurrentVO = getRealTimeStockInfo(code);
             stockCurrentVOS.add(stockCurrentVO);
         }
 
@@ -54,13 +41,67 @@ public class StockInfoServiceImp implements StockInfoService{
     }
 
     @Override
-    public StockCurrentVO getRealTimeStockInfo(String stockCode) {
-        return null;
+    public StockCurrentVO getRealTimeStockInfo(String code) {
+
+        MarketInfo marketInfo = stockInfoDAO.getMarketInfo(code);
+        Stock stock = stockInfoDAO.getStockRealTimeInfo(code);
+
+        StockCurrentVO stockCurrentVO = TransferHelper.transToStockCurrent(marketInfo, stock);
+
+        return stockCurrentVO;
     }
 
     @Override
-    public ArrayList<StockHistoricalVO> getStockHistoricalInfo(StockInputVO stockInputVO) {
-        return null;
+    public ArrayList<StockHistoricalVO> getStockHistoricalInfo(StockInputVO inputVO) {
+
+        if(inputVO == null) {
+            return null;
+        }
+        MarketInfo marketInfo = stockInfoDAO.getMarketInfo(inputVO.getStockCode());
+        ArrayList<StockHistoricalVO> result = new ArrayList<>();
+        Stock stock = null;
+
+        ArrayList<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getStockCode(),
+                inputVO.getStartDate(), inputVO.getEndDate(), "D");
+
+        for(int i=0; i<stocks.size(); ++i) {
+
+            stock = stocks.get(i);
+            StockHistoricalVO historicalVO = TransferHelper.transToStockHistorical(marketInfo, stock);
+
+            //k线图的数据
+            KLineData kLineData = stockCalculation.calculateKLine(historicalVO);
+            historicalVO.setPositive(kLineData.isPositive());
+            historicalVO.setUpperShadow(kLineData.getUpperShadow());
+            historicalVO.setLowerShadow(kLineData.getLowerShadow());
+
+            //对数收益率
+            if(i>0) {
+                double logarithmYield = Math.log(stocks.get(i).getClose() / stocks.get(i - 1).getClose());
+                historicalVO.setLogarithmYield(logarithmYield);
+            }
+
+            result.add(historicalVO);
+        }
+
+        return result;
+    }
+
+    @Override
+    public ArrayList<StockCurrentVO> getStocksByIndustry(String industryName) {
+        ArrayList<String> codes = stockInfoDAO.getAllStockCodesByIndustry(industryName);
+        if(codes == null || codes.size() == 0) {
+            return null;
+        }
+
+        ArrayList<StockCurrentVO> result = new ArrayList<>();
+
+        for(String code : codes) {
+            StockCurrentVO currentVO = getRealTimeStockInfo(code);
+            result.add(currentVO);
+        }
+
+        return result;
     }
 
     @Override
@@ -74,5 +115,13 @@ public class StockInfoServiceImp implements StockInfoService{
 
     public void setStockInfoDAO(StockInfoDAO stockInfoDAO) {
         this.stockInfoDAO = stockInfoDAO;
+    }
+
+    public StockDataCalculation getStockCalculation() {
+        return stockCalculation;
+    }
+
+    public void setStockCalculation(StockDataCalculation stockCalculation) {
+        this.stockCalculation = stockCalculation;
     }
 }
