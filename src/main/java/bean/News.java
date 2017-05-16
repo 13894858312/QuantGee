@@ -1,11 +1,14 @@
 package bean;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/15.
+ * Created by wangxue on 2017/5/16.
  */
 @Entity
 public class News {
@@ -14,6 +17,7 @@ public class News {
     private String time;
     private String url;
     private String content;
+    private long index;
 
     @Basic
     @Column(name = "classify")
@@ -65,6 +69,16 @@ public class News {
         this.content = content;
     }
 
+    @Id
+    @Column(name = "index")
+    public long getIndex() {
+        return index;
+    }
+
+    public void setIndex(long index) {
+        this.index = index;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,6 +86,7 @@ public class News {
 
         News news = (News) o;
 
+        if (index != news.index) return false;
         if (classify != null ? !classify.equals(news.classify) : news.classify != null) return false;
         if (title != null ? !title.equals(news.title) : news.title != null) return false;
         if (time != null ? !time.equals(news.time) : news.time != null) return false;
@@ -88,6 +103,7 @@ public class News {
         result = 31 * result + (time != null ? time.hashCode() : 0);
         result = 31 * result + (url != null ? url.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (int) (index ^ (index >>> 32));
         return result;
     }
 }
