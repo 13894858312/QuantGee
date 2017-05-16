@@ -1,6 +1,8 @@
 package logic.stock;
 
-import DAO.stockInfoDAO.StockInfoDAO;
+import DAO.NewsDAO.NewsDAO;
+import bean.News;
+import logic.tools.TransferHelper;
 import service.stock.NewsService;
 import vo.stock.NewsVO;
 
@@ -11,18 +13,29 @@ import java.util.ArrayList;
  */
 public class NewsServiceImp implements NewsService {
 
-    private StockInfoDAO stockInfoDAO;
+    private NewsDAO newsDAO;
 
     @Override
     public ArrayList<NewsVO> getNews() {
-        return null;
+        ArrayList<News> news = newsDAO.getNews();
+        if(news == null || news.size() == 0) {
+            return null;
+        }
+
+        ArrayList<NewsVO> newsVOS = new ArrayList<>();
+
+        for(News n : news) {
+            newsVOS.add(TransferHelper.transToNewsVO(n));
+        }
+
+        return newsVOS;
     }
 
-    public StockInfoDAO getStockInfoDAO() {
-        return stockInfoDAO;
+    public NewsDAO getNewsDAO() {
+        return newsDAO;
     }
 
-    public void setStockInfoDAO(StockInfoDAO stockInfoDAO) {
-        this.stockInfoDAO = stockInfoDAO;
+    public void setNewsDAO(NewsDAO newsDAO) {
+        this.newsDAO = newsDAO;
     }
 }

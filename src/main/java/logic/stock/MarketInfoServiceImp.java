@@ -1,6 +1,7 @@
 package logic.stock;
 
 import DAO.stockInfoDAO.StockInfoDAO;
+import bean.Stock;
 import service.stock.MarketInfoService;
 import vo.stock.MarketInfoVO;
 
@@ -14,6 +15,13 @@ public class MarketInfoServiceImp implements MarketInfoService{
 
     @Override
     public MarketInfoVO getRealTimeMarketInfo(String marketType) {
+        Stock stock = stockInfoDAO.getStockRealTimeInfo(marketType);
+
+        if(stock == null) {
+            return null;
+        }
+
+
         return null;
     }
 

@@ -12,23 +12,22 @@ public class StockHistoricalVO {
     private String stockMarket;
     private String date;
 
-    //日k
-    private boolean isPositive;
-    private double upperShadow;
-    private double lowerShadow;
+    //基础数据
     private double open;
     private double close;
     private double low;
     private double high;
     private double price_change;
     private double p_change;
+    private double volume;  //成交量
     private double turnover;
 
-    //成交量
-    private int volume;
-
+    //日k
+    private boolean isPositive;
+    private double upperShadow;
+    private double lowerShadow;
     //对数收益
-    private double logarithmYieldVariance;
+    private double logarithmYield = 0;
 
     //均线图
     private double ma5;
@@ -49,7 +48,7 @@ public class StockHistoricalVO {
      * @param volume 成交量
      * @param price_change 价格变动
      * @param p_change 涨跌幅
-     * @param logarithmYieldVariance 对数收益率
+     * @param logarithmYield 对数收益率
      * @param turnover 换手率
      * @param isPositive 是否为阳线
      * @param upperShadow 上影线值
@@ -61,7 +60,7 @@ public class StockHistoricalVO {
     public StockHistoricalVO(String stockCode, String stockName, String stockMarket, String date, boolean isPositive,
                              double upperShadow, double lowerShadow, double open, double close, double low,
                              double high, double price_change, double p_change, double turnover, int volume,
-                             double logarithmYieldVariance, double ma5, double ma10, double ma20) {
+                             double logarithmYield, double ma5, double ma10, double ma20) {
         this.stockCode = stockCode;
         this.stockName = stockName;
         this.stockMarket = stockMarket;
@@ -77,7 +76,7 @@ public class StockHistoricalVO {
         this.p_change = p_change;
         this.turnover = turnover;
         this.volume = volume;
-        this.logarithmYieldVariance = logarithmYieldVariance;
+        this.logarithmYield = logarithmYield;
         this.ma5 = ma5;
         this.ma10 = ma10;
         this.ma20 = ma20;
@@ -147,11 +146,11 @@ public class StockHistoricalVO {
         this.high = high;
     }
 
-    public int getVolume() {
+    public double getVolume() {
         return volume;
     }
 
-    public void setVolume(int volume) {
+    public void setVolume(double volume) {
         this.volume = volume;
     }
 
@@ -171,12 +170,12 @@ public class StockHistoricalVO {
         this.p_change = p_change;
     }
 
-    public double getLogarithmYieldVariance() {
-        return logarithmYieldVariance;
+    public double getLogarithmYield() {
+        return logarithmYield;
     }
 
-    public void setLogarithmYieldVariance(double logarithmYieldVariance) {
-        this.logarithmYieldVariance = logarithmYieldVariance;
+    public void setLogarithmYield(double logarithmYield) {
+        this.logarithmYield = logarithmYield;
     }
 
     public double getTurnover() {

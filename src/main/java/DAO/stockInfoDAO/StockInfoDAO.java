@@ -1,7 +1,6 @@
 package DAO.stockInfoDAO;
 
-import bean.MarketInfo;
-import bean.Stock;
+import bean.*;
 
 import java.util.ArrayList;
 
@@ -16,6 +15,9 @@ public interface StockInfoDAO {
      * @return 股票信息
      */
     public Stock getStockRealTimeInfo(String code);
+
+
+//    public ArrayList<Stock> getMakr
 
     /**
      * 按股票代码获得股票信息

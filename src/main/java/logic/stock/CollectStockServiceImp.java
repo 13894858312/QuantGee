@@ -3,6 +3,7 @@ package logic.stock;
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.MarketInfo;
 import bean.Stock;
+import logic.tools.TransferHelper;
 import service.stock.CollectStockService;
 import vo.stock.StockCollectInputVO;
 import vo.stock.StockCurrentVO;
@@ -29,21 +30,10 @@ public class CollectStockServiceImp implements CollectStockService{
 
         for(Stock stock : stocks) {
             marketInfo = stockInfoDAO.getMarketInfo(stock.getStockId());
-            StockCurrentVO stockCurrentVO = new StockCurrentVO();
-            stockCurrentVO.setStockCode(marketInfo.getStockID());
-            stockCurrentVO.setStockName(marketInfo.getStockName());
-            stockCurrentVO.setStockMarket(marketInfo.getcMarket());
-            stockCurrentVO.setOpen(stock.getOpen());
-            stockCurrentVO.setClose(stock.getClose());
-            stockCurrentVO.setLow(stock.getLow());
-            stockCurrentVO.setHigh(stock.getHigh());
-            stockCurrentVO.setVolume(stock.getVolume());
-            stockCurrentVO.setP_change(stock.getpChange());
-            stockCurrentVO.setPrice_change(stock.getPriceChange());
-//            stockCurrentVO.setTurnover(stock.getTurnOver());
-            //缺少换手率数据
 
-            stockCurrentVOS.add(stockCurrentVO);
+            StockCurrentVO stockVO = TransferHelper.transToStockCurrent(marketInfo, stock);
+
+            stockCurrentVOS.add(stockVO);
         }
 
         return stockCurrentVOS;
