@@ -18,6 +18,11 @@ import java.util.ArrayList;
 public class StockInfoData implements StockInfoDAO{
 
     @Override
+    public Stock getStockRealTimeInfo(String code) {
+        return null;
+    }
+
+    @Override
     public ArrayList<Stock> getStockInfo(String code) {
         try{
             Configuration configuration = new Configuration();
