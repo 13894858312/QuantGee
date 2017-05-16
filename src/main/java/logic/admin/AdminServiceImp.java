@@ -3,6 +3,7 @@ package logic.admin;
 import DAO.accountDAO.AccountDAO;
 import DAO.userDAO.UserDAO;
 import bean.Account;
+import bean.User;
 import logic.tools.TransferHelper;
 import po.UserAnalysisDataPO;
 import po.UserPO;
@@ -21,7 +22,7 @@ public class AdminServiceImp implements AdminService{
     @Override
     public UserAccountVO searchUser(String userID) {
         Account account = accountDAO.getAccount(userID);
-        UserPO user = userDAO.searchUser(userID);
+        User user = userDAO.searchUser(userID);
 
         if(account == null || user == null) {
             return null;
@@ -31,7 +32,7 @@ public class AdminServiceImp implements AdminService{
         userAccountVO.setAccountID(account.getUserId());
         userAccountVO.setRegisterDate(account.getRegisterDate());
         userAccountVO.setPhoneNumber(user.getPhoneNumber());
-        userAccountVO.setUserName(user.getUserName());
+        userAccountVO.setUserName(user.getAlterName());
 
         return userAccountVO;
     }
