@@ -27,8 +27,8 @@ public class AccountDataTest {
     @Test
     public void insertTest() {
         Account account = new Account();
+        account.setUserId("123456");
         account.setPassword("abcd");
-        account.setUserId("123sd45");
         account.setRegisterDate("2011");
         account.setIsLogIn(0);
         accountDAO.addAccount(account);

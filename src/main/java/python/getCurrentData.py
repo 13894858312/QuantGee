@@ -8,7 +8,7 @@
 #     df = ts.get_today_all()
 #     #print df
 #     engine = create_engine('mysql+pymysql://root:19961112@localhost:3306/quantgee_data?charset=utf8')
-#     df.to_sql('CurrentAll', engine, if_exists='replace')
+#     df.to_sql('Current', engine, if_exists='replace')
 #     return
 #
 # while True:

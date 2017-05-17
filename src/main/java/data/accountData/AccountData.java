@@ -19,11 +19,11 @@ import java.util.*;
  */
 public class AccountData implements AccountDAO {
 
+    Configuration configuration = new Configuration().configure();
+
     @Override
     public boolean addAccount(Account account) {
         try{
-            Configuration configuration = new Configuration();
-            configuration.configure();
             configuration.addClass(Account.class);
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
@@ -46,8 +46,6 @@ public class AccountData implements AccountDAO {
     @Override
     public boolean updateAccount(Account account) {
         try{
-            Configuration configuration = new Configuration();
-            configuration.configure();
             configuration.addClass(Account.class);
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
@@ -70,9 +68,6 @@ public class AccountData implements AccountDAO {
     @Override
     public Account getAccount(String userID) {
         try{
-            Configuration configuration = new Configuration();
-            configuration.configure();
-
             configuration.addClass(Account.class);
 
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
@@ -98,8 +93,6 @@ public class AccountData implements AccountDAO {
     public UserAnalysisDataPO getUserAnalysisData() {
         UserAnalysisDataPO userAnalysisDataPO ;
         try{
-            Configuration configuration = new Configuration();
-            configuration.configure();
 
             configuration.addClass(Analysis.class);
 

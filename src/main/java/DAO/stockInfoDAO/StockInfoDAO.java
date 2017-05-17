@@ -2,7 +2,6 @@ package DAO.stockInfoDAO;
 
 import bean.*;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -32,7 +31,7 @@ public interface StockInfoDAO {
      * @param code 股票代码
      * @return 股票信息
      */
-    public Stock getStockRealTimeInfo(String code);
+    public Current getStockRealTimeInfo(String code);
 
     /**
      * 得到所有股票ID
@@ -52,10 +51,9 @@ public interface StockInfoDAO {
      * @param code 股票代码
      * @param startDate 开始日期
      * @param endDate 结束日期
-     * @param kType k线图类型
      * @return 股票信息
      */
-    public Iterator<Stock> getStockInfo(String code, String startDate , String endDate , String kType);
+    public Iterator<Stock> getStockInfo(String code, String startDate , String endDate);
 
     /**
      * 按股票代码获得股票名称和所属行业

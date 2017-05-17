@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="bean.CurrentAll" table="CurrentAll" schema="quantgee_data">
+    <class name="bean.Current" table="Current" schema="quantgee_data">
         <id name="index" column="index"/>
         <property name="code" column="code"/>
         <property name="name" column="name"/>

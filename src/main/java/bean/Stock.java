@@ -1,12 +1,14 @@
 package bean;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/16.
+ * Created by wangxue on 2017/5/17.
  */
 @Entity
-@IdClass(StockPK.class)
 public class Stock {
     private String date;
     private Double open;
@@ -22,9 +24,11 @@ public class Stock {
     private Double vMa5;
     private Double vMa10;
     private Double vMa20;
+    private Double turnover;
     private String stockId;
+    private int index;
 
-    @Id
+    @Basic
     @Column(name = "date")
     public String getDate() {
         return date;
@@ -164,7 +168,17 @@ public class Stock {
         this.vMa20 = vMa20;
     }
 
-    @Id
+    @Basic
+    @Column(name = "turnover")
+    public Double getTurnover() {
+        return turnover;
+    }
+
+    public void setTurnover(Double turnover) {
+        this.turnover = turnover;
+    }
+
+    @Basic
     @Column(name = "stockID")
     public String getStockId() {
         return stockId;
@@ -174,6 +188,16 @@ public class Stock {
         this.stockId = stockId;
     }
 
+    @Id
+    @Column(name = "index")
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -181,6 +205,7 @@ public class Stock {
 
         Stock stock = (Stock) o;
 
+        if (index != stock.index) return false;
         if (date != null ? !date.equals(stock.date) : stock.date != null) return false;
         if (open != null ? !open.equals(stock.open) : stock.open != null) return false;
         if (high != null ? !high.equals(stock.high) : stock.high != null) return false;
@@ -195,6 +220,7 @@ public class Stock {
         if (vMa5 != null ? !vMa5.equals(stock.vMa5) : stock.vMa5 != null) return false;
         if (vMa10 != null ? !vMa10.equals(stock.vMa10) : stock.vMa10 != null) return false;
         if (vMa20 != null ? !vMa20.equals(stock.vMa20) : stock.vMa20 != null) return false;
+        if (turnover != null ? !turnover.equals(stock.turnover) : stock.turnover != null) return false;
         if (stockId != null ? !stockId.equals(stock.stockId) : stock.stockId != null) return false;
 
         return true;
@@ -216,7 +242,9 @@ public class Stock {
         result = 31 * result + (vMa5 != null ? vMa5.hashCode() : 0);
         result = 31 * result + (vMa10 != null ? vMa10.hashCode() : 0);
         result = 31 * result + (vMa20 != null ? vMa20.hashCode() : 0);
+        result = 31 * result + (turnover != null ? turnover.hashCode() : 0);
         result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
+        result = 31 * result + index;
         return result;
     }
 }

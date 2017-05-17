@@ -57,8 +57,8 @@
       <mapping resource="bean/UserMoney.hbm.xml"/>
       <mapping class="bean.Stock"/>
       <mapping resource="bean/Stock.hbm.xml"/>
-      <mapping resource="bean/CurrentAll.hbm.xml"/>
-      <mapping class="bean.CurrentAll"/>
+      <mapping resource="bean/Current.hbm.xml"/>
+      <mapping class="bean.Current"/>
       <mapping resource="bean/Gem.hbm.xml"/>
       <mapping class="bean.Gem"/>
       <mapping resource="bean/Sme.hbm.xml"/>

@@ -9,7 +9,7 @@ import javax.persistence.Id;
  * Created by wangxue on 2017/5/17.
  */
 @Entity
-public class CurrentAll {
+public class Current {
     private String code;
     private String name;
     private Double changepercent;
@@ -192,7 +192,7 @@ public class CurrentAll {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CurrentAll that = (CurrentAll) o;
+        Current that = (Current) o;
 
         if (index != that.index) return false;
         if (code != null ? !code.equals(that.code) : that.code != null) return false;
