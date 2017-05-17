@@ -5,6 +5,7 @@ import DAO.userDAO.UserDAO;
 import bean.Account;
 import bean.User;
 import logic.tools.TransferHelper;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import po.UserAnalysisDataPO;
 import vo.admin.UserAccountVO;
