@@ -7,74 +7,47 @@
     <!-- 启用spring注解支持 -->
     <context:annotation-config/>
 
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <!-- 指定连接数据库的驱动 -->
-        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <!-- 指定连接数据库的URL -->
-        <property name="jdbcUrl" value="jdbc:mysql://localhost/auction"/>
-        <!-- 指定连接数据库的用户名 -->
-        <property name="user" value="root"/>
-        <!-- 指定连接数据库的密码 -->
-        <property name="password" value="root"/>
-        <!-- 指定连接数据库连接池的最大连接数 -->
-        <property name="maxPoolSize" value="20"/>
-        <!-- 指定连接数据库连接池的最小连接数 -->
-        <property name="minPoolSize" value="1"/>
-        <!-- 指定连接数据库连接池的初始化连接数 -->
-        <property name="initialPoolSize" value="1"/>
-        <!-- 指定连接数据库连接池的连接的最大空闲时间 -->
-        <property name="maxIdleTime" value="20"/>
-    </bean>
 
-    <!-- 配置回话工厂-->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource">
-            <ref bean="dataSource" />
-        </property>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="connection.driver_class">com.mysql.jdbc.Driver</prop>
-                <!-- 指定连接数据库的url，hibernate连接的数据库名 -->
-                <prop key="connection.url">jdbc:mysql://localhost:3306/quantgee_data</prop>
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">-->
+        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
+        <!--<property name="url" value="jdbc:mysql://localhost:3309/sampledb" />-->
+        <!--<property name="username" value="root" />-->
+        <!--<property name="password" value="1234" />-->
+    <!--</bean>-->
 
+    <!--&lt;!&ndash; 配置回话工厂&ndash;&gt;-->
+    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
+        <!--<property name="dataSource">-->
+            <!--<ref bean="dataSource" />-->
+        <!--</property>-->
+        <!--<property name="hibernateProperties">-->
+            <!--<props>-->
 
-                <!-- MySQL的方言 -->
-                <prop key="hibernate.dialect">data.ExtMysqlDialect</prop>
-                <prop key="javax.persistence.validation.mode">none</prop>
-                <!-- 必要时在数据库新建所有表格 -->
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.format_sql">true</prop>
-                <prop key="hibernate.jdbc.fetch_size">50</prop>
-                <prop key="hibernate.jdbc.batch_size">20</prop>
-                <prop key="hibernate.jdbc.use_scrollable_resultset">false</prop>
-                <prop key="hibernate.con">false</prop>
-                <prop key="Connection.useUnicode">true </prop>
-                <!--connection.characterEncoding连接数据库时数据的传输字符集编码方式，最好设置为gbk，用gb2312有的字符不全-->
-                <prop key="connection.characterEncoding">utf-8</prop>
-                <!-- 配置current session的上下文环境，方便我们调用sessionFactory获取当前线程统一个session对象 -->
-                <prop key="current_session_context_class">thread</prop>
-            </props>
-        </property>
-        <property name="packagesToScan" value="data" /><!-- 配置需要扫描的包路径，在该包下，所有的类注解配置都会被扫描 -->
-    </bean>
+                <!--&lt;!&ndash; MySQL的方言 &ndash;&gt;-->
+                <!--<prop key="hibernate.dialect">data.ExtMysqlDialect</prop>-->
+                <!--<prop key="javax.persistence.validation.mode">none</prop>-->
+                <!--&lt;!&ndash; 必要时在数据库新建所有表格 &ndash;&gt;-->
+                <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
+                <!--<prop key="hibernate.show_sql">true</prop>-->
+                <!--<prop key="hibernate.format_sql">true</prop>-->
+                <!--<prop key="hibernate.jdbc.fetch_size">50</prop>-->
+                <!--<prop key="hibernate.jdbc.batch_size">20</prop>-->
+                <!--<prop key="hibernate.jdbc.use_scrollable_resultset">false</prop>-->
+                <!--<prop key="hibernate.con">false</prop>-->
+                <!--<prop key="Connection.useUnicode">true </prop>-->
+                <!--&lt;!&ndash;connection.characterEncoding连接数据库时数据的传输字符集编码方式，最好设置为gbk，用gb2312有的字符不全&ndash;&gt;-->
+                <!--<prop key="connection.characterEncoding">utf-8</prop>-->
+                <!--&lt;!&ndash; 配置current session的上下文环境，方便我们调用sessionFactory获取当前线程统一个session对象 &ndash;&gt;-->
+                <!--<prop key="current_session_context_class">thread</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+        <!--<property name="packagesToScan" value="data" />&lt;!&ndash; 配置需要扫描的包路径，在该包下，所有的类注解配置都会被扫描 &ndash;&gt;-->
+    <!--</bean>-->
 
 
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" /><!-- 引用数据源 -->
-        <property name="mappingDirectoryLocations">
-            <list>
-                <value>classpath:com/cn/nos/services/pojo/</value><!-- 加载hibernate的映射文件*.hbm.xml -->
-            </list>
-        </property>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.format_sql">true</prop>
-                <!--<prop key="hibernate.current_session_context_class">thread</prop>-->
-            </props>
-        </property>
+
+    <!--action的bean-->
+    <bean id="loginAction" class="action.LoginAction" scope="prototype">
     </bean>
 
 

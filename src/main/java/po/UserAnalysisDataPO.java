@@ -1,7 +1,5 @@
 package po;
 
-import jnr.ffi.annotations.In;
-
 import java.util.Map;
 
 public class UserAnalysisDataPO {
