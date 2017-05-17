@@ -1,6 +1,7 @@
-# encoding=utf-8
-#from sqlalchemy import create_engine
-#import tushare as ts
+# # encoding=utf-8
+# from sqlalchemy import create_engine
+# import tushare as ts
+# import time
 #
 #
 # def get_top_n_news(n):
@@ -9,4 +10,9 @@
 #     news.to_sql('News', engine, if_exists='replace')
 #     return
 #
-# get_top_n_news(100)
+#
+# while True:
+#     print 'startNews'
+#     get_top_n_news(50)
+#     time.sleep(600)
+# #

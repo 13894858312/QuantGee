@@ -9,7 +9,7 @@ import javax.persistence.Id;
  * Created by wangxue on 2017/5/17.
  */
 @Entity
-public class HoldingNum {
+public class HoldingStock {
     private int index;
     private String stockId;
     private String userId;
@@ -60,7 +60,7 @@ public class HoldingNum {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        HoldingNum that = (HoldingNum) o;
+        HoldingStock that = (HoldingStock) o;
 
         if (index != that.index) return false;
         if (holdNum != that.holdNum) return false;
