@@ -18,7 +18,7 @@
       <property name="hbm2ddl.auto">update</property>
       <!-- 显示Hibernate持久化操作所生成的SQL语句 -->
       <property name="show_sql">true</property>
-      <!-- 将SQL脚本进行格式化后再输出 -->
+          <!-- 将SQL脚本进行格式化后再输出 -->
       <property name="format_sql">true</property>
       <!--jdbc.fetch_size是指Hibernate每次从数据库中取出并放到JDBC的Statement中的记录条数。Fetch Size设的越大，读数据库的次数越少，速度越快，Fetch Size越小，读数据库的次数越多，速度越慢-->
       <property name="jdbc.fetch_size">50 </property>
