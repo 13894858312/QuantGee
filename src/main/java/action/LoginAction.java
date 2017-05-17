@@ -1,22 +1,20 @@
 package action;
 
-import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionSupport;
 
-import bean.Account;
-
-public class LoginAction implements Action {
+public class LoginAction extends ActionSupport {
 
 	private String uname; // 表单中的姓名
 	private String upass; // 表单中的密码
 
-	@Override
-	public String execute() throws Exception {
-		System.out.println("姓名:" + uname);
-		System.out.println("密码:" + upass);
-		if (uname.equals("bcy") && upass.equals("bcy")) {
-			return "success";
+	public String execute() {
+		System.out.println(uname);
+		System.out.println(upass);
+		if (uname.equals("bcy")&&upass.equals("bcy")){
+			return SUCCESS;
+		}else {
+			return "fail";
 		}
-		return "fail";
 	}
 
 	public String getUname() {

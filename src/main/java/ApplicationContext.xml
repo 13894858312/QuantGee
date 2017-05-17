@@ -8,4 +8,7 @@
     <!-- 启用spring注解支持 -->
     <context:annotation-config/>
 
+    <bean id="loginAction" class="action.LoginAction" scope="prototype">
+    </bean>
+
 </beans>
