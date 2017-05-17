@@ -31,8 +31,8 @@ public class StockInfoData implements StockInfoDAO{
     public Iterator<Stock> getStockInfo(String code) {
 
         try{
-            Configuration configuration = new Configuration().configure();
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
+            Configuration configuration = new Configuration();
+            SessionFactory sessionFactory = configuration.configure().buildSessionFactory();
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
 

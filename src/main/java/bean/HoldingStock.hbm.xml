@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="bean.HoldingNum" table="HoldingNum" schema="quantgee_data">
+    <class name="bean.HoldingStock" table="HoldingStock" schema="quantgee_data">
         <id name="index" column="index"/>
         <property name="stockId" column="stockID"/>
         <property name="userId" column="userID"/>

@@ -49,5 +49,10 @@ public class AccountDataTest {
         Assert.assertEquals(accountDAO.getAccount(userID).getRegisterDate() , "201");
     }
 
+    @Test
+    public void analysis(){
+        UserAnalysisDataPO userAnalysisDataPO = accountDAO.getUserAnalysisData();
+        System.out.print(userAnalysisDataPO.getUserNum());
+    }
 
 }
