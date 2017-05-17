@@ -1,6 +1,7 @@
 package logic.stock;
 
 import DAO.stockInfoDAO.StockInfoDAO;
+import bean.Current;
 import bean.MarketInfo;
 import bean.Stock;
 import logic.tools.TransferHelper;
@@ -24,7 +25,7 @@ public class CollectStockServiceImp implements CollectStockService{
 
     @Override
     public ArrayList<StockCurrentVO> getCollectedStocks(String userID) {
-        Iterator<Stock> stocks = stockInfoDAO.getCollectedStocks(userID);
+        Iterator<String> stocks = stockInfoDAO.getCollectedStocks(userID);
         MarketInfo marketInfo = null;
 
         if(stocks == null) {
@@ -34,10 +35,11 @@ public class CollectStockServiceImp implements CollectStockService{
         ArrayList<StockCurrentVO> stockCurrentVOS = new ArrayList<>();
 
         while(stocks.hasNext()) {
-            Stock stock = stocks.next();
-            marketInfo = stockInfoDAO.getMarketInfo(stock.getStockId());
+            String string = stocks.next();
+            marketInfo = stockInfoDAO.getMarketInfo(string);
+            Current current = stockInfoDAO.getStockRealTimeInfo(string);
 
-            StockCurrentVO stockVO = transferHelper.transToStockCurrent(marketInfo, stock);
+            StockCurrentVO stockVO = transferHelper.transToStockCurrent(marketInfo, current);
 
             stockCurrentVOS.add(stockVO);
         }

@@ -1,20 +1,20 @@
 package bean;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 
 /**
- * Created by wangxue on 2017/5/15.
+ * Created by wangxue on 2017/5/17.
  */
 @Entity
-@IdClass(CollectStrategyPK.class)
 public class CollectStrategy {
     private String userId;
     private String strategyId;
+    private int index;
 
-    @Id
+    @Basic
     @Column(name = "userID")
     public String getUserId() {
         return userId;
@@ -24,7 +24,7 @@ public class CollectStrategy {
         this.userId = userId;
     }
 
-    @Id
+    @Basic
     @Column(name = "strategyID")
     public String getStrategyId() {
         return strategyId;
@@ -34,6 +34,16 @@ public class CollectStrategy {
         this.strategyId = strategyId;
     }
 
+    @Id
+    @Column(name = "index")
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,6 +51,7 @@ public class CollectStrategy {
 
         CollectStrategy that = (CollectStrategy) o;
 
+        if (index != that.index) return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
         if (strategyId != null ? !strategyId.equals(that.strategyId) : that.strategyId != null) return false;
 
@@ -51,6 +62,7 @@ public class CollectStrategy {
     public int hashCode() {
         int result = userId != null ? userId.hashCode() : 0;
         result = 31 * result + (strategyId != null ? strategyId.hashCode() : 0);
+        result = 31 * result + index;
         return result;
     }
 }

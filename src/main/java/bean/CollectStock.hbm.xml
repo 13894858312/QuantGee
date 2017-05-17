@@ -5,9 +5,8 @@
 <hibernate-mapping>
 
     <class name="bean.CollectStock" table="CollectStock" schema="quantgee_data">
-        <composite-id mapped="true" class="bean.CollectStockPK">
-            <key-property name="userId" column="userID"/>
-            <key-property name="stockId" column="stockID"/>
-        </composite-id>
+        <id name="index" column="index"/>
+        <property name="userId" column="userID"/>
+        <property name="stockId" column="stockID"/>
     </class>
 </hibernate-mapping>
