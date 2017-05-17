@@ -57,6 +57,14 @@
       <mapping resource="bean/UserMoney.hbm.xml"/>
       <mapping class="bean.Stock"/>
       <mapping resource="bean/Stock.hbm.xml"/>
+      <mapping resource="bean/CurrentAll.hbm.xml"/>
+      <mapping class="bean.CurrentAll"/>
+      <mapping resource="bean/Gem.hbm.xml"/>
+      <mapping class="bean.Gem"/>
+      <mapping resource="bean/HistStock.hbm.xml"/>
+      <mapping class="bean.HistStock"/>
+      <mapping resource="bean/Sme.hbm.xml"/>
+      <mapping class="bean.Sme"/>
 
   </session-factory>
 

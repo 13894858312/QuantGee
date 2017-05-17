@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+import org.junit.Assert;
 import org.junit.Test;
 import po.UserAnalysisDataPO;
 
@@ -18,6 +19,9 @@ import java.util.List;
  */
 public class AccountDataTest {
 
+
+    AccountDAO accountDAO = new AccountData();
+
     @Test
     public void insertTest() {
         Account account = new Account();
@@ -25,7 +29,6 @@ public class AccountDataTest {
         account.setUserId("123sd45");
         account.setRegisterDate("2011");
         account.setIsLogIn(0);
-        AccountDAO accountDAO = new AccountData();
         accountDAO.addAccount(account);
     }
 
@@ -35,85 +38,14 @@ public class AccountDataTest {
         account.setUserId("db");
         account.setIsLogIn(1);
         account.setPassword("acvs");
-        AccountDAO accountDAO = new AccountData();
         accountDAO.updateAccount(account);
     }
 
     @Test
-    public void getText() {
-        try {
-            Configuration configuration = new Configuration();
-            configuration.configure();
-
-            configuration.addClass(MarketInfo.class);
-
-            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-            Session session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
-
-            String hql = "FROM MarketInfo m";
-            List<MarketInfo> list = session.createQuery(hql).list();
-
-            for (MarketInfo m :list) {
-                System.out.print(m.getStockID()+ ',');
-            }
-
-            transaction.commit();
-            session.close();
-            sessionFactory.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void findTest(){
+        String userID = "db";
+        Assert.assertEquals(accountDAO.getAccount(userID).getRegisterDate() , "201");
     }
 
-    @Test
-    public void insertTest2() {
-
-        User user = new User();
-        user.setUserId("1s00");
-        user.setAlterName("dwx");
-        user.setPhoneNumber("1221222");
-
-        try {
-            Configuration configuration = new Configuration();
-            configuration.configure();
-            configuration.addClass(User.class);
-            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-            Session session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
-
-            session.save(user);
-
-            transaction.commit();
-            session.close();
-            sessionFactory.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void txt() {
-        String url = "/MyGit/QuantGee/src/main/resources/code.txt";
-        try {
-            File file = new File(url);
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            FileWriter fileWriter = new FileWriter("/MyGit/QuantGee/src/main/resources/comma1.txt");
-            String str;
-            while ((str = bufferedReader.readLine()) != null) {
-                fileWriter.write("\"" + str + "\",");
-                System.out.print("\"" + str + "\",");
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 }
