@@ -6,8 +6,6 @@
 
 <struts>
 	<package name="default" namespace="/" extends="struts-default"> 
-	</package>
-	<package name="login" namespace="/login" extends="default">
 		<action name="login" class="action.LoginAction">
 			<result name="success">/view/ucenter/user_center.html</result>
 			<result name="fail">/view/ucenter/login.html</result>
