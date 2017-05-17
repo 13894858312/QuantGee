@@ -19,7 +19,7 @@ import java.util.List;
 public class AccountDataTest {
 
     @Test
-    public void insertTest(){
+    public void insertTest() {
         Account account = new Account();
         account.setPassword("abcd");
         account.setUserId("123sd45");
@@ -30,7 +30,7 @@ public class AccountDataTest {
     }
 
     @Test
-    public void updateTest(){
+    public void updateTest() {
         Account account = new Account();
         account.setUserId("db");
         account.setIsLogIn(1);
@@ -40,41 +40,43 @@ public class AccountDataTest {
     }
 
     @Test
-    public void getText(){
-        try{
+    public void getText() {
+        try {
             Configuration configuration = new Configuration();
             configuration.configure();
-            configuration.addClass(Account.class);
+
+            configuration.addClass(MarketInfo.class);
+
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
 
-            String hql = "FROM User n ";
-            List<User> list = session.createQuery(hql).list();
+            String hql = "FROM MarketInfo m";
+            List<MarketInfo> list = session.createQuery(hql).list();
 
-            for(User m:list){
-                System.out.print(m.getUserId()+',');
+            for (MarketInfo m :list) {
+                System.out.print(m.getStockID()+ ',');
             }
 
             transaction.commit();
             session.close();
             sessionFactory.close();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void insertTest2(){
+    public void insertTest2() {
 
         User user = new User();
         user.setUserId("1s00");
         user.setAlterName("dwx");
         user.setPhoneNumber("1221222");
 
-        try{
+        try {
             Configuration configuration = new Configuration();
             configuration.configure();
             configuration.addClass(User.class);
@@ -89,29 +91,29 @@ public class AccountDataTest {
             session.close();
             sessionFactory.close();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-   @Test
-    public void txt(){
-        String url ="/MyGit/QuantGee/src/main/resources/code.txt";
+    @Test
+    public void txt() {
+        String url = "/MyGit/QuantGee/src/main/resources/code.txt";
         try {
             File file = new File(url);
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             FileWriter fileWriter = new FileWriter("/MyGit/QuantGee/src/main/resources/comma1.txt");
             String str;
-            while((str = bufferedReader.readLine())!=null){
-                fileWriter.write("\""+str+"\",");
-                System.out.print("\""+str+"\",");
+            while ((str = bufferedReader.readLine()) != null) {
+                fileWriter.write("\"" + str + "\",");
+                System.out.print("\"" + str + "\",");
             }
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-   }
+    }
 
 }

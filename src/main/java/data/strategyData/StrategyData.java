@@ -4,6 +4,7 @@ import DAO.strategyDAO.StrategyDAO;
 import bean.Strategy;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by wangxue on 2017/5/5.
@@ -21,7 +22,7 @@ public class StrategyData implements StrategyDAO {
     }
 
     @Override
-    public ArrayList<Strategy> getUserStrategy(String userID) {
+    public Iterator<Strategy> getUserStrategy(String userID) {
         return null;
     }
 
@@ -36,7 +37,7 @@ public class StrategyData implements StrategyDAO {
     }
 
     @Override
-    public ArrayList<Strategy> getUserCollectedStrategy(String userID) {
+    public Iterator<Strategy> getUserCollectedStrategy(String userID) {
         return null;
     }
 
@@ -51,7 +52,7 @@ public class StrategyData implements StrategyDAO {
     }
 
     @Override
-    public ArrayList<Strategy> getAllPostStrategy() {
+    public Iterator<Strategy> getAllPostStrategy() {
         return null;
     }
 
