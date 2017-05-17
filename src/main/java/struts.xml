@@ -11,5 +11,4 @@
 			<result name="fail">/view/ucenter/login.html</result>
 		</action>
 	</package>
-	
 </struts>
