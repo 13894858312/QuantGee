@@ -10,6 +10,7 @@ import org.hibernate.service.ServiceRegistry;
 import org.junit.Test;
 import po.UserAnalysisDataPO;
 
+import java.io.*;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public class AccountDataTest {
     public void insertTest(){
         Account account = new Account();
         account.setPassword("abcd");
-        account.setUserId("123sd4");
+        account.setUserId("123sd45");
         account.setRegisterDate("2011");
         account.setIsLogIn(0);
         AccountDAO accountDAO = new AccountData();
@@ -69,8 +70,8 @@ public class AccountDataTest {
     public void insertTest2(){
 
         User user = new User();
-        user.setUserId("100");
-        user.setAlterName("wx");
+        user.setUserId("1s00");
+        user.setAlterName("dwx");
         user.setPhoneNumber("1221222");
 
         try{
@@ -92,5 +93,25 @@ public class AccountDataTest {
             e.printStackTrace();
         }
     }
+
+   @Test
+    public void txt(){
+        String url ="/MyGit/QuantGee/src/main/resources/code.txt";
+        try {
+            File file = new File(url);
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            FileWriter fileWriter = new FileWriter("/MyGit/QuantGee/src/main/resources/comma1.txt");
+            String str;
+            while((str = bufferedReader.readLine())!=null){
+                fileWriter.write("\""+str+"\",");
+                System.out.print("\""+str+"\",");
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+   }
 
 }

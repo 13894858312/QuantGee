@@ -126,8 +126,9 @@ function calculateMA(dayCount) {
 
 
 option = {
+    backgroundColor: '#FFFFFF',
     title: {
-        text: '上证指数',
+        text: '',
         left: 0
     },
     tooltip: {
