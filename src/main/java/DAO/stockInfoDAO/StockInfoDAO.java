@@ -74,7 +74,7 @@ public interface StockInfoDAO {
      * @param userID 用户ID
      * @return ArrayList<Stock> 全部收藏股票信息
      */
-    public Iterator<Stock> getCollectedStocks(String userID);
+    public Iterator<String> getCollectedStocks(String userID);
 
     /**
      * 添加收藏股票
