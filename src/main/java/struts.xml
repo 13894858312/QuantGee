@@ -6,7 +6,7 @@
 
 <struts>
 	<package name="default" namespace="/" extends="struts-default"> 
-		<action name="login" class="action.LoginAction">
+		<action name="login" class="loginAction">
 			<result name="success">/view/ucenter/login.html</result>
 			<result name="fail">/view/ucenter/login.html</result>
 		</action>
