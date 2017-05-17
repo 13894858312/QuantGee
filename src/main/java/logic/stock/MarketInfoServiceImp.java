@@ -3,6 +3,7 @@ package logic.stock;
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.Stock;
 import logic.tools.DateHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import service.stock.MarketInfoService;
 import vo.stock.MarketInfoVO;
 
@@ -13,6 +14,8 @@ import java.util.Iterator;
  * Created by Mark.W on 2017/5/15.
  */
 public class MarketInfoServiceImp implements MarketInfoService{
+
+    @Autowired
     private StockInfoDAO stockInfoDAO;
 
     @Override

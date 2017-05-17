@@ -3,6 +3,7 @@ package logic.user;
 import DAO.userDAO.UserDAO;
 import bean.User;
 import logic.tools.TransferHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import vo.user.UserVO;
 import service.user.UserService;
 
@@ -11,11 +12,15 @@ import service.user.UserService;
  */
 public class UserServiceImp implements UserService {
 
+    @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private TransferHelper transferHelper;
 
     @Override
     public boolean updateUserInfo(UserVO userVO) {
-        User user = TransferHelper.transToUser(userVO);
+        User user = transferHelper.transToUser(userVO);
         if(user != null) {
             if(userDAO.updateUserInfo(user)) {
                 return true;
@@ -26,8 +31,11 @@ public class UserServiceImp implements UserService {
 
     @Override
     public UserVO getUserInfo(String accountID) {
-        User user = userDAO.searchUser(accountID);
-        return TransferHelper.transToUserVO(user);
+//        User user = userDAO.searchUser(accountID);
+//        return transferHelper.transToUserVO(user);
+
+        UserVO userVO = new UserVO("wyy", "wyyyy", "wyyyyyy");
+        return userVO;
     }
 
     public UserDAO getUserDAO() {
@@ -36,5 +44,13 @@ public class UserServiceImp implements UserService {
 
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
+    }
+
+    public TransferHelper getTransferHelper() {
+        return transferHelper;
+    }
+
+    public void setTransferHelper(TransferHelper transferHelper) {
+        this.transferHelper = transferHelper;
     }
 }

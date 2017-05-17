@@ -4,6 +4,7 @@ import DAO.stockInfoDAO.StockInfoDAO;
 import bean.MarketInfo;
 import bean.Stock;
 import logic.tools.TransferHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import service.stock.StockInfoService;
 import vo.stock.StockCurrentVO;
 import vo.stock.StockHistoricalVO;
@@ -18,9 +19,12 @@ import java.util.Iterator;
  */
 public class StockInfoServiceImp implements StockInfoService{
 
+    @Autowired
     private StockInfoDAO stockInfoDAO;
-
-    private StockDataCalculation stockCalculation;
+    @Autowired
+    private StockDataCalculation stockDataCalculation;
+    @Autowired
+    private TransferHelper transferHelper;
 
     @Override
     public ArrayList<StockCurrentVO> getAllRealTimeStocks() {
@@ -48,7 +52,7 @@ public class StockInfoServiceImp implements StockInfoService{
         MarketInfo marketInfo = stockInfoDAO.getMarketInfo(code);
         Stock stock = stockInfoDAO.getStockRealTimeInfo(code);
 
-        StockCurrentVO stockCurrentVO = TransferHelper.transToStockCurrent(marketInfo, stock);
+        StockCurrentVO stockCurrentVO = transferHelper.transToStockCurrent(marketInfo, stock);
 
         return stockCurrentVO;
     }
@@ -72,10 +76,10 @@ public class StockInfoServiceImp implements StockInfoService{
             formerStock = stock;
             stock = stocks.next();
 
-            StockHistoricalVO historicalVO = TransferHelper.transToStockHistorical(marketInfo, stock);
+            StockHistoricalVO historicalVO = transferHelper.transToStockHistorical(marketInfo, stock);
 
             //k线图的数据
-            KLineData kLineData = stockCalculation.calculateKLine(historicalVO);
+            KLineData kLineData = stockDataCalculation.calculateKLine(historicalVO);
             historicalVO.setPositive(kLineData.isPositive());
             historicalVO.setUpperShadow(kLineData.getUpperShadow());
             historicalVO.setLowerShadow(kLineData.getLowerShadow());
@@ -123,11 +127,19 @@ public class StockInfoServiceImp implements StockInfoService{
         this.stockInfoDAO = stockInfoDAO;
     }
 
-    public StockDataCalculation getStockCalculation() {
-        return stockCalculation;
+    public StockDataCalculation getStockDataCalculation() {
+        return stockDataCalculation;
     }
 
-    public void setStockCalculation(StockDataCalculation stockCalculation) {
-        this.stockCalculation = stockCalculation;
+    public void setStockDataCalculation(StockDataCalculation stockDataCalculation) {
+        this.stockDataCalculation = stockDataCalculation;
+    }
+
+    public TransferHelper getTransferHelper() {
+        return transferHelper;
+    }
+
+    public void setTransferHelper(TransferHelper transferHelper) {
+        this.transferHelper = transferHelper;
     }
 }

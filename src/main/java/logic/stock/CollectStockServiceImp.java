@@ -4,6 +4,7 @@ import DAO.stockInfoDAO.StockInfoDAO;
 import bean.MarketInfo;
 import bean.Stock;
 import logic.tools.TransferHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import service.stock.CollectStockService;
 import vo.stock.StockCollectInputVO;
 import vo.stock.StockCurrentVO;
@@ -16,7 +17,10 @@ import java.util.Iterator;
  */
 public class CollectStockServiceImp implements CollectStockService{
 
+    @Autowired
     private StockInfoDAO stockInfoDAO;
+    @Autowired
+    private TransferHelper transferHelper;
 
     @Override
     public ArrayList<StockCurrentVO> getCollectedStocks(String userID) {
@@ -33,7 +37,7 @@ public class CollectStockServiceImp implements CollectStockService{
             Stock stock = stocks.next();
             marketInfo = stockInfoDAO.getMarketInfo(stock.getStockId());
 
-            StockCurrentVO stockVO = TransferHelper.transToStockCurrent(marketInfo, stock);
+            StockCurrentVO stockVO = transferHelper.transToStockCurrent(marketInfo, stock);
 
             stockCurrentVOS.add(stockVO);
         }
@@ -69,5 +73,13 @@ public class CollectStockServiceImp implements CollectStockService{
 
     public void setStockInfoDAO(StockInfoDAO stockInfoDAO) {
         this.stockInfoDAO = stockInfoDAO;
+    }
+
+    public TransferHelper getTransferHelper() {
+        return transferHelper;
+    }
+
+    public void setTransferHelper(TransferHelper transferHelper) {
+        this.transferHelper = transferHelper;
     }
 }

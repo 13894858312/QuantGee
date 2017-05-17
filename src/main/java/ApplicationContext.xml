@@ -8,7 +8,56 @@
     <!-- 启用spring注解支持 -->
     <context:annotation-config/>
 
+    <!--action的bean-->
     <bean id="loginAction" class="action.LoginAction" scope="prototype">
     </bean>
+
+
+    <!--logic的bean-->
+
+    <bean id="userService" class="logic.user.UserServiceImp" scope="prototype">
+        <!--<property name="sessionFactory">-->
+        <!--<ref local="sessionFactory"/>-->
+        <!--</property>-->
+    </bean>
+
+    <bean id="transferHelper" class="logic.tools.TransferHelper" scope="prototype">
+        <!--<property name="sessionFactory">-->
+        <!--<ref local="sessionFactory"/>-->
+        <!--</property>-->
+    </bean>
+
+    <bean id="stockDataCalculation" class="logic.stock.StockDataCalculation" scope="prototype">
+        <!--<property name="sessionFactory">-->
+        <!--<ref local="sessionFactory"/>-->
+        <!--</property>-->
+    </bean>
+
+
+    <!--Dao的bean-->
+    <bean id="stockInfoDao" class="data.stockInfoData.StockInfoData" scope="singleton">
+        <!--<property name="sessionFactory">-->
+            <!--<ref local="sessionFactory"/>-->
+        <!--</property>-->
+    </bean>
+
+    <bean id="accountData" class="data.accountData.AccountData" scope="singleton">
+        <!--<property name="sessionFactory">-->
+        <!--<ref local="sessionFactory"/>-->
+        <!--</property>-->
+    </bean>
+
+    <bean id="newsData" class="data.newsData.NewsData" scope="singleton">
+        <!--<property name="sessionFactory">-->
+        <!--<ref local="sessionFactory"/>-->
+        <!--</property>-->
+    </bean>
+
+    <bean id="userData" class="data.userData.UserData" scope="singleton">
+        <!--<property name="sessionFactory">-->
+        <!--<ref local="sessionFactory"/>-->
+        <!--</property>-->
+    </bean>
+
 
 </beans>
