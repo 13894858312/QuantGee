@@ -1,9 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>MarketInfo</title>
     <script src="../../echarts.js"></script>
+    <script src="../../jquery-3.2.1.min.js"></script>
     <script>
         function s1(x) {
             x.style.fontWeight = "bold";

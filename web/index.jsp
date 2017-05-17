@@ -31,7 +31,7 @@
 <div class="box">
   <div class="bar">
     <div class="item1" onmouseover="s1(this)" onmouseout="s2(this)">
-      <a href="view/market/marketInfo.html">大盘行情</a>
+      <a href="view/market/marketInfo.jsp">大盘行情</a>
     </div>
     <div class="item2" onmouseover="s1(this)" onmouseout="s2(this)">
       <a href="">个股信息</a>
