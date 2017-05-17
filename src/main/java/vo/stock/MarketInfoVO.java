@@ -41,16 +41,14 @@ public class MarketInfoVO {
      * 历史数据的构造方法
      * @param date       日期
      * @param marketType 大盘类型
-     * @param price      价格即当前指数值
      * @param volume     当日总成交量
      * @param rateNums   数据依次为 跌停，-10%- -5%，-5%-0，0-5%，5%-10%， 涨停，
      */
-    public MarketInfoVO(String date, String marketType, double price,
+    public MarketInfoVO(String date, String marketType,
                         double volume, int[] rateNums) {
         this.date = date;
         this.time = "";
         this.marketType = marketType;
-        this.price = price;
         this.volume = volume;
         this.rateNums = rateNums;
     }

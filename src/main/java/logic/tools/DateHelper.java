@@ -9,10 +9,18 @@ import java.util.Date;
  */
 public class DateHelper {
     private static final String DATE_FORMAT = "YYYY-MM-DD";//可以方便地修改日期格式
+    private static final String TIME_FORMAT = "YYYY-MM-DD HH:MM:SS";//可以方便地修改日期格式
 
     public static String getNowDate() {
         Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+        String date = dateFormat.format(now);
+        return date;
+    }
+
+    public static String getNowTime() {
+        Date now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(TIME_FORMAT);
         String date = dateFormat.format(now);
         return date;
     }

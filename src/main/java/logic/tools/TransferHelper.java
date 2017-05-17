@@ -10,6 +10,8 @@ import vo.stock.StockHistoricalVO;
 import vo.user.AccountVO;
 import vo.user.UserVO;
 
+import java.util.Date;
+
 /**
  * Created by Mark.W on 2017/5/15.
  * vo与entity的转换
@@ -105,26 +107,17 @@ public class TransferHelper {
      * @param stock stock
      * @return StockCurrentVO
      */
-    public StockCurrentVO transToStockCurrent(MarketInfo marketInfo, Stock stock) {
+    public StockCurrentVO transToStockCurrent(MarketInfo marketInfo, Current stock) {
 
         if(marketInfo == null || stock == null) {
             return null;
         }
 
-        StockCurrentVO stockCurrentVO = new StockCurrentVO();
-
-        stockCurrentVO.setStockCode(marketInfo.getStockID());
-        stockCurrentVO.setStockName(marketInfo.getStockName());
-        stockCurrentVO.setStockMarket(marketInfo.getMarket());
-        stockCurrentVO.setOpen(stock.getOpen());
-        stockCurrentVO.setClose(stock.getClose());
-        stockCurrentVO.setLow(stock.getLow());
-        stockCurrentVO.setHigh(stock.getHigh());
-        stockCurrentVO.setVolume(stock.getVolume());
-        stockCurrentVO.setP_change(stock.getpChange());
-        stockCurrentVO.setPrice_change(stock.getPriceChange());
-//            stockCurrentVO.setTurnover(stock.getTurnOver());
-        //缺少换手率数据
+        StockCurrentVO stockCurrentVO = new StockCurrentVO(stock.getCode(), stock.getName(), marketInfo.getMarket(),
+                DateHelper.getNowTime(),
+                stock.getTrade(), stock.getOpen(), stock.getLow(), stock.getHigh(), stock.getAmount(),
+                stock.getVolume(), stock.getChangepercent(), stock.getTurnoverratio(),stock.getSettlement(),
+                stock.getPer(), stock.getPb(), stock.getMktcap());
 
         return stockCurrentVO;
     }

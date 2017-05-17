@@ -1,6 +1,7 @@
 package logic.stock;
 
 import DAO.stockInfoDAO.StockInfoDAO;
+import bean.Current;
 import bean.MarketInfo;
 import bean.Stock;
 import logic.tools.TransferHelper;
@@ -49,54 +50,51 @@ public class StockInfoServiceImp implements StockInfoService{
     @Override
     public StockCurrentVO getRealTimeStockInfo(String code) {
 
-//        MarketInfo marketInfo = stockInfoDAO.getMarketInfo(code);
-//        Stock stock = stockInfoDAO.getStockRealTimeInfo(code);
-//
-//        StockCurrentVO stockCurrentVO = transferHelper.transToStockCurrent(marketInfo, stock);
-//
-//        return stockCurrentVO;
-        return null;
+        MarketInfo marketInfo = stockInfoDAO.getMarketInfo(code);
+        Current stock = stockInfoDAO.getStockRealTimeInfo(code);
+
+        StockCurrentVO stockCurrentVO = transferHelper.transToStockCurrent(marketInfo, stock);
+
+        return stockCurrentVO;
     }
 
     @Override
     public ArrayList<StockHistoricalVO> getStockHistoricalInfo(StockInputVO inputVO) {
 
-//        if(inputVO == null) {
-//            return null;
-//        }
-//        MarketInfo marketInfo = stockInfoDAO.getMarketInfo(inputVO.getStockCode());
-//        ArrayList<StockHistoricalVO> result = new ArrayList<>();
-//        Stock stock = null;
-//        Stock formerStock = null;
-//
-//        Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getStockCode(),
-//                inputVO.getStartDate(), inputVO.getEndDate(), "D");
-//
-//        while(stocks.hasNext()) {
-//
-//            formerStock = stock;
-//            stock = stocks.next();
-//
-//            StockHistoricalVO historicalVO = transferHelper.transToStockHistorical(marketInfo, stock);
-//
-//            //k线图的数据
-//            KLineData kLineData = stockDataCalculation.calculateKLine(historicalVO);
-//            historicalVO.setPositive(kLineData.isPositive());
-//            historicalVO.setUpperShadow(kLineData.getUpperShadow());
-//            historicalVO.setLowerShadow(kLineData.getLowerShadow());
-//
-//            //对数收益率
-//            if(formerStock != null && stock != null) {
-//                double logarithmYield = Math.log(stock.getClose() / formerStock.getClose());
-//                historicalVO.setLogarithmYield(logarithmYield);
-//            }
-//
-//            result.add(historicalVO);
-//        }
-//
-//        return result;
+        if(inputVO == null) {
+            return null;
+        }
+        MarketInfo marketInfo = stockInfoDAO.getMarketInfo(inputVO.getStockCode());
+        ArrayList<StockHistoricalVO> result = new ArrayList<>();
+        Stock stock = null;
+        Stock formerStock = null;
 
-        return null;
+        Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getStockCode(),
+                inputVO.getStartDate(), inputVO.getEndDate());
+
+        while(stocks.hasNext()) {
+
+            formerStock = stock;
+            stock = stocks.next();
+
+            StockHistoricalVO historicalVO = transferHelper.transToStockHistorical(marketInfo, stock);
+
+            //k线图的数据
+            KLineData kLineData = stockDataCalculation.calculateKLine(historicalVO);
+            historicalVO.setPositive(kLineData.isPositive());
+            historicalVO.setUpperShadow(kLineData.getUpperShadow());
+            historicalVO.setLowerShadow(kLineData.getLowerShadow());
+
+            //对数收益率
+            if(formerStock != null && stock != null) {
+                double logarithmYield = Math.log(stock.getClose() / formerStock.getClose());
+                historicalVO.setLogarithmYield(logarithmYield);
+            }
+
+            result.add(historicalVO);
+        }
+
+        return result;
     }
 
     @Override
