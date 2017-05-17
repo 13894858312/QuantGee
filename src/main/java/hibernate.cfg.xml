@@ -11,9 +11,7 @@
       <!-- 指定连接数据库的url，hibernate连接的数据库名 -->
       <property name="connection.url">jdbc:mysql://localhost:3306/quantgee_data</property>
       <!-- 指定连接数据库的用户名 -->
-      <property name="connection.username">root</property>
       <!-- 指定连接数据库的密码 -->
-      <property name="connection.password">19961112</property>
       <!-- 根据需要自动创建数据库 -->
       <property name="hbm2ddl.auto">update</property>
       <!-- 显示Hibernate持久化操作所生成的SQL语句 -->
@@ -39,8 +37,8 @@
       <mapping resource="bean/CollectStock.hbm.xml"/>
       <mapping class="bean.CollectStrategy"/>
       <mapping resource="bean/CollectStrategy.hbm.xml"/>
-      <mapping resource="bean/HoldingStock.hbm.xml"/>
-      <mapping class="bean.HoldingStock"/>
+      <mapping resource="bean/HoldingNum.hbm.xml"/>
+      <mapping class="bean.HoldingNum"/>
       <mapping class="bean.MarketInfo"/>
       <mapping resource="bean/MarketInfo.hbm.xml"/>
       <mapping class="bean.News"/>
@@ -63,6 +61,8 @@
       <mapping class="bean.Gem"/>
       <mapping resource="bean/Sme.hbm.xml"/>
       <mapping class="bean.Sme"/>
+      <mapping class="bean.HoldingNum"/>
+      <mapping resource="bean/HoldingNum.hbm.xml"/>
 
   </session-factory>
 

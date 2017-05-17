@@ -4,11 +4,10 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="bean.HoldingStock" table="HoldingStock" schema="quantgee_data">
-        <composite-id mapped="true" class="bean.HoldingStockPK">
-            <key-property name="userId" column="userID"/>
-            <key-property name="stockId" column="stockID"/>
-        </composite-id>
+    <class name="bean.HoldingNum" table="HoldingNum" schema="quantgee_data">
+        <id name="index" column="index"/>
+        <property name="stockId" column="stockID"/>
+        <property name="userId" column="userID"/>
         <property name="holdNum" column="holdNum"/>
     </class>
 </hibernate-mapping>
