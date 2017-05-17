@@ -7,6 +7,15 @@ public class LoginAction extends ActionSupport {
 	private String uname; // 表单中的姓名
 	private String upass; // 表单中的密码
 
+	public String login(){
+		System.out.println(uname);
+		System.out.println(upass);
+		if (uname.equals("bcy")&&upass.equals("bcy")){
+			return SUCCESS;
+		}else {
+			return "fail";
+		}
+	}
 
 	public String getUname() {
 		return uname;
