@@ -3,6 +3,7 @@ package logic.user;
 import DAO.accountDAO.AccountDAO;
 import bean.Account;
 import logic.tools.TransferHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import service.user.AccountService;
 import vo.user.AccountVO;
 
@@ -11,7 +12,19 @@ import vo.user.AccountVO;
  */
 public class AccountServiceImp implements AccountService{
 
+    @Autowired
     private AccountDAO accountDAO;
+
+    @Autowired
+    private TransferHelper transferHelper;
+
+    public TransferHelper getTransferHelper() {
+        return transferHelper;
+    }
+
+    public void setTransferHelper(TransferHelper transferHelper) {
+        this.transferHelper = transferHelper;
+    }
 
     public AccountDAO getAccountDAO() {
         return accountDAO;
@@ -23,7 +36,7 @@ public class AccountServiceImp implements AccountService{
 
     @Override
     public boolean register(AccountVO accountVO) {
-        Account account = TransferHelper.transToAccount(accountVO);
+        Account account = transferHelper.transToAccount(accountVO);
         return accountDAO.addAccount(account);
     }
 

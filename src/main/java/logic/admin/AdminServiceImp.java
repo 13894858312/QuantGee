@@ -5,6 +5,7 @@ import DAO.userDAO.UserDAO;
 import bean.Account;
 import bean.User;
 import logic.tools.TransferHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import po.UserAnalysisDataPO;
 import vo.admin.UserAccountVO;
 import vo.admin.UserAnalysisDataVO;
@@ -15,8 +16,14 @@ import service.admin.AdminService;
  */
 public class AdminServiceImp implements AdminService{
 
+    @Autowired
     private AccountDAO accountDAO;
+
+    @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private TransferHelper transferHelper;
 
     @Override
     public UserAccountVO searchUser(String userID) {
@@ -39,7 +46,7 @@ public class AdminServiceImp implements AdminService{
     @Override
     public UserAnalysisDataVO getUserAnalysisData() {
         UserAnalysisDataPO analysisData = accountDAO.getUserAnalysisData();
-        return TransferHelper.transToUserAnalysisVO(analysisData);
+        return transferHelper.transToUserAnalysisVO(analysisData);
     }
 
 
@@ -57,5 +64,13 @@ public class AdminServiceImp implements AdminService{
 
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
+    }
+
+    public TransferHelper getTransferHelper() {
+        return transferHelper;
+    }
+
+    public void setTransferHelper(TransferHelper transferHelper) {
+        this.transferHelper = transferHelper;
     }
 }

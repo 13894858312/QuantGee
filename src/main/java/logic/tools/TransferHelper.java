@@ -21,7 +21,7 @@ public class TransferHelper {
      * @param accountVO accountVO
      * @return Account
      */
-    public static Account transToAccount(AccountVO accountVO) {
+    public Account transToAccount(AccountVO accountVO) {
         if(accountVO == null) {
             return null;
         }
@@ -39,7 +39,7 @@ public class TransferHelper {
      * @param analysisDataPO analysisDataPO
      * @return  UserAnalysisDataVO
      */
-    public static UserAnalysisDataVO transToUserAnalysisVO(UserAnalysisDataPO analysisDataPO) {
+    public UserAnalysisDataVO transToUserAnalysisVO(UserAnalysisDataPO analysisDataPO) {
         if(analysisDataPO == null) {
             return null;
         }
@@ -54,7 +54,7 @@ public class TransferHelper {
      * @param userVO userVO
      * @return User
      */
-    public static User transToUser(UserVO userVO) {
+    public User transToUser(UserVO userVO) {
         if(userVO == null) {
             return null;
         }
@@ -72,7 +72,7 @@ public class TransferHelper {
      * @param user user
      * @return User
      */
-    public static UserVO transToUserVO(User user) {
+    public UserVO transToUserVO(User user) {
         if(user == null) {
             return null;
         }
@@ -90,7 +90,7 @@ public class TransferHelper {
      * @param news news
      * @return NewsVO
      */
-    public static NewsVO transToNewsVO(News news) {
+    public NewsVO transToNewsVO(News news) {
         if(news == null) {
             return null;
         }
@@ -105,7 +105,7 @@ public class TransferHelper {
      * @param stock stock
      * @return StockCurrentVO
      */
-    public static StockCurrentVO transToStockCurrent(MarketInfo marketInfo, Stock stock) {
+    public StockCurrentVO transToStockCurrent(MarketInfo marketInfo, Stock stock) {
 
         if(marketInfo == null || stock == null) {
             return null;
@@ -135,7 +135,7 @@ public class TransferHelper {
      * @param stock stock
      * @return StockCurrentVO
      */
-    public static StockHistoricalVO transToStockHistorical(MarketInfo marketInfo, Stock stock) {
+    public StockHistoricalVO transToStockHistorical(MarketInfo marketInfo, Stock stock) {
 
         if(marketInfo == null || stock == null) {
             return null;

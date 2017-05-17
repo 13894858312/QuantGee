@@ -3,6 +3,7 @@ package logic.stock;
 import DAO.NewsDAO.NewsDAO;
 import bean.News;
 import logic.tools.TransferHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import service.stock.NewsService;
 import vo.stock.NewsVO;
 
@@ -14,7 +15,10 @@ import java.util.Iterator;
  */
 public class NewsServiceImp implements NewsService {
 
+    @Autowired
     private NewsDAO newsDAO;
+    @Autowired
+    private TransferHelper transferHelper;
 
     @Override
     public ArrayList<NewsVO> getNews() {
@@ -26,7 +30,7 @@ public class NewsServiceImp implements NewsService {
         ArrayList<NewsVO> newsVOS = new ArrayList<>();
 
         while (news.hasNext()) {
-            newsVOS.add(TransferHelper.transToNewsVO(news.next()));
+            newsVOS.add(transferHelper.transToNewsVO(news.next()));
         }
 
         return newsVOS;
