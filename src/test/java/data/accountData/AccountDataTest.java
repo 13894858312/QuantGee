@@ -40,7 +40,7 @@ public class AccountDataTest {
         account.setUserId("db");
         account.setIsLogIn(1);
         account.setPassword("acvs");
-        accountDAO.updateAccount(account);
+        Assert.assertEquals(accountDAO.updateAccount(account),true);
     }
 
     @Test
