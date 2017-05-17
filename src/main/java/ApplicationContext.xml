@@ -2,53 +2,115 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-4.2.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+     http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+     http://www.springframework.org/schema/mvc
+     http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 
     <!-- 启用spring注解支持 -->
     <context:annotation-config/>
 
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/quantgee_data" />
+        <property name="username" value="root" />
+        <property name="password" value="19961112" />
+    </bean>
 
-    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">-->
-        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
-        <!--<property name="url" value="jdbc:mysql://localhost:3309/sampledb" />-->
-        <!--<property name="username" value="root" />-->
-        <!--<property name="password" value="1234" />-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" /><!-- 引用数据源 -->
+        <property name="mappingDirectoryLocations">
+            <list>
+                <value>classpath:bean</value><!-- 加载hibernate的映射文件*.hbm.xml -->
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">data.ExtMysqlDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hbm2ddl.auto">update</prop>
+                <!-- 显示Hibernate持久化操作所生成的SQL语句 -->
+                <prop key="format_sql">true</prop>
+                <!--jdbc.fetch_size是指Hibernate每次从数据库中取出并放到JDBC的Statement中的记录条数。Fetch Size设的越大，读数据库的次数越少，速度越快，Fetch Size越小，读数据库的次数越多，速度越慢-->
+                <prop key="jdbc.fetch_size">50 </prop>
+                <!--jdbc.batch_size是指Hibernate批量插入,删除和更新时每次操作的记录数。Batch Size越大，批量操作的向数据库发送Sql的次数越少，速度就越快，同样耗用内存就越大-->
+                <prop key="jdbc.batch_size">20 </prop>
+                <!--jdbc.use_scrollable_resultset是否允许Hibernate用JDBC的可滚动的结果集。对分页的结果集。对分页时的设置非常有帮助-->
+                <prop key="jdbc.use_scrollable_resultset">false</prop>
+                <!--connection.useUnicode连接数据库时是否使用Unicode编码-->
+                <prop key="Connection.useUnicode">true </prop>
+                <!--connection.characterEncoding连接数据库时数据的传输字符集编码方式，最好设置为gbk，用gb2312有的字符不全-->
+                <prop key="connection.characterEncoding">utf-8</prop>
+                <!--<prop key="hibernate.current_session_context_class">thread</prop>-->
+            </props>
+        </property>
+    </bean>
+
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!-- 定义事务管理器（声明式的事务） -->
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <!-- 事务的传播特性 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="get*" read-only="true" propagation="NOT_SUPPORTED"/>
+            <tx:method name="*" read-only="false"/>
+        </tx:attributes>
+    </tx:advice>
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="false"/>
+
+    <!-- 哪些类哪些方法使用事务 -->
+    <aop:config>
+        <!-- 只对业务逻辑层实施事务 -->
+        <aop:pointcut id="interceptorPointCuts"
+                      expression="execution(* service..*.*(..))" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="interceptorPointCuts" />
+    </aop:config>
+
+    <!-- 其他配置 -->
+    <!-- 静态文件访问 -->
+    <mvc:default-servlet-handler />
+
+
+
+    <!-- Dao -->
+    <!--<bean id="userDao" class="data.userData.UserData">-->
+        <!--<property name="hibernateTemplate" ref="hibernateTemplate"></property>-->
     <!--</bean>-->
 
-    <!--&lt;!&ndash; 配置回话工厂&ndash;&gt;-->
-    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
-        <!--<property name="dataSource">-->
-            <!--<ref bean="dataSource" />-->
-        <!--</property>-->
-        <!--<property name="hibernateProperties">-->
-            <!--<props>-->
 
-                <!--&lt;!&ndash; MySQL的方言 &ndash;&gt;-->
-                <!--<prop key="hibernate.dialect">data.ExtMysqlDialect</prop>-->
-                <!--<prop key="javax.persistence.validation.mode">none</prop>-->
-                <!--&lt;!&ndash; 必要时在数据库新建所有表格 &ndash;&gt;-->
-                <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
-                <!--<prop key="hibernate.show_sql">true</prop>-->
-                <!--<prop key="hibernate.format_sql">true</prop>-->
-                <!--<prop key="hibernate.jdbc.fetch_size">50</prop>-->
-                <!--<prop key="hibernate.jdbc.batch_size">20</prop>-->
-                <!--<prop key="hibernate.jdbc.use_scrollable_resultset">false</prop>-->
-                <!--<prop key="hibernate.con">false</prop>-->
-                <!--<prop key="Connection.useUnicode">true </prop>-->
-                <!--&lt;!&ndash;connection.characterEncoding连接数据库时数据的传输字符集编码方式，最好设置为gbk，用gb2312有的字符不全&ndash;&gt;-->
-                <!--<prop key="connection.characterEncoding">utf-8</prop>-->
-                <!--&lt;!&ndash; 配置current session的上下文环境，方便我们调用sessionFactory获取当前线程统一个session对象 &ndash;&gt;-->
-                <!--<prop key="current_session_context_class">thread</prop>-->
-            <!--</props>-->
-        <!--</property>-->
-        <!--<property name="packagesToScan" value="data" />&lt;!&ndash; 配置需要扫描的包路径，在该包下，所有的类注解配置都会被扫描 &ndash;&gt;-->
-    <!--</bean>-->
+
+
+
 
 
 
     <!--action的bean-->
     <bean id="loginAction" class="action.LoginAction" scope="prototype">
     </bean>
+
+
 
 
 
@@ -70,6 +132,9 @@
         <!--<ref local="sessionFactory"/>-->
         <!--</property>-->
     </bean>
+
+
+
 
 
     <!--Dao的bean-->
