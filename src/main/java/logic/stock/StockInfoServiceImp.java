@@ -11,6 +11,7 @@ import vo.stock.StockInputVO;
 import vo.stock.StockPredictionVO;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by Mark.W on 2017/5/15.
@@ -23,16 +24,17 @@ public class StockInfoServiceImp implements StockInfoService{
 
     @Override
     public ArrayList<StockCurrentVO> getAllRealTimeStocks() {
-        ArrayList<String> codes = stockInfoDAO.getAllStockCodes();
+        Iterator<String> codes = stockInfoDAO.getAllStockCodes();
         MarketInfo marketInfo = null;
         Stock stock = null;
 
-        if(codes == null || codes.size() == 0) {
+        if(codes == null) {
             return null;
         }
 
         ArrayList<StockCurrentVO> stockCurrentVOS = new ArrayList<>();
-        for(String code : codes) {
+        while(codes.hasNext()) {
+            String code = codes.next();
             StockCurrentVO stockCurrentVO = getRealTimeStockInfo(code);
             stockCurrentVOS.add(stockCurrentVO);
         }
@@ -60,13 +62,16 @@ public class StockInfoServiceImp implements StockInfoService{
         MarketInfo marketInfo = stockInfoDAO.getMarketInfo(inputVO.getStockCode());
         ArrayList<StockHistoricalVO> result = new ArrayList<>();
         Stock stock = null;
+        Stock formerStock = null;
 
-        ArrayList<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getStockCode(),
+        Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getStockCode(),
                 inputVO.getStartDate(), inputVO.getEndDate(), "D");
 
-        for(int i=0; i<stocks.size(); ++i) {
+        while(stocks.hasNext()) {
 
-            stock = stocks.get(i);
+            formerStock = stock;
+            stock = stocks.next();
+
             StockHistoricalVO historicalVO = TransferHelper.transToStockHistorical(marketInfo, stock);
 
             //k线图的数据
@@ -76,8 +81,8 @@ public class StockInfoServiceImp implements StockInfoService{
             historicalVO.setLowerShadow(kLineData.getLowerShadow());
 
             //对数收益率
-            if(i>0) {
-                double logarithmYield = Math.log(stocks.get(i).getClose() / stocks.get(i - 1).getClose());
+            if(formerStock != null && stock != null) {
+                double logarithmYield = Math.log(stock.getClose() / formerStock.getClose());
                 historicalVO.setLogarithmYield(logarithmYield);
             }
 
@@ -89,14 +94,15 @@ public class StockInfoServiceImp implements StockInfoService{
 
     @Override
     public ArrayList<StockCurrentVO> getStocksByIndustry(String industryName) {
-        ArrayList<String> codes = stockInfoDAO.getAllStockCodesByIndustry(industryName);
-        if(codes == null || codes.size() == 0) {
+        Iterator<String> codes = stockInfoDAO.getAllStockCodesByIndustry(industryName);
+        if(codes == null) {
             return null;
         }
 
         ArrayList<StockCurrentVO> result = new ArrayList<>();
 
-        for(String code : codes) {
+        while(codes.hasNext()) {
+            String code = codes.next();
             StockCurrentVO currentVO = getRealTimeStockInfo(code);
             result.add(currentVO);
         }

@@ -7,6 +7,7 @@ import service.stock.MarketInfoService;
 import vo.stock.MarketInfoVO;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by Mark.W on 2017/5/15.
@@ -36,8 +37,8 @@ public class MarketInfoServiceImp implements MarketInfoService{
             stock = stockInfoDAO.getStockInfo(marketType, date);
         }
 
-        ArrayList<String> codes = stockInfoDAO.getAllStockCodesByBlock(marketType);
-        if (codes == null || codes.size() == 0) {
+        Iterator<String> codes = stockInfoDAO.getAllStockCodesByBlock(marketType);
+        if (codes == null) {
             return null;
         }
 
@@ -46,7 +47,8 @@ public class MarketInfoServiceImp implements MarketInfoService{
 
         int[] rateNums = new int[6]; //数据依次为跌停，-10%- -5%，-5%-0，0-5%，5%-10%，涨停
 
-        for (String code : codes) {
+        while (codes.hasNext()) {
+            String code = codes.next();
             //然后获取属于该板块的股票数据 计算涨跌幅股票的数量
             if(isRealTime) {
                 temp = stockInfoDAO.getStockRealTimeInfo(code);

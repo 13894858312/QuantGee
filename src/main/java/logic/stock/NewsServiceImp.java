@@ -7,6 +7,7 @@ import service.stock.NewsService;
 import vo.stock.NewsVO;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by Mark.W on 2017/5/15.
@@ -17,15 +18,15 @@ public class NewsServiceImp implements NewsService {
 
     @Override
     public ArrayList<NewsVO> getNews() {
-        ArrayList<News> news = newsDAO.getNews();
-        if(news == null || news.size() == 0) {
+        Iterator<News> news = newsDAO.getNews();
+        if(news == null) {
             return null;
         }
 
         ArrayList<NewsVO> newsVOS = new ArrayList<>();
 
-        for(News n : news) {
-            newsVOS.add(TransferHelper.transToNewsVO(n));
+        while (news.hasNext()) {
+            newsVOS.add(TransferHelper.transToNewsVO(news.next()));
         }
 
         return newsVOS;
