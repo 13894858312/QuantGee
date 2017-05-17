@@ -5,8 +5,9 @@
 <hibernate-mapping>
 
     <class name="bean.CurrentAll" table="CurrentAll" schema="quantgee_data">
-        <property name="stockID" column="code"/>
-        <property name="stockName" column="name"/>
+        <id name="index" column="index"/>
+        <property name="code" column="code"/>
+        <property name="name" column="name"/>
         <property name="changepercent" column="changepercent"/>
         <property name="trade" column="trade"/>
         <property name="open" column="open"/>
@@ -20,6 +21,5 @@
         <property name="pb" column="pb"/>
         <property name="mktcap" column="mktcap"/>
         <property name="nmc" column="nmc"/>
-        <property name="index" column="index"/>
     </class>
 </hibernate-mapping>

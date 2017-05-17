@@ -61,8 +61,6 @@
       <mapping class="bean.CurrentAll"/>
       <mapping resource="bean/Gem.hbm.xml"/>
       <mapping class="bean.Gem"/>
-      <mapping resource="bean/HistStock.hbm.xml"/>
-      <mapping class="bean.HistStock"/>
       <mapping resource="bean/Sme.hbm.xml"/>
       <mapping class="bean.Sme"/>
 

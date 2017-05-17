@@ -3,14 +3,15 @@ package bean;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Created by wangxue on 2017/5/17.
  */
 @Entity
 public class CurrentAll {
-    private String stockID;
-    private String stockName;
+    private String code;
+    private String name;
     private Double changepercent;
     private Double trade;
     private Double open;
@@ -24,26 +25,26 @@ public class CurrentAll {
     private Double pb;
     private Double mktcap;
     private Double nmc;
-    private Long index;
+    private long index;
 
     @Basic
     @Column(name = "code")
-    public String getStockID() {
-        return stockID;
+    public String getCode() {
+        return code;
     }
 
-    public void setStockID(String stockID) {
-        this.stockID = stockID;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Basic
     @Column(name = "name")
-    public String getStockName() {
-        return stockName;
+    public String getName() {
+        return name;
     }
 
-    public void setStockName(String stockName) {
-        this.stockName = stockName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Basic
@@ -176,13 +177,13 @@ public class CurrentAll {
         this.nmc = nmc;
     }
 
-    @Basic
+    @Id
     @Column(name = "index")
-    public Long getIndex() {
+    public long getIndex() {
         return index;
     }
 
-    public void setIndex(Long index) {
+    public void setIndex(long index) {
         this.index = index;
     }
 
@@ -193,8 +194,9 @@ public class CurrentAll {
 
         CurrentAll that = (CurrentAll) o;
 
-        if (stockID != null ? !stockID.equals(that.stockID) : that.stockID != null) return false;
-        if (stockName != null ? !stockName.equals(that.stockName) : that.stockName != null) return false;
+        if (index != that.index) return false;
+        if (code != null ? !code.equals(that.code) : that.code != null) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (changepercent != null ? !changepercent.equals(that.changepercent) : that.changepercent != null)
             return false;
         if (trade != null ? !trade.equals(that.trade) : that.trade != null) return false;
@@ -210,15 +212,14 @@ public class CurrentAll {
         if (pb != null ? !pb.equals(that.pb) : that.pb != null) return false;
         if (mktcap != null ? !mktcap.equals(that.mktcap) : that.mktcap != null) return false;
         if (nmc != null ? !nmc.equals(that.nmc) : that.nmc != null) return false;
-        if (index != null ? !index.equals(that.index) : that.index != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = stockID != null ? stockID.hashCode() : 0;
-        result = 31 * result + (stockName != null ? stockName.hashCode() : 0);
+        int result = code != null ? code.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (changepercent != null ? changepercent.hashCode() : 0);
         result = 31 * result + (trade != null ? trade.hashCode() : 0);
         result = 31 * result + (open != null ? open.hashCode() : 0);
@@ -232,7 +233,7 @@ public class CurrentAll {
         result = 31 * result + (pb != null ? pb.hashCode() : 0);
         result = 31 * result + (mktcap != null ? mktcap.hashCode() : 0);
         result = 31 * result + (nmc != null ? nmc.hashCode() : 0);
-        result = 31 * result + (index != null ? index.hashCode() : 0);
+        result = 31 * result + (int) (index ^ (index >>> 32));
         return result;
     }
 }
