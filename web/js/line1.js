@@ -3,6 +3,7 @@
  */
 var myChart = echarts.init(document.getElementById('line1'));
 option = {
+    backgroundColor: '#e0eee0',
     title: {
         text: '未来一周气温变化',
         subtext: '纯属虚构'

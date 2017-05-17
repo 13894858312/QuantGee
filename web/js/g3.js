@@ -6,7 +6,7 @@ var colors = ['#5793f3', '#d14a61', '#675bba'];
 
 option = {
     color: colors,
-
+    backgroundColor: '#FFFFFF',
     tooltip: {
         trigger: 'axis',
         axisPointer: {

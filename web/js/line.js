@@ -15,6 +15,7 @@ for (var i = 1; i < 20000; i++) {
 }
 
 option = {
+    backgroundColor: '#e0eee0',
     tooltip: {
         trigger: 'axis',
         position: function (pt) {

@@ -12,6 +12,7 @@ for (var i = 0; i < 100; i++) {
 }
 
 option = {
+    backgroundColor: '#e0eee0',
     title: {
         text: '柱状图'
     },

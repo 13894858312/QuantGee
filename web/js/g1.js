@@ -3,6 +3,7 @@
  */
 var myChart = echarts.init(document.getElementById('g1'));
 option = {
+    backgroundColor: '#FFFFFF',
     title: {
         text: '一天用电量分布',
         subtext: '纯属虚构'

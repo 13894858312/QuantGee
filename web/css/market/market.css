@@ -347,7 +347,7 @@ p {
 
 .klinegraph{
     position: absolute;
-    left: 270px;
+    left: 240px;
     top: 138px;
     width: 1000px;
     height: 450px;
@@ -376,5 +376,5 @@ p {
 .box2{
     position: absolute;
     float: left;
-    top: 1370px;
+    top: 1400px;
 }
