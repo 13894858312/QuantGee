@@ -12,15 +12,17 @@
     <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript"> //使用jquery实现异步提交
     function getJson() {
-        $.post(
-            "/struts2/test.action",{},function(returnedData,status)
-            {
-                if("success"==status)
-                {
-                    alert(returnedData);
-                }
+        $.ajax({
+            url:'test.action',
+            type:'get',
+            dataType:'json',
+            success:function (data) {
+                alert(data);
+            },
+            error:function (data) {
+                alert(data + "error");
             }
-        )
+        })
     }
     </script>
 </head>

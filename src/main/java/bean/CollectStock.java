@@ -1,20 +1,20 @@
 package bean;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 
 /**
- * Created by wangxue on 2017/5/15.
+ * Created by wangxue on 2017/5/17.
  */
 @Entity
-@IdClass(CollectStockPK.class)
 public class CollectStock {
     private String userId;
     private String stockId;
+    private int index;
 
-    @Id
+    @Basic
     @Column(name = "userID")
     public String getUserId() {
         return userId;
@@ -24,7 +24,7 @@ public class CollectStock {
         this.userId = userId;
     }
 
-    @Id
+    @Basic
     @Column(name = "stockID")
     public String getStockId() {
         return stockId;
@@ -34,6 +34,16 @@ public class CollectStock {
         this.stockId = stockId;
     }
 
+    @Id
+    @Column(name = "index")
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,6 +51,7 @@ public class CollectStock {
 
         CollectStock that = (CollectStock) o;
 
+        if (index != that.index) return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
         if (stockId != null ? !stockId.equals(that.stockId) : that.stockId != null) return false;
 
@@ -51,6 +62,7 @@ public class CollectStock {
     public int hashCode() {
         int result = userId != null ? userId.hashCode() : 0;
         result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
+        result = 31 * result + index;
         return result;
     }
 }

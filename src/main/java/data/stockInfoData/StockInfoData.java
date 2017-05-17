@@ -1,10 +1,7 @@
 package data.stockInfoData;
 
 import DAO.stockInfoDAO.StockInfoDAO;
-import bean.Account;
-import bean.Current;
-import bean.MarketInfo;
-import bean.Stock;
+import bean.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -134,7 +131,27 @@ public class StockInfoData implements StockInfoDAO{
 
     @Override
     public Iterator<String> getAllStockCodesByIndustry(String industryName) {
-        return null;
+        try {
+            configuration.addClass(MarketInfo.class);
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+
+            Query query = session.createQuery("select m.stockID from MarketInfo m where m.market =:c_name")
+                    .setParameter("c_name",industryName);
+            Iterator<String> stringIterator = query.list().iterator();
+
+            transaction.commit();
+            session.close();
+            sessionFactory.close();
+
+            return stringIterator;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -151,22 +168,126 @@ public class StockInfoData implements StockInfoDAO{
 
     @Override
     public Iterator<String> getAllStockCodesByBlock(String blockName) {
-        return null;
+        try {
+            configuration.addClass(Sme.class);
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+
+            Iterator<String> iterator;
+            Query query;
+
+            switch (blockName){
+                case "sh":
+                    query = session.createQuery("FROM MarketInfo m where m.stockID like :var")
+                            .setParameter("var","60"+"%");
+                    iterator = query.list().iterator();
+                    break;
+                case "sz":
+                    query = session.createQuery("FROM MarketInfo m where m.stockID like :var")
+                            .setParameter("var","000"+"%");
+                    iterator = query.list().iterator();
+                    break;
+                case "hs300":
+                    return null;
+                case "sz50":
+                    return null;
+                case "zxb":
+                    query = session.createQuery("SELECT s.stockCode FROM Sme s ");
+                    iterator = query.list().iterator();
+                    break;
+                case "cyb":
+
+                    query = session.createQuery("SELECT g.stockCode FROM Gem g");
+                    iterator = query.list().iterator();
+                    break;
+            }
+
+            transaction.commit();
+            session.close();
+            sessionFactory.close();
+
+            return null;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
-    public Iterator<Stock> getCollectedStocks(String userID) {
-        return null;
+    public Iterator<String> getCollectedStocks(String userID) {
+        try{
+            configuration.addClass(CollectStock.class);
+
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+
+            Query query = session.createQuery("select c.stockId from CollectStock c where c.userId=:var ")
+                    .setParameter("var",userID);
+            Iterator<String> iterator = query.list().iterator();
+
+            transaction.commit();
+            session.close();
+            sessionFactory.close();
+
+            return iterator;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
     public boolean addCollectedStock(String userID, String code) {
-        return false;
+        try{
+            SessionFactory sessionFactory = configuration.buildSessionFactory();
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+
+            CollectStock collectStock = new CollectStock();
+            collectStock.setUserId(userID);
+            collectStock.setStockId(code);
+            session.save(collectStock);
+
+            transaction.commit();
+            session.close();
+            sessionFactory.close();
+
+            return true;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public boolean removeCollectedStock(String userID, String code) {
-        return false;
+        try{
+            SessionFactory sessionFactory = configuration.buildSessionFactory();
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+
+            CollectStock collectStock = new CollectStock();
+            collectStock.setUserId(userID);
+            collectStock.setStockId(code);
+            session.remove(collectStock);
+
+            transaction.commit();
+            session.close();
+            sessionFactory.close();
+
+            return true;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
