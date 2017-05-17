@@ -9,6 +9,7 @@ import vo.stock.StockCollectInputVO;
 import vo.stock.StockCurrentVO;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by Mark.W on 2017/5/15.
@@ -19,16 +20,17 @@ public class CollectStockServiceImp implements CollectStockService{
 
     @Override
     public ArrayList<StockCurrentVO> getCollectedStocks(String userID) {
-        ArrayList<Stock> stocks = stockInfoDAO.getCollectedStocks(userID);
+        Iterator<Stock> stocks = stockInfoDAO.getCollectedStocks(userID);
         MarketInfo marketInfo = null;
 
-        if(stocks == null || stocks.size() == 0) {
+        if(stocks == null) {
             return null;
         }
 
         ArrayList<StockCurrentVO> stockCurrentVOS = new ArrayList<>();
 
-        for(Stock stock : stocks) {
+        while(stocks.hasNext()) {
+            Stock stock = stocks.next();
             marketInfo = stockInfoDAO.getMarketInfo(stock.getStockId());
 
             StockCurrentVO stockVO = TransferHelper.transToStockCurrent(marketInfo, stock);
