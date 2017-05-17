@@ -12,8 +12,8 @@
 		<div class="header">
 			<div class="control">
 				<span class="p_center fl">
-            <a href="/marketInfo.html" class="logo"></a>
-            <a href="my.html" target="_self" class="person">个人中心</a>
+            <a href="../../view/market/marketInfo.html" class="logo"></a>
+            <a href="login.html" target="_self" class="person">个人中心</a>
         </span>
 			</div>
 		</div>
@@ -22,11 +22,9 @@
 			<div class="loginbox">
 				<h1>账号登录</h1>
 				<form action="login">
-					<table>
-					<input type="text" id="txt_userName" value="请输入账号" maxlength="32">
-					<span><input type="text" id="txt_password" value="请输入密码" maxlength="32"></span>
-					<div id="longinSubmit" class="submit" >登录</div>
-					</table>
+					<input type="text" id="txt_userName" name="uname" value="请输入账号" maxlength="32">
+					<input type="text" id="txt_password" name="upass" value="请输入密码" maxlength="32">
+					<input type="submit" class="submit" value="登录"/>
 				</form>
 				<div class="forget">
 					<a href="/account/ForgetPassword" target="_parent">忘记密码？</a>

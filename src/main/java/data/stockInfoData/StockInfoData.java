@@ -11,6 +11,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by wangxue on 2017/5/5.
@@ -24,7 +25,7 @@ public class StockInfoData implements StockInfoDAO{
     }
 
     @Override
-    public ArrayList<Stock> getStockInfo(String code) {
+    public Iterator<Stock> getStockInfo(String code) {
         try{
             Configuration configuration = new Configuration();
             configuration.configure();
@@ -48,7 +49,7 @@ public class StockInfoData implements StockInfoDAO{
     }
 
     @Override
-    public ArrayList<Stock> getStockInfo(String code, String startDate, String endDate, String kType) {
+    public Iterator<Stock> getStockInfo(String code, String startDate, String endDate, String kType) {
         return null;
     }
 
@@ -58,7 +59,7 @@ public class StockInfoData implements StockInfoDAO{
     }
 
     @Override
-    public ArrayList<String> getAllStockCodesByIndustry(String industryName) {
+    public Iterator<String> getAllStockCodesByIndustry(String industryName) {
         return null;
     }
 
@@ -68,12 +69,12 @@ public class StockInfoData implements StockInfoDAO{
     }
 
     @Override
-    public ArrayList<String> getAllStockCodesByBlock(String blockName) {
+    public Iterator<String> getAllStockCodesByBlock(String blockName) {
         return null;
     }
 
     @Override
-    public ArrayList<Stock> getCollectedStocks(String userID) {
+    public Iterator<Stock> getCollectedStocks(String userID) {
         return null;
     }
 
@@ -88,7 +89,7 @@ public class StockInfoData implements StockInfoDAO{
     }
 
     @Override
-    public ArrayList<String> getAllStockCodes() {
+    public Iterator<String> getAllStockCodes() {
         return null;
     }
 

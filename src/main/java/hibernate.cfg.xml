@@ -31,8 +31,6 @@
       <!--connection.characterEncoding连接数据库时数据的传输字符集编码方式，最好设置为gbk，用gb2312有的字符不全-->
       <property name="connection.characterEncoding">utf-8</property>
 
-      <property name="connection.release_mode">on_close</property>
-
       <mapping class="bean.Account"/>
       <mapping resource="bean/Account.hbm.xml"/>
       <mapping class="bean.Analysis"/>
@@ -59,6 +57,14 @@
       <mapping resource="bean/UserMoney.hbm.xml"/>
       <mapping class="bean.Stock"/>
       <mapping resource="bean/Stock.hbm.xml"/>
+      <mapping resource="bean/CurrentAll.hbm.xml"/>
+      <mapping class="bean.CurrentAll"/>
+      <mapping resource="bean/Gem.hbm.xml"/>
+      <mapping class="bean.Gem"/>
+      <mapping resource="bean/HistStock.hbm.xml"/>
+      <mapping class="bean.HistStock"/>
+      <mapping resource="bean/Sme.hbm.xml"/>
+      <mapping class="bean.Sme"/>
 
   </session-factory>
 

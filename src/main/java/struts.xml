@@ -5,12 +5,11 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-	<package name="default" namespace="/" extends="struts-default">
-	</package>
-	<package name="login" namespace="/login" extends="default">
-		<action name="login" class="action.LoginAction">
+	<package name="default" namespace="/" extends="struts-default"> 
+		<action name="login" class="loginAction">
 			<result name="success">/view/ucenter/user_center.html</result>
 			<result name="fail">/view/ucenter/login.html</result>
 		</action>
 	</package>
+	
 </struts>

@@ -96,7 +96,7 @@
 
             <div class="login-box">
 
-                <a target="_blank">登录</a>
+                <a href="../../view/ucenter/login.html" target="_blank">登录</a>
 
             </div>
 

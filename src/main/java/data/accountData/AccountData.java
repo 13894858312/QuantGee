@@ -10,6 +10,8 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import po.UserAnalysisDataPO;
 
+import java.util.Iterator;
+
 /**
  * Created by wangxue on 2017/5/5.
  */
@@ -65,7 +67,29 @@ public class AccountData implements AccountDAO {
 
     @Override
     public Account getAccount(String userID) {
-        return null;
+        try{
+            Configuration configuration = new Configuration();
+            configuration.configure();
+
+            configuration.addClass(Account.class);
+
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+
+            Account account = (Account) session.get(Account.class,userID);
+
+            transaction.commit();
+            session.close();
+            sessionFactory.close();
+
+            return account;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override

@@ -3,6 +3,7 @@ package DAO.strategyDAO;
 import bean.Strategy;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by wangxue on 2017/5/5.
@@ -27,9 +28,9 @@ public interface StrategyDAO {
     /**
      * 得到用户创建的全部策略
      * @param userID 用户ID
-     * @return ArrayList<Strategy> 策略列表
+     * @return 策略列表
      */
-    public ArrayList<Strategy> getUserStrategy(String userID);
+    public Iterator<Strategy> getUserStrategy(String userID);
 
     /**
      * 添加收藏策略
@@ -52,7 +53,7 @@ public interface StrategyDAO {
      * @param userID 用户ID
      * @return ArrayList<StrategyPO> 策略列表
      */
-    public ArrayList<Strategy> getUserCollectedStrategy(String userID);
+    public Iterator<Strategy> getUserCollectedStrategy(String userID);
 
     /**
      * 按策略编号得到策略信息
@@ -73,6 +74,6 @@ public interface StrategyDAO {
      * 得到所有登录的策略
      * @return ArrayList<Strategy> 策略列表
      */
-    public ArrayList<Strategy> getAllPostStrategy();
+    public Iterator<Strategy> getAllPostStrategy();
 
 }

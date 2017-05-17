@@ -5,6 +5,7 @@ import bean.Trade;
 import po.HoldingStocksPO;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by wangxue on 2017/5/5.
@@ -17,7 +18,7 @@ public class TradeData implements TradeDAO{
     }
 
     @Override
-    public ArrayList<Trade> getUserTradeList(String userID) {
+    public Iterator<Trade> getUserTradeList(String userID) {
         return null;
     }
 
