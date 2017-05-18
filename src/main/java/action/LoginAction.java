@@ -1,36 +1,42 @@
 package action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.springframework.beans.factory.annotation.Autowired;
+import service.user.AccountService;
+import vo.user.AccountVO;
 
 public class LoginAction extends ActionSupport {
 
-	private String uname; // 表单中的姓名
-	private String upass; // 表单中的密码
+	private AccountVO accountVO; // 表单中的姓名
+
+	@Autowired
+	private AccountService accountService;
 
 	public String execute() {
-		System.out.println(uname);
-		System.out.println(upass);
-		if (uname.equals("bcy")&&upass.equals("bcy")){
+		System.out.println(accountVO.getAccountID());
+		System.out.println(accountVO.getPassword());
+
+		if(accountService.login(accountVO)) {
 			return SUCCESS;
-		}else {
+		} else {
 			return "fail";
 		}
+
 	}
 
-	public String getUname() {
-		return uname;
+	public AccountVO getAccountVO() {
+		return accountVO;
 	}
 
-	public void setUname(String uname) {
-		this.uname = uname;
+	public void setAccountVO(AccountVO accountVO) {
+		this.accountVO = accountVO;
 	}
 
-	public String getUpass() {
-		return upass;
+	public AccountService getAccountService() {
+		return accountService;
 	}
 
-	public void setUpass(String upass) {
-		this.upass = upass;
+	public void setAccountService(AccountService accountService) {
+		this.accountService = accountService;
 	}
-
 }

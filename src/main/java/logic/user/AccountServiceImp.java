@@ -54,6 +54,12 @@ public class AccountServiceImp implements AccountService{
         }
 
         return false;
+
+//        if (accountVO.getAccountID().equals("bcy")&&accountVO.getPassword().equals("bcy")){
+//			return true;
+//		}else {
+//			return false;
+//		}
     }
 
     @Override
