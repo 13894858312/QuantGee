@@ -100,6 +100,7 @@
     <!--<mvc:default-servlet-handler />-->
 
 
+
      <!--Dao-->
     <!--<bean id="userDao" class="data.userData.UserData">-->
         <!--<property name="hibernateTemplate" ref="hibernateTemplate"></property>-->
@@ -118,21 +119,15 @@
 
     <!--logic的bean-->
     <bean id="userService" class="logic.user.UserServiceImp" scope="prototype">
-        <!--<property name="sessionFactory">-->
-        <!--<ref local="sessionFactory"/>-->
-        <!--</property>-->
+    </bean>
+
+    <bean id="accountService" class="logic.user.AccountServiceImp" scope="prototype">
     </bean>
 
     <bean id="transferHelper" class="logic.tools.TransferHelper" scope="prototype">
-        <!--<property name="sessionFactory">-->
-        <!--<ref local="sessionFactory"/>-->
-        <!--</property>-->
     </bean>
 
     <bean id="stockDataCalculation" class="logic.stock.StockDataCalculation" scope="prototype">
-        <!--<property name="sessionFactory">-->
-        <!--<ref local="sessionFactory"/>-->
-        <!--</property>-->
     </bean>
 
 
