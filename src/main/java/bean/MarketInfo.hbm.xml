@@ -5,8 +5,14 @@
 <hibernate-mapping>
 
     <class name="bean.MarketInfo" table="MarketInfo" schema="quantgee_data">
-        <id name="stockID" column="code"/>
-        <property name="stockName" column="name"/>
-        <property name="market" column="c_name"/>
+        <id name="code">
+            <column name="code" sql-type="varchar(10)" length="10"/>
+        </id>
+        <property name="name">
+            <column name="name" sql-type="varchar(10)" length="10" not-null="true"/>
+        </property>
+        <property name="cName">
+            <column name="c_name" sql-type="varchar(5)" length="5" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>

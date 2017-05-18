@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/15.
+ * Created by wangxue on 2017/5/18.
  */
 @Entity
 public class Strategy {
@@ -16,7 +16,7 @@ public class Strategy {
     private String strategyContent;
 
     @Id
-    @Column(name = "strategyID")
+    @Column(name = "strategyID", nullable = false, length = 20)
     public String getStrategyId() {
         return strategyId;
     }
@@ -26,7 +26,7 @@ public class Strategy {
     }
 
     @Basic
-    @Column(name = "strategyName")
+    @Column(name = "strategyName", nullable = false, length = -1)
     public String getStrategyName() {
         return strategyName;
     }
@@ -36,7 +36,7 @@ public class Strategy {
     }
 
     @Basic
-    @Column(name = "strategyType")
+    @Column(name = "strategyType", nullable = false, length = 20)
     public String getStrategyType() {
         return strategyType;
     }
@@ -46,7 +46,7 @@ public class Strategy {
     }
 
     @Basic
-    @Column(name = "strategyContent")
+    @Column(name = "strategyContent", nullable = true, length = -1)
     public String getStrategyContent() {
         return strategyContent;
     }

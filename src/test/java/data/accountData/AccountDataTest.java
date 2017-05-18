@@ -27,9 +27,9 @@ public class AccountDataTest {
     @Test
     public void insertTest() {
         Account account = new Account();
-        account.setUserId("123456");
-        account.setPassword("abcd");
-        account.setRegisterDate("2011");
+        account.setUserId("bcy");
+        account.setPassword("bcy");
+        account.setRegisterDate("2011-01-02");
         account.setIsLogIn(0);
         accountDAO.addAccount(account);
     }
@@ -39,7 +39,7 @@ public class AccountDataTest {
         Account account = new Account();
         account.setUserId("db");
         account.setIsLogIn(1);
-        account.setPassword("acvs");
+        account.setPassword("acvsds");
         Assert.assertEquals(accountDAO.updateAccount(account),true);
     }
 

@@ -5,9 +5,17 @@
 <hibernate-mapping>
 
     <class name="bean.HoldingStock" table="HoldingStock" schema="quantgee_data">
-        <id name="index" column="index"/>
-        <property name="stockId" column="stockID"/>
-        <property name="userId" column="userID"/>
-        <property name="holdNum" column="holdNum"/>
+        <id name="index">
+            <column name="index" sql-type="int(11)"/>
+        </id>
+        <property name="stockId">
+            <column name="stockID" sql-type="varchar(10)" length="10"/>
+        </property>
+        <property name="userId">
+            <column name="userID" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="holdNum">
+            <column name="holdNum" sql-type="int(11)"/>
+        </property>
     </class>
 </hibernate-mapping>

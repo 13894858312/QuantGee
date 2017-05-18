@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/15.
+ * Created by wangxue on 2017/5/18.
  */
 @Entity
 public class UserMoney {
@@ -14,7 +14,7 @@ public class UserMoney {
     private double remainMoney;
 
     @Id
-    @Column(name = "userID")
+    @Column(name = "userID", nullable = false, length = 20)
     public String getUserId() {
         return userId;
     }
@@ -24,7 +24,7 @@ public class UserMoney {
     }
 
     @Basic
-    @Column(name = "remainMoney")
+    @Column(name = "remainMoney", nullable = false, precision = 0)
     public double getRemainMoney() {
         return remainMoney;
     }

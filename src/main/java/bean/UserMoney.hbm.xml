@@ -5,7 +5,11 @@
 <hibernate-mapping>
 
     <class name="bean.UserMoney" table="UserMoney" schema="quantgee_data">
-        <id name="userId" column="userID"/>
-        <property name="remainMoney" column="remainMoney"/>
+        <id name="userId">
+            <column name="userID" sql-type="varchar(20)" length="20"/>
+        </id>
+        <property name="remainMoney">
+            <column name="remainMoney" sql-type="double" precision="-1"/>
+        </property>
     </class>
 </hibernate-mapping>

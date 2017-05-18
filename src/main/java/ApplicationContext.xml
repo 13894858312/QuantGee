@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
-       <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
-       <!--xmlns:context="http://www.springframework.org/schema/context"-->
-       <!--xmlns:aop="http://www.springframework.org/schema/aop"-->
-       <!--xmlns:tx="http://www.springframework.org/schema/tx"-->
-       <!--xmlns:mvc="http://www.springframework.org/schema/mvc"-->
-       <!--xsi:schemaLocation="http://www.springframework.org/schema/beans-->
-     <!--http://www.springframework.org/schema/beans/spring-beans-4.2.xsd-->
-     <!--http://www.springframework.org/schema/context-->
-     <!--http://www.springframework.org/schema/context/spring-context-4.2.xsd-->
-     <!--http://www.springframework.org/schema/tx-->
-     <!--http://www.springframework.org/schema/tx/spring-tx-4.2.xsd-->
-     <!--http://www.springframework.org/schema/aop-->
-     <!--http://www.springframework.org/schema/aop/spring-aop-4.2.xsd-->
-     <!--http://www.springframework.org/schema/mvc-->
-     <!--http://www.springframework.org/schema/mvc/spring-mvc.xsd">-->
-
 <beans xmlns="http://www.springframework.org/schema/beans"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:context="http://www.springframework.org/schema/context"
-           xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
      http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
      http://www.springframework.org/schema/context
-     http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+     http://www.springframework.org/schema/context/spring-context-4.2.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+     http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+     http://www.springframework.org/schema/mvc
+     http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+           <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+           <!--xmlns:context="http://www.springframework.org/schema/context"-->
+           <!--xsi:schemaLocation="http://www.springframework.org/schema/beans-->
+     <!--http://www.springframework.org/schema/beans/spring-beans-4.2.xsd-->
+     <!--http://www.springframework.org/schema/context-->
+     <!--http://www.springframework.org/schema/context/spring-context-4.2.xsd">-->
 
     <!-- 启用spring注解支持 -->
     <context:annotation-config/>
 
-    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"-->
-          <!--destroy-method="close">-->
-        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
-        <!--<property name="url" value="jdbc:mysql://localhost:3306/quantgee_data" />-->
-        <!--<property name="username" value="root" />-->
-        <!--<property name="password" value="19961112" />-->
-    <!--</bean>-->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/quantgee_data" />
+        <property name="username" value="root" />
+        <property name="password" value="19961112" />
+    </bean>
 
-    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">-->
-        <!--<property name="dataSource" ref="dataSource" />&lt;!&ndash; 引用数据源 &ndash;&gt;-->
-        <!--<property name="mappingDirectoryLocations">-->
-            <!--<list>-->
-                <!--<value>classpath:bean</value>&lt;!&ndash; 加载hibernate的映射文件*.hbm.xml &ndash;&gt;-->
-            <!--</list>-->
-        <!--</property>-->
-        <!--<property name="hibernateProperties">-->
-            <!--<props>-->
-                <!--<prop key="hibernate.dialect">data.ExtMysqlDialect</prop>-->
-                <!--<prop key="hibernate.show_sql">true</prop>-->
-                <!--<prop key="hibernate.format_sql">true</prop>-->
-                <!--<prop key="hbm2ddl.auto">update</prop>-->
-                <!--&lt;!&ndash; 显示Hibernate持久化操作所生成的SQL语句 &ndash;&gt;-->
-                <!--<prop key="format_sql">true</prop>-->
-                <!--&lt;!&ndash;jdbc.fetch_size是指Hibernate每次从数据库中取出并放到JDBC的Statement中的记录条数。Fetch Size设的越大，读数据库的次数越少，速度越快，Fetch Size越小，读数据库的次数越多，速度越慢&ndash;&gt;-->
-                <!--<prop key="jdbc.fetch_size">50 </prop>-->
-                <!--&lt;!&ndash;jdbc.batch_size是指Hibernate批量插入,删除和更新时每次操作的记录数。Batch Size越大，批量操作的向数据库发送Sql的次数越少，速度就越快，同样耗用内存就越大&ndash;&gt;-->
-                <!--<prop key="jdbc.batch_size">20 </prop>-->
-                <!--&lt;!&ndash;jdbc.use_scrollable_resultset是否允许Hibernate用JDBC的可滚动的结果集。对分页的结果集。对分页时的设置非常有帮助&ndash;&gt;-->
-                <!--<prop key="jdbc.use_scrollable_resultset">false</prop>-->
-                <!--&lt;!&ndash;connection.useUnicode连接数据库时是否使用Unicode编码&ndash;&gt;-->
-                <!--<prop key="Connection.useUnicode">true </prop>-->
-                <!--&lt;!&ndash;connection.characterEncoding连接数据库时数据的传输字符集编码方式，最好设置为gbk，用gb2312有的字符不全&ndash;&gt;-->
-                <!--<prop key="connection.characterEncoding">utf-8</prop>-->
-                <!--&lt;!&ndash;<prop key="hibernate.current_session_context_class">thread</prop>&ndash;&gt;-->
-            <!--</props>-->
-        <!--</property>-->
-    <!--</bean>-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" /><!-- 引用数据源 -->
+        <property name="mappingDirectoryLocations">
+            <list>
+                <value>classpath:bean</value><!-- 加载hibernate的映射文件*.hbm.xml -->
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hbm2ddl.auto">update</prop>
+                <!-- 显示Hibernate持久化操作所生成的SQL语句 -->
+                <prop key="format_sql">true</prop>
+                <!--jdbc.fetch_size是指Hibernate每次从数据库中取出并放到JDBC的Statement中的记录条数。Fetch Size设的越大，读数据库的次数越少，速度越快，Fetch Size越小，读数据库的次数越多，速度越慢-->
+                <prop key="jdbc.fetch_size">50 </prop>
+                <!--jdbc.batch_size是指Hibernate批量插入,删除和更新时每次操作的记录数。Batch Size越大，批量操作的向数据库发送Sql的次数越少，速度就越快，同样耗用内存就越大-->
+                <prop key="jdbc.batch_size">20 </prop>
+                <!--jdbc.use_scrollable_resultset是否允许Hibernate用JDBC的可滚动的结果集。对分页的结果集。对分页时的设置非常有帮助-->
+                <prop key="jdbc.use_scrollable_resultset">false</prop>
+                <!--connection.useUnicode连接数据库时是否使用Unicode编码-->
+                <prop key="Connection.useUnicode">true </prop>
+                <!--connection.characterEncoding连接数据库时数据的传输字符集编码方式，最好设置为gbk，用gb2312有的字符不全-->
+                <prop key="connection.characterEncoding">utf-8</prop>
+                <!--<prop key="hibernate.current_session_context_class">thread</prop>-->
+            </props>
+        </property>
+    </bean>
 
     <!--<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">-->
         <!--<property name="sessionFactory" ref="sessionFactory"></property>-->

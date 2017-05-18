@@ -5,7 +5,11 @@
 <hibernate-mapping>
 
     <class name="bean.Analysis" table="Analysis" schema="quantgee_data">
-        <id name="date" column="date"/>
-        <property name="num" column="num"/>
+        <id name="date">
+            <column name="date" sql-type="varchar(10)" length="10"/>
+        </id>
+        <property name="num">
+            <column name="num" sql-type="int(11)"/>
+        </property>
     </class>
 </hibernate-mapping>

@@ -5,11 +5,23 @@
 <hibernate-mapping>
 
     <class name="bean.News" table="News" schema="quantgee_data">
-        <id name="index" column="index"/>
-        <property name="classify" column="classify" type="text"/>
-        <property name="title" column="title" type="text"/>
-        <property name="time" column="time" type="text"/>
-        <property name="url" column="url" type="text"/>
-        <property name="content" column="content" type="text"/>
+        <id name="index">
+            <column name="index" sql-type="bigint(20)" not-null="true"/>
+        </id>
+        <property name="classify">
+            <column name="classify" sql-type="text" not-null="true"/>
+        </property>
+        <property name="title">
+            <column name="title" sql-type="text" not-null="true"/>
+        </property>
+        <property name="time">
+            <column name="time" sql-type="text" not-null="true"/>
+        </property>
+        <property name="url">
+            <column name="url" sql-type="text" not-null="true"/>
+        </property>
+        <property name="content">
+            <column name="content" sql-type="text" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>

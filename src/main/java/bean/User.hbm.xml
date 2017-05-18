@@ -5,8 +5,14 @@
 <hibernate-mapping>
 
     <class name="bean.User" table="User" schema="quantgee_data">
-        <id name="userId" column="userID"/>
-        <property name="alterName" column="alterName"/>
-        <property name="phoneNumber" column="phoneNumber"/>
+        <id name="userId">
+            <column name="userID" sql-type="varchar(20)" length="20"/>
+        </id>
+        <property name="alterName">
+            <column name="alterName" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="phoneNumber">
+            <column name="phoneNumber" sql-type="varchar(20)" length="20"/>
+        </property>
     </class>
 </hibernate-mapping>

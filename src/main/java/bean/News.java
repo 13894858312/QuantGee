@@ -1,26 +1,33 @@
 package bean;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/16.
+ * Created by wangxue on 2017/5/18.
  */
 @Entity
 public class News {
+    private Long index;
     private String classify;
     private String title;
     private String time;
     private String url;
     private String content;
-    private long index;
 
     @Basic
-    @Column(name = "classify")
+    @Column(name = "index", nullable = true)
+    public Long getIndex() {
+        return index;
+    }
+
+    public void setIndex(Long index) {
+        this.index = index;
+    }
+
+    @Basic
+    @Column(name = "classify", nullable = true, length = -1)
     public String getClassify() {
         return classify;
     }
@@ -30,7 +37,7 @@ public class News {
     }
 
     @Basic
-    @Column(name = "title")
+    @Column(name = "title", nullable = true, length = -1)
     public String getTitle() {
         return title;
     }
@@ -40,7 +47,7 @@ public class News {
     }
 
     @Basic
-    @Column(name = "time")
+    @Column(name = "time", nullable = true, length = -1)
     public String getTime() {
         return time;
     }
@@ -50,7 +57,7 @@ public class News {
     }
 
     @Basic
-    @Column(name = "url")
+    @Column(name = "url", nullable = true, length = -1)
     public String getUrl() {
         return url;
     }
@@ -60,23 +67,13 @@ public class News {
     }
 
     @Basic
-    @Column(name = "content")
+    @Column(name = "content", nullable = true, length = -1)
     public String getContent() {
         return content;
     }
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    @Id
-    @Column(name = "index")
-    public long getIndex() {
-        return index;
-    }
-
-    public void setIndex(long index) {
-        this.index = index;
     }
 
     @Override
@@ -86,7 +83,7 @@ public class News {
 
         News news = (News) o;
 
-        if (index != news.index) return false;
+        if (index != null ? !index.equals(news.index) : news.index != null) return false;
         if (classify != null ? !classify.equals(news.classify) : news.classify != null) return false;
         if (title != null ? !title.equals(news.title) : news.title != null) return false;
         if (time != null ? !time.equals(news.time) : news.time != null) return false;
@@ -98,12 +95,12 @@ public class News {
 
     @Override
     public int hashCode() {
-        int result = classify != null ? classify.hashCode() : 0;
+        int result = index != null ? index.hashCode() : 0;
+        result = 31 * result + (classify != null ? classify.hashCode() : 0);
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (time != null ? time.hashCode() : 0);
         result = 31 * result + (url != null ? url.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (int) (index ^ (index >>> 32));
         return result;
     }
 }

@@ -113,7 +113,7 @@ public class TransferHelper {
             return null;
         }
 
-        StockCurrentVO stockCurrentVO = new StockCurrentVO(stock.getCode(), stock.getName(), marketInfo.getMarket(),
+        StockCurrentVO stockCurrentVO = new StockCurrentVO(stock.getCode(), stock.getName(), marketInfo.getcName(),
                 DateHelper.getNowTime(),
                 stock.getTrade(), stock.getOpen(), stock.getLow(), stock.getHigh(), stock.getAmount(),
                 stock.getVolume(), stock.getChangepercent(), stock.getTurnoverratio(),stock.getSettlement(),
@@ -136,9 +136,9 @@ public class TransferHelper {
 
         StockHistoricalVO historicalVO = new StockHistoricalVO();
 
-        historicalVO.setStockCode(marketInfo.getStockID());
-        historicalVO.setStockName(marketInfo.getStockName());
-        historicalVO.setStockMarket(marketInfo.getMarket());
+        historicalVO.setStockCode(marketInfo.getCode());
+        historicalVO.setStockName(marketInfo.getName());
+        historicalVO.setStockMarket(marketInfo.getcName());
 
         //基础数据
         historicalVO.setDate(stock.getDate());

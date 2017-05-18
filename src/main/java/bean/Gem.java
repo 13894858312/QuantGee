@@ -6,31 +6,31 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/17.
+ * Created by wangxue on 2017/5/18.
  */
 @Entity
 public class Gem {
-    private String stockCode;
-    private String stockName;
+    private String code;
+    private String name;
 
     @Id
-    @Column(name = "code")
-    public String getStockCode() {
-        return stockCode;
+    @Column(name = "code", nullable = false, length = 10)
+    public String getCode() {
+        return code;
     }
 
-    public void setStockCode(String stockCode) {
-        this.stockCode = stockCode;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Basic
-    @Column(name = "name")
-    public String getStockName() {
-        return stockName;
+    @Column(name = "name", nullable = true, length = -1)
+    public String getName() {
+        return name;
     }
 
-    public void setStockName(String stockName) {
-        this.stockName = stockName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -40,16 +40,16 @@ public class Gem {
 
         Gem gem = (Gem) o;
 
-        if (stockCode != null ? !stockCode.equals(gem.stockCode) : gem.stockCode != null) return false;
-        if (stockName != null ? !stockName.equals(gem.stockName) : gem.stockName != null) return false;
+        if (code != null ? !code.equals(gem.code) : gem.code != null) return false;
+        if (name != null ? !name.equals(gem.name) : gem.name != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = stockCode != null ? stockCode.hashCode() : 0;
-        result = 31 * result + (stockName != null ? stockName.hashCode() : 0);
+        int result = code != null ? code.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }
 }

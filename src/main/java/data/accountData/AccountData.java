@@ -46,6 +46,7 @@ public class AccountData implements AccountDAO {
     @Override
     public boolean updateAccount(Account account) {
         try{
+            Configuration configuration = new Configuration().configure();
             configuration.addClass(Account.class);
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);

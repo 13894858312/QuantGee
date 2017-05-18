@@ -5,8 +5,14 @@
 <hibernate-mapping>
 
     <class name="bean.CollectStrategy" table="CollectStrategy" schema="quantgee_data">
-        <id name="index" column="index"/>
-        <property name="userId" column="userID"/>
-        <property name="strategyId" column="strategyID"/>
+        <id name="index">
+            <column name="index" sql-type="int(11)"/>
+        </id>
+        <property name="userId">
+            <column name="userID" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="strategyId">
+            <column name="strategyID" sql-type="varchar(20)" length="20" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>

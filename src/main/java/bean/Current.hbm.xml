@@ -5,21 +5,53 @@
 <hibernate-mapping>
 
     <class name="bean.Current" table="Current" schema="quantgee_data">
-        <id name="index" column="index"/>
-        <property name="code" column="code"/>
-        <property name="name" column="name"/>
-        <property name="changepercent" column="changepercent"/>
-        <property name="trade" column="trade"/>
-        <property name="open" column="open"/>
-        <property name="high" column="high"/>
-        <property name="low" column="low"/>
-        <property name="settlement" column="settlement"/>
-        <property name="volume" column="volume"/>
-        <property name="turnoverratio" column="turnoverratio"/>
-        <property name="amount" column="amount"/>
-        <property name="per" column="per"/>
-        <property name="pb" column="pb"/>
-        <property name="mktcap" column="mktcap"/>
-        <property name="nmc" column="nmc"/>
+        <id name="index">
+            <column name="index" sql-type="bigint(20)" not-null="true"/>
+        </id>
+        <property name="code">
+            <column name="code" sql-type="text" not-null="true"/>
+        </property>
+        <property name="name">
+            <column name="name" sql-type="text" not-null="true"/>
+        </property>
+        <property name="changepercent">
+            <column name="changepercent" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="trade">
+            <column name="trade" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="open">
+            <column name="open" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="high">
+            <column name="high" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="low">
+            <column name="low" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="settlement">
+            <column name="settlement" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="volume">
+            <column name="volume" sql-type="bigint(20)" not-null="true"/>
+        </property>
+        <property name="turnoverratio">
+            <column name="turnoverratio" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="amount">
+            <column name="amount" sql-type="bigint(20)" not-null="true"/>
+        </property>
+        <property name="per">
+            <column name="per" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="pb">
+            <column name="pb" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="mktcap">
+            <column name="mktcap" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="nmc">
+            <column name="nmc" sql-type="double" precision="-1" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>

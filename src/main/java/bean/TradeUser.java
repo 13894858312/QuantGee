@@ -3,7 +3,7 @@ package bean;
 import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/5/15.
+ * Created by wangxue on 2017/5/18.
  */
 @Entity
 @IdClass(TradeUserPK.class)
@@ -14,7 +14,7 @@ public class TradeUser {
     private double currentYield;
 
     @Id
-    @Column(name = "userID")
+    @Column(name = "userID", nullable = false, length = 20)
     public String getUserId() {
         return userId;
     }
@@ -24,7 +24,7 @@ public class TradeUser {
     }
 
     @Id
-    @Column(name = "stockID")
+    @Column(name = "stockID", nullable = false, length = 10)
     public String getStockId() {
         return stockId;
     }
@@ -34,17 +34,17 @@ public class TradeUser {
     }
 
     @Basic
-    @Column(name = "currentHoldingNum")
+    @Column(name = "currentHoldingNum", nullable = false)
     public int getCurrentHoldingNum() {
         return currentHoldingNum;
     }
 
-    public void setCurrentHoldingNum(int currentHoldingName) {
-        this.currentHoldingNum = currentHoldingName;
+    public void setCurrentHoldingNum(int currentHoldingNum) {
+        this.currentHoldingNum = currentHoldingNum;
     }
 
     @Basic
-    @Column(name = "currentYield")
+    @Column(name = "currentYield", nullable = false, precision = 0)
     public double getCurrentYield() {
         return currentYield;
     }

@@ -5,11 +5,23 @@
 <hibernate-mapping>
 
     <class name="bean.Trade" table="Trade" schema="quantgee_data">
-        <id name="trageId" column="trageID"/>
-        <property name="userId" column="userID"/>
-        <property name="ime" column="ime"/>
-        <property name="stockId" column="stockID"/>
-        <property name="action" column="action"/>
-        <property name="numOfStock" column="numOfStock"/>
+        <id name="trageId">
+            <column name="trageID" sql-type="int(11)"/>
+        </id>
+        <property name="userId">
+            <column name="userID" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="ime">
+            <column name="ime" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="stockId">
+            <column name="stockID" sql-type="varchar(10)" length="10"/>
+        </property>
+        <property name="action">
+            <column name="action" sql-type="int(11)"/>
+        </property>
+        <property name="numOfStock">
+            <column name="numOfStock" sql-type="int(11)"/>
+        </property>
     </class>
 </hibernate-mapping>

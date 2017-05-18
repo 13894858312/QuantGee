@@ -1,9 +1,12 @@
 package bean;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/16.
+ * Created by wangxue on 2017/5/18.
  */
 @Entity
 public class Account {
@@ -13,7 +16,7 @@ public class Account {
     private int isLogIn;
 
     @Id
-    @Column(name = "userID")
+    @Column(name = "userID", nullable = false, length = 20)
     public String getUserId() {
         return userId;
     }
@@ -23,7 +26,7 @@ public class Account {
     }
 
     @Basic
-    @Column(name = "password")
+    @Column(name = "password", nullable = false, length = 32)
     public String getPassword() {
         return password;
     }
@@ -33,7 +36,7 @@ public class Account {
     }
 
     @Basic
-    @Column(name = "registerDate", updatable = false)
+    @Column(name = "registerDate", nullable = false, length = 10, updatable = false)
     public String getRegisterDate() {
         return registerDate;
     }
@@ -43,7 +46,7 @@ public class Account {
     }
 
     @Basic
-    @Column(name = "isLogIn")
+    @Column(name = "isLogIn", nullable = false)
     public int getIsLogIn() {
         return isLogIn;
     }

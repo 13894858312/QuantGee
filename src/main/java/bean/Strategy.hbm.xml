@@ -5,9 +5,17 @@
 <hibernate-mapping>
 
     <class name="bean.Strategy" table="Strategy" schema="quantgee_data">
-        <id name="strategyId" column="strategyID"/>
-        <property name="strategyName" column="strategyName"/>
-        <property name="strategyType" column="strategyType"/>
-        <property name="strategyContent" column="strategyContent"/>
+        <id name="strategyId">
+            <column name="strategyID" sql-type="varchar(20)" length="20"/>
+        </id>
+        <property name="strategyName">
+            <column name="strategyName" sql-type="text"/>
+        </property>
+        <property name="strategyType">
+            <column name="strategyType" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="strategyContent">
+            <column name="strategyContent" sql-type="text" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>

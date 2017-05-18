@@ -59,7 +59,7 @@ public class StockTest {
     @Test
     public void getMarketTest(){
         MarketInfo marketInfo = stockInfoDAO.getMarketInfo("000002");
-        Assert.assertEquals(marketInfo.getMarket(),"房地产");
+        Assert.assertEquals(marketInfo.getcName(),"房地产");
     }
 
     @Test

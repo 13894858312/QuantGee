@@ -5,7 +5,11 @@
 <hibernate-mapping>
 
     <class name="bean.Sme" table="SME" schema="quantgee_data">
-        <id name="stockCode" column="code"/>
-        <property name="stockName" column="name"/>
+        <id name="code">
+            <column name="code" sql-type="varchar(10)" length="10"/>
+        </id>
+        <property name="name">
+            <column name="name" sql-type="text" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>
