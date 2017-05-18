@@ -45,7 +45,7 @@ i {
 }
 
 .header {
-	background-color: #333;
+	background-color: #000;
 	color: #fff;
 	height: 50px;
 }
@@ -59,7 +59,7 @@ i {
 }
 
 .header .p_center .logo {
-	background: url("http://s.thsi.cn/css/article/images/logo2.png") no-repeat 13px -70px;
+	background: url(../../images/ucenter/logo.png) no-repeat 13px -70px;
 	display: inline-block;
 	width: 134px;
 	height: 48px;

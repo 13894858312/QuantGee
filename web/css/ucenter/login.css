@@ -86,13 +86,13 @@ input[type="password"]:focus {
 	cursor: pointer;
 }
 
-.loginbox .submit:hover {
+/*.loginbox .submit:hover {
 	background: #09c;
 }
 
 .loginbox .submit:hover:active {
 	background: #08c;
-}
+}*/
 
 .loginbox .forget {
 	width: 260px;
