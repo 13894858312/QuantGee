@@ -34,11 +34,4 @@ public class LoginAction extends ActionSupport {
 		this.accountVO = accountVO;
 	}
 
-	public AccountService getAccountService() {
-		return accountService;
-	}
-
-	public void setAccountService(AccountService accountService) {
-		this.accountService = accountService;
-	}
 }

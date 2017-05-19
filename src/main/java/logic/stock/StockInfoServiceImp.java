@@ -6,6 +6,9 @@ import bean.MarketInfo;
 import bean.Stock;
 import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 import service.stock.StockInfoService;
 import vo.stock.StockCurrentVO;
 import vo.stock.StockHistoricalVO;
@@ -18,6 +21,8 @@ import java.util.Iterator;
 /**
  * Created by Mark.W on 2017/5/15.
  */
+@Service
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class StockInfoServiceImp implements StockInfoService{
 
     @Autowired
@@ -30,8 +35,6 @@ public class StockInfoServiceImp implements StockInfoService{
     @Override
     public ArrayList<StockCurrentVO> getAllRealTimeStocks() {
         Iterator<String> codes = stockInfoDAO.getAllStockCodes();
-        MarketInfo marketInfo = null;
-        Stock stock = null;
 
         if(codes == null) {
             return null;
@@ -120,27 +123,4 @@ public class StockInfoServiceImp implements StockInfoService{
         return null;
     }
 
-    public StockInfoDAO getStockInfoDAO() {
-        return stockInfoDAO;
-    }
-
-    public void setStockInfoDAO(StockInfoDAO stockInfoDAO) {
-        this.stockInfoDAO = stockInfoDAO;
-    }
-
-    public StockDataCalculation getStockDataCalculation() {
-        return stockDataCalculation;
-    }
-
-    public void setStockDataCalculation(StockDataCalculation stockDataCalculation) {
-        this.stockDataCalculation = stockDataCalculation;
-    }
-
-    public TransferHelper getTransferHelper() {
-        return transferHelper;
-    }
-
-    public void setTransferHelper(TransferHelper transferHelper) {
-        this.transferHelper = transferHelper;
-    }
 }

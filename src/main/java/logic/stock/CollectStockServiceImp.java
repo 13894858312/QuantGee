@@ -6,6 +6,9 @@ import bean.MarketInfo;
 import bean.Stock;
 import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 import service.stock.CollectStockService;
 import vo.stock.StockCollectInputVO;
 import vo.stock.StockCurrentVO;
@@ -16,6 +19,8 @@ import java.util.Iterator;
 /**
  * Created by Mark.W on 2017/5/15.
  */
+@Service
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CollectStockServiceImp implements CollectStockService{
 
     @Autowired
@@ -67,21 +72,5 @@ public class CollectStockServiceImp implements CollectStockService{
         }
 
         return false;
-    }
-
-    public StockInfoDAO getStockInfoDAO() {
-        return stockInfoDAO;
-    }
-
-    public void setStockInfoDAO(StockInfoDAO stockInfoDAO) {
-        this.stockInfoDAO = stockInfoDAO;
-    }
-
-    public TransferHelper getTransferHelper() {
-        return transferHelper;
-    }
-
-    public void setTransferHelper(TransferHelper transferHelper) {
-        this.transferHelper = transferHelper;
     }
 }

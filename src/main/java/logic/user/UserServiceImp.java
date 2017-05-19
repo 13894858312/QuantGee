@@ -4,12 +4,14 @@ import DAO.userDAO.UserDAO;
 import bean.User;
 import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import vo.user.UserVO;
 import service.user.UserService;
 
 /**
  * Created by Mark.W on 2017/5/9.
  */
+@Service
 public class UserServiceImp implements UserService {
 
     @Autowired
@@ -38,19 +40,4 @@ public class UserServiceImp implements UserService {
         return userVO;
     }
 
-    public UserDAO getUserDAO() {
-        return userDAO;
-    }
-
-    public void setUserDAO(UserDAO userDAO) {
-        this.userDAO = userDAO;
-    }
-
-    public TransferHelper getTransferHelper() {
-        return transferHelper;
-    }
-
-    public void setTransferHelper(TransferHelper transferHelper) {
-        this.transferHelper = transferHelper;
-    }
 }

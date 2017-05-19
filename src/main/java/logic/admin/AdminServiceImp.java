@@ -7,6 +7,7 @@ import bean.User;
 import logic.tools.TransferHelper;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import po.UserAnalysisDataPO;
@@ -17,6 +18,8 @@ import service.admin.AdminService;
 /**
  * Created by Mark.W on 2017/5/9.
  */
+@Service
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class AdminServiceImp implements AdminService{
 
     @Autowired
@@ -52,28 +55,4 @@ public class AdminServiceImp implements AdminService{
         return transferHelper.transToUserAnalysisVO(analysisData);
     }
 
-
-    public AccountDAO getAccountDAO() {
-        return accountDAO;
-    }
-
-    public void setAccountDAO(AccountDAO accountDAO) {
-        this.accountDAO = accountDAO;
-    }
-
-    public UserDAO getUserDAO() {
-        return userDAO;
-    }
-
-    public void setUserDAO(UserDAO userDAO) {
-        this.userDAO = userDAO;
-    }
-
-    public TransferHelper getTransferHelper() {
-        return transferHelper;
-    }
-
-    public void setTransferHelper(TransferHelper transferHelper) {
-        this.transferHelper = transferHelper;
-    }
 }

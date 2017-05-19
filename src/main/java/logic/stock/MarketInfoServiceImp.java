@@ -5,6 +5,9 @@ import bean.Current;
 import bean.Stock;
 import logic.tools.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 import service.stock.MarketInfoService;
 import vo.stock.MarketInfoVO;
 
@@ -15,6 +18,8 @@ import java.util.Iterator;
 /**
  * Created by Mark.W on 2017/5/15.
  */
+@Service
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class MarketInfoServiceImp implements MarketInfoService{
 
     @Autowired
@@ -100,13 +105,5 @@ public class MarketInfoServiceImp implements MarketInfoService{
         }
 
         return result;
-    }
-
-    public StockInfoDAO getStockInfoDAO() {
-        return stockInfoDAO;
-    }
-
-    public void setStockInfoDAO(StockInfoDAO stockInfoDAO) {
-        this.stockInfoDAO = stockInfoDAO;
     }
 }

@@ -5,7 +5,7 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-	<constant name="struts.objectFactory" value="spring" />
+	<!--<constant name="struts.objectFactory" value="spring" />-->
 
 	<package name="default" namespace="/" extends="struts-default">
 		<action name="login" class="loginAction">

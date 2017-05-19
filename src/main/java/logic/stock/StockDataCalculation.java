@@ -1,11 +1,13 @@
 package logic.stock;
 
+import org.springframework.stereotype.Service;
 import vo.stock.StockHistoricalVO;
 
 /**
  * Created by Mark.W on 2017/5/16.
  * 股票数据分析的类
  */
+@Service
 public class StockDataCalculation {
 
     /**
