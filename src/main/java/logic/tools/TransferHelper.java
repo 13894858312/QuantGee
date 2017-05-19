@@ -2,6 +2,7 @@ package logic.tools;
 
 import bean.*;
 import logic.stock.KLineData;
+import org.springframework.stereotype.Service;
 import po.UserAnalysisDataPO;
 import vo.admin.UserAnalysisDataVO;
 import vo.stock.NewsVO;
@@ -16,6 +17,7 @@ import java.util.Date;
  * Created by Mark.W on 2017/5/15.
  * vo与entity的转换
  */
+@Service
 public class TransferHelper {
 
     /**

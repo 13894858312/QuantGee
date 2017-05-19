@@ -105,7 +105,6 @@
     <!--<bean id="loginAction" class="action.LoginAction" scope="prototype">-->
     <!--</bean>-->
 
-
     <!--&lt;!&ndash;logic的bean&ndash;&gt;-->
     <!--<bean id="userService" class="logic.user.UserServiceImp" scope="prototype">-->
     <!--</bean>-->

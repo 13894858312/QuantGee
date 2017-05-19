@@ -76,5 +76,6 @@
     <orderEntry type="library" name="commons-dbcp:commons-dbcp:1.4" level="project" />
     <orderEntry type="library" name="org.hibernate.common:hibernate-commons-annotations:5.0.1.Final" level="project" />
     <orderEntry type="library" name="org.aspectj:aspectjweaver:1.8.10" level="project" />
+    <orderEntry type="library" name="org.apache.struts:struts2-convention-plugin:2.5.10.1" level="project" />
   </component>
 </module>

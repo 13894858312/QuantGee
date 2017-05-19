@@ -4,12 +4,14 @@ import DAO.accountDAO.AccountDAO;
 import bean.Account;
 import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import service.user.AccountService;
 import vo.user.AccountVO;
 
 /**
  * Created by Mark.W on 2017/5/9.
  */
+@Service
 public class AccountServiceImp implements AccountService{
 
     @Autowired
@@ -42,24 +44,24 @@ public class AccountServiceImp implements AccountService{
 
     @Override
     public boolean login(AccountVO accountVO) {
-        if(accountVO != null) {
-            Account account = accountDAO.getAccount(accountVO.getAccountID());
+//        if(accountVO != null) {
+//            Account account = accountDAO.getAccount(accountVO.getAccountID());
+//
+//            if(accountVO.getPassword().equals(account.getPassword())) {
+//                account.setIsLogIn(1);
+//                if(accountDAO.updateAccount(account)) {        //更新登陆状态
+//                    return true;
+//                }
+//            }
+//        }
+//
+//        return false;
 
-            if(accountVO.getPassword().equals(account.getPassword())) {
-                account.setIsLogIn(1);
-                if(accountDAO.updateAccount(account)) {        //更新登陆状态
-                    return true;
-                }
-            }
-        }
-
-        return false;
-
-//        if (accountVO.getAccountID().equals("bcy")&&accountVO.getPassword().equals("bcy")){
-//			return true;
-//		}else {
-//			return false;
-//		}
+        if (accountVO.getAccountID().equals("bcy")&&accountVO.getPassword().equals("bcy")){
+			return true;
+		}else {
+			return false;
+		}
     }
 
     @Override
