@@ -1,20 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
-       <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
-       <!--xmlns:context="http://www.springframework.org/schema/context"-->
-       <!--xmlns:aop="http://www.springframework.org/schema/aop"-->
-       <!--xmlns:tx="http://www.springframework.org/schema/tx"-->
-        <!--xmlns:mvc="http://www.springframework.org/schema/mvc"-->
-       <!--xsi:schemaLocation="http://www.springframework.org/schema/beans-->
-     <!--http://www.springframework.org/schema/beans/spring-beans-4.2.xsd-->
-     <!--http://www.springframework.org/schema/context-->
-     <!--http://www.springframework.org/schema/context/spring-context-4.2.xsd-->
-     <!--http://www.springframework.org/schema/tx-->
-     <!--http://www.springframework.org/schema/tx/spring-tx-4.2.xsd-->
-     <!--http://www.springframework.org/schema/aop-->
-     <!--http://www.springframework.org/schema/aop/spring-aop-4.2.xsd-->
-     <!--http://www.springframework.org/schema/mvc-->
-     <!--http://www.springframework.org/schema/mvc/spring-mvc.xsd">-->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -28,17 +12,6 @@
      http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
      http://www.springframework.org/schema/aop
      http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
-
-
-
-
-<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
-           <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
-           <!--xmlns:context="http://www.springframework.org/schema/context"-->
-           <!--xsi:schemaLocation="http://www.springframework.org/schema/beans-->
-     <!--http://www.springframework.org/schema/beans/spring-beans-4.2.xsd-->
-     <!--http://www.springframework.org/schema/context-->
-     <!--http://www.springframework.org/schema/context/spring-context-4.2.xsd">-->
 
     <!-- 开启IOC注解扫描 -->
     <context:component-scan base-package="bean,action,data,logic,po,service,vo" />
@@ -110,8 +83,22 @@
     </aop:config>
 
 
+    <!--Dao的bean-->
+    <bean id="stockInfoDao" class="data.stockInfoData.StockInfoData" scope="singleton">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
 
+    <bean id="accountData" class="data.accountData.AccountData" scope="singleton">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
 
+    <bean id="newsDao" class="data.newsData.NewsData" scope="singleton">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
+
+    <bean id="userDao" class="data.userData.UserData" scope="singleton">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
 
 
     <!--&lt;!&ndash;action的bean&ndash;&gt;-->
@@ -131,27 +118,5 @@
 
     <!--<bean id="stockDataCalculation" class="logic.stock.StockDataCalculation" scope="prototype">-->
     <!--</bean>-->
-
-
-
-
-
-    <!--Dao的bean-->
-    <bean id="stockInfoDao" class="data.stockInfoData.StockInfoData" scope="singleton">
-        <!--<property name="hibernateTemplate" ref="hibernateTemplate"></property>-->
-    </bean>
-
-    <bean id="accountData" class="data.accountData.AccountData" scope="singleton">
-        <!--<property name="hibernateTemplate" ref="hibernateTemplate"></property>-->
-    </bean>
-
-    <bean id="newsDao" class="data.newsData.NewsData" scope="singleton">
-        <!--<property name="hibernateTemplate" ref="hibernateTemplate"></property>-->
-    </bean>
-
-    <bean id="userDao" class="data.userData.UserData" scope="singleton">
-        <!--<property name="hibernateTemplate" ref="hibernateTemplate"></property>-->
-    </bean>
-
 
 </beans>

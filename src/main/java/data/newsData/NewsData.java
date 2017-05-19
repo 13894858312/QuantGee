@@ -1,7 +1,6 @@
 package data.newsData;
 
 import DAO.NewsDAO.NewsDAO;
-import bean.MarketInfo;
 import bean.News;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,15 +8,20 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by wangxue on 2017/5/17.
  */
 public class NewsData implements NewsDAO {
+
+    private HibernateTemplate hibernateTemplate;
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
+    }
+
     @Override
     public Iterator<News> getNews() {
         try {

@@ -10,6 +10,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 import po.UserAnalysisDataPO;
 
 import java.util.*;
@@ -18,6 +19,11 @@ import java.util.*;
  * Created by wangxue on 2017/5/5.
  */
 public class AccountData implements AccountDAO {
+
+    private HibernateTemplate hibernateTemplate;
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
+    }
 
     Configuration configuration = new Configuration().configure();
 
