@@ -1,6 +1,5 @@
 package logic.user;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +8,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import service.user.UserService;
 import vo.user.UserVO;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Mark.W on 2017/5/17.
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:ApplicationContext*.xml"})
+@ContextConfiguration(locations = {"classpath*:applicationContext.xml"})
 public class UserServiceImpTest{
 
     @Autowired

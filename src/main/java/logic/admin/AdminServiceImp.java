@@ -7,6 +7,8 @@ import bean.User;
 import logic.tools.TransferHelper;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 import po.UserAnalysisDataPO;
 import vo.admin.UserAccountVO;
 import vo.admin.UserAnalysisDataVO;

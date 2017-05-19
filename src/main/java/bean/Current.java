@@ -3,6 +3,7 @@ package bean;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Created by wangxue on 2017/5/18.
@@ -36,6 +37,7 @@ public class Current {
         this.index = index;
     }
 
+    @Id
     @Basic
     @Column(name = "code", nullable = true, length = -1)
     public String getCode() {

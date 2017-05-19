@@ -3,6 +3,7 @@ package bean;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Created by wangxue on 2017/5/18.
@@ -16,6 +17,7 @@ public class News {
     private String url;
     private String content;
 
+    @Id
     @Basic
     @Column(name = "index", nullable = true)
     public Long getIndex() {
