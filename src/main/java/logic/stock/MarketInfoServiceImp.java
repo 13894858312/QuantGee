@@ -44,7 +44,7 @@ public class MarketInfoServiceImp implements MarketInfoService{
             return null;
         }
 
-        double rate = 0;
+        double rate;
         int[] rateNums = new int[6]; //数据依次为跌停，-10%- -5%，-5%-0，0-5%，5%-10%，涨停
 
         while (codes.hasNext()) {
@@ -93,7 +93,7 @@ public class MarketInfoServiceImp implements MarketInfoService{
             }
         }
 
-        MarketInfoVO result = null;
+        MarketInfoVO result;
 
         //首先获取该板块在指定时间的基础数据
         if(isRealTime) {

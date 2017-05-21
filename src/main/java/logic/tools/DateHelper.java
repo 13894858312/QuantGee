@@ -8,8 +8,8 @@ import java.util.Date;
  * 日期计算的帮助类
  */
 public class DateHelper {
-    private static final String DATE_FORMAT = "YYYY-MM-DD";//可以方便地修改日期格式
-    private static final String TIME_FORMAT = "YYYY-MM-DD HH:MM:SS";//可以方便地修改日期格式
+    private static final String DATE_FORMAT = "yyyy-MM-dd";//可以方便地修改日期格式
+    private static final String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";//可以方便地修改日期格式
 
     public static String getNowDate() {
         Date now = new Date();

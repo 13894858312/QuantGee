@@ -22,6 +22,11 @@ public class StockHistoricalVO {
     private double volume;  //成交量
     private double turnover;
 
+    //均线图
+    private double ma5;
+    private double ma10;
+    private double ma20;
+
     //日k
     private boolean isPositive;
     private double upperShadow;
@@ -29,10 +34,7 @@ public class StockHistoricalVO {
     //对数收益
     private double logarithmYield = 0;
 
-    //均线图
-    private double ma5;
-    private double ma10;
-    private double ma20;
+
 
     public StockHistoricalVO() {}
 

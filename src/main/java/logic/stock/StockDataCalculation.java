@@ -22,7 +22,7 @@ public class StockDataCalculation {
             return null;
         }
         boolean positive = false;
-        double upper = 0;
+        double upper;
         double lower = 0;
 
         //如果开盘价低于收盘价 阳线

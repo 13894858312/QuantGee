@@ -56,6 +56,10 @@ public class StockInfoServiceImp implements StockInfoService{
         MarketInfo marketInfo = stockInfoDAO.getMarketInfo(code);
         Current stock = stockInfoDAO.getStockRealTimeInfo(code);
 
+        if(marketInfo == null || stock == null) {
+            return null;
+        }
+
         StockCurrentVO stockCurrentVO = transferHelper.transToStockCurrent(marketInfo, stock);
 
         return stockCurrentVO;
@@ -67,10 +71,11 @@ public class StockInfoServiceImp implements StockInfoService{
         if(inputVO == null) {
             return null;
         }
+
         MarketInfo marketInfo = stockInfoDAO.getMarketInfo(inputVO.getStockCode());
         ArrayList<StockHistoricalVO> result = new ArrayList<>();
         Stock stock = null;
-        Stock formerStock = null;
+        Stock formerStock;
 
         Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getStockCode(),
                 inputVO.getStartDate(), inputVO.getEndDate());
@@ -120,6 +125,7 @@ public class StockInfoServiceImp implements StockInfoService{
 
     @Override
     public StockPredictionVO predictStockTrend(String stockCode) {
+
         return null;
     }
 
