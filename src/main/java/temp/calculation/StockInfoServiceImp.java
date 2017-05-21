@@ -2,7 +2,7 @@
 //
 //import data.StockData;
 //import dataDao.StockDataDao;
-//import logicService.StockInfoService;
+//import logicService.StockBasicInfoService;
 //
 //import java.util.ArrayList;
 //
@@ -10,7 +10,7 @@
 // * 获取所有股票名字和代码的接口
 // * Created by Mark.W on 2017/4/19.
 // */
-//public class StockInfoServiceImp implements StockInfoService {
+//public class StockInfoServiceImp implements StockBasicInfoService {
 //    private StockDataDao stockDataDao;
 //
 //    public StockInfoServiceImp() {

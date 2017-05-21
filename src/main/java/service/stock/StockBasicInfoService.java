@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by Mark.W on 2017/5/5.
  * 个股信息的接口
  */
-public interface StockInfoService {
+public interface StockBasicInfoService {
 
     /**
      * 获取所有股票的实时信息
@@ -37,12 +37,5 @@ public interface StockInfoService {
      * @return 股票数据
      */
     public ArrayList<StockCurrentVO> getStocksByIndustry(String industryName);
-
-    /**
-     * 股票走势预测
-     * @param stockCode 股票代码
-     * @return StockPredictionVO
-     */
-    public StockPredictionVO predictStockTrend(String stockCode);
 
 }

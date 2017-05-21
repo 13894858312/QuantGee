@@ -6,8 +6,16 @@ package vo.stock;
  */
 public class StockInputVO {
     private String stockCode;
-    private String startDate;       //格式YYYY-MM-DD
+    private String startDate;       //格式yyyy-MM-dd
     private String endDate;         //结束时间 默认为昨天
+
+    public StockInputVO() {}
+
+    public StockInputVO(String stockCode, String startDate, String endDate) {
+        this.stockCode = stockCode;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 
     public String getStockCode() {
         return stockCode;

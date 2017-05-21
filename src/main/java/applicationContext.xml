@@ -100,22 +100,4 @@
         <property name="hibernateTemplate" ref="hibernateTemplate"></property>
     </bean>
 
-
-    <!--&lt;!&ndash;action的bean&ndash;&gt;-->
-    <!--<bean id="loginAction" class="action.LoginAction" scope="prototype">-->
-    <!--</bean>-->
-
-    <!--&lt;!&ndash;logic的bean&ndash;&gt;-->
-    <!--<bean id="userService" class="logic.user.UserServiceImp" scope="prototype">-->
-    <!--</bean>-->
-
-    <!--<bean id="accountService" class="logic.user.AccountServiceImp" scope="prototype">-->
-    <!--</bean>-->
-
-    <!--<bean id="transferHelper" class="logic.tools.TransferHelper" scope="prototype">-->
-    <!--</bean>-->
-
-    <!--<bean id="stockDataCalculation" class="logic.stock.StockDataCalculation" scope="prototype">-->
-    <!--</bean>-->
-
 </beans>

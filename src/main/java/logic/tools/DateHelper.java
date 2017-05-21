@@ -1,5 +1,7 @@
 package logic.tools;
 
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -24,6 +26,56 @@ public class DateHelper {
         String date = dateFormat.format(now);
         return date;
     }
+
+    /**
+     * 计算两个日期间相差的天数
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @return 天数 可为负数
+     */
+    public static int calculateDaysBetween(String startDate, String endDate) {
+
+        Date s = stringTransToDate(startDate);
+        Date e = stringTransToDate(endDate);
+
+        long start, end;
+        start = s.getTime();
+        end = e.getTime();
+
+        int res = (int) ((end - start) / (1000 * 60 * 60 * 24));
+        return res;
+    }
+
+
+    /**
+     * 将string格式化为日期
+     * @param dateformat string
+     * @return Date
+     */
+    public static Date stringTransToDate(String dateformat) {
+        if(dateformat == null) {
+            return null;
+        }
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
+
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(dateformat);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return date;
+    }
+
+//    public String dateTransToString(Date date) {
+//        if(date == null) {
+//            return null;
+//        }
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
+//        return simpleDateFormat.format(date);
+//    }
+
 }
 
 
@@ -115,50 +167,8 @@ public class DateHelper {
 //        return false;
 //    }
 //
-//    /**
-//     * 计算两个日期间相差的天数
-//     * @param startDate 开始日期
-//     * @param endDate 结束日期
-//     * @return 天数 可为负数
-//     */
-//    public int calculateDaysBetween(Date startDate, Date endDate) {
-//        long start, end;
-//        start = startDate.getTime();
-//        end = endDate.getTime();
-//
-//        int res = (int) ((end - start) / (1000 * 60 * 60 * 24));
-//
-//        return res;
-//    }
-//
 //    //保留小数
 //    public String getDealDate(double d){
 //        return new java.text.DecimalFormat("0.000000").format(d);
 //    }
-//
-//    public Date stringTransToDate(String dateformat) {
-//        if(dateformat == null) {
-//            return null;
-//        }
-//
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
-//
-//        Date date = null;
-//        try {
-//            date = simpleDateFormat.parse(dateformat);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return date;
-//    }
-//
-//    public String dateTransToString(Date date) {
-//        if(date == null) {
-//            return null;
-//        }
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
-//        return simpleDateFormat.format(date);
-//    }
-//
 //}
