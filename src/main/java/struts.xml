@@ -13,11 +13,11 @@
 			<result name="fail">/view/ucenter/login.html</result>
 		</action>
 	</package>
-	<!--<package name="json" extends="json-default">-->
-		<!--<action name="ajax" class="action.TestAction">-->
-			<!--<result name="success" type="json">-->
-				<!--<param name="root">result</param>-->
-			<!--</result>-->
-		<!--</action>-->
-	<!--</package>-->
+	<package name="json" extends="json-default">
+		<action name="ajax" class="action.TestAction">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
 </struts>
