@@ -13,8 +13,6 @@
 </head>
 <body>
     <input type="button" value="jquery" onclick="getJson();">
-    <%
-        String name=
-    %>
+
 </body>
 </html>
