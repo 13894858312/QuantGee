@@ -13,7 +13,7 @@
     <script type="text/javascript"> //使用jquery实现异步提交
     function getJson() {
         $.ajax({
-            url:'test.action',
+            url:'ajax.action',
             type:'get',
             dataType:'json',
             success:function (data) {
