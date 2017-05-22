@@ -18,7 +18,6 @@ public class News {
     private String content;
 
     @Id
-    @Basic
     @Column(name = "index", nullable = true)
     public Long getIndex() {
         return index;
