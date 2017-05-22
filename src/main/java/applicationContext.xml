@@ -88,7 +88,7 @@
         <property name="hibernateTemplate" ref="hibernateTemplate"></property>
     </bean>
 
-    <bean id="accountData" class="data.accountData.AccountData" scope="singleton">
+    <bean id="accountDao" class="data.accountData.AccountData" scope="singleton">
         <property name="hibernateTemplate" ref="hibernateTemplate"></property>
     </bean>
 
