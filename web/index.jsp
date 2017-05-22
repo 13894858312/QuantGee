@@ -59,6 +59,7 @@
                 url:'ajax.action',
                 dataType:'json',
                 type:'get',
+                data:'string',
                 success:function (data) {
                     alert(success + data);
                 },
