@@ -11,6 +11,10 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import po.UserAnalysisDataPO;
 
 import java.io.*;
@@ -19,15 +23,18 @@ import java.util.List;
 /**
  * Created by wangxue on 2017/5/14.
  */
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath*:applicationContext.xml"})
 public class AccountDataTest {
 
-
+    @Autowired
     AccountDAO accountDAO = new AccountData();
 
     @Test
     public void insertTest() {
         Account account = new Account();
-        account.setUserId("bcy");
+        account.setUserId("bcsdfy");
         account.setPassword("bcy");
         account.setRegisterDate("2011-01-02");
         account.setIsLogIn(0);

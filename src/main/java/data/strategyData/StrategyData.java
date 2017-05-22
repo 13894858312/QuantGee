@@ -2,6 +2,8 @@ package data.strategyData;
 
 import DAO.strategyDAO.StrategyDAO;
 import bean.Strategy;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,7 +11,13 @@ import java.util.Iterator;
 /**
  * Created by wangxue on 2017/5/5.
  */
+@Transactional
 public class StrategyData implements StrategyDAO {
+
+    private HibernateTemplate hibernateTemplate;
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
+    }
 
     @Override
     public boolean addStrategy(Strategy strategy) {

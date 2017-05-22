@@ -1,11 +1,8 @@
 package action;
 
 import com.opensymphony.xwork2.Action;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import org.apache.struts2.json.annotations.JSON;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -16,16 +13,9 @@ public class TestAction implements Action {
     private String password;
     private int age;
     private Date date;
-    private String result;
 
-    public String getResult(){
-        return result;
-    }
-    public void setResult(String result){
-        this.result = result;
-    }
-    @JSON(serialize = false)
     public String getUsername() {
+        username = "zdy";
         return username;
     }
 
@@ -61,12 +51,10 @@ public class TestAction implements Action {
 
     @Override
     public String execute() throws Exception {
-        ArrayList<String> arrayList = new ArrayList<String>();
-        arrayList.add("1");
-        arrayList.add("2");
-        arrayList.add("3");
-        JSONArray jsonArray = JSONArray.fromObject(arrayList);
-
+        this.setDate(new Date());
+        this.setAge(10);
+        this.setPassword("world");
+        this.setUsername("hello");
         return SUCCESS;
     }
 

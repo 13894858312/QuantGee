@@ -9,12 +9,14 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Iterator;
 
 /**
  * Created by wangxue on 2017/5/17.
  */
+@Transactional
 public class NewsData implements NewsDAO {
 
     private HibernateTemplate hibernateTemplate;

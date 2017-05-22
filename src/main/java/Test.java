@@ -1,3 +1,5 @@
+import DAO.accountDAO.AccountDAO;
+import bean.Account;
 import logic.ClassA;
 import logic.ClassB;
 import org.springframework.context.ApplicationContext;
@@ -9,12 +11,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Test {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-//        ClassA classA1 = (ClassA)context.getBean("classA");
-//        classA1.getName();
-//        ClassA classA2 = (ClassA)context.getBean("classA");
-//        classA2.getName();
-
-        ClassB classB = (ClassB)context.getBean("classB");
-        classB.run();
+        AccountDAO accountDAO = (AccountDAO)context.getBean("accountDao");
+        Account account = new Account();
+        account.setIsLogIn(1);
+        account.setRegisterDate("134321");
+        account.setPassword("34123");
+        account.setUserId("2asa35");
+        accountDAO.addAccount(account);
     }
 }

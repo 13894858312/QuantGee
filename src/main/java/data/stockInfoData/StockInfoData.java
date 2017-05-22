@@ -10,6 +10,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 /**
  * Created by wangxue on 2017/5/5.
  */
+@Transactional
 public class StockInfoData implements StockInfoDAO{
 
     private HibernateTemplate hibernateTemplate;
@@ -143,7 +145,7 @@ public class StockInfoData implements StockInfoDAO{
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
 
-            Query query = session.createQuery("select m.stockID from MarketInfo m where m.market =:c_name")
+            Query query = session.createQuery("select m.code from MarketInfo m where m.cName =:c_name")
                     .setParameter("c_name",industryName);
             Iterator<String> stringIterator = query.list().iterator();
 
@@ -185,12 +187,12 @@ public class StockInfoData implements StockInfoDAO{
 
             switch (blockName){
                 case "sh":
-                    query = session.createQuery("FROM MarketInfo m where m.stockID like :var")
+                    query = session.createQuery("FROM MarketInfo m where m.code like :var")
                             .setParameter("var","60"+"%");
                     iterator = query.list().iterator();
                     break;
                 case "sz":
-                    query = session.createQuery("FROM MarketInfo m where m.stockID like :var")
+                    query = session.createQuery("FROM MarketInfo m where m.code like :var")
                             .setParameter("var","000"+"%");
                     iterator = query.list().iterator();
                     break;
@@ -199,12 +201,12 @@ public class StockInfoData implements StockInfoDAO{
                 case "sz50":
                     return null;
                 case "zxb":
-                    query = session.createQuery("SELECT s.stockCode FROM Sme s ");
+                    query = session.createQuery("SELECT s.code FROM Sme s ");
                     iterator = query.list().iterator();
                     break;
                 case "cyb":
 
-                    query = session.createQuery("SELECT g.stockCode FROM Gem g");
+                    query = session.createQuery("SELECT g.code FROM Gem g");
                     iterator = query.list().iterator();
                     break;
             }
@@ -304,7 +306,7 @@ public class StockInfoData implements StockInfoDAO{
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
 
-            Query query = session.createQuery("SELECT m.stockID from MarketInfo m");
+            Query query = session.createQuery("SELECT m.code from MarketInfo m");
             Iterator<String> iterator = query.list().iterator();
 
             transaction.commit();

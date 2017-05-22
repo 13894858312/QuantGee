@@ -32,7 +32,7 @@
         </property>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.dialect">data.ExtMysqlDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hbm2ddl.auto">update</prop>
@@ -88,7 +88,7 @@
         <property name="hibernateTemplate" ref="hibernateTemplate"></property>
     </bean>
 
-    <bean id="accountData" class="data.accountData.AccountData" scope="singleton">
+    <bean id="accountDao" class="data.accountData.AccountData" scope="singleton">
         <property name="hibernateTemplate" ref="hibernateTemplate"></property>
     </bean>
 
@@ -97,6 +97,14 @@
     </bean>
 
     <bean id="userDao" class="data.userData.UserData" scope="singleton">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
+
+    <bean id="tradeDao" class="data.tradeData.TradeData" scope="singleton">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
+
+    <bean id="strategyDao" class="data.strategyData.StrategyData" scope="singleton">
         <property name="hibernateTemplate" ref="hibernateTemplate"></property>
     </bean>
 
