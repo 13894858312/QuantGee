@@ -1,6 +1,8 @@
 package DAO.tradeDAO;
 
+import bean.HoldingStock;
 import bean.Trade;
+import bean.UserMoney;
 import po.HoldingStocksPO;
 
 import java.util.ArrayList;
@@ -34,22 +36,16 @@ public interface TradeDAO {
 
     /**
      * 增持股票
-     * @param userID 用户ID
-     * @param stockID 股票ID
-     * @param num 增持股数
-     * @param cost 支付金钱
+     * @param holdingStock 股票ID，购买数(负为卖出数)，用户ID
      * @return 是否成功
      */
-    public boolean addHoldingStock(String userID , String stockID , int num , int cost);
+    public boolean updateHoldingStock(HoldingStock holdingStock);
 
     /**
-     * 减少持股
-     * @param userID 用户ID
-     * @param stockID 股票ID
-     * @param num 卖出数
-     * @param cost 得到金钱
-     * @return 是否成功
+     * 更新用户持有现金金额
+     * @param userMoney 用户ID，用户持有现金
+     * @return
      */
-    public boolean sellHoldingStock(String userID , String stockID , int num , int cost);
+    public boolean updateUserMoney(UserMoney userMoney);
 
 }
