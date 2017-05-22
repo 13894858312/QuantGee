@@ -10,6 +10,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import service.stock.CollectStockService;
+import service.stock.StockBasicInfoService;
 import vo.stock.StockCollectInputVO;
 import vo.stock.StockCurrentVO;
 
@@ -26,30 +27,12 @@ public class CollectStockServiceImp implements CollectStockService{
     @Autowired
     private StockInfoDAO stockInfoDAO;
     @Autowired
-    private TransferHelper transferHelper;
+    private StockBasicInfoServiceImp stockBasicInfoServiceImp;
 
     @Override
     public ArrayList<StockCurrentVO> getCollectedStocks(String userID) {
-        Iterator<String> stocks = stockInfoDAO.getCollectedStocks(userID);
-        MarketInfo marketInfo = null;
-
-        if(stocks == null) {
-            return null;
-        }
-
-        ArrayList<StockCurrentVO> stockCurrentVOS = new ArrayList<>();
-
-        while(stocks.hasNext()) {
-            String string = stocks.next();
-            marketInfo = stockInfoDAO.getMarketInfo(string);
-            Current current = stockInfoDAO.getStockRealTimeInfo(string);
-
-            StockCurrentVO stockVO = transferHelper.transToStockCurrent(marketInfo, current);
-
-            stockCurrentVOS.add(stockVO);
-        }
-
-        return stockCurrentVOS;
+        Iterator<String> codes = stockInfoDAO.getCollectedStocks(userID);
+        return stockBasicInfoServiceImp.getStockCurrentVOs(codes);
     }
 
     @Override

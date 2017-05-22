@@ -1,7 +1,6 @@
 package logic.stock;
 
 import bean.Stock;
-import logic.tools.DateHelper;
 import logic.tools.MathHelper;
 import org.springframework.stereotype.Service;
 import vo.stock.MAVO;
@@ -29,8 +28,7 @@ public class StockDataCalculation {
             return null;
         }
         boolean positive = false;
-        double upper;
-        double lower = 0;
+        double upper,lower;
 
         //如果开盘价低于收盘价 阳线
         if(historicalVO.getOpen() < historicalVO.getClose()) {
@@ -54,19 +52,19 @@ public class StockDataCalculation {
      * 均线图是将每天的收盘价加权平均,从而得到一条带有趋势性的轨迹。
      * 在日 K 线图中一般白线、黄线、紫线、绿线、蓝线依次分别表示:5、10、20、30、60日移动平均线。
      * 移动平均线常用线有 5 天、10 天、30 天、60 天、120 天和 240 天的指标。
-     * 其中，5天和10天的短期移动平均线。是短线操作的参照指标，称做日均线指标;
-     * 30 天和 60 天的是中期均线指标，称做季均线指标;
-     * 120 天、240 天的是长期均 线指标，称做年均线指标。
+     * 5天 10天的短期移动平均线。是短线操作的参照指标，称做日均线指标;
+     * 30天 60天的是中期均线指标，称做季均线指标;
+     * 120天 240天的是长期均线指标，称做年均线指标。
      * @param sourceStocks 股票信息
      * @param period 均线周期
-     * @return
+     * @return ArrayList<MAVO>
      */
 //    public ArrayList<MAVO> getAverageLineInfoByCode(String stockCode, String startDate, String endDate, int period) {
 //    if(period <= 0 || period > DateHelper.calculateDaysBetween(startDate, endDate)) {
 //        return null;
 //    }
 
-    public ArrayList<MAVO> getAverageLineInfoByCode(Iterator<Stock> sourceStocks, int period) {
+    public ArrayList<MAVO> calculateMA(Iterator<Stock> sourceStocks, int period) {
 
         //如果总天数小于均线图的时间间隔出错
         ArrayList<Stock> stocks = new ArrayList<>();
