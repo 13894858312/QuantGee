@@ -1,4 +1,4 @@
-package data.accountData;
+package data;
 
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.Current;

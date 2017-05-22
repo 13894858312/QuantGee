@@ -1,4 +1,4 @@
-package data.accountData;
+package data;
 
 import DAO.accountDAO.AccountDAO;
 import bean.*;
@@ -26,7 +26,7 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:applicationContext.xml"})
-public class AccountDataTest {
+public class AccountTest {
 
     @Autowired
     AccountDAO accountDAO = new AccountData();
@@ -34,7 +34,7 @@ public class AccountDataTest {
     @Test
     public void insertTest() {
         Account account = new Account();
-        account.setUserId("bcsdfy");
+        account.setUserId("bcsdqewqefy");
         account.setPassword("bcy");
         account.setRegisterDate("2011-01-02");
         account.setIsLogIn(0);

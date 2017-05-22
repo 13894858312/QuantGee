@@ -1,4 +1,4 @@
-package data.accountData;
+package data;
 
 import DAO.NewsDAO.NewsDAO;
 import bean.News;
