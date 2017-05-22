@@ -33,31 +33,10 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
     @Autowired
     private TransferHelper transferHelper;
 
-
-    @Override
-    public ArrayList<StockCurrentVO> getAllRealTimeStocks() {
-        Iterator<String> codes = stockInfoDAO.getAllStockCodes();
-
-        if(codes == null) {
-            return null;
-        }
-
-        ArrayList<StockCurrentVO> stockCurrentVOS = new ArrayList<>();
-        while(codes.hasNext()) {
-            String code = codes.next();
-            StockCurrentVO stockCurrentVO = getRealTimeStockInfo(code);
-            stockCurrentVOS.add(stockCurrentVO);
-        }
-
-       return stockCurrentVOS;
-    }
-
     @Override
     public StockCurrentVO getRealTimeStockInfo(String code) {
-
         MarketInfo marketInfo = stockInfoDAO.getMarketInfo(code);
         Current stock = stockInfoDAO.getStockRealTimeInfo(code);
-
         if(marketInfo == null || stock == null) {
             return null;
         }
@@ -68,22 +47,31 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
     }
 
     @Override
-    public ArrayList<StockHistoricalVO> getStockHistoricalInfo(StockInputVO inputVO) {
+    public ArrayList<StockCurrentVO> getAllRealTimeStocks() {
+        Iterator<String> codes = stockInfoDAO.getAllStockCodes();
+        return getStockCurrentVOs(codes);
+    }
 
+    @Override
+    public ArrayList<StockCurrentVO> getStocksByIndustry(String industryName) {
+        Iterator<String> codes = stockInfoDAO.getAllStockCodesByIndustry(industryName);
+        return getStockCurrentVOs(codes);
+    }
+
+    @Override
+    public ArrayList<StockHistoricalVO> getStockHistoricalInfo(StockInputVO inputVO) {
         if(inputVO == null) {
             return null;
         }
 
         MarketInfo marketInfo = stockInfoDAO.getMarketInfo(inputVO.getStockCode());
-        ArrayList<StockHistoricalVO> result = new ArrayList<>();
-        Stock stock = null;
-        Stock formerStock;
-
         Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getStockCode(),
                 inputVO.getStartDate(), inputVO.getEndDate());
 
-        while(stocks.hasNext()) {
+        ArrayList<StockHistoricalVO> result = new ArrayList<>();
+        Stock stock = null, formerStock;
 
+        while(stocks.hasNext()) {
             formerStock = stock;
             stock = stocks.next();
 
@@ -107,9 +95,12 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         return result;
     }
 
-    @Override
-    public ArrayList<StockCurrentVO> getStocksByIndustry(String industryName) {
-        Iterator<String> codes = stockInfoDAO.getAllStockCodesByIndustry(industryName);
+    /**
+     * 根据代码列表获取数据 用来方法服用
+     * @param codes 代码
+     * @return ArrayList<StockCurrentVO>
+     */
+    public ArrayList<StockCurrentVO> getStockCurrentVOs(Iterator<String> codes) {
         if(codes == null) {
             return null;
         }
@@ -118,8 +109,13 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
 
         while(codes.hasNext()) {
             String code = codes.next();
-            StockCurrentVO currentVO = getRealTimeStockInfo(code);
-            result.add(currentVO);
+            if(code != null && !code.equals("")) {
+                result.add(getRealTimeStockInfo(code));
+            }
+        }
+
+        if(result.size() == 0) {
+            return null;
         }
 
         return result;

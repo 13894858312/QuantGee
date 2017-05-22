@@ -5,6 +5,7 @@ import bean.Account;
 import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import service.user.AccountService;
 import vo.user.AccountVO;
 
