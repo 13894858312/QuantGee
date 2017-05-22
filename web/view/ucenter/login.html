@@ -2,7 +2,7 @@
 <html lang="en">
 
 	<head>
-		<title>个人中心</title>
+		<title>账号登录</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="../../css/ucenter/main.css">
 		<link rel="stylesheet" href="../../css/ucenter/login.css">
@@ -12,19 +12,21 @@
 		<div class="header">
 			<div class="control">
 				<span class="p_center fl">
-            <a href="../../view/market/marketInfo.html" class="logo"></a>
-            <a href="login.html" target="_self" class="person">个人中心</a>
-        </span>
+		            <a href="../../view/market/marketInfo.html" class="logo">
+		            	<img src="../../images/ucenter/logo.png" width="134px" height="48px" />
+		            </a>
+		            <span class="person">用户登录</span>
+				</span>
 			</div>
 		</div>
 
-		<div id="showcasebg" >
+		<div id="showcasebg">
 			<div class="loginbox">
 				<h1>账号登录</h1>
 				<form action="login">
-					<input type="text" id="txt_userName" name="accountVO.accountID" value="请输入账号" maxlength="32">
-					<input type="text" id="txt_password" name="accountVO.password" value="请输入密码" maxlength="32">
-					<input type="submit" class="submit" value="登录"/>
+					<input type="text" id="txt_userName" name="accountVO.accountID" maxlength="32" onfocus="if(this.value=='请输入帐号') {this.value='';}this.style.color='#000';" onblur="if(this.value=='') {this.value='请输入帐号';this.style.color='#ccc';}" value="请输入帐号" />
+					<input type="password" id="txt_password" name="accountVO.password" placeholder="请输入密码"  />
+					<input type="submit" id="txt_submit" class="submit" value="登录" style="width: 260px;height: 50px;padding-left: 8px;font-size: 20px;text-align: center;background: #19A3D1;" />
 				</form>
 				<div class="forget">
 					<a href="/account/ForgetPassword" target="_parent">忘记密码？</a>
@@ -60,5 +62,5 @@
 
 		</div>
 	</body>
-	
+
 </html>
