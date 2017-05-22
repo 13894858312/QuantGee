@@ -14,7 +14,7 @@
      http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
     <!-- 开启IOC注解扫描 -->
-    <context:component-scan base-package="bean,action,data,logic,po,service,vo" />
+    <context:component-scan base-package="DAO,bean,action,data,logic,service" />
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
