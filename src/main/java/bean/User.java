@@ -25,7 +25,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "alterName", nullable = false, length = 20)
+    @Column(name = "alterName", nullable = true, length = 20)
     public String getAlterName() {
         return alterName;
     }
@@ -35,7 +35,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "phoneNumber", nullable = false, length = 20)
+    @Column(name = "phoneNumber", nullable = true, length = 20)
     public String getPhoneNumber() {
         return phoneNumber;
     }

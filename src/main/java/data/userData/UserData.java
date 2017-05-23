@@ -18,12 +18,14 @@ public class UserData implements UserDAO{
 
     @Override
     public boolean updateUserInfo(User user) {
-        return false;
+        hibernateTemplate.update(user);
+        return true;
     }
 
     @Override
     public User searchUser(String userID) {
-        return null;
+        User user = (User) hibernateTemplate.get(User.class, userID);
+        return user;
     }
 
 }
