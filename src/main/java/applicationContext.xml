@@ -51,16 +51,8 @@
                 <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/quantgee_data</prop>
                 <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
                 <!--<prop key="hibernate.current_session_context_class">thread</prop>-->
+                <prop key="hibernate.connection.autocommit">true</prop>
             </props>
-        </property>
-        <property name="mappingLocations">
-            <list>
-                <value>classpath:bean/History.hbm.xml</value>
-                <value>classpath:bean/Boll.hbm.xml</value>
-                <value>classpath:bean/Kdj.hbm.xml</value>
-                <value>classpath:bean/Macd.hbm.xml</value>
-                <value>classpath:bean/Rsi.hbm.xml</value>
-            </list>
         </property>
     </bean>
 

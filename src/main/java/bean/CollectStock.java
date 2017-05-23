@@ -15,7 +15,7 @@ public class CollectStock {
     private int index;
 
     @Basic
-    @Column(name = "userID", nullable = false, length = 20)
+    @Column(name = "userID", nullable = true, length = 20)
     public String getUserId() {
         return userId;
     }

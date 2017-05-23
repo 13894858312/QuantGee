@@ -76,10 +76,10 @@ public class StockInfoData implements StockInfoDAO{
         Iterator<String> iterator ;
             switch (blockName){
                 case "sh":
-                     iterator = (Iterator<String>) hibernateTemplate.find("FROM MarketInfo m where m.code like ?","60%").iterator();
+                     iterator = (Iterator<String>) hibernateTemplate.find("select m.code FROM MarketInfo m where m.code like ?","60%").iterator();
                     return iterator;
                 case "sz":
-                    iterator = (Iterator<String>) hibernateTemplate.find("FROM MarketInfo m where m.code like ?","000%").iterator();
+                    iterator = (Iterator<String>) hibernateTemplate.find("select m.code FROM MarketInfo m where m.code like ?","000%").iterator();
                     return iterator;
                 case "hs300":
                     return null;
@@ -108,6 +108,7 @@ public class StockInfoData implements StockInfoDAO{
         collectStock.setUserId(userID);
         collectStock.setStockId(code);
         hibernateTemplate.save(collectStock);
+        hibernateTemplate.flush();
         return true;
     }
 
@@ -142,6 +143,7 @@ public class StockInfoData implements StockInfoDAO{
     @Override
     public boolean addMACD(Macd macd) {
         hibernateTemplate.save(macd);
+        hibernateTemplate.flush();
         return true;
     }
 

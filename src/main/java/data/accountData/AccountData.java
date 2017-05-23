@@ -29,7 +29,22 @@ public class AccountData implements AccountDAO {
 
     @Override
     public boolean addAccount(Account account) {
+
+        Analysis analysis = hibernateTemplate.get(Analysis.class, account.getRegisterDate());
+        if(analysis!=null){
+            int oriNum = analysis.getNum();
+            analysis.setNum(oriNum+1);
+            hibernateTemplate.update(analysis);
+        }else{
+            Analysis analysis1 = new Analysis();
+            analysis1.setNum(1);
+            analysis1.setDate(account.getRegisterDate());
+            hibernateTemplate.save(analysis1);
+        }
+
+        hibernateTemplate.flush();
         hibernateTemplate.save(account);
+        hibernateTemplate.flush();
         return true;
     }
 
