@@ -27,7 +27,7 @@ public class Current {
     private Double mktcap;
     private Double nmc;
 
-    @Basic
+    @Id
     @Column(name = "index", nullable = true)
     public Long getIndex() {
         return index;
@@ -37,7 +37,6 @@ public class Current {
         this.index = index;
     }
 
-    @Id
     @Basic
     @Column(name = "code", nullable = true, length = -1)
     public String getCode() {

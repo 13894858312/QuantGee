@@ -1,4 +1,4 @@
-package data.accountData;
+package data;
 
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.Current;
@@ -7,6 +7,9 @@ import bean.Stock;
 import data.stockInfoData.StockInfoData;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,6 +20,8 @@ import java.util.Iterator;
 /**
  * Created by wangxue on 2017/5/17.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath*:applicationContext.xml"})
 public class StockTest {
     StockInfoDAO stockInfoDAO = new StockInfoData();
 

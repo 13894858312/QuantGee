@@ -104,4 +104,5 @@ public class Trade {
         result = 31 * result + numOfStock;
         return result;
     }
+
 }

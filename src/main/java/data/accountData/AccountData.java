@@ -27,120 +27,41 @@ public class AccountData implements AccountDAO {
         this.hibernateTemplate = hibernateTemplate;
     }
 
-//    Configuration configuration = new Configuration().configure();
-
     @Override
     public boolean addAccount(Account account) {
-//        try{
-//            configuration.addClass(Account.class);
-//            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-//            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-//            Session session = sessionFactory.openSession();
-//            Transaction transaction = session.beginTransaction();
-//
-//            session.save(account);
-//
-//            transaction.commit();
-//            session.close();
-//            sessionFactory.close();
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return false;
-//        }
-
-        hibernateTemplate.flush();
         hibernateTemplate.save(account);
-
         return true;
     }
 
     @Override
     public boolean updateAccount(Account account) {
-//        try{
-//            Configuration configuration = new Configuration().configure();
-//            configuration.addClass(Account.class);
-//            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-//            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-//            Session session = sessionFactory.openSession();
-//            Transaction transaction = session.beginTransaction();
-//
-//            session.update(account);
-//
-//            transaction.commit();
-//            session.close();
-//            sessionFactory.close();
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return false;
-//        }
+        hibernateTemplate.update(account);
         return true;
     }
 
     @Override
     public Account getAccount(String userID) {
-//        try{
-//            configuration.addClass(Account.class);
-//
-//            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-//            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-//            Session session = sessionFactory.openSession();
-//            Transaction transaction = session.beginTransaction();
-//
-//            Account account = (Account) session.get(Account.class,userID);
-//
-//            transaction.commit();
-//            session.close();
-//            sessionFactory.close();
-//
-//            return account;
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-            return null;
-//        }
+        Account account = (Account)hibernateTemplate.get(Account.class,userID);
+        return account;
     }
 
     @Override
     public UserAnalysisDataPO getUserAnalysisData() {
-//        UserAnalysisDataPO userAnalysisDataPO ;
-//        try{
-//
-//            configuration.addClass(Analysis.class);
-//
-//            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-//            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-//            Session session = sessionFactory.openSession();
-//            Transaction transaction = session.beginTransaction();
-//
-//            Query query = session.createQuery("from Analysis ");
-//            Iterator<Analysis> iterator = query.list().iterator();
-//
-//            Query query1 = session.createQuery("select sum (a.num) from Analysis a");
-//            Long sum = (Long) query1.uniqueResult();
-//
-//            if(iterator == null){
-//                return null;
-//            }
-//
-//            Map<String,Integer> map = new HashMap<String,Integer>();
-//            while (iterator.hasNext()){
-//                Analysis analysis = iterator.next();
-//                map.put(analysis.getDate(),analysis.getNum());
-//            }
-//            userAnalysisDataPO = new UserAnalysisDataPO(sum,map);
-//
-//            transaction.commit();
-//            session.close();
-//            sessionFactory.close();
-//
-//            return userAnalysisDataPO;
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-            return null;
-//        }
+        UserAnalysisDataPO userAnalysisDataPO ;
+
+        Iterator<Analysis> iterator = (Iterator<Analysis>) hibernateTemplate.find("from Analysis ").iterator();
+        Long sum =(Long) hibernateTemplate.find("select sum(a.num) from Analysis a").listIterator().next();
+
+        if(iterator == null){
+                return null;
+        }
+        Map<String,Integer> map = new HashMap<String,Integer>();
+            while (iterator.hasNext()){
+                Analysis analysis = iterator.next();
+                map.put(analysis.getDate(),analysis.getNum());
+            }
+        userAnalysisDataPO = new UserAnalysisDataPO(sum,map);
+        return userAnalysisDataPO;
     }
 
 }
