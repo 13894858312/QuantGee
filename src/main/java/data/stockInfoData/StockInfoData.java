@@ -155,4 +155,14 @@ public class StockInfoData implements StockInfoDAO{
         return false;
     }
 
+    @Override
+    public Iterator<Rsi> getRSIs(String startDate, String endDate, String code) {
+        return null;
+    }
+
+    @Override
+    public boolean addRSI(Rsi rsi) {
+        return false;
+    }
+
 }

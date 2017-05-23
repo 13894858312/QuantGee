@@ -27,7 +27,7 @@ public interface StockInfoDAO {
     public boolean addMACD(Macd macd);
 
     /**
-     * 得到MACD
+     * 得到KDJ
      * @param startDate 开始日期
      * @param endDate 结束日期
      * @param code 股票代码
@@ -41,6 +41,22 @@ public interface StockInfoDAO {
      * @return boolean
      */
     public boolean addKDJ(Kdj kdj);
+
+    /**
+     * 得到Rsi
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @param code 股票代码
+     * @return boolean
+     */
+    public Iterator<Rsi> getRSIs(String startDate, String endDate, String code);
+
+    /**
+     * 添加MACD
+     * @param rsi rsi数据
+     * @return boolean
+     */
+    public boolean addRSI(Rsi rsi);
 
 
     /**
