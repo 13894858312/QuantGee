@@ -62,6 +62,7 @@ public class TestAction implements Action {
 
     @Override
     public String execute() throws Exception {
+        System.out.println("success");
         ArrayList<String> arrayList = new ArrayList<String>();
         arrayList.add("1");
         JSONArray jsonArray = JSONArray.fromObject(arrayList);
