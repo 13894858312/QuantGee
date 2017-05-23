@@ -11,17 +11,17 @@ public interface StockInfoDAO {
 
     /**
      * 得到MACD
-     * @param startDate
-     * @param endDate
-     * @param code
-     * @return
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @param code 股票代码
+     * @return Iterator<Macd>
      */
     public Iterator<Macd> getMACDs(String startDate, String endDate, String code);
 
     /**
      * 添加MACD
-     * @param macd
-     * @return
+     * @param macd macd数据
+     * @return boolean
      */
     public boolean addMACD(Macd macd);
 

@@ -6,6 +6,8 @@ import bean.History;
 import bean.Stock;
 import logic.tools.MathHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,7 +17,12 @@ import java.util.Iterator;
  * Created by Mark.W on 2017/5/23.
  */
 @Service
-public class BOLLCalculation {
+public class BollCalculation {
+    public static void main(String[] args) {
+        ApplicationContext context = new ClassPathXmlApplicationContext( "applicationContext.xml");
+        BollCalculation bollCalculation = (BollCalculation)context.getBean("bollCalculation");
+        bollCalculation.start();
+    }
 
     private static final int PERIOD = 20;
     private int dataStartIndex;
