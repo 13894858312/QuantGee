@@ -5,12 +5,11 @@
 	text-align: center;
 	color: #fff;
 	overflow: hidden;
-	width: expression(document.body.clientWidth <=1000? "1000": "auto");
 	min-width: 1000px;
 }
 
 .loginbox {
-	display: ;
+	display: "";
 	
 	width: 300px;
 	float: left;
