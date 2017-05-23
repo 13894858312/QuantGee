@@ -27,6 +27,23 @@ public interface StockInfoDAO {
     public boolean addMACD(Macd macd);
 
     /**
+     * 得到MACD
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @param code 股票代码
+     * @return boolean
+     */
+    public Iterator<Kdj> getKDJs(String startDate, String endDate, String code);
+
+    /**
+     * 添加MACD
+     * @param kdj kdj数据
+     * @return boolean
+     */
+    public boolean addKDJ(Kdj kdj);
+
+
+    /**
      * 根据股票代码和时间获取股票数据（历史数据）
      * @param code 股票代码
      * @param date 时间

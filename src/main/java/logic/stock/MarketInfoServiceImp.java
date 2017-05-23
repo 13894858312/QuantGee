@@ -40,9 +40,6 @@ public class MarketInfoServiceImp implements MarketInfoService{
         }
 
         Iterator<String> codes = stockInfoDAO.getAllStockCodesByBlock(marketType);
-        if (codes == null) {
-            return null;
-        }
 
         double rate;
         int[] rateNums = new int[6]; //数据依次为跌停，-10%- -5%，-5%-0，0-5%，5%-10%，涨停

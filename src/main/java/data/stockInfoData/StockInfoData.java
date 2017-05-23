@@ -145,4 +145,14 @@ public class StockInfoData implements StockInfoDAO{
         return true;
     }
 
+    @Override
+    public Iterator<Kdj> getKDJs(String startDate, String endDate, String code) {
+        return null;
+    }
+
+    @Override
+    public boolean addKDJ(Kdj kdj) {
+        return false;
+    }
+
 }
