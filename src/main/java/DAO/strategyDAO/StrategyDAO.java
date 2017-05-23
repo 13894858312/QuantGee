@@ -18,12 +18,11 @@ public interface StrategyDAO {
     public boolean addStrategy(Strategy strategy);
 
     /**
-     * 删除策略
-     * @param userID 用户ID
+     * 删除策略并删除对应策略收藏
      * @param strategyID 要删除的策略编号
      * @return boolean 是否添加成功
      */
-    public boolean removeStrategy(String userID , String strategyID);
+    public boolean removeStrategy(int strategyID);
 
     /**
      * 得到用户创建的全部策略
@@ -38,7 +37,7 @@ public interface StrategyDAO {
      * @param strategyID 要收藏的策略编号
      * @return boolean 是否收藏成功
      */
-    public boolean addCollectedStrategy(String userID , String strategyID);
+    public boolean addCollectedStrategy(String userID , int strategyID);
 
     /**
      * 取消收藏策略
@@ -46,33 +45,32 @@ public interface StrategyDAO {
      * @param strategyID 要取消收藏的策略编号
      * @return boolean 是否取消成功
      */
-    public boolean removeCollectedStrategy(String userID , String strategyID);
+    public boolean removeCollectedStrategy(String userID ,int strategyID);
 
     /**
      * 得到用户收藏的全部策略
      * @param userID 用户ID
-     * @return ArrayList<StrategyPO> 策略列表
+     * @return 策略ID
      */
-    public Iterator<Strategy> getUserCollectedStrategy(String userID);
+    public Iterator<String> getUserCollectedStrategy(String userID);
 
     /**
      * 按策略编号得到策略信息
      * @param strategyID 策略编号
      * @return StrategyPO 策略信息
      */
-    public Strategy getStrategy(String strategyID);
+    public Strategy getStrategy(int strategyID);
 
     /**
      * 用户登录策略
-     * @param userID
      * @param strategyID
      * @return boolean 是否成功
      */
-    public boolean postStrategy(String userID , String strategyID);
+    public boolean postStrategy(int strategyID);
 
     /**
      * 得到所有登录的策略
-     * @return ArrayList<Strategy> 策略列表
+     * @return  策略列表
      */
     public Iterator<Strategy> getAllPostStrategy();
 

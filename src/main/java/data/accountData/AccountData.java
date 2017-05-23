@@ -3,6 +3,7 @@ package data.accountData;
 import DAO.accountDAO.AccountDAO;
 import bean.Account;
 import bean.Analysis;
+import bean.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -42,9 +43,13 @@ public class AccountData implements AccountDAO {
             hibernateTemplate.save(analysis1);
         }
 
-        hibernateTemplate.flush();
         hibernateTemplate.save(account);
+
+        User user = new User();
+        user.setUserId(account.getUserId());
+        hibernateTemplate.save(user);
         hibernateTemplate.flush();
+
         return true;
     }
 
@@ -64,8 +69,10 @@ public class AccountData implements AccountDAO {
     public UserAnalysisDataPO getUserAnalysisData() {
         UserAnalysisDataPO userAnalysisDataPO ;
 
-        Iterator<Analysis> iterator = (Iterator<Analysis>) hibernateTemplate.find("from Analysis ").iterator();
-        Long sum =(Long) hibernateTemplate.find("select sum(a.num) from Analysis a").listIterator().next();
+        Iterator<Analysis> iterator = (Iterator<Analysis>) hibernateTemplate
+                .find("from Analysis ").iterator();
+        Long sum =(Long) hibernateTemplate
+                .find("select sum(a.num) from Analysis a").listIterator().next();
 
         if(iterator == null){
                 return null;

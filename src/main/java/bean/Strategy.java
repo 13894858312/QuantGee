@@ -6,22 +6,24 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/18.
+ * Created by wangxue on 2017/5/23.
  */
 @Entity
 public class Strategy {
-    private String strategyId;
+    private int strategyId;
     private String strategyName;
     private String strategyType;
     private String strategyContent;
+    private String userId;
+    private Integer posted;
 
     @Id
-    @Column(name = "strategyID", nullable = false, length = 20)
-    public String getStrategyId() {
+    @Column(name = "strategyID", nullable = false)
+    public int getStrategyId() {
         return strategyId;
     }
 
-    public void setStrategyId(String strategyId) {
+    public void setStrategyId(int strategyId) {
         this.strategyId = strategyId;
     }
 
@@ -55,6 +57,26 @@ public class Strategy {
         this.strategyContent = strategyContent;
     }
 
+    @Basic
+    @Column(name = "userID", nullable = false, length = 20)
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    @Basic
+    @Column(name = "posted", nullable = true)
+    public Integer getPosted() {
+        return posted;
+    }
+
+    public void setPosted(Integer posted) {
+        this.posted = posted;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -62,23 +84,27 @@ public class Strategy {
 
         Strategy strategy = (Strategy) o;
 
-        if (strategyId != null ? !strategyId.equals(strategy.strategyId) : strategy.strategyId != null) return false;
+        if (strategyId != strategy.strategyId) return false;
         if (strategyName != null ? !strategyName.equals(strategy.strategyName) : strategy.strategyName != null)
             return false;
         if (strategyType != null ? !strategyType.equals(strategy.strategyType) : strategy.strategyType != null)
             return false;
         if (strategyContent != null ? !strategyContent.equals(strategy.strategyContent) : strategy.strategyContent != null)
             return false;
+        if (userId != null ? !userId.equals(strategy.userId) : strategy.userId != null) return false;
+        if (posted != null ? !posted.equals(strategy.posted) : strategy.posted != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = strategyId != null ? strategyId.hashCode() : 0;
+        int result = strategyId;
         result = 31 * result + (strategyName != null ? strategyName.hashCode() : 0);
         result = 31 * result + (strategyType != null ? strategyType.hashCode() : 0);
         result = 31 * result + (strategyContent != null ? strategyContent.hashCode() : 0);
+        result = 31 * result + (userId != null ? userId.hashCode() : 0);
+        result = 31 * result + (posted != null ? posted.hashCode() : 0);
         return result;
     }
 }
