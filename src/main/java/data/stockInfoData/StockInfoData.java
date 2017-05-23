@@ -184,4 +184,14 @@ public class StockInfoData implements StockInfoDAO{
         return false;
     }
 
+    @Override
+    public Iterator<Boll> getBOLLs(String startDate, String endDate, String code) {
+        return null;
+    }
+
+    @Override
+    public boolean addBOLL(Boll boll) {
+        return false;
+    }
+
 }

@@ -7,6 +7,8 @@ import bean.Stock;
 import logic.tools.DateHelper;
 import logic.tools.MathHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,7 +19,13 @@ import java.util.Iterator;
  * Created by Mark.W on 2017/5/23.
  */
 @Service
-public class KDJCalculation {
+public class KdjCalculation {
+    public static void main(String[] args) {
+        ApplicationContext context = new ClassPathXmlApplicationContext( "applicationContext.xml");
+        KdjCalculation kdjCalculation = (KdjCalculation) context.getBean("kdjCalculation");
+        kdjCalculation.start();
+    }
+
 
     private static final int INDEX1 = 9;
     private static final int INDEX2 = 3;
@@ -51,7 +59,7 @@ public class KDJCalculation {
             d = (k + 2 * d) / INDEX3;
             j = 3 * k - 2 * d;
 
-            if (!canSaveToDB && DateHelper.calculateDaysBetween(MACDCalculation.DATE_INDEX, stocks.get(i).getDate()) >= 0) {
+            if (!canSaveToDB && DateHelper.calculateDaysBetween(MacdCalculation.DATE_INDEX, stocks.get(i).getDate()) >= 0) {
                 canSaveToDB = true;
             }
 
