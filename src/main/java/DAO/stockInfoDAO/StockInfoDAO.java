@@ -2,12 +2,17 @@ package DAO.stockInfoDAO;
 
 import bean.*;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * Created by wangxue on 2017/5/5.
  */
 public interface StockInfoDAO {
+
+    public ArrayList<MACD> getMACDs(String startDate, String endDate, String code);
+
+    public boolean addMACD(MACD MACD);
 
     /**
      * 根据股票代码和时间获取股票数据（历史数据）

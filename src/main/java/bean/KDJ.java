@@ -1,24 +1,14 @@
-package vo.stock;
+package bean;
 
 /**
  * Created by Mark.W on 2017/5/21.
  */
-public class KDJVO {
+public class KDJ {
     private String date;
     private String code;
     private double k;
     private double d;
     private double j;
-
-    public KDJVO() {}
-
-    public KDJVO(String date, String code, double k, double d, double j) {
-        this.date = date;
-        this.code = code;
-        this.k = k;
-        this.d = d;
-        this.j = j;
-    }
 
     public String getDate() {
         return date;

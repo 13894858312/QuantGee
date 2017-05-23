@@ -1,24 +1,14 @@
-package vo.stock;
+package bean;
 
 /**
  * Created by Mark.W on 2017/5/21.
  */
-public class MACDVO {
+public class MACD {
     private String date;
     private String code;
     private double diff;
     private double dea;
     private double macd;
-
-    public MACDVO() {}
-
-    public MACDVO(String date, String code, double diff, double dea, double macd) {
-        this.date = date;
-        this.code = code;
-        this.diff = diff;
-        this.dea = dea;
-        this.macd = macd;
-    }
 
     public String getDate() {
         return date;

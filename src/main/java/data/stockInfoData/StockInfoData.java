@@ -2,18 +2,11 @@ package data.stockInfoData;
 
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.*;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
-import org.hibernate.service.ServiceRegistry;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by wangxue on 2017/5/5.
@@ -24,6 +17,16 @@ public class StockInfoData implements StockInfoDAO{
     private HibernateTemplate hibernateTemplate;
     public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
         this.hibernateTemplate = hibernateTemplate;
+    }
+
+    @Override
+    public ArrayList<MACD> getMACDs(String startDate, String endDate, String code) {
+        return null;
+    }
+
+    @Override
+    public boolean addMACD(MACD MACD) {
+        return false;
     }
 
     @Override

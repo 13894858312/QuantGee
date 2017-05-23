@@ -1,25 +1,15 @@
-package vo.stock;
+package bean;
 
 /**
  * Created by Mark.W on 2017/5/21.
  * RSI指标的信息
  */
-public class RSIVO {
+public class RSI {
     private String date;
     private String code;
     private double rsi6;
     private double rsi12;
     private double rsi24;
-
-    public RSIVO() {}
-
-    public RSIVO(String date, String code, double rsi6, double rsi12, double rsi24) {
-        this.date = date;
-        this.code = code;
-        this.rsi6 = rsi6;
-        this.rsi12 = rsi12;
-        this.rsi24 = rsi24;
-    }
 
     public String getDate() {
         return date;

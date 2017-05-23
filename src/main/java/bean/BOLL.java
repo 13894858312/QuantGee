@@ -1,25 +1,15 @@
-package vo.stock;
+package bean;
 
 /**
  * Created by Mark.W on 2017/5/21.
  * BOLL指标的信息
  */
-public class BOLLVO {
+public class BOLL {
     private String date;
     private String code;
     private double mid;
     private double up;
     private double lown;
-
-    public BOLLVO() {}
-
-    public BOLLVO(String date, String code, double mid, double up, double lown) {
-        this.date = date;
-        this.code = code;
-        this.mid = mid;
-        this.up = up;
-        this.lown = lown;
-    }
 
     public String getDate() {
         return date;
