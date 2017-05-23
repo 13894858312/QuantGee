@@ -24,6 +24,6 @@
 #     df2.to_sql('GEM', engine2, if_exists='fail', index=False)
 #     return
 #
-# #get_market_info_to_db();
-# #get_sme()
-# #get_gem()
+#     #get_market_info_to_db();
+#     #get_sme()
+#     #get_gem()

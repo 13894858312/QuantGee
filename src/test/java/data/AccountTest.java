@@ -29,12 +29,12 @@ import java.util.List;
 public class AccountTest {
 
     @Autowired
-    AccountDAO accountDAO = new AccountData();
+    AccountDAO accountDAO;
 
     @Test
     public void insertTest() {
         Account account = new Account();
-        account.setUserId("bcsdqewqefy");
+        account.setUserId("dqefapyj");
         account.setPassword("bcy");
         account.setRegisterDate("2011-01-02");
         account.setIsLogIn(0);

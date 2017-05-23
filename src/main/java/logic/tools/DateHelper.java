@@ -3,6 +3,7 @@ package logic.tools;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -68,15 +69,47 @@ public class DateHelper {
         return date;
     }
 
-//    public String dateTransToString(Date date) {
-//        if(date == null) {
-//            return null;
-//        }
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
-//        return simpleDateFormat.format(date);
-//    }
+    /**
+     * 给定日期计算前一个交易日（除去周末）
+     * @param date 日期
+     * @return Date
+     */
+    public static String formerTradeDay(String date) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(stringTransToDate(date));
+        c.add(Calendar.DAY_OF_MONTH, -1);
 
+        while(c.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            c.add(Calendar.DAY_OF_MONTH, -1);
+        }
+
+        return dateTransToString(c.getTime());
+    }
+
+    /**
+     * 计算给定日期前n个交易日的日期
+     * @param date 日期
+     * @param n n
+     * @return Date
+     */
+    public static String formerNTradeDay(String date, int n) {
+        String d = date;
+        for(int i=0; i<n; ++i) {
+            d = formerTradeDay(d);
+        }
+
+        return d;
+    }
+
+    public static String dateTransToString(Date date) {
+        if(date == null) {
+            return null;
+        }
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
+        return simpleDateFormat.format(date);
+    }
 }
+
 
 
 //    /**
@@ -96,37 +129,7 @@ public class DateHelper {
 //        return c.getTime();
 //    }
 //
-//    /**
-//     * 给定日期计算前一个交易日（除去周末）
-//     * @param date 日期
-//     * @return Date
-//     */
-//    public Date formerTradeDay(Date date) {
-//        Calendar c = Calendar.getInstance();
-//        c.setTime(date);
-//        c.add(Calendar.DAY_OF_MONTH, -1);
 //
-//        while(c.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
-//            c.add(Calendar.DAY_OF_MONTH, -1);
-//        }
-//
-//        return c.getTime();
-//    }
-//
-//    /**
-//     * 计算给定日期前n个交易日的日期
-//     * @param date 日期
-//     * @param n n
-//     * @return Date
-//     */
-//    public Date formerNTradeDay(Date date, int n) {
-//        Date d = date;
-//        for(int i=0; i<n; ++i) {
-//            d = formerTradeDay(d);
-//        }
-//
-//        return d;
-//    }
 //
 //    /**
 //     * 获得给定日期的下一个第一个交易日

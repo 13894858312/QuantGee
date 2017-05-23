@@ -9,7 +9,7 @@
             <column name="index" sql-type="int(11)"/>
         </id>
         <property name="userId">
-            <column name="userID" sql-type="varchar(20)" length="20"/>
+            <column name="userID" sql-type="varchar(20)" length="20" not-null="true"/>
         </property>
         <property name="stockId">
             <column name="stockID" sql-type="varchar(10)" length="10" not-null="true"/>

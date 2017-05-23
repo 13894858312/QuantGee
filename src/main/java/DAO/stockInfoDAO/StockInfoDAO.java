@@ -2,12 +2,62 @@ package DAO.stockInfoDAO;
 
 import bean.*;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * Created by wangxue on 2017/5/5.
  */
 public interface StockInfoDAO {
+
+    /**
+     * 得到MACD
+     * @param startDate
+     * @param endDate
+     * @param code
+     * @return
+     */
+    public Iterator<Macd> getMACDs(String startDate, String endDate, String code);
+
+    /**
+     * 添加MACD
+     * @param macd
+     * @return
+     */
+    public boolean addMACD(Macd macd);
+
+    /**
+     * 得到KDJ
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @param code 股票代码
+     * @return boolean
+     */
+    public Iterator<Kdj> getKDJs(String startDate, String endDate, String code);
+
+    /**
+     * 添加MACD
+     * @param kdj kdj数据
+     * @return boolean
+     */
+    public boolean addKDJ(Kdj kdj);
+
+    /**
+     * 得到Rsi
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @param code 股票代码
+     * @return boolean
+     */
+    public Iterator<Rsi> getRSIs(String startDate, String endDate, String code);
+
+    /**
+     * 添加MACD
+     * @param rsi rsi数据
+     * @return boolean
+     */
+    public boolean addRSI(Rsi rsi);
+
 
     /**
      * 根据股票代码和时间获取股票数据（历史数据）
@@ -92,4 +142,10 @@ public interface StockInfoDAO {
      */
     public boolean removeCollectedStock(String userID, String code);
 
+    /**
+     * 得到股票2014-5-26前全部历史数据
+     * @param code 股票代码
+     * @return 2014-5-26前数据
+     */
+    public Iterator<History> getHistory(String code);
 }

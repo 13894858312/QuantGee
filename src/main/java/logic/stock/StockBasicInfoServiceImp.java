@@ -101,9 +101,6 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
      * @return ArrayList<StockCurrentVO>
      */
     public ArrayList<StockCurrentVO> getStockCurrentVOs(Iterator<String> codes) {
-        if(codes == null) {
-            return null;
-        }
 
         ArrayList<StockCurrentVO> result = new ArrayList<>();
 

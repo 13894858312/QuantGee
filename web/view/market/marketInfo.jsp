@@ -6,6 +6,7 @@
     <title>MarketInfo</title>
     <script src="../../echarts.js"></script>
     <script src="../../jquery-3.2.1.min.js"></script>
+    <script src="../../js/test.js"></script>
     <script>
         function s1(x) {
             x.style.fontWeight = "bold";
@@ -135,7 +136,7 @@
                         <span class="d1"><input type="date"></span>
                         <span class="end">结束日期：</span>
                         <span class="d2"><input type="date"></span>
-                        <span class="button"><button type="button">查询</button></span>
+                        <span class="button"><button type="button" onclick="test()">查询</button></span>
                     </p>
                 </div>
                 <div class="klinegraph" id="kline"></div>

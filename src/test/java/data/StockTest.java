@@ -1,13 +1,12 @@
 package data;
 
 import DAO.stockInfoDAO.StockInfoDAO;
-import bean.Current;
-import bean.MarketInfo;
-import bean.Stock;
+import bean.*;
 import data.stockInfoData.StockInfoData;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -23,7 +22,9 @@ import java.util.Iterator;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:applicationContext.xml"})
 public class StockTest {
-    StockInfoDAO stockInfoDAO = new StockInfoData();
+
+    @Autowired
+    StockInfoDAO stockInfoDAO;
 
     @Test
     public void getStockInfoTest(){
@@ -74,18 +75,7 @@ public class StockTest {
             System.out.println(iterator.next());
         }
     }
-//
-//    @Test
-//    public void getTxt() throws Exception{
-//        File file = new File("/MyGit/QuantGee/src/main/resources/a.txt");
-//        FileReader fileReader = new FileReader(file);
-//        BufferedReader bufferedReader = new BufferedReader(fileReader);
-//        ArrayList<String> arrayList = new ArrayList<>();
-//        String str;
-//        while ((str = bufferedReader.readLine())!=null){
-//            System.out.print("\""+str.substring(0,6)+"\",");
-//        }
-//    }
+
     @Test
     public void getBlock1(){
         Iterator<String> iterator = stockInfoDAO.getAllStockCodesByBlock("sz");
@@ -112,12 +102,40 @@ public class StockTest {
 
     @Test
     public void addCollect(){
-        Assert.assertEquals(stockInfoDAO.addCollectedStock("222","333"),true);
+        Assert.assertEquals(stockInfoDAO.addCollectedStock("2232","3334"),true);
     }
 
     @Test
     public void removeCollect(){
         Assert.assertEquals(stockInfoDAO.removeCollectedStock("222","333"),true);
     }
+
+    @Test
+    public void getHistoryTest(){
+        Iterator<History> historyIterator = stockInfoDAO.getHistory("000002");
+        while (historyIterator.hasNext()){
+            System.out.println(historyIterator.next().getDate());
+        }
+    }
+
+    @Test
+    public void addMacdTest(){
+        Macd macd = new Macd();
+        macd.setCode("123123");
+        macd.setDate("211");
+        macd.setDea(123.2);
+        macd.setDiff(2.2);
+        macd.setMacd(23.1);
+        Assert.assertEquals(stockInfoDAO.addMACD(macd),true);
+    }
+
+    @Test
+    public void getMacdTest(){
+        Iterator<Macd> iterator = stockInfoDAO.getMACDs("200","232","123123");
+        while (iterator.hasNext()){
+            System.out.print(iterator.next().getDea());
+        }
+    }
+
 }
 
