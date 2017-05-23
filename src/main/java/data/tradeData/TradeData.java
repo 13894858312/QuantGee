@@ -31,13 +31,15 @@ public class TradeData implements TradeDAO{
 
     @Override
     public Iterator<Trade> getUserTradeList(String userID) {
-        Iterator<Trade> iterator = (Iterator<Trade>) hibernateTemplate.find("from Trade t where t.userId =?",userID).iterator();
+        Iterator<Trade> iterator = (Iterator<Trade>) hibernateTemplate
+                .find("from Trade t where t.userId =?",userID).iterator();
         return iterator;
     }
 
     @Override
     public HoldingStocksPO getHoldingStocks(String userID) {
-        Iterator<HoldingStock> holdingStockIterator = (Iterator<HoldingStock>) hibernateTemplate.find("from HoldingStock h where h.userId =?",userID).iterator();
+        Iterator<HoldingStock> holdingStockIterator = (Iterator<HoldingStock>) hibernateTemplate
+                .find("from HoldingStock h where h.userId =?",userID).iterator();
         UserMoney userMoney = hibernateTemplate.get(UserMoney.class, userID);
         double money = -1;
         if(userMoney != null){
@@ -53,7 +55,8 @@ public class TradeData implements TradeDAO{
         String stockID = holdingStock.getStockId();
         String userID = holdingStock.getUserId();
 
-        Iterator<HoldingStock> iterator =(Iterator<HoldingStock>) hibernateTemplate.find("from HoldingStock  h where h.userId = ?",userID).iterator();
+        Iterator<HoldingStock> iterator =(Iterator<HoldingStock>) hibernateTemplate
+                .find("from HoldingStock  h where h.userId = ?",userID).iterator();
 
         while (iterator.hasNext()){
             HoldingStock holdingStock1 = iterator.next();

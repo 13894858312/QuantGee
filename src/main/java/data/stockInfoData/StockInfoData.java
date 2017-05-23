@@ -30,19 +30,22 @@ public class StockInfoData implements StockInfoDAO{
     /*****stock内容和tushare获取实时数据接口返回内容有差异******/
     @Override
     public Current getStockRealTimeInfo(String code) {
-        Current current = (Current) hibernateTemplate.find("from Current c where c.code = ?",code).iterator().next();
+        Current current = (Current) hibernateTemplate
+                .find("from Current c where c.code = ?",code).iterator().next();
         return current;
     }
 
     @Override
     public Iterator<Stock> getStockInfo(String code) {
-        Iterator<Stock> iterator = (Iterator<Stock>)hibernateTemplate.find("from Stock s where s.stockId = ? order by s.date asc ",code).iterator();
+        Iterator<Stock> iterator = (Iterator<Stock>)hibernateTemplate
+                .find("from Stock s where s.stockId = ? order by s.date asc ",code).iterator();
         return iterator;
     }
 
     @Override
     public Iterator<Stock> getStockInfo(String code, String startDate, String endDate) {
-        Iterator<Stock> iterator = (Iterator<Stock>) hibernateTemplate.find("from Stock s where s.stockId =? and s.date> ? and s.date<? order by s.date asc ", new String[]{code,startDate,endDate}).iterator();
+        Iterator<Stock> iterator = (Iterator<Stock>) hibernateTemplate
+                .find("from Stock s where s.stockId =? and s.date> ? and s.date<? order by s.date asc ", new String[]{code,startDate,endDate}).iterator();
         return iterator;
     }
 
@@ -54,7 +57,8 @@ public class StockInfoData implements StockInfoDAO{
 
     @Override
     public Iterator<String> getAllStockCodesByIndustry(String industryName) {
-        Iterator<String> iterator = (Iterator<String>) hibernateTemplate.find("select m.code from MarketInfo m where m.cName =?",industryName).iterator();
+        Iterator<String> iterator = (Iterator<String>) hibernateTemplate
+                .find("select m.code from MarketInfo m where m.cName =?",industryName).iterator();
         return iterator;
     }
 
@@ -76,20 +80,24 @@ public class StockInfoData implements StockInfoDAO{
         Iterator<String> iterator ;
             switch (blockName){
                 case "sh":
-                     iterator = (Iterator<String>) hibernateTemplate.find("select m.code FROM MarketInfo m where m.code like ?","60%").iterator();
+                     iterator = (Iterator<String>) hibernateTemplate
+                             .find("select m.code FROM MarketInfo m where m.code like ?","60%").iterator();
                     return iterator;
                 case "sz":
-                    iterator = (Iterator<String>) hibernateTemplate.find("select m.code FROM MarketInfo m where m.code like ?","000%").iterator();
+                    iterator = (Iterator<String>) hibernateTemplate
+                            .find("select m.code FROM MarketInfo m where m.code like ?","000%").iterator();
                     return iterator;
                 case "hs300":
                     return null;
                 case "sz50":
                     return null;
                 case "zxb":
-                    iterator = (Iterator<String>) hibernateTemplate.find("select s.code FROM Sme s").iterator();
+                    iterator = (Iterator<String>) hibernateTemplate
+                            .find("select s.code FROM Sme s").iterator();
                     return iterator;
                 case "cyb":
-                    iterator = (Iterator<String>) hibernateTemplate.find("select g.code FROM Gem g").iterator();
+                    iterator = (Iterator<String>) hibernateTemplate
+                            .find("select g.code FROM Gem g").iterator();
                     return iterator;
             }
         return null;
@@ -98,7 +106,8 @@ public class StockInfoData implements StockInfoDAO{
 
     @Override
     public Iterator<String> getCollectedStocks(String userID) {
-        Iterator<String> iterator = (Iterator<String>) hibernateTemplate.find("select c.stockId from CollectStock c where c.userId=? ",userID).iterator();
+        Iterator<String> iterator = (Iterator<String>) hibernateTemplate
+                .find("select c.stockId from CollectStock c where c.userId=? ",userID).iterator();
         return iterator;
     }
 
@@ -123,19 +132,22 @@ public class StockInfoData implements StockInfoDAO{
 
     @Override
     public Iterator<String> getAllStockCodes() {
-        Iterator<String> iterator = (Iterator<String>) hibernateTemplate.find("select m.code FROM MarketInfo m").iterator();
+        Iterator<String> iterator = (Iterator<String>) hibernateTemplate
+                .find("select m.code FROM MarketInfo m").iterator();
         return iterator;
     }
 
     @Override
     public Iterator<History> getHistory(String code) {
-        Iterator<History> iterator = (Iterator<History>) hibernateTemplate.find("from History h where h.stockId = ? order by h.date asc ",code ).iterator();
+        Iterator<History> iterator = (Iterator<History>) hibernateTemplate
+                .find("from History h where h.stockId = ? order by h.date asc ",code ).iterator();
         return iterator;
     }
 
     @Override
     public Iterator<Macd> getMACDs(String startDate, String endDate, String code) {
-        Iterator<Macd> iterator = (Iterator<Macd>) hibernateTemplate.find("from Macd m where m.code = ? and m.date>? and m.date<?",
+        Iterator<Macd> iterator = (Iterator<Macd>) hibernateTemplate
+                .find("from Macd m where m.code = ? and m.date>? and m.date<?",
                 new String[]{code,startDate,endDate}).iterator();
         return iterator;
     }
@@ -149,12 +161,17 @@ public class StockInfoData implements StockInfoDAO{
 
     @Override
     public Iterator<Kdj> getKDJs(String startDate, String endDate, String code) {
-        return null;
+        Iterator<Kdj> iterator = (Iterator<Kdj>) hibernateTemplate
+                .find("from Kdj k where k.code = ? and k.date>? and k.date<?",
+                        new String[]{code,startDate,endDate}).iterator();
+        return iterator;
     }
 
     @Override
     public boolean addKDJ(Kdj kdj) {
-        return false;
+        hibernateTemplate.save(kdj);
+        hibernateTemplate.flush();
+        return true;
     }
 
 }

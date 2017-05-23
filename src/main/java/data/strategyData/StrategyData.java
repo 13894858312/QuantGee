@@ -1,6 +1,8 @@
 package data.strategyData;
 
 import DAO.strategyDAO.StrategyDAO;
+import bean.CollectStock;
+import bean.CollectStrategy;
 import bean.Strategy;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,47 +23,76 @@ public class StrategyData implements StrategyDAO {
 
     @Override
     public boolean addStrategy(Strategy strategy) {
-        return false;
+        hibernateTemplate.save(strategy);
+        hibernateTemplate.flush();
+        return true;
     }
 
     @Override
-    public boolean removeStrategy(String userID, String strategyID) {
-        return false;
+    public boolean removeStrategy(int strategyID) {
+
+        Strategy strategy = hibernateTemplate.get(Strategy.class, strategyID);
+        Iterator<Strategy> iterator = (Iterator<Strategy>) hibernateTemplate
+                .find("from CollectStrategy c where c.strategyId = ?" , strategyID).iterator();
+
+        hibernateTemplate.delete(strategy);
+        while (iterator.hasNext()){
+            hibernateTemplate.delete(iterator.next());
+        }
+        return true;
     }
 
     @Override
     public Iterator<Strategy> getUserStrategy(String userID) {
-        return null;
+        Iterator<Strategy> strategyIterator = (Iterator<Strategy>) hibernateTemplate
+                .find("from Strategy s where s.userId = ?",userID).iterator();
+        return strategyIterator;
     }
 
     @Override
-    public boolean addCollectedStrategy(String userID, String strategyID) {
-        return false;
+    public boolean addCollectedStrategy(String userID, int strategyID) {
+        CollectStrategy collectStrategy = new CollectStrategy();
+        collectStrategy.setUserId(userID);
+        collectStrategy.setStrategyId(strategyID);
+        hibernateTemplate.save(collectStrategy);
+        hibernateTemplate.flush();
+        return true;
     }
 
     @Override
-    public boolean removeCollectedStrategy(String userID, String strategyID) {
-        return false;
+    public boolean removeCollectedStrategy(String userID, int strategyID) {
+        CollectStrategy collectStrategy = new CollectStrategy();
+        collectStrategy.setUserId(userID);
+        collectStrategy.setStrategyId(strategyID);
+        hibernateTemplate.delete(collectStrategy);
+        return true;
     }
 
     @Override
-    public Iterator<Strategy> getUserCollectedStrategy(String userID) {
-        return null;
+    public Iterator<String> getUserCollectedStrategy(String userID) {
+        Iterator<String> iterator = (Iterator<String>) hibernateTemplate
+                .find("select c.strategyId from CollectStrategy c where c.userId = ?",userID).iterator();
+        return iterator;
     }
 
     @Override
-    public Strategy getStrategy(String strategyID) {
-        return null;
+    public Strategy getStrategy(int strategyID) {
+        return hibernateTemplate.get(Strategy.class,strategyID);
     }
 
     @Override
-    public boolean postStrategy(String userID, String strategyID) {
-        return false;
+    public boolean postStrategy(int strategyID) {
+        Strategy strategy = hibernateTemplate.get(Strategy.class, strategyID);
+        strategy.setPosted(1);
+        hibernateTemplate.update(strategy);
+        return true;
     }
 
     @Override
     public Iterator<Strategy> getAllPostStrategy() {
-        return null;
+        Iterator<Strategy> strategyIterator = (Iterator<Strategy>) hibernateTemplate.
+                find("from Strategy where posted = 1").iterator();
+        return strategyIterator;
     }
 
 }

@@ -6,12 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/18.
+ * Created by wangxue on 2017/5/23.
  */
 @Entity
 public class CollectStrategy {
     private String userId;
-    private String strategyId;
+    private Integer strategyId;
     private int index;
 
     @Basic
@@ -25,12 +25,12 @@ public class CollectStrategy {
     }
 
     @Basic
-    @Column(name = "strategyID", nullable = true, length = 20)
-    public String getStrategyId() {
+    @Column(name = "strategyID", nullable = true)
+    public Integer getStrategyId() {
         return strategyId;
     }
 
-    public void setStrategyId(String strategyId) {
+    public void setStrategyId(Integer strategyId) {
         this.strategyId = strategyId;
     }
 

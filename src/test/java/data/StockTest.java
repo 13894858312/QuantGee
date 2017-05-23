@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -102,7 +103,7 @@ public class StockTest {
 
     @Test
     public void addCollect(){
-        Assert.assertEquals(stockInfoDAO.addCollectedStock("2232","3334"),true);
+        Assert.assertEquals(stockInfoDAO.addCollectedStock("2232","34334"),true);
     }
 
     @Test
@@ -137,5 +138,23 @@ public class StockTest {
         }
     }
 
+    @Test
+    public void addKdjTest(){
+        Kdj kdj = new Kdj();
+        kdj.setCode("000001");
+        kdj.setD(2.0);
+        kdj.setK(1.0);
+        kdj.setJ(3.0);
+        kdj.setDate("2019-01-01");
+        Assert.assertEquals(stockInfoDAO.addKDJ(kdj),true);
+    }
+
+    @Test
+    public void getKDJTest(){
+        Iterator<Kdj> kdjIterator = stockInfoDAO.getKDJs("0","300","000001");
+        while (kdjIterator.hasNext()){
+            System.out.println(kdjIterator.next().getDate());
+        }
+    }
 }
 

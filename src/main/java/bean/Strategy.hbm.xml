@@ -6,7 +6,7 @@
 
     <class name="bean.Strategy" table="Strategy" schema="quantgee_data">
         <id name="strategyId">
-            <column name="strategyID" sql-type="varchar(20)" length="20"/>
+            <column name="strategyID" sql-type="int(11)"/>
         </id>
         <property name="strategyName">
             <column name="strategyName" sql-type="text"/>
@@ -16,6 +16,12 @@
         </property>
         <property name="strategyContent">
             <column name="strategyContent" sql-type="text" not-null="true"/>
+        </property>
+        <property name="userId">
+            <column name="userID" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="posted">
+            <column name="posted" sql-type="int(11)" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>
