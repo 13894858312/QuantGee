@@ -9,7 +9,7 @@
 }
 
 .loginbox {
-	display: "";
+	display: inherit;
 	
 	width: 300px;
 	float: left;
@@ -195,7 +195,7 @@ input[type="password"]:focus {
 	box-shadow: 0 0 10px rgba(0, 0, 0, .2);
 	z-index: 9999;
 }
-/*
+
 .registbox h1 {
 	width: 100%;
 	height: 50px;
@@ -269,5 +269,5 @@ input[type="password"]:focus {
 
 .registbox input::-webkit-input-placeholder {
 	color: #fff;
-}*/
+}
 
