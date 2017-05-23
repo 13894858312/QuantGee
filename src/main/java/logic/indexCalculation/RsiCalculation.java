@@ -6,6 +6,8 @@ import bean.Rsi;
 import bean.Stock;
 import logic.tools.MathHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,7 +17,14 @@ import java.util.Iterator;
  * Created by Mark.W on 2017/5/23.
  */
 @Service
-public class RSICalculation {
+public class RsiCalculation {
+
+    public static void main(String[] args) {
+        ApplicationContext context = new ClassPathXmlApplicationContext( "applicationContext.xml");
+        RsiCalculation rsiCalculation = (RsiCalculation)context.getBean("rsiCalculation");
+        rsiCalculation.start();
+    }
+
     private static final int INDEX1 = 6;
     private static final int INDEX2 = 12;
     private static final int INDEX3 = 24;

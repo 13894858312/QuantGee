@@ -2,7 +2,6 @@ package DAO.stockInfoDAO;
 
 import bean.*;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -12,17 +11,17 @@ public interface StockInfoDAO {
 
     /**
      * 得到MACD
-     * @param startDate
-     * @param endDate
-     * @param code
-     * @return
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @param code 股票代码
+     * @return Iterator<Macd>
      */
     public Iterator<Macd> getMACDs(String startDate, String endDate, String code);
 
     /**
      * 添加MACD
-     * @param macd
-     * @return
+     * @param macd macd数据
+     * @return boolean
      */
     public boolean addMACD(Macd macd);
 
@@ -31,12 +30,12 @@ public interface StockInfoDAO {
      * @param startDate 开始日期
      * @param endDate 结束日期
      * @param code 股票代码
-     * @return boolean
+     * @return Iterator<Kdj>
      */
     public Iterator<Kdj> getKDJs(String startDate, String endDate, String code);
 
     /**
-     * 添加MACD
+     * 添加kdj
      * @param kdj kdj数据
      * @return boolean
      */
@@ -47,16 +46,32 @@ public interface StockInfoDAO {
      * @param startDate 开始日期
      * @param endDate 结束日期
      * @param code 股票代码
-     * @return boolean
+     * @return Iterator<Rsi>
      */
     public Iterator<Rsi> getRSIs(String startDate, String endDate, String code);
 
     /**
-     * 添加MACD
+     * 添加boll
      * @param rsi rsi数据
      * @return boolean
      */
     public boolean addRSI(Rsi rsi);
+
+    /**
+     * 得到boll
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @param code 股票代码
+     * @return Iterator<Boll>
+     */
+    public Iterator<Boll> getBOLLs(String startDate, String endDate, String code);
+
+    /**
+     * 添加boll
+     * @param boll boll数据
+     * @return boolean
+     */
+    public boolean addBOLL(Boll boll);
 
 
     /**

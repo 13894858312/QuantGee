@@ -59,11 +59,6 @@ public class StockDataCalculation {
      * @param period 均线周期
      * @return ArrayList<MAVO>
      */
-//    public ArrayList<MAVO> getAverageLineInfoByCode(String stockCode, String startDate, String endDate, int period) {
-//    if(period <= 0 || period > DateHelper.calculateDaysBetween(startDate, endDate)) {
-//        return null;
-//    }
-
     public ArrayList<MAVO> calculateMA(Iterator<Stock> sourceStocks, int period) {
 
         //如果总天数小于均线图的时间间隔出错

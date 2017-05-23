@@ -7,6 +7,8 @@ import bean.Stock;
 import logic.tools.DateHelper;
 import logic.tools.MathHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,12 +18,18 @@ import java.util.Iterator;
  * Created by Mark.W on 2017/5/23.
  */
 @Service
-public class MACDCalculation {
+public class MacdCalculation {
+
+    public static void main(String[] args) {
+        ApplicationContext context = new ClassPathXmlApplicationContext( "applicationContext.xml");
+        MacdCalculation macdCalculation = (MacdCalculation) context.getBean("macdCalculation");
+        macdCalculation.start();
+    }
+
 
     private static final int MACD_SHORT_PERIOD = 9;
     private static final int MACD_MID_PERIOD = 12;
     private static final int MACD_LONG_PERIOD = 26;
-
     public static final String DATE_INDEX = "2014-05-26";
 
     @Autowired
