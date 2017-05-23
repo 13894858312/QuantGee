@@ -12,6 +12,7 @@ import org.hibernate.service.ServiceRegistry;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -85,114 +86,59 @@ public class StockInfoData implements StockInfoDAO{
                 case "sz50":
                     return null;
                 case "zxb":
-//                    query = session.createQuery("SELECT s.code FROM Sme s ");
-//                    iterator = query.list().iterator();
-                    break;
-//                case "cyb":
-//
-//                    query = session.createQuery("SELECT g.code FROM Gem g");
-//                    iterator = query.list().iterator();
-//                    break;
+                    iterator = (Iterator<String>) hibernateTemplate.find("select s.code FROM Sme s").iterator();
+                    return iterator;
+                case "cyb":
+                    iterator = (Iterator<String>) hibernateTemplate.find("select g.code FROM Gem g").iterator();
+                    return iterator;
             }
+        return null;
 
     }
 
     @Override
     public Iterator<String> getCollectedStocks(String userID) {
-        try{
-            configuration.addClass(CollectStock.class);
-
-            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-            Session session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
-
-            Query query = session.createQuery("select c.stockId from CollectStock c where c.userId=:var ")
-                    .setParameter("var",userID);
-            Iterator<String> iterator = query.list().iterator();
-
-            transaction.commit();
-            session.close();
-            sessionFactory.close();
-
-            return iterator;
-
-        }catch (Exception e){
-            e.printStackTrace();
-            return null;
-        }
+        Iterator<String> iterator = (Iterator<String>) hibernateTemplate.find("select c.stockId from CollectStock c where c.userId=? ",userID);
+        return iterator;
     }
 
     @Override
     public boolean addCollectedStock(String userID, String code) {
-        try{
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
-            Session session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
-
-            CollectStock collectStock = new CollectStock();
-            collectStock.setUserId(userID);
-            collectStock.setStockId(code);
-            session.save(collectStock);
-
-            transaction.commit();
-            session.close();
-            sessionFactory.close();
-
-            return true;
-
-        }catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
+        CollectStock collectStock = new CollectStock();
+        collectStock.setUserId(userID);
+        collectStock.setStockId(code);
+        hibernateTemplate.save(collectStock);
+        return true;
     }
 
     @Override
     public boolean removeCollectedStock(String userID, String code) {
-        try{
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
-            Session session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
+        CollectStock collectStock = new CollectStock();
+        collectStock.setUserId(userID);
+        collectStock.setStockId(code);
+        hibernateTemplate.delete(collectStock);
+        return true;
+    }
 
-            CollectStock collectStock = new CollectStock();
-            collectStock.setUserId(userID);
-            collectStock.setStockId(code);
-            session.remove(collectStock);
+    @Override
+    public Iterator<History> getHistory(String code) {
+        return null;
+    }
 
-            transaction.commit();
-            session.close();
-            sessionFactory.close();
+    @Override
+    public Iterator<MACD> getMACDs(String startDate, String endDate, String code) {
+        return null;
+    }
 
-            return true;
-
-        }catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
+    @Override
+    public boolean addMACD(MACD MACD) {
+        return false;
     }
 
     @Override
     public Iterator<String> getAllStockCodes() {
-        try{
-            configuration.addClass(MarketInfo.class);
-            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-            Session session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
-
-            Query query = session.createQuery("SELECT m.code from MarketInfo m");
-            Iterator<String> iterator = query.list().iterator();
-
-            transaction.commit();
-            session.close();
-            sessionFactory.close();
-
-            return iterator;
-
-        }catch (Exception e){
-            e.printStackTrace();
-            return null;
-        }
+        Iterator<String> iterator = (Iterator<String>) hibernateTemplate.find("select m.code FROM MarketInfo m").iterator();
+        return iterator;
     }
 
 }

@@ -10,8 +10,20 @@ import java.util.Iterator;
  */
 public interface StockInfoDAO {
 
-    public ArrayList<MACD> getMACDs(String startDate, String endDate, String code);
+    /**
+     * 得到MACD
+     * @param startDate
+     * @param endDate
+     * @param code
+     * @return
+     */
+    public Iterator<MACD> getMACDs(String startDate, String endDate, String code);
 
+    /**
+     * 添加MACD
+     * @param MACD
+     * @return
+     */
     public boolean addMACD(MACD MACD);
 
     /**
@@ -97,4 +109,10 @@ public interface StockInfoDAO {
      */
     public boolean removeCollectedStock(String userID, String code);
 
+    /**
+     * 得到股票2014-5-26前全部历史数据
+     * @param code 股票代码
+     * @return 2014-5-26前数据
+     */
+    public Iterator<History> getHistory(String code);
 }
