@@ -9,7 +9,7 @@ import javax.persistence.Id;
  * Created by wangxue on 2017/5/23.
  */
 @Entity
-public class Macd1 {
+public class Macd {
     private int index;
     private String code;
     private String date;
@@ -82,14 +82,14 @@ public class Macd1 {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Macd1 macd1 = (Macd1) o;
+        Macd macd = (Macd) o;
 
-        if (index != macd1.index) return false;
-        if (code != null ? !code.equals(macd1.code) : macd1.code != null) return false;
-        if (date != null ? !date.equals(macd1.date) : macd1.date != null) return false;
-        if (diff != null ? !diff.equals(macd1.diff) : macd1.diff != null) return false;
-        if (dea != null ? !dea.equals(macd1.dea) : macd1.dea != null) return false;
-        if (macd != null ? !macd.equals(macd1.macd) : macd1.macd != null) return false;
+        if (index != macd.index) return false;
+        if (code != null ? !code.equals(macd.code) : macd.code != null) return false;
+        if (date != null ? !date.equals(macd.date) : macd.date != null) return false;
+        if (diff != null ? !diff.equals(macd.diff) : macd.diff != null) return false;
+        if (dea != null ? !dea.equals(macd.dea) : macd.dea != null) return false;
+        if (this.macd != null ? !this.macd.equals(macd.macd) : macd.macd != null) return false;
 
         return true;
     }

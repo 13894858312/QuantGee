@@ -36,13 +36,13 @@ public class StockInfoData implements StockInfoDAO{
 
     @Override
     public Iterator<Stock> getStockInfo(String code) {
-        Iterator<Stock> iterator = (Iterator<Stock>)hibernateTemplate.find("from Stock s where s.stockId = ?",code).iterator();
+        Iterator<Stock> iterator = (Iterator<Stock>)hibernateTemplate.find("from Stock s where s.stockId = ? order by s.date asc ",code).iterator();
         return iterator;
     }
 
     @Override
     public Iterator<Stock> getStockInfo(String code, String startDate, String endDate) {
-        Iterator<Stock> iterator = (Iterator<Stock>) hibernateTemplate.find("from Stock where stockId =? and date> ? and date<? ", new String[]{code,startDate,endDate}).iterator();
+        Iterator<Stock> iterator = (Iterator<Stock>) hibernateTemplate.find("from Stock s where s.stockId =? and s.date> ? and s.date<? order by s.date asc ", new String[]{code,startDate,endDate}).iterator();
         return iterator;
     }
 
@@ -98,7 +98,7 @@ public class StockInfoData implements StockInfoDAO{
 
     @Override
     public Iterator<String> getCollectedStocks(String userID) {
-        Iterator<String> iterator = (Iterator<String>) hibernateTemplate.find("select c.stockId from CollectStock c where c.userId=? ",userID);
+        Iterator<String> iterator = (Iterator<String>) hibernateTemplate.find("select c.stockId from CollectStock c where c.userId=? ",userID).iterator();
         return iterator;
     }
 
@@ -121,24 +121,28 @@ public class StockInfoData implements StockInfoDAO{
     }
 
     @Override
-    public Iterator<History> getHistory(String code) {
-        return null;
-    }
-
-    @Override
-    public Iterator<MACD> getMACDs(String startDate, String endDate, String code) {
-        return null;
-    }
-
-    @Override
-    public boolean addMACD(MACD MACD) {
-        return false;
-    }
-
-    @Override
     public Iterator<String> getAllStockCodes() {
         Iterator<String> iterator = (Iterator<String>) hibernateTemplate.find("select m.code FROM MarketInfo m").iterator();
         return iterator;
+    }
+
+    @Override
+    public Iterator<History> getHistory(String code) {
+        Iterator<History> iterator = (Iterator<History>) hibernateTemplate.find("from History h where h.stockId = ? order by h.date asc ",code ).iterator();
+        return iterator;
+    }
+
+    @Override
+    public Iterator<Macd> getMACDs(String startDate, String endDate, String code) {
+        Iterator<Macd> iterator = (Iterator<Macd>) hibernateTemplate.find("from Macd m where m.code = ? and m.date>? and m.date<?",
+                new String[]{code,startDate,endDate}).iterator();
+        return iterator;
+    }
+
+    @Override
+    public boolean addMACD(Macd macd) {
+        hibernateTemplate.save(macd);
+        return true;
     }
 
 }

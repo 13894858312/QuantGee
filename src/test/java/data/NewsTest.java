@@ -19,7 +19,7 @@ import java.util.Iterator;
 public class NewsTest {
 
     @Autowired
-    NewsDAO newsDAO = new NewsData();
+    NewsDAO newsDAO ;
     @Test
     public void getNewsTest(){
         Iterator<News> iterator = newsDAO.getNews();
