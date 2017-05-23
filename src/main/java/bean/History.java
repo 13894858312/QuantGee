@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  */
 @Entity
 public class History {
-    private Timestamp date;
+    private String date;
     private Double open;
     private Double high;
     private Double close;
@@ -22,12 +22,12 @@ public class History {
     private int index;
 
     @Basic
-    @Column(name = "date", nullable = true)
-    public Timestamp getDate() {
+    @Column(name = "date", nullable = true, length = 10)
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

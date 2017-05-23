@@ -56,6 +56,10 @@
         <property name="mappingLocations">
             <list>
                 <value>classpath:bean/History.hbm.xml</value>
+                <value>classpath:bean/Boll.hbm.xml</value>
+                <value>classpath:bean/Kdj.hbm.xml</value>
+                <value>classpath:bean/Macd.hbm.xml</value>
+                <value>classpath:bean/Rsi.hbm.xml</value>
             </list>
         </property>
     </bean>
