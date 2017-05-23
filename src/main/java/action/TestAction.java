@@ -65,6 +65,8 @@ public class TestAction implements Action {
         System.out.println("success");
         ArrayList<String> arrayList = new ArrayList<String>();
         arrayList.add("1");
+        arrayList.add("2");
+        arrayList.add("3");
         JSONArray jsonArray = JSONArray.fromObject(arrayList);
         result = jsonArray.toString();
         return SUCCESS;
