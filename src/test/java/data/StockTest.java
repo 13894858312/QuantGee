@@ -102,7 +102,7 @@ public class StockTest {
 
     @Test
     public void addCollect(){
-        Assert.assertEquals(stockInfoDAO.addCollectedStock("222","333"),true);
+        Assert.assertEquals(stockInfoDAO.addCollectedStock("2232","3334"),true);
     }
 
     @Test

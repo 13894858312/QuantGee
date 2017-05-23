@@ -25,6 +25,7 @@ public class TradeData implements TradeDAO{
     @Override
     public boolean addTradeInfo(Trade trade) {
         hibernateTemplate.save(trade);
+        hibernateTemplate.flush();
         return true;
     }
 
@@ -36,14 +37,13 @@ public class TradeData implements TradeDAO{
 
     @Override
     public HoldingStocksPO getHoldingStocks(String userID) {
-        Iterator<HoldingStock> holdingStockIterator = (Iterator<HoldingStock>) hibernateTemplate.find("from HoldingStock h where h.userId =?",userID);
-        int money = (int) hibernateTemplate.get(UserMoney.class, userID).getRemainMoney();
-        Map<String,Integer> map = new HashMap<String,Integer>();
-        while (holdingStockIterator.hasNext()){
-            HoldingStock holdingStock = holdingStockIterator.next();
-            map.put(holdingStock.getStockId(),holdingStock.getHoldNum());
+        Iterator<HoldingStock> holdingStockIterator = (Iterator<HoldingStock>) hibernateTemplate.find("from HoldingStock h where h.userId =?",userID).iterator();
+        UserMoney userMoney = hibernateTemplate.get(UserMoney.class, userID);
+        double money = -1;
+        if(userMoney != null){
+            money = userMoney.getRemainMoney();
         }
-        HoldingStocksPO holdingStocksPO = new HoldingStocksPO(userID, map, money);
+        HoldingStocksPO holdingStocksPO = new HoldingStocksPO(userID, holdingStockIterator, money);
         return holdingStocksPO;
     }
 
@@ -69,12 +69,13 @@ public class TradeData implements TradeDAO{
         }
 
         hibernateTemplate.save(holdingStock);
+        hibernateTemplate.flush();
         return true;
     }
 
     @Override
     public boolean updateUserMoney(UserMoney userMoney) {
-        hibernateTemplate.update(userMoney);
+        hibernateTemplate.saveOrUpdate(userMoney);
         return true;
     }
 
