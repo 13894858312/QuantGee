@@ -48,8 +48,15 @@
                 <prop key="Connection.useUnicode">true </prop>
                 <!--connection.characterEncoding连接数据库时数据的传输字符集编码方式，最好设置为gbk，用gb2312有的字符不全-->
                 <prop key="connection.characterEncoding">utf-8</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/quantgee_data</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
                 <!--<prop key="hibernate.current_session_context_class">thread</prop>-->
             </props>
+        </property>
+        <property name="mappingLocations">
+            <list>
+                <value>classpath:bean/History.hbm.xml</value>
+            </list>
         </property>
     </bean>
 
