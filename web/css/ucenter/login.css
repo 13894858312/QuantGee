@@ -5,13 +5,13 @@
 	text-align: center;
 	color: #fff;
 	overflow: hidden;
-	width: expression(document.body.clientWidth <=1000? "1000": "auto");
 	min-width: 1000px;
 }
 
 .loginbox {
+	display: inherit;
+	
 	width: 300px;
-	height: 372px;
 	float: left;
 	position: absolute;
 	left: 50%;
@@ -100,61 +100,6 @@ input[type="password"]:focus {
 .loginbox input:-ms-input-placeholder { color: #fff; }
 .loginbox input::-webkit-input-placeholder { color: #fff; }
 
-
-/*.loginbox .submit {
-	width: 260px;
-	height: 50px;
-	margin: 20px 20px 0;
-	float: left;
-	background: #19a3d1;
-	text-align: center;
-	font-size: 16px;
-	line-height: 50px;
-	font-weight: bold;
-	border-radius: 2px;
-	cursor: pointer;
-}*/
-
-/*.loginbox button {
-    cursor: pointer;
-    width: 252px;
-    height: 50px;
-    margin-top: 25px;
-    padding-left: 0;
-    padding-right: 0;
-    background: #ef4300;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 6px;
-    border: 1px solid #ff730e;
-    -moz-box-shadow:
-        0 15px 30px 0 rgba(255,255,255,.25) inset,
-        0 2px 7px 0 rgba(0,0,0,.2);
-    -webkit-box-shadow:
-        0 15px 30px 0 rgba(255,255,255,.25) inset,
-        0 2px 7px 0 rgba(0,0,0,.2);
-    box-shadow:
-        0 15px 30px 0 rgba(255,255,255,.25) inset,
-        0 2px 7px 0 rgba(0,0,0,.2);
-    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: #fff;
-    text-shadow: 0 1px 2px rgba(0,0,0,.1);
-    -o-transition: all .2s;
-    -moz-transition: all .2s;
-    -webkit-transition: all .2s;
-    -ms-transition: all .2s;
-}*/
-
-/*.loginbox .submit:hover {
-	background: #09c;
-}
-
-.loginbox .submit:hover:active {
-	background: #08c;
-}*/
-
 .loginbox .forget {
 	width: 260px;
 	height: 40px;
@@ -176,7 +121,7 @@ input[type="password"]:focus {
 	text-decoration: underline;
 }
 
-.loginbox .registbox {
+.loginbox .regist {
 	width: 260px;
 	height: 40px;
 	float: left;
@@ -185,7 +130,7 @@ input[type="password"]:focus {
 	background: rgba(40, 140, 220, .1);
 }
 
-.loginbox .registbox span {
+.loginbox .regist span {
 	height: 40px;
 	line-height: 40px;
 	float: left;
@@ -194,7 +139,7 @@ input[type="password"]:focus {
 	color: #999;
 }
 
-.loginbox .registbox a {
+.loginbox .regist a {
 	width: 120px;
 	height: 40px;
 	line-height: 40px;
@@ -212,94 +157,12 @@ input[type="password"]:focus {
     border: 1px solid rgba(255,255,255,.15);
 }
 
-.loginbox .registbox a:hover {
+.loginbox .regist a:hover {
 	background: #FF4455;
 }
 
-.loginbox .registbox a:active {
+.loginbox .regist a:active {
 	background: #ff3344;
-}
-
-.loginbox .tips {
-	width: 300px;
-	float: right;
-	line-height: 30px;
-	padding: 10px;
-	border-radius: 2px;
-	background: #fff;
-	color: #666;
-	line-height: 30px;
-	text-align: left;
-	font-size: 14px;
-	position: absolute;
-	top: 0;
-	right: 300px;
-	opacity: .9;
-	box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-	z-index: 9999;
-}
-
-.loginbox .tips b {
-	width: 30px;
-	height: 30px;
-	float: left;
-	font-size: 30px;
-	color: #fff;
-	text-align: center;
-	background: #f55;
-	border-radius: 15px;
-	margin: 0 8px 0 0;
-}
-
-.loginbox .tips span {
-	height: 30px;
-	float: left;
-	text-align: left;
-}
-
-.loginbox .tips a {
-	color: #09c;
-}
-
-.loginbox .tips a:hover {
-	color: #06c;
-}
-
-.loginbox .tips .tipstext {
-	width: 260px;
-	float: left;
-	line-height: 24px;
-	color: #999;
-	text-align: left;
-	border-top: 1px solid #eee;
-	padding: 10px 0 0;
-	margin: 10px 0 0;
-}
-
-.loginbox .tips.accounttips {
-	top: 70px;
-	display: none;
-}
-
-.loginbox .tips.posswordtips {
-	top: 140px;
-	display: none;
-}
-
-.loginbox .tips.errortips {
-	top: 105px;
-	display: none;
-}
-
-.loginbox .tips .triangle {
-	height: 0;
-	width: 0;
-	border: 10px solid #fff;
-	border-color: transparent transparent transparent #fff;
-	position: absolute;
-	top: 50%;
-	right: -20px;
-	margin: -10px 0 0;
 }
 
 .showcase {
@@ -316,5 +179,95 @@ input[type="password"]:focus {
 	height: 613px;
 	margin: 0 auto;
 	position: relative;
+}
+
+.registbox {
+	display: none;
+	width: 300px;
+	float: left;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -250px 0 0 190px;
+	background: #fff;
+	background: rgba(255, 255, 255, .9);
+	border-radius: 2px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+	z-index: 9999;
+}
+
+.registbox h1 {
+	width: 100%;
+	height: 50px;
+	float: left;
+	border-bottom: 1px solid #ddd;
+	color: #8b949b;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 50px;
+}
+
+
+.registbox input {
+	width: 220px;
+	height: 46px;
+	margin-top: 25px;
+	padding: 0 15px;
+	background: #2d2d2d;
+	background: rgba(45, 45, 45, .15);
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	border: 1px solid #3d3d3d;
+	border: 1px solid rgba(255, 255, 255, .15);
+	-moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1) inset;
+	-webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1) inset;
+	box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1) inset;
+	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	color: #fff;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+	-o-transition: all .2s;
+	-moz-transition: all .2s;
+	-webkit-transition: all .2s;
+	-ms-transition: all .2s;
+}
+
+.registbox input[type="text"] {
+	background-position: 8px top;
+}
+
+.registbox input[type="password"],
+#txt_password {
+	background-position: 8px bottom;
+}
+
+.registbox input[type="submit"]{
+	margin-bottom: 25px;
+}
+
+.registbox input[type="text"]:focus,
+input[type="password"]:focus {
+	outline: none !important;
+	box-shadow: none;
+	border: 1px solid #09c;
+	box-shadow: inset 0 3px 1px rgba(0, 0, 0, .1);
+	color: #09c;
+}
+
+.registbox input.on {
+	color: #09c;
+}
+
+.registbox input:-moz-placeholder {
+	color: #fff;
+}
+
+.registbox input:-ms-input-placeholder {
+	color: #fff;
+}
+
+.registbox input::-webkit-input-placeholder {
+	color: #fff;
 }
 

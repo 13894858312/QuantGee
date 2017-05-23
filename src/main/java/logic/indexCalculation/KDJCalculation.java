@@ -5,6 +5,7 @@ import bean.History;
 import bean.Kdj;
 import bean.Stock;
 import logic.tools.DateHelper;
+import logic.tools.MathHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +48,7 @@ public class KDJCalculation {
 
         for (int i=0; i<stocks.size(); ++i) {
             k = (rsv(stocks, i) + 2 * k) / INDEX2;
-            d = (k + 2 * d) / INDEX2;
+            d = (k + 2 * d) / INDEX3;
             j = 3 * k - 2 * d;
 
             if (!canSaveToDB && DateHelper.calculateDaysBetween(MACDCalculation.DATE_INDEX, stocks.get(i).getDate()) >= 0) {
@@ -59,9 +60,9 @@ public class KDJCalculation {
                 Kdj kdj = new Kdj();
                 kdj.setCode(code);
                 kdj.setDate(stocks.get(i).getDate());
-                kdj.setD(d);
-                kdj.setK(k);
-                kdj.setJ(j);
+                kdj.setD(MathHelper.formatData(d,3));
+                kdj.setK(MathHelper.formatData(k,3));
+                kdj.setJ(MathHelper.formatData(j,3));
 
                 stockInfoDAO.addKDJ(kdj);
             }

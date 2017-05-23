@@ -5,6 +5,7 @@ import bean.History;
 import bean.Macd;
 import bean.Stock;
 import logic.tools.DateHelper;
+import logic.tools.MathHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -81,9 +82,9 @@ public class MACDCalculation {
                 Macd macd = new Macd();
                 macd.setCode(code);
                 macd.setDate(stocks.get(i).getDate());
-                macd.setDiff(diff);
-                macd.setDea(dea);
-                macd.setMacd((diff-dea) * 2);
+                macd.setDiff(MathHelper.formatData(diff,3));
+                macd.setDea(MathHelper.formatData(dea,3));
+                macd.setMacd(MathHelper.formatData((diff-dea) * 2, 3));
                 stockInfoDAO.addMACD(macd);
             }
         }
