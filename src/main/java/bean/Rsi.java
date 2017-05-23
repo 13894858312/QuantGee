@@ -9,13 +9,13 @@ import javax.persistence.Id;
  * Created by wangxue on 2017/5/23.
  */
 @Entity
-public class Boll1 {
+public class Rsi {
     private int index;
     private String code;
     private String date;
-    private Double mid;
-    private Double up;
-    private Double low;
+    private Double rsi6;
+    private Double rsi12;
+    private Double rsi24;
 
     @Id
     @Column(name = "index", nullable = false)
@@ -48,33 +48,33 @@ public class Boll1 {
     }
 
     @Basic
-    @Column(name = "mid", nullable = true, precision = 0)
-    public Double getMid() {
-        return mid;
+    @Column(name = "rsi6", nullable = true, precision = 0)
+    public Double getRsi6() {
+        return rsi6;
     }
 
-    public void setMid(Double mid) {
-        this.mid = mid;
-    }
-
-    @Basic
-    @Column(name = "up", nullable = true, precision = 0)
-    public Double getUp() {
-        return up;
-    }
-
-    public void setUp(Double up) {
-        this.up = up;
+    public void setRsi6(Double rsi6) {
+        this.rsi6 = rsi6;
     }
 
     @Basic
-    @Column(name = "low", nullable = true, precision = 0)
-    public Double getLow() {
-        return low;
+    @Column(name = "rsi12", nullable = true, precision = 0)
+    public Double getRsi12() {
+        return rsi12;
     }
 
-    public void setLow(Double low) {
-        this.low = low;
+    public void setRsi12(Double rsi12) {
+        this.rsi12 = rsi12;
+    }
+
+    @Basic
+    @Column(name = "rsi24", nullable = true, precision = 0)
+    public Double getRsi24() {
+        return rsi24;
+    }
+
+    public void setRsi24(Double rsi24) {
+        this.rsi24 = rsi24;
     }
 
     @Override
@@ -82,14 +82,14 @@ public class Boll1 {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Boll1 boll = (Boll1) o;
+        Rsi rsi = (Rsi) o;
 
-        if (index != boll.index) return false;
-        if (code != null ? !code.equals(boll.code) : boll.code != null) return false;
-        if (date != null ? !date.equals(boll.date) : boll.date != null) return false;
-        if (mid != null ? !mid.equals(boll.mid) : boll.mid != null) return false;
-        if (up != null ? !up.equals(boll.up) : boll.up != null) return false;
-        if (low != null ? !low.equals(boll.low) : boll.low != null) return false;
+        if (index != rsi.index) return false;
+        if (code != null ? !code.equals(rsi.code) : rsi.code != null) return false;
+        if (date != null ? !date.equals(rsi.date) : rsi.date != null) return false;
+        if (rsi6 != null ? !rsi6.equals(rsi.rsi6) : rsi.rsi6 != null) return false;
+        if (rsi12 != null ? !rsi12.equals(rsi.rsi12) : rsi.rsi12 != null) return false;
+        if (rsi24 != null ? !rsi24.equals(rsi.rsi24) : rsi.rsi24 != null) return false;
 
         return true;
     }
@@ -99,9 +99,9 @@ public class Boll1 {
         int result = index;
         result = 31 * result + (code != null ? code.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (mid != null ? mid.hashCode() : 0);
-        result = 31 * result + (up != null ? up.hashCode() : 0);
-        result = 31 * result + (low != null ? low.hashCode() : 0);
+        result = 31 * result + (rsi6 != null ? rsi6.hashCode() : 0);
+        result = 31 * result + (rsi12 != null ? rsi12.hashCode() : 0);
+        result = 31 * result + (rsi24 != null ? rsi24.hashCode() : 0);
         return result;
     }
 }

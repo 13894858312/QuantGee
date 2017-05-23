@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="bean.Kdj1" table="KDJ" schema="quantgee_data">
+    <class name="bean.Kdj" table="KDJ" schema="quantgee_data">
         <id name="index">
             <column name="index" sql-type="int(11)"/>
         </id>
