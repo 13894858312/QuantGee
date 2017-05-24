@@ -29,9 +29,9 @@ public class StockInfoData implements StockInfoDAO{
 
     /*****stock内容和tushare获取实时数据接口返回内容有差异******/
     @Override
-    public Current getStockRealTimeInfo(String code) {
-        Current current = (Current) hibernateTemplate
-                .find("from Current c where c.code = ?",code).iterator().next();
+    public Iterator<Current> getStockRealTimeInfo(String code) {
+        Iterator<Current> current = (Iterator<Current>) hibernateTemplate
+                .find("from Current c where c.code = ?",code).iterator();
         return current;
     }
 

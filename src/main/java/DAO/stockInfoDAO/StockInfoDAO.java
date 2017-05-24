@@ -26,11 +26,11 @@ public interface StockInfoDAO {
     public Iterator<String> getAllStockCodesByBlock(String blockName);
 
     /**
-     * 获取某一只股票的实时信息
+     * 获取某一只股票今日的实时信息
      * @param code 股票代码
      * @return 股票信息
      */
-    public Current getStockRealTimeInfo(String code);
+    public Iterator<Current> getStockRealTimeInfo(String code);
 
     /**
      * 得到所有股票ID
@@ -67,8 +67,6 @@ public interface StockInfoDAO {
      * @return 对应行业全部股票代码
      */
     public Iterator<String> getAllStockCodesByIndustry(String industryName);
-
-
 
     /**
      * 得到股票2014-5-26前全部历史数据
