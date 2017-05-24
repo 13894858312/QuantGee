@@ -3,6 +3,7 @@ package action;
 import com.opensymphony.xwork2.Action;
 import net.sf.json.JSONArray;
 import org.apache.struts2.json.annotations.JSON;
+import vo.admin.UserAccountVO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -62,11 +63,13 @@ public class TestAction implements Action {
 
     @Override
     public String execute() throws Exception {
-        System.out.println("success");
-        ArrayList<String> arrayList = new ArrayList<String>();
-        arrayList.add("1");
-        arrayList.add("2");
-        arrayList.add("3");
+        UserAccountVO userAccountVO1 = new UserAccountVO("123","2017-05-10","zdy","118873");
+        UserAccountVO userAccountVO2 = new UserAccountVO("456","2017-03-23","wyy","234543");
+        UserAccountVO userAccountVO3 = new UserAccountVO("789","2017-01-18","bcy","766675");
+        ArrayList<UserAccountVO> arrayList = new ArrayList<UserAccountVO>();
+        arrayList.add(userAccountVO1);
+        arrayList.add(userAccountVO2);
+        arrayList.add(userAccountVO3);
         JSONArray jsonArray = JSONArray.fromObject(arrayList);
         result = jsonArray.toString();
         return SUCCESS;

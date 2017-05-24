@@ -22,19 +22,38 @@ public class StockHistoricalVO {
     private double volume;  //成交量
     private double turnover;
 
+    //日k
+    private boolean isPositive;
+    private double upperShadow;
+    private double lowerShadow;
+
     //均线图
     private double ma5;
     private double ma10;
     private double ma20;
 
-    //日k
-    private boolean isPositive;
-    private double upperShadow;
-    private double lowerShadow;
     //对数收益
     private double logarithmYield = 0;
 
+    //macd
+    private double diff;
+    private double dea;
+    private double macd;
 
+    //kdj
+    private double k;
+    private double d;
+    private double j;
+
+    //rsi
+    private double rsi6;
+    private double rsi12;
+    private double rsi24;
+
+    //boll
+    private double mid;
+    private double up;
+    private double lown;
 
     public StockHistoricalVO() {}
 
@@ -59,29 +78,140 @@ public class StockHistoricalVO {
      * @param ma10 10日均线值
      * @param ma20 20日均线值
      */
-    public StockHistoricalVO(String stockCode, String stockName, String stockMarket, String date, boolean isPositive,
-                             double upperShadow, double lowerShadow, double open, double close, double low,
-                             double high, double price_change, double p_change, double turnover, int volume,
-                             double logarithmYield, double ma5, double ma10, double ma20) {
+    public StockHistoricalVO(String stockCode, String stockName, String stockMarket, String date,
+                             double open, double close, double low, double high, double price_change,
+                             double p_change, double volume, double turnover, boolean isPositive,
+                             double upperShadow, double lowerShadow, double ma5, double ma10, double ma20,
+                             double logarithmYield, double diff, double dea, double macd, double k,
+                             double d, double j, double rsi6, double rsi12, double rsi24, double mid,
+                             double up, double lown) {
         this.stockCode = stockCode;
         this.stockName = stockName;
         this.stockMarket = stockMarket;
         this.date = date;
-        this.isPositive = isPositive;
-        this.upperShadow = upperShadow;
-        this.lowerShadow = lowerShadow;
         this.open = open;
         this.close = close;
         this.low = low;
         this.high = high;
         this.price_change = price_change;
         this.p_change = p_change;
-        this.turnover = turnover;
         this.volume = volume;
-        this.logarithmYield = logarithmYield;
+        this.turnover = turnover;
+        this.isPositive = isPositive;
+        this.upperShadow = upperShadow;
+        this.lowerShadow = lowerShadow;
         this.ma5 = ma5;
         this.ma10 = ma10;
         this.ma20 = ma20;
+        this.logarithmYield = logarithmYield;
+        this.diff = diff;
+        this.dea = dea;
+        this.macd = macd;
+        this.k = k;
+        this.d = d;
+        this.j = j;
+        this.rsi6 = rsi6;
+        this.rsi12 = rsi12;
+        this.rsi24 = rsi24;
+        this.mid = mid;
+        this.up = up;
+        this.lown = lown;
+    }
+
+    public double getDiff() {
+        return diff;
+    }
+
+    public void setDiff(double diff) {
+        this.diff = diff;
+    }
+
+    public double getDea() {
+        return dea;
+    }
+
+    public void setDea(double dea) {
+        this.dea = dea;
+    }
+
+    public double getMacd() {
+        return macd;
+    }
+
+    public void setMacd(double macd) {
+        this.macd = macd;
+    }
+
+    public double getK() {
+        return k;
+    }
+
+    public void setK(double k) {
+        this.k = k;
+    }
+
+    public double getD() {
+        return d;
+    }
+
+    public void setD(double d) {
+        this.d = d;
+    }
+
+    public double getJ() {
+        return j;
+    }
+
+    public void setJ(double j) {
+        this.j = j;
+    }
+
+    public double getRsi6() {
+        return rsi6;
+    }
+
+    public void setRsi6(double rsi6) {
+        this.rsi6 = rsi6;
+    }
+
+    public double getRsi12() {
+        return rsi12;
+    }
+
+    public void setRsi12(double rsi12) {
+        this.rsi12 = rsi12;
+    }
+
+    public double getRsi24() {
+        return rsi24;
+    }
+
+    public void setRsi24(double rsi24) {
+        this.rsi24 = rsi24;
+    }
+
+    public double getMid() {
+        return mid;
+    }
+
+    public void setMid(double mid) {
+        this.mid = mid;
+    }
+
+    public double getUp() {
+        return up;
+    }
+
+    public void setUp(double up) {
+        this.up = up;
+    }
+
+    public double getLown() {
+        return lown;
+    }
+
+    public void setLown(double lown) {
+        this.lown = lown;
     }
 
     public String getStockCode() {
