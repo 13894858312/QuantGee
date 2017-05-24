@@ -31,7 +31,7 @@ public class TradeTest {
         trade.setAction(1);
         trade.setIme("ime");
         trade.setNumOfStock(123);
-        trade.setStockId("asede");
+        trade.setStockId("asedi");
         Assert.assertEquals(tradeDAO.addTradeInfo(trade),true);
     }
 

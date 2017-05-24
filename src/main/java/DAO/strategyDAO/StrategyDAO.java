@@ -52,7 +52,7 @@ public interface StrategyDAO {
      * @param userID 用户ID
      * @return 策略ID
      */
-    public Iterator<String> getUserCollectedStrategy(String userID);
+    public Iterator<Integer> getUserCollectedStrategy(String userID);
 
     /**
      * 按策略编号得到策略信息

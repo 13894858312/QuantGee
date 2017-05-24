@@ -1,21 +1,18 @@
 package bean;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
+import java.io.Serializable;
 
 /**
  * Created by wangxue on 2017/5/24.
  */
-@Entity
-@IdClass(CollectStockPK.class)
-public class CollectStock {
+public class CollectStockPK implements Serializable {
     private String userId;
     private String stockId;
 
-    @Id
     @Column(name = "userID", nullable = false, length = 20)
+    @Id
     public String getUserId() {
         return userId;
     }
@@ -24,8 +21,8 @@ public class CollectStock {
         this.userId = userId;
     }
 
-    @Id
     @Column(name = "stockID", nullable = false, length = 10)
+    @Id
     public String getStockId() {
         return stockId;
     }
@@ -39,7 +36,7 @@ public class CollectStock {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CollectStock that = (CollectStock) o;
+        CollectStockPK that = (CollectStockPK) o;
 
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
         if (stockId != null ? !stockId.equals(that.stockId) : that.stockId != null) return false;

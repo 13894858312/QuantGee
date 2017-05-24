@@ -1,16 +1,13 @@
 package bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/5/23.
+ * Created by wangxue on 2017/5/24.
  */
 @Entity
+@IdClass(KdjPK.class)
 public class Kdj {
-    private int index;
     private String code;
     private String date;
     private Double k;
@@ -18,17 +15,7 @@ public class Kdj {
     private Double j;
 
     @Id
-    @Column(name = "index", nullable = false)
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
-    @Basic
-    @Column(name = "code", nullable = true, length = 6)
+    @Column(name = "code", nullable = false, length = 6)
     public String getCode() {
         return code;
     }
@@ -37,8 +24,8 @@ public class Kdj {
         this.code = code;
     }
 
-    @Basic
-    @Column(name = "date", nullable = true, length = 10)
+    @Id
+    @Column(name = "date", nullable = false, length = 10)
     public String getDate() {
         return date;
     }
@@ -84,7 +71,6 @@ public class Kdj {
 
         Kdj kdj = (Kdj) o;
 
-        if (index != kdj.index) return false;
         if (code != null ? !code.equals(kdj.code) : kdj.code != null) return false;
         if (date != null ? !date.equals(kdj.date) : kdj.date != null) return false;
         if (k != null ? !k.equals(kdj.k) : kdj.k != null) return false;
@@ -96,8 +82,7 @@ public class Kdj {
 
     @Override
     public int hashCode() {
-        int result = index;
-        result = 31 * result + (code != null ? code.hashCode() : 0);
+        int result = code != null ? code.hashCode() : 0;
         result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (k != null ? k.hashCode() : 0);
         result = 31 * result + (d != null ? d.hashCode() : 0);

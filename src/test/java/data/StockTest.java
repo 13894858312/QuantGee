@@ -103,7 +103,7 @@ public class StockTest {
 
     @Test
     public void addCollect(){
-        Assert.assertEquals(stockInfoDAO.addCollectedStock("2232","34334"),true);
+        Assert.assertEquals(stockInfoDAO.addCollectedStock("22392","34334"),true);
     }
 
     @Test
@@ -123,7 +123,7 @@ public class StockTest {
     public void addMacdTest(){
         Macd macd = new Macd();
         macd.setCode("123123");
-        macd.setDate("211");
+        macd.setDate("212");
         macd.setDea(123.2);
         macd.setDiff(2.2);
         macd.setMacd(23.1);
@@ -145,7 +145,7 @@ public class StockTest {
         kdj.setD(2.0);
         kdj.setK(1.0);
         kdj.setJ(3.0);
-        kdj.setDate("2019-01-01");
+        kdj.setDate("2019-02-01");
         Assert.assertEquals(stockInfoDAO.addKDJ(kdj),true);
     }
 

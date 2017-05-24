@@ -5,15 +5,14 @@
 <hibernate-mapping>
 
     <class name="bean.Kdj" table="KDJ" schema="quantgee_data">
-        <id name="index">
-            <column name="index" sql-type="int(11)"/>
-        </id>
-        <property name="code">
-            <column name="code" sql-type="varchar(6)" length="6" not-null="true"/>
-        </property>
-        <property name="date">
-            <column name="date" sql-type="varchar(10)" length="10" not-null="true"/>
-        </property>
+        <composite-id mapped="true" class="bean.KdjPK">
+            <key-property name="code">
+                <column name="code" sql-type="varchar(6)" length="6"/>
+            </key-property>
+            <key-property name="date">
+                <column name="date" sql-type="varchar(10)" length="10"/>
+            </key-property>
+        </composite-id>
         <property name="k">
             <column name="k" sql-type="double" precision="-1" not-null="true"/>
         </property>

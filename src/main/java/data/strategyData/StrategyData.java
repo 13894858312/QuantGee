@@ -69,8 +69,8 @@ public class StrategyData implements StrategyDAO {
     }
 
     @Override
-    public Iterator<String> getUserCollectedStrategy(String userID) {
-        Iterator<String> iterator = (Iterator<String>) hibernateTemplate
+    public Iterator<Integer> getUserCollectedStrategy(String userID) {
+        Iterator<Integer> iterator = (Iterator<Integer>) hibernateTemplate
                 .find("select c.strategyId from CollectStrategy c where c.userId = ?",userID).iterator();
         return iterator;
     }

@@ -54,6 +54,7 @@
                 <prop key="hibernate.connection.autocommit">true</prop>
             </props>
         </property>
+
     </bean>
 
     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
