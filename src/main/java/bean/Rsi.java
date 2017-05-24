@@ -1,16 +1,13 @@
 package bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/5/23.
+ * Created by wangxue on 2017/5/24.
  */
 @Entity
+@IdClass(RsiPK.class)
 public class Rsi {
-    private int index;
     private String code;
     private String date;
     private Double rsi6;
@@ -18,17 +15,7 @@ public class Rsi {
     private Double rsi24;
 
     @Id
-    @Column(name = "index", nullable = false)
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
-    @Basic
-    @Column(name = "code", nullable = true, length = 6)
+    @Column(name = "code", nullable = false, length = 6)
     public String getCode() {
         return code;
     }
@@ -37,8 +24,8 @@ public class Rsi {
         this.code = code;
     }
 
-    @Basic
-    @Column(name = "date", nullable = true, length = 10)
+    @Id
+    @Column(name = "date", nullable = false, length = 10)
     public String getDate() {
         return date;
     }
@@ -84,7 +71,6 @@ public class Rsi {
 
         Rsi rsi = (Rsi) o;
 
-        if (index != rsi.index) return false;
         if (code != null ? !code.equals(rsi.code) : rsi.code != null) return false;
         if (date != null ? !date.equals(rsi.date) : rsi.date != null) return false;
         if (rsi6 != null ? !rsi6.equals(rsi.rsi6) : rsi.rsi6 != null) return false;
@@ -96,8 +82,7 @@ public class Rsi {
 
     @Override
     public int hashCode() {
-        int result = index;
-        result = 31 * result + (code != null ? code.hashCode() : 0);
+        int result = code != null ? code.hashCode() : 0;
         result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (rsi6 != null ? rsi6.hashCode() : 0);
         result = 31 * result + (rsi12 != null ? rsi12.hashCode() : 0);

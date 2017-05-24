@@ -114,4 +114,12 @@
         <property name="hibernateTemplate" ref="hibernateTemplate"></property>
     </bean>
 
+    <bean id="QuotaDao" class="data.stockInfoData.QuotaData" scope="singleton">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
+
+    <bean id="CollectStockData" class="data.stockInfoData.CollectStockData" scope="singleton">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
+
 </beans>

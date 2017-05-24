@@ -1,16 +1,13 @@
 package bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/5/23.
+ * Created by wangxue on 2017/5/24.
  */
 @Entity
+@IdClass(MacdPK.class)
 public class Macd {
-    private int index;
     private String code;
     private String date;
     private Double diff;
@@ -18,17 +15,7 @@ public class Macd {
     private Double macd;
 
     @Id
-    @Column(name = "index", nullable = false)
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
-    @Basic
-    @Column(name = "code", nullable = true, length = 6)
+    @Column(name = "code", nullable = false, length = 6)
     public String getCode() {
         return code;
     }
@@ -37,8 +24,8 @@ public class Macd {
         this.code = code;
     }
 
-    @Basic
-    @Column(name = "date", nullable = true, length = 10)
+    @Id
+    @Column(name = "date", nullable = false, length = 10)
     public String getDate() {
         return date;
     }
@@ -82,22 +69,20 @@ public class Macd {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Macd macd = (Macd) o;
+        Macd macd1 = (Macd) o;
 
-        if (index != macd.index) return false;
-        if (code != null ? !code.equals(macd.code) : macd.code != null) return false;
-        if (date != null ? !date.equals(macd.date) : macd.date != null) return false;
-        if (diff != null ? !diff.equals(macd.diff) : macd.diff != null) return false;
-        if (dea != null ? !dea.equals(macd.dea) : macd.dea != null) return false;
-        if (this.macd != null ? !this.macd.equals(macd.macd) : macd.macd != null) return false;
+        if (code != null ? !code.equals(macd1.code) : macd1.code != null) return false;
+        if (date != null ? !date.equals(macd1.date) : macd1.date != null) return false;
+        if (diff != null ? !diff.equals(macd1.diff) : macd1.diff != null) return false;
+        if (dea != null ? !dea.equals(macd1.dea) : macd1.dea != null) return false;
+        if (macd != null ? !macd.equals(macd1.macd) : macd1.macd != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = index;
-        result = 31 * result + (code != null ? code.hashCode() : 0);
+        int result = code != null ? code.hashCode() : 0;
         result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (diff != null ? diff.hashCode() : 0);
         result = 31 * result + (dea != null ? dea.hashCode() : 0);

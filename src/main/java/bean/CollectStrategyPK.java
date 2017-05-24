@@ -1,21 +1,18 @@
 package bean;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
+import java.io.Serializable;
 
 /**
  * Created by wangxue on 2017/5/24.
  */
-@Entity
-@IdClass(CollectStockPK.class)
-public class CollectStock {
+public class CollectStrategyPK implements Serializable {
     private String userId;
-    private String stockId;
+    private int strategyId;
 
-    @Id
     @Column(name = "userID", nullable = false, length = 20)
+    @Id
     public String getUserId() {
         return userId;
     }
@@ -24,14 +21,14 @@ public class CollectStock {
         this.userId = userId;
     }
 
+    @Column(name = "strategyID", nullable = false)
     @Id
-    @Column(name = "stockID", nullable = false, length = 10)
-    public String getStockId() {
-        return stockId;
+    public int getStrategyId() {
+        return strategyId;
     }
 
-    public void setStockId(String stockId) {
-        this.stockId = stockId;
+    public void setStrategyId(int strategyId) {
+        this.strategyId = strategyId;
     }
 
     @Override
@@ -39,10 +36,10 @@ public class CollectStock {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CollectStock that = (CollectStock) o;
+        CollectStrategyPK that = (CollectStrategyPK) o;
 
+        if (strategyId != that.strategyId) return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
-        if (stockId != null ? !stockId.equals(that.stockId) : that.stockId != null) return false;
 
         return true;
     }
@@ -50,7 +47,7 @@ public class CollectStock {
     @Override
     public int hashCode() {
         int result = userId != null ? userId.hashCode() : 0;
-        result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
+        result = 31 * result + strategyId;
         return result;
     }
 }
