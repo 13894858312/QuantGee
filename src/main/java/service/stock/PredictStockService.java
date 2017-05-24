@@ -6,4 +6,5 @@ package service.stock;
  * 股票趋势预测的接口
  */
 public interface PredictStockService {
+
 }
