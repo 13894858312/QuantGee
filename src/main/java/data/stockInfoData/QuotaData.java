@@ -51,22 +51,32 @@ public class QuotaData implements QuotaDAO {
 
     @Override
     public Iterator<Rsi> getRSIs(String startDate, String endDate, String code) {
-        return null;
+        Iterator<Rsi> iterator = (Iterator<Rsi>) hibernateTemplate
+                .find("from Rsi r where r.code = ? and r.date>? and r.date<?",
+                        new String[] {code,startDate,endDate}).iterator();
+        return iterator;
     }
 
     @Override
     public boolean addRSI(Rsi rsi) {
-        return false;
+        hibernateTemplate.save(rsi);
+        hibernateTemplate.flush();
+        return true;
     }
 
     @Override
     public Iterator<Boll> getBOLLs(String startDate, String endDate, String code) {
-        return null;
+        Iterator<Boll> iterator = (Iterator<Boll>)hibernateTemplate
+                .find("from Boll b where b.code = ? and b.date>? and b.date<?",
+                        new String[]{code,startDate,endDate}).iterator();
+        return iterator;
     }
 
     @Override
     public boolean addBOLL(Boll boll) {
-        return false;
+        hibernateTemplate.save(boll);
+        hibernateTemplate.flush();
+        return true;
     }
 
 }

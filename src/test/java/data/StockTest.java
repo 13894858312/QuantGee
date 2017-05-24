@@ -1,5 +1,7 @@
 package data;
 
+import DAO.stockInfoDAO.CollectStockDAO;
+import DAO.stockInfoDAO.QuotaDAO;
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.*;
 import data.stockInfoData.StockInfoData;
@@ -26,6 +28,10 @@ public class StockTest {
 
     @Autowired
     StockInfoDAO stockInfoDAO;
+    @Autowired
+    QuotaDAO quotaDAO;
+    @Autowired
+    CollectStockDAO collectStockDAO;
 
     @Test
     public void getStockInfoTest(){
@@ -95,7 +101,7 @@ public class StockTest {
 
     @Test
     public void getCollectStockTest(){
-        Iterator<String>  iterator = stockInfoDAO.getCollectedStocks("123");
+        Iterator<String>  iterator = collectStockDAO.getCollectedStocks("123");
         while (iterator.hasNext()){
             System.out.println(iterator.next());
         }
@@ -103,12 +109,12 @@ public class StockTest {
 
     @Test
     public void addCollect(){
-        Assert.assertEquals(stockInfoDAO.addCollectedStock("22392","34334"),true);
+        Assert.assertEquals(collectStockDAO.addCollectedStock("22392","34334"),true);
     }
 
     @Test
     public void removeCollect(){
-        Assert.assertEquals(stockInfoDAO.removeCollectedStock("222","333"),true);
+        Assert.assertEquals(collectStockDAO.removeCollectedStock("222","333"),true);
     }
 
     @Test
@@ -127,12 +133,12 @@ public class StockTest {
         macd.setDea(123.2);
         macd.setDiff(2.2);
         macd.setMacd(23.1);
-        Assert.assertEquals(stockInfoDAO.addMACD(macd),true);
+        Assert.assertEquals(quotaDAO.addMACD(macd),true);
     }
 
     @Test
     public void getMacdTest(){
-        Iterator<Macd> iterator = stockInfoDAO.getMACDs("200","232","123123");
+        Iterator<Macd> iterator = quotaDAO.getMACDs("200","232","123123");
         while (iterator.hasNext()){
             System.out.print(iterator.next().getDea());
         }
@@ -146,12 +152,12 @@ public class StockTest {
         kdj.setK(1.0);
         kdj.setJ(3.0);
         kdj.setDate("2019-02-01");
-        Assert.assertEquals(stockInfoDAO.addKDJ(kdj),true);
+        Assert.assertEquals(quotaDAO.addKDJ(kdj),true);
     }
 
     @Test
     public void getKDJTest(){
-        Iterator<Kdj> kdjIterator = stockInfoDAO.getKDJs("0","300","000001");
+        Iterator<Kdj> kdjIterator = quotaDAO.getKDJs("0","300","000001");
         while (kdjIterator.hasNext()){
             System.out.println(kdjIterator.next().getDate());
         }
