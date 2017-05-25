@@ -36,10 +36,10 @@
             <div class="nav">
 
                 <a href="marketInfo.jsp" onmouseover="s1(this)" onmouseout="s2(this)">大盘行情</a>
-                <a href="../../view/stock/stockFirst.jsp" onmouseover="s1(this)" onmouseout="s2(this)">个股信息</a>
-                <a href="../../view/industry/industry.jsp" onmouseover="s1(this)" onmouseout="s2(this)">行业资讯</a>
-                <a href="../../view/strategy/strategy.jsp" onmouseover="s1(this)" onmouseout="s2(this)">策略大全</a>
-                <a href="../../view/trade/trade.jsp" onmouseover="s1(this)" onmouseout="s2(this)">模拟交易</a>
+                <a href="../../view/stock/stockFirst.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">个股信息</a>
+                <a href="../../view/industry/industry.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">行业资讯</a>
+                <a href="../../view/strategy/strategy.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">策略大全</a>
+                <a href="../../view/trade/trade.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">模拟交易</a>
                 <a href="../../view/ucenter/user_center.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">个人中心</a>
 
             </div>
@@ -97,7 +97,7 @@
 	<div class="graph-SZI" style="position: absolute;left: 36%;top: 37%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
 	<div class="graph-SZ300" style="position: absolute;left: 64%;top: 37%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
 	<div class="secondHead">
-    	<img src="../../images/标签1.png" class="imageHead" style="width: 80;height: 50;"/>
+    	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
     </div>
     <div class="secondText">
     	<span>历史大盘</span>
