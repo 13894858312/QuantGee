@@ -22,6 +22,7 @@
     </script>
     <style type="text/css">
         @import "../../css/style.css";
+        @import "../../css/trade/trade.css";
     </style>
 </head>
 <body>
@@ -37,10 +38,10 @@
 
             <div class="nav">
 
-                <a href="marketInfo.jsp" onmouseover="s1(this)" onmouseout="s2(this)">大盘行情</a>
-                <a href="../../view/stock/stockFirst.jsp" onmouseover="s1(this)" onmouseout="s2(this)">个股信息</a>
-                <a href="../../view/industry/industry.jsp" onmouseover="s1(this)" onmouseout="s2(this)">行业资讯</a>
-                <a href="../../view/strategy/strategy.jsp" onmouseover="s1(this)" onmouseout="s2(this)">策略大全</a>
+                <a href="marketInfo.jsp" target="_blank" nmouseover="s1(this)" onmouseout="s2(this)">大盘行情</a>
+                <a href="../../view/stock/stockFirst.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">个股信息</a>
+                <a href="../../view/industry/industry.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">行业资讯</a>
+                <a href="../../view/strategy/strategy.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">策略大全</a>
                 <a href="trade.jsp" onmouseover="s1(this)" onmouseout="s2(this)">模拟交易</a>
                 <a href="../../view/ucenter/user_center.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">个人中心</a>
 
@@ -65,5 +66,26 @@
         </div>
 
     </div>
+    <div class="firstHead">
+    	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
+    </div>
+    <div class="firstText">
+    	<span>模拟交易</span>
+    </div>
+    <div class="data">
+    	
+    </div>
+    <div class="execute"></div>
+    <div class="secondHead">
+    	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
+    </div>
+    <div class="secondText">
+    	<span>辅助预测</span>
+    </div>
+    <div class="predict"></div>
+    <div class="MACD"></div>
+    <div class="KDJ"></div>
+    <div class="BOLL"></div>
+    <div class="RSI"></div>
 </body>
 </html>
