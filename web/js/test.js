@@ -7,9 +7,7 @@
         type:'GET',
         dataType:'json',
         success:function (data) {
-            var test = JSON.parse(data);
-            var str1 = test[0];
-            alert();
+            alert(data);
         },
         error:function (data) {
             alert("error");

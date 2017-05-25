@@ -1,5 +1,6 @@
 package logic.indexCalculation;
 
+import DAO.stockInfoDAO.QuotaDAO;
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.History;
 import bean.Macd;
@@ -34,6 +35,9 @@ public class MacdCalculation {
 
     @Autowired
     private StockInfoDAO stockInfoDAO;
+
+    @Autowired
+    private QuotaDAO quotaDAO;
 
     public void start() {
         Iterator<String> codes = stockInfoDAO.getAllStockCodes();
@@ -93,7 +97,7 @@ public class MacdCalculation {
                 macd.setDiff(MathHelper.formatData(diff,3));
                 macd.setDea(MathHelper.formatData(dea,3));
                 macd.setMacd(MathHelper.formatData((diff-dea) * 2, 3));
-                stockInfoDAO.addMACD(macd);
+                quotaDAO.addMACD(macd);
             }
         }
     }

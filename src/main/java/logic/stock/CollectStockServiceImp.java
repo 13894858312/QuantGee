@@ -1,5 +1,6 @@
 package logic.stock;
 
+import DAO.stockInfoDAO.CollectStockDAO;
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.Current;
 import bean.MarketInfo;
@@ -25,20 +26,20 @@ import java.util.Iterator;
 public class CollectStockServiceImp implements CollectStockService{
 
     @Autowired
-    private StockInfoDAO stockInfoDAO;
+    private CollectStockDAO collectStockDAO;
     @Autowired
     private StockBasicInfoServiceImp stockBasicInfoServiceImp;
 
     @Override
     public ArrayList<StockCurrentVO> getCollectedStocks(String userID) {
-        Iterator<String> codes = stockInfoDAO.getCollectedStocks(userID);
+        Iterator<String> codes = collectStockDAO.getCollectedStocks(userID);
         return stockBasicInfoServiceImp.getStockCurrentVOs(codes);
     }
 
     @Override
     public boolean collectStock(StockCollectInputVO inputVO) {
         if(inputVO != null) {
-            if(stockInfoDAO.addCollectedStock(inputVO.getUserID(), inputVO.getStockCode())) {
+            if(collectStockDAO.addCollectedStock(inputVO.getUserID(), inputVO.getStockCode())) {
                 return true;
             }
         }
@@ -49,7 +50,7 @@ public class CollectStockServiceImp implements CollectStockService{
     @Override
     public boolean deleteCollectedStock(StockCollectInputVO inputVO) {
         if(inputVO != null) {
-            if(stockInfoDAO.removeCollectedStock(inputVO.getUserID(), inputVO.getStockCode())) {
+            if(collectStockDAO.removeCollectedStock(inputVO.getUserID(), inputVO.getStockCode())) {
                 return true;
             }
         }

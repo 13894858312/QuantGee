@@ -1,5 +1,6 @@
 package logic.indexCalculation;
 
+import DAO.stockInfoDAO.QuotaDAO;
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.History;
 import bean.Rsi;
@@ -28,10 +29,14 @@ public class RsiCalculation {
     private static final int INDEX1 = 6;
     private static final int INDEX2 = 12;
     private static final int INDEX3 = 24;
+
     private int dataStartIndex;
 
     @Autowired
     private StockInfoDAO stockInfoDAO;
+
+    @Autowired
+    private QuotaDAO quotaDAO;
 
     public void start() {
         Iterator<String> codes = stockInfoDAO.getAllStockCodes();
@@ -62,7 +67,7 @@ public class RsiCalculation {
             rsi.setRsi12(MathHelper.formatData(rsi12,3));
             rsi.setRsi24(MathHelper.formatData(rsi24,3));
 
-            stockInfoDAO.addRSI(rsi);
+            quotaDAO.addRSI(rsi);
         }
     }
 

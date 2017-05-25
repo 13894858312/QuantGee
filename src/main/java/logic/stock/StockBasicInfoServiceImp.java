@@ -1,5 +1,6 @@
 package logic.stock;
 
+import DAO.stockInfoDAO.QuotaDAO;
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.Current;
 import bean.MarketInfo;
@@ -26,6 +27,9 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
 
     @Autowired
     private StockInfoDAO stockInfoDAO;
+
+    @Autowired
+    private QuotaDAO quotaDAO;
 
     @Autowired
     private StockDataCalculation stockDataCalculation;
