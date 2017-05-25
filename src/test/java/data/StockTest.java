@@ -65,8 +65,8 @@ public class StockTest {
 
     @Test
     public void getCurrent(){
-//        Current current = stockInfoDAO.getStockRealTimeInfo("000001");
-//        Assert.assertEquals(current.getName(),"平安银行");
+        Current current = stockInfoDAO.getStockRealTimeInfo("000001");
+        Assert.assertEquals(current.getName(),"平安银行");
     }
 
     @Test
@@ -160,6 +160,20 @@ public class StockTest {
         Iterator<Kdj> kdjIterator = quotaDAO.getKDJs("0","300","000001");
         while (kdjIterator.hasNext()){
             System.out.println(kdjIterator.next().getDate());
+        }
+    }
+
+    @Test
+    public void currentTest(){
+        Current current = stockInfoDAO.getStockRealTimeInfo("000001");
+        System.out.print(current.getTime());
+    }
+
+    @Test
+    public void currentListTest(){
+        Iterator<Current> iterator = stockInfoDAO.getStockRealTimeList("000001");
+        while (iterator.hasNext()){
+            System.out.println(iterator.next().getAmount());
         }
     }
 }
