@@ -38,7 +38,7 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
 
     @Override
     public ArrayList<RealTimeLineVO> getStockRealTimeLineInfo(String code) {
-        Iterator<Current> stocks = stockInfoDAO.getStockRealTimeInfo(code);
+//        Iterator<Current> stocks = stockInfoDAO.getStockRealTimeInfo(code);
         ArrayList<RealTimeLineVO> result = new ArrayList<>();
 
 //        while(stocks.hasNext()) {

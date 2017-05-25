@@ -2,19 +2,10 @@ package data.stockInfoData;
 
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.*;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
-import org.hibernate.service.ServiceRegistry;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by wangxue on 2017/5/5.
@@ -31,14 +22,14 @@ public class StockInfoData implements StockInfoDAO{
     @Override
     public Current getStockRealTimeInfo(String code) {
         Current current = (Current) hibernateTemplate
-                .find("from Current c where c.code = ?",code).iterator().next();
+                .find("from Current c where c.code = ? order by time desc ",code).iterator().next();
         return current;
     }
 
     @Override
     public Iterator<Current> getStockRealTimeList(String code){
         Iterator<Current> current = (Iterator<Current>) hibernateTemplate
-                .find("from Current c where c.code = ?",code).iterator();
+                .find("from Current c where c.code = ?  ",code).iterator();
         return current;
     }
 
