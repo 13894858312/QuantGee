@@ -257,7 +257,7 @@ li {
 	top: 14%;
 	font-weight: bold;
 	font-size: 18px;
-	font-family: "arial, helvetica, sans-serif";
+	font-family: 'Cabin Condensed', sans-serif;
 }
 .SSE{
 	border: 1px solid #000000;
@@ -361,4 +361,152 @@ li {
 	font-size: 18px;
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	font-weight: 500;
+}
+.secondHead{
+	position: absolute;
+	left: 5%;
+	top: 79%;
+}
+.secondText{
+	position: absolute;
+	left: 11%;
+	top: 81%;
+	font-weight: bold;
+	font-size: 18px;
+	font-family: 'Cabin Condensed', sans-serif;
+}
+.historyHead{
+	position: absolute;
+	left: 8%;
+	top: 88%;
+	border: 1px solid #000000;
+	opacity: 0.8;
+	background-color: #FFFFFF;
+	width: 81%;
+	height: 5%;
+}
+.hhead{
+	position: absolute;
+	left: 45%;
+	top: 10%;
+	font-size: 18px;
+	font-family: 'Cabin Condensed', sans-serif;
+	font-weight: bold;
+}
+.klinegraph{
+	position: absolute;
+	left: 8%;
+	top: 93%;
+	border: 1px solid #000000;
+	width: 81%;
+	height: 80%;
+	background-color: #FFFFFF;
+}
+.thirdHead{
+	position: absolute;
+	left: 5%;
+	top: 175%;
+}
+.thirdText{
+	position: absolute;
+	left: 11%;
+	top: 177%;
+	font-weight: bold;
+	font-size: 18px;
+	font-family: 'Cabin Condensed', sans-serif;
+}
+.leftrange{
+	position: absolute;
+	left: 8%;
+	top: 185%;
+	background-color: #FFFFFF;
+	opacity: 0.8;
+	width: 38%;
+	height: 7%;
+	border: 1px solid #000000;
+}
+.leftrangehead{
+	position: absolute;
+	left: 40%;
+	top: 20%;
+	font-weight: 600;
+	font-size: 18px;
+	font-family: 'Cabin Condensed', sans-serif;
+}
+.rightrange{
+	position: absolute;
+	left: 51%;
+	top: 185%;
+	background-color: #FFFFFF;
+	opacity: 0.8;
+	width: 38%;
+	height: 7%;
+	border: 1px solid #000000;
+}
+.rightrangehead{
+	position: absolute;
+	left: 40%;
+	top: 20%;
+	font-weight: 600;
+	font-size: 18px;
+	font-family: 'Cabin Condensed', sans-serif;
+}
+.industry{
+	position: absolute;
+	left: 8%;
+	top: 192%;
+	width: 38%;
+	height: 70%;
+	border: 1px solid #000000;
+	background-color: #FFFFFF;
+}
+.stock{
+	position: absolute;
+	left: 51%;
+	top: 192%;
+	width: 38%;
+	height: 70%;
+	border: 1px solid #000000;
+	background-color: #FFFFFF;
+}
+.fourthHead{
+	position: absolute;
+	left: 5%;
+	top: 263%;
+}
+.fourthText{
+	position: absolute;
+	left: 11%;
+	top: 265%;
+	font-weight: bold;
+	font-size: 18px;
+	font-family: 'Cabin Condensed', sans-serif;
+}
+.leftnews{
+	position: absolute;
+	left: 8%;
+	top: 273%;
+	width: 40.5%;
+	height: 30%;
+	border: 1px solid #000000;
+}
+.rightnews{
+	position: absolute;
+	left: 48.5%;
+	top: 273%;
+	width: 40.5%;
+	height: 30%;
+	border: 1px solid #000000;
+}
+.more{
+	position: absolute;
+	left: 85%;
+	top: 269%;
+	color: #0066CC;
+	font-weight: 500;
+	font-size: 16px;
+	font-family: 'Cabin Condensed', sans-serif;
+}
+a{
+	color: #0066CC;
 }
