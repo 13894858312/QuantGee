@@ -19,6 +19,7 @@
     </script>
     <style type="text/css">
         @import "../../css/market/market.css";
+        @import "../../css/style.css";
     </style>
 </head>
 <body>
@@ -34,9 +35,9 @@
 
             <div class="nav">
 
-                <a href onmouseover="s1(this)" onmouseout="s2(this)">大盘行情</a>
-                <a onmouseover="s1(this)" onmouseout="s2(this)">个股信息</a>
-                <a onmouseover="s1(this)" onmouseout="s2(this)">板块资讯</a>
+                <a href="marketInfo.jsp" onmouseover="s1(this)" onmouseout="s2(this)">大盘行情</a>
+                <a href="../../view/stock/stockFirst.jsp" onmouseover="s1(this)" onmouseout="s2(this)">个股信息</a>
+                <a onmouseover="s1(this)" onmouseout="s2(this)">行业资讯</a>
                 <a onmouseover="s1(this)" onmouseout="s2(this)">策略大全</a>
                 <a onmouseover="s1(this)" onmouseout="s2(this)">模拟交易</a>
                 <a href="../../view/ucenter/user_center.html" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">个人中心</a>
@@ -63,7 +64,7 @@
 
     </div>
     <div class="firstHead">
-    	<img src="../../images/标签1.png" class="imageHead" style="width: 80;height: 50;"/>
+    	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
     </div>
     <div class="firstText">
     	<span>实时大盘</span>
@@ -79,7 +80,7 @@
     <div class="SZI">
     	<div class="szihead">
     	</div>
-    	<span class="SZI-text">深圳指数</span>
+    	<span class="SZI-text">深证指数</span>
     	<span class="ssz1">25428.50</span>
     	<span class="ssz2">0.10%</span>
     	<span class="ssz3">25.35</span>
@@ -107,7 +108,7 @@
     </div>
     <div class="klinegraph"></div>
     <div class="thirdHead">
-    	<img src="../../images/标签1.png" class="imageHead" style="width: 80;height: 50;"/>
+    	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
     </div>
     <div class="thirdText">
     	<span>个股行情</span>
@@ -121,7 +122,7 @@
     <div class="industry"></div>
     <div class="stock"></div>
     <div class="fourthHead">
-    	<img src="../../images/标签1.png" class="imageHead" style="width: 80;height: 50;"/>
+    	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
     </div>
     <div class="fourthText">
     	<span>财经资讯</span>

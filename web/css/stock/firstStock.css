@@ -1,0 +1,209 @@
+.firstHead{
+	position: absolute;
+	left: 5%;
+	top: 12%;
+}
+.firstText{
+	position: absolute;
+	left: 11%;
+	top: 14%;
+	font-weight: bold;
+	font-size: 18px;
+	font-family: 'Cabin Condensed', sans-serif;
+}
+.stockBar{
+	border: 1px solid #000000;
+	position: absolute;
+	left: 8%;
+	top: 22%;
+	width: 81%;
+	height: 7%;
+	background-color: #FFFFFF;
+}
+.all{
+	position: absolute;
+	left: 5%;
+	top: 25%;
+	font-weight: 500;
+	font-size: 16px;
+	font-family: 'Cabin Condensed', sans-serif;
+}
+.sszA{
+	position: absolute;
+	left: 15%;
+	top: 25%;
+	font-weight: 500;
+	font-size: 16px;
+	font-family: 'Cabin Condensed', sans-serif;
+}
+.sziA{
+	position: absolute;
+	left: 25%;
+	top: 25%;
+	font-weight: 500;
+	font-size: 16px;
+	font-family: 'Cabin Condensed', sans-serif;
+}
+.sme{
+	position: absolute;
+	left: 35%;
+	top: 25%;
+	font-weight: 500;
+	font-size: 16px;
+	font-family: 'Cabin Condensed', sans-serif;
+}
+.startup{
+	position: absolute;
+	left: 45%;
+	top: 25%;
+	font-weight: 500;
+	font-size: 18px;
+	font-family: 'Cabin Condensed', sans-serif;
+}
+.tableContent{
+	border: 1px solid #000000;
+	position: absolute;
+	left: 8%;
+	top: 29%;
+	width: 81%;
+	height: 80%;
+}
+.secondHead{
+	position: absolute;
+	left: 5%;
+	top: 113%;
+}
+.secondText{
+	position: absolute;
+	left: 11%;
+	top: 115%;
+	font-weight: bold;
+	font-size: 18px;
+	font-family: 'Cabin Condensed', sans-serif;
+}
+.firRec{
+	border: 1px solid #000000;
+	opacity: 0.8;
+	position: absolute;
+	left: 8%;
+	top: 123%;
+	background-color: #FFFFFF;
+	width: 25%;
+	height: 15%;
+	
+}
+.sszhead{
+	position: absolute;
+	left: 5%;
+	top:10%;
+	background: url(http://i.thsi.cn/images/q/hq-icons.jpg) no-repeat;
+	width: 20%;
+	height: 17%;
+}
+.SSE-text{
+	position: absolute;
+	left: 15%;
+	top: 6%;
+	font-size: 18px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: 500;
+}
+.ssz1{
+	position: absolute;
+	left: 5%;
+	top: 55%;
+	font-size: 18px;
+    font-weight: bold;
+    color: #d75442;
+}
+.ssz2{
+	position: absolute;
+	left: 35%;
+	top: 55%;
+	font-size: 18px;
+    font-weight: bold;
+    color: #d75442;
+}
+.ssz3{
+	position: absolute;
+	left: 55%;
+	top: 55%;
+	font-size: 18px;
+    font-weight: bold;
+    color: #d75442;
+}
+.secRec{
+	border: 1px solid #000000;
+	opacity: 0.8;
+	position: absolute;
+	left: 36%;
+	top: 123%;
+	background-color: #FFFFFF;
+	width: 25%;
+	height: 15%;
+}
+.szihead{
+	position: absolute;
+	left: 5%;
+	top:10%;
+	background: url(http://i.thsi.cn/images/q/hq-icons.jpg) no-repeat;
+	width: 20%;
+	height: 17%;
+}
+.SZI-text{
+	position: absolute;
+	left: 15%;
+	top: 6%;
+	font-size: 18px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: 500;
+}
+.thirdRec{
+	border: 1px solid #000000;
+	opacity: 0.8;
+	position: absolute;
+	left: 64%;
+	top: 123%;
+	background-color: #FFFFFF;
+	width: 25%;
+	height: 15%;
+}
+.szhead{
+	position: absolute;
+	left: 5%;
+	top:10%;
+	background: url(http://i.thsi.cn/images/q/hq-icons.jpg) no-repeat;
+	width: 20%;
+	height: 17%;
+}
+.SZ300-text{
+	position: absolute;
+	left: 15%;
+	top: 6%;
+	font-size: 18px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: 500;
+}
+.search{
+	position: absolute;
+	left: 70%;
+	top: 23.5%;
+}
+.lefttext{
+	width: 80%;
+    height: 4%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-right: 5px;
+    float: left;
+    font: 500 16px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    border: 2px solid #ccc;
+}
+.submit{
+	background-color: #FFFFFF;
+	width: 20%;
+	height: 4%;
+	padding-top: 4px;
+    padding-bottom: 4px;
+    float: right;
+}
