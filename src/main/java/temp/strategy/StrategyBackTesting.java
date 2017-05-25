@@ -73,7 +73,7 @@
 //        ArrayList<String> dates = new ArrayList<>();
 //        int temp = Math.max(startIndex+1-holdingPeriod-1, 0);
 //        for(int j=startIndex+1; j>=temp; j--) {         //持有期內每天的股票信息必须有 否则不持有该股票
-//            dates.add(indexStocks.get(j).getDate());
+//            dates.add(indexStocks.get(j).getTime());
 //        }
 //        this.initHoldingStocks(dates);
 //
@@ -82,24 +82,24 @@
 //        //循环主体 最早的时间在前面 所以倒序访问
 //        for(int i=startIndex; i>=0; i--) {
 //
-//System.out.println("here: " + indexStocks.get(i).getDate());
+//System.out.println("here: " + indexStocks.get(i).getTime());
 //
-//            String dateTemp = indexStocks.get(i).getDate();
+//            String dateTemp = indexStocks.get(i).getTime();
 //            if(index == holdingPeriod) { //若达到holdingPeriod index置0
 //                index = 0;               //前一天进行rebalance,买入卖出
 //
 //                String d1;
 //                if(i+this.returnPeriod >= indexStocks.size()) {
-//                    d1 = indexStocks.get(indexStocks.size()-1).getDate();
+//                    d1 = indexStocks.get(indexStocks.size()-1).getTime();
 //                } else {
-//                    d1 = indexStocks.get(i+this.returnPeriod).getDate();
+//                    d1 = indexStocks.get(i+this.returnPeriod).getTime();
 //                }
-//                String d2 = indexStocks.get(i).getDate();
+//                String d2 = indexStocks.get(i).getTime();
 //
 //                ArrayList<String> datesNextHoldingPeriod = new ArrayList<>();
 //                int t = Math.max(i-holdingPeriod-1, 0);
 //                for(int j=i; j>=t; j--) {
-//                    datesNextHoldingPeriod.add(indexStocks.get(j).getDate());
+//                    datesNextHoldingPeriod.add(indexStocks.get(j).getTime());
 //                }
 //
 //                this.rebalance(d1, d2, datesNextHoldingPeriod);

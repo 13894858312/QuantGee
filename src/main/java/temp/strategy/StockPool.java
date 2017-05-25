@@ -169,7 +169,7 @@
 //        ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS = new ArrayList<>();
 //
 //        for(int i=0; i<this.blockBaseRaito.size(); ++i) {
-//            cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(DateHelper.getInstance().stringTransToDate(blockBaseRaito.get(i).getDate()),
+//            cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(DateHelper.getInstance().stringTransToDate(blockBaseRaito.get(i).getTime()),
 //                    blockBaseRaito.get(i).getBaseRatio()/100));
 //        }
 //

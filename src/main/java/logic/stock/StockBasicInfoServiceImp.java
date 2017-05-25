@@ -5,8 +5,6 @@ import DAO.stockInfoDAO.StockInfoDAO;
 import bean.Current;
 import bean.MarketInfo;
 import bean.Stock;
-import logic.tools.DateHelper;
-import logic.tools.MathHelper;
 import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -37,22 +35,30 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
     @Autowired
     private TransferHelper transferHelper;
 
+
     @Override
-    public StockCurrentVO getRealTimeStockInfo(String code) {
-//        MarketInfo marketInfo = stockInfoDAO.getMarketInfo(code);
-//        Current stock = stockInfoDAO.getStockRealTimeInfo(code);
-//        if(marketInfo == null || stock == null) {
-//            return null;
+    public ArrayList<RealTimeLineVO> getStockRealTimeLineInfo(String code) {
+        Iterator<Current> stocks = stockInfoDAO.getStockRealTimeInfo(code);
+        ArrayList<RealTimeLineVO> result = new ArrayList<>();
+
+//        while(stocks.hasNext()) {
+//            Current temp = stocks.next();
+//            result.add(new RealTimeLineVO(temp.getCode(), temp.getTime(), temp.getTrade(), temp.getVolume()));
 //        }
-//
-//        StockCurrentVO stockCurrentVO = transferHelper.transToStockCurrent(marketInfo, stock);
-//
-//        return stockCurrentVO;
-        return null;
+
+        return result;
     }
 
     @Override
-    public ArrayList<StockCurrentVO> getAllRealTimeStocks() {
+    public StockCurrentVO getStockRealTimeInfo(String code) {
+        MarketInfo marketInfo = stockInfoDAO.getMarketInfo(code);
+        Current current = stockInfoDAO.getStockRealTimeInfo(code);
+
+        return transferHelper.transToStockCurrent(marketInfo, current);
+    }
+
+    @Override
+    public ArrayList<StockCurrentVO> getAllStockRealTime() {
         Iterator<String> codes = stockInfoDAO.getAllStockCodes();
         return getStockCurrentVOs(codes);
     }
@@ -112,7 +118,7 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         while(codes.hasNext()) {
             String code = codes.next();
             if(code != null && !code.equals("")) {
-                result.add(getRealTimeStockInfo(code));
+                result.add(getStockRealTimeInfo(code));
             }
         }
 

@@ -8,8 +8,8 @@
         <id name="index">
             <column name="index" sql-type="int(11)"/>
         </id>
-        <property name="date">
-            <column name="date" sql-type="datetime" not-null="true"/>
+        <property name="time">
+            <column name="time" sql-type="datetime" not-null="true"/>
         </property>
         <property name="open">
             <column name="open" sql-type="double" precision="-1" not-null="true"/>

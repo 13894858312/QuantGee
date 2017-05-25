@@ -53,10 +53,10 @@
 //        //计算涨幅/跌幅、每天的收盘价和对数收益率
 //        ArrayList<StockDailyInfoVO> stockDailyInfoVOs = new ArrayList<StockDailyInfoVO>();
 //        stockDailyInfoVOs.add(new StockDailyInfoVO(stockPOs.get(0).getStockCode(), stockPOs.get(0).getStockName(),
-//                dateHelper.stringTransToDate(stockPOs.get(0).getDate()), 0, stockPOs.get(0).getClosePrice(), 0));
+//                dateHelper.stringTransToDate(stockPOs.get(0).getTime()), 0, stockPOs.get(0).getClosePrice(), 0));
 //
 //        for (int i = 1; i < stockPOs.size(); ++i) {
-//            Date date = dateHelper.stringTransToDate(stockPOs.get(i).getDate());
+//            Date date = dateHelper.stringTransToDate(stockPOs.get(i).getTime());
 //            double inOrDecreaseRate = (stockPOs.get(i).getADJ() - stockPOs.get(i - 1).getADJ()) / stockPOs.get(i - 1).getADJ();
 //            double logarithmYield = Math.log(stockPOs.get(i).getADJ() / stockPOs.get(i - 1).getADJ());
 //
