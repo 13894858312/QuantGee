@@ -1,17 +1,13 @@
 package logic.tools;
 
 import bean.*;
-import logic.stock.KLineData;
 import org.springframework.stereotype.Service;
 import po.UserAnalysisDataPO;
 import vo.admin.UserAnalysisDataVO;
 import vo.stock.NewsVO;
 import vo.stock.StockCurrentVO;
-import vo.stock.StockHistoricalVO;
 import vo.user.AccountVO;
 import vo.user.UserVO;
-
-import java.util.Date;
 
 /**
  * Created by Mark.W on 2017/5/15.
@@ -124,40 +120,4 @@ public class TransferHelper {
         return stockCurrentVO;
     }
 
-    /**
-     * 将stock转换为StockCurrentVO
-     * @param marketInfo marketInfo
-     * @param stock stock
-     * @return StockCurrentVO
-     */
-    public StockHistoricalVO transToStockHistorical(MarketInfo marketInfo, Stock stock) {
-
-        if(marketInfo == null || stock == null) {
-            return null;
-        }
-
-        StockHistoricalVO historicalVO = new StockHistoricalVO();
-
-        historicalVO.setStockCode(marketInfo.getCode());
-        historicalVO.setStockName(marketInfo.getName());
-        historicalVO.setStockMarket(marketInfo.getcName());
-
-        //基础数据
-        historicalVO.setDate(stock.getDate());
-        historicalVO.setOpen(stock.getOpen());
-        historicalVO.setClose(stock.getClose());
-        historicalVO.setLow(stock.getLow());
-        historicalVO.setHigh(stock.getHigh());
-        historicalVO.setP_change(stock.getpChange());
-        historicalVO.setPrice_change(stock.getPriceChange());
-        historicalVO.setVolume(stock.getVolume());
-        historicalVO.setVolume(stock.getVolume());
-        historicalVO.setVolume(stock.getVolume());
-        //均线数据
-        historicalVO.setMa5(stock.getMa5());
-        historicalVO.setMa10(stock.getMa10());
-        historicalVO.setMa20(stock.getMa20());
-
-        return historicalVO;
-    }
 }

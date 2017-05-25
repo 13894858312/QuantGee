@@ -132,7 +132,7 @@
 //        int greaterThanFiveNum = 0, lessThanFiveNum = 0;
 //
 //        for (int i = 0; i < todayStockMarket.size(); ++i, ++j) {
-//            allVolume += todayStockMarket.get(i).getVolume();
+//            allVolume += todayStockMarket.get(i).getValue();
 //
 //            while (!yesterdayStockMarket.get(j).getStockCode().equals(todayStockMarket.get(i).getStockCode())) {
 //

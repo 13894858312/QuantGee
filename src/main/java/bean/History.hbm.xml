@@ -23,8 +23,8 @@
         <property name="low">
             <column name="low" sql-type="double" precision="-1" not-null="true"/>
         </property>
-        <property name="volume">
-            <column name="volume" sql-type="double" precision="-1" not-null="true"/>
+        <property name="value">
+            <column name="value" sql-type="double" precision="-1" not-null="true"/>
         </property>
         <property name="amount">
             <column name="amount" sql-type="double" precision="-1" not-null="true"/>

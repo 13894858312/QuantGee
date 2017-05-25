@@ -27,6 +27,7 @@ public class CollectStockServiceImp implements CollectStockService{
 
     @Autowired
     private CollectStockDAO collectStockDAO;
+
     @Autowired
     private StockBasicInfoServiceImp stockBasicInfoServiceImp;
 

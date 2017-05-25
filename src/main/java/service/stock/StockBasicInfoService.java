@@ -37,7 +37,7 @@ public interface StockBasicInfoService {
      * 包括股票k线图 均线图 成交量直方图 的历史数据
      * @return ArrayList<StockHistoricalVO>
      */
-    public ArrayList<StockHistoricalVO> getStockHistoricalInfo(StockInputVO stockInputVO);
+    public StockHistoricalVO getStockHistoricalInfo(StockInputVO stockInputVO);
 
     /**
      * 根据行业名称获取行业所有股票的实时数据

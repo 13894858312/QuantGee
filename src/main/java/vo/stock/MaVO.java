@@ -4,13 +4,13 @@ package vo.stock;
  * Created by Mark.W on 2017/5/21.
  * 均线图的vo
  */
-public class MAVO {
+public class MaVO {
     private String stockCode;
     private int period;
     private String date;
     private double averageValue;
 
-    public MAVO() {}
+    public MaVO() {}
 
     /**
      * @param stockCode 股票代码
@@ -18,7 +18,7 @@ public class MAVO {
      * @param date 时间
      * @param averageValue 均值
      */
-    public MAVO(String stockCode, int period, String date, double averageValue) {
+    public MaVO(String stockCode, int period, String date, double averageValue) {
         this.stockCode = stockCode;
         this.period = period;
         this.date = date;
