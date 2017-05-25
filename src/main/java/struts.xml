@@ -8,10 +8,15 @@
 	<!--<constant name="struts.objectFactory" value="spring" />-->
 
 	<package name="default" namespace="/" extends="struts-default">
-		<action name="login" class="loginAction">
-			<result name="success">/view/ucenter/user_center.html</result>
+		<action name="login" class="loginAction" method="login">
+			<result name="success">/view/ucenter/user_center.jsp</result>
 			<result name="fail">/view/ucenter/login.html</result>
 		</action>
+		<action name="logout" class="loginAction" method="logout">
+			<result name="fail">/view/ucenter/account_settings.html</result>
+			<result name="success">/view/ucenter/login.html</result>
+		</action>
+
 	</package>
 	<package name="json" extends="json-default">
 		<action name="ajax" class="action.TestAction">
