@@ -82,12 +82,13 @@ public class BpNet {
         }
     }
 
-    public void train(double[][] data, double[][] target) {
-        //迭代训练5000次
-        for (int n = 0; n < trainNum; n++)
-            for (int i = 0; i < data.length; i++) {
-                trainOnce(data[i], target[i]);
-            }
+    public void train(double[][] sourceData, double[][] sourceTarget) {
+
+//        //迭代训练5000次
+//        for (int n = 0; n < trainNum; n++)
+//            for (int i = 0; i < data.length; i++) {
+//                trainOnce(data[i], target[i]);
+//            }
     }
 
 

@@ -42,7 +42,7 @@ public class BpTest {
                 {9.44, 9.48, 9.52, 9.31, 9.25}, {9.48, 9.52, 9.31, 9.25, 9.24},
                 {9.52, 9.31, 9.25,9.24, 9.16}, {9.31, 9.25, 9.24, 9.16, 9.2},
                 {9.25, 9.24, 9.16, 9.2, 9.19}, {9.24, 9.16, 9.2, 9.19, 9.14},
-                {9.16, 9.2, 9.19, 9.14, 9.12}, {9.2, 9.19, 9.14, 9.12, 9.11}};
+                {9.16, 9.2, 9.19, 9.14, 9.12}};
 
 
         double[][] maxmin = new double[sourceData.length][2];
@@ -66,7 +66,7 @@ public class BpTest {
         //设置目标数据，对应4个坐标数据的分类
         double[][] sourceTarget = new double[][]{ {9.5}, {9.43}, {9.49}, {9.43},
                 {9.4}, {9.45}, {9.42}, {9.38}, {9.4}, {9.44}, {9.48}, {9.52}, {9.31}, {9.25},
-                {9.24}, {9.16}, {9.2}, {9.19}, {9.14}, {9.12}, {9.11}, { 9.08}};
+                {9.24}, {9.16}, {9.2}, {9.19}, {9.14}, {9.12}, {9.11}, {9.08}};
 
         double[][] target = new double[sourceTarget.length][1];
         for (int i=0; i<target.length; ++i) {
@@ -76,18 +76,15 @@ public class BpTest {
         bp.train(data, target);
 
 
-        for (int i=0;i<bp.layerErr.length; ++i) {
-            for (int j=0;j<bp.layerErr[i].length; ++j) {
-                System.out.println("layerErr: " + bp.layerErr[i][j]);
-            }
-        }
-
         //根据训练结果来检验样本数据
         for (int j = 0; j < data.length; j++) {
             double[] result = bp.computeOut(data[j]);
             System.out.println("one           actual:" + result[0] + "          expected:" + target[j][0]);
             System.out.println("two           actual:" + (result[0] * (maxmin[j][0]-maxmin[j][1]) + maxmin[j][1]) + "          expected:" + sourceTarget[j][0]);
         }
+
+        double[] d = new double[] {9.2, 9.19, 9.14, 9.12, 9.11};
+
 
     }
 }
