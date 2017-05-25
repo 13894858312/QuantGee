@@ -45,7 +45,7 @@
 //        //遍历股票池中股票
 //        for (int i = 0; i < stockPool.getStocksList().size(); ++i) {
 //            StockPO before = stockPool.getStocksList().get(i).getBeforeStockPO();
-//            String beforeDate = before.getDate();
+//            String beforeDate = before.getTime();
 //            StockPO yesterday = stockPool.getStocksList().get(i).getYesterdayStock();
 //
 //            HashMap<String, AverageLineVO> averageLine;
@@ -156,7 +156,7 @@
 //        HashMap<String, AverageLineVO> result = new HashMap<>();
 //
 //        for (int i = stockPOS.size() - dayNums; i >= 0; i--) {
-//            Date date = DateHelper.getInstance().stringTransToDate(stockPOS.get(i).getDate());
+//            Date date = DateHelper.getInstance().stringTransToDate(stockPOS.get(i).getTime());
 //
 //            double all = 0;
 //            for (int j = i + dayNums - 1; j > i - 1; j--) {
@@ -165,7 +165,7 @@
 //
 //            double average = MathHelper.formatData(all / dayNums, 2);
 //
-//            result.put(stockPOS.get(i).getDate(), new AverageLineVO(stockPOS.get(i).getStockCode(), stockPOS.get(i).getStockName(), averageLineType, date, average));
+//            result.put(stockPOS.get(i).getTime(), new AverageLineVO(stockPOS.get(i).getStockCode(), stockPOS.get(i).getStockName(), averageLineType, date, average));
 //        }
 //
 //        return result;

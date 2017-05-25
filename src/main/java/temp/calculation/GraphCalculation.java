@@ -49,7 +49,7 @@
 //
 //        for(int i=0; i<stockPOS.size(); ++i) {
 //            StockPO po = stockPOS.get(i);
-//            Date date = dateHelper.stringTransToDate(po.getDate());
+//            Date date = dateHelper.stringTransToDate(po.getTime());
 //            boolean positive = false;
 //            double upper = 0;
 //            double lower = 0;
@@ -118,7 +118,7 @@
 //
 //
 //        for(int i=stockPOS.size()-dayNums; i>=0; i--) {
-//            Date date = dateHelper.stringTransToDate(stockPOS.get(i).getDate());
+//            Date date = dateHelper.stringTransToDate(stockPOS.get(i).getTime());
 //
 //            double all = 0;
 //            for(int j=i+dayNums-1; j>i-1; j--) {

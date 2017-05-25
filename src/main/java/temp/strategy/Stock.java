@@ -33,10 +33,10 @@
 //
 //        int days= 0, tempDays = 0;
 //        for(int i=stockPOS.size()-1; i>=0; i --) {
-//            stocksMap.put(stockPOS.get(i).getDate(), stockPOS.get(i));
+//            stocksMap.put(stockPOS.get(i).getTime(), stockPOS.get(i));
 //
 //            tempDays = days;
-//            Date d = DateHelper.getInstance().stringTransToDate(this.stockPOS.get(i).getDate());
+//            Date d = DateHelper.getInstance().stringTransToDate(this.stockPOS.get(i).getTime());
 //            days = DateHelper.getInstance().calculateDaysBetween(d, startDate);
 //
 //            if((days == 0) || (days < 0 && tempDays > 0)) {

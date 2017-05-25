@@ -11,18 +11,26 @@ import java.util.ArrayList;
 public interface StockBasicInfoService {
 
     /**
-     * 获取所有股票的实时信息
-     * 用于列表展示
+     * 获取股票实时数据 用于画实时图
+     * @param code 代码
+     * @return ArrayList<StockRealTimeLineVO>
+     */
+    public ArrayList<RealTimeLineVO> getStockRealTimeLineInfo(String code);
+
+
+    /**
+     * 获取所有股票的实时信息 用于列表展示
      * @return ArrayList<Stock>
      */
-    public ArrayList<StockCurrentVO> getAllRealTimeStocks();
+    public ArrayList<StockCurrentVO> getAllStockRealTime();
 
     /**
      * 根据股票代码获取指定个股实时数据
+     * 用于列表展示
      * @param stockCode 股票代码
-     * @return StockCurrentVO
+     * @return ArrayList<StockCurrentVO>
      */
-    public StockCurrentVO getRealTimeStockInfo(String stockCode);
+    public StockCurrentVO getStockRealTimeInfo(String stockCode);
 
     /**
      * 获取指定时间段和股票代码股票历史数据

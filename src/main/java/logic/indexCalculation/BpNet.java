@@ -1,4 +1,4 @@
-package logic.stock;
+package logic.indexCalculation;
 
 import java.util.Random;
 
@@ -6,13 +6,15 @@ import java.util.Random;
  * Created by Mark.W on 2017/5/24.
  */
 public class BpNet {
-    public double[][] layer;//神经网络各层节点
-    public double[][] layerErr;//神经网络各节点误差
-    public double[][][] layer_weight;//各层节点权重
-    public double[][][] layer_weight_delta;//各层节点权重动量
-    public double mobp;//动量系数
-    public double rate;//学习系数
+    private double[][] layer;//神经网络各层节点
+    private double[][] layerErr;//神经网络各节点误差
+    private double[][][] layer_weight;//各层节点权重
+    private double[][][] layer_weight_delta;//各层节点权重动量
+    private double mobp;//动量系数
+    private double rate;//学习系数
     private int trainNum = 100000;
+
+    private boolean trained = false;
 
     public BpNet(int[] layernum, double rate, double mobp) {
         this.mobp = mobp;
@@ -61,8 +63,11 @@ public class BpNet {
     //逐层反向计算误差并修改权重
     public void updateWeight(double[] tar) {
         int k = layer.length - 1;
-        for (int j = 0; j < layerErr[k].length; j++)
+
+        for (int j = 0; j < layerErr[k].length; j++) {
             layerErr[k][j] = layer[k][j] * (1 - layer[k][j]) * (tar[j] - layer[k][j]);
+        }
+
 
         while (k-- > 0) {
             for (int j = 0; j < layerErr[k].length; j++) {
@@ -82,13 +87,27 @@ public class BpNet {
         }
     }
 
-    public void train(double[][] sourceData, double[][] sourceTarget) {
+    public void train(double[][] sourceData) {
 
-//        //迭代训练5000次
-//        for (int n = 0; n < trainNum; n++)
-//            for (int i = 0; i < data.length; i++) {
-//                trainOnce(data[i], target[i]);
-//            }
+        double[][] data = new double[sourceData.length][sourceData[0].length-1];
+        double[][] tar = new double[sourceData.length][1];
+
+        for (int i=0; i<sourceData.length; ++i) {
+            for (int j=0; j<sourceData[0].length-1; ++j) {
+                data[i][j] = sourceData[i][j];
+            }
+            //最后数字为预期结果
+            tar[i][0] = sourceData[i][sourceData[0].length-1];
+        }
+
+        //迭代训练5000次
+        for (int n = 0; n < trainNum; n++) {
+            for (int i = 0; i < data.length; i++) {
+                trainOnce(data[i], tar[i]);
+            }
+        }
+
+        trained = true;
     }
 
 
@@ -97,5 +116,15 @@ public class BpNet {
         updateWeight(tar);
     }
 
+    public boolean isTrained() {
+        return trained;
+    }
 
+    public int getTrainNum() {
+        return trainNum;
+    }
+
+    public void setTrainNum(int trainNum) {
+        this.trainNum = trainNum;
+    }
 }

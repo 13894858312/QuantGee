@@ -10,7 +10,7 @@ public class StockCurrentVO {
     private String stockCode;
     private String stockName;
     private String stockMarket;
-    private String date;
+    private String time;
 
     private double trade;
 
@@ -27,13 +27,11 @@ public class StockCurrentVO {
     private double pb;
     private double mktcap;
 
-    public StockCurrentVO() {}
-
     /**
      * @param stockCode 股票代码
      * @param stockName 股票名称
      * @param stockMarket 股票所属的市场
-     * @param date 日期
+     * @param time 时间戳
      * @param open 开盘价
      * @param low 最低值
      * @param high 最高值
@@ -47,14 +45,14 @@ public class StockCurrentVO {
      * @param pb 市净率
      * @param mktcap 总市值
      */
-    public StockCurrentVO(String stockCode, String stockName, String stockMarket, String date,
+    public StockCurrentVO(String stockCode, String stockName, String stockMarket, String time,
                           double trade, double open,  double low, double high,
                           double amount, double volume, double changePercent, double turnover,
                           double settlement, double per, double pb, double mktcap) {
         this.stockCode = stockCode;
         this.stockName = stockName;
         this.stockMarket = stockMarket;
-        this.date = date;
+        this.time = time;
         this.trade = trade;
         this.open = open;
         this.low = low;
@@ -93,12 +91,12 @@ public class StockCurrentVO {
         this.stockMarket = stockMarket;
     }
 
-    public String getDate() {
-        return date;
+    public String getTime() {
+        return time;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public double getTrade() {
