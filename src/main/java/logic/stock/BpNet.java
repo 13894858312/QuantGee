@@ -12,7 +12,7 @@ public class BpNet {
     public double[][][] layer_weight_delta;//各层节点权重动量
     public double mobp;//动量系数
     public double rate;//学习系数
-    private int trainNum = 50000;
+    private int trainNum = 100000;
 
     public BpNet(int[] layernum, double rate, double mobp) {
         this.mobp = mobp;
@@ -85,8 +85,9 @@ public class BpNet {
     public void train(double[][] data, double[][] target) {
         //迭代训练5000次
         for (int n = 0; n < trainNum; n++)
-            for (int i = 0; i < data.length; i++)
+            for (int i = 0; i < data.length; i++) {
                 trainOnce(data[i], target[i]);
+            }
     }
 
 

@@ -39,15 +39,16 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
 
     @Override
     public StockCurrentVO getRealTimeStockInfo(String code) {
-        MarketInfo marketInfo = stockInfoDAO.getMarketInfo(code);
-        Current stock = stockInfoDAO.getStockRealTimeInfo(code);
-        if(marketInfo == null || stock == null) {
-            return null;
-        }
-
-        StockCurrentVO stockCurrentVO = transferHelper.transToStockCurrent(marketInfo, stock);
-
-        return stockCurrentVO;
+//        MarketInfo marketInfo = stockInfoDAO.getMarketInfo(code);
+//        Current stock = stockInfoDAO.getStockRealTimeInfo(code);
+//        if(marketInfo == null || stock == null) {
+//            return null;
+//        }
+//
+//        StockCurrentVO stockCurrentVO = transferHelper.transToStockCurrent(marketInfo, stock);
+//
+//        return stockCurrentVO;
+        return null;
     }
 
     @Override

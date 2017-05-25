@@ -11,7 +11,7 @@ public class BpTest {
         //初始化神经网络的基本配置
         //第一个参数是一个整型数组，表示神经网络的层数和每层节点数，比如{3,10,10,10,10,2}表示输入层是3个节点，输出层是2个节点，中间有4层隐含层，每层10个节点
         //第二个参数是学习步长，第三个参数是动量系数
-        BpNet bp = new BpNet(new int[]{5, 10, 1}, 0.15, 0.8);
+        BpNet bp = new BpNet(new int[]{5, 12, 12, 1}, 0.15, 0.8);
 
         //2017-02-16-2017-03-30
         //设置样本数据，对应上面的4个二维坐标数据
@@ -32,7 +32,7 @@ public class BpTest {
 //        {9.46, 9.39, 9.56, 9.57, 9.51, 9.5, 9.43, 9.48, 9.49, 9.43,
 //                9.4, 9.45, 9.42, 9.38, 9.4, 9.44, 9.48, 9.52, 9.31, 9.25,
 //                9.24, 9.16, 9.2, 9.19, 9.14, 9.12, 9.11, 9.08}, };
-        double[][] data = new double[][]{{9.46, 9.39, 9.56, 9.57, 9.51}, {9.39, 9.56, 9.57, 9.51, 9.5},
+        double[][] sourceData = new double[][]{{9.46, 9.39, 9.56, 9.57, 9.51}, {9.39, 9.56, 9.57, 9.51, 9.5},
                 {9.56, 9.57, 9.51, 9.5, 9.43}, {9.51, 9.5, 9.43, 9.48, 9.49},
                 {9.5, 9.43, 9.48, 9.49, 9.43}, {9.43, 9.48, 9.49, 9.43, 9.4},
                 {9.48, 9.49, 9.43, 9.4, 9.45}, {9.49, 9.43,9.4, 9.45, 9.42,},
@@ -42,75 +42,52 @@ public class BpTest {
                 {9.44, 9.48, 9.52, 9.31, 9.25}, {9.48, 9.52, 9.31, 9.25, 9.24},
                 {9.52, 9.31, 9.25,9.24, 9.16}, {9.31, 9.25, 9.24, 9.16, 9.2},
                 {9.25, 9.24, 9.16, 9.2, 9.19}, {9.24, 9.16, 9.2, 9.19, 9.14},
-                {9.16, 9.2, 9.19, 9.14, 9.12}, {9.2, 9.19, 9.14, 9.12, 9.11},
-                {9.19, 9.14, 9.12, 9.11, 9.08}};
+                {9.16, 9.2, 9.19, 9.14, 9.12}, {9.2, 9.19, 9.14, 9.12, 9.11}};
 
+
+        double[][] maxmin = new double[sourceData.length][2];
+        for (int i=0; i<maxmin.length; ++i) {
+            double max=sourceData[i][0], min=max;
+            for (int j=1; j<sourceData[i].length; ++j) {
+                max = Math.max(sourceData[i][j], max);
+                min = Math.min(sourceData[i][j], min);
+            }
+            maxmin[i][0]=max;
+            maxmin[i][1]=min;
+        }
+
+        double[][] data = new double[sourceData.length][sourceData[0].length];
+        for (int i=0; i<data.length; ++i) {
+            for (int j=0; j<data[0].length; ++j) {
+                data[i][j] = (sourceData[i][j] - maxmin[i][1])/ (maxmin[i][0]-maxmin[i][1]);
+            }
+        }
 
         //设置目标数据，对应4个坐标数据的分类
-        double[][] target = new double[][]{ {9.5}, {9.43}, {9.48}, {9.49}, {9.43},
+        double[][] sourceTarget = new double[][]{ {9.5}, {9.43}, {9.49}, {9.43},
                 {9.4}, {9.45}, {9.42}, {9.38}, {9.4}, {9.44}, {9.48}, {9.52}, {9.31}, {9.25},
                 {9.24}, {9.16}, {9.2}, {9.19}, {9.14}, {9.12}, {9.11}, { 9.08}};
 
-
+        double[][] target = new double[sourceTarget.length][1];
+        for (int i=0; i<target.length; ++i) {
+            target[i][0] = (sourceTarget[i][0]-maxmin[i][1])/(maxmin[i][0]-maxmin[i][1]);
+        }
 
         bp.train(data, target);
 
 
+        for (int i=0;i<bp.layerErr.length; ++i) {
+            for (int j=0;j<bp.layerErr[i].length; ++j) {
+                System.out.println("layerErr: " + bp.layerErr[i][j]);
+            }
+        }
+
         //根据训练结果来检验样本数据
         for (int j = 0; j < data.length; j++) {
             double[] result = bp.computeOut(data[j]);
-            System.out.println(Arrays.toString(data[j]) + "    actual:" + Arrays.toString(result) + "      expected:" + target[j][0]);
+            System.out.println("one           actual:" + result[0] + "          expected:" + target[j][0]);
+            System.out.println("two           actual:" + (result[0] * (maxmin[j][0]-maxmin[j][1]) + maxmin[j][1]) + "          expected:" + sourceTarget[j][0]);
         }
 
-        //根据训练结果来预测一条新数据的分类
-//        double[] x = new double[]{9.08, 9.18, 9.08, 633121.19, 0.99};
-//        double[] result = bp.computeOut(x);
-//        System.out.println(Arrays.toString(x) + "   actual:" + Arrays.toString(result) + "      expected: 9.17");
-
-//        //初始化神经网络的基本配置
-//        //第一个参数是一个整型数组，表示神经网络的层数和每层节点数，比如{3,10,10,10,10,2}表示输入层是3个节点，输出层是2个节点，中间有4层隐含层，每层10个节点
-//        //第二个参数是学习步长，第三个参数是动量系数
-//        BpNet bp = new BpNet(new int[]{2,10,2}, 0.15, 0.8);
-//
-//        //设置样本数据，对应上面的4个二维坐标数据
-//        double[][] data = new double[][]{{1,2},{2,2},{1,1},{2,1}};
-//        //设置目标数据，对应4个坐标数据的分类
-//        double[][] target = new double[][]{{1,0},{0,1},{0,1},{1,0}};
-//
-//        bp.train(data, target);
-//
-//        //根据训练结果来检验样本数据
-//        for(int j=0;j<data.length;j++){
-//            double[] result = bp.computeOut(data[j]);
-//            System.out.println(Arrays.toString(data[j])+":"+Arrays.toString(result));
-//        }
-//
-//        //根据训练结果来预测一条新数据的分类
-//        double[] x = new double[]{3,1};
-//        double[] result = bp.computeOut(x);
-//        System.out.println(Arrays.toString(x)+":"+Arrays.toString(result));
     }
-
-//        for (int i = 0; i < bp.layerErr.length; ++i) {
-//            for (int j = 0; j < bp.layerErr[i].length; ++j) {
-//                System.out.println("layerErr: " + bp.layerErr[i][j]);
-//            }
-//        }
-//
-//        for (int i = 0; i < bp.layer_weight.length; ++i) {
-//            for (int j = 0; j < bp.layer_weight[i].length; ++j) {
-//                for (int k = 0; k < bp.layer_weight[i][j].length; ++k) {
-//                    System.out.println("layer_weight: " + bp.layer_weight[i][j][k]);
-//                }
-//            }
-//        }
-//
-//        for (int i = 0; i < bp.layer_weight_delta.length; ++i) {
-//            for (int j = 0; j < bp.layer_weight_delta[i].length; ++j) {
-//                for (int k = 0; k < bp.layer_weight_delta[i][j].length; ++k) {
-//                    System.out.println("layer_weight_delta: " + bp.layer_weight_delta[i][j][k]);
-//                }
-//            }
-//        }
-
 }
