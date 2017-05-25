@@ -10,71 +10,6 @@ import java.util.Iterator;
 public interface StockInfoDAO {
 
     /**
-     * 得到MACD
-     * @param startDate 开始日期
-     * @param endDate 结束日期
-     * @param code 股票代码
-     * @return Iterator<Macd>
-     */
-    public Iterator<Macd> getMACDs(String startDate, String endDate, String code);
-
-    /**
-     * 添加MACD
-     * @param macd macd数据
-     * @return boolean
-     */
-    public boolean addMACD(Macd macd);
-
-    /**
-     * 得到KDJ
-     * @param startDate 开始日期
-     * @param endDate 结束日期
-     * @param code 股票代码
-     * @return Iterator<Kdj>
-     */
-    public Iterator<Kdj> getKDJs(String startDate, String endDate, String code);
-
-    /**
-     * 添加kdj
-     * @param kdj kdj数据
-     * @return boolean
-     */
-    public boolean addKDJ(Kdj kdj);
-
-    /**
-     * 得到Rsi
-     * @param startDate 开始日期
-     * @param endDate 结束日期
-     * @param code 股票代码
-     * @return Iterator<Rsi>
-     */
-    public Iterator<Rsi> getRSIs(String startDate, String endDate, String code);
-
-    /**
-     * 添加boll
-     * @param rsi rsi数据
-     * @return boolean
-     */
-    public boolean addRSI(Rsi rsi);
-
-    /**
-     * 得到boll
-     * @param startDate 开始日期
-     * @param endDate 结束日期
-     * @param code 股票代码
-     * @return Iterator<Boll>
-     */
-    public Iterator<Boll> getBOLLs(String startDate, String endDate, String code);
-
-    /**
-     * 添加boll
-     * @param boll boll数据
-     * @return boolean
-     */
-    public boolean addBOLL(Boll boll);
-
-
-    /**
      * 根据股票代码和时间获取股票数据（历史数据）
      * @param code 股票代码
      * @param date 时间
@@ -90,13 +25,12 @@ public interface StockInfoDAO {
      */
     public Iterator<String> getAllStockCodesByBlock(String blockName);
 
-
     /**
-     * 获取某一只股票的实时信息
+     * 获取某一只股票今日的实时信息
      * @param code 股票代码
      * @return 股票信息
      */
-    public Current getStockRealTimeInfo(String code);
+    public Iterator<Current> getStockRealTimeInfo(String code);
 
     /**
      * 得到所有股票ID
@@ -133,29 +67,6 @@ public interface StockInfoDAO {
      * @return 对应行业全部股票代码
      */
     public Iterator<String> getAllStockCodesByIndustry(String industryName);
-
-    /**
-     * 按用户ID获得全部收藏股票信息
-     * @param userID 用户ID
-     * @return ArrayList<Stock> 全部收藏股票信息
-     */
-    public Iterator<String> getCollectedStocks(String userID);
-
-    /**
-     * 添加收藏股票
-     * @param userID 用户ID
-     * @param code 股票代码
-     * @return boolean 是否添加成功
-     */
-    public boolean addCollectedStock(String userID , String code);
-
-    /**
-     * 取消收藏股票
-     * @param userID 用户ID
-     * @param code 股票代码
-     * @return boolean 是否取消成功
-     */
-    public boolean removeCollectedStock(String userID, String code);
 
     /**
      * 得到股票2014-5-26前全部历史数据

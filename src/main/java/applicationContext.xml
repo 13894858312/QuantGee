@@ -54,7 +54,6 @@
                 <prop key="hibernate.connection.autocommit">true</prop>
             </props>
         </property>
-
     </bean>
 
     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
@@ -112,6 +111,14 @@
     </bean>
 
     <bean id="strategyDao" class="data.strategyData.StrategyData" scope="singleton">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
+
+    <bean id="QuotaDao" class="data.stockInfoData.QuotaData" scope="singleton">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
+
+    <bean id="CollectStockData" class="data.stockInfoData.CollectStockData" scope="singleton">
         <property name="hibernateTemplate" ref="hibernateTemplate"></property>
     </bean>
 
