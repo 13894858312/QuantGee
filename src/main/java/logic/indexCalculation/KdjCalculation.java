@@ -1,5 +1,6 @@
 package logic.indexCalculation;
 
+import DAO.stockInfoDAO.QuotaDAO;
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.History;
 import bean.Kdj;
@@ -26,13 +27,16 @@ public class KdjCalculation {
         kdjCalculation.start();
     }
 
-
     private static final int INDEX1 = 9;
     private static final int INDEX2 = 3;
     private static final int INDEX3 = 3;
 
     @Autowired
     private StockInfoDAO stockInfoDAO;
+
+    @Autowired
+    private QuotaDAO quotaDAO;
+
 
     public void start() {
         Iterator<String> codes = stockInfoDAO.getAllStockCodes();
@@ -72,7 +76,7 @@ public class KdjCalculation {
                 kdj.setK(MathHelper.formatData(k,3));
                 kdj.setJ(MathHelper.formatData(j,3));
 
-                stockInfoDAO.addKDJ(kdj);
+                quotaDAO.addKDJ(kdj);
             }
         }
 

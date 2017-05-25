@@ -1,5 +1,6 @@
 package logic.stock;
 
+import DAO.stockInfoDAO.QuotaDAO;
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.Current;
 import bean.MarketInfo;
@@ -28,6 +29,9 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
     private StockInfoDAO stockInfoDAO;
 
     @Autowired
+    private QuotaDAO quotaDAO;
+
+    @Autowired
     private StockDataCalculation stockDataCalculation;
 
     @Autowired
@@ -35,15 +39,16 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
 
     @Override
     public StockCurrentVO getRealTimeStockInfo(String code) {
-        MarketInfo marketInfo = stockInfoDAO.getMarketInfo(code);
-        Current stock = stockInfoDAO.getStockRealTimeInfo(code);
-        if(marketInfo == null || stock == null) {
-            return null;
-        }
-
-        StockCurrentVO stockCurrentVO = transferHelper.transToStockCurrent(marketInfo, stock);
-
-        return stockCurrentVO;
+//        MarketInfo marketInfo = stockInfoDAO.getMarketInfo(code);
+//        Current stock = stockInfoDAO.getStockRealTimeInfo(code);
+//        if(marketInfo == null || stock == null) {
+//            return null;
+//        }
+//
+//        StockCurrentVO stockCurrentVO = transferHelper.transToStockCurrent(marketInfo, stock);
+//
+//        return stockCurrentVO;
+        return null;
     }
 
     @Override

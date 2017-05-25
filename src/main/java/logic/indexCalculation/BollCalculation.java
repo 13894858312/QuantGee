@@ -1,5 +1,6 @@
 package logic.indexCalculation;
 
+import DAO.stockInfoDAO.QuotaDAO;
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.Boll;
 import bean.History;
@@ -26,6 +27,9 @@ public class BollCalculation {
 
     private static final int PERIOD = 20;
     private int dataStartIndex;
+
+    @Autowired
+    private QuotaDAO quotaDAO;
 
     @Autowired
     private StockInfoDAO stockInfoDAO;
@@ -68,7 +72,7 @@ public class BollCalculation {
             boll.setUp(MathHelper.formatData(mb+2*md,3));
             boll.setLow(MathHelper.formatData(mb-2*md,3));
 
-            stockInfoDAO.addBOLL(boll);
+            quotaDAO.addBOLL(boll);
         }
 
 

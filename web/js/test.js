@@ -7,13 +7,7 @@
         type:'GET',
         dataType:'json',
         success:function (data) {
-            var str;
-            var json = eval(data);
-            for (var i=0; i<json.length;i++){
-                for(var key in json[i]){
-                    alert("key == " + key + " ;value == " + json[i][key]);
-                }
-            }
+            alert(data);
         },
         error:function (data) {
             alert("error");
