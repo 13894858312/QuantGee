@@ -141,9 +141,9 @@ option = {
         data: ['日K', 'MA5', 'MA10', 'MA20', 'MA30']
     },
     grid: {
-        left: '10%',
-        right: '10%',
-        bottom: '15%'
+        left: '0',
+        right: '0',
+        bottom: '0'
     },
     xAxis: {
         type: 'category',

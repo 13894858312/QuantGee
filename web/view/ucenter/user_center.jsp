@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 
@@ -18,9 +20,10 @@
         </span>
 				<div class="hd_right fr">
 					<div class="loginedbox">
-						<a id="J_username" class="sns_username dib freshIcon" href="http://stock.10jqka.com.cn/my/" target="_blank"></a>
+						<a id="J_username" class="sns_username dib freshIcon" name="accountVO.accountID"><s:property value="accountVO.accountID"/> </a>
 						<span class="boundary dib">|</span>
-						<a class="c_login dib homeloginout" target="_self" id="header_logined_out" href="javascript:void(0);">退 出</a>
+						<a class="c_login dib homeloginout" target="_self" id="header_logined_out" >退 出</a>
+						<%--<input type="submit" action="logout" value="退出" />--%>
 					</div>
 				</div>
 			</div>

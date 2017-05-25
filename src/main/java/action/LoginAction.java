@@ -7,17 +7,24 @@ import service.user.AccountService;
 import vo.user.AccountVO;
 
 @Controller
-public class LoginAction extends ActionSupport {
+public class LoginAction extends ActionSupport{
 
-	private AccountVO accountVO; // 表单中的姓名
+	private AccountVO accountVO = new AccountVO(); // 表单中的姓名
 
 	@Autowired
 	private AccountService accountService;
 
-	public String execute() {
-		System.out.println(accountVO.getAccountID());
-		System.out.println(accountVO.getPassword());
+	public String login() {
 
+		if(accountService.login(accountVO)) {
+			return SUCCESS;
+		} else {
+			return "fail";
+		}
+
+	}
+	public String logout() {
+		System.out.println("yes");
 		if(accountService.login(accountVO)) {
 			return SUCCESS;
 		} else {

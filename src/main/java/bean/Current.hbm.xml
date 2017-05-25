@@ -53,5 +53,8 @@
         <property name="nmc">
             <column name="nmc" sql-type="double" precision="-1" not-null="true"/>
         </property>
+        <property name="time">
+            <column name="time" sql-type="text" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>

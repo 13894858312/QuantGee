@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/18.
+ * Created by wangxue on 2017/5/24.
  */
 @Entity
 public class Current {
@@ -26,6 +26,7 @@ public class Current {
     private Double pb;
     private Double mktcap;
     private Double nmc;
+    private String time;
 
     @Id
     @Column(name = "index", nullable = true)
@@ -187,6 +188,16 @@ public class Current {
         this.nmc = nmc;
     }
 
+    @Basic
+    @Column(name = "time", nullable = true, length = -1)
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -212,6 +223,7 @@ public class Current {
         if (pb != null ? !pb.equals(current.pb) : current.pb != null) return false;
         if (mktcap != null ? !mktcap.equals(current.mktcap) : current.mktcap != null) return false;
         if (nmc != null ? !nmc.equals(current.nmc) : current.nmc != null) return false;
+        if (time != null ? !time.equals(current.time) : current.time != null) return false;
 
         return true;
     }
@@ -234,6 +246,7 @@ public class Current {
         result = 31 * result + (pb != null ? pb.hashCode() : 0);
         result = 31 * result + (mktcap != null ? mktcap.hashCode() : 0);
         result = 31 * result + (nmc != null ? nmc.hashCode() : 0);
+        result = 31 * result + (time != null ? time.hashCode() : 0);
         return result;
     }
 }

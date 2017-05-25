@@ -114,100 +114,38 @@
         </div>
 
     </div>
-    <div class="container w1200">
-        <div class="box">
-            <div class="head-img">
-                <img src="../../images/标签1.png" width="80" height="50">
-            </div>
-            <div class="head-text">
-                大盘指数
-            </div>
-        </div>
-            <div class="KLine">
-                <div class="klineimg">
-                    <img src="../../images/kline.png" width="67" height="67">
-                </div>
-                <div class="klinetext">
-                    <h3 class="icons1">近期K线趋势</h3>
-                    <p class="detail">
-                        <span class="c-rise">最高点：0支</span>
-                        <span class="c-fall">最低点：0支</span>
-                        <span class="start">起始日期：</span>
-                        <span class="d1"><input type="date"></span>
-                        <span class="end">结束日期：</span>
-                        <span class="d2"><input type="date"></span>
-                        <span class="button"><button type="button" onclick="test()">查询</button></span>
-                    </p>
-                </div>
-                <div class="klinegraph" id="kline"></div>
-                <script type="text/javascript" src="../../js/KLine.js"></script>
-            </div>
-        <div class="box1">
-            <div class="head-img">
-                <img src="../../images/标签1.png" width="80" height="50">
-            </div>
-            <div class="head-text">
-                大盘数据
-            </div>
-        </div>
-        <div class="middle">
-            <div class="hcharts clearfix">
-                <div class="hcharts-left tab-hv-box">
-                    <div class="hcharts-list">
-                        <div class="hcharts-left tab-hav-box">
-                            <div class="hcharts-list">
-                                <div class="item tab-hv-trigger cur" id="first" onmouseover="s3(this)" style="background-color: #e0eee0;border-left: 6px solid #000">
-                                    <h3 class="icons1" style="margin-left: 0px">涨跌分布</h3>
-                                    <p class="detail">
-                                        <span class="c-rise">上涨：0支</span>
-                                        <span class="c-fall">下跌：0支</span>
-                                    </p>
-                                </div>
-                                <div class="item tab-hv-trigger cur" id="second" onmouseover="s5(this)">
-                                    <h3 class="icon2">涨跌停</h3>
-                                    <p class="detail">
-                                        <span class="c-rise">涨停：0支</span>
-                                        <span class="c-fall">跌停：0支</span>
-                                    </p>
-                                </div>
-                                <div class="item tab-hv-trigger cur" id="third" onmouseover="s7(this)">
-                                    <h3 class="icon3">今日成交量</h3>
-                                    <p class="detail">
-                                        <span class="c-rise">买入：0手</span>
-                                        <span class="c-fall">卖出：0手</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="hcharts-cont1" id="gram"></div>
-                            <script type="text/javascript" src="../../js/gram.js"></script>
-                            <div class="hcharts-cont2" id="line"></div>
-                            <script type="text/javascript" src="../../js/line.js"></script>
-                            <div class="hcharts-cont3" id="line1"></div>
-                            <script type="text/javascript" src="../../js/line1.js"></script>
-                            <div class="hcharts-right" id="">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="g1" id="g1"></div>
-            <script type="text/javascript" src="../../js/g1.js"></script>
-            <div class="g2" id="g2"></div>
-            <script type="text/javascript" src="../../js/g2.js"></script>
-            <div class="g3" id="g3"></div>
-            <script type="text/javascript" src="../../js/g3.js"></script>
-        </div>
-        <div class="box2">
-            <div class="head-img">
-                <img src="../../images/标签1.png" width="80" height="50">
-            </div>
-            <div class="head-text">
-                个股行情
-            </div>
-        </div>
-
-        </div>
-
+    <div class="firstHead">
+    	<img src="../../images/标签1.png" class="imageHead" style="width: 80;height: 50;"/>
+    </div>
+    <div class="firstText">
+    	<span>大盘数据</span>
+    </div>
+    <div class="SSE">
+    	<div class="sszhead">
+    	</div>
+    	<span class="SSE-text">上证指数</span>
+    	<span class="ssz1">25428.50</span>
+    	<span class="ssz2">0.10%</span>
+    	<span class="ssz3">25.35</span>
+    </div>
+    <div class="SZI">
+    	<div class="szihead">
+    	</div>
+    	<span class="SZI-text">深圳指数</span>
+    	<span class="ssz1">25428.50</span>
+    	<span class="ssz2">0.10%</span>
+    	<span class="ssz3">25.35</span>
+    </div>
+    <div class="SZ300">
+    	<div class="szhead">
+    	</div>
+    	<span class="SZ300-text">沪深300</span>
+    	<span class="ssz1">25428.50</span>
+    	<span class="ssz2">0.10%</span>
+    	<span class="ssz3">25.35</span>
+    </div>
+    <div class="graph-SSE"></div>
+	<div class="graph-SZI"></div>
+	<div class="graph-SZ300"></div>
 </body>
 </html>
