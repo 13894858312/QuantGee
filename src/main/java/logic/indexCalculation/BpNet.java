@@ -116,6 +116,7 @@ public class BpNet {
         updateWeight(tar);
     }
 
+
     public boolean isTrained() {
         return trained;
     }
