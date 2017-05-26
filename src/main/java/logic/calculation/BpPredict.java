@@ -1,4 +1,4 @@
-package logic.indexCalculation;
+package logic.calculation;
 
 /**
  * Created by Mark.W on 2017/5/24.
@@ -9,6 +9,10 @@ public class BpPredict {
     private static final int PREDICT_INTERVAL = 5;
 
     public static void main(String[] args) {
+        new BpPredict().start();
+    }
+
+    private void start() {
         //初始化神经网络的基本配置
         //第一个参数是一个整型数组，表示神经网络的层数和每层节点数，比如{3,10,10,10,10,2}表示输入层是3个节点，输出层是2个节点，中间有4层隐含层，每层10个节点
         //第二个参数是学习步长，第三个参数是动量系数
@@ -62,7 +66,7 @@ public class BpPredict {
     }
 
 
-    public static double[][] dataNormalize(double[] close, boolean isTraining) {
+    public double[][] dataNormalize(double[] close, boolean isTraining) {
         double[][] data;
         if (isTraining) {
             data = new double[close.length-PREDICT_INTERVAL][6];

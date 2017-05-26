@@ -1,4 +1,4 @@
-package logic.indexCalculation;
+package logic.calculation;
 
 import DAO.stockInfoDAO.QuotaDAO;
 import DAO.stockInfoDAO.StockInfoDAO;
