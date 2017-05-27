@@ -36,11 +36,11 @@ public class UserServiceImp implements UserService {
 
     @Override
     public UserVO getUserInfo(String accountID) {
-//        User user = userDAO.searchUser(accountID);
-//        return transferHelper.transToUserVO(user);
+        User user = userDAO.searchUser(accountID);
+        return transferHelper.transToUserVO(user);
 
-        UserVO userVO = new UserVO("wyy", "wyyyy", "wyyyyyy");
-        return userVO;
+//        UserVO userVO = new UserVO("wyy", "wyyyy", "wyyyyyy");
+//        return userVO;
     }
 
 }
