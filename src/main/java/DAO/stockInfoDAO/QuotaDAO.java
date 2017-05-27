@@ -1,9 +1,6 @@
 package DAO.stockInfoDAO;
 
-import bean.Boll;
-import bean.Kdj;
-import bean.Macd;
-import bean.Rsi;
+import bean.*;
 
 import java.util.Iterator;
 
@@ -75,5 +72,12 @@ public interface QuotaDAO {
      */
     public boolean addBOLL(Boll boll);
 
+    /**
+     * 获取股票预测数据
+     * @param code 股票代码
+     * @param date 日期
+     * @return 预测数据
+     */
+    public StockPredict getPredictData(String code , String date);
 
 }

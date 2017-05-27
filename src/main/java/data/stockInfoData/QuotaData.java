@@ -1,10 +1,7 @@
 package data.stockInfoData;
 
 import DAO.stockInfoDAO.QuotaDAO;
-import bean.Boll;
-import bean.Kdj;
-import bean.Macd;
-import bean.Rsi;
+import bean.*;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 
 import java.util.Iterator;
@@ -77,6 +74,15 @@ public class QuotaData implements QuotaDAO {
         hibernateTemplate.save(boll);
         hibernateTemplate.flush();
         return true;
+    }
+
+    @Override
+    public StockPredict getPredictData(String code, String date) {
+        StockPredictPK stockPredictPK = new StockPredictPK();
+        stockPredictPK.setDate(date);
+        stockPredictPK.setCode(code);
+        StockPredict stockPredict = hibernateTemplate.get(StockPredict.class, stockPredictPK);
+        return stockPredict;
     }
 
 }
