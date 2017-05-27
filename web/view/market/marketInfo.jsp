@@ -130,7 +130,7 @@
     <div class="leftnews"></div>
     <div class="rightnews"></div>
     <div class="more">
-    	<a href="">更多>></a>
+    	<a href="" onclick="test()">更多>></a>
     </div>
 </body>
 </html>

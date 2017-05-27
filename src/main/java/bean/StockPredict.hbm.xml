@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="bean.StockPredict" table="StockPredict" schema="quantgee_data">
+        <composite-id mapped="true" class="bean.StockPredictPK">
+            <key-property name="code">
+                <column name="code" sql-type="varchar(6)" length="6"/>
+            </key-property>
+            <key-property name="date">
+                <column name="date" sql-type="varchar(10)" length="10"/>
+            </key-property>
+        </composite-id>
+        <property name="predictedPrice">
+            <column name="predictedPrice" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="actualPrice">
+            <column name="actualPrice" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="historyDeviation">
+            <column name="historyDeviation" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

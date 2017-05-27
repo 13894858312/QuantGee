@@ -20,6 +20,7 @@
             x.style.color = "#b7b7b7";
         }
     </script>
+    <script src="../../js/test.js"></script>
     <style type="text/css">
     	@import "../../css/style.css";
     	@import "../../css/stock/firstStock.css";
@@ -115,9 +116,10 @@
     <div class="graph-SSE" style="position: absolute;left: 8%;top: 138%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
 	<div class="graph-SZI" style="position: absolute;left: 36%;top: 138%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
 	<div class="graph-SZ300" style="position: absolute;left: 64%;top: 138%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
-	<form class="search">
+	<div class="search">
 		<input type="text" class="lefttext" placeholder="股票代码/股票名称"/>
-		<input type="submit" class="submit"/>
-	</form>
+		<i class="submit" onclick="test()"></i>
+	</div>
+	
 </body>
 </html>
