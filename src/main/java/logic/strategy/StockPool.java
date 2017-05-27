@@ -1,14 +1,6 @@
-//package temp.strategy;
+//package logic.strategy;
 //
-//import data.StockData;
-//import dataDao.StockDataDao;
-//import po.BaseCumulativeYieldPO;
-//import po.StockPO;
 //import logic.tools.DateHelper;
-//import vo.BlockType;
-//import vo.CumulativeYieldGraphDataVO;
-//import vo.StrategyInputType;
-//import vo.StrategyInputVO;
 //
 //import java.util.ArrayList;
 //import java.util.Date;
@@ -20,7 +12,6 @@
 // */
 //public class StockPool {
 //
-//    private StockDataDao stockDataDao;
 //    private StrategyInputVO strategyInputVO; //用于判断该股票池是否可以继续被复用
 //
 //    private ArrayList<BaseCumulativeYieldPO> blockBaseRaito;

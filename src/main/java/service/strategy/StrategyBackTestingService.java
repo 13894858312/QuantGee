@@ -2,7 +2,7 @@ package service.strategy;
 
 
 import vo.strategy.StrategyBackTestInputVO;
-import vo.strategy.StrategyBackTestingVO;
+import vo.strategy.StrategyBackTestResultVO;
 
 /**
  * Created by Mark.W on 2017/5/5.
@@ -13,7 +13,7 @@ public interface StrategyBackTestingService {
     /**
      * 股票回测
      * @param inputVO 策略回测输入信息
-     * @return  StrategyBackTestingVO
+     * @return  StrategyBackTestResultVO
      */
-    public StrategyBackTestingVO getStrategyBackTesting(StrategyBackTestInputVO inputVO);
+    public StrategyBackTestResultVO getStrategyBackTesting(StrategyBackTestInputVO inputVO);
 }

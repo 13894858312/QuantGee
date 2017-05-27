@@ -11,27 +11,6 @@ import java.util.Iterator;
 public interface StrategyDAO {
 
     /**
-     * 创建策略
-     * @param strategy 要创建的策略
-     * @return boolean 是否添加成功
-     */
-    public boolean addStrategy(Strategy strategy);
-
-    /**
-     * 删除策略并删除对应策略收藏
-     * @param strategyID 要删除的策略编号
-     * @return boolean 是否添加成功
-     */
-    public boolean removeStrategy(int strategyID);
-
-    /**
-     * 得到用户创建的全部策略
-     * @param userID 用户ID
-     * @return 策略列表
-     */
-    public Iterator<Strategy> getUserStrategy(String userID);
-
-    /**
      * 添加收藏策略
      * @param userID 用户ID
      * @param strategyID 要收藏的策略编号
@@ -53,6 +32,29 @@ public interface StrategyDAO {
      * @return 策略ID
      */
     public Iterator<Integer> getUserCollectedStrategy(String userID);
+
+
+    /**
+     * 创建策略
+     * @param strategy 要创建的策略
+     * @return boolean 是否添加成功
+     */
+    public boolean addStrategy(Strategy strategy);
+
+    /**
+     * 删除策略并删除对应策略收藏
+     * @param strategyID 要删除的策略编号
+     * @return boolean 是否添加成功
+     */
+    public boolean removeStrategy(int strategyID);
+
+    /**
+     * 得到用户创建的全部策略
+     * @param userID 用户ID
+     * @return 策略列表
+     */
+    public Iterator<Strategy> getUserStrategy(String userID);
+
 
     /**
      * 按策略编号得到策略信息

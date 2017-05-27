@@ -9,7 +9,8 @@ import vo.user.AccountVO;
 @Controller
 public class LoginAction extends ActionSupport{
 
-	private AccountVO accountVO = new AccountVO(); // 表单中的姓名
+//	private AccountVO accountVO = new AccountVO(); // 表单中的姓名
+	private AccountVO accountVO; // 表单中的姓名
 
 	@Autowired
 	private AccountService accountService;

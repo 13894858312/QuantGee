@@ -4,6 +4,8 @@ import DAO.accountDAO.AccountDAO;
 import bean.Account;
 import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import service.user.AccountService;
@@ -13,6 +15,7 @@ import vo.user.AccountVO;
  * Created by Mark.W on 2017/5/9.
  */
 @Service
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class AccountServiceImp implements AccountService{
 
     @Autowired
@@ -20,22 +23,6 @@ public class AccountServiceImp implements AccountService{
 
     @Autowired
     private TransferHelper transferHelper;
-
-    public TransferHelper getTransferHelper() {
-        return transferHelper;
-    }
-
-    public void setTransferHelper(TransferHelper transferHelper) {
-        this.transferHelper = transferHelper;
-    }
-
-    public AccountDAO getAccountDAO() {
-        return accountDAO;
-    }
-
-    public void setAccountDAO(AccountDAO accountDAO) {
-        this.accountDAO = accountDAO;
-    }
 
     @Override
     public boolean register(AccountVO accountVO) {
@@ -45,14 +32,12 @@ public class AccountServiceImp implements AccountService{
 
     @Override
     public boolean login(AccountVO accountVO) {
-//        if(accountVO != null) {
-//            Account account = accountDAO.getAccount(accountVO.getAccountID());
+//        Account account = accountDAO.getAccount(accountVO.getAccountID());
 //
-//            if(accountVO.getPassword().equals(account.getPassword())) {
-//                account.setIsLogIn(1);
-//                if(accountDAO.updateAccount(account)) {        //更新登陆状态
-//                    return true;
-//                }
+//        if(accountVO.getPassword().equals(account.getPassword())) {
+//            account.setIsLogIn(1);
+//            if(accountDAO.updateAccount(account)) {        //更新登陆状态
+//                return true;
 //            }
 //        }
 //
@@ -67,13 +52,11 @@ public class AccountServiceImp implements AccountService{
 
     @Override
     public boolean modifyPassword(AccountVO accountVO) {
-        if(accountVO != null) {
-            Account account = accountDAO.getAccount(accountVO.getAccountID());
+        Account account = accountDAO.getAccount(accountVO.getAccountID());
 
-            account.setPassword(accountVO.getPassword());
-            if(accountDAO.updateAccount(account)) {        //更新密码
-                return true;
-            }
+        account.setPassword(accountVO.getPassword());
+        if(accountDAO.updateAccount(account)) {        //更新密码
+            return true;
         }
 
         return false;
@@ -81,13 +64,11 @@ public class AccountServiceImp implements AccountService{
 
     @Override
     public boolean logout(AccountVO accountVO) {
-        if(accountVO != null) {
-            Account account = accountDAO.getAccount(accountVO.getAccountID());
+        Account account = accountDAO.getAccount(accountVO.getAccountID());
 
-            account.setIsLogIn(0);
-            if(accountDAO.updateAccount(account)) {        //更新登出状态
-                return true;
-            }
+        account.setIsLogIn(0);
+        if(accountDAO.updateAccount(account)) {        //更新登出状态
+            return true;
         }
         return false;
     }

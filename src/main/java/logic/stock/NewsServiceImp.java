@@ -28,14 +28,15 @@ public class NewsServiceImp implements NewsService {
     @Override
     public ArrayList<NewsVO> getNews() {
         Iterator<News> news = newsDAO.getNews();
-        if(news == null) {
-            return null;
-        }
 
         ArrayList<NewsVO> newsVOS = new ArrayList<>();
 
         while (news.hasNext()) {
             newsVOS.add(transferHelper.transToNewsVO(news.next()));
+        }
+
+        if (newsVOS.size() == 0) {
+            return null;
         }
 
         return newsVOS;

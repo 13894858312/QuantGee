@@ -4,6 +4,8 @@ import DAO.userDAO.UserDAO;
 import bean.User;
 import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import vo.user.UserVO;
 import service.user.UserService;
@@ -12,6 +14,7 @@ import service.user.UserService;
  * Created by Mark.W on 2017/5/9.
  */
 @Service
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class UserServiceImp implements UserService {
 
     @Autowired

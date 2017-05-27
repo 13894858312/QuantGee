@@ -39,10 +39,8 @@ public class CollectStockServiceImp implements CollectStockService{
 
     @Override
     public boolean collectStock(StockCollectInputVO inputVO) {
-        if(inputVO != null) {
-            if(collectStockDAO.addCollectedStock(inputVO.getUserID(), inputVO.getStockCode())) {
-                return true;
-            }
+        if(collectStockDAO.addCollectedStock(inputVO.getUserID(), inputVO.getStockCode())) {
+            return true;
         }
 
         return false;
@@ -50,10 +48,8 @@ public class CollectStockServiceImp implements CollectStockService{
 
     @Override
     public boolean deleteCollectedStock(StockCollectInputVO inputVO) {
-        if(inputVO != null) {
-            if(collectStockDAO.removeCollectedStock(inputVO.getUserID(), inputVO.getStockCode())) {
-                return true;
-            }
+        if(collectStockDAO.removeCollectedStock(inputVO.getUserID(), inputVO.getStockCode())) {
+            return true;
         }
 
         return false;
