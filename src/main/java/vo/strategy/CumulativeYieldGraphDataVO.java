@@ -5,8 +5,8 @@ package vo.strategy;
  * Created by Mark.W on 2017/3/23.
  */
 public class CumulativeYieldGraphDataVO {
-    public String date;
-    public double ratio;  //收益率
+    private String date;
+    private double ratio;  //收益率
 
     /**
      * @param date 日期 横坐标
@@ -14,6 +14,22 @@ public class CumulativeYieldGraphDataVO {
      */
     public CumulativeYieldGraphDataVO(String date, double ratio) {
         this.date = date;
+        this.ratio = ratio;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public double getRatio() {
+        return ratio;
+    }
+
+    public void setRatio(double ratio) {
         this.ratio = ratio;
     }
 }

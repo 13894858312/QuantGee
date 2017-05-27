@@ -1,65 +1,61 @@
 package logic.strategy;
 
+import logic.strategy.backTesting.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Service;
+import service.strategy.StrategyBackTestingService;
 import vo.strategy.AbnormalReturnGraphVO;
-import vo.strategy.BackTestingResultVO;
+import vo.strategy.StrategyBackTestResultVO;
 import vo.strategy.StrategyBackTestInputVO;
 
 /**
  * Created by Mark.W on 2017/3/23.
  */
-public class StrategyBackTestingServiceImp {
+@Service
+public class StrategyBackTestingServiceImp implements StrategyBackTestingService{
 
     private IStrategy iStrategy;
+
+    @Autowired
     private StockPool stockPool;
 
     public StrategyBackTestingServiceImp() {
         this.iStrategy = new MomentumDriveIStrategy();
     }
 
-    /**
-     * 策略回测
-     * 计算累计收益率的图和收益分布直方图
-     * @param strategyBackTestInputVO 股票信息
-     * @return BackTestingResultVO
-     */
-    public BackTestingResultVO getStrategyBackTestingGraphInfo(int strategyType, StrategyBackTestInputVO strategyBackTestInputVO) {
+    @Override
+    public StrategyBackTestResultVO getStrategyBackTesting(StrategyBackTestInputVO inputVO) {
 
-        this.initStockPool(strategyBackTestInputVO);
-        this.initStrategy(strategyType);
+        this.initStockPool(inputVO);
+        this.initStrategy(inputVO.getStratrgyType());
 
         //回测
-        StrategyBackTesting strategyBackTesting = new StrategyBackTesting(stockPool, strategyBackTestInputVO.holdingPeriod,
-                strategyBackTestInputVO.returnPeriod, iStrategy,false);
+        StrategyBackTesting strategyBackTesting = new StrategyBackTesting(stockPool, inputVO.getHoldingPeriod(),
+                inputVO.getReturnPeriod(), iStrategy,false);
         strategyBackTesting.start();
 
-        BackTestingResultVO backTestingResultVO = strategyBackTesting.getBackTestingResultVO();
+        StrategyBackTestResultVO strategyBackTestResultVO = strategyBackTesting.getStrategyBackTestResultVO();
 
-        assert (backTestingResultVO != null) : "logic.calculation.StrategyBackTestingServiceImp.getCumulativeYieldGraphInfo返回值异常" ;
+        assert (strategyBackTestResultVO != null) : "logic.calculation.StrategyBackTestingServiceImp.getCumulativeYieldGraphInfo返回值异常" ;
 
-        return backTestingResultVO;
+        return strategyBackTestResultVO;
     }
 
-    /**
-     * 计算收益率和策略胜率的图
-     * @param strategyType 策略类型
-     * @param strategyBackTestInputVO 股票信息
-     * @param isHoldingPeriod period参数是否是持有期，true为持有期，false为形成期
-     * @return AbnormalReturnGraphVO
-     */
-    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(int strategyType, StrategyBackTestInputVO strategyBackTestInputVO, boolean isHoldingPeriod) {
-        this.initStockPool(strategyBackTestInputVO);
-        this.initStrategy(strategyType);
+    @Override
+    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StrategyBackTestInputVO inputVO) {
+        this.initStockPool(inputVO);
+        this.initStrategy(inputVO.getStratrgyType());
 
         int period;
-        if(isHoldingPeriod) {
-            period = strategyBackTestInputVO.holdingPeriod;
+        if(inputVO.isHoldingPeriod()) {
+            period = inputVO.getHoldingPeriod();
         } else {
-            period = strategyBackTestInputVO.returnPeriod;
+            period = inputVO.getReturnPeriod();
         }
 
-        StrategyAbnormalReturn strategyAbnormalReturn = new StrategyAbnormalReturn(stockPool, period, isHoldingPeriod, iStrategy);
+        StrategyAbnormalReturn strategyAbnormalReturn = new StrategyAbnormalReturn(stockPool, period, inputVO.isHoldingPeriod(), iStrategy);
         strategyAbnormalReturn.start();
 
         AbnormalReturnGraphVO abnormalReturnGraphVO = strategyAbnormalReturn.getAbnormalReturnGraphVO();
@@ -85,11 +81,11 @@ public class StrategyBackTestingServiceImp {
      */
     private void initStockPool(StrategyBackTestInputVO strategyBackTestInputVO) {
         if(stockPool == null) {
-            stockPool = new StockPool(strategyBackTestInputVO);
+            stockPool.initStockPool(strategyBackTestInputVO);
         } else {
 
             if(!(strategyBackTestInputVO.equals(stockPool.getStrategyBackTestInputVO()))) {
-                stockPool = new StockPool(strategyBackTestInputVO);
+                stockPool.initStockPool(strategyBackTestInputVO);
             }
         }
     }

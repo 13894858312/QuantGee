@@ -1,4 +1,4 @@
-package logic.strategy;
+package logic.strategy.backTesting;
 
 import logic.tools.MathHelper;
 import vo.strategy.CumulativeYieldGraphDataVO;
@@ -171,7 +171,7 @@ public class StrategyDataAnlysis {
     private double calculateSharpRatio(double annualRevenue, ArrayList<CumulativeYieldGraphDataVO> strategyYield) {
         double[] strategy = new double[strategyYield.size()];
         for(int i=0; i<strategyYield.size(); ++i) {
-            strategy[i] = strategyYield.get(i).ratio;
+            strategy[i] = strategyYield.get(i).getRatio();
         }
 
         double sharpeRatio = (annualRevenue - RF)/Math.sqrt(MathHelper.variance(strategy));
@@ -189,12 +189,12 @@ public class StrategyDataAnlysis {
 
         double[] strategy = new double[strategyYield.size()];
         for(int i=0; i<strategyYield.size(); ++i) {
-            strategy[i] = strategyYield.get(i).ratio;
+            strategy[i] = strategyYield.get(i).getRatio();
         }
 
         double[] base = new double[baseYield.size()];
         for(int i=0; i<baseYield.size(); ++i) {
-            base[i] = baseYield.get(i).ratio;
+            base[i] = baseYield.get(i).getRatio();
         }
 
         double beta = MathHelper.covariance(strategy, base)/ MathHelper.variance(base);
@@ -211,7 +211,7 @@ public class StrategyDataAnlysis {
                                               int tradeDays) {
         double baseAnnualRevenue = 0;
         for(int i=1; i<baseYield.size(); ++i) {
-            baseAnnualRevenue += baseYield.get(i).ratio;
+            baseAnnualRevenue += baseYield.get(i).getRatio();
         }
 
         baseAnnualRevenue /= baseYield.size();
@@ -228,19 +228,19 @@ public class StrategyDataAnlysis {
      */
     private double calculateMaxDrawdown(ArrayList<CumulativeYieldGraphDataVO> strategyYield) {
         double maxDrawdown = 0;
-        double high = strategyYield.get(0).ratio, low = high;
+        double high = strategyYield.get(0).getRatio(), low = high;
         int highIndex = 0, lowIndex = 0;
 
         for(int i=1; i<strategyYield.size(); ++i) {
             //折线在上升
-            if(strategyYield.get(i).ratio > strategyYield.get(i-1).ratio) {
-                high = strategyYield.get(i).ratio;
+            if(strategyYield.get(i).getRatio() > strategyYield.get(i-1).getRatio()) {
+                high = strategyYield.get(i).getRatio();
                 highIndex = i;
             }
 
             //折线在上升折线在下降
-            if(strategyYield.get(i).ratio < strategyYield.get(i-1).ratio) {
-                low = strategyYield.get(i).ratio;
+            if(strategyYield.get(i).getRatio() < strategyYield.get(i-1).getRatio()) {
+                low = strategyYield.get(i).getRatio();
                 lowIndex = i;
             }
 

@@ -1,32 +1,128 @@
 package vo.strategy;
 
-import logic.tools.DateHelper;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by Mark.W on 2017/3/23.
  * 策略计算输入的信息类
  */
 public class StrategyBackTestInputVO {
-    public int strategyInputType;           //0指定板块 1指定股票
-    public int stratrgyType;                //0动量策略 1均值回归
-    public String blockType;
-    public ArrayList<String> stockNames;
+    private int strategyInputType;           //0指定板块 1指定股票
+    private int stratrgyType;                //0动量策略 1均值回归
+    private String blockType;
+    private ArrayList<String> stockNames;
 
-    public String startDate;
-    public String endDate; //回测区间
+    private String startDate;
+    private String endDate; //回测区间
 
-    public int holdingPeriod; //调仓周期 (持有期）
-    public int returnPeriod; //基准收益率计算周期 (形成期)
+    private int holdingPeriod; //调仓周期 (持有期）
+    private int returnPeriod; //基准收益率计算周期 (形成期)
                                 //若是均值回归策略，则是N日移动均线
-    public int holdingStockNum; //每次调仓持有的股票数量
+    private int holdingStockNum; //每次调仓持有的股票数量
 
-    public boolean notST;   //排除st
+    private boolean notST;   //排除st
 
-    public double ratio;
+    private double ratio;
 
+    private boolean isHoldingPeriod;     //period参数是否是持有期，true为持有期，false为形成期
+
+
+    public int getStrategyInputType() {
+        return strategyInputType;
+    }
+
+    public void setStrategyInputType(int strategyInputType) {
+        this.strategyInputType = strategyInputType;
+    }
+
+    public int getStratrgyType() {
+        return stratrgyType;
+    }
+
+    public void setStratrgyType(int stratrgyType) {
+        this.stratrgyType = stratrgyType;
+    }
+
+    public String getBlockType() {
+        return blockType;
+    }
+
+    public void setBlockType(String blockType) {
+        this.blockType = blockType;
+    }
+
+    public ArrayList<String> getStockNames() {
+        return stockNames;
+    }
+
+    public void setStockNames(ArrayList<String> stockNames) {
+        this.stockNames = stockNames;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public int getHoldingPeriod() {
+        return holdingPeriod;
+    }
+
+    public void setHoldingPeriod(int holdingPeriod) {
+        this.holdingPeriod = holdingPeriod;
+    }
+
+    public int getReturnPeriod() {
+        return returnPeriod;
+    }
+
+    public void setReturnPeriod(int returnPeriod) {
+        this.returnPeriod = returnPeriod;
+    }
+
+    public int getHoldingStockNum() {
+        return holdingStockNum;
+    }
+
+    public void setHoldingStockNum(int holdingStockNum) {
+        this.holdingStockNum = holdingStockNum;
+    }
+
+    public boolean isNotST() {
+        return notST;
+    }
+
+    public void setNotST(boolean notST) {
+        this.notST = notST;
+    }
+
+    public double getRatio() {
+        return ratio;
+    }
+
+    public void setRatio(double ratio) {
+        this.ratio = ratio;
+    }
+
+    public boolean isHoldingPeriod() {
+        return isHoldingPeriod;
+    }
+
+    public void setHoldingPeriod(boolean holdingPeriod) {
+        isHoldingPeriod = holdingPeriod;
+    }
 
     /**
      * 判断StrategyInputVO是否相同 用来确定是否要重新加载股票池

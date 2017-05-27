@@ -10,11 +10,11 @@ import java.util.ArrayList;
  */
 public class YieldHistogramGraphVO {
 
-    public int positiveEarningNum; //正收益周期数
-    public int negativeEarningNum; //负收益周期数
-    public double winRate; //赢率
+    private int positiveEarningNum; //正收益周期数
+    private int negativeEarningNum; //负收益周期数
+    private double winRate; //赢率
 
-    public ArrayList<YieldHistogramGraphDataVO> yieldHistogramGraphDataVOS; //坐标信息
+    private ArrayList<YieldHistogramGraphDataVO> yieldHistogramGraphDataVOS; //坐标信息
 
     /**
      *
@@ -28,6 +28,38 @@ public class YieldHistogramGraphVO {
         this.positiveEarningNum = positiveEarningNum;
         this.negativeEarningNum = negativeEarningNum;
         this.winRate = MathHelper.formatData(winRate*100, 2);
+        this.yieldHistogramGraphDataVOS = yieldHistogramGraphDataVOS;
+    }
+
+    public int getPositiveEarningNum() {
+        return positiveEarningNum;
+    }
+
+    public void setPositiveEarningNum(int positiveEarningNum) {
+        this.positiveEarningNum = positiveEarningNum;
+    }
+
+    public int getNegativeEarningNum() {
+        return negativeEarningNum;
+    }
+
+    public void setNegativeEarningNum(int negativeEarningNum) {
+        this.negativeEarningNum = negativeEarningNum;
+    }
+
+    public double getWinRate() {
+        return winRate;
+    }
+
+    public void setWinRate(double winRate) {
+        this.winRate = winRate;
+    }
+
+    public ArrayList<YieldHistogramGraphDataVO> getYieldHistogramGraphDataVOS() {
+        return yieldHistogramGraphDataVOS;
+    }
+
+    public void setYieldHistogramGraphDataVOS(ArrayList<YieldHistogramGraphDataVO> yieldHistogramGraphDataVOS) {
         this.yieldHistogramGraphDataVOS = yieldHistogramGraphDataVOS;
     }
 }

@@ -1,6 +1,7 @@
 package service.strategy;
 
 
+import vo.strategy.AbnormalReturnGraphVO;
 import vo.strategy.StrategyBackTestInputVO;
 import vo.strategy.StrategyBackTestResultVO;
 
@@ -16,4 +17,11 @@ public interface StrategyBackTestingService {
      * @return  StrategyBackTestResultVO
      */
     public StrategyBackTestResultVO getStrategyBackTesting(StrategyBackTestInputVO inputVO);
+
+    /**
+     * 计算收益率和策略胜率的图
+     * @param inputVO 股票信息
+     * @return AbnormalReturnGraphVO
+     */
+    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StrategyBackTestInputVO inputVO);
 }

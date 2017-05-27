@@ -1,9 +1,10 @@
-package logic.strategy;
+package logic.strategy.backTesting;
 
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.Stock;
 import logic.tools.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import vo.strategy.CumulativeYieldGraphDataVO;
 import vo.strategy.StrategyBackTestInputVO;
 
@@ -15,6 +16,7 @@ import java.util.Iterator;
  * 股票池
  * Created by Mark.W on 2017/3/29.
  */
+@Service
 public class StockPool {
 
     @Autowired
@@ -22,7 +24,7 @@ public class StockPool {
 
     private StrategyBackTestInputVO strategyBackTestInputVO; //用于判断该股票池是否可以继续被复用
 
-//    private ArrayList<BaseCumulativeYieldPO> blockBaseRaito;
+    private ArrayList<BaseStockYield> blockBaseRaito = new ArrayList<>();
 
     private HashMap<String, LogicStock> stocksMap = new HashMap<>();       //key是股票code
     private ArrayList<LogicStock> stocksList = new ArrayList<>();
@@ -35,7 +37,9 @@ public class StockPool {
     private int holdingStockNum;
     private ArrayList<Stock> indexStocks = new ArrayList<>(); //stockPO size最大的stock作为标杆
 
-    public StockPool(StrategyBackTestInputVO strategyBackTestInputVO) {
+    public StockPool() {}
+
+    public void initStockPool(StrategyBackTestInputVO strategyBackTestInputVO) {
         this.strategyBackTestInputVO = strategyBackTestInputVO;
 
         this.initStocks(strategyBackTestInputVO);
@@ -45,22 +49,28 @@ public class StockPool {
         this.tradeDays = this.stocksMap.get(indexStocks.get(0).getStockId()).getStockSize();
 
         //确定持有股票的数量
-        if(strategyBackTestInputVO.ratio > 0) {
-            holdingStockNum = (int)(stocksList.size() * strategyBackTestInputVO.ratio);
+        if(strategyBackTestInputVO.getRatio() > 0) {
+            holdingStockNum = (int)(stocksList.size() * strategyBackTestInputVO.getRatio());
         } else {
-            holdingStockNum = strategyBackTestInputVO.holdingStockNum;
+            holdingStockNum = strategyBackTestInputVO.getHoldingStockNum();
         }
 
 
-        if(strategyBackTestInputVO.strategyInputType == 0) {
-            blockType = strategyBackTestInputVO.blockType;
+        if(strategyBackTestInputVO.getStrategyInputType() == 0) {
+            blockType = strategyBackTestInputVO.getBlockType();
         }
+
 
         //如果是板块 初始化基准收益率
-//        if(strategyBackTestInputVO.strategyInputType == 0 && strategyBackTestInputVO.blockType != null) {
-//            this.blockBaseRaito = this.stockDataDao.getBaseYieldByBlockName(strategyBackTestInputVO.blockType,
-//                   strategyBackTestInputVO.startDate, this.strategyBackTestInputVO.endDate);
-//        }
+        if(strategyBackTestInputVO.getStrategyInputType() == 0 && strategyBackTestInputVO.getBlockType() != null) {
+            Iterator<Stock> stocks = stockInfoDAO.getStockInfo(strategyBackTestInputVO.getBlockType(),
+                    strategyBackTestInputVO.getStartDate(), this.strategyBackTestInputVO.getEndDate());
+
+            while(stocks.hasNext()) {
+                Stock stock = stocks.next();
+                blockBaseRaito.add(new BaseStockYield(stock.getDate(), stock.getClose()));
+            }
+        }
     }
 
     /**
@@ -94,23 +104,23 @@ public class StockPool {
      */
     private void initStocks(StrategyBackTestInputVO inputVO) {
 
-        String s = DateHelper.formerNTradeDay(inputVO.startDate, inputVO.returnPeriod);
+        String s = DateHelper.formerNTradeDay(inputVO.getStartDate(), inputVO.getReturnPeriod());
         //时间范围之前的returnPeriod天的数据也需要拿
-        String e = inputVO.endDate;
+        String e = inputVO.getEndDate();
 
         ArrayList<ArrayList<Stock>> allStocks = new ArrayList<>();
 
-        //选择指定板块股票构造股票池
-        if(inputVO.strategyInputType == 0) {
-            Iterator<String> codes = stockInfoDAO.getAllStockCodesByBlock(inputVO.blockType);
+        //选择指定 板块 构造股票池
+        if(inputVO.getStrategyInputType() == 0) {
+            Iterator<String> codes = stockInfoDAO.getAllStockCodesByBlock(inputVO.getBlockType());
             while(codes.hasNext()) {
                 Iterator<Stock> stocks = stockInfoDAO.getStockInfo(codes.next(), s, e);
                 allStocks.add(transToList(stocks));
             }
-        //选择指定股票构造股票池
-        } else if(inputVO.strategyInputType == 1) {
-            for(int i = 0; i< inputVO.stockNames.size(); ++i) {
-                Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.stockNames.get(i), s, e);
+        //选择指定 股票 构造股票池
+        } else if(inputVO.getStrategyInputType() == 1) {
+            for(int i = 0; i< inputVO.getStockNames().size(); ++i) {
+                Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getStockNames().get(i), s, e);
                 allStocks.add(transToList(stocks));
             }
         }
@@ -139,7 +149,7 @@ public class StockPool {
         int index = 0;          //记录size最大的下标index
         for(int i=0; i<allStockPOs.size(); ++i) {
             if(allStockPOs.get(i) != null && allStockPOs.get(i).size() != 0) {
-                LogicStock logicStock = new LogicStock(this.strategyBackTestInputVO.startDate, allStockPOs.get(i));
+                LogicStock logicStock = new LogicStock(this.strategyBackTestInputVO.getStartDate(), allStockPOs.get(i));
                 //如果该股票各项数据都有 才加入到股票池
                 if(logicStock.getBeforeStock() != null && logicStock.getStartDateStockPO() != null && logicStock.getYesterdayStock() != null) {
                     this.stocksMap.put(allStockPOs.get(i).get(0).getStockId(), logicStock);           //初始化map
@@ -157,29 +167,28 @@ public class StockPool {
     }
 
 
-//    /**
-//     * 获取指定板块基准收益率
-//     * @return ArrayList<CumulativeYieldGraphDataVO>
-//     */
-//    public ArrayList<CumulativeYieldGraphDataVO> getBlockBaseRaito() {
-//        assert (blockBaseRaito != null && blockBaseRaito.size() != 0) : "StockPool.getBlockBaseRaito.blockBaseRaito异常";
-//
-//        ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS = new ArrayList<>();
-//
-//        for(int i=0; i<this.blockBaseRaito.size(); ++i) {
-//            cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(DateHelper.getInstance().stringTransToDate(blockBaseRaito.get(i).getDate()),
-//                    blockBaseRaito.get(i).getBaseRatio()/100));
-//        }
-//
-//        return  cumulativeYieldGraphDataVOS;
-//    }
+    /**
+     * 获取指定板块基准收益率
+     * @return ArrayList<CumulativeYieldGraphDataVO>
+     */
+    public ArrayList<CumulativeYieldGraphDataVO> getBlockBaseRaito() {
+        assert (blockBaseRaito != null && blockBaseRaito.size() != 0) : "StockPool.getBlockBaseRaito.blockBaseRaito异常";
+
+        ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS = new ArrayList<>();
+
+        for(int i=0; i<this.blockBaseRaito.size(); ++i) {
+            cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(blockBaseRaito.get(i).getDate(), blockBaseRaito.get(i).getBaseYield()/100));
+        }
+
+        return  cumulativeYieldGraphDataVOS;
+    }
 
     public String getStartDate() {
-        return strategyBackTestInputVO.startDate;
+        return strategyBackTestInputVO.getStartDate();
     }
 
     public String getEndDate() {
-        return strategyBackTestInputVO.endDate;
+        return strategyBackTestInputVO.getEndDate();
     }
 
     public ArrayList<LogicStock> getStocksList() {

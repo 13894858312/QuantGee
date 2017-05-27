@@ -1,8 +1,8 @@
-package logic.strategy;
+package logic.strategy.backTesting;
 
 import bean.Stock;
 import logic.tools.MathHelper;
-import vo.strategy.BackTestingResultVO;
+import vo.strategy.StrategyBackTestResultVO;
 import vo.strategy.CumulativeYieldGraphDataVO;
 import vo.strategy.CumulativeYieldGraphVO;
 import vo.strategy.YieldHistogramGraphVO;
@@ -22,7 +22,7 @@ public class StrategyBackTesting {
     private boolean periodOnly;
     private String blockType;
 
-    private logic.strategy.IStrategy IStrategy;
+    private logic.strategy.backTesting.IStrategy IStrategy;
     private StockPool stockPool;
 
     private int holdingPeriod;  //持有期
@@ -33,7 +33,7 @@ public class StrategyBackTesting {
     private ArrayList<CumulativeYieldGraphDataVO> strategyYield;  //每天的收益率
     private ArrayList<CumulativeYieldGraphDataVO> baseYield; //基准收益率
     private ArrayList<Double> yieldPerPeriod;     //每个持有期结束后的收益率  周期收益率
-    private BackTestingResultVO backTestingResultVO;
+    private StrategyBackTestResultVO strategyBackTestResultVO;
 
     /**
      * @param stockPool 股票池
@@ -41,7 +41,7 @@ public class StrategyBackTesting {
      * @param returnPeriod 形成期
      * @param IStrategy 不同策略选择股票的接口
      */
-    public StrategyBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod, logic.strategy.IStrategy IStrategy, boolean periodOnly) {
+    public StrategyBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod, logic.strategy.backTesting.IStrategy IStrategy, boolean periodOnly) {
         this.stockPool = stockPool;
         this.IStrategy = IStrategy;
         this.periodOnly = periodOnly;
@@ -308,7 +308,7 @@ System.out.println("        买入后size:" + this.holdingStocks.size());
         //计算有关频率分布直方图的数据
         YieldHistogramGraphVO yieldHistogramGraphVO = analysis.analyseYieldHistogram(this.yieldPerPeriod);
 
-        this.backTestingResultVO = new BackTestingResultVO(cumulativeYieldGraphVO,yieldHistogramGraphVO);
+        this.strategyBackTestResultVO = new StrategyBackTestResultVO(cumulativeYieldGraphVO,yieldHistogramGraphVO);
     }
 
 
@@ -330,7 +330,7 @@ System.out.println("        买入后size:" + this.holdingStocks.size());
         return result;
     }
 
-    public BackTestingResultVO getBackTestingResultVO() {
-        return backTestingResultVO;
+    public StrategyBackTestResultVO getStrategyBackTestResultVO() {
+        return strategyBackTestResultVO;
     }
 }

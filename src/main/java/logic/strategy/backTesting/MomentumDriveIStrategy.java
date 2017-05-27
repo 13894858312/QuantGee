@@ -1,7 +1,8 @@
-package logic.strategy;
+package logic.strategy.backTesting;
 
 
 import bean.Stock;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
  * Created by Mark.W on 2017/3/29.
  * 动量策略
  */
+@Service("1")
 public class MomentumDriveIStrategy implements IStrategy {
 
     @Override

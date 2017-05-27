@@ -1,4 +1,4 @@
-package logic.strategy;
+package logic.strategy.backTesting;
 
 import java.util.ArrayList;
 

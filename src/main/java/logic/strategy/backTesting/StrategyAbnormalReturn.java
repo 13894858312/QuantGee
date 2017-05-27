@@ -1,4 +1,4 @@
-package logic.strategy;
+package logic.strategy.backTesting;
 
 
 import vo.strategy.AbnormalReturnGraphDataVO;
@@ -82,19 +82,19 @@ public class StrategyAbnormalReturn {
         int bestHoldingPeriod = 0;  //最佳持有期
         int bestReturnPeriod = 0;   //最佳形成期
 
-        double bestAbnormalReturn = abnormalReturnGraphDataVOS.get(0).abnormalReturn;  //最优的超额收益率
-        double bestStategyWinRate = abnormalReturnGraphDataVOS.get(0).stategyWinRate;   //最优的策略胜率
+        double bestAbnormalReturn = abnormalReturnGraphDataVOS.get(0).getAbnormalReturn();  //最优的超额收益率
+        double bestStategyWinRate = abnormalReturnGraphDataVOS.get(0).getStategyWinRate();   //最优的策略胜率
 
         //计算以上最优的数据
         for(int i=0; i<this.abnormalReturnGraphDataVOS.size(); ++i) {
-            if(this.abnormalReturnGraphDataVOS.get(i).abnormalReturn > bestAbnormalReturn) {
-                bestAbnormalReturn = this.abnormalReturnGraphDataVOS.get(i).abnormalReturn;
-                bestHoldingPeriod = this.abnormalReturnGraphDataVOS.get(i).holdingPeriod;
-                bestReturnPeriod = this.abnormalReturnGraphDataVOS.get(i).returnPeriod;
+            if(this.abnormalReturnGraphDataVOS.get(i).getAbnormalReturn() > bestAbnormalReturn) {
+                bestAbnormalReturn = this.abnormalReturnGraphDataVOS.get(i).getAbnormalReturn();
+                bestHoldingPeriod = this.abnormalReturnGraphDataVOS.get(i).getHoldingPeriod();
+                bestReturnPeriod = this.abnormalReturnGraphDataVOS.get(i).getReturnPeriod();
             }
 
-            if(this.abnormalReturnGraphDataVOS.get(i).stategyWinRate > bestStategyWinRate) {
-                bestStategyWinRate = this.abnormalReturnGraphDataVOS.get(i).stategyWinRate;
+            if(this.abnormalReturnGraphDataVOS.get(i).getStategyWinRate() > bestStategyWinRate) {
+                bestStategyWinRate = this.abnormalReturnGraphDataVOS.get(i).getStategyWinRate();
             }
         }
 

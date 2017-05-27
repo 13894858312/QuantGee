@@ -7,11 +7,11 @@ import logic.tools.MathHelper;
  * 收益分布直方图的坐标信息
  */
 public class YieldHistogramGraphDataVO {
-    public double startRate;
-    public double endRate;
+    private double startRate;
+    private double endRate;
 
-    public int positiveFrequency;
-    public int negativeFrequency;
+    private int positiveFrequency;
+    private int negativeFrequency;
 
     /**
      * @param startRate 每一组左端值
@@ -23,6 +23,38 @@ public class YieldHistogramGraphDataVO {
         this.startRate = MathHelper.formatData(startRate * 100, 2);
         this.endRate = MathHelper.formatData(endRate * 100, 2);
         this.positiveFrequency = positiveFrequency;
+        this.negativeFrequency = negativeFrequency;
+    }
+
+    public double getStartRate() {
+        return startRate;
+    }
+
+    public void setStartRate(double startRate) {
+        this.startRate = startRate;
+    }
+
+    public double getEndRate() {
+        return endRate;
+    }
+
+    public void setEndRate(double endRate) {
+        this.endRate = endRate;
+    }
+
+    public int getPositiveFrequency() {
+        return positiveFrequency;
+    }
+
+    public void setPositiveFrequency(int positiveFrequency) {
+        this.positiveFrequency = positiveFrequency;
+    }
+
+    public int getNegativeFrequency() {
+        return negativeFrequency;
+    }
+
+    public void setNegativeFrequency(int negativeFrequency) {
         this.negativeFrequency = negativeFrequency;
     }
 }

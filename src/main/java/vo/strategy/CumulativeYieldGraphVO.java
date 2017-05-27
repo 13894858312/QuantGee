@@ -9,14 +9,14 @@ import java.util.ArrayList;
  * 累计收益率图的信息类
  */
 public class CumulativeYieldGraphVO {
-    public double annualRevenue;       //年化收益率
-    public double baseAnnualRevenue;  //基准年化收益率
-    public double alpha;
-    public double beta;
-    public double sharpeRatio;  //夏普比率
-    public double maxDrawdown;  //最大回撤
-    public ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS;       //策略收益率
-    public ArrayList<CumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS; //基准收益率
+    private double annualRevenue;       //年化收益率
+    private double baseAnnualRevenue;  //基准年化收益率
+    private double alpha;
+    private double beta;
+    private double sharpeRatio;  //夏普比率
+    private double maxDrawdown;  //最大回撤
+    private ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS;       //策略收益率
+    private ArrayList<CumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS; //基准收益率
 
     /**
      * 收益率图
@@ -40,6 +40,70 @@ public class CumulativeYieldGraphVO {
         this.sharpeRatio = sharpeRatio;
         this.maxDrawdown = MathHelper.formatData(maxDrawdown*100,2);
         this.cumulativeYieldGraphDataVOS = cumulativeYieldGraphDataVOS;
+        this.baseCumulativeYieldGraphDataVOS = baseCumulativeYieldGraphDataVOS;
+    }
+
+    public double getAnnualRevenue() {
+        return annualRevenue;
+    }
+
+    public void setAnnualRevenue(double annualRevenue) {
+        this.annualRevenue = annualRevenue;
+    }
+
+    public double getBaseAnnualRevenue() {
+        return baseAnnualRevenue;
+    }
+
+    public void setBaseAnnualRevenue(double baseAnnualRevenue) {
+        this.baseAnnualRevenue = baseAnnualRevenue;
+    }
+
+    public double getAlpha() {
+        return alpha;
+    }
+
+    public void setAlpha(double alpha) {
+        this.alpha = alpha;
+    }
+
+    public double getBeta() {
+        return beta;
+    }
+
+    public void setBeta(double beta) {
+        this.beta = beta;
+    }
+
+    public double getSharpeRatio() {
+        return sharpeRatio;
+    }
+
+    public void setSharpeRatio(double sharpeRatio) {
+        this.sharpeRatio = sharpeRatio;
+    }
+
+    public double getMaxDrawdown() {
+        return maxDrawdown;
+    }
+
+    public void setMaxDrawdown(double maxDrawdown) {
+        this.maxDrawdown = maxDrawdown;
+    }
+
+    public ArrayList<CumulativeYieldGraphDataVO> getCumulativeYieldGraphDataVOS() {
+        return cumulativeYieldGraphDataVOS;
+    }
+
+    public void setCumulativeYieldGraphDataVOS(ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS) {
+        this.cumulativeYieldGraphDataVOS = cumulativeYieldGraphDataVOS;
+    }
+
+    public ArrayList<CumulativeYieldGraphDataVO> getBaseCumulativeYieldGraphDataVOS() {
+        return baseCumulativeYieldGraphDataVOS;
+    }
+
+    public void setBaseCumulativeYieldGraphDataVOS(ArrayList<CumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS) {
         this.baseCumulativeYieldGraphDataVOS = baseCumulativeYieldGraphDataVOS;
     }
 }
