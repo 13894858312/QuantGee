@@ -7,6 +7,31 @@
     <script src="../../echarts.js"></script>
     <script src="../../jquery-3.2.1.min.js"></script>
     <script src="../../js/test.js"></script>
+    <script type="text/javascript" for="window" event="onload">
+        var reftime = 3000;//默认每隔10秒向后台发送请求
+        var taskId;
+        if(document.readyState == "complete"){
+            myStart();
+        }
+        //页面加载完毕调用此函数
+        function myStart(){
+            loadData();
+            taskId = setInterval(loadData,reftime);//每隔reftime调用loadData方法刷新页面
+        }
+        function loadData(){
+            $.ajax({
+                type: "GET",
+                url: "ajax.action",
+                dataType: "json",
+                success: function(data){
+                    alert(data);
+                },
+                error:function (data) {
+                    alert(error);
+                }
+            });
+        }
+    </script>
     <script>
         function s1(x) {
             x.style.fontWeight = "bold";
@@ -22,7 +47,7 @@
         @import "../../css/style.css";
     </style>
 </head>
-<body>
+<body onload="myStart()">
     <div class="header fixed">
 
         <div class="w1200">

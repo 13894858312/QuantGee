@@ -10,6 +10,7 @@ import vo.admin.UserAccountVO;
 import vo.user.UserVO;
 
 import javax.jws.soap.SOAPBinding;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -77,7 +78,12 @@ public class TestAction implements Action {
         arrayList.add(userVO);
 //        arrayList.add(userAccountVO2);
 //        arrayList.add(userAccountVO3);
-        JSONArray jsonArray = JSONArray.fromObject(arrayList);
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String string = simpleDateFormat.format(date);
+        ArrayList<String> arrayList1 = new ArrayList<>();
+        arrayList1.add(string);
+        JSONArray jsonArray = JSONArray.fromObject(arrayList1);
         result = jsonArray.toString();
         return SUCCESS;
     }
