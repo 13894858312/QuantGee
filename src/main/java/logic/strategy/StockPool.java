@@ -29,7 +29,6 @@
 //
 //    public StockPool(StrategyInputVO strategyInputVO) {
 //        this.strategyInputVO = strategyInputVO;
-//        this.stockDataDao = new StockData();
 //
 //        this.initStocks(strategyInputVO);
 //

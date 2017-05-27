@@ -1,6 +1,7 @@
-//package temp.strategy;
+//package logic.strategy;
 //
-//import po.StockPO;
+//
+//import org.springframework.stereotype.Service;
 //
 //import java.util.ArrayList;
 //
@@ -8,7 +9,8 @@
 // * Created by Mark.W on 2017/3/29.
 // * 动量策略
 // */
-//public class MomentumDriveStrategy implements Strategy {
+//@Service("1")
+//public class MomentumDriveStrategy implements IStrategy {
 //
 //    @Override
 //    public ArrayList<StockYield> initHoldingStocks(StockPool stockPool, ArrayList<String> dates) {

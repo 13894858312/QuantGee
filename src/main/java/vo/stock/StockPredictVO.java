@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 public class StockPredictVO {
     private String code;
+    private String date;
     private double predictTomorrowPrice;
     private double predictTomorrowIncrease;
     private double historyDeviation;

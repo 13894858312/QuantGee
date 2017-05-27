@@ -1,9 +1,8 @@
-//package temp.strategy;
+//package logic.strategy;
 //
-//import po.StockPO;
 //import logic.tools.DateHelper;
 //import logic.tools.MathHelper;
-//import vo.*;
+//import vo.strategy.StrategyBackTestResultVO;
 //
 //import java.util.ArrayList;
 //
@@ -18,9 +17,9 @@
 //
 //    private double allBaseY;   //总的基准收益率
 //    private boolean periodOnly;
-//    private BlockType blockType;
+//    private String blockType;
 //
-//    private Strategy strategy;
+//    private IStrategy iStrategy;
 //    private StockPool stockPool;
 //
 //    private int holdingPeriod;  //持有期
@@ -31,17 +30,17 @@
 //    private ArrayList<CumulativeYieldGraphDataVO> strategyYield;  //每天的收益率
 //    private ArrayList<CumulativeYieldGraphDataVO> baseYield; //基准收益率
 //    private ArrayList<Double> yieldPerPeriod;     //每个持有期结束后的收益率  周期收益率
-//    private BackTestingResultVO backTestingResultVO;
+//    private StrategyBackTestResultVO backTestingResultVO;
 //
 //    /**
 //     * @param stockPool 股票池
 //     * @param holdingPeriod 持有期
 //     * @param returnPeriod 形成期
-//     * @param strategy 不同策略选择股票的接口
+//     * @param iStrategy 不同策略选择股票的接口
 //     */
-//    public StrategyBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod, Strategy strategy, boolean periodOnly) {
+//    public StrategyBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod, IStrategy iStrategy, boolean periodOnly) {
 //        this.stockPool = stockPool;
-//        this.strategy = strategy;
+//        this.iStrategy = iStrategy;
 //        this.periodOnly = periodOnly;
 //
 //        this.blockType = stockPool.getBlockType();
@@ -137,7 +136,7 @@
 //        String date = dates.get(0);
 //        dates.remove(0);
 //        //不同策略确定方法不一样
-//        ArrayList<StockYield> stockYields = strategy.initHoldingStocks(stockPool, dates);
+//        ArrayList<StockYield> stockYields = iStrategy.initHoldingStocks(stockPool, dates);
 //
 //        //在开始日期的前一个交易日买入股票
 //        this.buyStock(stockYields, date);
@@ -188,12 +187,12 @@
 //            }
 //        }
 //
-//System.out.println("  strategy-income:" + yield);
+//System.out.println("  iStrategy-income:" + yield);
 //
 //        //计算累计收益率
 //        yield = (yield - INIT_FUND)/INIT_FUND;
 //
-//System.out.println("  strategy-Yield:" + yield);
+//System.out.println("  iStrategy-Yield:" + yield);
 //
 //        this.strategyYield.add(new CumulativeYieldGraphDataVO(DateHelper.getInstance().stringTransToDate(date),
 //                MathHelper.formatData(yield,4)));
@@ -213,7 +212,7 @@
 //
 //        //计算股票池內所有股票的收益率 用于确定下次持有的股票
 //        // 不同策略确定方法不一样
-//        ArrayList<StockYield> stockYields = strategy.rebalanceHoldingStocks(stockPool, beforeDate, oneDayBeforeDate, dates);
+//        ArrayList<StockYield> stockYields = iStrategy.rebalanceHoldingStocks(stockPool, beforeDate, oneDayBeforeDate, dates);
 //
 //        //确定前n的股票 买入
 //        this.buyStock(stockYields, oneDayBeforeDate);
@@ -330,7 +329,7 @@
 //        return result;
 //    }
 //
-//    public BackTestingResultVO getBackTestingResultVO() {
+//    public StrategyBackTestResultVO getBackTestingResultVO() {
 //        return backTestingResultVO;
 //    }
 //}
