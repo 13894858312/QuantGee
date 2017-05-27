@@ -1,4 +1,4 @@
-package logic.indexCalculation;
+package logic.calculation;
 
 /**
  * Created by Mark.W on 2017/5/23.

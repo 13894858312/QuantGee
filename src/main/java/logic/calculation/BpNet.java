@@ -1,4 +1,4 @@
-package logic.indexCalculation;
+package logic.calculation;
 
 import java.util.Random;
 

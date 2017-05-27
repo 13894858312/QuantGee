@@ -1,6 +1,7 @@
 package service.strategy;
 
 
+import vo.strategy.StrategyBackTestInputVO;
 import vo.strategy.StrategyBackTestingVO;
 
 /**
@@ -11,8 +12,8 @@ public interface StrategyBackTestingService {
 
     /**
      * 股票回测
-     * @param strategyID 策略ID
+     * @param inputVO 策略回测输入信息
      * @return  StrategyBackTestingVO
      */
-    public StrategyBackTestingVO getStrategyBackTesting(String strategyID);
+    public StrategyBackTestingVO getStrategyBackTesting(StrategyBackTestInputVO inputVO);
 }
