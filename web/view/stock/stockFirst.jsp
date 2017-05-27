@@ -20,7 +20,7 @@
             x.style.color = "#b7b7b7";
         }
     </script>
-    <script type="text/javascript" src="../../js/test.js"></script>
+    <script src="../../js/test.js"></script>
     <style type="text/css">
     	@import "../../css/style.css";
     	@import "../../css/stock/firstStock.css";
