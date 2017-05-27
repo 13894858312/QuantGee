@@ -1,10 +1,15 @@
 package action;
 
+import bean.User;
 import com.opensymphony.xwork2.Action;
+import logic.user.UserServiceImp;
 import net.sf.json.JSONArray;
 import org.apache.struts2.json.annotations.JSON;
+import service.user.UserService;
 import vo.admin.UserAccountVO;
+import vo.user.UserVO;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -63,13 +68,15 @@ public class TestAction implements Action {
 
     @Override
     public String execute() throws Exception {
+        UserService userService = new UserServiceImp();
+        UserVO userVO = userService.getUserInfo("123");
         UserAccountVO userAccountVO1 = new UserAccountVO("123","2017-05-10","zdy","118873");
         UserAccountVO userAccountVO2 = new UserAccountVO("456","2017-03-23","wyy","234543");
         UserAccountVO userAccountVO3 = new UserAccountVO("789","2017-01-18","bcy","766675");
-        ArrayList<UserAccountVO> arrayList = new ArrayList<UserAccountVO>();
-        arrayList.add(userAccountVO1);
-        arrayList.add(userAccountVO2);
-        arrayList.add(userAccountVO3);
+        ArrayList<UserVO> arrayList = new ArrayList<UserVO>();
+        arrayList.add(userVO);
+//        arrayList.add(userAccountVO2);
+//        arrayList.add(userAccountVO3);
         JSONArray jsonArray = JSONArray.fromObject(arrayList);
         result = jsonArray.toString();
         return SUCCESS;
