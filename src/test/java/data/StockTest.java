@@ -176,5 +176,11 @@ public class StockTest {
             System.out.println(iterator.next().getAmount());
         }
     }
+
+    @Test
+    public void getPredictTest(){
+        StockPredict stockPredict = quotaDAO.getPredictData("000001","2000-01-01");
+        System.out.print(stockPredict);
+    }
 }
 

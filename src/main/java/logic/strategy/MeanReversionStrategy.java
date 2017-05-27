@@ -1,8 +1,9 @@
-//package temp.strategy;
+//package logic.strategy;
 //
-//import po.StockPO;
 //import logic.tools.DateHelper;
 //import logic.tools.MathHelper;
+//import org.springframework.stereotype.Service;
+//import vo.stock.MaVO;
 //
 //import java.util.ArrayList;
 //import java.util.Date;
@@ -12,10 +13,11 @@
 // * 均值回归策略
 // * Created by Mark.W on 2017/3/29.
 // */
-//public class MeanReversionStrategy implements Strategy {
+//@Service("2")
+//public class MeanReversionStrategy implements IStrategy {
 //
 //    //保存所有股票的N日移动均线
-//    private ArrayList<HashMap<String, AverageLineVO>> allAverageLine = new ArrayList<>();
+//    private ArrayList<HashMap<String, MaVO>> allAverageLine = new ArrayList<>();
 //    private int returnPeriod;               //形成期
 //
 //    @Override

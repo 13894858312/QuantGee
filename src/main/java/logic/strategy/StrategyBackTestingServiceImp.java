@@ -1,7 +1,9 @@
 //package logic.strategy;
 //
 //import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+//import org.springframework.context.ApplicationContext;
 //import org.springframework.context.annotation.Scope;
+//import org.springframework.context.support.ClassPathXmlApplicationContext;
 //import org.springframework.stereotype.Service;
 //import service.strategy.StrategyBackTestingService;
 //import vo.strategy.StrategyBackTestInputVO;
@@ -14,25 +16,25 @@
 //@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 //public class StrategyBackTestingServiceImp implements StrategyBackTestingService {
 //
-//    private Strategy strategy;
+//    private IStrategy iStrategy;
 //    private StockPool stockPool;
 //
 //    @Override
 //    public StrategyBackTestResultVO getStrategyBackTesting(StrategyBackTestInputVO inputVO) {
 //
+//        this.initStrategy(inputVO.getStrategyType());
 //        this.initStockPool(strategyInputVO);
-//        this.initStrategy(strategyType);
 //
 //        //回测
-//        StrategyBackTesting strategyBackTesting = new StrategyBackTesting(stockPool, strategyInputVO.holdingPeriod,
-//                strategyInputVO.returnPeriod, strategy, false);
+//        StrategyBackTesting strategyBackTesting = new StrategyBackTesting(stockPool, inputVO.getHoldingPeriod(),
+//                inputVO.getReturnPeriod(), iStrategy, false);
 //        strategyBackTesting.start();
 //
 //        StrategyBackTestResultVO backTestingResultVO = strategyBackTesting.getBackTestingResultVO();
 //
 //        assert (backTestingResultVO != null) : "logic.calculation.StrategyCalculation.getCumulativeYieldGraphInfo返回值异常";
 //
-//        return null;
+//        return backTestingResultVO;
 //    }
 //
 //
@@ -45,8 +47,8 @@
 //     */
 //    @Override
 //    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StrategyType strategyType, StrategyInputVO strategyInputVO, boolean isHoldingPeriod) {
+//        this.initStrategy(inputVO.getStrategyType());
 //        this.initStockPool(strategyInputVO);
-//        this.initStrategy(strategyType);
 //
 //        int period;
 //        if(isHoldingPeriod) {
@@ -63,6 +65,11 @@
 //        assert (abnormalReturnGraphVO != null) : "logic.calculation.StrategyCalculation.getAbnormalReturnGraphInfo返回值异常" ;
 //
 //        return abnormalReturnGraphVO;
+//    }
+//
+//    public void initStrategy(int strategyType) {
+//        ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+//        iStrategy= (IStrategy) context.getBean(String.valueOf(strategyType));
 //    }
 //
 //    /**
