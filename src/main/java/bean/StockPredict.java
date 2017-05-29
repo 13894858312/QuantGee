@@ -14,6 +14,16 @@ public class StockPredict {
     private Double actualPrice;
     private Double historyDeviation;
 
+    private Double predictIncrease;
+
+    public Double getPredictIncrease() {
+        return predictIncrease;
+    }
+
+    public void setPredictIncrease(Double predictIncrease) {
+        this.predictIncrease = predictIncrease;
+    }
+
     @Id
     @Column(name = "code", nullable = false, length = 6)
     public String getCode() {

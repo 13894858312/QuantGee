@@ -1,9 +1,8 @@
 package service.stock;
 
 
+import vo.stock.StockInputVO;
 import vo.stock.StockPredictVO;
-
-import java.util.ArrayList;
 
 /**
  * Created by Mark.W on 2017/5/21.
@@ -13,8 +12,8 @@ public interface PredictStockService {
 
     /**
      * 获取股票预测的信息
-     * @param code 股票代码
-     * @return ArrayList<StockPredictVO>
+     * @param inputVO 股票代码
+     * @return StockPredictVO
      */
-    public ArrayList<StockPredictVO> getStockPredictInfo(String code);
+    public StockPredictVO getStockPredictInfo(StockInputVO inputVO);
 }
