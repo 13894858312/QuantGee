@@ -73,7 +73,7 @@ public interface QuotaDAO {
     public boolean addBOLL(Boll boll);
 
     /**
-     * 获取股票预测数据
+     * 获取股票预测数据列表
      * @param code 股票代码
      * @param startDate 开始日期
      * @param endDate 结束日期
