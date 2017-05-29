@@ -21,12 +21,6 @@ import java.util.Iterator;
  */
 @Service
 public class KdjCalculation {
-    public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext( "applicationContext.xml");
-        KdjCalculation kdjCalculation = (KdjCalculation) context.getBean("kdjCalculation");
-        kdjCalculation.start();
-    }
-
     private static final int INDEX1 = 9;
     private static final int INDEX2 = 3;
     private static final int INDEX3 = 3;
@@ -55,6 +49,8 @@ public class KdjCalculation {
     private void calculateKDJ(String code) {
         ArrayList<SimpleStock> stocks = initStocks(code);
 
+System.out.println(code + ":  size" + stocks.size());
+
         double k=50, d=50, j=50;
         boolean canSaveToDB = false;
 
@@ -72,11 +68,13 @@ public class KdjCalculation {
                 Kdj kdj = new Kdj();
                 kdj.setCode(code);
                 kdj.setDate(stocks.get(i).getDate());
-                kdj.setD(MathHelper.formatData(d,3));
                 kdj.setK(MathHelper.formatData(k,3));
+                kdj.setD(MathHelper.formatData(d,3));
                 kdj.setJ(MathHelper.formatData(j,3));
 
-                quotaDAO.addKDJ(kdj);
+//                quotaDAO.addKDJ(kdj);
+
+System.out.println("     " + kdj.getDate() + " " + kdj.getK() + " " + kdj.getD() + " " + kdj.getJ());
             }
         }
 

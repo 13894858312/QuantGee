@@ -21,13 +21,6 @@ import java.util.Iterator;
 @Service
 public class MacdCalculation {
 
-    public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext( "applicationContext.xml");
-        MacdCalculation macdCalculation = (MacdCalculation) context.getBean("macdCalculation");
-        macdCalculation.start();
-    }
-
-
     private static final int MACD_SHORT_PERIOD = 9;
     private static final int MACD_MID_PERIOD = 12;
     private static final int MACD_LONG_PERIOD = 26;

@@ -18,7 +18,7 @@ import vo.user.AccountVO;
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class AccountServiceImp implements AccountService{
 
-    @Autowired
+//    @Autowired
     private AccountDAO accountDAO;
 
     @Autowired

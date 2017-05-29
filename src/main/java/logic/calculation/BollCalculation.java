@@ -19,12 +19,6 @@ import java.util.Iterator;
  */
 @Service
 public class BollCalculation {
-    public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext( "applicationContext.xml");
-        BollCalculation bollCalculation = (BollCalculation)context.getBean("bollCalculation");
-        bollCalculation.start();
-    }
-
     private static final int PERIOD = 20;
     private int dataStartIndex;
 

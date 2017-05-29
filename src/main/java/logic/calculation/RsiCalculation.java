@@ -20,12 +20,6 @@ import java.util.Iterator;
 @Service
 public class RsiCalculation {
 
-    public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext( "applicationContext.xml");
-        RsiCalculation rsiCalculation = (RsiCalculation)context.getBean("rsiCalculation");
-        rsiCalculation.start();
-    }
-
     private static final int INDEX1 = 6;
     private static final int INDEX2 = 12;
     private static final int INDEX3 = 24;
