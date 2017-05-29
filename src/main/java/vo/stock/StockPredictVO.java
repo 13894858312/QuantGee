@@ -8,23 +8,21 @@ import java.util.ArrayList;
  */
 public class StockPredictVO {
     private String code;
-    private String date;
     private double predictTomorrowPrice;
     private double predictTomorrowIncrease;
     private double historyDeviation;
 
-    private ArrayList<ActualValueVO> actualValueVOS;
-    private ArrayList<PredictedValueVO> predictedValueVOS;
+    private ArrayList<LineVO> actualValues;
+    private ArrayList<LineVO> predictedValues;
 
-    public StockPredictVO(String code, double predictTomorrowPrice, double predictTomorrowIncrease,
-                          double historyDeviation, ArrayList<ActualValueVO> actualValueVOS,
-                          ArrayList<PredictedValueVO> predictedValueVOS) {
+    public StockPredictVO(String code,  double predictTomorrowPrice, double predictTomorrowIncrease,
+                          double historyDeviation, ArrayList<LineVO> actualValues, ArrayList<LineVO> predictedValues) {
         this.code = code;
         this.predictTomorrowPrice = predictTomorrowPrice;
         this.predictTomorrowIncrease = predictTomorrowIncrease;
         this.historyDeviation = historyDeviation;
-        this.actualValueVOS = actualValueVOS;
-        this.predictedValueVOS = predictedValueVOS;
+        this.actualValues = actualValues;
+        this.predictedValues = predictedValues;
     }
 
     public String getCode() {
@@ -43,11 +41,12 @@ public class StockPredictVO {
         return historyDeviation;
     }
 
-    public ArrayList<ActualValueVO> getActualValueVOS() {
-        return actualValueVOS;
+
+    public ArrayList<LineVO> getActualValues() {
+        return actualValues;
     }
 
-    public ArrayList<PredictedValueVO> getPredictedValueVOS() {
-        return predictedValueVOS;
+    public ArrayList<LineVO> getPredictedValues() {
+        return predictedValues;
     }
 }

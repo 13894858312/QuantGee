@@ -77,12 +77,13 @@ public class QuotaData implements QuotaDAO {
     }
 
     @Override
-    public StockPredict getPredictData(String code, String date) {
-        StockPredictPK stockPredictPK = new StockPredictPK();
-        stockPredictPK.setDate(date);
-        stockPredictPK.setCode(code);
-        StockPredict stockPredict = hibernateTemplate.get(StockPredict.class, stockPredictPK);
-        return stockPredict;
+    public Iterator<StockPredict> getPredictData(String code, String startdate, String endDate) {
+//        StockPredictPK stockPredictPK = new StockPredictPK();
+//        stockPredictPK.setDate(date);
+//        stockPredictPK.setCode(code);
+//        StockPredict stockPredict = hibernateTemplate.get(StockPredict.class, stockPredictPK);
+//        return stockPredict;
+        return null;
     }
 
 }
