@@ -16,6 +16,8 @@ public class StockPredict {
 
     private Double predictIncrease;
 
+    @Basic
+    @Column(name = "predictIncrease", nullable = true, precision = 0)
     public Double getPredictIncrease() {
         return predictIncrease;
     }

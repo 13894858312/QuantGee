@@ -22,5 +22,8 @@
         <property name="historyDeviation">
             <column name="historyDeviation" sql-type="double" precision="-1" not-null="true"/>
         </property>
+        <property name="predictIncrease">
+            <column name="predictIncrease" sql-type="double" precision="-1" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>
