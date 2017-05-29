@@ -177,10 +177,10 @@ public class StockTest {
         }
     }
 
-    @Test
-    public void getPredictTest(){
-        StockPredict stockPredict = quotaDAO.getPredictData("000001","2000-01-01");
-        System.out.print(stockPredict);
-    }
+//    @Test
+//    public void getPredictTest(){
+//        StockPredict stockPredict = quotaDAO.getPredictData("000001","2000-01-01");
+//        System.out.print(stockPredict);
+//    }
 }
 
