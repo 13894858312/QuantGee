@@ -12,7 +12,7 @@ import java.util.HashMap;
  * 均值回归策略
  * Created by Mark.W on 2017/3/29.
  */
-@Service("2")
+@Service("1")
 public class MeanReversionIStrategy implements IStrategy {
 
     //保存所有股票的N日移动均线

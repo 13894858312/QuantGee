@@ -5,7 +5,7 @@ import bean.Stock;
 import logic.tools.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import vo.strategy.CumulativeYieldGraphDataVO;
+import vo.strategy.CumulativeYieldLineDataVO;
 import vo.strategy.StrategyBackTestInputVO;
 
 import java.util.ArrayList;
@@ -56,13 +56,13 @@ public class StockPool {
         }
 
 
-        if(strategyBackTestInputVO.getStrategyInputType() == 0) {
+        if(strategyBackTestInputVO.getStockPoolType() == 0) {
             blockType = strategyBackTestInputVO.getBlockType();
         }
 
 
         //如果是板块 初始化基准收益率
-        if(strategyBackTestInputVO.getStrategyInputType() == 0 && strategyBackTestInputVO.getBlockType() != null) {
+        if(strategyBackTestInputVO.getStockPoolType() == 0 && strategyBackTestInputVO.getBlockType() != null) {
             Iterator<Stock> stocks = stockInfoDAO.getStockInfo(strategyBackTestInputVO.getBlockType(),
                     strategyBackTestInputVO.getStartDate(), this.strategyBackTestInputVO.getEndDate());
 
@@ -111,16 +111,16 @@ public class StockPool {
         ArrayList<ArrayList<Stock>> allStocks = new ArrayList<>();
 
         //选择指定 板块 构造股票池
-        if(inputVO.getStrategyInputType() == 0) {
+        if(inputVO.getStockPoolType() == 0) {
             Iterator<String> codes = stockInfoDAO.getAllStockCodesByBlock(inputVO.getBlockType());
             while(codes.hasNext()) {
                 Iterator<Stock> stocks = stockInfoDAO.getStockInfo(codes.next(), s, e);
                 allStocks.add(transToList(stocks));
             }
         //选择指定 股票 构造股票池
-        } else if(inputVO.getStrategyInputType() == 1) {
-            for(int i = 0; i< inputVO.getStockNames().size(); ++i) {
-                Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getStockNames().get(i), s, e);
+        } else if(inputVO.getStockPoolType() == 1) {
+            for(int i = 0; i< inputVO.getStockCodes().size(); ++i) {
+                Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getStockCodes().get(i), s, e);
                 allStocks.add(transToList(stocks));
             }
         }
@@ -169,18 +169,18 @@ public class StockPool {
 
     /**
      * 获取指定板块基准收益率
-     * @return ArrayList<CumulativeYieldGraphDataVO>
+     * @return ArrayList<CumulativeYieldLineDataVO>
      */
-    public ArrayList<CumulativeYieldGraphDataVO> getBlockBaseRaito() {
+    public ArrayList<CumulativeYieldLineDataVO> getBlockBaseRaito() {
         assert (blockBaseRaito != null && blockBaseRaito.size() != 0) : "StockPool.getBlockBaseRaito.blockBaseRaito异常";
 
-        ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS = new ArrayList<>();
+        ArrayList<CumulativeYieldLineDataVO> cumulativeYieldLineDataVOS = new ArrayList<>();
 
         for(int i=0; i<this.blockBaseRaito.size(); ++i) {
-            cumulativeYieldGraphDataVOS.add(new CumulativeYieldGraphDataVO(blockBaseRaito.get(i).getDate(), blockBaseRaito.get(i).getBaseYield()/100));
+            cumulativeYieldLineDataVOS.add(new CumulativeYieldLineDataVO(blockBaseRaito.get(i).getDate(), blockBaseRaito.get(i).getBaseYield()/100));
         }
 
-        return  cumulativeYieldGraphDataVOS;
+        return cumulativeYieldLineDataVOS;
     }
 
     public String getStartDate() {

@@ -8,10 +8,18 @@ import java.util.ArrayList;
  * 策略计算输入的信息类
  */
 public class StrategyBackTestInputVO {
-    private int strategyInputType;           //0指定板块 1指定股票
-    private int stratrgyType;                //0动量策略 1均值回归
+    /**
+     * 0指定板块 1指定股票
+     */
+    private int stockPoolType;
+
+    /**
+     *0动量策略 1均值回归
+     */
+    private int strategyType;
+
     private String blockType;
-    private ArrayList<String> stockNames;
+    private ArrayList<String> stockCodes;
 
     private String startDate;
     private String endDate; //回测区间
@@ -21,27 +29,27 @@ public class StrategyBackTestInputVO {
                                 //若是均值回归策略，则是N日移动均线
     private int holdingStockNum; //每次调仓持有的股票数量
 
-    private boolean notST;   //排除st
-
     private double ratio;
 
-    private boolean isHoldingPeriod;     //period参数是否是持有期，true为持有期，false为形成期
+    private boolean notST;   //排除st
+
+    private boolean isHoldingPeriodFixed;     //持有期是否为不变量 用于寻找最佳形成期或持有期
 
 
-    public int getStrategyInputType() {
-        return strategyInputType;
+    public int getStockPoolType() {
+        return stockPoolType;
     }
 
-    public void setStrategyInputType(int strategyInputType) {
-        this.strategyInputType = strategyInputType;
+    public void setStockPoolType(int stockPoolType) {
+        this.stockPoolType = stockPoolType;
     }
 
-    public int getStratrgyType() {
-        return stratrgyType;
+    public int getStrategyType() {
+        return strategyType;
     }
 
-    public void setStratrgyType(int stratrgyType) {
-        this.stratrgyType = stratrgyType;
+    public void setStrategyType(int strategyType) {
+        this.strategyType = strategyType;
     }
 
     public String getBlockType() {
@@ -52,12 +60,12 @@ public class StrategyBackTestInputVO {
         this.blockType = blockType;
     }
 
-    public ArrayList<String> getStockNames() {
-        return stockNames;
+    public ArrayList<String> getStockCodes() {
+        return stockCodes;
     }
 
-    public void setStockNames(ArrayList<String> stockNames) {
-        this.stockNames = stockNames;
+    public void setStockCodes(ArrayList<String> stockCodes) {
+        this.stockCodes = stockCodes;
     }
 
     public String getStartDate() {
@@ -80,8 +88,8 @@ public class StrategyBackTestInputVO {
         return holdingPeriod;
     }
 
-    public void setHoldingPeriod(int holdingPeriod) {
-        this.holdingPeriod = holdingPeriod;
+    public void setHoldingPeriodFixed(int holdingPeriodFixed) {
+        this.holdingPeriod = holdingPeriodFixed;
     }
 
     public int getReturnPeriod() {
@@ -116,46 +124,50 @@ public class StrategyBackTestInputVO {
         this.ratio = ratio;
     }
 
-    public boolean isHoldingPeriod() {
-        return isHoldingPeriod;
+    public boolean isHoldingPeriodFixed() {
+        return isHoldingPeriodFixed;
     }
 
     public void setHoldingPeriod(boolean holdingPeriod) {
-        isHoldingPeriod = holdingPeriod;
+        isHoldingPeriodFixed = holdingPeriod;
     }
 
     /**
      * 判断StrategyInputVO是否相同 用来确定是否要重新加载股票池
-     * @param strategyBackTestInputVO StrategyBackTestInputVO
+     * @param input StrategyBackTestInputVO
      * @return boolean
      */
-    public boolean equals(StrategyBackTestInputVO strategyBackTestInputVO) {
+    public boolean equals(StrategyBackTestInputVO input) {
 
-        boolean temp1 = strategyBackTestInputVO.startDate.equals(startDate)
-                && strategyBackTestInputVO.endDate.equals(endDate)
-                && (strategyBackTestInputVO.strategyInputType == this.strategyInputType)
-                && (strategyBackTestInputVO.blockType == this.blockType);
+        if (input == null) {
+            return false;
+        }
 
-        boolean temp2 = stockNamesEqual(strategyBackTestInputVO.stockNames);
+        boolean temp1 = input.startDate.equals(startDate)
+                && input.endDate.equals(endDate)
+                && (input.stockPoolType == this.stockPoolType)
+                && (input.blockType == this.blockType);
+
+        boolean temp2 = stockNamesEqual(input.stockCodes);
 
 
         return (temp1 && temp2);
     }
 
     private boolean stockNamesEqual(ArrayList<String> s) {
-        if(this.stockNames == null || this.stockNames.size() == 0) {
+        if(this.stockCodes == null || this.stockCodes.size() == 0) {
             if(s == null || s.size() == 0) {
                 return true;
             }
         }
 
-        if(s.size() != this.stockNames.size()) {
+        if(s.size() != this.stockCodes.size()) {
             return false;
         }
 
         boolean temp = true;
-        for(int i=0; i<this.stockNames.size(); ++i) {
-            if(!stockNames.get(i).equals(s.get(i))) {
+        for(int i = 0; i<this.stockCodes.size(); ++i) {
+            if(!stockCodes.get(i).equals(s.get(i))) {
                 temp = false;
                 break;
             }

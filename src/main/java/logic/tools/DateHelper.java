@@ -105,7 +105,7 @@ public class DateHelper {
         if(date == null) {
             return null;
         }
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
         return simpleDateFormat.format(date);
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import service.strategy.StrategyBackTestingService;
-import vo.strategy.AbnormalReturnGraphVO;
+import vo.strategy.AbnormalReturnResultVO;
 import vo.strategy.StrategyBackTestResultVO;
 import vo.strategy.StrategyBackTestInputVO;
 
@@ -29,7 +29,7 @@ public class StrategyBackTestingServiceImp implements StrategyBackTestingService
     public StrategyBackTestResultVO getStrategyBackTesting(StrategyBackTestInputVO inputVO) {
 
         this.initStockPool(inputVO);
-        this.initStrategy(inputVO.getStratrgyType());
+        this.initStrategy(inputVO.getStrategyType());
 
         //回测
         StrategyBackTesting strategyBackTesting = new StrategyBackTesting(stockPool, inputVO.getHoldingPeriod(),
@@ -44,25 +44,25 @@ public class StrategyBackTestingServiceImp implements StrategyBackTestingService
     }
 
     @Override
-    public AbnormalReturnGraphVO getAbnormalReturnGraphInfo(StrategyBackTestInputVO inputVO) {
+    public AbnormalReturnResultVO getAbnormalReturnGraphInfo(StrategyBackTestInputVO inputVO) {
         this.initStockPool(inputVO);
-        this.initStrategy(inputVO.getStratrgyType());
+        this.initStrategy(inputVO.getStrategyType());
 
         int period;
-        if(inputVO.isHoldingPeriod()) {
+        if(inputVO.isHoldingPeriodFixed()) {
             period = inputVO.getHoldingPeriod();
         } else {
             period = inputVO.getReturnPeriod();
         }
 
-        StrategyAbnormalReturn strategyAbnormalReturn = new StrategyAbnormalReturn(stockPool, period, inputVO.isHoldingPeriod(), iStrategy);
+        StrategyAbnormalReturn strategyAbnormalReturn = new StrategyAbnormalReturn(stockPool, period, inputVO.isHoldingPeriodFixed(), iStrategy);
         strategyAbnormalReturn.start();
 
-        AbnormalReturnGraphVO abnormalReturnGraphVO = strategyAbnormalReturn.getAbnormalReturnGraphVO();
+        AbnormalReturnResultVO abnormalReturnResultVO = strategyAbnormalReturn.getAbnormalReturnResultVO();
 
-        assert (abnormalReturnGraphVO != null) : "logic.calculation.StrategyBackTestingServiceImp.getAbnormalReturnGraphInfo返回值异常" ;
+        assert (abnormalReturnResultVO != null) : "logic.calculation.StrategyBackTestingServiceImp.getAbnormalReturnGraphInfo返回值异常" ;
 
-        return abnormalReturnGraphVO;
+        return abnormalReturnResultVO;
     }
 
 

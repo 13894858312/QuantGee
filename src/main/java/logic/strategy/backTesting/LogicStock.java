@@ -30,24 +30,25 @@ public class LogicStock {
      */
     private void init(String startDate) {
 
-        int days= 0, tempDays = 0;
-        for(int i = stocks.size()-1; i>=0; i --) {
+        int days= 0, tempDays;
+        for(int i = 0; i<stocks.size(); ++ i) {
             stocksMap.put(stocks.get(i).getDate(), stocks.get(i));
 
             tempDays = days;
             days = DateHelper.calculateDaysBetween(this.stocks.get(i).getDate(), startDate);
 
-            if((days == 0) || (days < 0 && tempDays > 0)) {
+            if((days == 0) || (days > 0 && tempDays < 0)) {
                 startIndex = i;
+
                 this.startDateStock = this.stocks.get(i);           //初始化开始日期的股票数据
 
-                if(i< stocks.size()-1) {
-                    this.yesterdayStock = this.stocks.get(i+1);
+                if(i>0) {
+                    this.yesterdayStock = this.stocks.get(i-1);
                 }
             }
         }
 
-        this.beforeStock = stocks.get(stocks.size()-1);
+        this.beforeStock = stocks.get(0);
     }
 
     /**
