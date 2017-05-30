@@ -29,9 +29,9 @@ public class TradeTest {
         Trade trade = new Trade();
         trade.setUserId("123123");
         trade.setAction(1);
-        trade.setIme("ime");
+        trade.setBuyPrice(2.0);
         trade.setNumOfStock(123);
-        trade.setStockId("asedi");
+        trade.setStockId("ased2i");
         Assert.assertEquals(tradeDAO.addTradeInfo(trade),true);
     }
 
@@ -61,8 +61,7 @@ public class TradeTest {
 
     @Test
     public void getHoldingTest(){
-        HoldingStocksPO holdingStockPO = tradeDAO.getHoldingStocks("123123");
-        System.out.print(holdingStockPO.getStockAndNum());
+
     }
 
 }

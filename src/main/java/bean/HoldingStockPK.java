@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by wangxue on 2017/5/24.
+ * Created by wangxue on 2017/5/30.
  */
 public class HoldingStockPK implements Serializable {
     private String stockId;

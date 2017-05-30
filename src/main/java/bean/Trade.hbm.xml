@@ -11,9 +11,6 @@
         <property name="userId">
             <column name="userID" sql-type="varchar(20)" length="20"/>
         </property>
-        <property name="ime">
-            <column name="ime" sql-type="varchar(20)" length="20"/>
-        </property>
         <property name="stockId">
             <column name="stockID" sql-type="varchar(10)" length="10"/>
         </property>
@@ -22,6 +19,9 @@
         </property>
         <property name="numOfStock">
             <column name="numOfStock" sql-type="int(11)"/>
+        </property>
+        <property name="buyPrice">
+            <column name="buyPrice" sql-type="double" precision="-1" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>

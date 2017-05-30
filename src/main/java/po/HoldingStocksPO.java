@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
+ * 没用
  * Created by wangxue on 2017/5/14.
  */
 public class HoldingStocksPO {

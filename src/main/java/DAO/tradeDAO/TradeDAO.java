@@ -28,15 +28,22 @@ public interface TradeDAO {
     public Iterator<Trade> getUserTradeList(String userID);
 
     /**
-     * 得到用户持有的所有股票代码及持有数，及用户剩余虚拟金钱
+     * 得到用户持有的所有股票代码,持有数,及目前收益率
      * @param userID 用户ID
-     * @return
+     * @return 用户持有的所有股票代码,持有数,及目前收益率
      */
-    public HoldingStocksPO getHoldingStocks(String userID);
+    public Iterator<HoldingStock> getHoldingStocks(String userID);
 
     /**
-     * 增持股票
-     * @param holdingStock 股票ID，购买数(负为卖出数)，用户ID
+     * 得到用户剩余虚拟金钱
+     * @param userID 用户ID
+     * @return 用户金钱
+     */
+    public double getUserRemainMoney(String userID);
+
+    /**
+     * 增持或卖出股票
+     * @param holdingStock 股票ID，购买数(负为卖出数)，用户ID，目前收益率
      * @return 是否成功
      */
     public boolean updateHoldingStock(HoldingStock holdingStock);

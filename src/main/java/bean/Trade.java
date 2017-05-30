@@ -6,16 +6,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by wangxue on 2017/5/18.
+ * 交易记录
+ * Created by wangxue on 2017/5/30.
  */
 @Entity
 public class Trade {
-    private int trageId;
+    private int trageId;//不要set
     private String userId;
-    private String ime;
     private String stockId;
-    private int action;
+    private int action;//买入卖出
     private int numOfStock;
+    private Double buyPrice;//买入价
 
     @Id
     @Column(name = "trageID", nullable = false)
@@ -35,16 +36,6 @@ public class Trade {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    @Basic
-    @Column(name = "ime", nullable = false, length = 20)
-    public String getIme() {
-        return ime;
-    }
-
-    public void setIme(String ime) {
-        this.ime = ime;
     }
 
     @Basic
@@ -77,6 +68,16 @@ public class Trade {
         this.numOfStock = numOfStock;
     }
 
+    @Basic
+    @Column(name = "buyPrice", nullable = true, precision = 0)
+    public Double getBuyPrice() {
+        return buyPrice;
+    }
+
+    public void setBuyPrice(Double buyPrice) {
+        this.buyPrice = buyPrice;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -88,8 +89,8 @@ public class Trade {
         if (action != trade.action) return false;
         if (numOfStock != trade.numOfStock) return false;
         if (userId != null ? !userId.equals(trade.userId) : trade.userId != null) return false;
-        if (ime != null ? !ime.equals(trade.ime) : trade.ime != null) return false;
         if (stockId != null ? !stockId.equals(trade.stockId) : trade.stockId != null) return false;
+        if (buyPrice != null ? !buyPrice.equals(trade.buyPrice) : trade.buyPrice != null) return false;
 
         return true;
     }
@@ -98,11 +99,10 @@ public class Trade {
     public int hashCode() {
         int result = trageId;
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
-        result = 31 * result + (ime != null ? ime.hashCode() : 0);
         result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
         result = 31 * result + action;
         result = 31 * result + numOfStock;
+        result = 31 * result + (buyPrice != null ? buyPrice.hashCode() : 0);
         return result;
     }
-
 }

@@ -3,6 +3,7 @@ package bean;
 import javax.persistence.*;
 
 /**
+ * 没用
  * Created by wangxue on 2017/5/18.
  */
 @Entity

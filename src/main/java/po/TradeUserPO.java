@@ -6,6 +6,7 @@ import bean.TradeUser;
 import java.util.ArrayList;
 
 /**
+ * 没用
  * Created by wangxue on 2017/5/12.
  */
 public class TradeUserPO {

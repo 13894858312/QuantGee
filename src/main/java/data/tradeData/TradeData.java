@@ -37,16 +37,16 @@ public class TradeData implements TradeDAO{
     }
 
     @Override
-    public HoldingStocksPO getHoldingStocks(String userID) {
+    public Iterator<HoldingStock> getHoldingStocks(String userID) {
         Iterator<HoldingStock> holdingStockIterator = (Iterator<HoldingStock>) hibernateTemplate
                 .find("from HoldingStock h where h.userId =?",userID).iterator();
-        UserMoney userMoney = hibernateTemplate.get(UserMoney.class, userID);
-        double money = -1;
-        if(userMoney != null){
-            money = userMoney.getRemainMoney();
-        }
-        HoldingStocksPO holdingStocksPO = new HoldingStocksPO(userID, holdingStockIterator, money);
-        return holdingStocksPO;
+
+        return holdingStockIterator;
+    }
+
+    @Override
+    public double getUserRemainMoney(String userID) {
+        return hibernateTemplate.get(UserMoney.class, userID).getRemainMoney();
     }
 
     @Override
@@ -54,6 +54,7 @@ public class TradeData implements TradeDAO{
         int newNum = holdingStock.getHoldNum();
         String stockID = holdingStock.getStockId();
         String userID = holdingStock.getUserId();
+        double currentYield = holdingStock.getCurrentYield();
 
         Iterator<HoldingStock> iterator =(Iterator<HoldingStock>) hibernateTemplate
                 .find("from HoldingStock  h where h.userId = ?",userID).iterator();
@@ -66,6 +67,7 @@ public class TradeData implements TradeDAO{
                     return false;
                 }
                 holdingStock1.setHoldNum(newNum+oriNum);
+                holdingStock1.setCurrentYield(currentYield);
                 hibernateTemplate.update(holdingStock1);
                 return true;
             }
