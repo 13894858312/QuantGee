@@ -49,6 +49,8 @@ public class BollCalculation {
     private void calculateBOLL(String code) {
         ArrayList<SimpleStock> stocks = initStocks(code);
 
+System.out.println("*************************************************** " + code + " size:" + stocks.size() + " dataStartIndex:" + dataStartIndex);
+
         double mb, md;
 
         for (int i=dataStartIndex; i<stocks.size(); ++i) {
@@ -62,11 +64,14 @@ public class BollCalculation {
             Boll boll = new Boll();
             boll.setCode(code);
             boll.setDate(stocks.get(i).getDate());
-            boll.setMid(MathHelper.formatData(mb,3));
-            boll.setUp(MathHelper.formatData(mb+2*md,3));
-            boll.setLow(MathHelper.formatData(mb-2*md,3));
+            boll.setMid(MathHelper.formatData(mb,2));
+            boll.setUp(MathHelper.formatData(mb+2*md,2));
+            boll.setLow(MathHelper.formatData(mb-2*md,2));
+//            quotaDAO.addBOLL(boll);
 
-            quotaDAO.addBOLL(boll);
+System.out.println("*************************************************** " + code + " " + boll.getDate() + "  mid:" + boll.getMid() + " up:" + boll.getUp() + "  low:" + boll.getLow());
+
+
         }
 
 
@@ -84,6 +89,7 @@ public class BollCalculation {
         return result;
     }
 
+
     //计算指定某一天的均线值
     private double ma(ArrayList<SimpleStock> stocks, int nowIndex, int period) {
         int start = nowIndex - period + 1;
@@ -95,6 +101,7 @@ public class BollCalculation {
 
         return result/period;
     }
+
 
     private ArrayList<SimpleStock> initStocks(String code) {
         Iterator<History> beforeStocks = stockInfoDAO.getHistory(code);

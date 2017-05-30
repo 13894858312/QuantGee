@@ -8,8 +8,6 @@ import bean.Stock;
 import logic.tools.DateHelper;
 import logic.tools.MathHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,9 +19,8 @@ import java.util.Iterator;
  */
 @Service
 public class KdjCalculation {
-    private static final int INDEX1 = 9;
-    private static final int INDEX2 = 3;
-    private static final int INDEX3 = 3;
+    private static final int NINE = 9;
+    private static final int THREE = 3;
 
     @Autowired
     private StockInfoDAO stockInfoDAO;
@@ -49,14 +46,21 @@ public class KdjCalculation {
     private void calculateKDJ(String code) {
         ArrayList<SimpleStock> stocks = initStocks(code);
 
-System.out.println(code + ":  size" + stocks.size());
+System.out.println("*************************************************** " + code + " size:" + stocks.size());
 
-        double k=50, d=50, j=50;
+        double k=50, d=50, j;
         boolean canSaveToDB = false;
 
         for (int i=0; i<stocks.size(); ++i) {
-            k = (rsv(stocks, i) + 2 * k) / INDEX2;
-            d = (k + 2 * d) / INDEX3;
+            k = (rsv(stocks, i) + 2 * k) / THREE;
+            d = (k + 2 * d) / THREE;
+
+            if(!(k>=0 && k <= 100)) {
+                k = 50;
+            }
+            if(!(d>=0 && d <= 100)) {
+                d = 50;
+            }
             j = 3 * k - 2 * d;
 
             if (!canSaveToDB && DateHelper.calculateDaysBetween(MacdCalculation.DATE_INDEX, stocks.get(i).getDate()) >= 0) {
@@ -68,33 +72,31 @@ System.out.println(code + ":  size" + stocks.size());
                 Kdj kdj = new Kdj();
                 kdj.setCode(code);
                 kdj.setDate(stocks.get(i).getDate());
-                kdj.setK(MathHelper.formatData(k,3));
-                kdj.setD(MathHelper.formatData(d,3));
-                kdj.setJ(MathHelper.formatData(j,3));
-
+                kdj.setK(MathHelper.formatData(k,2));
+                kdj.setD(MathHelper.formatData(d,2));
+                kdj.setJ(MathHelper.formatData(j,2));
 //                quotaDAO.addKDJ(kdj);
 
-System.out.println("     " + kdj.getDate() + " " + kdj.getK() + " " + kdj.getD() + " " + kdj.getJ());
+System.out.println("*************************************************** " + code + " " + kdj.getDate() + "  k:" + kdj.getK() + " d:" + kdj.getD() + "  j:" + kdj.getJ());
             }
         }
 
     }
 
     private double rsv(ArrayList<SimpleStock> stocks, int nowIndex) {
-        int start = nowIndex- INDEX1 + 1;
+        int start = nowIndex- NINE + 1;
         if(start < 0) {
             start = 0;
         }
 
         double high = stocks.get(start).getHigh(),
-                low = stocks.get(start).getLow(), rsv;
+                low = stocks.get(start).getLow();
         for(int i=start+1; i<=nowIndex; ++i) {
             high = Math.max(high, stocks.get(i).getHigh());
             low = Math.min(low, stocks.get(i).getLow());
         }
 
-        rsv = (stocks.get(nowIndex).getClose() - low) / (high - low) * 100;
-
+        double rsv = ((stocks.get(nowIndex).getClose() - low) / (high - low)) * 100;
         return rsv;
     }
 
