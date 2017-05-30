@@ -1,14 +1,12 @@
 package bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/5/18.
+ * Created by wangxue on 2017/5/30.
  */
 @Entity
+@IdClass(StockPK.class)
 public class Stock {
     private String date;
     private Double open;
@@ -26,10 +24,9 @@ public class Stock {
     private Double vMa20;
     private Double turnover;
     private String stockId;
-    private int index;
 
-    @Basic
-    @Column(name = "date", nullable = true, length = 10)
+    @Id
+    @Column(name = "date", nullable = false, length = 10)
     public String getDate() {
         return date;
     }
@@ -178,24 +175,14 @@ public class Stock {
         this.turnover = turnover;
     }
 
-    @Basic
-    @Column(name = "stockID", nullable = true, length = 6)
+    @Id
+    @Column(name = "stockID", nullable = false, length = 6)
     public String getStockId() {
         return stockId;
     }
 
     public void setStockId(String stockId) {
         this.stockId = stockId;
-    }
-
-    @Id
-    @Column(name = "index", nullable = false)
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
     }
 
     @Override
@@ -205,7 +192,6 @@ public class Stock {
 
         Stock stock = (Stock) o;
 
-        if (index != stock.index) return false;
         if (date != null ? !date.equals(stock.date) : stock.date != null) return false;
         if (open != null ? !open.equals(stock.open) : stock.open != null) return false;
         if (high != null ? !high.equals(stock.high) : stock.high != null) return false;
@@ -244,7 +230,6 @@ public class Stock {
         result = 31 * result + (vMa20 != null ? vMa20.hashCode() : 0);
         result = 31 * result + (turnover != null ? turnover.hashCode() : 0);
         result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
-        result = 31 * result + index;
         return result;
     }
 }

@@ -5,12 +5,14 @@
 <hibernate-mapping>
 
     <class name="bean.Stock" table="Stock" schema="quantgee_data">
-        <id name="index">
-            <column name="index" sql-type="int(11)"/>
-        </id>
-        <property name="time">
-            <column name="time" sql-type="varchar(10)" length="10" not-null="true"/>
-        </property>
+        <composite-id mapped="true" class="bean.StockPK">
+            <key-property name="date">
+                <column name="date" sql-type="varchar(10)" length="10"/>
+            </key-property>
+            <key-property name="stockId">
+                <column name="stockID" sql-type="varchar(6)" length="6"/>
+            </key-property>
+        </composite-id>
         <property name="open">
             <column name="open" sql-type="double" precision="-1" not-null="true"/>
         </property>
@@ -23,8 +25,8 @@
         <property name="low">
             <column name="low" sql-type="double" precision="-1" not-null="true"/>
         </property>
-        <property name="value">
-            <column name="value" sql-type="double" precision="-1" not-null="true"/>
+        <property name="volume">
+            <column name="volume" sql-type="double" precision="-1" not-null="true"/>
         </property>
         <property name="priceChange">
             <column name="price_change" sql-type="double" precision="-1" not-null="true"/>
@@ -52,9 +54,6 @@
         </property>
         <property name="turnover">
             <column name="turnover" sql-type="double" precision="-1" not-null="true"/>
-        </property>
-        <property name="stockId">
-            <column name="stockID" sql-type="varchar(6)" length="6" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>
