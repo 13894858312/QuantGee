@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by Mark.W on 2017/3/23.
  * 超额收益率和策略胜率图的信息类
  */
-public class AbnormalReturnGraphVO {
+public class AbnormalReturnResultVO {
     private boolean isHoldingPeriodFixed;  //holdingPeriod是否是不变量 true表示holdingPeriod不变，returnPeriod变化
     private int bestHoldingPeriod;  //最佳持有期
     private int bestReturnPeriod;  //最佳形成期
@@ -16,7 +16,7 @@ public class AbnormalReturnGraphVO {
     private double bestAbnormalReturn;  //最优的超额收益率
     private double bestStategyWinRate;   //最优的策略胜率
 
-    private ArrayList<AbnormalReturnGraphDataVO> abnormalReturnGraphDataVOS;  //超额收益率和策略胜率图数据信息
+    private ArrayList<AbnormalReturnLineDataVO> abnormalReturnLineDataVOS;  //超额收益率和策略胜率图数据信息
 
     /**
      * @param isHoldingPeriodFixed true表示holdingPeriod不变，returnPeriod变化
@@ -24,16 +24,16 @@ public class AbnormalReturnGraphVO {
      * @param bestReturnPeriod 最佳形成期
      * @param bestAbnormalReturn 最优的超额收益率
      * @param bestStategyWinRate 最优的策略胜率
-     * @param abnormalReturnGraphDataVOS 超额收益率和策略胜率图数据信息
+     * @param abnormalReturnLineDataVOS 超额收益率和策略胜率图数据信息
      */
-    public AbnormalReturnGraphVO(boolean isHoldingPeriodFixed,int bestHoldingPeriod, int bestReturnPeriod, double bestAbnormalReturn,
-                                 double bestStategyWinRate, ArrayList<AbnormalReturnGraphDataVO> abnormalReturnGraphDataVOS) {
+    public AbnormalReturnResultVO(boolean isHoldingPeriodFixed, int bestHoldingPeriod, int bestReturnPeriod, double bestAbnormalReturn,
+                                  double bestStategyWinRate, ArrayList<AbnormalReturnLineDataVO> abnormalReturnLineDataVOS) {
         this.isHoldingPeriodFixed = isHoldingPeriodFixed;
         this.bestHoldingPeriod = bestHoldingPeriod;
         this.bestReturnPeriod = bestReturnPeriod;
         this.bestAbnormalReturn = MathHelper.formatData(bestAbnormalReturn*100, 2);
         this.bestStategyWinRate = MathHelper.formatData(bestStategyWinRate*100, 2);
-        this.abnormalReturnGraphDataVOS = abnormalReturnGraphDataVOS;
+        this.abnormalReturnLineDataVOS = abnormalReturnLineDataVOS;
     }
 
     public boolean isHoldingPeriodFixed() {
@@ -76,11 +76,11 @@ public class AbnormalReturnGraphVO {
         this.bestStategyWinRate = bestStategyWinRate;
     }
 
-    public ArrayList<AbnormalReturnGraphDataVO> getAbnormalReturnGraphDataVOS() {
-        return abnormalReturnGraphDataVOS;
+    public ArrayList<AbnormalReturnLineDataVO> getAbnormalReturnLineDataVOS() {
+        return abnormalReturnLineDataVOS;
     }
 
-    public void setAbnormalReturnGraphDataVOS(ArrayList<AbnormalReturnGraphDataVO> abnormalReturnGraphDataVOS) {
-        this.abnormalReturnGraphDataVOS = abnormalReturnGraphDataVOS;
+    public void setAbnormalReturnLineDataVOS(ArrayList<AbnormalReturnLineDataVO> abnormalReturnLineDataVOS) {
+        this.abnormalReturnLineDataVOS = abnormalReturnLineDataVOS;
     }
 }

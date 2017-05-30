@@ -6,31 +6,31 @@ package vo.strategy;
  * Created by Mark.W on 2017/3/13.
  */
 public class StrategyBackTestResultVO {
-    private CumulativeYieldGraphVO cumulativeYieldGraphVO;
-    private YieldHistogramGraphVO yieldHistogramGraphVO;
+    private CumulativeYieldResultVO cumulativeYieldResultVO;
+    private YieldHistogramResultVO yieldHistogramResultVO;
 
     /**
-     * @param cumulativeYieldGraphVO 累计收益率图的数据
-     * @param yieldHistogramGraphVO 频率分布直方图的数据
+     * @param cumulativeYieldResultVO 累计收益率图的数据
+     * @param yieldHistogramResultVO 频率分布直方图的数据
      */
-    public StrategyBackTestResultVO(CumulativeYieldGraphVO cumulativeYieldGraphVO, YieldHistogramGraphVO yieldHistogramGraphVO) {
-        this.cumulativeYieldGraphVO = cumulativeYieldGraphVO;
-        this.yieldHistogramGraphVO = yieldHistogramGraphVO;
+    public StrategyBackTestResultVO(CumulativeYieldResultVO cumulativeYieldResultVO, YieldHistogramResultVO yieldHistogramResultVO) {
+        this.cumulativeYieldResultVO = cumulativeYieldResultVO;
+        this.yieldHistogramResultVO = yieldHistogramResultVO;
     }
 
-    public CumulativeYieldGraphVO getCumulativeYieldGraphVO() {
-        return cumulativeYieldGraphVO;
+    public CumulativeYieldResultVO getCumulativeYieldResultVO() {
+        return cumulativeYieldResultVO;
     }
 
-    public void setCumulativeYieldGraphVO(CumulativeYieldGraphVO cumulativeYieldGraphVO) {
-        this.cumulativeYieldGraphVO = cumulativeYieldGraphVO;
+    public void setCumulativeYieldResultVO(CumulativeYieldResultVO cumulativeYieldResultVO) {
+        this.cumulativeYieldResultVO = cumulativeYieldResultVO;
     }
 
-    public YieldHistogramGraphVO getYieldHistogramGraphVO() {
-        return yieldHistogramGraphVO;
+    public YieldHistogramResultVO getYieldHistogramResultVO() {
+        return yieldHistogramResultVO;
     }
 
-    public void setYieldHistogramGraphVO(YieldHistogramGraphVO yieldHistogramGraphVO) {
-        this.yieldHistogramGraphVO = yieldHistogramGraphVO;
+    public void setYieldHistogramResultVO(YieldHistogramResultVO yieldHistogramResultVO) {
+        this.yieldHistogramResultVO = yieldHistogramResultVO;
     }
 }

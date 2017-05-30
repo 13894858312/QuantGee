@@ -63,6 +63,8 @@ public class MacdCalculation {
     private void calculateMACD(String code) {
         ArrayList<SimpleStock> stocks = initStocks(code);
 
+System.out.println("*************************************************** " + code + " size:" + stocks.size());
+
         boolean canSaveToDB = false;
 
         double ema12 = stocks.get(0).getClose();
@@ -73,6 +75,7 @@ public class MacdCalculation {
         for(int i=1; i<stocks.size(); ++i) {
 
             double close = stocks.get(i).getClose();
+
             ema12 = ema12 * (1 - getK(MACD_MID_PERIOD)) + close * getK(MACD_MID_PERIOD);
             ema26 = ema26 * (1 - getK(MACD_LONG_PERIOD)) + close * getK(MACD_LONG_PERIOD);
             diff = ema12 - ema26;
@@ -87,10 +90,13 @@ public class MacdCalculation {
                 Macd macd = new Macd();
                 macd.setCode(code);
                 macd.setDate(stocks.get(i).getDate());
-                macd.setDiff(MathHelper.formatData(diff,3));
-                macd.setDea(MathHelper.formatData(dea,3));
-                macd.setMacd(MathHelper.formatData((diff-dea) * 2, 3));
-                quotaDAO.addMACD(macd);
+                macd.setDiff(MathHelper.formatData(diff,2));
+                macd.setDea(MathHelper.formatData(dea,2));
+                macd.setMacd(MathHelper.formatData((diff-dea) * 2, 2));
+//                quotaDAO.addMACD(macd);
+
+System.out.println("*************************************************** " + code + " " + macd.getDate() + "  diff:" + macd.getDiff() + " dea:" + macd.getDea() + "  macd:" + macd.getMacd());
+
             }
         }
     }
@@ -122,37 +128,4 @@ public class MacdCalculation {
 
         return stocks;
     }
-
-//    public double getEXPMA(ArrayList<SimpleStock> stocks, int now int number) {
-//        // 开始计算EMA值，
-//        Double k = 2.0 / (number + 1.0);// 计算出序数
-//        Double ema = list.get(0);// 第一天ema等于当天收盘价
-//        for (int i = 1; i < list.size(); i++) {
-//            // 第二天以后，当天收盘 收盘价乘以系数再加上昨天EMA乘以系数-1
-//            ema = list.get(i) * k + ema * (1 - k);
-//        }
-//        return ema;
-//    }
-//
-//    public HashMap<String, Double> getMACD(final List<Double> list, final int shortPeriod, final int longPeriod, int midPeriod) {
-//        HashMap<String, Double> macdData = new HashMap<String, Double>();
-//        List<Double> diffList = new ArrayList<Double>();
-//        Double shortEMA = 0.0;
-//        Double longEMA = 0.0;
-//        Double dif = 0.0;
-//        Double dea = 0.0;
-//
-//        for (int i = list.size() - 1; i >= 0; i--) {
-//            List<Double> sublist = list.subList(0, list.size() - i);
-//            shortEMA = Indicators.getEXPMA(sublist, shortPeriod);
-//            longEMA = Indicators.getEXPMA(sublist, longPeriod);
-//            dif = shortEMA - longEMA;
-//            diffList.add(dif);
-//        }
-//        dea = Indicators.getEXPMA(diffList, midPeriod);
-//        macdData.put("DIF", dif);
-//        macdData.put("DEA", dea);
-//        macdData.put("MACD", (dif - dea) * 2);
-//        return macdData;
-//    }
 }

@@ -1,8 +1,8 @@
 package logic.strategy.backTesting;
 
 
-import vo.strategy.AbnormalReturnGraphDataVO;
-import vo.strategy.AbnormalReturnGraphVO;
+import vo.strategy.AbnormalReturnLineDataVO;
+import vo.strategy.AbnormalReturnResultVO;
 
 import java.util.ArrayList;
 
@@ -21,8 +21,8 @@ public class StrategyAbnormalReturn {
     private int period;
     private boolean isHoldingPeriod;
 
-    private ArrayList<AbnormalReturnGraphDataVO> abnormalReturnGraphDataVOS;  //超额收益率和策略胜率图数据信息
-    private AbnormalReturnGraphVO abnormalReturnGraphVO;
+    private ArrayList<AbnormalReturnLineDataVO> abnormalReturnGraphLineVOS;  //超额收益率和策略胜率图数据信息
+    private AbnormalReturnResultVO abnormalReturnResultVO;
 
     /**
      * @param stockPool 股票池
@@ -37,16 +37,16 @@ public class StrategyAbnormalReturn {
 
         this.END_PERIOD = Math.min(stockPool.getTradeDays()/2, 80);           //最高值取交易日除以二
 
-        this.abnormalReturnGraphDataVOS = new ArrayList<>();
+        this.abnormalReturnGraphLineVOS = new ArrayList<>();
     }
 
     public void start() {
         StrategyBackTesting strategyBackTesting;
 
         if(isHoldingPeriod) {
-            this.abnormalReturnGraphDataVOS.add(new AbnormalReturnGraphDataVO(period, 0, 0, 0));
+            this.abnormalReturnGraphLineVOS.add(new AbnormalReturnLineDataVO(period, 0, 0, 0));
         } else {
-            this.abnormalReturnGraphDataVOS.add(new AbnormalReturnGraphDataVO(0, period, 0, 0));
+            this.abnormalReturnGraphLineVOS.add(new AbnormalReturnLineDataVO(0, period, 0, 0));
         }
 
         for(int i=START_PERIOD; i<=END_PERIOD; i+=INTERVAL) {
@@ -66,9 +66,9 @@ public class StrategyAbnormalReturn {
             System.out.println("                                          " + i + " winRate " + winRate);
 
             if(isHoldingPeriod) {
-                this.abnormalReturnGraphDataVOS.add(new AbnormalReturnGraphDataVO(period, i, abnormalReturn, winRate));
+                this.abnormalReturnGraphLineVOS.add(new AbnormalReturnLineDataVO(period, i, abnormalReturn, winRate));
             } else {
-                this.abnormalReturnGraphDataVOS.add(new AbnormalReturnGraphDataVO(i, period, abnormalReturn, winRate));
+                this.abnormalReturnGraphLineVOS.add(new AbnormalReturnLineDataVO(i, period, abnormalReturn, winRate));
             }
         }
 
@@ -82,27 +82,28 @@ public class StrategyAbnormalReturn {
         int bestHoldingPeriod = 0;  //最佳持有期
         int bestReturnPeriod = 0;   //最佳形成期
 
-        double bestAbnormalReturn = abnormalReturnGraphDataVOS.get(0).getAbnormalReturn();  //最优的超额收益率
-        double bestStategyWinRate = abnormalReturnGraphDataVOS.get(0).getStategyWinRate();   //最优的策略胜率
+        double bestAbnormalReturn = abnormalReturnGraphLineVOS.get(0).getAbnormalReturn();  //最优的超额收益率
+        double bestStategyWinRate = abnormalReturnGraphLineVOS.get(0).getStategyWinRate();   //最优的策略胜率
 
         //计算以上最优的数据
-        for(int i=0; i<this.abnormalReturnGraphDataVOS.size(); ++i) {
-            if(this.abnormalReturnGraphDataVOS.get(i).getAbnormalReturn() > bestAbnormalReturn) {
-                bestAbnormalReturn = this.abnormalReturnGraphDataVOS.get(i).getAbnormalReturn();
-                bestHoldingPeriod = this.abnormalReturnGraphDataVOS.get(i).getHoldingPeriod();
-                bestReturnPeriod = this.abnormalReturnGraphDataVOS.get(i).getReturnPeriod();
+        for(int i = 0; i<this.abnormalReturnGraphLineVOS.size(); ++i) {
+
+            if(this.abnormalReturnGraphLineVOS.get(i).getAbnormalReturn() > bestAbnormalReturn) {
+                bestAbnormalReturn = this.abnormalReturnGraphLineVOS.get(i).getAbnormalReturn();
+                bestHoldingPeriod = this.abnormalReturnGraphLineVOS.get(i).getHoldingPeriod();
+                bestReturnPeriod = this.abnormalReturnGraphLineVOS.get(i).getReturnPeriod();
             }
 
-            if(this.abnormalReturnGraphDataVOS.get(i).getStategyWinRate() > bestStategyWinRate) {
-                bestStategyWinRate = this.abnormalReturnGraphDataVOS.get(i).getStategyWinRate();
+            if(this.abnormalReturnGraphLineVOS.get(i).getStategyWinRate() > bestStategyWinRate) {
+                bestStategyWinRate = this.abnormalReturnGraphLineVOS.get(i).getStategyWinRate();
             }
         }
 
-        this.abnormalReturnGraphVO = new AbnormalReturnGraphVO(isHoldingPeriod, bestHoldingPeriod, bestReturnPeriod,
-                bestAbnormalReturn,bestStategyWinRate, this.abnormalReturnGraphDataVOS);
+        this.abnormalReturnResultVO = new AbnormalReturnResultVO(isHoldingPeriod, bestHoldingPeriod, bestReturnPeriod,
+                bestAbnormalReturn,bestStategyWinRate, this.abnormalReturnGraphLineVOS);
     }
 
-    public AbnormalReturnGraphVO getAbnormalReturnGraphVO() {
-        return abnormalReturnGraphVO;
+    public AbnormalReturnResultVO getAbnormalReturnResultVO() {
+        return abnormalReturnResultVO;
     }
 }

@@ -1,6 +1,7 @@
 package vo.strategy;
 
 import logic.tools.MathHelper;
+import vo.stock.LineVO;
 
 import java.util.ArrayList;
 
@@ -8,15 +9,15 @@ import java.util.ArrayList;
  * Created by Mark.W on 2017/3/23.
  * 累计收益率图的信息类
  */
-public class CumulativeYieldGraphVO {
+public class CumulativeYieldResultVO {
     private double annualRevenue;       //年化收益率
     private double baseAnnualRevenue;  //基准年化收益率
     private double alpha;
     private double beta;
     private double sharpeRatio;  //夏普比率
     private double maxDrawdown;  //最大回撤
-    private ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS;       //策略收益率
-    private ArrayList<CumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS; //基准收益率
+    private ArrayList<LineVO> cumulativeYieldLineDatas;       //策略收益率
+    private ArrayList<LineVO> baseCumulativeYieldLineDatas; //基准收益率
 
     /**
      * 收益率图
@@ -26,21 +27,21 @@ public class CumulativeYieldGraphVO {
      * @param beta beta
      * @param sharpeRatio 夏普比率
      * @param maxDrawdown 最大回撤
-     * @param cumulativeYieldGraphDataVOS 收益坐标信息
-     * @param baseCumulativeYieldGraphDataVOS  基准收益坐标信息
+     * @param cumulativeYieldLineDatas 收益坐标信息
+     * @param baseCumulativeYieldLineDatas  基准收益坐标信息
      */
-    public CumulativeYieldGraphVO(double annualRevenue, double baseAnnualRevenue, double alpha,
-                                  double beta, double sharpeRatio, double maxDrawdown,
-                                  ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS,
-                                  ArrayList<CumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS) {
+    public CumulativeYieldResultVO(double annualRevenue, double baseAnnualRevenue, double alpha,
+                                   double beta, double sharpeRatio, double maxDrawdown,
+                                   ArrayList<LineVO> cumulativeYieldLineDatas,
+                                   ArrayList<LineVO> baseCumulativeYieldLineDatas) {
         this.annualRevenue = MathHelper.formatData(annualRevenue*100,2);
         this.baseAnnualRevenue = MathHelper.formatData(baseAnnualRevenue*100,2);
         this.alpha = alpha;
         this.beta = beta;
         this.sharpeRatio = sharpeRatio;
         this.maxDrawdown = MathHelper.formatData(maxDrawdown*100,2);
-        this.cumulativeYieldGraphDataVOS = cumulativeYieldGraphDataVOS;
-        this.baseCumulativeYieldGraphDataVOS = baseCumulativeYieldGraphDataVOS;
+        this.cumulativeYieldLineDatas = cumulativeYieldLineDatas;
+        this.baseCumulativeYieldLineDatas = baseCumulativeYieldLineDatas;
     }
 
     public double getAnnualRevenue() {
@@ -91,19 +92,19 @@ public class CumulativeYieldGraphVO {
         this.maxDrawdown = maxDrawdown;
     }
 
-    public ArrayList<CumulativeYieldGraphDataVO> getCumulativeYieldGraphDataVOS() {
-        return cumulativeYieldGraphDataVOS;
+    public ArrayList<LineVO> getCumulativeYieldLineDatas() {
+        return cumulativeYieldLineDatas;
     }
 
-    public void setCumulativeYieldGraphDataVOS(ArrayList<CumulativeYieldGraphDataVO> cumulativeYieldGraphDataVOS) {
-        this.cumulativeYieldGraphDataVOS = cumulativeYieldGraphDataVOS;
+    public void setCumulativeYieldLineDatas(ArrayList<LineVO> cumulativeYieldLineDatas) {
+        this.cumulativeYieldLineDatas = cumulativeYieldLineDatas;
     }
 
-    public ArrayList<CumulativeYieldGraphDataVO> getBaseCumulativeYieldGraphDataVOS() {
-        return baseCumulativeYieldGraphDataVOS;
+    public ArrayList<LineVO> getBaseCumulativeYieldLineDatas() {
+        return baseCumulativeYieldLineDatas;
     }
 
-    public void setBaseCumulativeYieldGraphDataVOS(ArrayList<CumulativeYieldGraphDataVO> baseCumulativeYieldGraphDataVOS) {
-        this.baseCumulativeYieldGraphDataVOS = baseCumulativeYieldGraphDataVOS;
+    public void setBaseCumulativeYieldLineDatas(ArrayList<LineVO> baseCumulativeYieldLineDatas) {
+        this.baseCumulativeYieldLineDatas = baseCumulativeYieldLineDatas;
     }
 }

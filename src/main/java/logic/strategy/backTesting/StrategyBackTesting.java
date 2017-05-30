@@ -2,10 +2,11 @@ package logic.strategy.backTesting;
 
 import bean.Stock;
 import logic.tools.MathHelper;
+import vo.stock.LineVO;
+import vo.strategy.CumulativeYieldLineDataVO;
 import vo.strategy.StrategyBackTestResultVO;
-import vo.strategy.CumulativeYieldGraphDataVO;
-import vo.strategy.CumulativeYieldGraphVO;
-import vo.strategy.YieldHistogramGraphVO;
+import vo.strategy.CumulativeYieldResultVO;
+import vo.strategy.YieldHistogramResultVO;
 
 import java.util.ArrayList;
 
@@ -30,8 +31,8 @@ public class StrategyBackTesting {
     private int holdingStockNum;  //每个持有期持有的股票数量
     private ArrayList<HoldingStock> holdingStocks;
 
-    private ArrayList<CumulativeYieldGraphDataVO> strategyYield;  //每天的收益率
-    private ArrayList<CumulativeYieldGraphDataVO> baseYield; //基准收益率
+    private ArrayList<LineVO> strategyYield;  //每天的收益率
+    private ArrayList<LineVO> baseYield; //基准收益率
     private ArrayList<Double> yieldPerPeriod;     //每个持有期结束后的收益率  周期收益率
     private StrategyBackTestResultVO strategyBackTestResultVO;
 
@@ -69,42 +70,40 @@ public class StrategyBackTesting {
 
 
         ArrayList<Stock> indexStocks = stockPool.getIndexStocks();
+
         int startIndex = stockPool.getStartIndex(); //初始化访问股票的下标index
         int index = 0;  //记录是否达到一个holdingPeriod的index
 
         ArrayList<String> dates = new ArrayList<>();
-        int temp = Math.max(startIndex+1-holdingPeriod-1, 0);
-        for(int j=startIndex+1; j>=temp; j--) {         //持有期內每天的股票信息必须有 否则不持有该股票
+        int temp = Math.min(startIndex+1+holdingPeriod+1, indexStocks.size());
+        for(int j=startIndex-1; j<temp; ++j) {         //持有期內每天的股票信息必须有 否则不持有该股票
             dates.add(indexStocks.get(j).getDate());
         }
         this.initHoldingStocks(dates);
 
-        this.allBaseY = (indexStocks.get(0).getClose()-indexStocks.get(startIndex).getClose())/indexStocks.get(0).getClose();
+        this.allBaseY = (indexStocks.get(indexStocks.size()-1).getClose()-indexStocks.get(startIndex).getClose())/indexStocks.get(startIndex).getClose();
 
-        //循环主体 最早的时间在前面 所以倒序访问
-        for(int i=startIndex; i>=0; i--) {
+        //循环主体
+        for(int i=startIndex; i<indexStocks.size(); ++i) {
 
-System.out.println("here: " + indexStocks.get(i).getDate());
+System.out.println("mainLoop: " + indexStocks.get(i).getDate());
 
             String dateTemp = indexStocks.get(i).getDate();
-            if(index == holdingPeriod) { //若达到holdingPeriod index置0
-                index = 0;               //前一天进行rebalance,买入卖出
+            if(index == holdingPeriod) {        //若达到holdingPeriod index置0
+                index = 0;                      //前一天进行rebalance,买入卖出
 
-                String d1;
-                if(i+this.returnPeriod >= indexStocks.size()) {
-                    d1 = indexStocks.get(indexStocks.size()-1).getDate();
-                } else {
-                    d1 = indexStocks.get(i+this.returnPeriod).getDate();
-                }
+                int tempIndex = Math.max(i-this.returnPeriod, 0);
+                String d1 = indexStocks.get(tempIndex).getDate();
                 String d2 = indexStocks.get(i).getDate();
 
                 ArrayList<String> datesNextHoldingPeriod = new ArrayList<>();
-                int t = Math.max(i-holdingPeriod-1, 0);
-                for(int j=i; j>=t; j--) {
+                int t = Math.min(i+holdingPeriod+1, indexStocks.size());
+                for(int j=i; j<t; ++j) {
                     datesNextHoldingPeriod.add(indexStocks.get(j).getDate());
                 }
 
                 this.rebalance(d1, d2, datesNextHoldingPeriod);
+
             } else {
                 index ++;
             }
@@ -118,7 +117,7 @@ System.out.println("here: " + indexStocks.get(i).getDate());
             }
 
 
-            if(i == 0 && index != holdingPeriod) {
+            if(i == indexStocks.size()-1 && index != holdingPeriod) {
                 this.sellStock(dateTemp);                       //如果最后剩余的天数不足holdingPeriod，仍然计算周期收益率
                 this.calculatePeriodYield();
             }
@@ -168,7 +167,7 @@ System.out.println("here: " + indexStocks.get(i).getDate());
 System.out.println("  stockNum " + stockNum);
 
         yield = yield/stockNum;
-        this.baseYield.add(new CumulativeYieldGraphDataVO(date, MathHelper.formatData(yield,4)));
+        this.baseYield.add(new LineVO(date, MathHelper.formatData(yield,4)));
     }
 
     /**
@@ -196,7 +195,7 @@ System.out.println("  IStrategy-income:" + yield);
 
 System.out.println("  IStrategy-Yield:" + yield);
 
-        this.strategyYield.add(new CumulativeYieldGraphDataVO(date, MathHelper.formatData(yield,4)));
+        this.strategyYield.add(new LineVO(date, MathHelper.formatData(yield,4)));
     }
 
     /**
@@ -302,13 +301,13 @@ System.out.println("        买入后size:" + this.holdingStocks.size());
         StrategyDataAnlysis analysis = new StrategyDataAnlysis();
 
         //计算累计收益率图的有关数据
-        CumulativeYieldGraphVO cumulativeYieldGraphVO = analysis.analyseCumulativeYieldGraph(income, INIT_FUND, stockPool.getTradeDays(),
+        CumulativeYieldResultVO cumulativeYieldResultVO = analysis.analyseCumulativeYieldGraph(income, INIT_FUND, stockPool.getTradeDays(),
                 strategyYield, baseYield);
 
         //计算有关频率分布直方图的数据
-        YieldHistogramGraphVO yieldHistogramGraphVO = analysis.analyseYieldHistogram(this.yieldPerPeriod);
+        YieldHistogramResultVO yieldHistogramResultVO = analysis.analyseYieldHistogram(this.yieldPerPeriod);
 
-        this.strategyBackTestResultVO = new StrategyBackTestResultVO(cumulativeYieldGraphVO,yieldHistogramGraphVO);
+        this.strategyBackTestResultVO = new StrategyBackTestResultVO(cumulativeYieldResultVO, yieldHistogramResultVO);
     }
 
 

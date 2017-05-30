@@ -43,10 +43,12 @@ public class RsiCalculation {
     private void calculateRSI(String code) {
         ArrayList<SimpleStock> stocks = initStocks(code);
 
+System.out.println("*************************************************** " + code + " size:" + stocks.size() + " dataStartIndex:" + dataStartIndex);
+
         double rsi6, rsi12, rsi24;
 
         for (int i=dataStartIndex; i<stocks.size(); ++i) {
-            if (i < 26) {
+            if (i < INDEX3) {
                 continue;
             } else {
                 rsi6 = rsi(stocks, i, INDEX1);
@@ -57,33 +59,35 @@ public class RsiCalculation {
             Rsi rsi = new Rsi();
             rsi.setCode(code);
             rsi.setDate(stocks.get(i).getDate());
-            rsi.setRsi6(MathHelper.formatData(rsi6,3));
-            rsi.setRsi12(MathHelper.formatData(rsi12,3));
-            rsi.setRsi24(MathHelper.formatData(rsi24,3));
+            rsi.setRsi6(MathHelper.formatData(rsi6,2));
+            rsi.setRsi12(MathHelper.formatData(rsi12,2));
+            rsi.setRsi24(MathHelper.formatData(rsi24,2));
 
-            quotaDAO.addRSI(rsi);
+//            quotaDAO.addRSI(rsi);
+
+System.out.println("*************************************************** " + code + " " + rsi.getDate() + "  rsi6:" + rsi.getRsi6() + " rsi12:" + rsi.getRsi12() + "  rs24:" + rsi.getRsi24());
+
         }
     }
 
     /**
-     * RSI的计算指标公式为，RSI=100－100÷（1+相对强度RS）
+     * 假设A为N日内收盘价的正数之和，B为N日内收盘价的负数之和乘以(—1)
+     * RSI(N)=A÷(A＋B)×100
      */
     private double rsi(ArrayList<SimpleStock> stocks, int nowIndex, int period) {
         double result, up=0, down=0;
-        int start = nowIndex - period;
 
+        int start = nowIndex - period;
         for (int i=start; i<nowIndex; ++i) {
             double temp = stocks.get(i+1).getClose() - stocks.get(i).getClose();
             if(temp > 0) {
                 up += temp;
             } else {
-                down += temp;
+                down -= temp;
             }
         }
 
-        double rs = up/down;
-
-        result = 100 - 100/(1 + rs);
+        result = up / (up + down) * 100;
 
         return result;
     }
