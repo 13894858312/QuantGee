@@ -10,7 +10,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import po.HoldingStocksPO;
 
 import java.util.Iterator;
 
@@ -29,7 +28,7 @@ public class TradeTest {
         Trade trade = new Trade();
         trade.setUserId("123123");
         trade.setAction(1);
-        trade.setBuyPrice(2.0);
+        trade.setPrice(2.0);
         trade.setNumOfStock(123);
         trade.setStockId("ased2i");
         Assert.assertEquals(tradeDAO.addTradeInfo(trade),true);

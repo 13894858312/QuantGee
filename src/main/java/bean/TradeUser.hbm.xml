@@ -9,15 +9,15 @@
             <key-property name="userId">
                 <column name="userID" sql-type="varchar(20)" length="20"/>
             </key-property>
-            <key-property name="stockId">
+            <key-property name="stockCode">
                 <column name="stockID" sql-type="varchar(10)" length="10"/>
             </key-property>
         </composite-id>
         <property name="currentHoldingNum">
             <column name="currentHoldingNum" sql-type="int(11)"/>
         </property>
-        <property name="currentYield">
-            <column name="currentYield" sql-type="double" precision="-1"/>
+        <property name="earning">
+            <column name="earning" sql-type="double" precision="-1"/>
         </property>
     </class>
 </hibernate-mapping>

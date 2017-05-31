@@ -6,10 +6,8 @@ import bean.Trade;
 import bean.UserMoney;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
-import po.HoldingStocksPO;
-import java.util.HashMap;
+
 import java.util.Iterator;
-import java.util.Map;
 
 /**
  * Created by wangxue on 2017/5/5.
@@ -20,6 +18,16 @@ public class TradeData implements TradeDAO{
     private HibernateTemplate hibernateTemplate;
     public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
         this.hibernateTemplate = hibernateTemplate;
+    }
+
+    @Override
+    public Iterator<Trade> getUserTradeList(String userID, String stockCode) {
+        return null;
+    }
+
+    @Override
+    public HoldingStock getHoldingStock(String userID, String stockCode) {
+        return null;
     }
 
     @Override
@@ -45,16 +53,11 @@ public class TradeData implements TradeDAO{
     }
 
     @Override
-    public double getUserRemainMoney(String userID) {
-        return hibernateTemplate.get(UserMoney.class, userID).getRemainMoney();
-    }
-
-    @Override
     public boolean updateHoldingStock(HoldingStock holdingStock) {
         int newNum = holdingStock.getHoldNum();
         String stockID = holdingStock.getStockId();
         String userID = holdingStock.getUserId();
-        double currentYield = holdingStock.getCurrentYield();
+        double currentYield = holdingStock.getSellOutMoney();
 
         Iterator<HoldingStock> iterator =(Iterator<HoldingStock>) hibernateTemplate
                 .find("from HoldingStock  h where h.userId = ?",userID).iterator();
@@ -67,7 +70,7 @@ public class TradeData implements TradeDAO{
                     return false;
                 }
                 holdingStock1.setHoldNum(newNum+oriNum);
-                holdingStock1.setCurrentYield(currentYield);
+                holdingStock1.setSellOutMoney(currentYield);
                 hibernateTemplate.update(holdingStock1);
                 return true;
             }
@@ -76,6 +79,11 @@ public class TradeData implements TradeDAO{
         hibernateTemplate.save(holdingStock);
         hibernateTemplate.flush();
         return true;
+    }
+
+    @Override
+    public double getUserRemainMoney(String userID) {
+        return hibernateTemplate.get(UserMoney.class, userID).getRemainMoney();
     }
 
     @Override

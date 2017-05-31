@@ -6,6 +6,8 @@ import po.UserAnalysisDataPO;
 import vo.admin.UserAnalysisDataVO;
 import vo.stock.NewsVO;
 import vo.stock.StockCurrentVO;
+import vo.trade.HoldingStockVO;
+import vo.trade.TradeRecordVO;
 import vo.user.AccountVO;
 import vo.user.UserVO;
 
@@ -120,4 +122,45 @@ public class TransferHelper {
         return stockCurrentVO;
     }
 
+
+    /**
+     * 将HoldingStockVO转换为HoldingStock
+     * @param holdingStock holdingStock
+     * @param price price
+     * @return HoldingStockVO
+     */
+    public HoldingStockVO transToHoldingStockVO(HoldingStock holdingStock, double price) {
+        double yield = (holdingStock.getHoldNum() * price + holdingStock.getSellOutMoney() - holdingStock.getInitFund())/holdingStock.getInitFund();
+        HoldingStockVO result = new HoldingStockVO(holdingStock.getStockId(), holdingStock.getUserId(),
+                holdingStock.getHoldNum(), holdingStock.getInitFund(), MathHelper.formatData(yield, 4));
+        return result;
+    }
+
+    /**
+     * 将Trade转换为TradeRecordVO
+     * @param trade trade
+     * @return TradeRecordVO
+     */
+    public TradeRecordVO transToTradeRecordVO(Trade trade) {
+        TradeRecordVO result = new TradeRecordVO(trade.getTime(), trade.getUserId(), trade.getStockId(),
+                trade.getAction(), trade.getNumOfStock(), trade.getPrice());
+        return result;
+    }
+
+    /**
+     * 将TradeRecordVO转换为Trade
+     * @param tradeRecordVO tradeRecordVO
+     * @return Trade
+     */
+    public Trade transToTrade(TradeRecordVO tradeRecordVO) {
+        Trade trade = new Trade();
+        trade.setAction(tradeRecordVO.getAction());
+        trade.setNumOfStock(tradeRecordVO.getNumOfStock());
+        trade.setStockId(tradeRecordVO.getStockCode());
+        trade.setUserId(tradeRecordVO.getUserID());
+        trade.setPrice(tradeRecordVO.getPrice());
+        trade.setTime(tradeRecordVO.getTime());
+
+        return trade;
+    }
 }

@@ -12,7 +12,17 @@ public class HoldingStock {
     private String stockId;
     private String userId;
     private int holdNum;
-    private Double currentYield;//收益率
+
+    private Double sellOutMoney;//持有股票卖出的那部分钱，即在手的钱，用于计算收益率
+
+    private Double initFund; //投入的本金
+
+    public Double getInitFund() {
+        return initFund;
+    }
+    public void setInitFund(Double initFund) {
+        this.initFund = initFund;
+    }
 
     @Id
     @Column(name = "stockID", nullable = false, length = 10)
@@ -45,13 +55,13 @@ public class HoldingStock {
     }
 
     @Basic
-    @Column(name = "currentYield", nullable = true, precision = 0)
-    public Double getCurrentYield() {
-        return currentYield;
+    @Column(name = "currentYield")
+    public Double getSellOutMoney() {
+        return sellOutMoney;
     }
 
-    public void setCurrentYield(Double currentYield) {
-        this.currentYield = currentYield;
+    public void setSellOutMoney(Double currentYield) {
+        this.sellOutMoney = currentYield;
     }
 
     @Override
@@ -64,7 +74,7 @@ public class HoldingStock {
         if (holdNum != that.holdNum) return false;
         if (stockId != null ? !stockId.equals(that.stockId) : that.stockId != null) return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
-        if (currentYield != null ? !currentYield.equals(that.currentYield) : that.currentYield != null) return false;
+        if (sellOutMoney != null ? !sellOutMoney.equals(that.sellOutMoney) : that.sellOutMoney != null) return false;
 
         return true;
     }
@@ -74,7 +84,7 @@ public class HoldingStock {
         int result = stockId != null ? stockId.hashCode() : 0;
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
         result = 31 * result + holdNum;
-        result = 31 * result + (currentYield != null ? currentYield.hashCode() : 0);
+        result = 31 * result + (sellOutMoney != null ? sellOutMoney.hashCode() : 0);
         return result;
     }
 }

@@ -29,7 +29,7 @@
         <property name="amount">
             <column name="amount" sql-type="double" precision="-1" not-null="true"/>
         </property>
-        <property name="stockId">
+        <property name="stockCode">
             <column name="stockID" sql-type="text" not-null="true"/>
         </property>
     </class>

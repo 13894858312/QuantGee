@@ -15,8 +15,19 @@ public class Trade {
     private String userId;
     private String stockId;
     private int action;//买入卖出
-    private int numOfStock;
-    private Double buyPrice;//买入价
+    private int numOfStock; //买入或者卖出的股票数量
+    private Double price;//进行该交易时股票的价格
+
+    private String time; //时间格式 YYYY-MM-DD HH:mm:ss
+
+    public String getTime() {
+        return time;
+    }
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+
 
     @Id
     @Column(name = "trageID", nullable = false)
@@ -70,12 +81,12 @@ public class Trade {
 
     @Basic
     @Column(name = "buyPrice", nullable = true, precision = 0)
-    public Double getBuyPrice() {
-        return buyPrice;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setBuyPrice(Double buyPrice) {
-        this.buyPrice = buyPrice;
+    public void setPrice(Double buyPrice) {
+        this.price = buyPrice;
     }
 
     @Override
@@ -90,7 +101,7 @@ public class Trade {
         if (numOfStock != trade.numOfStock) return false;
         if (userId != null ? !userId.equals(trade.userId) : trade.userId != null) return false;
         if (stockId != null ? !stockId.equals(trade.stockId) : trade.stockId != null) return false;
-        if (buyPrice != null ? !buyPrice.equals(trade.buyPrice) : trade.buyPrice != null) return false;
+        if (price != null ? !price.equals(trade.price) : trade.price != null) return false;
 
         return true;
     }
@@ -102,7 +113,7 @@ public class Trade {
         result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
         result = 31 * result + action;
         result = 31 * result + numOfStock;
-        result = 31 * result + (buyPrice != null ? buyPrice.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
         return result;
     }
 }
