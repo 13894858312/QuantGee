@@ -61,12 +61,10 @@ public class StrategyBackTesting {
      *  执行回测的主程序
      */
     public void start() {
-
         //如果回测板块，获取板块的基准收益率
         if (blockType != null) {
             baseYield = stockPool.getBlockBaseRaito();
         }
-
 
         ArrayList<Stock> indexStocks = stockPool.getIndexStocks();
 
@@ -80,7 +78,11 @@ public class StrategyBackTesting {
         }
         this.initHoldingStocks(dates);
 
-        this.allBaseY = (indexStocks.get(indexStocks.size()-1).getClose()-indexStocks.get(startIndex).getClose())/indexStocks.get(startIndex).getClose();
+        if(blockType == null) {
+            this.allBaseY = (indexStocks.get(indexStocks.size()-1).getClose()-indexStocks.get(startIndex).getClose())/indexStocks.get(startIndex).getClose();
+        } else {
+            this.allBaseY = (baseYield.get(baseYield.size()-1).getValue() - baseYield.get(0).getValue())/baseYield.get(0).getValue();
+        }
 
 
         //循环主体
@@ -177,7 +179,7 @@ System.out.println("  stockNum " + stockNum);
      */
     private void calculateStrategyYield(String date) {
 
-System.out.println("  logicHoldingStocks-size: " + this.logicHoldingStocks.size());
+System.out.println("      logicHoldingStocks-size: " + this.logicHoldingStocks.size());
 
         double yield = 0;
         for(int i = 0; i<this.logicHoldingStocks.size(); ++i) {
@@ -188,12 +190,12 @@ System.out.println("  logicHoldingStocks-size: " + this.logicHoldingStocks.size(
             }
         }
 
-System.out.println("  IStrategy-income:" + yield);
+System.out.println("      IStrategy-income:" + yield);
 
         //计算累计收益率
         yield = (yield - INIT_FUND)/INIT_FUND;
 
-System.out.println("  IStrategy-Yield:" + yield);
+System.out.println("      IStrategy-Yield:" + yield);
 
         this.strategyYield.add(new LineVO(date, MathHelper.formatData(yield,4)));
     }
@@ -222,8 +224,8 @@ System.out.println("  IStrategy-Yield:" + yield);
      * 计算每个持有期结束后的收益率
      */
     private void calculatePeriodYield() {
-System.out.println("               前一周期收益：" + tempIncome);
-System.out.println("               当前周期收益：" + income);
+System.out.println("                         前一周期收益：" + tempIncome);
+System.out.println("                         当前周期收益：" + income);
 
         double yield = (income-tempIncome)/tempIncome;
         this.yieldPerPeriod.add(yield);
@@ -248,9 +250,9 @@ System.out.println("               当前周期收益：" + income);
         }
 
 
-System.out.println("       date:" + date);
-System.out.println("       买入前size:" + this.logicHoldingStocks.size());
-System.out.println("       StockYield-size:" + stockYields.size());
+System.out.println("               date:" + date);
+System.out.println("               买入前size:" + this.logicHoldingStocks.size());
+System.out.println("               StockYield-size:" + stockYields.size());
 
         //买入股票
         double moneyEachStock = income/this.holdingStockNum;
@@ -269,7 +271,7 @@ System.out.println("       StockYield-size:" + stockYields.size());
             }
         }
 
-System.out.println("        买入后size:" + this.logicHoldingStocks.size());
+System.out.println("               买入后size:" + this.logicHoldingStocks.size());
     }
 
     /**

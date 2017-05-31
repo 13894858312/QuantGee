@@ -208,11 +208,6 @@ public class StrategyDataAnlysis {
      */
     private double calculateBaseAnnualRevenue(ArrayList<LineVO> baseYield, int tradeDays) {
 
-        System.out.println("**************** " + tradeDays);
-        for (int i=0; i<baseYield.size(); ++i) {
-            System.out.println("**************** " + baseYield.get(i).getDate() + " *********** " + baseYield.get(i).getValue());
-        }
-
         double baseAnnualRevenue = 0;
 
         for(int i=1; i<baseYield.size(); ++i) {

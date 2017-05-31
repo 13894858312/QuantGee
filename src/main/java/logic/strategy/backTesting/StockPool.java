@@ -64,10 +64,12 @@ public class StockPool {
             Iterator<Stock> stocks = stockInfoDAO.getStockInfo(strategyBackTestInputVO.getBlockType(),
                     strategyBackTestInputVO.getStartDate(), this.strategyBackTestInputVO.getEndDate());
 
+            double initClose = stocks.next().getClose();
+
             while(stocks.hasNext()) {
                 Stock stock = stocks.next();
                 //数据均是百分数 所以需要 /100
-                blockBaseRaito.add(new LineVO(stock.getDate(), stock.getpChange()/100));
+                blockBaseRaito.add(new LineVO(stock.getDate(), (stock.getClose()-initClose)/initClose));
             }
         }
     }

@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/5/17.
  */
-var myChart = echarts.init(document.getElementById('line'));
+var myChart = echarts.init(document.getElementById('volumeBar'));
 var base = +new Date(1968, 9, 3);
 var oneDay = 24 * 3600 * 1000;
 var date = [];
