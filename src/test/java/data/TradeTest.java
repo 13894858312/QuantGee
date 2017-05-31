@@ -30,7 +30,8 @@ public class TradeTest {
         trade.setAction(1);
         trade.setPrice(2.0);
         trade.setNumOfStock(123);
-        trade.setStockId("ased2i");
+        trade.setStockId("ased22i");
+        trade.setTime("000");
         Assert.assertEquals(tradeDAO.addTradeInfo(trade),true);
     }
 
@@ -46,7 +47,9 @@ public class TradeTest {
         HoldingStock holdingStock = new HoldingStock();
         holdingStock.setHoldNum(22);
         holdingStock.setStockId("231323");
-        holdingStock.setUserId("123123");
+        holdingStock.setUserId("12123");
+        holdingStock.setInitFund(2.1);
+        holdingStock.setSellOutMoney(1.0);
         Assert.assertEquals(tradeDAO.updateHoldingStock(holdingStock),true);
     }
 

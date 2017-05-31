@@ -3,8 +3,7 @@ package bean;
 import javax.persistence.*;
 
 /**
- * 用户持有股票信息
- * Created by wangxue on 2017/5/30.
+ * Created by wangxue on 2017/5/31.
  */
 @Entity
 @IdClass(HoldingStockPK.class)
@@ -12,17 +11,9 @@ public class HoldingStock {
     private String stockId;
     private String userId;
     private int holdNum;
-
     private Double sellOutMoney;//持有股票卖出的那部分钱，即在手的钱，用于计算收益率
 
     private Double initFund; //投入的本金
-
-    public Double getInitFund() {
-        return initFund;
-    }
-    public void setInitFund(Double initFund) {
-        this.initFund = initFund;
-    }
 
     @Id
     @Column(name = "stockID", nullable = false, length = 10)
@@ -55,13 +46,23 @@ public class HoldingStock {
     }
 
     @Basic
-    @Column(name = "currentYield")
+    @Column(name = "sellOutMoney", nullable = true, precision = 0)
     public Double getSellOutMoney() {
         return sellOutMoney;
     }
 
-    public void setSellOutMoney(Double currentYield) {
-        this.sellOutMoney = currentYield;
+    public void setSellOutMoney(Double sellOutMoney) {
+        this.sellOutMoney = sellOutMoney;
+    }
+
+    @Basic
+    @Column(name = "initFund", nullable = true, precision = 0)
+    public Double getInitFund() {
+        return initFund;
+    }
+
+    public void setInitFund(Double initFund) {
+        this.initFund = initFund;
     }
 
     @Override
@@ -75,6 +76,7 @@ public class HoldingStock {
         if (stockId != null ? !stockId.equals(that.stockId) : that.stockId != null) return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
         if (sellOutMoney != null ? !sellOutMoney.equals(that.sellOutMoney) : that.sellOutMoney != null) return false;
+        if (initFund != null ? !initFund.equals(that.initFund) : that.initFund != null) return false;
 
         return true;
     }
@@ -85,6 +87,7 @@ public class HoldingStock {
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
         result = 31 * result + holdNum;
         result = 31 * result + (sellOutMoney != null ? sellOutMoney.hashCode() : 0);
+        result = 31 * result + (initFund != null ? initFund.hashCode() : 0);
         return result;
     }
 }
