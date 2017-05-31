@@ -3,12 +3,14 @@ package data.stockInfoData;
 import DAO.stockInfoDAO.CollectStockDAO;
 import bean.CollectStock;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Iterator;
 
 /**
  * Created by wangxue on 2017/5/24.
  */
+@Transactional
 public class CollectStockData implements CollectStockDAO {
 
     private HibernateTemplate hibernateTemplate;

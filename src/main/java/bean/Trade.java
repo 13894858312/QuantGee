@@ -6,17 +6,18 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * 交易记录
- * Created by wangxue on 2017/5/30.
+ * Created by wangxue on 2017/5/31.
  */
 @Entity
 public class Trade {
+
     private int trageId;//不要set
     private String userId;
     private String stockId;
     private int action;//买入卖出
-    private int numOfStock;
-    private Double buyPrice;//买入价
+    private int numOfStock; //买入或者卖出的股票数量
+    private Double price;//进行该交易时股票的价格
+    private String time; //时间格式 YYYY-MM-DD HH:mm:ss
 
     @Id
     @Column(name = "trageID", nullable = false)
@@ -69,13 +70,23 @@ public class Trade {
     }
 
     @Basic
-    @Column(name = "buyPrice", nullable = true, precision = 0)
-    public Double getBuyPrice() {
-        return buyPrice;
+    @Column(name = "time", nullable = true, length = 20)
+    public String getTime() {
+        return time;
     }
 
-    public void setBuyPrice(Double buyPrice) {
-        this.buyPrice = buyPrice;
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    @Basic
+    @Column(name = "price", nullable = true, precision = 0)
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     @Override
@@ -90,7 +101,8 @@ public class Trade {
         if (numOfStock != trade.numOfStock) return false;
         if (userId != null ? !userId.equals(trade.userId) : trade.userId != null) return false;
         if (stockId != null ? !stockId.equals(trade.stockId) : trade.stockId != null) return false;
-        if (buyPrice != null ? !buyPrice.equals(trade.buyPrice) : trade.buyPrice != null) return false;
+        if (time != null ? !time.equals(trade.time) : trade.time != null) return false;
+        if (price != null ? !price.equals(trade.price) : trade.price != null) return false;
 
         return true;
     }
@@ -102,7 +114,8 @@ public class Trade {
         result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
         result = 31 * result + action;
         result = 31 * result + numOfStock;
-        result = 31 * result + (buyPrice != null ? buyPrice.hashCode() : 0);
+        result = 31 * result + (time != null ? time.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
         return result;
     }
 }

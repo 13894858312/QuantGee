@@ -20,8 +20,11 @@
         <property name="numOfStock">
             <column name="numOfStock" sql-type="int(11)"/>
         </property>
-        <property name="buyPrice">
-            <column name="buyPrice" sql-type="double" precision="-1" not-null="true"/>
+        <property name="time">
+            <column name="time" sql-type="varchar(20)" length="20" not-null="true"/>
+        </property>
+        <property name="price">
+            <column name="price" sql-type="double" precision="-1" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>
