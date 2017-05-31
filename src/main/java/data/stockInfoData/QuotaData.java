@@ -3,12 +3,14 @@ package data.stockInfoData;
 import DAO.stockInfoDAO.QuotaDAO;
 import bean.*;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Iterator;
 
 /**
  * Created by wangxue on 2017/5/24.
  */
+@Transactional
 public class QuotaData implements QuotaDAO {
 
     private HibernateTemplate hibernateTemplate;

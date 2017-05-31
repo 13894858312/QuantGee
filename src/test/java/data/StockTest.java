@@ -109,7 +109,7 @@ public class StockTest {
 
     @Test
     public void addCollect(){
-        Assert.assertEquals(collectStockDAO.addCollectedStock("22392","34334"),true);
+        Assert.assertEquals(collectStockDAO.addCollectedStock("22392e","34334"),true);
     }
 
     @Test
@@ -129,7 +129,7 @@ public class StockTest {
     public void addMacdTest(){
         Macd macd = new Macd();
         macd.setCode("123123");
-        macd.setDate("212");
+        macd.setDate("21d2");
         macd.setDea(123.2);
         macd.setDiff(2.2);
         macd.setMacd(23.1);
@@ -151,13 +151,13 @@ public class StockTest {
         kdj.setD(2.0);
         kdj.setK(1.0);
         kdj.setJ(3.0);
-        kdj.setDate("2019-02-01");
+        kdj.setDate("2019-03-01");
         Assert.assertEquals(quotaDAO.addKDJ(kdj),true);
     }
 
     @Test
     public void getKDJTest(){
-        Iterator<Kdj> kdjIterator = quotaDAO.getKDJs("0","300","000001");
+        Iterator<Kdj> kdjIterator = quotaDAO.getKDJs("0","3010","000001");
         while (kdjIterator.hasNext()){
             System.out.println(kdjIterator.next().getDate());
         }
