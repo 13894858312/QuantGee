@@ -80,7 +80,7 @@ public class QuotaData implements QuotaDAO {
     public Iterator<StockPredict> getPredictData(String code, String startDate, String endDate) {
         Iterator<StockPredict> stockPredict = (Iterator<StockPredict>) hibernateTemplate
                 .find("from StockPredict s where s.code = ? and s.date > ? and s.date < ?",
-                        new String[]{code,startDate,endDate});
+                        new String[]{code,startDate,endDate}).iterator();
         return stockPredict;
     }
 

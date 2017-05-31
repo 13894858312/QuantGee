@@ -179,7 +179,7 @@ public class StockTest {
 
     @Test
     public void getPredictTest(){
-        StockPredict stockPredict = quotaDAO.getPredictData("000001","0", "2020-20-20").next();
+        Iterator<StockPredict> stockPredict = quotaDAO.getPredictData("000001","0", "2020-20-20");
         System.out.print(stockPredict);
     }
 }

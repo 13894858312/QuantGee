@@ -73,6 +73,9 @@ public class TradeData implements TradeDAO{
             }
         }
 
+        if(newNum<0){
+            return false;
+        }
         hibernateTemplate.save(holdingStock);
         hibernateTemplate.flush();
         return true;
