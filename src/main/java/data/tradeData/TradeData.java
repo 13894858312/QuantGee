@@ -6,10 +6,8 @@ import bean.Trade;
 import bean.UserMoney;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
-import po.HoldingStocksPO;
-import java.util.HashMap;
+
 import java.util.Iterator;
-import java.util.Map;
 
 /**
  * Created by wangxue on 2017/5/5.
@@ -20,6 +18,16 @@ public class TradeData implements TradeDAO{
     private HibernateTemplate hibernateTemplate;
     public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
         this.hibernateTemplate = hibernateTemplate;
+    }
+
+    @Override
+    public Iterator<Trade> getUserTradeList(String userID, String stockCode) {
+        return null;
+    }
+
+    @Override
+    public HoldingStock getHoldingStock(String userID, String stockCode) {
+        return null;
     }
 
     @Override
@@ -45,37 +53,41 @@ public class TradeData implements TradeDAO{
     }
 
     @Override
-    public double getUserRemainMoney(String userID) {
-        return hibernateTemplate.get(UserMoney.class, userID).getRemainMoney();
-    }
-
-    @Override
     public boolean updateHoldingStock(HoldingStock holdingStock) {
         int newNum = holdingStock.getHoldNum();
         String stockID = holdingStock.getStockId();
         String userID = holdingStock.getUserId();
-        double currentYield = holdingStock.getCurrentYield();
+        double sellOutMoney = holdingStock.getSellOutMoney();
+        double initFund = holdingStock.getInitFund();
 
-        Iterator<HoldingStock> iterator =(Iterator<HoldingStock>) hibernateTemplate
-                .find("from HoldingStock  h where h.userId = ?",userID).iterator();
+        HoldingStock old = (HoldingStock) hibernateTemplate
+                .find("from HoldingStock  h where h.userId = ? and h.stockId = ?",
+                        new String[] {userID, stockID}).iterator().next();
 
-        while (iterator.hasNext()){
-            HoldingStock holdingStock1 = iterator.next();
-            if(holdingStock1.getStockId() == stockID){
-                int oriNum = holdingStock1.getHoldNum();
-                if(newNum+oriNum<0){
-                    return false;
-                }
-                holdingStock1.setHoldNum(newNum+oriNum);
-                holdingStock1.setCurrentYield(currentYield);
-                hibernateTemplate.update(holdingStock1);
-                return true;
+        if(old != null){
+            int oriNum = old.getHoldNum();
+            if(newNum + oriNum < 0){
+                return false;
             }
+            old.setInitFund(initFund);
+            old.setSellOutMoney(sellOutMoney);
+            old.setHoldNum(newNum+oriNum);
+            hibernateTemplate.update(old);
+            return true;
+        }
+
+        if(newNum<0){
+            return false;
         }
 
         hibernateTemplate.save(holdingStock);
         hibernateTemplate.flush();
         return true;
+    }
+
+    @Override
+    public double getUserRemainMoney(String userID) {
+        return hibernateTemplate.get(UserMoney.class, userID).getRemainMoney();
     }
 
     @Override

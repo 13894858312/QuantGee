@@ -16,8 +16,11 @@
         <property name="holdNum">
             <column name="holdNum" sql-type="int(11)"/>
         </property>
-        <property name="currentYield">
-            <column name="currentYield" sql-type="double" precision="-1" not-null="true"/>
+        <property name="sellOutMoney">
+            <column name="sellOutMoney" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="initFund">
+            <column name="initFund" sql-type="double" precision="-1" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>

@@ -2,7 +2,6 @@ package logic.strategy.backTesting;
 
 import logic.tools.MathHelper;
 import vo.stock.LineVO;
-import vo.strategy.CumulativeYieldLineDataVO;
 import vo.strategy.CumulativeYieldResultVO;
 import vo.strategy.YieldHistogramLineDataVO;
 import vo.strategy.YieldHistogramResultVO;
@@ -41,9 +40,9 @@ public class StrategyDataAnlysis {
         ArrayList<YieldHistogramLineDataVO> data = calculatePeriodYieldNum(maxYield, yieldPerPeriod);
 
         double winRate = (double)positiveEarningNum /(double)(positiveEarningNum+negativeEarningNum);
-        YieldHistogramResultVO yieldHistogramResultVO = new YieldHistogramResultVO(positiveEarningNum, negativeEarningNum, winRate,data);
+        YieldHistogramResultVO result = new YieldHistogramResultVO(positiveEarningNum, negativeEarningNum, winRate,data);
 
-        return yieldHistogramResultVO;
+        return result;
     }
 
     /**
@@ -65,10 +64,10 @@ public class StrategyDataAnlysis {
         double sharpeRatio = this.calculateSharpRatio(annualRevenue, strategyYield);  //夏普比率
         double maxDrawdown = this.calculateMaxDrawdown(strategyYield);  //最大回撤
 
-        CumulativeYieldResultVO cumulativeYieldResultVO = new CumulativeYieldResultVO(annualRevenue,baseAnnualRevenue,
+        CumulativeYieldResultVO result = new CumulativeYieldResultVO(annualRevenue,baseAnnualRevenue,
                 alpha, beta,sharpeRatio, maxDrawdown,strategyYield, baseYield);
 
-        return cumulativeYieldResultVO;
+        return result;
     }
 
     /**
@@ -127,15 +126,15 @@ public class StrategyDataAnlysis {
             }
         }
 
-        ArrayList<YieldHistogramLineDataVO> yieldHistogramLineDataVOS = new ArrayList<>();
+        ArrayList<YieldHistogramLineDataVO> result = new ArrayList<>();
 
         for(int i = 0;i<positiveYields.length; ++i) {
             double startRate = (double)i/(double)100 * interval;
             double endRate = (double)(i+1)/(double)100 * interval;
-            yieldHistogramLineDataVOS.add(new YieldHistogramLineDataVO(startRate, endRate, positiveYields[i], negativeYields[i]));
+            result.add(new YieldHistogramLineDataVO(startRate, endRate, positiveYields[i], negativeYields[i]));
         }
 
-        return yieldHistogramLineDataVOS;
+        return result;
     }
 
     /**
@@ -185,8 +184,7 @@ public class StrategyDataAnlysis {
      * @param baseYield 投资区间的基准策略收益率
      * @return beta
      */
-    private double calculateBeta(ArrayList<LineVO> strategyYield,
-                                ArrayList<LineVO> baseYield) {
+    private double calculateBeta(ArrayList<LineVO> strategyYield, ArrayList<LineVO> baseYield) {
 
         double[] strategy = new double[strategyYield.size()];
         for(int i=0; i<strategyYield.size(); ++i) {
@@ -208,9 +206,15 @@ public class StrategyDataAnlysis {
      * @param baseYield 投资区间的基准策略收益率
      * @return 基准年化收益率
      */
-    private double calculateBaseAnnualRevenue(ArrayList<LineVO> baseYield,
-                                              int tradeDays) {
+    private double calculateBaseAnnualRevenue(ArrayList<LineVO> baseYield, int tradeDays) {
+
+        System.out.println("**************** " + tradeDays);
+        for (int i=0; i<baseYield.size(); ++i) {
+            System.out.println("**************** " + baseYield.get(i).getDate() + " *********** " + baseYield.get(i).getValue());
+        }
+
         double baseAnnualRevenue = 0;
+
         for(int i=1; i<baseYield.size(); ++i) {
             baseAnnualRevenue += baseYield.get(i).getValue();
         }

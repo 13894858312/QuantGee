@@ -5,53 +5,59 @@ package vo.trade;
  * 模拟交易 交易记录的vo
  */
 public class TradeRecordVO {
-    private String Time; //时间格式 YYYY-MM-DD HH:mm:ss
+    private String time; //时间格式 YYYY-MM-DD HH:mm:ss
+    private String userID;
     private String stockCode;
-    private boolean buyOrNot;
-    private double tradeMoney;
+    private int action;         // 0买入 1卖出
     private int numOfStock;
-    private double moneyInStock;
-    private double moneyInHand;
-    private double currentYield;
+
+    private double price;      //界面层该参数无需赋值
 
     public TradeRecordVO() {}
 
     /**
      * @param time 时间 具体到时分秒
      * @param stockCode 股票代码
-     * @param buyOrNot 买入或卖出
-     * @param tradeMoney 买入或者卖出的钱
+     * @param action 买入或卖出
      * @param numOfStock 买入或者卖出的股票数量
-     * @param moneyInStock 完成当前操作后 本金+收益中 持有的还在股票中的钱数量
-     * @param moneyInHand 完成当前操作后 本金+收益中 到手的钱的数量
-     * @param currentYield 完成当前操作后 收益率
+     * @param price 进行该交易时股票的价格
      */
-    public TradeRecordVO(String time, String stockCode, boolean buyOrNot, double tradeMoney, int numOfStock,
-                         double moneyInStock, double moneyInHand, double currentYield) {
-        Time = time;
+    public TradeRecordVO(String time,String userID, String stockCode, int action,
+                         int numOfStock, double price) {
+        this.time = time;
+        this.userID = userID;
         this.stockCode = stockCode;
-        this.buyOrNot = buyOrNot;
-        this.tradeMoney = tradeMoney;
+        this.action = action;
         this.numOfStock = numOfStock;
-        this.moneyInStock = moneyInStock;
-        this.moneyInHand = moneyInHand;
-        this.currentYield = currentYield;
+        this.price = price;
     }
 
-    public double getCurrentYield() {
-        return currentYield;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setCurrentYield(double currentYield) {
-        this.currentYield = currentYield;
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public int getAction() {
+        return action;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getTime() {
-        return Time;
+        return time;
     }
 
     public void setTime(String time) {
-        Time = time;
+        this.time = time;
     }
 
     public String getStockCode() {
@@ -62,20 +68,12 @@ public class TradeRecordVO {
         this.stockCode = stockCode;
     }
 
-    public boolean isBuyOrNot() {
-        return buyOrNot;
+    public int isAction() {
+        return action;
     }
 
-    public void setBuyOrNot(boolean buyOrNot) {
-        this.buyOrNot = buyOrNot;
-    }
-
-    public double getTradeMoney() {
-        return tradeMoney;
-    }
-
-    public void setTradeMoney(double tradeMoney) {
-        this.tradeMoney = tradeMoney;
+    public void setAction(int action) {
+        this.action = action;
     }
 
     public int getNumOfStock() {
@@ -84,21 +82,5 @@ public class TradeRecordVO {
 
     public void setNumOfStock(int numOfStock) {
         this.numOfStock = numOfStock;
-    }
-
-    public double getMoneyInStock() {
-        return moneyInStock;
-    }
-
-    public void setMoneyInStock(double moneyInStock) {
-        this.moneyInStock = moneyInStock;
-    }
-
-    public double getMoneyInHand() {
-        return moneyInHand;
-    }
-
-    public void setMoneyInHand(double moneyInHand) {
-        this.moneyInHand = moneyInHand;
     }
 }

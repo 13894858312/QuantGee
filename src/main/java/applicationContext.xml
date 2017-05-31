@@ -55,7 +55,6 @@
             </props>
         </property>
     </bean>
-
     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
@@ -69,11 +68,11 @@
     <!-- 事务的传播特性 -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
-            <tx:method name="add*" propagation="REQUIRED"/>
-            <tx:method name="delete*" propagation="REQUIRED"/>
-            <tx:method name="remove*" propagation="REQUIRED"/>
-            <tx:method name="update*" propagation="REQUIRED"/>
-            <tx:method name="post*" propagation="REQUIRED"/>
+            <tx:method name="add*" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="delete*" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="remove*" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="update*" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="post*" propagation="REQUIRED" read-only="false"/>
             <tx:method name="get*" read-only="true" propagation="NOT_SUPPORTED"/>
             <tx:method name="search*" read-only="true" propagation="NOT_SUPPORTED"/>
             <tx:method name="*" read-only="false"/>
@@ -114,11 +113,11 @@
         <property name="hibernateTemplate" ref="hibernateTemplate"></property>
     </bean>
 
-    <bean id="QuotaDao" class="data.stockInfoData.QuotaData" scope="singleton">
+    <bean id="quotaDao" class="data.stockInfoData.QuotaData" scope="singleton">
         <property name="hibernateTemplate" ref="hibernateTemplate"></property>
     </bean>
 
-    <bean id="CollectStockData" class="data.stockInfoData.CollectStockData" scope="singleton">
+    <bean id="collectStockDao" class="data.stockInfoData.CollectStockData" scope="singleton">
         <property name="hibernateTemplate" ref="hibernateTemplate"></property>
     </bean>
 
