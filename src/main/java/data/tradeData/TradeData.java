@@ -57,28 +57,29 @@ public class TradeData implements TradeDAO{
         int newNum = holdingStock.getHoldNum();
         String stockID = holdingStock.getStockId();
         String userID = holdingStock.getUserId();
-        double currentYield = holdingStock.getSellOutMoney();
+        double sellOutMoney = holdingStock.getSellOutMoney();
+        double initFund = holdingStock.getInitFund();
 
-        Iterator<HoldingStock> iterator =(Iterator<HoldingStock>) hibernateTemplate
-                .find("from HoldingStock  h where h.userId = ?",userID).iterator();
+        HoldingStock old = (HoldingStock) hibernateTemplate
+                .find("from HoldingStock  h where h.userId = ? and h.stockId = ?",
+                        new String[] {userID, stockID}).iterator().next();
 
-        while (iterator.hasNext()){
-            HoldingStock holdingStock1 = iterator.next();
-            if(holdingStock1.getStockId() == stockID){
-                int oriNum = holdingStock1.getHoldNum();
-                if(newNum+oriNum<0){
-                    return false;
-                }
-                holdingStock1.setHoldNum(newNum+oriNum);
-                holdingStock1.setSellOutMoney(currentYield);
-                hibernateTemplate.update(holdingStock1);
-                return true;
+        if(old != null){
+            int oriNum = old.getHoldNum();
+            if(newNum + oriNum < 0){
+                return false;
             }
+            old.setInitFund(initFund);
+            old.setSellOutMoney(sellOutMoney);
+            old.setHoldNum(newNum+oriNum);
+            hibernateTemplate.update(old);
+            return true;
         }
 
         if(newNum<0){
             return false;
         }
+
         hibernateTemplate.save(holdingStock);
         hibernateTemplate.flush();
         return true;

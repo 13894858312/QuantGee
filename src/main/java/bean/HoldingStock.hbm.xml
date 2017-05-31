@@ -6,7 +6,7 @@
 
     <class name="bean.HoldingStock" table="HoldingStock" schema="quantgee_data">
         <composite-id mapped="true" class="bean.HoldingStockPK">
-            <key-property name="stockCode">
+            <key-property name="stockId">
                 <column name="stockID" sql-type="varchar(10)" length="10"/>
             </key-property>
             <key-property name="userId">
@@ -16,8 +16,11 @@
         <property name="holdNum">
             <column name="holdNum" sql-type="int(11)"/>
         </property>
-        <property name="earning">
-            <column name="earning" sql-type="double" precision="-1" not-null="true"/>
+        <property name="sellOutMoney">
+            <column name="sellOutMoney" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="initFund">
+            <column name="initFund" sql-type="double" precision="-1" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>
