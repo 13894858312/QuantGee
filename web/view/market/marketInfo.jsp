@@ -71,7 +71,7 @@
 
             <div class="login-box">
 
-                <a href="../../view/ucenter/login.jsp" target="_blank">登录</a>
+                <a href="../../view/ucenter/login.jsp" target="_self">登录</a>
 
             </div>
 

@@ -229,7 +229,7 @@ input[type="password"]:focus {
 }
 
 .registbox input[type="submit"]{
-	margin-bottom: 0px;
+	margin-bottom: 25px;
 }
 
 .registbox input[type="text"]:focus,
