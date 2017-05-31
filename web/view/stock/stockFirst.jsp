@@ -33,7 +33,7 @@
 
             <div class="hdlogo">
 
-                <a target="_blank" class="site-logo" href="http://www.10jqka.com.cn"> <img src="../../images/图标.png" title="MyQuantGee" alt="MyQuantGee"></a>
+                <a target="_blank" class="site-logo" href=""> <img src="../../images/theLogo.png" title="MyQuantGee" alt="MyQuantGee"></a>
 
             </div>
 
@@ -42,7 +42,7 @@
                 <a href="../../view/market/marketInfo.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">大盘行情</a>
                 <a href="stockFirst.jsp" onmouseover="s1(this)" onmouseout="s2(this)">个股信息</a>
                 <a href="../../view/industry/industry.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">行业资讯</a>
-                <a href="../../view/iStrategy/iStrategy.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">策略大全</a>
+                <a href="../../view/strategy/strategy.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">策略大全</a>
                 <a href="../../view/trade/trade.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">模拟交易</a>
                 <a href="../../view/ucenter/user_center.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">个人中心</a>
 
@@ -50,7 +50,7 @@
 
             <div class="login-box">
 
-                <a href="../../view/ucenter/login.html" target="_blank">登录</a>
+                <a href="../../view/ucenter/login.jsp" target="_blank">登录</a>
 
             </div>
 
