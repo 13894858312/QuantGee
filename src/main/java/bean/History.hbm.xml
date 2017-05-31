@@ -5,12 +5,14 @@
 <hibernate-mapping>
 
     <class name="bean.History" table="History" schema="quantgee_data">
-        <id name="index">
-            <column name="index" sql-type="int(11)"/>
-        </id>
-        <property name="time">
-            <column name="time" sql-type="datetime" not-null="true"/>
-        </property>
+        <composite-id mapped="true" class="bean.HistoryPK">
+            <key-property name="date">
+                <column name="date" sql-type="varchar(20)" length="20"/>
+            </key-property>
+            <key-property name="stockId">
+                <column name="stockID" sql-type="varchar(6)" length="6"/>
+            </key-property>
+        </composite-id>
         <property name="open">
             <column name="open" sql-type="double" precision="-1" not-null="true"/>
         </property>
@@ -23,14 +25,11 @@
         <property name="low">
             <column name="low" sql-type="double" precision="-1" not-null="true"/>
         </property>
-        <property name="value">
-            <column name="value" sql-type="double" precision="-1" not-null="true"/>
+        <property name="volume">
+            <column name="volume" sql-type="double" precision="-1" not-null="true"/>
         </property>
         <property name="amount">
             <column name="amount" sql-type="double" precision="-1" not-null="true"/>
-        </property>
-        <property name="stockCode">
-            <column name="stockID" sql-type="text" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>

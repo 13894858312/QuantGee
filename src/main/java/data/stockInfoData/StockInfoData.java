@@ -62,14 +62,10 @@ public class StockInfoData implements StockInfoDAO{
 
     @Override
     public Stock getStockInfo(String code, String date) {
-        Iterator<Stock> iterator = this.getStockInfo(code);
-        while (iterator.hasNext()){
-            Stock stock = iterator.next();
-            if(stock.getDate() .equals(date)){
-                return stock;
-            }
-        }
-        return null;
+        StockPK stockPK = new StockPK();
+        stockPK.setStockId(code);
+        stockPK.setDate(date);
+        return hibernateTemplate.get(Stock.class,stockPK);
     }
 
     @Override

@@ -1,15 +1,12 @@
 package bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.sql.Timestamp;
+import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/5/23.
+ * Created by wangxue on 2017/5/31.
  */
 @Entity
+@IdClass(HistoryPK.class)
 public class History {
     private String date;
     private Double open;
@@ -19,10 +16,9 @@ public class History {
     private Double volume;
     private Double amount;
     private String stockId;
-    private int index;
 
-    @Basic
-    @Column(name = "date", nullable = true, length = 10)
+    @Id
+    @Column(name = "date", nullable = false, length = 20)
     public String getDate() {
         return date;
     }
@@ -91,24 +87,14 @@ public class History {
         this.amount = amount;
     }
 
-    @Basic
-    @Column(name = "stockID", nullable = true, length = -1)
+    @Id
+    @Column(name = "stockID", nullable = false, length = 6)
     public String getStockId() {
         return stockId;
     }
 
     public void setStockId(String stockId) {
         this.stockId = stockId;
-    }
-
-    @Id
-    @Column(name = "index", nullable = false)
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
     }
 
     @Override
@@ -118,7 +104,6 @@ public class History {
 
         History history = (History) o;
 
-        if (index != history.index) return false;
         if (date != null ? !date.equals(history.date) : history.date != null) return false;
         if (open != null ? !open.equals(history.open) : history.open != null) return false;
         if (high != null ? !high.equals(history.high) : history.high != null) return false;
@@ -141,7 +126,6 @@ public class History {
         result = 31 * result + (volume != null ? volume.hashCode() : 0);
         result = 31 * result + (amount != null ? amount.hashCode() : 0);
         result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
-        result = 31 * result + index;
         return result;
     }
 }
