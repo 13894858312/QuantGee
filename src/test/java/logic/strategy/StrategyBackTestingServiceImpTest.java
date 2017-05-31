@@ -24,12 +24,36 @@ public class StrategyBackTestingServiceImpTest {
     private ArrayList<String> stockIDs;
 
     @Test
-    public void getStrategyBackTesting() throws Exception {
+    public void getStrategyBackTesting1() throws Exception {
         initStockIDs();
         StrategyBackTestInputVO inputVO = new StrategyBackTestInputVO();
         inputVO.setStockPoolType(1);
         inputVO.setStrategyType(1);
         inputVO.setStockCodes(stockIDs);
+        inputVO.setStartDate("2017-03-30");
+        inputVO.setEndDate("2017-05-24");
+        inputVO.setHoldingPeriodFixed(10);
+        inputVO.setReturnPeriod(10);
+        inputVO.setRatio(0.2);
+        inputVO.setHoldingStockNum(9);
+
+        StrategyBackTestResultVO result = strategyBackTestingService.getStrategyBackTesting(inputVO);
+
+        System.out.println("*********RESULT**********  AnnualRevenue:  " + result.getCumulativeYieldResultVO().getAnnualRevenue());
+        System.out.println("*********RESULT**********  Alpha:  " + result.getCumulativeYieldResultVO().getAlpha());
+        System.out.println("*********RESULT**********  Beta:  " + result.getCumulativeYieldResultVO().getBeta());
+        System.out.println("*********RESULT**********  BaseAnnualRevenue:  " + result.getCumulativeYieldResultVO().getBaseAnnualRevenue());
+        System.out.println("*********RESULT**********  SharpeRatio:  " + result.getCumulativeYieldResultVO().getSharpeRatio());
+        System.out.println("*********RESULT**********  MaxDrawdown:  " + result.getCumulativeYieldResultVO().getMaxDrawdown());
+
+    }
+
+    @Test
+    public void getStrategyBackTesting2() throws Exception {
+        StrategyBackTestInputVO inputVO = new StrategyBackTestInputVO();
+        inputVO.setStockPoolType(0);
+        inputVO.setStrategyType(1);
+        inputVO.setBlockType("zxb");
         inputVO.setStartDate("2017-03-30");
         inputVO.setEndDate("2017-05-24");
         inputVO.setHoldingPeriodFixed(10);

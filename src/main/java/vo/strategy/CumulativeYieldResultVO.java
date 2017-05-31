@@ -16,8 +16,8 @@ public class CumulativeYieldResultVO {
     private double beta;
     private double sharpeRatio;  //夏普比率
     private double maxDrawdown;  //最大回撤
-    private ArrayList<LineVO> cumulativeYieldLineDatas;       //策略收益率
-    private ArrayList<LineVO> baseCumulativeYieldLineDatas; //基准收益率
+    private ArrayList<LineVO> yieldData;       //策略收益率
+    private ArrayList<LineVO> baseYieldData; //基准收益率
 
     /**
      * 收益率图
@@ -27,21 +27,20 @@ public class CumulativeYieldResultVO {
      * @param beta beta
      * @param sharpeRatio 夏普比率
      * @param maxDrawdown 最大回撤
-     * @param cumulativeYieldLineDatas 收益坐标信息
-     * @param baseCumulativeYieldLineDatas  基准收益坐标信息
+     * @param yieldData 收益坐标信息
+     * @param baseYieldData  基准收益坐标信息
      */
     public CumulativeYieldResultVO(double annualRevenue, double baseAnnualRevenue, double alpha,
                                    double beta, double sharpeRatio, double maxDrawdown,
-                                   ArrayList<LineVO> cumulativeYieldLineDatas,
-                                   ArrayList<LineVO> baseCumulativeYieldLineDatas) {
+                                   ArrayList<LineVO> yieldData, ArrayList<LineVO> baseYieldData) {
         this.annualRevenue = MathHelper.formatData(annualRevenue*100,2);
         this.baseAnnualRevenue = MathHelper.formatData(baseAnnualRevenue*100,2);
         this.alpha = alpha;
         this.beta = beta;
         this.sharpeRatio = sharpeRatio;
         this.maxDrawdown = MathHelper.formatData(maxDrawdown*100,2);
-        this.cumulativeYieldLineDatas = cumulativeYieldLineDatas;
-        this.baseCumulativeYieldLineDatas = baseCumulativeYieldLineDatas;
+        this.yieldData = yieldData;
+        this.baseYieldData = baseYieldData;
     }
 
     public double getAnnualRevenue() {
@@ -92,19 +91,19 @@ public class CumulativeYieldResultVO {
         this.maxDrawdown = maxDrawdown;
     }
 
-    public ArrayList<LineVO> getCumulativeYieldLineDatas() {
-        return cumulativeYieldLineDatas;
+    public ArrayList<LineVO> getYieldData() {
+        return yieldData;
     }
 
-    public void setCumulativeYieldLineDatas(ArrayList<LineVO> cumulativeYieldLineDatas) {
-        this.cumulativeYieldLineDatas = cumulativeYieldLineDatas;
+    public void setYieldData(ArrayList<LineVO> yieldData) {
+        this.yieldData = yieldData;
     }
 
-    public ArrayList<LineVO> getBaseCumulativeYieldLineDatas() {
-        return baseCumulativeYieldLineDatas;
+    public ArrayList<LineVO> getBaseYieldData() {
+        return baseYieldData;
     }
 
-    public void setBaseCumulativeYieldLineDatas(ArrayList<LineVO> baseCumulativeYieldLineDatas) {
-        this.baseCumulativeYieldLineDatas = baseCumulativeYieldLineDatas;
+    public void setBaseYieldData(ArrayList<LineVO> baseYieldData) {
+        this.baseYieldData = baseYieldData;
     }
 }

@@ -25,7 +25,7 @@ public interface TradeDAO {
      * 根据用户名和指定股票代码获取持有股票信息
      * @param userID 用户名
      * @param stockCode 股票代码
-     * @return HoldingStock
+     * @return LogicHoldingStock
      */
     public HoldingStock getHoldingStock(String userID, String stockCode);
 

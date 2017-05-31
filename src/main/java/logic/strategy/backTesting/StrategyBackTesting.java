@@ -3,7 +3,6 @@ package logic.strategy.backTesting;
 import bean.Stock;
 import logic.tools.MathHelper;
 import vo.stock.LineVO;
-import vo.strategy.CumulativeYieldLineDataVO;
 import vo.strategy.StrategyBackTestResultVO;
 import vo.strategy.CumulativeYieldResultVO;
 import vo.strategy.YieldHistogramResultVO;
@@ -29,7 +28,7 @@ public class StrategyBackTesting {
     private int holdingPeriod;  //持有期
     private int returnPeriod;    //形成期
     private int holdingStockNum;  //每个持有期持有的股票数量
-    private ArrayList<HoldingStock> holdingStocks;
+    private ArrayList<LogicHoldingStock> logicHoldingStocks;
 
     private ArrayList<LineVO> strategyYield;  //每天的收益率
     private ArrayList<LineVO> baseYield; //基准收益率
@@ -52,7 +51,7 @@ public class StrategyBackTesting {
         this.returnPeriod = returnPeriod;
         this.holdingStockNum = stockPool.getHoldingStockNum();
 
-        this.holdingStocks = new ArrayList<>();
+        this.logicHoldingStocks = new ArrayList<>();
         this.strategyYield = new ArrayList<>();
         this.baseYield = new ArrayList<>();
         this.yieldPerPeriod = new ArrayList<>();
@@ -63,10 +62,10 @@ public class StrategyBackTesting {
      */
     public void start() {
 
-//        //如果回测板块，获取板块的基准收益率
-//        if (blockType != null) {
-//            this.baseYield = stockPool.getBlockBaseRaito();
-//        }
+        //如果回测板块，获取板块的基准收益率
+        if (blockType != null) {
+            baseYield = stockPool.getBlockBaseRaito();
+        }
 
 
         ArrayList<Stock> indexStocks = stockPool.getIndexStocks();
@@ -82,6 +81,7 @@ public class StrategyBackTesting {
         this.initHoldingStocks(dates);
 
         this.allBaseY = (indexStocks.get(indexStocks.size()-1).getClose()-indexStocks.get(startIndex).getClose())/indexStocks.get(startIndex).getClose();
+
 
         //循环主体
         for(int i=startIndex; i<indexStocks.size(); ++i) {
@@ -177,14 +177,14 @@ System.out.println("  stockNum " + stockNum);
      */
     private void calculateStrategyYield(String date) {
 
-System.out.println("  holdingStocks-size: " + this.holdingStocks.size());
+System.out.println("  logicHoldingStocks-size: " + this.logicHoldingStocks.size());
 
         double yield = 0;
-        for(int i = 0; i<this.holdingStocks.size(); ++i) {
-            Stock stock = stockPool.getStockPOByCodeAndDate(this.holdingStocks.get(i).getStockCode(), date);
+        for(int i = 0; i<this.logicHoldingStocks.size(); ++i) {
+            Stock stock = stockPool.getStockPOByCodeAndDate(this.logicHoldingStocks.get(i).getStockCode(), date);
 
             if(stock != null) {  //如果该天的股票数据没有 暂时放弃该股票
-                yield += holdingStocks.get(i).getNumOfStock() * stock.getClose();
+                yield += logicHoldingStocks.get(i).getNumOfStock() * stock.getClose();
             }
         }
 
@@ -249,7 +249,7 @@ System.out.println("               当前周期收益：" + income);
 
 
 System.out.println("       date:" + date);
-System.out.println("       买入前size:" + this.holdingStocks.size());
+System.out.println("       买入前size:" + this.logicHoldingStocks.size());
 System.out.println("       StockYield-size:" + stockYields.size());
 
         //买入股票
@@ -261,15 +261,15 @@ System.out.println("       StockYield-size:" + stockYields.size());
             if(stock != null) {
                 double adj = stock.getClose();
                 double numOfStock = moneyEachStock/adj;
-                this.holdingStocks.add(new HoldingStock(stockYields.get(i).getStockCode(), numOfStock));
+                this.logicHoldingStocks.add(new LogicHoldingStock(stockYields.get(i).getStockCode(), numOfStock));
             }
 
-            if(this.holdingStocks.size() >= this.holdingStockNum) { //持有数量只能为holdingStockNum
+            if(this.logicHoldingStocks.size() >= this.holdingStockNum) { //持有数量只能为holdingStockNum
                 break;
             }
         }
 
-System.out.println("        买入后size:" + this.holdingStocks.size());
+System.out.println("        买入后size:" + this.logicHoldingStocks.size());
     }
 
     /**
@@ -280,17 +280,17 @@ System.out.println("        买入后size:" + this.holdingStocks.size());
         tempIncome  = income;
         income = 0;  //当前本金+收益
 
-        for (int i = 0; i < this.holdingStocks.size(); ++i) {
-            double numOfStock = this.holdingStocks.get(i).getNumOfStock();
-            Stock stock = this.stockPool.getStockPOByCodeAndDate(this.holdingStocks.get(i).getStockCode(), date);
+        for (int i = 0; i < this.logicHoldingStocks.size(); ++i) {
+            double numOfStock = this.logicHoldingStocks.get(i).getNumOfStock();
+            Stock stock = this.stockPool.getStockPOByCodeAndDate(this.logicHoldingStocks.get(i).getStockCode(), date);
 
             if (stock != null) {
-                double adj = this.stockPool.getStockPOByCodeAndDate(this.holdingStocks.get(i).getStockCode(), date).getClose();
+                double adj = this.stockPool.getStockPOByCodeAndDate(this.logicHoldingStocks.get(i).getStockCode(), date).getClose();
                 income += numOfStock * adj;
             }
         }
 
-        this.holdingStocks.clear();
+        this.logicHoldingStocks.clear();
 
     }
 
