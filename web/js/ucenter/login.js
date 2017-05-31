@@ -2,6 +2,7 @@ function register() {
     document.getElementById("test").innerHTML = "用户注册";
     var x = document.getElementById("loginbox");
     x.style.display = "none";
+//  document.setTitle("用户注册");
     document.getElementById("registbox").style.display = "inherit";
 }
 

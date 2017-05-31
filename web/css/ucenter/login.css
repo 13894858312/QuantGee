@@ -173,6 +173,15 @@ input[type="password"]:focus {
 	z-index: 9999;
 }
 
+.registbox img{
+	height: 40px;
+	width: 40px;
+	margin-bottom: 5px;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 .registbox h1 {
 	width: 250px;
 	height: 50px;
@@ -248,7 +257,7 @@ input[type="password"]:focus {
 	color: #fff;
 }
 
-.registbox .return {
+.registbox #return {
 	width: 260px;
 	height: 40px;
 	margin: 0 20px;

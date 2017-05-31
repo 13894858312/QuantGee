@@ -45,7 +45,9 @@
 			</div>
 
 			<div class="registbox" id="registbox">
-				 <img src="../../images/ucenter/back.png" /><h1>账号注册</h1>
+				<img  src="../../images/ucenter/back.png" onclick="returnLogin()"/>
+				<h1>账号注册</h1>
+
 				<form action="login" onsubmit="return validate_register_form()" method="post">
 					<input type="text" id="register_userName" name="accountVO.accountID" maxlength="32" onfocus=temp(this) onblur="if(this.value=='') {this.value='请输入帐号';this.style.color='#fff';}" value="请输入帐号" />
 					<p id="register_username_tip"></p>
@@ -57,9 +59,9 @@
 					<p id="register_phone_tip"></p>
 					<input type="submit" id="register_submit" class="submit" value="注册" style="width:252px;height: 48px; margin-bottom=0px: ; font-size: 20px;text-align: center;background: #19A3D1;" />
 				</form>
-				<div id="return">
+				<!--<div id="return">
 					<a onclick="returnLogin()">返回登陆</a>
-				</div>
+				</div>-->
 			</div>
 
 			<div id="image_1" class="showcase" style="background-color:#5bc4f2; ">
