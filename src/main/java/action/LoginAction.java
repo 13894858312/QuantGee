@@ -34,6 +34,7 @@ public class LoginAction extends ActionSupport{
 
 	}
 
+//	public String register
 	public AccountVO getAccountVO() {
 		return accountVO;
 	}
