@@ -40,7 +40,7 @@
 				<input type="hidden" id="returnUrl" value="/">
 				<div class="regist">
 					<span>没有账号？</span>
-					<a onclick="register()">免费注册&gt;&gt;</a>
+					<a id="register">免费注册&gt;&gt;</a>
 				</div>
 			</div>
 

@@ -84,3 +84,9 @@ function temp(input) {
     }
     input.style.color = '#000';
 }
+
+$(document).ready(function(){
+	$("a#register").click(function(){
+		alert("hh");
+	})
+})

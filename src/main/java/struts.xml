@@ -16,6 +16,11 @@
 			<result name="fail">/view/ucenter/account_settings.html</result>
 			<result name="success">/view/ucenter/login.jsp</result>
 		</action>
+		<action name="register" class="loginAction" method="register">
+			<result name="fail">/view/ucenter/account_settings.html</result>
+			<result name="success">/view/ucenter/login.jsp</result>
+		</action>
+
 
 </package>
 	<package name="json" extends="json-default">
