@@ -34,9 +34,9 @@ public class AccountTest {
     @Test
     public void insertTest() {
         Account account = new Account();
-        account.setUserId("wyyy");
+        account.setUserId("syyy");
         account.setPassword("bcy");
-        //account.setRegisterDate("2011-01-02");
+        account.setRegisterDate("2011-01-02");
         account.setIsLogIn(0);
         accountDAO.addAccount(account);
     }

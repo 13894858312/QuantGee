@@ -116,7 +116,7 @@ System.out.println("*************************************************** " + code
 
         while(afterStocks.hasNext()) {
             stock = afterStocks.next();
-            stocks.add(new SimpleStock(stock.getStockId(), stock.getDate(), stock.getClose(), stock.getHigh(), stock.getLow()));
+            stocks.add(new SimpleStock(stock.getCode(), stock.getDate(), stock.getClose(), stock.getHigh(), stock.getLow()));
         }
 
         assert (stocks.size() != 0) : "!!!KDJ!!!股票代码" + code + "-数据有问题!!!";

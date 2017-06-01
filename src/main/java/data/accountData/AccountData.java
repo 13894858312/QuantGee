@@ -31,7 +31,18 @@ public class AccountData implements AccountDAO {
     @Override
     public boolean addAccount(Account account) {
 
-        System.out.print(account.getRegisterDate());
+        if(account == null){
+            System.out.print("account不存在");
+            return false;
+        }else if(account.getRegisterDate() == null){
+            System.out.print("注册日期不存在");
+            return false;
+        }
+
+        hibernateTemplate.flush();
+        if(hibernateTemplate.get(Account.class, account.getUserId())!=null){
+            return false;
+        }
         Analysis analysis = hibernateTemplate.get(Analysis.class, account.getRegisterDate());
         if(analysis!=null){
             int oriNum = analysis.getNum();

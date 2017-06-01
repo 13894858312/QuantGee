@@ -9,7 +9,7 @@
             <key-property name="userId">
                 <column name="userID" sql-type="varchar(20)" length="20"/>
             </key-property>
-            <key-property name="stockCode">
+            <key-property name="code">
                 <column name="stockID" sql-type="varchar(10)" length="10"/>
             </key-property>
         </composite-id>

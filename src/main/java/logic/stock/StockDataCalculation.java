@@ -51,7 +51,7 @@ public class StockDataCalculation {
 
             double average = MathHelper.formatData(all/(double)period, 4);
 
-            result.add(new MaVO(stock.getStockId(),period, stock.getDate(), average));
+            result.add(new MaVO(stock.getCode(),period, stock.getDate(), average));
         }
 
         return result;

@@ -36,7 +36,7 @@ public class MeanReversionIStrategy implements IStrategy {
             HashMap<String, MaVO> averageLine;
             if(this.returnPeriod != stockPool.getStrategyBackTestInputVO().getReturnPeriod()) {              //第一次加载 将allAverageLine初始化
                 //初始化第i只股票的N日移动均线
-                averageLine = getAverageLineInfoByCode(stockPool, beforeDate,stockPool.getEndDate(), yesterday.getStockId(), type);
+                averageLine = getAverageLineInfoByCode(stockPool, beforeDate,stockPool.getEndDate(), yesterday.getCode(), type);
                 //添加到allAverageLine
                 allAverageLine.add(averageLine);
             } else {                                                     //不是第一次加载，直接从allAverageLine中获取
@@ -64,7 +64,7 @@ public class MeanReversionIStrategy implements IStrategy {
             }
             double yield = (average - yesterday.getClose()) / average;
 
-            stockYields.add(new StockYield(yesterday.getStockId(), yield));
+            stockYields.add(new StockYield(yesterday.getCode(), yield));
         }
 
         this.returnPeriod = stockPool.getStrategyBackTestInputVO().getReturnPeriod();            //初始化形成期
@@ -98,7 +98,7 @@ public class MeanReversionIStrategy implements IStrategy {
                 }
                 double yield = (average - yesterday.getClose()) / average;
 
-                stockYields.add(new StockYield(yesterday.getStockId(), yield));
+                stockYields.add(new StockYield(yesterday.getCode(), yield));
             }
 
         }
@@ -142,7 +142,7 @@ public class MeanReversionIStrategy implements IStrategy {
 
             double average = MathHelper.formatData(all / dayNums, 2);
 
-            result.put(stocks.get(i).getDate(), new MaVO(stocks.get(i).getStockId(), dayNums, date, average));
+            result.put(stocks.get(i).getDate(), new MaVO(stocks.get(i).getCode(), dayNums, date, average));
         }
 
         return result;

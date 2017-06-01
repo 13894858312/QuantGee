@@ -23,7 +23,7 @@ public class Stock {
     private Double vMa10;
     private Double vMa20;
     private Double turnover;
-    private String stockId;
+    private String code;
 
     @Id
     @Column(name = "date", nullable = false, length = 10)
@@ -177,12 +177,12 @@ public class Stock {
 
     @Id
     @Column(name = "stockID", nullable = false, length = 6)
-    public String getStockId() {
-        return stockId;
+    public String getCode() {
+        return code;
     }
 
-    public void setStockId(String stockId) {
-        this.stockId = stockId;
+    public void setCode(String stockId) {
+        this.code = stockId;
     }
 
     @Override
@@ -207,7 +207,7 @@ public class Stock {
         if (vMa10 != null ? !vMa10.equals(stock.vMa10) : stock.vMa10 != null) return false;
         if (vMa20 != null ? !vMa20.equals(stock.vMa20) : stock.vMa20 != null) return false;
         if (turnover != null ? !turnover.equals(stock.turnover) : stock.turnover != null) return false;
-        if (stockId != null ? !stockId.equals(stock.stockId) : stock.stockId != null) return false;
+        if (code != null ? !code.equals(stock.code) : stock.code != null) return false;
 
         return true;
     }
@@ -229,7 +229,7 @@ public class Stock {
         result = 31 * result + (vMa10 != null ? vMa10.hashCode() : 0);
         result = 31 * result + (vMa20 != null ? vMa20.hashCode() : 0);
         result = 31 * result + (turnover != null ? turnover.hashCode() : 0);
-        result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
+        result = 31 * result + (code != null ? code.hashCode() : 0);
         return result;
     }
 }
