@@ -23,11 +23,11 @@ public class HistoryPK implements Serializable {
 
     @Column(name = "stockID", nullable = false, length = 6)
     @Id
-    public String getStockId() {
+    public String getCode() {
         return stockId;
     }
 
-    public void setStockId(String stockId) {
+    public void setCode(String stockId) {
         this.stockId = stockId;
     }
 

@@ -110,7 +110,7 @@ System.out.println("*************************************************** " + code
 
         while(beforeStocks.hasNext()) {
             history = beforeStocks.next();
-            stocks.add(new SimpleStock(history.getStockId(), history.getDate().substring(0, 10), history.getClose(),
+            stocks.add(new SimpleStock(history.getCode(), history.getDate().substring(0, 10), history.getClose(),
                     history.getHigh(), history.getLow()));
         }
 

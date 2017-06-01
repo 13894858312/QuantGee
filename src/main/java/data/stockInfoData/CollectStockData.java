@@ -21,7 +21,7 @@ public class CollectStockData implements CollectStockDAO {
     @Override
     public Iterator<String> getCollectedStocks(String userID) {
         Iterator<String> iterator = (Iterator<String>) hibernateTemplate
-                .find("select c.stockId from CollectStock c where c.userId=? ",userID).iterator();
+                .find("select c.code from CollectStock c where c.userId=? ",userID).iterator();
         return iterator;
     }
 
@@ -29,7 +29,7 @@ public class CollectStockData implements CollectStockDAO {
     public boolean addCollectedStock(String userID, String code) {
         CollectStock collectStock = new CollectStock();
         collectStock.setUserId(userID);
-        collectStock.setStockId(code);
+        collectStock.setCode(code);
         hibernateTemplate.save(collectStock);
         hibernateTemplate.flush();
         return true;
@@ -39,7 +39,7 @@ public class CollectStockData implements CollectStockDAO {
     public boolean removeCollectedStock(String userID, String code) {
         CollectStock collectStock = new CollectStock();
         collectStock.setUserId(userID);
-        collectStock.setStockId(code);
+        collectStock.setCode(code);
         hibernateTemplate.delete(collectStock);
         return true;
     }

@@ -11,7 +11,7 @@
         <property name="userId">
             <column name="userID" sql-type="varchar(20)" length="20"/>
         </property>
-        <property name="stockId">
+        <property name="code">
             <column name="stockID" sql-type="varchar(10)" length="10"/>
         </property>
         <property name="action">

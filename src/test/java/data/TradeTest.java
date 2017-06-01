@@ -29,7 +29,7 @@ public class TradeTest {
         trade.setAction(1);
         trade.setPrice(2.0);
         trade.setNumOfStock(123);
-        trade.setStockId("ased22i");
+        trade.setCode("ased22i");
         trade.setTime("000");
         Assert.assertEquals(tradeDAO.addTradeInfo(trade),true);
     }
@@ -38,14 +38,14 @@ public class TradeTest {
     public void getTradeListTest(){
         Iterator<Trade> iterator = tradeDAO.getUserTradeList("123123");
         while (iterator.hasNext()){
-            System.out.println(iterator.next().getStockId());
+            System.out.println(iterator.next().getCode());
         }
     }
     @Test
     public void updateHoldingTest(){
         HoldingStock holdingStock = new HoldingStock();
         holdingStock.setHoldNum(22);
-        holdingStock.setStockId("231323");
+        holdingStock.setCode("231323");
         holdingStock.setUserId("12123");
         holdingStock.setInitFund(2.1);
         holdingStock.setSellOutMoney(1.0);

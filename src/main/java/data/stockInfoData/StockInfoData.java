@@ -108,7 +108,7 @@ public class StockInfoData implements StockInfoDAO{
     @Override
     public Iterator<History> getHistory(String code) {
         Iterator<History> iterator = (Iterator<History>) hibernateTemplate
-                .find("from History h where h.stockId = ? order by h.date asc ",code ).iterator();
+                .find("from History h where h.code = ? order by h.date asc ",code ).iterator();
         return iterator;
     }
 

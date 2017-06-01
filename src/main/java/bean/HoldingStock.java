@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @IdClass(HoldingStockPK.class)
 public class HoldingStock {
-    private String stockId;
+    private String code;
     private String userId;
     private int holdNum;
     private Double sellOutMoney;//持有股票卖出的那部分钱，即在手的钱，用于计算收益率
@@ -17,12 +17,12 @@ public class HoldingStock {
 
     @Id
     @Column(name = "stockID", nullable = false, length = 10)
-    public String getStockId() {
-        return stockId;
+    public String getCode() {
+        return code;
     }
 
-    public void setStockId(String stockId) {
-        this.stockId = stockId;
+    public void setCode(String stockId) {
+        this.code = stockId;
     }
 
     @Id
@@ -73,7 +73,7 @@ public class HoldingStock {
         HoldingStock that = (HoldingStock) o;
 
         if (holdNum != that.holdNum) return false;
-        if (stockId != null ? !stockId.equals(that.stockId) : that.stockId != null) return false;
+        if (code != null ? !code.equals(that.code) : that.code != null) return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
         if (sellOutMoney != null ? !sellOutMoney.equals(that.sellOutMoney) : that.sellOutMoney != null) return false;
         if (initFund != null ? !initFund.equals(that.initFund) : that.initFund != null) return false;
@@ -83,7 +83,7 @@ public class HoldingStock {
 
     @Override
     public int hashCode() {
-        int result = stockId != null ? stockId.hashCode() : 0;
+        int result = code != null ? code.hashCode() : 0;
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
         result = 31 * result + holdNum;
         result = 31 * result + (sellOutMoney != null ? sellOutMoney.hashCode() : 0);

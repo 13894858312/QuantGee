@@ -6,7 +6,7 @@
 
     <class name="bean.HoldingStock" table="HoldingStock" schema="quantgee_data">
         <composite-id mapped="true" class="bean.HoldingStockPK">
-            <key-property name="stockId">
+            <key-property name="code">
                 <column name="stockID" sql-type="varchar(10)" length="10"/>
             </key-property>
             <key-property name="userId">

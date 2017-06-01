@@ -54,13 +54,13 @@ public class TradeData implements TradeDAO{
     @Override
     public boolean updateHoldingStock(HoldingStock holdingStock) {
         int newNum = holdingStock.getHoldNum();
-        String stockID = holdingStock.getStockId();
+        String stockID = holdingStock.getCode();
         String userID = holdingStock.getUserId();
         double sellOutMoney = holdingStock.getSellOutMoney();
         double initFund = holdingStock.getInitFund();
 
         HoldingStock old = (HoldingStock) hibernateTemplate
-                .find("from HoldingStock  h where h.userId = ? and h.stockId = ?",
+                .find("from HoldingStock  h where h.userId = ? and h.code = ?",
                         new String[] {userID, stockID}).iterator().next();
 
         if(old != null){

@@ -71,7 +71,7 @@ public class TradeServiceImp implements TradeService {
         if (holdingStock == null || holdingStock.getHoldNum() == 0) {
             HoldingStock newHoldingStock = new HoldingStock();
 
-            newHoldingStock.setStockId(tradeRecord.getStockCode());
+            newHoldingStock.setCode(tradeRecord.getStockCode());
             newHoldingStock.setUserId(tradeRecord.getUserID());
             newHoldingStock.setHoldNum(tradeRecord.getNumOfStock());
             newHoldingStock.setSellOutMoney((0.0));
@@ -113,7 +113,7 @@ public class TradeServiceImp implements TradeService {
 
         while(holdingStocks.hasNext()) {
             HoldingStock temp = holdingStocks.next();
-            Current current = stockInfoDAO.getStockRealTimeInfo(temp.getStockId());
+            Current current = stockInfoDAO.getStockRealTimeInfo(temp.getCode());
             result.add(transferHelper.transToHoldingStockVO(temp, current.getTrade()));
         }
         return result;

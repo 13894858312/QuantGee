@@ -1,17 +1,21 @@
 package bean;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/5/24.
+ * Created by wangxue on 2017/6/1.
  */
 @Entity
-@javax.persistence.IdClass(bean.BollPK.class)
+@IdClass(BollPK.class)
 public class Boll {
     private String code;
+    private String date;
+    private Double mid;
+    private Double up;
+    private Double low;
 
-    @javax.persistence.Id
-    @javax.persistence.Column(name = "code", nullable = false, length = 6)
+    @Id
+    @Column(name = "code", nullable = false, length = 6)
     public String getCode() {
         return code;
     }
@@ -20,10 +24,8 @@ public class Boll {
         this.code = code;
     }
 
-    private String date;
-
-    @javax.persistence.Id
-    @javax.persistence.Column(name = "date", nullable = false, length = 10)
+    @Id
+    @Column(name = "date", nullable = false, length = 10)
     public String getDate() {
         return date;
     }
@@ -32,10 +34,8 @@ public class Boll {
         this.date = date;
     }
 
-    private Double mid;
-
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "mid", nullable = true, precision = 0)
+    @Basic
+    @Column(name = "mid", nullable = true, precision = 0)
     public Double getMid() {
         return mid;
     }
@@ -44,10 +44,8 @@ public class Boll {
         this.mid = mid;
     }
 
-    private Double up;
-
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "up", nullable = true, precision = 0)
+    @Basic
+    @Column(name = "up", nullable = true, precision = 0)
     public Double getUp() {
         return up;
     }
@@ -56,10 +54,8 @@ public class Boll {
         this.up = up;
     }
 
-    private Double low;
-
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "low", nullable = true, precision = 0)
+    @Basic
+    @Column(name = "low", nullable = true, precision = 0)
     public Double getLow() {
         return low;
     }

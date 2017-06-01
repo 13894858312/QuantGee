@@ -7,8 +7,6 @@ import bean.Rsi;
 import bean.Stock;
 import logic.tools.MathHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -104,7 +102,7 @@ System.out.println("*************************************************** " + code
 
         while(beforeStocks.hasNext()) {
             history = beforeStocks.next();
-            stocks.add(new SimpleStock(history.getStockId(), history.getDate().substring(0, 10), history.getClose()));
+            stocks.add(new SimpleStock(history.getCode(), history.getDate().substring(0, 10), history.getClose()));
         }
 
         //记录5-26所在的index

@@ -13,7 +13,7 @@ public class Trade {
 
     private int trageId;//不要set
     private String userId;
-    private String stockId;
+    private String code;
     private int action;//买入卖出
     private int numOfStock; //买入或者卖出的股票数量
     private Double price;//进行该交易时股票的价格
@@ -41,12 +41,12 @@ public class Trade {
 
     @Basic
     @Column(name = "stockID", nullable = false, length = 10)
-    public String getStockId() {
-        return stockId;
+    public String getCode() {
+        return code;
     }
 
-    public void setStockId(String stockId) {
-        this.stockId = stockId;
+    public void setCode(String stockId) {
+        this.code = stockId;
     }
 
     @Basic
@@ -100,7 +100,7 @@ public class Trade {
         if (action != trade.action) return false;
         if (numOfStock != trade.numOfStock) return false;
         if (userId != null ? !userId.equals(trade.userId) : trade.userId != null) return false;
-        if (stockId != null ? !stockId.equals(trade.stockId) : trade.stockId != null) return false;
+        if (code != null ? !code.equals(trade.code) : trade.code != null) return false;
         if (time != null ? !time.equals(trade.time) : trade.time != null) return false;
         if (price != null ? !price.equals(trade.price) : trade.price != null) return false;
 
@@ -111,7 +111,7 @@ public class Trade {
     public int hashCode() {
         int result = trageId;
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
-        result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
+        result = 31 * result + (code != null ? code.hashCode() : 0);
         result = 31 * result + action;
         result = 31 * result + numOfStock;
         result = 31 * result + (time != null ? time.hashCode() : 0);

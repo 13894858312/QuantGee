@@ -9,7 +9,7 @@
             <key-property name="date">
                 <column name="date" sql-type="varchar(20)" length="20"/>
             </key-property>
-            <key-property name="stockId">
+            <key-property name="code">
                 <column name="stockID" sql-type="varchar(6)" length="6"/>
             </key-property>
         </composite-id>

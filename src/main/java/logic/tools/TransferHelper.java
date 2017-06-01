@@ -131,7 +131,7 @@ public class TransferHelper {
      */
     public HoldingStockVO transToHoldingStockVO(HoldingStock holdingStock, double price) {
         double yield = (holdingStock.getHoldNum() * price + holdingStock.getSellOutMoney() - holdingStock.getInitFund())/holdingStock.getInitFund();
-        HoldingStockVO result = new HoldingStockVO(holdingStock.getStockId(), holdingStock.getUserId(),
+        HoldingStockVO result = new HoldingStockVO(holdingStock.getCode(), holdingStock.getUserId(),
                 holdingStock.getHoldNum(), holdingStock.getInitFund(), MathHelper.formatData(yield, 4));
         return result;
     }
@@ -142,7 +142,7 @@ public class TransferHelper {
      * @return TradeRecordVO
      */
     public TradeRecordVO transToTradeRecordVO(Trade trade) {
-        TradeRecordVO result = new TradeRecordVO(trade.getTime(), trade.getUserId(), trade.getStockId(),
+        TradeRecordVO result = new TradeRecordVO(trade.getTime(), trade.getUserId(), trade.getCode(),
                 trade.getAction(), trade.getNumOfStock(), trade.getPrice());
         return result;
     }
@@ -156,7 +156,7 @@ public class TransferHelper {
         Trade trade = new Trade();
         trade.setAction(tradeRecordVO.getAction());
         trade.setNumOfStock(tradeRecordVO.getNumOfStock());
-        trade.setStockId(tradeRecordVO.getStockCode());
+        trade.setCode(tradeRecordVO.getStockCode());
         trade.setUserId(tradeRecordVO.getUserID());
         trade.setPrice(tradeRecordVO.getPrice());
         trade.setTime(tradeRecordVO.getTime());

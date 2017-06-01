@@ -3,7 +3,6 @@ package po;
 import bean.HoldingStock;
 import bean.UserMoney;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -58,7 +57,7 @@ public class HoldingStocksPO {
         Map<String,Integer> map = new HashMap<String,Integer>();
         while (holdingStockIterator.hasNext()){
             HoldingStock holdingStock = holdingStockIterator.next();
-            map.put(holdingStock.getStockId(),holdingStock.getHoldNum());
+            map.put(holdingStock.getCode(),holdingStock.getHoldNum());
         }
     }
 }

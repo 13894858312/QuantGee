@@ -12,7 +12,7 @@ import javax.persistence.IdClass;
 @IdClass(CollectStockPK.class)
 public class CollectStock {
     private String userId;
-    private String stockId;
+    private String code;
 
     @Id
     @Column(name = "userID", nullable = false, length = 20)
@@ -26,12 +26,12 @@ public class CollectStock {
 
     @Id
     @Column(name = "stockID", nullable = false, length = 10)
-    public String getStockId() {
-        return stockId;
+    public String getCode() {
+        return code;
     }
 
-    public void setStockId(String stockId) {
-        this.stockId = stockId;
+    public void setCode(String stockId) {
+        this.code = stockId;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class CollectStock {
         CollectStock that = (CollectStock) o;
 
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
-        if (stockId != null ? !stockId.equals(that.stockId) : that.stockId != null) return false;
+        if (code != null ? !code.equals(that.code) : that.code != null) return false;
 
         return true;
     }
@@ -50,7 +50,7 @@ public class CollectStock {
     @Override
     public int hashCode() {
         int result = userId != null ? userId.hashCode() : 0;
-        result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
+        result = 31 * result + (code != null ? code.hashCode() : 0);
         return result;
     }
 }

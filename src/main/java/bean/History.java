@@ -15,7 +15,7 @@ public class History {
     private Double low;
     private Double volume;
     private Double amount;
-    private String stockId;
+    private String code;
 
     @Id
     @Column(name = "date", nullable = false, length = 20)
@@ -89,12 +89,12 @@ public class History {
 
     @Id
     @Column(name = "stockID", nullable = false, length = 6)
-    public String getStockId() {
-        return stockId;
+    public String getCode() {
+        return code;
     }
 
-    public void setStockId(String stockId) {
-        this.stockId = stockId;
+    public void setCode(String stockId) {
+        this.code = stockId;
     }
 
     @Override
@@ -111,7 +111,7 @@ public class History {
         if (low != null ? !low.equals(history.low) : history.low != null) return false;
         if (volume != null ? !volume.equals(history.volume) : history.volume != null) return false;
         if (amount != null ? !amount.equals(history.amount) : history.amount != null) return false;
-        if (stockId != null ? !stockId.equals(history.stockId) : history.stockId != null) return false;
+        if (code != null ? !code.equals(history.code) : history.code != null) return false;
 
         return true;
     }
@@ -125,7 +125,7 @@ public class History {
         result = 31 * result + (low != null ? low.hashCode() : 0);
         result = 31 * result + (volume != null ? volume.hashCode() : 0);
         result = 31 * result + (amount != null ? amount.hashCode() : 0);
-        result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
+        result = 31 * result + (code != null ? code.hashCode() : 0);
         return result;
     }
 }
