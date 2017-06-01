@@ -1,7 +1,6 @@
 package po;
 
 import bean.Trade;
-import bean.TradeUser;
 
 import java.util.ArrayList;
 
@@ -32,14 +31,6 @@ public class TradeUserPO {
         this.stockCode = stockCode;
         this.currentHoldingNum = currentHoldingNum;
         this.currentYield = currentYield;
-        this.trades = trades;
-    }
-
-    public TradeUserPO(TradeUser tradeUser, ArrayList<Trade> trades){
-        this.userID = tradeUser.getUserId();
-        this.stockCode = tradeUser.getStockId();
-        this.currentHoldingNum = tradeUser.getCurrentHoldingNum();
-        this.currentYield = tradeUser.getCurrentYield();
         this.trades = trades;
     }
 

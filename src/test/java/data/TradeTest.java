@@ -3,7 +3,6 @@ package data;
 import DAO.tradeDAO.TradeDAO;
 import bean.HoldingStock;
 import bean.Trade;
-import bean.UserMoney;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,14 +50,6 @@ public class TradeTest {
         holdingStock.setInitFund(2.1);
         holdingStock.setSellOutMoney(1.0);
         Assert.assertEquals(tradeDAO.updateHoldingStock(holdingStock),true);
-    }
-
-    @Test
-    public void updateMoneyTest(){
-        UserMoney userMoney = new UserMoney();
-        userMoney.setUserId("123123");
-        userMoney.setRemainMoney(600);
-        Assert.assertEquals(tradeDAO.updateUserMoney(userMoney),true);
     }
 
     @Test
