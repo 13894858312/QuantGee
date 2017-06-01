@@ -3,7 +3,6 @@ package data.tradeData;
 import DAO.tradeDAO.TradeDAO;
 import bean.HoldingStock;
 import bean.Trade;
-import bean.UserMoney;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -82,17 +81,6 @@ public class TradeData implements TradeDAO{
 
         hibernateTemplate.save(holdingStock);
         hibernateTemplate.flush();
-        return true;
-    }
-
-    @Override
-    public double getUserRemainMoney(String userID) {
-        return hibernateTemplate.get(UserMoney.class, userID).getRemainMoney();
-    }
-
-    @Override
-    public boolean updateUserMoney(UserMoney userMoney) {
-        hibernateTemplate.saveOrUpdate(userMoney);
         return true;
     }
 
