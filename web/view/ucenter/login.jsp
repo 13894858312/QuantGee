@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="../../css/ucenter/login.css">
 
 		<script type="text/javascript" src="../../js/ucenter/login.js"></script>
+		<script type="text/javascript" src="../../jquery-3.2.1.min.js"></script>
 	</head>
 
 	<body>
