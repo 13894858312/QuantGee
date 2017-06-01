@@ -24,7 +24,7 @@ public class Analysis {
     }
 
     @Basic
-    @Column(name = "num", nullable = false)
+    @Column(name = "num", nullable = true)
     public int getNum() {
         return num;
     }
