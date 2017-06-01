@@ -2,10 +2,6 @@ package DAO.tradeDAO;
 
 import bean.HoldingStock;
 import bean.Trade;
-import bean.UserMoney;
-import po.HoldingStocksPO;
-
-import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -57,24 +53,5 @@ public interface TradeDAO {
      * @return 用户持有的所有股票代码,持有数,及目前收益率
      */
     public Iterator<HoldingStock> getHoldingStocks(String userID);
-
-
-
-    /**
-     * 得到用户剩余虚拟金钱
-     * @param userID 用户ID
-     * @return 用户金钱
-     */
-    public double getUserRemainMoney(String userID);
-
-    /**
-     * 更新用户持有现金金额
-     * @param userMoney 用户ID，用户持有现金
-     * @return
-     */
-    public boolean updateUserMoney(UserMoney userMoney);
-
-
-
 
 }

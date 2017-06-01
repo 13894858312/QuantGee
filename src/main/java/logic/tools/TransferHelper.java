@@ -80,9 +80,9 @@ public class TransferHelper {
         }
 
         UserVO userVO = new UserVO();
-        user.setUserId(user.getUserId());
-        user.setAlterName(user.getAlterName());
-        user.setPhoneNumber(user.getPhoneNumber());
+        userVO.setAccountID(user.getUserId());
+        userVO.setUserName(user.getAlterName());
+        userVO.setPhoneNumber(user.getPhoneNumber());
 
         return userVO;
     }

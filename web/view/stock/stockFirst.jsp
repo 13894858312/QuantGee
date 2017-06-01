@@ -21,6 +21,7 @@
         }
     </script>
     <script src="../../js/test.js"></script>
+    <script src="../../jquery-3.2.1.min.js"></script>
     <style type="text/css">
     	@import "../../css/style.css";
     	@import "../../css/stock/firstStock.css";
@@ -118,7 +119,7 @@
 	<div class="graph-SZ300" style="position: absolute;left: 64%;top: 138%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
 	<div class="search">
 		<input type="text" class="lefttext" placeholder="股票代码/股票名称"/>
-		<i class="submit" onclick="test()"></i>
+		<div class="submit" onclick="test()"></div>
 	</div>
 	
 </body>

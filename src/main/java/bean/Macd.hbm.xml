@@ -9,8 +9,8 @@
             <key-property name="code">
                 <column name="code" sql-type="varchar(6)" length="6"/>
             </key-property>
-            <key-property name="time">
-                <column name="time" sql-type="varchar(10)" length="10"/>
+            <key-property name="date">
+                <column name="date" sql-type="varchar(10)" length="10"/>
             </key-property>
         </composite-id>
         <property name="diff">
@@ -21,6 +21,12 @@
         </property>
         <property name="macd">
             <column name="macd" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="ema12">
+            <column name="ema12" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="ema26">
+            <column name="ema26" sql-type="double" precision="-1" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>

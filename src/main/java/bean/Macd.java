@@ -3,7 +3,7 @@ package bean;
 import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/5/24.
+ * Created by wangxue on 2017/6/1.
  */
 @Entity
 @IdClass(MacdPK.class)
@@ -13,6 +13,8 @@ public class Macd {
     private Double diff;
     private Double dea;
     private Double macd;
+    private Double ema12;
+    private Double ema26;
 
     @Id
     @Column(name = "code", nullable = false, length = 6)
@@ -64,6 +66,26 @@ public class Macd {
         this.macd = macd;
     }
 
+    @Basic
+    @Column(name = "ema12", nullable = true, precision = 0)
+    public Double getEma12() {
+        return ema12;
+    }
+
+    public void setEma12(Double ema12) {
+        this.ema12 = ema12;
+    }
+
+    @Basic
+    @Column(name = "ema26", nullable = true, precision = 0)
+    public Double getEma26() {
+        return ema26;
+    }
+
+    public void setEma26(Double ema26) {
+        this.ema26 = ema26;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -76,6 +98,8 @@ public class Macd {
         if (diff != null ? !diff.equals(macd1.diff) : macd1.diff != null) return false;
         if (dea != null ? !dea.equals(macd1.dea) : macd1.dea != null) return false;
         if (macd != null ? !macd.equals(macd1.macd) : macd1.macd != null) return false;
+        if (ema12 != null ? !ema12.equals(macd1.ema12) : macd1.ema12 != null) return false;
+        if (ema26 != null ? !ema26.equals(macd1.ema26) : macd1.ema26 != null) return false;
 
         return true;
     }
@@ -87,6 +111,8 @@ public class Macd {
         result = 31 * result + (diff != null ? diff.hashCode() : 0);
         result = 31 * result + (dea != null ? dea.hashCode() : 0);
         result = 31 * result + (macd != null ? macd.hashCode() : 0);
+        result = 31 * result + (ema12 != null ? ema12.hashCode() : 0);
+        result = 31 * result + (ema26 != null ? ema26.hashCode() : 0);
         return result;
     }
 }
