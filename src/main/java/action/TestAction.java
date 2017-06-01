@@ -5,11 +5,14 @@ import com.opensymphony.xwork2.Action;
 import logic.user.UserServiceImp;
 import net.sf.json.JSONArray;
 import org.apache.struts2.json.annotations.JSON;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import service.user.UserService;
 import vo.admin.UserAccountVO;
 import vo.user.UserVO;
 
 import javax.jws.soap.SOAPBinding;
+import javax.xml.ws.soap.Addressing;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,7 +20,11 @@ import java.util.Date;
 /**
  * Created by Administrator on 2017/5/17.
  */
+@Controller
 public class TestAction implements Action {
+    @Autowired
+    private UserService userService;
+
     private String username;
     private String password;
     private int age;
@@ -69,21 +76,16 @@ public class TestAction implements Action {
 
     @Override
     public String execute() throws Exception {
-        UserService userService = new UserServiceImp();
         UserVO userVO = userService.getUserInfo("123");
-        UserAccountVO userAccountVO1 = new UserAccountVO("123","2017-05-10","zdy","118873");
-        UserAccountVO userAccountVO2 = new UserAccountVO("456","2017-03-23","wyy","234543");
-        UserAccountVO userAccountVO3 = new UserAccountVO("789","2017-01-18","bcy","766675");
+//        System.out.println(userVO.getUserName() + " " + userVO.getPhoneNumber());
         ArrayList<UserVO> arrayList = new ArrayList<UserVO>();
         arrayList.add(userVO);
-//        arrayList.add(userAccountVO2);
-//        arrayList.add(userAccountVO3);
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String string = simpleDateFormat.format(date);
-        ArrayList<String> arrayList1 = new ArrayList<>();
-        arrayList1.add(string);
-        JSONArray jsonArray = JSONArray.fromObject(arrayList1);
+//        Date date = new Date();
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        String string = simpleDateFormat.format(date);
+//        ArrayList<String> arrayList1 = new ArrayList<>();
+//        arrayList1.add(string);
+        JSONArray jsonArray = JSONArray.fromObject(arrayList);
         result = jsonArray.toString();
         return SUCCESS;
     }

@@ -17,9 +17,9 @@
 			<result name="success">/view/ucenter/login.jsp</result>
 		</action>
 
-	</package>
+</package>
 	<package name="json" extends="json-default">
-		<action name="ajax" class="action.TestAction">
+		<action name="ajax" class="testAction">
 			<result name="success" type="json">
 				<param name="root">result</param>
 			</result>

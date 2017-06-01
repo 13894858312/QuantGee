@@ -75,9 +75,9 @@ System.out.println("*************************************************** " + code
     private double rsi(ArrayList<SimpleStock> stocks, int nowIndex, int period) {
         double result, up=0, down=0;
 
-        int start = nowIndex - period;
-        for (int i=start; i<nowIndex; ++i) {
-            double temp = stocks.get(i+1).getClose() - stocks.get(i).getClose();
+        int start = nowIndex - period + 1;
+        for (int i=start; i<=nowIndex; ++i) {
+            double temp = stocks.get(i).getClose() - stocks.get(i-1).getClose();
             if(temp > 0) {
                 up += temp;
             } else {
