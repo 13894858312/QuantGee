@@ -31,7 +31,7 @@ public class TransferHelper {
         Account account = new Account();
         account.setUserId(accountVO.getAccountID());
         account.setPassword(accountVO.getPassword());
-        account.setRegisterDate(accountVO.getRegisterDate());
+        account.setRegisterDate(DateHelper.getNowDate());
 
         return account;
     }
