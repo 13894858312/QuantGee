@@ -36,14 +36,14 @@ public class StockInfoData implements StockInfoDAO{
     @Override
     public Iterator<Stock> getStockInfo(String code) {
         Iterator<Stock> iterator = (Iterator<Stock>)hibernateTemplate
-                .find("from Stock s where s.stockId = ? ",code).iterator();
+                .find("from Stock s where s.code = ? ",code).iterator();
         return iterator;
     }
 
     @Override
     public Iterator<Stock> getStockInfo(String code, String startDate, String endDate) {
         Iterator<Stock> iterator = (Iterator<Stock>) hibernateTemplate
-                .find("from Stock s where s.stockId =? and s.date> ? and s.date<? ", new String[]{code,startDate,endDate}).iterator();
+                .find("from Stock s where s.code =? and s.date> ? and s.date<? ", new String[]{code,startDate,endDate}).iterator();
         return iterator;
     }
 
@@ -63,7 +63,7 @@ public class StockInfoData implements StockInfoDAO{
     @Override
     public Stock getStockInfo(String code, String date) {
         StockPK stockPK = new StockPK();
-        stockPK.setStockId(code);
+        stockPK.setCode(code);
         stockPK.setDate(date);
         return hibernateTemplate.get(Stock.class,stockPK);
     }

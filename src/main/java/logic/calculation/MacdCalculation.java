@@ -119,7 +119,7 @@ System.out.println("*************************************************** " + code
 
         while(afterStocks.hasNext()) {
             stock = afterStocks.next();
-            stocks.add(new SimpleStock(stock.getStockId(), stock.getDate(), stock.getClose()));
+            stocks.add(new SimpleStock(stock.getCode(), stock.getDate(), stock.getClose()));
         }
 
         assert (stocks.size() != 0) : "!!!MACD!!!股票代码" + code + "-数据有问题!!!";

@@ -45,8 +45,8 @@ public class StockPool {
         this.initStocks(strategyBackTestInputVO);
 
         this.tradeDays = indexStocks.size();
-        this.startIndex = this.stocksMap.get(indexStocks.get(0).getStockId()).getStartIndex();
-        this.tradeDays = this.stocksMap.get(indexStocks.get(0).getStockId()).getStockSize();
+        this.startIndex = this.stocksMap.get(indexStocks.get(0).getCode()).getStartIndex();
+        this.tradeDays = this.stocksMap.get(indexStocks.get(0).getCode()).getStockSize();
 
         //确定持有股票的数量
         if(strategyBackTestInputVO.getRatio() > 0) {
@@ -153,7 +153,7 @@ public class StockPool {
                 LogicStock logicStock = new LogicStock(this.strategyBackTestInputVO.getStartDate(), allStockPOs.get(i));
                 //如果该股票各项数据都有 才加入到股票池
                 if(logicStock.getBeforeStock() != null && logicStock.getStartDateStockPO() != null && logicStock.getYesterdayStock() != null) {
-                    this.stocksMap.put(allStockPOs.get(i).get(0).getStockId(), logicStock);           //初始化map
+                    this.stocksMap.put(allStockPOs.get(i).get(0).getCode(), logicStock);           //初始化map
                     this.stocksList.add(logicStock);                                                 //初始化list
 //                this.stockPoolSize ++;
 

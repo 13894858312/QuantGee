@@ -34,7 +34,7 @@ public class MomentumDriveIStrategy implements IStrategy {
                 //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
                 double yield = (yesterday.getClose()-before.getClose())/before.getClose();
 
-                stockYields.add(new StockYield(yesterday.getStockId(), yield));
+                stockYields.add(new StockYield(yesterday.getCode(), yield));
             }
         }
 
@@ -63,7 +63,7 @@ public class MomentumDriveIStrategy implements IStrategy {
                 //计算收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
                 double yield = (yesterday.getClose()-before.getClose())/before.getClose();
 
-                stockYields.add(new StockYield(yesterday.getStockId(), yield));
+                stockYields.add(new StockYield(yesterday.getCode(), yield));
             }
 
         }
