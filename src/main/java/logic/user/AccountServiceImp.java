@@ -18,7 +18,7 @@ import vo.user.AccountVO;
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class AccountServiceImp implements AccountService{
 
-//    @Autowired
+    @Autowired
     private AccountDAO accountDAO;
 
     @Autowired
@@ -32,22 +32,16 @@ public class AccountServiceImp implements AccountService{
 
     @Override
     public boolean login(AccountVO accountVO) {
-//        Account account = accountDAO.getAccount(accountVO.getAccountID());
-//
-//        if(accountVO.getPassword().equals(account.getPassword())) {
-//            account.setIsLogIn(1);
-//            if(accountDAO.updateAccount(account)) {        //更新登陆状态
-//                return true;
-//            }
-//        }
-//
-//        return false;
+        Account account = accountDAO.getAccount(accountVO.getAccountID());
 
-        if (accountVO.getAccountID().equals("bcy")&&accountVO.getPassword().equals("bcy")){
-			return true;
-		}else {
-			return false;
-		}
+        if(accountVO.getPassword().equals(account.getPassword())) {
+            account.setIsLogIn(1);
+            if(accountDAO.updateAccount(account)) {        //更新登陆状态
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override

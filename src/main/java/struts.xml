@@ -10,11 +10,11 @@
 	<package name="default" namespace="/" extends="struts-default">
 		<action name="login" class="loginAction" method="login">
 			<result name="success">/view/ucenter/user_center.jsp</result>
-			<result name="fail">/view/ucenter/login.html</result>
+			<result name="fail">/view/ucenter/login.jsp</result>
 		</action>
 		<action name="logout" class="loginAction" method="logout">
 			<result name="fail">/view/ucenter/account_settings.html</result>
-			<result name="success">/view/ucenter/login.html</result>
+			<result name="success">/view/ucenter/login.jsp</result>
 		</action>
 
 	</package>

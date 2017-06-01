@@ -5,7 +5,7 @@ import bean.Stock;
 import logic.tools.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import vo.strategy.CumulativeYieldLineDataVO;
+import vo.stock.LineVO;
 import vo.strategy.StrategyBackTestInputVO;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class StockPool {
 
     private StrategyBackTestInputVO strategyBackTestInputVO; //用于判断该股票池是否可以继续被复用
 
-    private ArrayList<BaseStockYield> blockBaseRaito = new ArrayList<>();
+    private ArrayList<LineVO> blockBaseRaito = new ArrayList<>();
 
     private HashMap<String, LogicStock> stocksMap = new HashMap<>();       //key是股票code
     private ArrayList<LogicStock> stocksList = new ArrayList<>();
@@ -55,20 +55,21 @@ public class StockPool {
             holdingStockNum = strategyBackTestInputVO.getHoldingStockNum();
         }
 
-
         if(strategyBackTestInputVO.getStockPoolType() == 0) {
             blockType = strategyBackTestInputVO.getBlockType();
         }
-
 
         //如果是板块 初始化基准收益率
         if(strategyBackTestInputVO.getStockPoolType() == 0 && strategyBackTestInputVO.getBlockType() != null) {
             Iterator<Stock> stocks = stockInfoDAO.getStockInfo(strategyBackTestInputVO.getBlockType(),
                     strategyBackTestInputVO.getStartDate(), this.strategyBackTestInputVO.getEndDate());
 
+            double initClose = stocks.next().getClose();
+
             while(stocks.hasNext()) {
                 Stock stock = stocks.next();
-                blockBaseRaito.add(new BaseStockYield(stock.getDate(), stock.getClose()));
+                //数据均是百分数 所以需要 /100
+                blockBaseRaito.add(new LineVO(stock.getDate(), (stock.getClose()-initClose)/initClose));
             }
         }
     }
@@ -169,18 +170,10 @@ public class StockPool {
 
     /**
      * 获取指定板块基准收益率
-     * @return ArrayList<CumulativeYieldLineDataVO>
+     * @return ArrayList<LineVO>
      */
-    public ArrayList<CumulativeYieldLineDataVO> getBlockBaseRaito() {
-        assert (blockBaseRaito != null && blockBaseRaito.size() != 0) : "StockPool.getBlockBaseRaito.blockBaseRaito异常";
-
-        ArrayList<CumulativeYieldLineDataVO> cumulativeYieldLineDataVOS = new ArrayList<>();
-
-        for(int i=0; i<this.blockBaseRaito.size(); ++i) {
-            cumulativeYieldLineDataVOS.add(new CumulativeYieldLineDataVO(blockBaseRaito.get(i).getDate(), blockBaseRaito.get(i).getBaseYield()/100));
-        }
-
-        return cumulativeYieldLineDataVOS;
+    public ArrayList<LineVO> getBlockBaseRaito() {
+        return blockBaseRaito;
     }
 
     public String getStartDate() {

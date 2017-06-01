@@ -1,6 +1,7 @@
 package action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.convention.annotation.Action;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import service.user.AccountService;
@@ -33,6 +34,16 @@ public class LoginAction extends ActionSupport{
 		}
 
 	}
+
+	public String register(){
+
+		if (accountService.register(accountVO)) {
+			return SUCCESS;
+		}else {
+			return "fail";
+		}
+	}
+
 
 	public AccountVO getAccountVO() {
 		return accountVO;

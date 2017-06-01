@@ -1,7 +1,13 @@
 /**
  * Created by Administrator on 2017/5/15.
  */
-var myChart = echarts.init(document.getElementById('kline'));
+require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+var myChart1 = echarts.init(document.getElementById('kline'));
+var myChart2 = echarts.init(document.getElementById('volumeBar'));
 var data0 = splitData([
     ['2013/1/24', 2320.26,2320.26,2287.3,2362.94],
     ['2013/1/25', 2300,2291.3,2288.26,2308.38],
@@ -125,12 +131,8 @@ function calculateMA(dayCount) {
 
 
 
-option = {
+var option1 = {
     backgroundColor: '#FFFFFF',
-    title: {
-        text: '',
-        left: 0
-    },
     tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -141,20 +143,15 @@ option = {
         data: ['日K', 'MA5', 'MA10', 'MA20', 'MA30']
     },
     grid: {
-        left: '0',
-        right: '0',
-        bottom: '0'
+    	top:'10%',
+        left: '5%',
+        right: '5%',
+        bottom: '11%'
     },
     xAxis: {
+    	show:false,
         type: 'category',
-        data: data0.categoryData,
-        scale: true,
-        boundaryGap : false,
-        axisLine: {onZero: false},
-        splitLine: {show: false},
-        splitNumber: 20,
-        min: 'dataMin',
-        max: 'dataMax'
+        data: data0.categoryData
     },
     yAxis: {
         scale: true,
@@ -163,7 +160,7 @@ option = {
         }
     },
     dataZoom: [
-        {
+         {
             type: 'inside',
             start: 50,
             end: 100
@@ -180,84 +177,8 @@ option = {
         {
             name: '日K',
             type: 'candlestick',
-            data: data0.values,
-            markPoint: {
-                label: {
-                    normal: {
-                        formatter: function (param) {
-                            return param != null ? Math.round(param.value) : '';
-                        }
-                    }
-                },
-                data: [
-                    {
-                        name: 'XX标点',
-                        coord: ['2013/5/31', 2300],
-                        value: 2300,
-                        itemStyle: {
-                            normal: {color: 'rgb(41,60,85)'}
-                        }
-                    },
-                    {
-                        name: 'highest value',
-                        type: 'max',
-                        valueDim: 'highest'
-                    },
-                    {
-                        name: 'lowest value',
-                        type: 'min',
-                        valueDim: 'lowest'
-                    },
-                    {
-                        name: 'average value on close',
-                        type: 'average',
-                        valueDim: 'close'
-                    }
-                ],
-                tooltip: {
-                    formatter: function (param) {
-                        return param.name + '<br>' + (param.data.coord || '');
-                    }
-                }
-            },
-            markLine: {
-                symbol: ['none', 'none'],
-                data: [
-                    [
-                        {
-                            name: 'from lowest to highest',
-                            type: 'min',
-                            valueDim: 'lowest',
-                            symbol: 'circle',
-                            symbolSize: 10,
-                            label: {
-                                normal: {show: false},
-                                emphasis: {show: false}
-                            }
-                        },
-                        {
-                            type: 'max',
-                            valueDim: 'highest',
-                            symbol: 'circle',
-                            symbolSize: 10,
-                            label: {
-                                normal: {show: false},
-                                emphasis: {show: false}
-                            }
-                        }
-                    ],
-                    {
-                        name: 'min line on close',
-                        type: 'min',
-                        valueDim: 'close'
-                    },
-                    {
-                        name: 'max line on close',
-                        type: 'max',
-                        valueDim: 'close'
-                    }
-                ]
-            }
+            data: data0.values
+            
         },
         {
             name: 'MA5',
@@ -299,4 +220,91 @@ option = {
     ]
 };
 
-myChart.setOption(option);
+var option2 = {
+	backgroundColor: '#FFFFFF',
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
+    
+    xAxis: [
+        {
+            show:false,
+	        type: 'category',
+	        data: data0.categoryData
+        }
+    ],
+    grid:{
+    	top:'20%',
+    	left: '5%',
+        right: '5%',
+        bottom:'5%'
+    },
+    yAxis: [
+        {
+            type: 'value',
+            name: '股票个数',
+            min: 2100,
+            max: 2300,
+            interval: 40,
+            scale: true,
+            axisLabel: {
+                formatter: '{value}'
+            }
+        },
+        {
+            type: 'value',
+            name: '成交量',
+            min: 2100,
+            max: 2300,
+            interval: 40,
+            scale: true,
+            axisLabel: {
+                formatter: '{value}'
+            }
+        }
+    ],
+    dataZoom: [
+         {
+            type: 'inside',
+            start: 50,
+            end: 100
+        },
+        {
+            show: false,
+            type: 'slider',
+            y: '90%',
+            start: 50,
+            end: 100
+        }
+    ],
+    series: [
+        {
+            name: '涨',
+            type: 'bar',
+            data: calculateMA(5)
+            
+        },
+        {
+            name: '跌',
+            type: 'bar',
+            data: calculateMA(10),
+           
+        },
+        {
+            name: '成交量',
+            type: 'line',
+            data: calculateMA(20),
+            yAxisIndex:1,
+            smooth: true,
+            lineStyle: {
+                normal: {opacity: 0.5}
+            }
+        }
+    ]
+};
+myChart1.setOption(option1);
+myChart2.setOption(option2);
+echarts.connect([myChart1,myChart2]);
