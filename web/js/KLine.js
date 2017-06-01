@@ -1,11 +1,11 @@
 /**
  * Created by Administrator on 2017/5/15.
  */
-require.config({
-            paths: {
-                echarts: 'http://echarts.baidu.com/build/dist'
-            }
-        });
+//require.config({
+//          paths: {
+//              echarts: 'http://echarts.baidu.com/build/dist'
+//          }
+//      });
 var myChart1 = echarts.init(document.getElementById('kline'));
 var myChart2 = echarts.init(document.getElementById('volumeBar'));
 var data0 = splitData([
@@ -140,7 +140,7 @@ var option1 = {
         }
     },
     legend: {
-        data: ['日K', 'MA5', 'MA10', 'MA20', 'MA30']
+        data: ['日K', 'MA5', 'MA10', 'MA20', 'MA30','涨','跌','成交量']
     },
     grid: {
     	top:'10%',
@@ -216,7 +216,24 @@ var option1 = {
                 normal: {opacity: 0.5}
             }
         },
-
+		{
+            name: '涨',
+            type: 'bar',
+            data: []
+            
+        },
+        {
+            name: '跌',
+            type: 'bar',
+            data: []
+           
+        },
+        {
+            name: '成交量',
+            type: 'line',
+            data: []
+            
+        }
     ]
 };
 
@@ -228,7 +245,10 @@ var option2 = {
             type: 'cross'
         }
     },
-    
+    legend: {
+    	y:-30,
+        data: ['日K', 'MA5', 'MA10', 'MA20', 'MA30','涨','跌','成交量']
+    },
     xAxis: [
         {
             show:false,
