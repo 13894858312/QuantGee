@@ -93,8 +93,8 @@ public class History {
         return code;
     }
 
-    public void setCode(String stockId) {
-        this.code = stockId;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Override

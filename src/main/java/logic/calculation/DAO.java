@@ -68,16 +68,18 @@ public class DAO {
             statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sql);
 
-            Blob blob = rs.getBlob("bpnet");
-            BufferedInputStream inputStream = new BufferedInputStream(blob.getBinaryStream());
+            if (rs.next()) {
+                Blob blob = rs.getBlob("bpnet");
+                BufferedInputStream inputStream = new BufferedInputStream(blob.getBinaryStream());
 
-            byte[] bytes = new byte[(int)blob.length()];
+                byte[] bytes = new byte[(int)blob.length()];
 
-            while (-1 != (inputStream.read(bytes, 0, bytes.length)));
+                while (-1 != (inputStream.read(bytes, 0, bytes.length)));
 
-            ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(bytes));
+                ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(bytes));
 
-            result = (BpNet)in.readObject();
+                result = (BpNet)in.readObject();
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,6 +91,4 @@ public class DAO {
 
         return result;
     }
-
-
 }

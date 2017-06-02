@@ -14,12 +14,12 @@ public class main {
 //        MacdCalculation macdCalculation = (MacdCalculation) context.getBean("macdCalculation");
 //        macdCalculation.start();
 
-        KdjCalculation kdjCalculation = (KdjCalculation) context.getBean("kdjCalculation");
-        kdjCalculation.start();
+//        KdjCalculation kdjCalculation = (KdjCalculation) context.getBean("kdjCalculation");
+//        kdjCalculation.start();
 
-//        BollCalculation bollCalculation = (BollCalculation)context.getBean("bollCalculation");
-//        bollCalculation.start();
-
+        BollCalculation bollCalculation = (BollCalculation)context.getBean("bollCalculation");
+        bollCalculation.start();
+//
 //        RsiCalculation rsiCalculation = (RsiCalculation)context.getBean("rsiCalculation");
 //        rsiCalculation.start();
 
