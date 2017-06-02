@@ -1,11 +1,15 @@
 package logic.calculation;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  * Created by Mark.W on 2017/5/24.
  */
-public class BpNet {
+public class BpNet implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+
     private double[][] layer;//神经网络各层节点
     private double[][] layerErr;//神经网络各节点误差
     private double[][][] layer_weight;//各层节点权重
@@ -15,8 +19,17 @@ public class BpNet {
     private int trainNum = 100000;
 
     private boolean trained = false;
+    public int predict_interval;
 
+    /**
+     * 初始化神经网络的基本配置
+     * @param layernum 一个整型数组，表示神经网络的层数和每层节点数，
+     *                 比如{3,10,10,10,10,2}表示输入层是3个节点，输出层是2个节点，中间有4层隐含层，每层10个节点
+     * @param rate 学习步长
+     * @param mobp 动量系数
+     */
     public BpNet(int[] layernum, double rate, double mobp) {
+        this.predict_interval = layernum[0];
         this.mobp = mobp;
         this.rate = rate;
         layer = new double[layernum.length][];
@@ -117,12 +130,12 @@ public class BpNet {
     }
 
 
-    public boolean isTrained() {
-        return trained;
+    public int getPredict_interval() {
+        return predict_interval;
     }
 
-    public int getTrainNum() {
-        return trainNum;
+    public boolean isTrained() {
+        return trained;
     }
 
     public void setTrainNum(int trainNum) {

@@ -61,7 +61,11 @@ public class MacdCalculation {
     private void calculateMACD(String code) {
         ArrayList<SimpleStock> stocks = initStocks(code);
 
-System.out.println("*************************************************** " + code + " size:" + stocks.size());
+System.out.println("MACD*********************************************** " + code + " size:" + stocks.size());
+
+        if(stocks.size() == 0) {
+            return;
+        }
 
         boolean canSaveToDB = false;
 
@@ -88,12 +92,14 @@ System.out.println("*************************************************** " + code
                 Macd macd = new Macd();
                 macd.setCode(code);
                 macd.setDate(stocks.get(i).getDate());
-                macd.setDiff(MathHelper.formatData(diff,2));
-                macd.setDea(MathHelper.formatData(dea,2));
-                macd.setMacd(MathHelper.formatData((diff-dea) * 2, 2));
-//                quotaDAO.addMACD(macd);
+                macd.setDiff(MathHelper.formatData(diff,3));
+                macd.setDea(MathHelper.formatData(dea,3));
+                macd.setMacd(MathHelper.formatData((diff-dea) * 2, 3));
+                macd.setEma12(MathHelper.formatData(ema12, 3));
+                macd.setEma26(MathHelper.formatData(ema26, 3));
+                quotaDAO.addMACD(macd);
 
-System.out.println("*************************************************** " + code + " " + macd.getDate() + "  diff:" + macd.getDiff() + " dea:" + macd.getDea() + "  macd:" + macd.getMacd());
+System.out.println("MACD*********************************************** " + code + " " + macd.getDate() + "  macd:" + macd.getMacd() + "  diff:" + macd.getDiff() + " dea:" + macd.getDea() );
 
             }
         }

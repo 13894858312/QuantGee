@@ -13,7 +13,7 @@ import java.util.Iterator;
  * 股票数据分析的类
  */
 @Service
-public class StockDataCalculation {
+public class StockCalculation {
 
     /**
      * 均线图是将每天的收盘价加权平均,从而得到一条带有趋势性的轨迹。
