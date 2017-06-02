@@ -47,7 +47,7 @@
         @import "../../css/style.css";
     </style>
 </head>
-<body onload="myStart()">
+<body>
     <div class="header fixed">
 
         <div class="w1200">

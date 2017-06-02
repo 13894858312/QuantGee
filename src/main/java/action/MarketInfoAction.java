@@ -33,13 +33,15 @@ public class MarketInfoAction extends ActionSupport {
     public String getCandleStick(){
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String startdate = simpleDateFormat.format(date);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.add(Calendar.MONTH, -6);
+        calendar.add(Calendar.MONTH, -1);
+        date = calendar.getTime();
+        String startdate = simpleDateFormat.format(date);
+        calendar.add(Calendar.MONTH, -5);
         date = calendar.getTime();
         String enddate = simpleDateFormat.format(date);
-        StockInputVO stockInputVO = new StockInputVO("sh", startdate, enddate);
+        StockInputVO stockInputVO = new StockInputVO("000001", enddate, startdate);
         StockHistoricalVO stockHistoricalVO = stockBasicInfoService.getStockHistoricalInfo(stockInputVO);
         JSONObject jsonObject = JSONObject.fromObject(stockHistoricalVO);
         result = jsonObject.toString();
