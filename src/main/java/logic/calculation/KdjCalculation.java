@@ -46,7 +46,11 @@ public class KdjCalculation {
     private void calculateKDJ(String code) {
         ArrayList<SimpleStock> stocks = initStocks(code);
 
-System.out.println("*************************************************** " + code + " size:" + stocks.size());
+System.out.println("KDJ************************************************ " + code + " size:" + stocks.size());
+
+        if(stocks.size() == 0) {
+            return;
+        }
 
         double k=50, d=50, j;
         boolean canSaveToDB = false;
@@ -75,9 +79,9 @@ System.out.println("*************************************************** " + code
                 kdj.setK(MathHelper.formatData(k,2));
                 kdj.setD(MathHelper.formatData(d,2));
                 kdj.setJ(MathHelper.formatData(j,2));
-//                quotaDAO.addKDJ(kdj);
+                quotaDAO.addKDJ(kdj);
 
-System.out.println("*************************************************** " + code + " " + kdj.getDate() + "  k:" + kdj.getK() + " d:" + kdj.getD() + "  j:" + kdj.getJ());
+System.out.println("KDJ************************************************ " + code + " " + kdj.getDate() + "  k:" + kdj.getK() + " d:" + kdj.getD() + "  j:" + kdj.getJ());
             }
         }
 

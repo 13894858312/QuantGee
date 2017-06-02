@@ -47,7 +47,11 @@ public class BollCalculation {
     private void calculateBOLL(String code) {
         ArrayList<SimpleStock> stocks = initStocks(code);
 
-System.out.println("*************************************************** " + code + " size:" + stocks.size() + " dataStartIndex:" + dataStartIndex);
+System.out.println("BOLL*********************************************** " + code + " size:" + stocks.size() + " dataStartIndex:" + dataStartIndex);
+
+        if(stocks.size() == 0) {
+            return;
+        }
 
         double mb, md;
 
@@ -65,9 +69,9 @@ System.out.println("*************************************************** " + code
             boll.setMid(MathHelper.formatData(mb,2));
             boll.setUp(MathHelper.formatData(mb+2*md,2));
             boll.setLow(MathHelper.formatData(mb-2*md,2));
-//            quotaDAO.addBOLL(boll);
+            quotaDAO.addBOLL(boll);
 
-System.out.println("*************************************************** " + code + " " + boll.getDate() + "  mid:" + boll.getMid() + " up:" + boll.getUp() + "  low:" + boll.getLow());
+System.out.println("BOLL*********************************************** " + code + " " + boll.getDate() + "  mid:" + boll.getMid() + " up:" + boll.getUp() + "  low:" + boll.getLow());
 
 
         }
