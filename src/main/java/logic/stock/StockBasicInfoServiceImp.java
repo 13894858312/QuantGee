@@ -121,10 +121,10 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         ArrayList<LineVO> mid = new ArrayList<>();
         ArrayList<LineVO> up = new ArrayList<>();
         ArrayList<LineVO> low = new ArrayList<>();
-
+System.out.println(stockInfoDAO == null);
         Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getStockCode(),
                 inputVO.getStartDate(), inputVO.getEndDate());
-
+System.out.println(stocks == null);
         Stock stock = null, formerStock;
         String date;
 

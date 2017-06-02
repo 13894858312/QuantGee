@@ -11,10 +11,10 @@
         type:'GET',
         dataType:'json',
         success:function (data) {
-
+            alert(data);
         },
         error:function (data) {
-            alert(error)
+            alert("error");
         }
     })
 var myChart1 = echarts.init(document.getElementById('kline'));
