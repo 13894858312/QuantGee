@@ -17,13 +17,13 @@ public class main {
 //        KdjCalculation kdjCalculation = (KdjCalculation) context.getBean("kdjCalculation");
 //        kdjCalculation.start();
 
-        BollCalculation bollCalculation = (BollCalculation)context.getBean("bollCalculation");
-        bollCalculation.start();
+//        BollCalculation bollCalculation = (BollCalculation)context.getBean("bollCalculation");
+//        bollCalculation.start();
 //
 //        RsiCalculation rsiCalculation = (RsiCalculation)context.getBean("rsiCalculation");
 //        rsiCalculation.start();
 
-//        BpPredict bpPredict = (BpPredict) context.getBean("bpPredict");
-//        bpPredict.start();
+        BpPredict bpPredict = (BpPredict) context.getBean("bpPredict");
+        bpPredict.start();
     }
 }

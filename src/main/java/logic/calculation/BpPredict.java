@@ -45,7 +45,6 @@ public class BpPredict {
 
         bp.train(data);
 
-
         DAO.getInstance().saveBpNet(code, bp);
 
 
