@@ -30,4 +30,11 @@
 			</result>
 		</action>
 	</package>
+	<package name="marketInfo" extends="json-default,struts-default">
+		<action name="candle-volume" class="marketInfoAction" method="getCandleStick">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
 </struts>

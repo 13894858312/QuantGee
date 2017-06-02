@@ -6,6 +6,17 @@
 //              echarts: 'http://echarts.baidu.com/build/dist'
 //          }
 //      });
+    $.ajax({
+        url:'candle-volume.action',
+        type:'GET',
+        dataType:'json',
+        success:function (data) {
+
+        },
+        error:function (data) {
+            alert(error)
+        }
+    })
 var myChart1 = echarts.init(document.getElementById('kline'));
 var myChart2 = echarts.init(document.getElementById('volumeBar'));
 var data0 = splitData([
