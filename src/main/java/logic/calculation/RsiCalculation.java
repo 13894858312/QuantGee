@@ -41,7 +41,11 @@ public class RsiCalculation {
     private void calculateRSI(String code) {
         ArrayList<SimpleStock> stocks = initStocks(code);
 
-System.out.println("*************************************************** " + code + " size:" + stocks.size() + " dataStartIndex:" + dataStartIndex);
+System.out.println("RSI************************************************ " + code + " size:" + stocks.size() + " dataStartIndex:" + dataStartIndex);
+
+        if(stocks.size() == 0) {
+            return;
+        }
 
         double rsi6, rsi12, rsi24;
 
@@ -61,9 +65,9 @@ System.out.println("*************************************************** " + code
             rsi.setRsi12(MathHelper.formatData(rsi12,2));
             rsi.setRsi24(MathHelper.formatData(rsi24,2));
 
-//            quotaDAO.addRSI(rsi);
+            quotaDAO.addRSI(rsi);
 
-System.out.println("*************************************************** " + code + " " + rsi.getDate() + "  rsi6:" + rsi.getRsi6() + " rsi12:" + rsi.getRsi12() + "  rs24:" + rsi.getRsi24());
+System.out.println("RSI************************************************ " + code + " " + rsi.getDate() + "  rsi6:" + rsi.getRsi6() + " rsi12:" + rsi.getRsi12() + "  rs24:" + rsi.getRsi24());
 
         }
     }

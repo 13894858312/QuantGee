@@ -76,7 +76,10 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         while(codes.hasNext()) {
             String code = codes.next();
             if(code != null && !code.equals("")) {
-                result.add(getStockRealTimeInfo(code));
+                StockCurrentVO temp = getStockRealTimeInfo(code);
+                if (temp != null) {
+                    result.add(temp);
+                }
             }
         }
 
