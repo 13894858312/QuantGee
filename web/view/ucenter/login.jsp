@@ -41,7 +41,7 @@
 				<input type="hidden" id="returnUrl" value="/">
 				<div class="regist">
 					<span>没有账号？</span>
-					<a id="register">免费注册&gt;&gt;</a>
+					<a onclick="register()">免费注册&gt;&gt;</a>
 				</div>
 			</div>
 
@@ -49,7 +49,7 @@
 				<img  src="../../images/ucenter/back.png" onclick="returnLogin()"/>
 				<h1>账号注册</h1>
 
-				<form action="login" onsubmit="return validate_register_form()" method="post">
+				<form action="register" onsubmit="return validate_register_form()" method="post">
 					<input type="text" id="register_userName" name="accountVO.accountID" maxlength="32" onfocus=temp(this) onblur="if(this.value=='') {this.value='请输入帐号';this.style.color='#fff';}" value="请输入帐号" />
 					<p id="register_username_tip"></p>
 					<input type="password" id="register_password" name="accountVO.password" placeholder="请输入密码" />
