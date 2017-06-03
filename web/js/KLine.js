@@ -8,22 +8,88 @@
 //      });
 var klineDate = [];
 var klineBar = [];
+var klineMA5 = [];
+var klineMA10 = [];
+var klineMA20 = [];
     $.ajax({
         url:'candle-volume.action',
         type:'GET',
         dataType:'json',
         success:function (data) {
-            var json = JSON.parse(data);
-            alert(json[0]['date']);
-            for(var i=0;i<json.length;i++){
-                klineDate.push(json[i]['date']);
-                klineBar.push(json[i]['open'] + json[i]['close'] + json[i]['low'] + json[i]['high']);
-            }
+           getKline(data);
         },
         error:function (data) {
             alert("error");
         }
-    })
+    });
+    $.ajax({
+        url:'MA5.action',
+        type:'GET',
+        dataType:'json',
+        success:function (data) {
+            getMA5(data);
+        },
+        error:function (data) {
+            alert("error");
+        }
+    });
+    $.ajax({
+        url:'MA10.action',
+        type:'GET',
+        dataType:'json',
+        success:function (data) {
+            getMA10(data);
+        },
+        error:function (data) {
+            alert("error");
+        }
+    });
+    $.ajax({
+        url:'MA10.action',
+        type:'GET',
+        dataType:'json',
+        success:function (data) {
+            getMA20(data);
+        },
+        error:function (data) {
+            alert("error");
+        }
+    });
+function getKline(data) {
+    var json = JSON.parse(data);
+    for(var i=0;i<json.length;i++){
+        klineDate.push(json[i]['date']);
+        var temp = [];
+        temp.push(json[i]['open']);
+        temp.push(json[i]['close']);
+        temp.push(json[i]['low']);
+        temp.push(json[i]['high']);
+        klineBar.push(temp);
+
+    }
+    alert(klineDate);
+}
+function getMA5(data) {
+    var json = JSON.parse(data);
+    for(var i=0;i<json.length;i++){
+        klineMA5.push(json[i]['value']);
+        // alert(klineMA5);
+    }
+}
+function getMA10(data) {
+    var json = JSON.parse(data);
+    for(var i=0;i<json.length;i++){
+        klineMA10.push(json[i]['value']);
+        // alert(klineMA10);
+    }
+}
+function getMA20(data) {
+    var json = JSON.parse(data);
+    for(var i=0;i<json.length;i++){
+        klineMA20.push(json[i]['value']);
+        // alert(klineMA20);
+    }
+}
 var myChart1 = echarts.init(document.getElementById('kline'));
 var myChart2 = echarts.init(document.getElementById('volumeBar'));
 var data0 = splitData([
@@ -120,11 +186,12 @@ var data0 = splitData([
 
 function splitData(rawData) {
     var categoryData = [];
-    var values = []
+    var values = [];
     for (var i = 0; i < rawData.length; i++) {
         categoryData.push(rawData[i].splice(0, 1)[0]);
         values.push(rawData[i])
     }
+    alert(categoryData)
     return {
         categoryData: categoryData,
         values: values

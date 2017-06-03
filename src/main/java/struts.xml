@@ -36,5 +36,20 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+		<action name="MA5" class="marketInfoAction" method="getMA5">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="MA10" class="marketInfoAction" method="getMA10">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="MA20" class="marketInfoAction" method="getMA20">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
 	</package>
 </struts>
