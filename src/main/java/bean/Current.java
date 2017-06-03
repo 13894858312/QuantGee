@@ -1,16 +1,13 @@
 package bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/5/24.
+ * Created by wangxue on 2017/6/3.
  */
 @Entity
+@IdClass(CurrentPK.class)
 public class Current {
-    private Long index;
     private String code;
     private String name;
     private Double changepercent;
@@ -29,17 +26,7 @@ public class Current {
     private String time;
 
     @Id
-    @Column(name = "index", nullable = true)
-    public Long getIndex() {
-        return index;
-    }
-
-    public void setIndex(Long index) {
-        this.index = index;
-    }
-
-    @Basic
-    @Column(name = "code", nullable = true, length = -1)
+    @Column(name = "code", nullable = false, length = 6)
     public String getCode() {
         return code;
     }
@@ -188,8 +175,8 @@ public class Current {
         this.nmc = nmc;
     }
 
-    @Basic
-    @Column(name = "time", nullable = true, length = -1)
+    @Id
+    @Column(name = "time", nullable = false, length = 20)
     public String getTime() {
         return time;
     }
@@ -205,7 +192,6 @@ public class Current {
 
         Current current = (Current) o;
 
-        if (index != null ? !index.equals(current.index) : current.index != null) return false;
         if (code != null ? !code.equals(current.code) : current.code != null) return false;
         if (name != null ? !name.equals(current.name) : current.name != null) return false;
         if (changepercent != null ? !changepercent.equals(current.changepercent) : current.changepercent != null)
@@ -230,8 +216,7 @@ public class Current {
 
     @Override
     public int hashCode() {
-        int result = index != null ? index.hashCode() : 0;
-        result = 31 * result + (code != null ? code.hashCode() : 0);
+        int result = code != null ? code.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (changepercent != null ? changepercent.hashCode() : 0);
         result = 31 * result + (trade != null ? trade.hashCode() : 0);

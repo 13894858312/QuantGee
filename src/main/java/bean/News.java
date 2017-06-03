@@ -48,7 +48,7 @@ public class News {
     }
 
     @Basic
-    @Column(name = "time", nullable = true, length = -1)
+    @Column(name = "t", nullable = true, length = -1)
     public String getTime() {
         return time;
     }
