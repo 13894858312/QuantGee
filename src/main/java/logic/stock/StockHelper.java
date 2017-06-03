@@ -24,9 +24,9 @@ public class StockHelper {
             result = "创业板";
         } else if (code.startsWith("60")) {  //sh
             result = "上证";
-        } else if (code.startsWith("000")) { //sz
+        } else if (code.startsWith("00")) { //sz
             result = "深证";
-        } else if (code.startsWith("60")){ //zxb
+        } else if (code.startsWith("20")){ //zxb
             result = "中小板";
         }
         return result;

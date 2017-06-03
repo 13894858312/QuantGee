@@ -112,4 +112,9 @@ public class StockInfoData implements StockInfoDAO{
         return iterator;
     }
 
+    @Override
+    public Iterator<String> getAllIndustryNames() {
+        return null;
+    }
+
 }

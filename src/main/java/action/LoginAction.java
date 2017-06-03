@@ -30,11 +30,12 @@ public class LoginAction extends ActionSupport {
         testStrings.add("bcy");
         testStrings.add("gzy");
         testStrings.add("love");
-		if(accountService.login(accountVO)) {
-        return SUCCESS;
-		} else {
-			return "fail";
-		}
+        if (accountService.login(accountVO)) {
+
+            return SUCCESS;
+        } else {
+            return "fail";
+        }
 
     }
 

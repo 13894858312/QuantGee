@@ -34,4 +34,18 @@ public interface MarketInfoService {
      * @return MarketInfoVO
      */
     public MarketInfoVO getHistoryMarketInfo(String marketType, String date);
+
+    /**
+     * 获取个股涨跌榜
+     * @param upOrDown 0 涨幅前十 1 跌幅前十
+     * @return ArrayList<TopStockVO>
+     */
+    public ArrayList<TopStockVO> getTopStocks(int upOrDown);
+
+    /**
+     * 获取行业涨跌榜
+     * @param upOrDown 0 涨幅前十 1 跌幅前十
+     * @return ArrayList<TopStockVO>
+     */
+    public ArrayList<TopStockVO> getTopIndustryStocks(int upOrDown);
 }
