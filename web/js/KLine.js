@@ -6,12 +6,19 @@
 //              echarts: 'http://echarts.baidu.com/build/dist'
 //          }
 //      });
+var klineDate = [];
+var klineBar = [];
     $.ajax({
         url:'candle-volume.action',
         type:'GET',
         dataType:'json',
         success:function (data) {
-            alert(data);
+            var json = JSON.parse(data);
+            alert(json[0]['date']);
+            for(var i=0;i<json.length;i++){
+                klineDate.push(json[i]['date']);
+                klineBar.push(json[i]['open'] + json[i]['close'] + json[i]['low'] + json[i]['high']);
+            }
         },
         error:function (data) {
             alert("error");
