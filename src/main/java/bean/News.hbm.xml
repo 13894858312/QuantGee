@@ -15,7 +15,7 @@
             <column name="title" sql-type="text" not-null="true"/>
         </property>
         <property name="time">
-            <column name="time" sql-type="text" not-null="true"/>
+            <column name="t" sql-type="text" not-null="true"/>
         </property>
         <property name="url">
             <column name="url" sql-type="text" not-null="true"/>
