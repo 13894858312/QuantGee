@@ -70,4 +70,9 @@ public class MarketInfoAction extends ActionSupport {
         result = jsonArray.toString();
         return SUCCESS;
     }
+
+    public String getRise(){
+//        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().)
+        return SUCCESS;
+    }
 }
