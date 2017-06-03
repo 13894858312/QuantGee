@@ -31,7 +31,7 @@ public class MarketInfoAction extends ActionSupport {
         this.result = result;
     }
 
-    public String getCandleStick(){
+    private StockHistoricalVO getMarketInfo(){
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
@@ -44,7 +44,29 @@ public class MarketInfoAction extends ActionSupport {
         String enddate = simpleDateFormat.format(date);
         StockInputVO stockInputVO = new StockInputVO("000001", enddate, startdate);
         StockHistoricalVO stockHistoricalVO = stockBasicInfoService.getStockHistoricalInfo(stockInputVO);
-        JSONArray jsonArray = JSONArray.fromObject(stockHistoricalVO.getkLine());
+        return stockHistoricalVO;
+    }
+
+    public String getCandleStick(){
+        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().getkLine());
+        result = jsonArray.toString();
+        return SUCCESS;
+    }
+
+    public String getMA5(){
+        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().getMa5());
+        result = jsonArray.toString();
+        return SUCCESS;
+    }
+
+    public String getMA10(){
+        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().getMa10());
+        result = jsonArray.toString();
+        return SUCCESS;
+    }
+
+    public String getMA20(){
+        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().getMa20());
         result = jsonArray.toString();
         return SUCCESS;
     }
