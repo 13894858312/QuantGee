@@ -2,6 +2,7 @@ package logic.stock;
 
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.Current;
+import bean.MarketInfo;
 import bean.Stock;
 import logic.tools.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import service.stock.MarketInfoService;
 import vo.stock.MarketInfoVO;
 import vo.stock.RealTimeLineVO;
+import vo.stock.TopStockVO;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,6 +23,8 @@ import java.util.Iterator;
 @Service
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class MarketInfoServiceImp implements MarketInfoService{
+
+    private static final int TOP_NUMBER = 10;
 
     @Autowired
     private StockInfoDAO stockInfoDAO;
@@ -108,4 +112,124 @@ public class MarketInfoServiceImp implements MarketInfoService{
 
         return result;
     }
+
+    @Override
+    public ArrayList<TopStockVO> getTopStocks(int upOrDown) {
+        Iterator<String> codes = stockInfoDAO.getAllStockCodes();
+        ArrayList<TopStock> topStocks = new ArrayList<>();
+        ArrayList<TopStockVO> result = new ArrayList<>();
+
+        while(codes.hasNext()) {
+            Current current = stockInfoDAO.getStockRealTimeInfo(codes.next());
+            topStocks.add(new TopStock(current.getCode(), current.getChangepercent(), current.getTrade()));
+        }
+
+        if (topStocks.size() == 0) {
+            return null;
+        }
+
+        for (int i=0; i<TOP_NUMBER; ++i) {
+            int topIndex = 0;
+
+            for (int j=1; j<topStocks.size(); ++j) {
+                if (upOrDown == 0) {
+                    if (topStocks.get(j).getIncreaseRate() > topStocks.get(topIndex).getIncreaseRate()) {
+                        topIndex = j;
+                    }
+                } else {
+                    if (topStocks.get(j).getIncreaseRate() < topStocks.get(topIndex).getIncreaseRate()) {
+                        topIndex = j;
+                    }
+                }
+            }
+
+            MarketInfo marketInfo = stockInfoDAO.getMarketInfo(topStocks.get(topIndex).getCode());
+            if (marketInfo == null) {
+                i --;
+                continue;
+            }
+
+            result.add(new TopStockVO(upOrDown, marketInfo.getName(), topStocks.get(topIndex).getIncreaseRate(), topStocks.get(topIndex).getNowPrice()));
+
+            topStocks.remove(topIndex);
+        }
+
+        return result;
+    }
+
+    @Override
+    public ArrayList<TopStockVO> getTopIndustryStocks(int upOrDown) {
+        Iterator<String> names = stockInfoDAO.getAllIndustryNames();
+        ArrayList<TopStock> topStocks = new ArrayList<>();
+        ArrayList<TopStockVO> result = new ArrayList<>();
+
+        while(names.hasNext()) {
+            String name = names.next();
+            Iterator<String> codes = stockInfoDAO.getAllStockCodesByIndustry(name);
+
+            String topCode = codes.next();
+            if (topCode == null) {
+                continue;
+            }
+
+            //初始化
+            Current current = stockInfoDAO.getStockRealTimeInfo(topCode);
+            double averagerate=current.getChangepercent(), rate=averagerate;
+            int num = 1;
+
+            while (codes.hasNext()) {
+                num ++;
+                current = stockInfoDAO.getStockRealTimeInfo(codes.next());
+                averagerate += current.getChangepercent();
+
+                if (upOrDown == 0) {
+                    if (rate < current.getChangepercent()) {
+                        rate = current.getChangepercent();
+                        topCode = current.getCode();
+                    }
+                } else {
+                    if (rate > current.getChangepercent()) {
+                        rate = current.getChangepercent();
+                        topCode = current.getCode();
+                    }
+                }
+            }
+
+            averagerate /= num;
+
+            topStocks.add(new TopStock(name, averagerate, topCode));
+
+        }
+
+        for (int i=0; i<TOP_NUMBER; ++i) {
+            int topIndex = 0;
+
+            for (int j=1; j<topStocks.size(); ++j) {
+                if (upOrDown == 0) {
+                    if (topStocks.get(j).getIncreaseRate() > topStocks.get(topIndex).getIncreaseRate()) {
+                        topIndex = j;
+                    }
+                } else {
+                    if (topStocks.get(j).getIncreaseRate() < topStocks.get(topIndex).getIncreaseRate()) {
+                        topIndex = j;
+                    }
+                }
+            }
+
+            MarketInfo marketInfo = stockInfoDAO.getMarketInfo(topStocks.get(topIndex).getTopCode());
+            if (marketInfo == null) {
+                i --;
+                continue;
+            }
+
+            result.add(new TopStockVO(upOrDown, marketInfo.getName(), topStocks.get(topIndex).getIncreaseRate(),marketInfo.getName()));
+            topStocks.remove(topIndex);
+        }
+
+        return result;
+    }
+
+
+
+
 }
