@@ -134,7 +134,7 @@
     <div class="klinegraph" id="kline"></div>
     <div class="volume" id="volumeBar"></div>
     <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
-    <script type="text/javascript" src="../../js/KLine.js"></script>
+    <script type="text/javascript" src="../../js/marketInfo/KLine.js"></script>
     <div class="thirdHead">
     	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
     </div>
