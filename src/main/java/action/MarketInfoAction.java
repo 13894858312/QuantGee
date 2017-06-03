@@ -1,6 +1,7 @@
 package action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,8 +44,8 @@ public class MarketInfoAction extends ActionSupport {
         String enddate = simpleDateFormat.format(date);
         StockInputVO stockInputVO = new StockInputVO("000001", enddate, startdate);
         StockHistoricalVO stockHistoricalVO = stockBasicInfoService.getStockHistoricalInfo(stockInputVO);
-        JSONObject jsonObject = JSONObject.fromObject(stockHistoricalVO);
-        result = jsonObject.toString();
+        JSONArray jsonArray = JSONArray.fromObject(stockHistoricalVO.getkLine());
+        result = jsonArray.toString();
         return SUCCESS;
     }
 }
