@@ -1,11 +1,3 @@
-function register() {
-    document.getElementById("test").innerHTML = "用户注册";
-    var x = document.getElementById("loginbox");
-    x.style.display = "none";
-//  document.setTitle("用户注册");
-    document.getElementById("registbox").style.display = "inherit";
-}
-
 function returnLogin() {
     document.getElementById("test").innerHTML = "用户登陆";
     var x = document.getElementById("registbox");
@@ -60,14 +52,14 @@ function validate_register_form() {
         password.focus();
         return false;
     }
-    
-    if(password.value != password_confirm.value){
-    		password_confirm_tip.innerHTML = "两次密码不一致";
-    		password_confirm_tip.style.color = "red";
-    		password_confirm.focus();
-    		return false;
+
+    if (password.value != password_confirm.value) {
+        password_confirm_tip.innerHTML = "两次密码不一致";
+        password_confirm_tip.style.color = "red";
+        password_confirm.focus();
+        return false;
     }
-    
+
     if (phone.value == null || phone.value == "" || phone.value == "请输入手机号码") {
         phone_tip.innerHTML = "请输入手机号码";
         phone_tip.style.color = "red";
@@ -85,8 +77,11 @@ function temp(input) {
     input.style.color = '#000';
 }
 
-$(document).ready(function(){
-	$("a#register").click(function(){
-		alert("hh");
-	})
+
+$(document).ready(function () {
+    $("a#register1").click(function () {
+        $("#loginbox").hide();
+        $("#registbox").show();
+        $("#test").text("用户注册");
+    })
 })
