@@ -5,12 +5,14 @@
 <hibernate-mapping>
 
     <class name="bean.Current" table="Current" schema="quantgee_data">
-        <id name="index">
-            <column name="index" sql-type="bigint(20)" not-null="true"/>
-        </id>
-        <property name="code">
-            <column name="code" sql-type="text" not-null="true"/>
-        </property>
+        <composite-id mapped="true" class="bean.CurrentPK">
+            <key-property name="code">
+                <column name="code" sql-type="varchar(6)" length="6"/>
+            </key-property>
+            <key-property name="time">
+                <column name="time" sql-type="varchar(20)" length="20"/>
+            </key-property>
+        </composite-id>
         <property name="name">
             <column name="name" sql-type="text" not-null="true"/>
         </property>
@@ -32,8 +34,8 @@
         <property name="settlement">
             <column name="settlement" sql-type="double" precision="-1" not-null="true"/>
         </property>
-        <property name="value">
-            <column name="value" sql-type="bigint(20)" not-null="true"/>
+        <property name="volume">
+            <column name="volume" sql-type="bigint(20)" not-null="true"/>
         </property>
         <property name="turnoverratio">
             <column name="turnoverratio" sql-type="double" precision="-1" not-null="true"/>
@@ -52,9 +54,6 @@
         </property>
         <property name="nmc">
             <column name="nmc" sql-type="double" precision="-1" not-null="true"/>
-        </property>
-        <property name="time">
-            <column name="time" sql-type="text" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>
