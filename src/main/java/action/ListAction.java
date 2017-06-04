@@ -6,23 +6,24 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import service.stock.StockBasicInfoService;
+import vo.stock.StockCurrentVO;
 import vo.stock.StockHistoricalVO;
 import vo.stock.StockInputVO;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Administrator on 2017/6/2.
+ * Created by Administrator on 2017/6/3.
  */
 @Controller
-public class MarketInfoAction extends ActionSupport {
+public class ListAction extends ActionSupport {
     private String result;
 
     @Autowired
-    private StockBasicInfoService stockBasicInfoService;
-
+    StockBasicInfoService stockBasicInfoService;
     public String getResult(){
         return result;
     }
@@ -47,32 +48,15 @@ public class MarketInfoAction extends ActionSupport {
         return stockHistoricalVO;
     }
 
-    public String getCandleStick(){
-        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().getkLine());
-        result = jsonArray.toString();
+    public String getList(){
+        StockHistoricalVO stockHistoricalVO = getMarketInfo();
+        JSONObject jsonObject = JSONObject.fromObject(stockHistoricalVO);
+        result = jsonObject.toString();
+//        ArrayList<StockCurrentVO> stockCurrentVOArrayList = stockBasicInfoService.getAllStockRealTime();
+//        JSONArray jsonArray = JSONArray.fromObject(stockCurrentVOArrayList);
+//        result = jsonArray.toString();
         return SUCCESS;
     }
 
-    public String getMA5(){
-        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().getMa5());
-        result = jsonArray.toString();
-        return SUCCESS;
-    }
 
-    public String getMA10(){
-        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().getMa10());
-        result = jsonArray.toString();
-        return SUCCESS;
-    }
-
-    public String getMA20(){
-        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().getMa20());
-        result = jsonArray.toString();
-        return SUCCESS;
-    }
-
-    public String getRise(){
-//        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().)
-        return SUCCESS;
-    }
 }

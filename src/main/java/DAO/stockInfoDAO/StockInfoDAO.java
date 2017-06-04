@@ -81,4 +81,10 @@ public interface StockInfoDAO {
      * @return 2014-5-26前数据
      */
     public Iterator<History> getHistory(String code);
+
+    /**
+     * 获取所有行业的名称
+     * @return Iterator
+     */
+    public Iterator<String> getAllIndustryNames();
 }

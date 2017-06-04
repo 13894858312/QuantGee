@@ -39,7 +39,7 @@ public class StockCurrentVO {
      * @param changePercent 涨跌幅
      * @param turnover 换手率
      * @param trade 现价
-     * @param amount 成交量
+     * @param amount 成交额
      * @param settlement 昨日收盘价
      * @param per 市盈率
      * @param pb 市净率

@@ -181,13 +181,22 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
             low.add(new LineVO(boll.getDate(), boll.getLow()));
         }
 
-        MarketInfo market = stockInfoDAO.getMarketInfo(inputVO.getStockCode());
+        String stockName;
+        if(!StockHelper.isBlock(inputVO.getStockCode())) {
+            MarketInfo market = stockInfoDAO.getMarketInfo(inputVO.getStockCode());
+            stockName = market.getName();
+        } else {
+            stockName = "";
+        }
 
-        StockHistoricalVO result = new StockHistoricalVO(market.getCode(), market.getName(), market.getcName(), inputVO.getStartDate(),
-                inputVO.getEndDate(), kLine, volume, ma5, ma10, ma20, logarithmYields, diff, dea, macd,
+
+        StockHistoricalVO result = new StockHistoricalVO(inputVO.getStockCode(), stockName, StockHelper.getMarketName(inputVO.getStockCode()),
+                inputVO.getStartDate(), inputVO.getEndDate(), kLine, volume, ma5, ma10, ma20, logarithmYields, diff, dea, macd,
                 k, d, j, rsi6, rsi12, rsi24, mid, up, low);
 
         return result;
     }
+
+
 
 }
