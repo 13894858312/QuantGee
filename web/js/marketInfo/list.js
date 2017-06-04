@@ -5,7 +5,7 @@ var json;
 $.ajax({
     cache:false,
     async:false,
-    url:"list.action",
+    url:"risedownList.action",
     type:"GET",
     dataType:'json',
     success:function (data) {
@@ -15,3 +15,5 @@ $.ajax({
         alert("error")
     }
 });
+var name = json['stockName'];
+$("#irise11").text(name);
