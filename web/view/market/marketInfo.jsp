@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
+<%--<!DOCTYPE html>--%>
+<html>
 <head>
     <meta charset="UTF-8">
     <title>MarketInfo</title>
     <script src="../../echarts.js"></script>
     <script src="../../jquery-3.2.1.min.js"></script>
     <script src="../../js/test.js"></script>
-    <%--<script type="text/javascript" for="window" event="onload">--%>
+    <script type="text/javascript" for="window" event="onload">
         <%--var reftime = 3000;//默认每隔10秒向后台发送请求--%>
         <%--var taskId;--%>
         <%--if(document.readyState == "complete"){--%>
