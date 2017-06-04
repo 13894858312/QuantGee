@@ -86,41 +86,13 @@
                 <s:iterator value="testStrings">
                     <tr>
                         <td>
-                            <a target="_blank"><s:property /> </a>
+                            <a target="_blank"><s:property/> </a>
                         </td>
                         <td>1</td>
                         <td><i class="uarr"></i></td>
                     </tr>
                 </s:iterator>
 
-                    <tr>
-                        <td>
-                            <a target="_blank">ddd</a>
-                        </td>
-                        <td>1</td>
-                        <td><i class="uarr"></i></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a target="_blank">eee</a>
-                        </td>
-                        <td>1</td>
-                        <td><i class="uarr"></i></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a target="_blank">fff</a>
-                        </td>
-                        <td>1</td>
-                        <td><i class="uarr"></i></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a target="_blank">ggg</a>
-                        </td>
-                        <td>1</td>
-                        <td><i class="uarr"></i></td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -172,13 +144,28 @@
             <table class="codename fl">
                 <thead>
                 <tr>
-                    <th style="width:120px"><span class="type">全部</span></th>
-                    <th class="table_sort" style="width:67px"><i></i><span>当前价</span></th>
+                    <th style="width:120px"><span class="type">股票名称</span></th>
+                    <th style="width:120px"><span class="type">股票代码</span></th>
+                    <th class="table_sort" style="width:70px"><i></i><span>当前</span></th>
                     <th style="width:137px" class="table_sort"><i></i><span>涨跌幅</span></th>
                     <th class="arr_l"><i onselectstart="return false;"></i></th>
                 </tr>
                 </thead>
                 <tbody>
+                <s:iterator value="stockCurrentVOS">
+                    <tr>
+                        <td>
+                            <a target="_blank"><s:property value="stockName"/> </a>
+                        </td>
+                        <td>
+                            <a target="_blank"><s:property value="stockCode"/> </a>
+                        </td>
+                        <td><s:property value="trade"/></td>
+                        <td><s:property value="changePercent"/></td>
+                        <td><s:property value="trade"/></td>
+                        <%--<td><i class="uarr"></i></td>--%>
+                    </tr>
+                </s:iterator>
                 </tbody>
             </table>
             <table class="colums">
@@ -187,11 +174,21 @@
                     <th class="table_sort" style="width:110px;"><i></i><span>成交量(手)</span></th>
                     <th class="table_sort"><i></i><span>成交额</span></th>
                     <th class="table_sort"><i></i><span>市值</span></th>
-                    <th class="table_sort"><i></i><span>换手率</span></th>
                     <th class="table_sort"><i></i><span>市盈率</span></th>
+                    <th class="table_sort"><i></i><span>市净率</span></th>
                 </tr>
                 </thead>
                 <tbody>
+                <s:iterator value="stockCurrentVOS">
+                    <tr>
+                        <td><s:property value="volume"/></td>
+                        <td><s:property value="amount"/></td>
+                        <td><s:property value="mktcap"/></td>
+                        <td><s:property value="per"/></td>
+                        <td><s:property value="pb"/></td>
+                        <td><i class="uarr"></i></td>
+                    </tr>
+                </s:iterator>
                 </tbody>
             </table>
             <table class="colums hide">
@@ -201,10 +198,20 @@
                     <th>今开</th>
                     <th>最高</th>
                     <th>最低</th>
-                    <th>振幅</th>
+                    <th>换手率</th>
                 </tr>
                 </thead>
                 <tbody>
+                <s:iterator value="stockCurrentVOS">
+                    <tr>
+                        <td><s:property value="settlement"/></td>
+                        <td><s:property value="open"/></td>
+                        <td><s:property value="high"/></td>
+                        <td><s:property value="low"/></td>
+                        <td><s:property value="turnover"/></td>
+                        <td><i class="uarr"></i></td>
+                    </tr>
+                </s:iterator>
                 </tbody>
             </table>
 

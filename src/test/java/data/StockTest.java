@@ -182,5 +182,13 @@ public class StockTest {
         Iterator<StockPredict> stockPredict = quotaDAO.getPredictData("000001","0", "2020-20-20");
         System.out.print(stockPredict);
     }
+
+    @Test
+    public void getCInfoTest(){
+        Iterator<String> iterator = stockInfoDAO.getAllIndustryNames();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+    }
 }
 
