@@ -35,9 +35,9 @@ public class StockTest {
 
     @Test
     public void getStockInfoTest(){
-        Iterator<Stock> stockIterator = stockInfoDAO.getStockInfo("000001");
+        Iterator<Stock> stockIterator = stockInfoDAO.getStockInfo("sh");
         while (stockIterator.hasNext()){
-            System.out.println(stockIterator.next().getDate());
+            System.out.println(stockIterator.next().getTurnover());
         }
     }
 
@@ -181,6 +181,14 @@ public class StockTest {
     public void getPredictTest(){
         Iterator<StockPredict> stockPredict = quotaDAO.getPredictData("000001","0", "2020-20-20");
         System.out.print(stockPredict);
+    }
+
+    @Test
+    public void getCInfoTest(){
+        Iterator<String> iterator = stockInfoDAO.getAllIndustryNames();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
     }
 }
 

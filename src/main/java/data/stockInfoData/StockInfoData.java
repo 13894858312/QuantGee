@@ -114,7 +114,9 @@ public class StockInfoData implements StockInfoDAO{
 
     @Override
     public Iterator<String> getAllIndustryNames() {
-        return null;
+        Iterator<String> iterator = (Iterator<String>) hibernateTemplate
+                .find("select distinct m.cName from MarketInfo m").iterator();
+        return iterator;
     }
 
 }

@@ -27,7 +27,7 @@ public class NewsData implements NewsDAO {
     @Override
     public Iterator<News> getNews() {
         Iterator<News> newsIterator = (Iterator<News>) hibernateTemplate
-                .find("from News n").iterator();
+                .find("from News").iterator();
         return newsIterator;
     }
 }
