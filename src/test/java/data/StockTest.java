@@ -35,9 +35,9 @@ public class StockTest {
 
     @Test
     public void getStockInfoTest(){
-        Iterator<Stock> stockIterator = stockInfoDAO.getStockInfo("000001");
+        Iterator<Stock> stockIterator = stockInfoDAO.getStockInfo("sh");
         while (stockIterator.hasNext()){
-            System.out.println(stockIterator.next().getDate());
+            System.out.println(stockIterator.next().getTurnover());
         }
     }
 
