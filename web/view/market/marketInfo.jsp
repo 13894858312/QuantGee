@@ -994,10 +994,92 @@
     <div class="fourthText">
     	<span>财经资讯</span>
     </div>
-    <div class="leftnews"></div>
-    <div class="rightnews"></div>
-    <div class="more">
-    	<a href="" onclick="test()">更多>></a>
+    <div class="leftnews">
+    	<table class="leftnewsTable">
+    		<tbody class="leftBody">
+    			<tr>
+    				<td class="newsContent">
+    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    				</td>
+    				<td class="timeContent" >2016-10-19</td>
+    				<td style="width: 10px;"></td>
+    			</tr>
+    			<tr>
+    				<td class="newsContent">
+    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    				</td>
+    				<td class="timeContent" >2016-10-19</td>
+    				<td style="width: 10px;"></td>
+    			</tr>
+    			<tr>
+    				<td class="newsContent">
+    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    				</td>
+    				<td class="timeContent" >2016-10-19</td>
+    				<td style="width: 10px;"></td>
+    			</tr>
+    			<tr>
+    				<td class="newsContent">
+    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    				</td>
+    				<td class="timeContent" >2016-10-19</td>
+    				<td style="width: 10px;"></td>
+    			</tr>
+    			<tr>
+    				<td class="newsContent">
+    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    				</td>
+    				<td class="timeContent" >2016-10-19</td>
+    				<td style="width: 10px;"></td>
+    			</tr>
+    			
+    		</tbody>
+    	</table>
     </div>
+    <div class="rightnews">
+    	<table class="rightnewsTable">
+    		<tbody class="rightBody">
+    			<tr>
+    				<td class="newsContent">
+    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    				</td>
+    				<td class="timeContent" >2016-10-19</td>
+    				<td style="width: 10px;"></td>
+    			</tr>
+    			<tr>
+    				<td class="newsContent">
+    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    				</td>
+    				<td class="timeContent" >2016-10-19</td>
+    				<td style="width: 10px;"></td>
+    			</tr>
+    			<tr>
+    				<td class="newsContent">
+    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    				</td>
+    				<td class="timeContent" >2016-10-19</td>
+    				<td style="width: 10px;"></td>
+    			</tr>
+    			<tr>
+    				<td class="newsContent">
+    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    				</td>
+    				<td class="timeContent" >2016-10-19</td>
+    				<td style="width: 10px;"></td>
+    			</tr>
+    			<tr>
+    				<td class="newsContent">
+    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    				</td>
+    				<td class="timeContent" >2016-10-19</td>
+    				<td style="width: 10px;"></td>
+    			</tr>
+    		</tbody>
+    	</table>
+    </div>
+	<script type="text/javascript" src="../../js/marketInfo/news.js"></script>
+    <!--<div class="more">
+    	<a href="" onclick="test()">更多>></a>
+    </div>-->
 </body>
 </html>

@@ -247,12 +247,12 @@
 .fourthHead{
 	position: absolute;
 	left: 5%;
-	top: 263%;
+	top: 245%;
 }
 .fourthText{
 	position: absolute;
 	left: 11%;
-	top: 265%;
+	top: 247%;
 	font-weight: bold;
 	font-size: 18px;
 	font-family: 'Cabin Condensed', sans-serif;
@@ -260,20 +260,22 @@
 .leftnews{
 	position: absolute;
 	left: 8%;
-	top: 273%;
+	top: 255%;
 	width: 40.5%;
-	height: 30%;
 	border: 1px solid #000000;
+	background-color: #FFFFFF;
+	margin-bottom: 30px;
 }
 .rightnews{
 	position: absolute;
 	left: 48.5%;
-	top: 273%;
+	top: 255%;
 	width: 40.5%;
-	height: 30%;
 	border: 1px solid #000000;
+	background-color: #FFFFFF;
+	margin-bottom: 30px;
 }
-.more{
+/*.more{
 	position: absolute;
 	left: 85%;
 	top: 269%;
@@ -281,9 +283,9 @@
 	font-weight: 500;
 	font-size: 16px;
 	font-family: 'Cabin Condensed', sans-serif;
-}
+}*/
 a{
-	color: #0066CC;
+	color: #528FCC;
 }
 .industryHead{
 	color: #444444;
@@ -297,7 +299,7 @@ a{
 	width:75px;
 	font-weight: 100;
 	color: #528FCC;
-	padding-top: 3%;
+	padding-top: 7px;
 	text-align: center;	
 }
 .industryBody-rise-td2{
@@ -305,19 +307,19 @@ a{
 	width:65px;
 	font-weight: 100;
 	color: #D75442;
-	padding-top: 3%;
+	padding-top: 7px;
 	text-align: center;
 }
 .industryBody-rise-td3{
 	width:90px;
 	font-weight: 100;
-	padding-top: 3%;
+	padding-top: 7px;
 	text-align:center;
 }
 .industryBody-rise-td4{
 	width:60px;
 	font-weight: 100;
-	padding-top: 3%;
+	padding-top: 7px;
 }
 .industryBody-down{
 	font-size: 14px;
@@ -412,4 +414,24 @@ a{
 	width:60px;
 	font-weight: 100;
 	padding-top: 7px;
+}
+.leftnewsTable{
+	font-weight: 100;
+}
+.newsContent{
+	font-size: 20px;
+	font-family: 'Cabin Condensed', sans-serif;
+	width:400px;
+	padding-top: 7px;
+	text-align:left;
+}
+.timeContent{
+	font-size: 16px;
+	font-family: 'Cabin Condensed', sans-serif;
+	width:150px;
+	padding-top: 10px;
+	text-align:right;
+}
+.rightnewsTable{
+	font-weight: 100;
 }
