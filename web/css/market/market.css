@@ -247,12 +247,12 @@
 .fourthHead{
 	position: absolute;
 	left: 5%;
-	top: 245%;
+	top: 250%;
 }
 .fourthText{
 	position: absolute;
 	left: 11%;
-	top: 247%;
+	top: 252%;
 	font-weight: bold;
 	font-size: 18px;
 	font-family: 'Cabin Condensed', sans-serif;
@@ -260,7 +260,7 @@
 .leftnews{
 	position: absolute;
 	left: 8%;
-	top: 255%;
+	top: 260%;
 	width: 40.5%;
 	border: 1px solid #000000;
 	background-color: #FFFFFF;
@@ -269,7 +269,7 @@
 .rightnews{
 	position: absolute;
 	left: 48.5%;
-	top: 255%;
+	top: 260%;
 	width: 40.5%;
 	border: 1px solid #000000;
 	background-color: #FFFFFF;
