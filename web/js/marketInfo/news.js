@@ -9,10 +9,31 @@ $.ajax({
     type:'GET',
     dataType:'json',
     success:function (data) {
-        alert(data);
         json = JSON.parse(data);
     },
     error:function (data) {
         alert("error");
     }
 });
+
+$("#l1").text(json[0]['title']);
+$("#l2").text(json[1]['title']);
+$("#l3").text(json[2]['title']);
+$("#l4").text(json[3]['title']);
+$("#l5").text(json[4]['title']);
+$("#lt1").text(json[0]['time']);
+$("#lt2").text(json[1]['time']);
+$("#lt3").text(json[2]['time']);
+$("#lt4").text(json[3]['time']);
+$("#lt5").text(json[4]['time']);
+
+$("#r1").text(json[5]['title']);
+$("#r2").text(json[6]['title']);
+$("#r3").text(json[7]['title']);
+$("#r4").text(json[8]['title']);
+$("#r5").text(json[9]['title']);
+$("#rt1").text(json[5]['time']);
+$("#rt2").text(json[6]['time']);
+$("#rt3").text(json[7]['time']);
+$("#rt4").text(json[8]['time']);
+$("#rt5").text(json[9]['time']);

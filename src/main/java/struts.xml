@@ -53,11 +53,26 @@
         </action>
 	</package>
 	<package name="list" extends="json-default,struts-default">
-		<action name="risedownList" class="listAction" method="getList">
+		<action name="riseIndustryList" class="listAction" method="getIndustryUpList">
 			<result name="success" type="json">
 				<param name="root">result</param>
 			</result>
 		</action>
+		<action name="downIndustryList" class="listAction" method="getIndustryDownList">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+        <action name="upStockList" class="listAction" method="getStockUpList">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="downStockList" class="listAction" method="getStockDownList">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
 	</package>
     <package name="news" extends="json-default,struts-default">
         <action name="getnews" class="newsAction" method="getNews">

@@ -7,7 +7,7 @@
     <script src="../../echarts.js"></script>
     <script src="../../jquery-3.2.1.min.js"></script>
     <script src="../../js/test.js"></script>
-    <script type="text/javascript" for="window" event="onload">
+    <%--<script type="text/javascript" for="window" event="onload">--%>
         <%--var reftime = 3000;//默认每隔10秒向后台发送请求--%>
         <%--var taskId;--%>
         <%--if(document.readyState == "complete"){--%>
@@ -98,29 +98,31 @@
     	<div class="sszhead">
     	</div>
     	<span class="SSE-text">上证指数</span>
-    	<span class="ssz1">25428.50</span>
-    	<span class="ssz2">0.10%</span>
-    	<span class="ssz3">25.35</span>
+    	<span class="ssz1" id="ssedata">25428.50</span>
+    	<span class="ssz2" id="sserange">0.10%</span>
+    	<span class="ssz3" id="sseprice">25.35</span>
+        <div class="top"></div>
     </div>
     <div class="SZI">
     	<div class="szihead">
     	</div>
     	<span class="SZI-text">深证指数</span>
-    	<span class="ssz1">25428.50</span>
-    	<span class="ssz2">0.10%</span>
-    	<span class="ssz3">25.35</span>
+    	<span class="ssz1" id="szidata">25428.50</span>
+    	<span class="ssz2" id="szirange">0.10%</span>
+    	<span class="ssz3" id="sziprice">25.35</span>
     </div>
     <div class="SZ300">
     	<div class="szhead">
     	</div>
     	<span class="SZ300-text">沪深300</span>
-    	<span class="ssz1">25428.50</span>
-    	<span class="ssz2">0.10%</span>
-    	<span class="ssz3">25.35</span>
+    	<span class="ssz1" id="szdata">25428.50</span>
+    	<span class="ssz2" id="szrange">0.10%</span>
+    	<span class="ssz3" id="szprice">25.35</span>
     </div>
-    <div class="graph-SSE" style="position: absolute;left: 8%;top: 37%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
-	<div class="graph-SZI" style="position: absolute;left: 36%;top: 37%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
-	<div class="graph-SZ300" style="position: absolute;left: 64%;top: 37%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
+    <div id="graph-SSE" style="background-color:#FFFFFF;position: absolute;left: 8%;top: 37%;width: 25%;height: 25%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
+    <script src="../../js/line1.js"></script>
+	<div id="graph-SZI" style="background-color:#FFFFFF;position: absolute;left: 36%;top: 37%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
+	<div id="graph-SZ300" style="background-color:#FFFFFF;position: absolute;left: 64%;top: 37%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
 	<div class="secondHead">
     	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
     </div>
@@ -999,37 +1001,37 @@
     		<tbody class="leftBody">
     			<tr>
     				<td class="newsContent">
-    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    					<a href="" style="color: #000000;" id="l1">mvnmvnmvnmvnmvnm</a>
     				</td>
-    				<td class="timeContent" >2016-10-19</td>
+    				<td class="timeContent" id="lt1">2016-10-19</td>
     				<td style="width: 10px;"></td>
     			</tr>
     			<tr>
     				<td class="newsContent">
-    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    					<a href="" style="color: #000000;" id="l2">mvnmvnmvnmvnmvnm</a>
     				</td>
-    				<td class="timeContent" >2016-10-19</td>
+    				<td class="timeContent" id="lt2">2016-10-19</td>
     				<td style="width: 10px;"></td>
     			</tr>
     			<tr>
     				<td class="newsContent">
-    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    					<a href="" style="color: #000000;" id="l3">mvnmvnmvnmvnmvnm</a>
     				</td>
-    				<td class="timeContent" >2016-10-19</td>
+    				<td class="timeContent" id="lt3">2016-10-19</td>
     				<td style="width: 10px;"></td>
     			</tr>
     			<tr>
     				<td class="newsContent">
-    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    					<a href="" style="color: #000000;" id="l4">mvnmvnmvnmvnmvnm</a>
     				</td>
-    				<td class="timeContent" >2016-10-19</td>
+    				<td class="timeContent" id="lt4">2016-10-19</td>
     				<td style="width: 10px;"></td>
     			</tr>
     			<tr>
     				<td class="newsContent">
-    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    					<a href="" style="color: #000000;" id="l5">mvnmvnmvnmvnmvnm</a>
     				</td>
-    				<td class="timeContent" >2016-10-19</td>
+    				<td class="timeContent" id="lt5">2016-10-19</td>
     				<td style="width: 10px;"></td>
     			</tr>
     			
@@ -1041,37 +1043,37 @@
     		<tbody class="rightBody">
     			<tr>
     				<td class="newsContent">
-    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    					<a href="" style="color: #000000;" id="r1">mvnmvnmvnmvnmvnm</a>
     				</td>
-    				<td class="timeContent" >2016-10-19</td>
+    				<td class="timeContent" id="rt1">2016-10-19</td>
     				<td style="width: 10px;"></td>
     			</tr>
     			<tr>
     				<td class="newsContent">
-    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    					<a href="" style="color: #000000;" id="r2">mvnmvnmvnmvnmvnm</a>
     				</td>
-    				<td class="timeContent" >2016-10-19</td>
+    				<td class="timeContent" id="rt2">2016-10-19</td>
     				<td style="width: 10px;"></td>
     			</tr>
     			<tr>
     				<td class="newsContent">
-    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    					<a href="" style="color: #000000;" id="r3">mvnmvnmvnmvnmvnm</a>
     				</td>
-    				<td class="timeContent" >2016-10-19</td>
+    				<td class="timeContent" id="rt3">2016-10-19</td>
     				<td style="width: 10px;"></td>
     			</tr>
     			<tr>
     				<td class="newsContent">
-    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    					<a href="" style="color: #000000;" id="r4">mvnmvnmvnmvnmvnm</a>
     				</td>
-    				<td class="timeContent" >2016-10-19</td>
+    				<td class="timeContent" id="rt4">2016-10-19</td>
     				<td style="width: 10px;"></td>
     			</tr>
     			<tr>
     				<td class="newsContent">
-    					<a href="" style="color: #000000;">mvnmvnmvnmvnmvnm</a>
+    					<a href="" style="color: #000000;" id="r5">mvnmvnmvnmvnmvnm</a>
     				</td>
-    				<td class="timeContent" >2016-10-19</td>
+    				<td class="timeContent" id="rt5">2016-10-19</td>
     				<td style="width: 10px;"></td>
     			</tr>
     		</tbody>
