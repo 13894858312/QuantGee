@@ -558,6 +558,12 @@
 				<script type="text/javascript" src="../../js/stock/someInfo.js"></script>
     <div class="stockInfo2" id="si2"></div>
         <script type="text/javascript" src="../../js/stock/someInfo.js"></script>
-    <div class="news"></div>
+    <div class="news">
+    	<div class="newshead">
+    		<span class="newsText">个股财经新闻</span>
+    	</div>
+    	<div class="leftcontent"></div>
+    	<div class="rightcontent"></div>
+    </div>
 </body>
 </html>
