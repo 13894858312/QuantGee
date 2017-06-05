@@ -16,7 +16,7 @@ public class DateHelperTest {
 
     @Test
     public void getNowTime() throws Exception {
-        System.out.println(DateHelper.getNowTime());
+        System.out.println(TimeHelper.getNowTime());
     }
 
 }

@@ -14,9 +14,9 @@ public interface StockBasicInfoService {
      * 获取股票实时数据 用于画实时图
      * @param code 股票代码或大盘代码
      *            大盘 sh=上证指数 sz=深圳成指 zxb=中小板 cyb=创业板
-     * @return ArrayList<StockRealTimeLineVO>
+     * @return RealTimeLineVO
      */
-    public ArrayList<RealTimeLineVO> getStockRealTimeLineInfo(String code);
+    public RealTimeLineVO getStockRealTimeLineInfo(String code);
 
 
     /**
