@@ -114,16 +114,16 @@ a{
 	border-bottom: 1px solid #000000;
 	background-color: #FFFFFF;
 }
-.data{
+/*.data{
 	position: absolute;
 	top: 123px;
 	left: 630px;
-	width: 400px;
+	width: 600px;
 	height: 33px;
 	border: 1px solid #000000;
 	background-color: #FFFFFF
-}
-.search{
+}*/
+/*.search{
 	position: absolute;
 	top:123px;
 	left: 1030px;
@@ -131,4 +131,4 @@ a{
 	height: 33px;
 	border: 1px solid #000000;
 	background-color: #FFFFFF;
-}
+}*/
