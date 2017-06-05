@@ -81,4 +81,26 @@
             </result>
         </action>
     </package>
+	<package name="stock" extends="json-default,struts-default">
+		<action name="getStock" class="stockAction" method="getStockFirstInfo">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="stockMA5" class="stockAction" method="getMA5">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="stockMA10" class="stockAction" method="getMA10">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="stockMA20" class="stockAction" method="getMA20">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
 </struts>

@@ -176,83 +176,16 @@
 	font-size: 18px;
 	font-family: 'Cabin Condensed', sans-serif;
 }
-.leftrange{
-	position: absolute;
-	left: 8%;
-	top: 185%;
-	background-color: #FFFFFF;
-	opacity: 0.8;
-	width: 38%;
-	height: 7%;
-	border: 1px solid #000000;
-}
-.leftrangehead{
-	position: absolute;
-	left: 40%;
-	top: 20%;
-	font-weight: 600;
-	font-size: 18px;
-	font-family: 'Cabin Condensed', sans-serif;
-}
-.rightrange{
-	position: absolute;
-	left: 51%;
-	top: 185%;
-	background-color: #FFFFFF;
-	opacity: 0.8;
-	width: 38%;
-	height: 7%;
-	border: 1px solid #000000;
-}
-.rightrangehead{
-	position: absolute;
-	left: 40%;
-	top: 20%;
-	font-weight: 600;
-	font-size: 18px;
-	font-family: 'Cabin Condensed', sans-serif;
-}
-.industry-left{
-	position: absolute;
-	left: 8%;
-	top: 192%;
-	width: 19%;
-	border: 1px solid #000000;
-	background-color: #FFFFFF;
-}
-.industry-right{
-	position: absolute;
-	left: 27%;
-	top: 192%;
-	width: 19%;
-	border: 1px solid #000000;
-	background-color: #FFFFFF;
-}
-.stock-left{
-	position: absolute;
-	left: 51%;
-	top: 192%;
-	width: 19%;
-	border: 1px solid #000000;
-	background-color: #FFFFFF;
-}
-.stock-right{
-	position: absolute;
-	left: 70%;
-	top: 192%;
-	width: 19%;
-	border: 1px solid #000000;
-	background-color: #FFFFFF;
-}
+
 .fourthHead{
 	position: absolute;
 	left: 5%;
-	top: 250%;
+	top: 175%;
 }
 .fourthText{
 	position: absolute;
 	left: 11%;
-	top: 252%;
+	top: 177%;
 	font-weight: bold;
 	font-size: 18px;
 	font-family: 'Cabin Condensed', sans-serif;
@@ -260,7 +193,7 @@
 .leftnews{
 	position: absolute;
 	left: 8%;
-	top: 260%;
+	top: 183%;
 	width: 40.5%;
 	border: 1px solid #000000;
 	background-color: #FFFFFF;
@@ -269,7 +202,7 @@
 .rightnews{
 	position: absolute;
 	left: 48.5%;
-	top: 260%;
+	top: 183%;
 	width: 40.5%;
 	border: 1px solid #000000;
 	background-color: #FFFFFF;
@@ -287,134 +220,7 @@
 a{
 	color: #528FCC;
 }
-.industryHead{
-	color: #444444;
-	font-size: 14px;
-}
-.industryBody-rise{
-	font-size: 14px;
-	font-weight: 100;
-}
-.industryBody-rise-td1{
-	width:75px;
-	font-weight: 100;
-	color: #528FCC;
-	padding-top: 7px;
-	text-align: center;	
-}
-.industryBody-rise-td2{
-	font-size: 12px;
-	width:65px;
-	font-weight: 100;
-	color: #D75442;
-	padding-top: 7px;
-	text-align: center;
-}
-.industryBody-rise-td3{
-	width:90px;
-	font-weight: 100;
-	padding-top: 7px;
-	text-align:center;
-}
-.industryBody-rise-td4{
-	width:60px;
-	font-weight: 100;
-	padding-top: 7px;
-}
-.industryBody-down{
-	font-size: 14px;
-	font-weight: 100;
-}
-.industryBody-down-td1{
-	width:75px;
-	font-weight: 100;
-	color: #528FCC;
-	padding-top: 7px;
-	text-align: center;	
-}
-.industryBody-down-td2{
-	font-size: 12px;
-	width:65px;
-	font-weight: 100;
-	color: #59b881;
-	padding-top: 7px;
-	text-align: center;
-}
-.industryBody-down-td3{
-	width:90px;
-	font-weight: 100;
-	padding-top: 7px;
-	text-align:center;
-}
-.industryBody-down-td4{
-	width:60px;
-	font-weight: 100;
-	padding-top: 7px;
-}
-.stockHead{
-	color: #444444;
-	font-size: 14px;
-}
-.stockBody-rise{
-	font-size: 14px;
-	font-weight: 100;
-}
-.stockBody-rise-td1{
-	width:95px;
-	font-weight: 100;
-	color: #528FCC;
-	padding-top: 7px;
-	text-align: center;	
-}
-.stockBody-rise-td2{
-	font-size: 12px;
-	width:80px;
-	font-weight: 100;
-	color: #D75442;
-	padding-top: 7px;
-	text-align: center;
-}
-.stockBody-rise-td3{
-	width:50px;
-	font-weight: 100;
-	padding-top: 7px;
-	text-align:center;
-}
-.stockBody-rise-td4{
-	width:60px;
-	font-weight: 100;
-	padding-top: 7px;
-}
-.stockBody-down{
-	font-size: 14px;
-	font-weight: 100;
-}
-.stockBody-down-td1{
-	width:95px;
-	font-weight: 100;
-	color: #528FCC;
-	padding-top: 7px;
-	text-align: center;	
-}
-.stockBody-down-td2{
-	font-size: 12px;
-	width:80px;
-	font-weight: 100;
-	color: #59b881;
-	padding-top: 7px;
-	text-align: center;
-}
-.stockBody-down-td3{
-	width:50px;
-	font-weight: 100;
-	padding-top: 7px;
-	text-align:center;
-}
-.stockBody-down-td4{
-	width:60px;
-	font-weight: 100;
-	padding-top: 7px;
-}
+
 .leftnewsTable{
 	font-weight: 100;
 }

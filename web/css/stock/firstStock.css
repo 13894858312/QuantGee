@@ -1,215 +1,134 @@
-.firstHead{
-	position: absolute;
-	left: 5%;
-	top: 12%;
-}
-.firstText{
-	position: absolute;
-	left: 11%;
-	top: 14%;
-	font-weight: bold;
-	font-size: 18px;
-	font-family: 'Cabin Condensed', sans-serif;
-}
-.stockBar{
-	border: 1px solid #000000;
-	position: absolute;
-	left: 8%;
-	top: 22%;
-	width: 81%;
-	height: 7%;
+.rightrange{
+	margin-left: 8%;
+	margin-top: 3%;
 	background-color: #FFFFFF;
-}
-.all{
-	position: absolute;
-	left: 5%;
-	top: 25%;
-	font-weight: 500;
-	font-size: 16px;
-	font-family: 'Cabin Condensed', sans-serif;
-}
-.sszA{
-	position: absolute;
-	left: 15%;
-	top: 25%;
-	font-weight: 500;
-	font-size: 16px;
-	font-family: 'Cabin Condensed', sans-serif;
-}
-.sziA{
-	position: absolute;
-	left: 25%;
-	top: 25%;
-	font-weight: 500;
-	font-size: 16px;
-	font-family: 'Cabin Condensed', sans-serif;
-}
-.sme{
-	position: absolute;
-	left: 35%;
-	top: 25%;
-	font-weight: 500;
-	font-size: 16px;
-	font-family: 'Cabin Condensed', sans-serif;
-}
-.startup{
-	position: absolute;
-	left: 45%;
-	top: 25%;
-	font-weight: 500;
-	font-size: 18px;
-	font-family: 'Cabin Condensed', sans-serif;
-}
-.tableContent{
-	border: 1px solid #000000;
-	position: absolute;
-	left: 8%;
-	top: 29%;
-	width: 81%;
-	height: 80%;
-}
-.secondHead{
-	position: absolute;
-	left: 5%;
-	top: 113%;
-}
-.secondText{
-	position: absolute;
-	left: 11%;
-	top: 115%;
-	font-weight: bold;
-	font-size: 18px;
-	font-family: 'Cabin Condensed', sans-serif;
-}
-.firRec{
-	border: 1px solid #000000;
 	opacity: 0.8;
-	position: absolute;
-	left: 8%;
-	top: 123%;
-	background-color: #FFFFFF;
-	width: 25%;
-	height: 15%;
-	
-}
-.sszhead{
-	position: absolute;
-	left: 5%;
-	top:10%;
-	background: url(http://i.thsi.cn/images/q/hq-icons.jpg) no-repeat;
-	width: 20%;
-	height: 17%;
-}
-.SSE-text{
-	position: absolute;
-	left: 15%;
-	top: 6%;
-	font-size: 18px;
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	font-weight: 500;
-}
-.ssz1{
-	position: absolute;
-	left: 5%;
-	top: 55%;
-	font-size: 18px;
-    font-weight: bold;
-    color: #d75442;
-}
-.ssz2{
-	position: absolute;
-	left: 35%;
-	top: 55%;
-	font-size: 18px;
-    font-weight: bold;
-    color: #d75442;
-}
-.ssz3{
-	position: absolute;
-	left: 55%;
-	top: 55%;
-	font-size: 18px;
-    font-weight: bold;
-    color: #d75442;
-}
-.secRec{
+	width: 38.05%;
+	height: 5%;
 	border: 1px solid #000000;
-	opacity: 0.8;
-	position: absolute;
-	left: 36%;
-	top: 123%;
-	background-color: #FFFFFF;
-	width: 25%;
-	height: 15%;
 }
-.szihead{
-	position: absolute;
-	left: 5%;
-	top:10%;
-	background: url(http://i.thsi.cn/images/q/hq-icons.jpg) no-repeat;
-	width: 20%;
-	height: 17%;
-}
-.SZI-text{
-	position: absolute;
-	left: 15%;
-	top: 6%;
+.rightrangehead{
+	margin-left: 40%;
+	font-weight: 600;
 	font-size: 18px;
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	font-weight: 500;
+	font-family: 'Cabin Condensed', sans-serif;
 }
-.thirdRec{
+.stock-left{
+	float: left;
+	margin-left: 8%;
+	width: 19%;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+	background-color: #FFFFFF;
+}
+.stock-right{
+	float: left;
+	width: 19%;
+	border-right: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+	background-color: #FFFFFF;
+}
+.stockHead{
+	color: #444444;
+	font-size: 14px;
+}
+.stockBody-rise{
+	font-size: 14px;
+	font-weight: 100;
+}
+.stockBody-rise-td1{
+	width:95px;
+	font-weight: 100;
+	color: #528FCC;
+	padding-top: 7px;
+	text-align: center;	
+}
+.stockBody-rise-td2{
+	font-size: 12px;
+	width:80px;
+	font-weight: 100;
+	color: #D75442;
+	padding-top: 7px;
+	text-align: center;
+}
+.stockBody-rise-td3{
+	width:50px;
+	font-weight: 100;
+	padding-top: 7px;
+	text-align:center;
+}
+.stockBody-rise-td4{
+	width:60px;
+	font-weight: 100;
+	padding-top: 7px;
+}
+.stockBody-down{
+	font-size: 14px;
+	font-weight: 100;
+}
+.stockBody-down-td1{
+	width:95px;
+	font-weight: 100;
+	color: #528FCC;
+	padding-top: 7px;
+	text-align: center;	
+}
+.stockBody-down-td2{
+	font-size: 12px;
+	width:80px;
+	font-weight: 100;
+	color: #59b881;
+	padding-top: 7px;
+	text-align: center;
+}
+.stockBody-down-td3{
+	width:50px;
+	font-weight: 100;
+	padding-top: 7px;
+	text-align:center;
+}
+.stockBody-down-td4{
+	width:60px;
+	font-weight: 100;
+	padding-top: 7px;
+}
+a{
+	color: #528FCC;
+}
+.stockInfo{
+	float: left;
+	/*margin-left: 5%;*/
+	width: 600px;
+	height: 221px;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+	background-color: #FFFFFF;
+}
+.stockInfo2{
+	float: left;
+	width: 600px;
+	height: 220px;
+	border-right: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+	background-color: #FFFFFF;
+}
+.data{
+	position: absolute;
+	top: 123px;
+	left: 630px;
+	width: 400px;
+	height: 33px;
 	border: 1px solid #000000;
-	opacity: 0.8;
-	position: absolute;
-	left: 64%;
-	top: 123%;
-	background-color: #FFFFFF;
-	width: 25%;
-	height: 15%;
-}
-.szhead{
-	position: absolute;
-	left: 5%;
-	top:10%;
-	background: url(http://i.thsi.cn/images/q/hq-icons.jpg) no-repeat;
-	width: 20%;
-	height: 17%;
-}
-.SZ300-text{
-	position: absolute;
-	left: 15%;
-	top: 6%;
-	font-size: 18px;
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	font-weight: 500;
+	background-color: #FFFFFF
 }
 .search{
 	position: absolute;
-	left: 70%;
-	top: 22.5%;
-	width: 18%;
-	height: 6%;
-}
-.lefttext{
-	width: 100%;
-	height: 100%;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-right: 5px;
-    float: left;
-    font: 500 16px 'lucida sans', 'trebuchet MS', 'Tahoma';
-    border: 2px solid #ccc;
-}
-.submit{
-	display: block;
-	left: 84.5%;
-	top: 2px;
-	width: 35px;
-	height: 31px;
-	background-position: -16px -884px;
-	position: absolute;
-	background-color: #f8f8f8;
-	background-image: url(http://i.thsi.cn/images/ucenter/website/icon2.png);
-	background-repeat: no-repeat;
+	top:123px;
+	left: 1030px;
+	width: 200px;
+	height: 33px;
+	border: 1px solid #000000;
+	background-color: #FFFFFF;
 }

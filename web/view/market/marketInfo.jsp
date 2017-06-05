@@ -114,7 +114,7 @@
     <div class="SZ300">
     	<div class="szhead">
     	</div>
-    	<span class="SZ300-text">沪深300</span>
+    	<span class="SZ300-text">创业板指</span>
     	<span class="ssz1" id="szdata">25428.50</span>
     	<span class="ssz2" id="szrange">0.10%</span>
     	<span class="ssz3" id="szprice">25.35</span>
@@ -137,7 +137,7 @@
     <div class="volume" id="volumeBar"></div>
     <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
     <script type="text/javascript" src="../../js/marketInfo/KLine.js"></script>
-    <div class="thirdHead">
+    <!--<div class="thirdHead">
     	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
     </div>
     <div class="thirdText">
@@ -989,7 +989,7 @@
     		</tbody>
     	</table>
     </div>
-    <script type="text/javascript" src="../../js/marketInfo/list.js"></script>
+    <script type="text/javascript" src="../../js/marketInfo/list.js"></script>-->
     <div class="fourthHead">
     	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
     </div>
