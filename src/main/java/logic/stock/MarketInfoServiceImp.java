@@ -5,6 +5,7 @@ import bean.Current;
 import bean.MarketInfo;
 import bean.Stock;
 import logic.tools.DateHelper;
+import logic.tools.TimeHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -24,21 +25,10 @@ import java.util.Iterator;
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class MarketInfoServiceImp implements MarketInfoService{
 
-    private static final int TOP_NUMBER = 10;
+    private static final int TOP_NUMBER = 15;
 
     @Autowired
     private StockInfoDAO stockInfoDAO;
-
-//    @Override
-//    public ArrayList<RealTimeLineVO> getMarketRealTimeLineInfo(String marketType) {
-//        return null;
-//    }
-//
-//    @Override
-//    public MarketInfoVO getMarketRealTimeInfo(String marketType) {
-//        return getHistoryMarketInfo(marketType, DateHelper.getNowDate());
-//    }
-
 
     @Override
     public MarketInfoVO getHistoryMarketInfo(String marketType, String date) {
@@ -104,7 +94,7 @@ public class MarketInfoServiceImp implements MarketInfoService{
         //首先获取该板块在指定时间的基础数据
         if(isRealTime) {
             Current current = stockInfoDAO.getStockRealTimeInfo(marketType);
-            result = new MarketInfoVO(date, DateHelper.getNowTime(), marketType, current.getTrade(), current.getVolume(), rateNums);
+            result = new MarketInfoVO(date, TimeHelper.getNowTime(), marketType, current.getTrade(), current.getVolume(), rateNums);
         } else {
             Stock s = stockInfoDAO.getStockInfo(marketType, date);
             result = new MarketInfoVO(date, marketType, s.getVolume(), rateNums);
@@ -149,7 +139,8 @@ public class MarketInfoServiceImp implements MarketInfoService{
                 continue;
             }
 
-            result.add(new TopStockVO(upOrDown, marketInfo.getName(), topStocks.get(topIndex).getIncreaseRate(), topStocks.get(topIndex).getNowPrice()));
+            result.add(new TopStockVO(upOrDown, marketInfo.getCode(), marketInfo.getName(),
+                    topStocks.get(topIndex).getIncreaseRate(), topStocks.get(topIndex).getNowPrice()));
 
             topStocks.remove(topIndex);
         }
@@ -222,7 +213,8 @@ public class MarketInfoServiceImp implements MarketInfoService{
                 continue;
             }
 
-            result.add(new TopStockVO(upOrDown, marketInfo.getName(), topStocks.get(topIndex).getIncreaseRate(),marketInfo.getName()));
+            result.add(new TopStockVO(upOrDown, topStocks.get(topIndex).getBlockName(),
+                    topStocks.get(topIndex).getIncreaseRate(), marketInfo.getName(), marketInfo.getCode()));
             topStocks.remove(topIndex);
         }
 

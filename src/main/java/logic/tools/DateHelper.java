@@ -12,7 +12,6 @@ import java.util.Date;
  */
 public class DateHelper {
     private static final String DATE_FORMAT = "yyyy-MM-dd";//可以方便地修改日期格式
-    private static final String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";//可以方便地修改日期格式
 
     public static String getNowDate() {
         Date now = new Date();
@@ -21,12 +20,6 @@ public class DateHelper {
         return date;
     }
 
-    public static String getNowTime() {
-        Date now = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat(TIME_FORMAT);
-        String date = dateFormat.format(now);
-        return date;
-    }
 
     /**
      * 计算两个日期间相差的天数

@@ -4,6 +4,8 @@ import DAO.stockInfoDAO.QuotaDAO;
 import bean.StockPredict;
 import logic.tools.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import service.stock.PredictStockService;
 import vo.stock.LineVO;
@@ -17,6 +19,7 @@ import java.util.Iterator;
  * Created by Mark.W on 2017/5/21.
  */
 @Service
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class PredictStockServiceImp implements PredictStockService {
 
     @Autowired

@@ -3,6 +3,7 @@ package logic.stock;
 import DAO.stockInfoDAO.QuotaDAO;
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.*;
+import logic.tools.TimeHelper;
 import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -33,14 +34,33 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
 
 
     @Override
-    public ArrayList<RealTimeLineVO> getStockRealTimeLineInfo(String code) {
+    public RealTimeLineVO getStockRealTimeLineInfo(String code) {
         Iterator<Current> stocks = stockInfoDAO.getStockRealTimeList(code);
-        ArrayList<RealTimeLineVO> result = new ArrayList<>();
+
+        ArrayList<String> times = new ArrayList<>();
+        ArrayList<Double> nowPrice = new ArrayList<>();
+        ArrayList<Double> volumn = new ArrayList<>();
 
         while(stocks.hasNext()) {
             Current temp = stocks.next();
-            result.add(new RealTimeLineVO(temp.getCode(), temp.getTime(), temp.getTrade(), temp.getVolume()));
+            times.add(temp.getTime());
+            nowPrice.add(temp.getTrade());
+            volumn.add((double)temp.getVolume());
         }
+
+        String time;
+        if (times.size() > 0) {
+            time = times.get(times.size()-1);
+        } else {
+            time = TimeHelper.getNowTime();
+        }
+
+        while(TimeHelper.isMarketOpen(time) != -1) {
+            time = TimeHelper.nextNMinutes(time, 2);
+            times.add(time);
+        }
+
+        RealTimeLineVO result = new RealTimeLineVO(code, times, nowPrice, volumn);
         return result;
     }
 
@@ -92,7 +112,6 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
 
     @Override
     public StockHistoricalVO getStockHistoricalInfo(StockInputVO inputVO) {
-
         assert inputVO != null : "StockBasicInfoServiceImp.getStockHistoricalInfo.inputvo为null";
 
         //日k
@@ -121,6 +140,7 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         ArrayList<LineVO> mid = new ArrayList<>();
         ArrayList<LineVO> up = new ArrayList<>();
         ArrayList<LineVO> low = new ArrayList<>();
+
         Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getStockCode(),
                 inputVO.getStartDate(), inputVO.getEndDate());
         Stock stock = null, formerStock;
@@ -129,6 +149,11 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         while(stocks.hasNext()) {
             formerStock = stock;
             stock = stocks.next();
+
+            if(stock == null) {
+                continue;
+            }
+
             date = stock.getDate();
 
             kLine.add(new KLineVO(date, stock.getOpen(), stock.getClose(), stock.getLow(), stock.getHigh()));
@@ -138,7 +163,7 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
             ma20.add(new LineVO(date, stock.getMa20()));
 
             //对数收益率
-            if(formerStock != null && stock != null) {
+            if(formerStock != null) {
                 double logarithmYield = Math.log(stock.getClose() / formerStock.getClose());
                 logarithmYields.add(new LineVO(date, logarithmYield));
             }

@@ -51,10 +51,13 @@ public class BpPredict {
 System.out.println("/*******************************************检验样本数据*********************************************/");
 for (int i = 0; i < data.length; i++) {
     double[] result = bp.computeOut(data[i]);
-    System.out.println("****TRAIN-DATA****  code:" + code +  "  actual:" + (result[0] * (maxmin[i][0]- maxmin[i][1]) + maxmin[i][1]) + "   expected:" + close[i+5]  +
-            "   deviation:" + MathHelper.formatData(((result[0] * (maxmin[i][0]- maxmin[i][1]) + maxmin[i][1]) - close[i+5])/close[i+5] * 100, 2) + "%");
+    double actual = result[0] * (maxmin[i][0]- maxmin[i][1]) + maxmin[i][1];
+    double expected = close[i+5];
+    System.out.println("****TRAIN-DATA****  code:" + code +  "  actual:" + actual + "   expected:" + expected +
+            "   deviation:" + MathHelper.formatData((actual-expected)/expected * 100, 2) + "%");
 }
 System.out.println("/*******************************************检验样本数据*********************************************/");
+
 
 
 System.out.println("/*******************************************检验新数据*********************************************/");
