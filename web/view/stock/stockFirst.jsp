@@ -25,7 +25,7 @@
     <!--<script src="../../js/stock/someInfo.js"></script>-->
     <style type="text/css">
     	@import "../../css/style.css";
-    	@import "../../css/stock/firstStock.css";
+		@import "../../css/stock/firstStock.css";
     </style>
 </head>
 <body>
