@@ -3,6 +3,7 @@ package action;
 import com.opensymphony.xwork2.ActionSupport;
 import logic.tools.DateHelper;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import service.stock.StockBasicInfoService;
@@ -42,6 +43,12 @@ public class StockAction extends ActionSupport{
         StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate);
         StockHistoricalVO stockHistoricalVO = stockBasicInfoService.getStockHistoricalInfo(stockInputVO);
         return stockHistoricalVO;
+    }
+
+    public String stockCode(){
+        JSONObject jsonObject = JSONObject.fromObject(stockCode);
+        result = jsonObject.toString();
+        return SUCCESS;
     }
     public String getStockFirstInfo(){
         JSONArray jsonArray = JSONArray.fromObject(getStockHistoricalVO().getkLine());

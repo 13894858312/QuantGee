@@ -8,31 +8,27 @@ import java.util.ArrayList;
  * 策略计算输入的信息类
  */
 public class StrategyBackTestInputVO {
-    /**
-     * 0指定板块 1指定股票
-     */
-    private int stockPoolType;
 
-    /**
-     *0动量策略 1均值回归
-     */
-    private int strategyType;
+    /***************回测必须参数**************/
+    private int stockPoolType;              //0指定板块 1指定股票
+    private int strategyType;               //0动量策略 1均值回归
+    private String blockType;               //若stockPoolType为0 则指定板块名
+    private ArrayList<String> stockCodes;   //若stockPoolType为1 则指定股票代码
+    private String startDate;               //回测开始时间
+    private String endDate;                 //回测结束时间
+    private double initFund;                //初始资金
+    private boolean notST;                  //排除st
+    private int holdingPeriod;              //股票持有期
+    private int returnPeriod;               //基准收益率计算周期 (形成期)  若是均值回归策略，则是N日移动均线
+    /***************回测必须参数**************/
 
-    private String blockType;
-    private ArrayList<String> stockCodes;
+    /***************不同策略的可选参数**************/
+    private int holdingStockNum; //每次调仓持有的股票数量 动量策略不需要输入holdingStockNum
+    private double ratio;        //strategyType为0时需要此参数 持有股票的比例
+    /***************不同策略的可选参数**************/
 
-    private String startDate;
-    private String endDate; //回测区间
 
-    private int holdingPeriod; //调仓周期 (持有期）
-    private int returnPeriod; //基准收益率计算周期 (形成期)
-                                //若是均值回归策略，则是N日移动均线
-    private int holdingStockNum; //每次调仓持有的股票数量
-
-    private double ratio;
-
-    private boolean notST;   //排除st
-
+    /***************寻找最佳形成期需要的参数**************/
     private boolean isHoldingPeriodFixed;     //持有期是否为不变量 用于寻找最佳形成期或持有期
 
 
@@ -84,12 +80,28 @@ public class StrategyBackTestInputVO {
         this.endDate = endDate;
     }
 
+    public double getInitFund() {
+        return initFund;
+    }
+
+    public void setInitFund(double initFund) {
+        this.initFund = initFund;
+    }
+
+    public boolean isNotST() {
+        return notST;
+    }
+
+    public void setNotST(boolean notST) {
+        this.notST = notST;
+    }
+
     public int getHoldingPeriod() {
         return holdingPeriod;
     }
 
-    public void setHoldingPeriodFixed(int holdingPeriodFixed) {
-        this.holdingPeriod = holdingPeriodFixed;
+    public void setHoldingPeriod(int holdingPeriod) {
+        this.holdingPeriod = holdingPeriod;
     }
 
     public int getReturnPeriod() {
@@ -108,14 +120,6 @@ public class StrategyBackTestInputVO {
         this.holdingStockNum = holdingStockNum;
     }
 
-    public boolean isNotST() {
-        return notST;
-    }
-
-    public void setNotST(boolean notST) {
-        this.notST = notST;
-    }
-
     public double getRatio() {
         return ratio;
     }
@@ -128,8 +132,8 @@ public class StrategyBackTestInputVO {
         return isHoldingPeriodFixed;
     }
 
-    public void setHoldingPeriod(boolean holdingPeriod) {
-        isHoldingPeriodFixed = holdingPeriod;
+    public void setHoldingPeriodFixed(boolean holdingPeriodFixed) {
+        isHoldingPeriodFixed = holdingPeriodFixed;
     }
 
     /**
