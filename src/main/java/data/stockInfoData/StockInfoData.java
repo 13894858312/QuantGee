@@ -6,6 +6,7 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by wangxue on 2017/5/5.
@@ -21,12 +22,12 @@ public class StockInfoData implements StockInfoDAO{
     /*****stock内容和tushare获取实时数据接口返回内容有差异******/
     @Override
     public Current getStockRealTimeInfo(String code) {
-        Iterator<Current> iterator = (Iterator<Current>) hibernateTemplate
-                .find("from Current c where c.code = ? order by time desc ",code).iterator();
-        if(iterator.hasNext()){
-            return iterator.next();
+        List<Current> list = (List<Current>) hibernateTemplate
+                .find("from Current c where c.code = ? ", code);
+        if(list == null){
+            return null;
         }
-        return null;
+        return list.get(list.size()-1);
     }
 
     @Override
