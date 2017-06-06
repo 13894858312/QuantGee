@@ -32,7 +32,8 @@ public class StrategyBackTestingServiceImpTest {
         inputVO.setStockCodes(stockIDs);
         inputVO.setStartDate("2017-03-30");
         inputVO.setEndDate("2017-05-24");
-        inputVO.setHoldingPeriodFixed(10);
+        inputVO.setHoldingPeriodFixed(false);
+        inputVO.setHoldingPeriod(10);
         inputVO.setReturnPeriod(10);
         inputVO.setRatio(0.2);
         inputVO.setHoldingStockNum(9);
@@ -56,7 +57,8 @@ public class StrategyBackTestingServiceImpTest {
         inputVO.setBlockType("zxb");
         inputVO.setStartDate("2017-03-30");
         inputVO.setEndDate("2017-05-24");
-        inputVO.setHoldingPeriodFixed(10);
+        inputVO.setHoldingPeriodFixed(false);
+        inputVO.setHoldingPeriod(10);
         inputVO.setReturnPeriod(10);
         inputVO.setRatio(0.2);
         inputVO.setHoldingStockNum(9);
@@ -82,11 +84,11 @@ public class StrategyBackTestingServiceImpTest {
         inputVO.setStockCodes(stockIDs);
         inputVO.setStartDate("2017-03-30");
         inputVO.setEndDate("2017-05-24");
-        inputVO.setHoldingPeriodFixed(10);
+        inputVO.setHoldingPeriodFixed(true);
         inputVO.setReturnPeriod(10);
         inputVO.setRatio(0.2);
         inputVO.setHoldingStockNum(9);
-        inputVO.setHoldingPeriod(true);
+        inputVO.setHoldingPeriod(10);
 
         AbnormalReturnResultVO result = strategyBackTestingService.getAbnormalReturnGraphInfo(inputVO);
 
