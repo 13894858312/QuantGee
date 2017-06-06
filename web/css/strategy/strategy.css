@@ -27,7 +27,7 @@ ol li {
 #tags {
 	margin: 0px;
 	padding: 0px;
-	border: 1px solid #000000;
+	/*border: 1px solid #000000;*/
 	opacity: 0.8;
 	background-color: #FFFFFF;
 	height: 5%;
@@ -78,7 +78,7 @@ ol li {
 
 .tagContent {
 	overflow-y: scroll;
-	border: 1px solid #000000;
+	/*border: 1px solid #000000;*/
 	DISPLAY: none;
 	height: 60%;
 }
@@ -95,7 +95,7 @@ ol li {
 #tags_str {
 	margin: 0px;
 	padding: 0px;
-	border: 1px solid #000000;
+	/*border: 1px solid #000000;*/
 	opacity: 0.8;
 	background-color: #FFFFFF;
 	height: 5%;
@@ -146,7 +146,7 @@ ol li {
 
 .tagContent_str {
 	overflow-y: scroll;
-	border: 1px solid #000000;
+	/*border: 1px solid #000000;*/
 	DISPLAY: none;
 	height: 20%;
 }
@@ -154,3 +154,4 @@ ol li {
 #tagContent_str DIV.selectTag_str {
 	DISPLAY: block
 }
+
