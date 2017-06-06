@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/5/15.
  */
-
+dochart();
 function getKlineDate() {
     var klineDate = [];
     var json;
@@ -124,6 +124,7 @@ function getRiseStock() {
     //     url:
     // })
 }
+function dochart() {
 var myChart1 = echarts.init(document.getElementById('kline'));
 var myChart2 = echarts.init(document.getElementById('volumeBar'));
 // var data0 = splitData([
@@ -436,3 +437,4 @@ var option2 = {
 myChart1.setOption(option1);
 myChart2.setOption(option2);
 echarts.connect([myChart1,myChart2]);
+}

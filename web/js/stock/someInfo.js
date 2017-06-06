@@ -5,7 +5,10 @@ var klinejson;
 var ma5json;
 var ma10json;
 var ma20json;
-function showdatasr11() {
+var stockCode;
+
+show();
+function show() {
     $.ajax({
         cache:false,
         async:false,
@@ -76,9 +79,9 @@ function showdatasr11() {
         },
         grid: {
             top:'10%',
-            left: '5%',
-            right: '5%',
-            bottom: '11%'
+            left: '8%',
+            right: '3%',
+            bottom: '5%'
         },
         xAxis: {
             show:false,
