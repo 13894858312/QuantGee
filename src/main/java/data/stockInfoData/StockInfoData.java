@@ -24,7 +24,7 @@ public class StockInfoData implements StockInfoDAO{
     public Current getStockRealTimeInfo(String code) {
         List<Current> list = (List<Current>) hibernateTemplate
                 .find("from Current c where c.code = ? ", code);
-        if(list == null){
+        if(list == null || list.size() == 0){
             return null;
         }
         return list.get(list.size()-1);
