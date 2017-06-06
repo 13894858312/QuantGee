@@ -114,7 +114,7 @@ public class TransferHelper {
         }
 
         StockCurrentVO stockCurrentVO = new StockCurrentVO(marketInfo.getCode(), marketInfo.getName(), marketInfo.getcName(),
-                DateHelper.getNowTime(),
+                TimeHelper.getNowTime(),
                 stock.getTrade(), stock.getOpen(), stock.getLow(), stock.getHigh(), stock.getAmount(),
                 stock.getVolume(), stock.getChangepercent(), stock.getTurnoverratio(),stock.getSettlement(),
                 stock.getPer(), stock.getPb(), stock.getMktcap());

@@ -1,5 +1,12 @@
 package logic.stock;
 
+import bean.*;
+import logic.tools.MathHelper;
+import vo.stock.MaVO;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
  * Created by Mark.W on 2017/6/3.
  */
@@ -29,6 +36,42 @@ public class StockHelper {
         } else if (code.startsWith("20")){ //zxb
             result = "中小板";
         }
+        return result;
+    }
+
+    /**
+     * 均线图是将每天的收盘价加权平均,从而得到一条带有趋势性的轨迹。
+     * @param sourceStocks 股票信息
+     * @param period 均线周期
+     * @return ArrayList<MaVO>
+     */
+    public static ArrayList<MaVO> calculateMA(Iterator<Stock> sourceStocks, int period) {
+        //如果总天数小于均线图的时间间隔出错
+        ArrayList<Stock> stocks = new ArrayList<>();
+        while(sourceStocks.hasNext()) {
+            stocks.add(sourceStocks.next());
+        }
+
+        if(period >= stocks.size()) {
+            return null;
+        }
+
+        ArrayList<MaVO> result = new ArrayList<>();
+        Stock stock;
+
+        for (int i = period-1; i<stocks.size(); ++i){
+            stock = stocks.get(i);
+
+            double all = 0;
+            for(int j=i-period+1; j<i+1; ++j) {
+                all += stocks.get(j).getClose();
+            }
+
+            double average = MathHelper.formatData(all/(double)period, 4);
+
+            result.add(new MaVO(stock.getCode(),period, stock.getDate(), average));
+        }
+
         return result;
     }
 }

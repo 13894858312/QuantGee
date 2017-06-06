@@ -1,12 +1,16 @@
 package logic.stock;
 
 import DAO.stockInfoDAO.QuotaDAO;
-import bean.StockPredict;
+import DAO.stockInfoDAO.StockInfoDAO;
+import bean.*;
 import logic.tools.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import service.stock.PredictStockService;
 import vo.stock.LineVO;
+import vo.stock.StockAnalysisVO;
 import vo.stock.StockInputVO;
 import vo.stock.StockPredictVO;
 
@@ -17,10 +21,14 @@ import java.util.Iterator;
  * Created by Mark.W on 2017/5/21.
  */
 @Service
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class PredictStockServiceImp implements PredictStockService {
 
     @Autowired
     private QuotaDAO quotaDAO;
+
+    @Autowired
+    private StockInfoDAO stockInfoDAO;
 
     @Override
     public StockPredictVO getStockPredictInfo(StockInputVO inputVO) {
@@ -46,4 +54,23 @@ public class PredictStockServiceImp implements PredictStockService {
 
         return result;
     }
+
+    @Override
+    public StockAnalysisVO getStockAnalysisInfo(String code) {
+        String endDate = DateHelper.getNowDate();
+        String startDate = DateHelper.formerNTradeDay(endDate, 30);
+
+        Iterator<Macd> macds = quotaDAO.getMACDs(startDate, endDate, code);
+        Iterator<Kdj> kdjs = quotaDAO.getKDJs(startDate, endDate, code);
+        Iterator<Rsi> rsis = quotaDAO.getRSIs(startDate, endDate, code);
+        Iterator<Boll> bolls = quotaDAO.getBOLLs(startDate, endDate, code);
+        Iterator<Stock> stocks = stockInfoDAO.getStockInfo(code, startDate, endDate);
+
+        StockAnalysisVO result = new StockAnalysisVO(code, MacdHelper.anaylyseMacd(macds), KdjHelper.anaylyseKdj(kdjs),
+                RsiHelper.anaylyseRsi(rsis), BollHelper.anaylyseBoll(bolls,stocks));
+
+        return result;
+    }
+
+
 }

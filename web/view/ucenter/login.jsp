@@ -12,13 +12,6 @@
 
     <script type="text/javascript" src="../../jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="../../js/ucenter/login.js"></script>
-    <%--<script type="text/javascript">--%>
-        <%--$(document).ready(function () {--%>
-            <%--$("a#register1").click(function () {--%>
-                <%--alert("hh");--%>
-            <%--})--%>
-        <%--})--%>
-    <%--</script>--%>
 </head>
 
 <body>

@@ -5,10 +5,12 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import service.stock.MarketInfoService;
 import service.stock.StockBasicInfoService;
 import vo.stock.StockCurrentVO;
 import vo.stock.StockHistoricalVO;
 import vo.stock.StockInputVO;
+import vo.stock.TopStockVO;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,6 +26,8 @@ public class ListAction extends ActionSupport {
 
     @Autowired
     StockBasicInfoService stockBasicInfoService;
+    MarketInfoService marketInfoService;
+
     public String getResult(){
         return result;
     }
@@ -48,15 +52,31 @@ public class ListAction extends ActionSupport {
         return stockHistoricalVO;
     }
 
-    public String getList(){
-        StockHistoricalVO stockHistoricalVO = getMarketInfo();
-        JSONObject jsonObject = JSONObject.fromObject(stockHistoricalVO);
-        result = jsonObject.toString();
-//        ArrayList<StockCurrentVO> stockCurrentVOArrayList = stockBasicInfoService.getAllStockRealTime();
-//        JSONArray jsonArray = JSONArray.fromObject(stockCurrentVOArrayList);
-//        result = jsonArray.toString();
+    public String getIndustryUpList(){
+        ArrayList<TopStockVO> topStockVOArrayList = marketInfoService.getTopIndustryStocks(0);
+        JSONArray jsonArray = JSONArray.fromObject(topStockVOArrayList);
+        result = jsonArray.toString();
         return SUCCESS;
     }
 
+    public String getIndustryDownList(){
+        ArrayList<TopStockVO> topStockVOArrayList = marketInfoService.getTopIndustryStocks(1);
+        JSONArray jsonArray = JSONArray.fromObject(topStockVOArrayList);
+        result = jsonArray.toString();
+        return SUCCESS;
+    }
 
+    public String getStockUpList(){
+        ArrayList<TopStockVO> topStockVOArrayList = marketInfoService.getTopStocks(0);
+        JSONArray jsonArray = JSONArray.fromObject(topStockVOArrayList);
+        result = jsonArray.toString();
+        return SUCCESS;
+    }
+
+    public String getStockDownList(){
+        ArrayList<TopStockVO> topStockVOArrayList = marketInfoService.getTopStocks(1);
+        JSONArray jsonArray = JSONArray.fromObject(topStockVOArrayList);
+        result = jsonArray.toString();
+        return SUCCESS;
+    }
 }
