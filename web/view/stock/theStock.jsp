@@ -191,7 +191,15 @@
 	</div>
 	<div class="historicalarea">
 		<div class="buttonarea">
-			
+			<div class="klinebutton" style="background-color: #6C7B8B;color: #FFFFFF;">
+				日K
+			</div>
+			<div class="klinebutton" style="background-color: #FFFFFF;color: #000000;">
+				周K
+			</div>
+			<div class="klinebutton" style="background-color: #FFFFFF;color: #000000;">
+				月K
+			</div>
 		</div>
 		<div class="klinearea">
 			
@@ -200,7 +208,18 @@
 			
 		</div>
 		<div class="indexarea">
-			
+			<div class="indexbutton" style="background-color: #6C7B8B;color: #FFFFFF;">
+				MACD
+			</div>
+			<div class="indexbutton" style="background-color: #FFFFFF;color: #000000;">
+				KDJ
+			</div>
+			<div class="indexbutton" style="background-color: #FFFFFF;color: #000000;">
+				RSI
+			</div>
+			<div class="indexbutton" style="background-color: #FFFFFF;color: #000000;">
+				BOLL
+			</div>
 		</div>
 		<div class="indexgrapharea"></div>
 	</div>
