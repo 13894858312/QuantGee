@@ -1,6 +1,6 @@
 package logic.stock;
 
-import bean.Stock;
+import bean.*;
 import logic.tools.MathHelper;
 import vo.stock.MaVO;
 
@@ -41,17 +41,11 @@ public class StockHelper {
 
     /**
      * 均线图是将每天的收盘价加权平均,从而得到一条带有趋势性的轨迹。
-     * 在日 K 线图中一般白线、黄线、紫线、绿线、蓝线依次分别表示:5、10、20、30、60日移动平均线。
-     * 移动平均线常用线有 5 天、10 天、30 天、60 天、120 天和 240 天的指标。
-     * 5天 10天的短期移动平均线。是短线操作的参照指标，称做日均线指标;
-     * 30天 60天的是中期均线指标，称做季均线指标;
-     * 120天 240天的是长期均线指标，称做年均线指标。
      * @param sourceStocks 股票信息
      * @param period 均线周期
      * @return ArrayList<MaVO>
      */
     public static ArrayList<MaVO> calculateMA(Iterator<Stock> sourceStocks, int period) {
-
         //如果总天数小于均线图的时间间隔出错
         ArrayList<Stock> stocks = new ArrayList<>();
         while(sourceStocks.hasNext()) {
