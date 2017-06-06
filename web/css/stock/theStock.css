@@ -262,6 +262,18 @@
 	font-size: 16px;
 	text-align: center;
 }
+#daybutton{
+	background-color: #6C7B8B;
+	color: #FFFFFF;
+}
+#weekbutton{
+	background-color: #FFFFFF;
+	color: #000000;
+}
+#monthbutton{
+	background-color: #FFFFFF;
+	color: #000000;
+}
 .klinearea{
 	float: left;
 	width: 560px;
