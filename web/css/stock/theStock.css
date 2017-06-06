@@ -181,22 +181,59 @@
 	margin-top: 2%;
 	float: left;
 	width: 400px;
-	height: 350px;
+	height: 500px;
 	background-color: #FFFFFF;
 }
 .realdata{
 	float: left;
 	width: 400px;
-	height: 49px;
+	height: 29px;
 	background-color: #FFFFFF;
-	border: 1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
 }
 .realprice{
 	float: left;
 	width: 400px;
-	height: 200px;
+	height: 209px;
 	background-color: #FFFFFF;
-	border: 1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.realvolume{
+	float: left;
+	width: 400px;
+	height: 109px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.predicttextarea{
+	float: left;
+	width: 400px;
+	height: 29px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.predicttext{
+	margin-left: 40%;
+	font-size: 18px;
+	font-weight: 100;
+}
+.predictarea{
+	float: left;
+	width: 400px;
+	height: 118px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
 }
 .historicalarea{
 	margin-left: 40px;
@@ -205,4 +242,115 @@
 	width: 560px;
 	height: 500px;
 	background-color: #FFFFFF;
+}
+.buttonarea{
+	float: left;
+	width: 560px;
+	height: 29px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.klinearea{
+	float: left;
+	width: 560px;
+	height: 209px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.historicalvolumearea{
+	float: left;
+	width: 560px;
+	height: 109px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.indexarea{
+	float: left;
+	width: 560px;
+	height: 29px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.indexgrapharea{
+	float: left;
+	width: 560px;
+	height: 118px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+.stockanalysisarea{
+	float: left;
+	margin-left: 15%;
+	margin-top: 2%;
+	width: 1002px;
+	height: 200px;
+	background-color: #FFFFFF;
+}
+.analysistext{
+	float: left;
+	width: 1000px;
+	height: 39px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.atext{
+	margin-left: 45%;
+	font-size: 24px;
+	font-weight: 100;
+}
+.MACDarea{
+	float: left;
+	width: 249px;
+	height: 158px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+.KDJarea{
+	float: left;
+	width: 249px;
+	height: 158px;
+	background-color: #FFFFFF;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+.RSIarea{
+	float: left;
+	width: 249px;
+	height: 158px;
+	background-color: #FFFFFF;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+.BOLLarea{
+	float: left;
+	width: 250px;
+	height: 158px;
+	background-color: #FFFFFF;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+.indextext{
+	margin-top: 10px;
+	margin-left: 100px;
+	font-size: 18px;
+	font-weight: 100;
 }

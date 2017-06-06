@@ -177,9 +177,59 @@
 		<div class="realprice">
 			
 		</div>
+		<div class="realvolume">
+			
+		</div>
+		<div class="predicttextarea">
+			<div class="predicttext">
+				<span>股票预测</span>
+			</div>
+		</div>
+		<div class="predictarea">
+			
+		</div>
 	</div>
 	<div class="historicalarea">
-		
+		<div class="buttonarea">
+			
+		</div>
+		<div class="klinearea">
+			
+		</div>
+		<div class="historicalvolumearea">
+			
+		</div>
+		<div class="indexarea">
+			
+		</div>
+		<div class="indexgrapharea"></div>
+	</div>
+	<div class="stockanalysisarea">
+		<div class="analysistext">
+			<div class="atext">
+				<span>股票分析</span>
+			</div>
+		</div>
+		<div class="MACDarea">
+			<div class="indextext">
+				<span>MACD</span>
+			</div>
+		</div>
+		<div class="KDJarea">
+			<div class="indextext">
+				<span>KDJ</span>
+			</div>
+		</div>
+		<div class="RSIarea">
+			<div class="indextext">
+				<span>RSI</span>
+			</div>
+		</div>
+		<div class="BOLLarea">
+			<div class="indextext">
+				<span>BOLL</span>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
