@@ -1,6 +1,7 @@
 package service.stock;
 
 
+import vo.stock.StockAnalysisVO;
 import vo.stock.StockInputVO;
 import vo.stock.StockPredictVO;
 
@@ -16,4 +17,12 @@ public interface PredictStockService {
      * @return StockPredictVO
      */
     public StockPredictVO getStockPredictInfo(StockInputVO inputVO);
+
+
+    /**
+     * 股票指标的分析
+     * @param code 股票代码
+     * @return 股票分析的结论
+     */
+    public StockAnalysisVO getStockAnalysisInfo(String code);
 }

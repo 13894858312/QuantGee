@@ -62,7 +62,7 @@ public class MarketInfoServiceImp implements MarketInfoService{
             }
 
             //ST股不同判断条件 判断指定日期板块的股票涨跌幅情况
-            if (code.startsWith("ST")) {
+            if (code.contains("st") || code.contains("ST")) {
                 if (rate <= -0.05) {
                     rateNums[0]++;
                 } else if (rate >= -0.05 && rate < 0) {
