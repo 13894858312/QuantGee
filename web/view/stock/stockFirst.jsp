@@ -25,7 +25,7 @@
     <!--<script src="../../js/stock/someInfo.js"></script>-->
     <style type="text/css">
     	@import "../../css/style.css";
-    	@import "../../css/stock/firstStock.css";
+		@import "../../css/stock/firstStock.css";
     </style>
 </head>
 <body>
@@ -555,8 +555,15 @@
 	    </div>
     <script type="text/javascript" src="../../js/stock/stockupdown.js"></script>
     <div class="stockInfo" id="si1"></div>
-
+				<script type="text/javascript" src="../../js/stock/someInfo.js"></script>
     <div class="stockInfo2" id="si2"></div>
         <script type="text/javascript" src="../../js/stock/someInfo.js"></script>
+    <div class="news">
+    	<div class="newshead">
+    		<span class="newsText">个股财经新闻</span>
+    	</div>
+    	<div class="leftcontent"></div>
+    	<div class="rightcontent"></div>
+    </div>
 </body>
 </html>
