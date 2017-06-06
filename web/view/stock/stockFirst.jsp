@@ -20,7 +20,7 @@
             x.style.color = "#b7b7b7";
         }
     </script>
-    <script src="../../js/test.js"></script>
+	<script src="../../echarts.js"></script>
     <script src="../../jquery-3.2.1.min.js"></script>
     <!--<script src="../../js/stock/someInfo.js"></script>-->
     <style type="text/css">
@@ -69,65 +69,6 @@
         </div>
 
     </div>
-		<!--<div class="firstHead">
-    	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
-    </div>
-    <div class="firstText">
-    	<span>个股排行</span>
-    </div>
-    <div class="stockBar">
-    		<span class="all">全部股票</span>
-    		<span class="sszA">上证A股</span>
-    		<span class="sziA">深证A股</span>
-    		<span class="sme">中小板</span>
-    		<span class="startup">创业板</span>
-    </div>
-    <div class="tableContent">
-    	
-    </div>
-    <div class="secondHead">
-    	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
-    </div>
-    <div class="secondText">
-    	<span>今日推荐</span>
-    </div>
-    <div class="firRec">
-    	<div class="sszhead">
-    	</div>
-    	<span class="SSE-text">A股</span>
-    	<span class="ssz1">25428.50</span>
-    	<span class="ssz2">0.10%</span>
-    	<span class="ssz3">25.35</span>
-    </div>
-    <div class="secRec">
-    	<div class="szihead">
-    	</div>
-    	<span class="SZI-text">B股</span>
-    	<span class="ssz1">25428.50</span>
-    	<span class="ssz2">0.10%</span>
-    	<span class="ssz3">25.35</span>
-    </div>
-    <div class="thirdRec">
-    	<div class="szhead">
-    	</div>
-    	<span class="SZ300-text">C股</span>
-    	<span class="ssz1">25428.50</span>
-    	<span class="ssz2">0.10%</span>
-    	<span class="ssz3">25.35</span>
-    </div>
-    <div class="graph-SSE" style="position: absolute;left: 8%;top: 138%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
-	<div class="graph-SZI" style="position: absolute;left: 36%;top: 138%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
-	<div class="graph-SZ300" style="position: absolute;left: 64%;top: 138%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
-	<div class="search">
-		<input type="text" class="lefttext" placeholder="股票代码/股票名称"/>
-		<div class="submit" onclick="test()"></div>
-	</div>-->
-	<!--<div class="thirdHead">
-    	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
-    </div>
-    <div class="thirdText">
-    	<span>个股行情</span>
-    </div>-->
     <div class="rightrange">
     	<span class="rightrangehead">个股涨跌榜</span>
     </div>
@@ -555,7 +496,6 @@
 	    </div>
     <script type="text/javascript" src="../../js/stock/stockupdown.js"></script>
     <div class="stockInfo" id="si1"></div>
-				<script type="text/javascript" src="../../js/stock/someInfo.js"></script>
     <div class="stockInfo2" id="si2"></div>
         <script type="text/javascript" src="../../js/stock/someInfo.js"></script>
     <div class="news">

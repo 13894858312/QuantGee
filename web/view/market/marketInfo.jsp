@@ -6,7 +6,6 @@
     <title>MarketInfo</title>
     <script src="../../echarts.js"></script>
     <script src="../../jquery-3.2.1.min.js"></script>
-    <script src="../../js/test.js"></script>
     <%--<script type="text/javascript" for="window" event="onload">--%>
         <%--var reftime = 3000;//默认每隔10秒向后台发送请求--%>
         <%--var taskId;--%>
@@ -120,7 +119,6 @@
     	<span class="ssz3" id="szprice">25.35</span>
     </div>
     <div id="graph-SSE" style="background-color:#FFFFFF;position: absolute;left: 8%;top: 37%;width: 25%;height: 25%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
-    <script src="../../js/line1.js"></script>
 	<div id="graph-SZI" style="background-color:#FFFFFF;position: absolute;left: 36%;top: 37%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
 	<div id="graph-SZ300" style="background-color:#FFFFFF;position: absolute;left: 64%;top: 37%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
 	<div class="secondHead">
@@ -227,8 +225,5 @@
     	</table>
     </div>
 	<script type="text/javascript" src="../../js/marketInfo/news.js"></script>
-    <!--<div class="more">
-    	<a href="" onclick="test()">更多>></a>
-    </div>-->
 </body>
 </html>
