@@ -20,6 +20,8 @@
             x.style.color = "#b7b7b7";
         }
     </script>
+	<script src="../../echarts.js"></script>
+	<script src="../../jquery-3.2.1.min.js"></script>
     <style type="text/css">
     	@import "../../css/style.css";
     	@import "../../css/stock/theStock.css";
@@ -125,10 +127,10 @@
 				</div>
 				<div class="ocnum">
 					<div class="num">
-						<span id="closenum">￥34.45</span>
+						<span id="highnum">￥34.45</span>
 					</div>
 					<div class="num">
-						<span id="opennum">￥34.45</span>
+						<span id="lownum">￥34.45</span>
 					</div>
 				</div>
 			</div>
@@ -143,10 +145,10 @@
 				</div>
 				<div class="ocnum">
 					<div class="num">
-						<span id="closenum">￥34.45</span>
+						<span id="volume">￥34.45</span>
 					</div>
 					<div class="num">
-						<span id="opennum">￥34.45</span>
+						<span id="volumenum">￥34.45</span>
 					</div>
 				</div>
 			</div>
@@ -161,10 +163,10 @@
 				</div>
 				<div class="ocnum">
 					<div class="num">
-						<span id="closenum">￥34.45</span>
+						<span id="changerate">￥34.45</span>
 					</div>
 					<div class="num">
-						<span id="opennum">￥34.45</span>
+						<span id="marketrate">￥34.45</span>
 					</div>
 				</div>
 			</div>
