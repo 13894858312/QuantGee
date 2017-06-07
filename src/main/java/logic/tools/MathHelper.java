@@ -49,23 +49,6 @@ public class MathHelper {
         return cov;
     }
 
-    /**
-     * 计算样本方差
-     * @param data 数据
-     * @return 样本方差值
-     */
-    public static double sampleVariance(double[] data) {
-        double average = average(data);
-        double sum = 0;
-
-        for(int i=0; i<data.length; ++i) {
-            sum += Math.pow(data[i]-average, 2);
-        }
-
-        double temp = sum/(data.length-1);
-        return temp;
-    }
-
 
     public static double average(double[] data) {
         double sum = 0;

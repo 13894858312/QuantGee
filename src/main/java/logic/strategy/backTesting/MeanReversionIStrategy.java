@@ -1,7 +1,10 @@
 package logic.strategy.backTesting;
 
 import bean.Stock;
+import logic.stock.StockHelper;
 import logic.tools.MathHelper;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import vo.stock.MaVO;
 
@@ -13,37 +16,34 @@ import java.util.HashMap;
  * Created by Mark.W on 2017/3/29.
  */
 @Service("1")
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class MeanReversionIStrategy implements IStrategy {
 
     //保存所有股票的N日移动均线
-    private ArrayList<HashMap<String, MaVO>> allAverageLine = new ArrayList<>();
+    private ArrayList<HashMap<String, MaVO>> allMaLine = new ArrayList<>();
     private int returnPeriod;               //形成期
 
     @Override
-    public ArrayList<StockYield> initHoldingStocks(StockPool stockPool, ArrayList<String> dates) {
+    public ArrayList<String> getRebalancedStockCodes(StockPool stockPool,int holdingStockNum, String beforeDate, String today, ArrayList<String> dates) {
+        ArrayList<YieldStock> yieldStocks = new ArrayList<>();
+        ArrayList<String> result = new ArrayList<>();
 
-        ArrayList<StockYield> stockYields = new ArrayList<>();
-
-        //确定移动均线类型
-        int type = stockPool.getInputVO().getReturnPeriod();
-
-        //遍历股票池中股票
         for (int i = 0; i < stockPool.getStocksList().size(); ++i) {
-            Stock before = stockPool.getStocksList().get(i).getBeforeStock();
-            String beforeDate = before.getDate();
-            Stock yesterday = stockPool.getStocksList().get(i).getYesterdayStock();
+            Stock beforeStock = stockPool.getStocksList().get(i).getStockByDate(beforeDate);
+            Stock todayStock = stockPool.getStocksList().get(i).getStockByDate(today);
 
-            HashMap<String, MaVO> averageLine;
-            if(this.returnPeriod != stockPool.getInputVO().getReturnPeriod()) {              //第一次加载 将allAverageLine初始化
+            HashMap<String, MaVO> maLine;
+            int maType = stockPool.getInputVO().getReturnPeriod();
+            if(this.returnPeriod != maType) {       //第一次加载 将allAverageLine初始化
                 //初始化第i只股票的N日移动均线
-                averageLine = getAverageLineInfoByCode(stockPool, beforeDate,stockPool.getEndDate(), yesterday.getCode(), type);
+                maLine = getMaLineFromStockPool(stockPool, beforeDate,stockPool.getEndDate(), todayStock.getCode(), maType);
                 //添加到allAverageLine
-                allAverageLine.add(averageLine);
-            } else {                                                     //不是第一次加载，直接从allAverageLine中获取
-                averageLine = this.allAverageLine.get(i);
+                allMaLine.add(maLine);
+            } else {     //不是第一次加载，直接从allAverageLine中获取
+                maLine = this.allMaLine.get(i);
             }
 
-            boolean live = true;                                        //持有期內每天的股票信息必须有 否则不持有该股票
+            boolean live = true;                     //持有期內每天的股票信息必须有 否则不持有该股票
             for (int j = 0; j < dates.size(); ++j) {
                 Stock po = stockPool.getStocksList().get(i).getStockByDate(dates.get(j));
                 if (po == null) {
@@ -52,58 +52,23 @@ public class MeanReversionIStrategy implements IStrategy {
                 }
             }
 
-            if (!live || yesterday == null || before == null) {
-                continue;
-            }
+            if (live && todayStock != null && beforeStock != null) {
+                //计算偏离度 (均值-当天的开盘价)/ 均值
+                double average = 0;
+                if (maLine.get(today) != null) {
+                    average = maLine.get(today).getAverageValue();
+                }
 
-            //计算偏离度，(均值-当天的开盘价)/ 均值
-            //如果当天无数据,跳出循环
-            double average = 0;
-            if (averageLine.get(stockPool.getStartDate()) != null) {
-                average = averageLine.get(stockPool.getStartDate()).getAverageValue();
+                double yield = (average - todayStock.getClose()) / average;
+                yieldStocks.add(new YieldStock(todayStock.getCode(), yield));
             }
-            double yield = (average - yesterday.getClose()) / average;
-
-            stockYields.add(new StockYield(yesterday.getCode(), yield));
         }
 
+        //得到收益前holdingStockNum的股票代码
+        result = StockHelper.getTopNStocks(yieldStocks, holdingStockNum);
         this.returnPeriod = stockPool.getInputVO().getReturnPeriod();            //初始化形成期
 
-        return stockYields;
-    }
-
-    @Override
-    public ArrayList<StockYield> rebalanceHoldingStocks(StockPool stockPool, String beforeDate, String today, ArrayList<String> dates) {
-
-        ArrayList<StockYield> stockYields = new ArrayList<>();
-
-        for (int i = 0; i < stockPool.getStocksList().size(); ++i) {
-            Stock before = stockPool.getStocksList().get(i).getStockByDate(beforeDate);
-            Stock yesterday = stockPool.getStocksList().get(i).getStockByDate(today);
-
-            boolean live = true;                                   //持有期內每天的股票信息必须有 否则不持有该股票
-            for (int j = 0; j < dates.size(); ++j) {
-                Stock po = stockPool.getStocksList().get(i).getStockByDate(dates.get(j));
-                if (po == null) {
-                    live = false;
-                    break;
-                }
-            }
-
-            if (live && yesterday != null && before != null) {
-                //计算偏离度，(均值-当天的开盘价)/ 均值
-                double average = 0;
-                if (allAverageLine.get(i).get(today) != null) {
-                    average = allAverageLine.get(i).get(today).getAverageValue();
-                }
-                double yield = (average - yesterday.getClose()) / average;
-
-                stockYields.add(new StockYield(yesterday.getCode(), yield));
-            }
-
-        }
-
-        return stockYields;
+        return result;
     }
 
 
@@ -115,23 +80,16 @@ public class MeanReversionIStrategy implements IStrategy {
      * @param stockCode 股票代码
      * @return
      */
-    public HashMap<String, MaVO> getAverageLineInfoByCode(StockPool stockPool, String startDate, String endDate, String stockCode, int dayNums) {
-
+    public HashMap<String, MaVO> getMaLineFromStockPool(StockPool stockPool, String startDate, String endDate, String stockCode, int dayNums) {
         assert (stockCode != null && !stockCode.equals("") && startDate != null && endDate != null)
                 : "logic.calculation.GraphCalculation.getAverageLineInfoByCode参数异常";
 
-        //如果总天数小于均线图的时间间隔出错
-//        ArrayList<Stock> stocks = stockDataDao.getStockPOsByTimeInterval(DateHelper.getInstance().dateTransToString(startDate),
-//                DateHelper.getInstance().dateTransToString(endDate), stockCode, true);
-
         ArrayList<Stock> stocks = stockPool.getStockByCode(stockCode).getStocks();
-
         if (dayNums > stocks.size()) {
             return null;
         }
 
         HashMap<String, MaVO> result = new HashMap<>();
-
         for (int i = stocks.size() - dayNums; i >= 0; i--) {
             String date = stocks.get(i).getDate();
 
@@ -141,10 +99,94 @@ public class MeanReversionIStrategy implements IStrategy {
             }
 
             double average = MathHelper.formatData(all / dayNums, 2);
-
             result.put(stocks.get(i).getDate(), new MaVO(stocks.get(i).getCode(), dayNums, date, average));
         }
 
         return result;
+    }
+
+    @Override
+    public ArrayList<YieldStock> initHoldingStocks(StockPool stockPool, ArrayList<String> dates) {
+
+        ArrayList<YieldStock> yieldStocks = new ArrayList<>();
+//        //确定移动均线类型
+//        int type = stockPool.getInputVO().getReturnPeriod();
+//
+//        //遍历股票池中股票
+//        for (int i = 0; i < stockPool.getStocksList().size(); ++i) {
+//            Stock before = stockPool.getStocksList().get(i).getBeforeStock();
+//            String beforeDate = before.getDate();
+//
+//            HashMap<String, MaVO> averageLine;
+//            if(this.returnPeriod != stockPool.getInputVO().getReturnPeriod()) {              //第一次加载 将allAverageLine初始化
+//                //初始化第i只股票的N日移动均线
+//                averageLine = getMaLineFromStockPool(stockPool, beforeDate,stockPool.getEndDate(), yesterday.getCode(), type);
+//                //添加到allAverageLine
+//                allMaLine.add(averageLine);
+//            } else {                                                     //不是第一次加载，直接从allAverageLine中获取
+//                averageLine = this.allMaLine.get(i);
+//            }
+//
+//            boolean live = true;                                        //持有期內每天的股票信息必须有 否则不持有该股票
+//            for (int j = 0; j < dates.size(); ++j) {
+//                Stock po = stockPool.getStocksList().get(i).getStockByDate(dates.get(j));
+//                if (po == null) {
+//                    live = false;
+//                    break;
+//                }
+//            }
+//
+//            if (!live || yesterday == null || before == null) {
+//                continue;
+//            }
+//
+//            //计算偏离度，(均值-当天的开盘价)/ 均值
+//            //如果当天无数据,跳出循环
+//            double average = 0;
+//            if (averageLine.get(stockPool.getStartDate()) != null) {
+//                average = averageLine.get(stockPool.getStartDate()).getAverageValue();
+//            }
+//            double yield = (average - yesterday.getClose()) / average;
+//
+//            yieldStocks.add(new YieldStock(yesterday.getCode(), yield));
+//        }
+//
+//        this.returnPeriod = stockPool.getInputVO().getReturnPeriod();            //初始化形成期
+
+        return yieldStocks;
+    }
+
+    @Override
+    public ArrayList<YieldStock> rebalanceHoldingStocks(StockPool stockPool, String beforeDate, String today, ArrayList<String> dates) {
+
+        ArrayList<YieldStock> yieldStocks = new ArrayList<>();
+
+//        for (int i = 0; i < stockPool.getStocksList().size(); ++i) {
+//            Stock before = stockPool.getStocksList().get(i).getStockByDate(beforeDate);
+//            Stock yesterday = stockPool.getStocksList().get(i).getStockByDate(today);
+//
+//            boolean live = true;                                   //持有期內每天的股票信息必须有 否则不持有该股票
+//            for (int j = 0; j < dates.size(); ++j) {
+//                Stock po = stockPool.getStocksList().get(i).getStockByDate(dates.get(j));
+//                if (po == null) {
+//                    live = false;
+//                    break;
+//                }
+//            }
+//
+//            if (live && yesterday != null && before != null) {
+//                //计算偏离度，(均值-当天的开盘价)/ 均值
+//                double average = 0;
+//                if (allMaLine.get(i).get(today) != null) {
+//                    average = allMaLine.get(i).get(today).getAverageValue();
+//                }
+//                double yield = (average - yesterday.getClose()) / average;
+//
+//                yieldStocks.add(new YieldStock(yesterday.getCode(), yield));
+//            }
+//
+//        }
+
+        return yieldStocks;
     }
 }

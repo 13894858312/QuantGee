@@ -1,6 +1,7 @@
 package logic.strategy.backTesting;
 
 import logic.tools.MathHelper;
+import org.springframework.stereotype.Service;
 import vo.stock.LineVO;
 import vo.strategy.CumulativeYieldResultVO;
 import vo.strategy.YieldHistogramLineDataVO;
@@ -14,8 +15,9 @@ import java.util.ArrayList;
  */
 public class StrategyDataAnlysis {
 
-    private static final double RF = 0.0175;
+    private static final double RF = 0.04;
     private static final int interval = 1; //直方图分组的间隔为%几
+    private static final double YEAR_TRADE_DAYS = 250.0;
 
     /**
      * 计算有关频率分布直方图的数据
@@ -54,9 +56,7 @@ public class StrategyDataAnlysis {
      * @param baseYield 基准收益率数据
      * @return CumulativeYieldResultVO
      */
-    public CumulativeYieldResultVO analyseCumulativeYieldGraph(double income, double init_fund, int tradeDays,
-                                                               ArrayList<LineVO> strategyYield,
-                                                               ArrayList<LineVO> baseYield) {
+    public CumulativeYieldResultVO analyseCumulativeYieldGraph(double income, double init_fund, int tradeDays, ArrayList<LineVO> strategyYield, ArrayList<LineVO> baseYield) {
         double annualRevenue = this.calculateAnnualRevenue(income, init_fund, tradeDays);       //策略年化收益率
         double baseAnnualRevenue = this.calculateBaseAnnualRevenue(baseYield, tradeDays);  //基准年化收益率
         double beta = this.calculateBeta(strategyYield, baseYield);
@@ -82,12 +82,31 @@ public class StrategyDataAnlysis {
         return result;
     }
 
+    /**
+     * 计算策略胜率
+     * @param yields 收益率
+     * @return 策略胜率
+     */
+    public double analyseWinRate(ArrayList<Double> yields) {
+        int num = 0;
+        for(int i = 0; i< yields.size(); ++i) {
+            if(yields.get(i) > 0) {
+                num ++;
+            }
+        }
+
+System.out.println("analyseWinRate: " + num);
+System.out.println("analyseWinRate: " + yields.size());
+
+        double result = (double)num / (double) yields.size();
+        return result;
+    }
 
     /**
      * 计算周期收益率
      * @param maxYield 最大的周期收益
       * @param yieldPerPeriod 周期收益率
-     * @return
+     * @return ArrayList<YieldHistogramLineDataVO>
      */
     private ArrayList<YieldHistogramLineDataVO> calculatePeriodYieldNum(double maxYield, ArrayList<Double> yieldPerPeriod) {
 
@@ -145,7 +164,8 @@ public class StrategyDataAnlysis {
      * @return 策略年化收益率
      */
     private double calculateAnnualRevenue(double income, double initFund, int tradeDays) {
-        double annualRevenue = (((income-initFund)/initFund) / tradeDays) * 365;
+//        double annualRevenue = (((income-initFund)/initFund) / tradeDays) * 365;
+        double annualRevenue = Math.pow((1+(income-initFund)/initFund), YEAR_TRADE_DAYS/tradeDays)-1;
         return annualRevenue;
     }
 
@@ -155,10 +175,10 @@ public class StrategyDataAnlysis {
      * @param annualRevenue 年化收益率
      * @param baseAnnualRevenue 基准收益率
      * @param beta beta
-     * @return
+     * @return alpha
      */
     private double calculateAlpha(double annualRevenue, double baseAnnualRevenue, double beta) {
-        double alpha = (annualRevenue - RF) - beta * (baseAnnualRevenue - RF);
+        double alpha = annualRevenue - (RF + beta * (baseAnnualRevenue - RF));
         return MathHelper.formatData(alpha,3);
     }
 
@@ -174,7 +194,7 @@ public class StrategyDataAnlysis {
             strategy[i] = strategyYield.get(i).getValue();
         }
 
-        double sharpeRatio = (annualRevenue - RF)/Math.sqrt(MathHelper.variance(strategy));
+        double sharpeRatio = (annualRevenue - RF)/Math.sqrt(250*MathHelper.variance(strategy));
         return MathHelper.formatData(sharpeRatio,3);
     }
 
@@ -185,7 +205,6 @@ public class StrategyDataAnlysis {
      * @return beta
      */
     private double calculateBeta(ArrayList<LineVO> strategyYield, ArrayList<LineVO> baseYield) {
-
         double[] strategy = new double[strategyYield.size()];
         for(int i=0; i<strategyYield.size(); ++i) {
             strategy[i] = strategyYield.get(i).getValue();
@@ -207,16 +226,13 @@ public class StrategyDataAnlysis {
      * @return 基准年化收益率
      */
     private double calculateBaseAnnualRevenue(ArrayList<LineVO> baseYield, int tradeDays) {
-
         double baseAnnualRevenue = 0;
-
         for(int i=1; i<baseYield.size(); ++i) {
             baseAnnualRevenue += baseYield.get(i).getValue();
         }
 
         baseAnnualRevenue /= baseYield.size();
-
-        baseAnnualRevenue = (baseAnnualRevenue/tradeDays) * 365;
+        baseAnnualRevenue = Math.pow((1+baseAnnualRevenue), YEAR_TRADE_DAYS/tradeDays)-1;
 
         return baseAnnualRevenue;
     }
@@ -250,20 +266,5 @@ public class StrategyDataAnlysis {
         }
 
         return maxDrawdown;
-    }
-
-    public double analyseWinRate(ArrayList<Double> baseYield) {
-        int num = 0;
-        for(int i=0; i<baseYield.size(); ++i) {
-            if(baseYield.get(i) > 0) {
-                num ++;
-            }
-        }
-
-        System.out.println("analyseWinRate: " + num);
-        System.out.println("analyseWinRate: " + baseYield.size());
-
-        double result = (double)num / (double)baseYield.size();
-        return result;
     }
 }

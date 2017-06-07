@@ -52,7 +52,7 @@ public class StrategyBackTestingServiceImp implements StrategyBackTestingService
         StrategyAbnormalReturn strategyAbnormalReturn = new StrategyAbnormalReturn(stockPool, period, inputVO.isHoldingPeriodFixed(), iStrategy);
         strategyAbnormalReturn.start();
 
-        AbnormalReturnResultVO abnormalReturnResultVO = strategyAbnormalReturn.getAbnormalReturnResultVO();
+        AbnormalReturnResultVO abnormalReturnResultVO = strategyAbnormalReturn.getAbnormalReturnResult();
 
         return abnormalReturnResultVO;
     }
