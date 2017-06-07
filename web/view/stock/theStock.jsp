@@ -20,6 +20,9 @@
             x.style.color = "#b7b7b7";
         }
     </script>
+	<script src="../../echarts.js"></script>
+	<script src="../../jquery-3.2.1.min.js"></script>
+	<script src="../../js/stock/buttoncontroller.js"></script>
     <style type="text/css">
     	@import "../../css/style.css";
     	@import "../../css/stock/theStock.css";
@@ -125,10 +128,10 @@
 				</div>
 				<div class="ocnum">
 					<div class="num">
-						<span id="closenum">￥34.45</span>
+						<span id="highnum">￥34.45</span>
 					</div>
 					<div class="num">
-						<span id="opennum">￥34.45</span>
+						<span id="lownum">￥34.45</span>
 					</div>
 				</div>
 			</div>
@@ -143,10 +146,10 @@
 				</div>
 				<div class="ocnum">
 					<div class="num">
-						<span id="closenum">￥34.45</span>
+						<span id="volume">￥34.45</span>
 					</div>
 					<div class="num">
-						<span id="opennum">￥34.45</span>
+						<span id="volumenum">￥34.45</span>
 					</div>
 				</div>
 			</div>
@@ -161,10 +164,10 @@
 				</div>
 				<div class="ocnum">
 					<div class="num">
-						<span id="closenum">￥34.45</span>
+						<span id="changerate">￥34.45</span>
 					</div>
 					<div class="num">
-						<span id="opennum">￥34.45</span>
+						<span id="marketrate">￥34.45</span>
 					</div>
 				</div>
 			</div>
@@ -191,18 +194,21 @@
 	</div>
 	<div class="historicalarea">
 		<div class="buttonarea">
-			<div class="klinebutton" style="background-color: #6C7B8B;color: #FFFFFF;">
+			<div class="klinebutton" id="daybutton" onclick="showDayKline()" onmouseover="changemouse()">
 				日K
 			</div>
-			<div class="klinebutton" style="background-color: #FFFFFF;color: #000000;">
+			<div class="klinebutton" id="weekbutton" onclick="showWeekKline()" onmouseover="changemouse()">
 				周K
 			</div>
-			<div class="klinebutton" style="background-color: #FFFFFF;color: #000000;">
+			<div class="klinebutton" id="monthbutton" onclick="showMonthKline()" onmouseover="changemouse()">
 				月K
 			</div>
 		</div>
 		<div class="klinearea">
-			
+			<div class="daykline" id="daykline" style="display:block;width: 100%;height: 100%;"></div>
+			<script src="../../js/stock/stockhistorical.js"></script>
+			<div class="weekkline" id="weekkline" style="display:none;width: 100%;height: 100%;"></div>
+			<div class="monthkline" id="monthkline" style="display:none;width: 100%;height: 100%;"></div>
 		</div>
 		<div class="historicalvolumearea">
 			
