@@ -205,13 +205,16 @@
 			</div>
 		</div>
 		<div class="klinearea">
-			<div class="daykline" id="daykline" style="display:block;width: 100%;height: 100%;"></div>
+			<div class="daykline" id="daykline" style="display:block;width:560px;height: 209px;"></div>
+			<div class="weekkline" id="weekkline" style="display:none;width:560px;height: 209px;"></div>
+			<div class="monthkline" id="monthkline" style="display:none;width:560px;height: 209px;"></div>
 			<script src="../../js/stock/stockhistorical.js"></script>
-			<div class="weekkline" id="weekkline" style="display:none;width: 100%;height: 100%;"></div>
-			<div class="monthkline" id="monthkline" style="display:none;width: 100%;height: 100%;"></div>
 		</div>
 		<div class="historicalvolumearea">
-			
+            <div class="daykline" id="dayvolume" style="display:block;width:560px;height: 109px;"></div>
+            <div class="weekkline" id="weekvolume" style="display:none;width:560px;height: 109px;"></div>
+            <div class="monthkline" id="monthvolume" style="display:none;width:560px;height: 109px;"></div>
+            <script src="../../js/stock/stockhistorical.js"></script>
 		</div>
 		<div class="indexarea">
 			<div class="indexbutton" style="background-color: #6C7B8B;color: #FFFFFF;">

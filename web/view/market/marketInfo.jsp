@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<!DOCTYPE html>--%>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -61,7 +60,6 @@
 
                 <a href="marketInfo.jsp" onmouseover="s1(this)" onmouseout="s2(this)">大盘行情</a>
                 <a href="../../view/stock/stockFirst.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">个股信息</a>
-                <a href="../../view/industry/industry.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">行业资讯</a>
                 <a href="../../view/strategy/strategy.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">策略大全</a>
                 <a href="../../view/trade/trade.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">模拟交易</a>
                 <a href="../../view/ucenter/user_center.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">个人中心</a>
@@ -87,7 +85,7 @@
         </div>
 
     </div>
-    <div class="firstHead">
+    <!--<div class="firstHead">
     	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
     </div>
     <div class="firstText">
@@ -224,6 +222,6 @@
     		</tbody>
     	</table>
     </div>
-	<script type="text/javascript" src="../../js/marketInfo/news.js"></script>
+	<script type="text/javascript" src="../../js/marketInfo/news.js"></script>-->
 </body>
 </html>
