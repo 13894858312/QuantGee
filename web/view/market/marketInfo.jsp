@@ -1,12 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<!DOCTYPE html>--%>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>MarketInfo</title>
     <script src="../../echarts.js"></script>
     <script src="../../jquery-3.2.1.min.js"></script>
-    <script src="../../js/test.js"></script>
     <%--<script type="text/javascript" for="window" event="onload">--%>
         <%--var reftime = 3000;//默认每隔10秒向后台发送请求--%>
         <%--var taskId;--%>
@@ -62,7 +60,6 @@
 
                 <a href="marketInfo.jsp" onmouseover="s1(this)" onmouseout="s2(this)">大盘行情</a>
                 <a href="../../view/stock/stockFirst.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">个股信息</a>
-                <a href="../../view/industry/industry.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">行业资讯</a>
                 <a href="../../view/strategy/strategy.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">策略大全</a>
                 <a href="../../view/trade/trade.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">模拟交易</a>
                 <a href="../../view/ucenter/user_center.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">个人中心</a>
@@ -88,7 +85,7 @@
         </div>
 
     </div>
-    <div class="firstHead">
+    <!--<div class="firstHead">
     	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
     </div>
     <div class="firstText">
@@ -120,7 +117,6 @@
     	<span class="ssz3" id="szprice">25.35</span>
     </div>
     <div id="graph-SSE" style="background-color:#FFFFFF;position: absolute;left: 8%;top: 37%;width: 25%;height: 25%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
-    <script src="../../js/line1.js"></script>
 	<div id="graph-SZI" style="background-color:#FFFFFF;position: absolute;left: 36%;top: 37%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
 	<div id="graph-SZ300" style="background-color:#FFFFFF;position: absolute;left: 64%;top: 37%;width: 25%;height: 40%;background-color: #FFFFFF;border: 1px solid #000000;"></div>
 	<div class="secondHead">
@@ -226,9 +222,6 @@
     		</tbody>
     	</table>
     </div>
-	<script type="text/javascript" src="../../js/marketInfo/news.js"></script>
-    <!--<div class="more">
-    	<a href="" onclick="test()">更多>></a>
-    </div>-->
+	<script type="text/javascript" src="../../js/marketInfo/news.js"></script>-->
 </body>
 </html>

@@ -3,6 +3,7 @@ package action;
 import com.opensymphony.xwork2.ActionSupport;
 import logic.tools.DateHelper;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import service.stock.StockBasicInfoService;
@@ -15,7 +16,7 @@ import vo.stock.StockInputVO;
 @Controller
 public class StockAction extends ActionSupport{
     private String result;
-    private String stockCode;
+    private String stockCode = "000001";
 
     @Autowired
     private StockBasicInfoService stockBasicInfoService;
@@ -38,10 +39,17 @@ public class StockAction extends ActionSupport{
     private StockHistoricalVO getStockHistoricalVO(){
         String date = DateHelper.getNowDate();
         String enddate = DateHelper.formerNTradeDay(date, 20);
-        String startdate = DateHelper.formerNTradeDay(enddate, 120);
+        String startdate = DateHelper.formerNTradeDay(enddate, 480);
+System.out.println(stockCode);
         StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate);
         StockHistoricalVO stockHistoricalVO = stockBasicInfoService.getStockHistoricalInfo(stockInputVO);
         return stockHistoricalVO;
+    }
+
+    public String stockCode(){
+        JSONObject jsonObject = JSONObject.fromObject(stockCode);
+        result = jsonObject.toString();
+        return SUCCESS;
     }
     public String getStockFirstInfo(){
         JSONArray jsonArray = JSONArray.fromObject(getStockHistoricalVO().getkLine());
@@ -63,6 +71,12 @@ public class StockAction extends ActionSupport{
 
     public String getMA20(){
         JSONArray jsonArray = JSONArray.fromObject(getStockHistoricalVO().getMa20());
+        result = jsonArray.toString();
+        return SUCCESS;
+    }
+
+    public String getVolume(){
+        JSONArray jsonArray = JSONArray.fromObject(getStockHistoricalVO().getVolume());
         result = jsonArray.toString();
         return SUCCESS;
     }

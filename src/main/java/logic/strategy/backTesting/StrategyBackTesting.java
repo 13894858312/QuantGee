@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Created by Mark.W on 2017/4/4.
  */
 public class StrategyBackTesting {
-    private static final double INIT_FUND = 100000; //起始资金
+    private double INIT_FUND = 100000; //起始资金
     private double income = INIT_FUND;      //总本金+收益
     private double tempIncome = income;  //记录上一个周期的本金+收益，用于计算周期收益率
 
@@ -22,7 +22,7 @@ public class StrategyBackTesting {
     private boolean periodOnly;
     private String blockType;
 
-    private logic.strategy.backTesting.IStrategy IStrategy;
+    private IStrategy IStrategy;
     private StockPool stockPool;
 
     private int holdingPeriod;  //持有期
@@ -41,14 +41,14 @@ public class StrategyBackTesting {
      * @param returnPeriod 形成期
      * @param IStrategy 不同策略选择股票的接口
      */
-    public StrategyBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod, logic.strategy.backTesting.IStrategy IStrategy, boolean periodOnly) {
+    public StrategyBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod, IStrategy IStrategy, boolean periodOnly) {
         this.stockPool = stockPool;
         this.IStrategy = IStrategy;
         this.periodOnly = periodOnly;
-
-        this.blockType = stockPool.getBlockType();
-        this.holdingPeriod = holdingPeriod;
         this.returnPeriod = returnPeriod;
+        this.holdingPeriod = holdingPeriod;
+
+        this.blockType = stockPool.getInputVO().getBlockType();
         this.holdingStockNum = stockPool.getHoldingStockNum();
 
         this.logicHoldingStocks = new ArrayList<>();

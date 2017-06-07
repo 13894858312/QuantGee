@@ -25,7 +25,7 @@ public class MeanReversionIStrategy implements IStrategy {
         ArrayList<StockYield> stockYields = new ArrayList<>();
 
         //确定移动均线类型
-        int type = stockPool.getStrategyBackTestInputVO().getReturnPeriod();
+        int type = stockPool.getInputVO().getReturnPeriod();
 
         //遍历股票池中股票
         for (int i = 0; i < stockPool.getStocksList().size(); ++i) {
@@ -34,7 +34,7 @@ public class MeanReversionIStrategy implements IStrategy {
             Stock yesterday = stockPool.getStocksList().get(i).getYesterdayStock();
 
             HashMap<String, MaVO> averageLine;
-            if(this.returnPeriod != stockPool.getStrategyBackTestInputVO().getReturnPeriod()) {              //第一次加载 将allAverageLine初始化
+            if(this.returnPeriod != stockPool.getInputVO().getReturnPeriod()) {              //第一次加载 将allAverageLine初始化
                 //初始化第i只股票的N日移动均线
                 averageLine = getAverageLineInfoByCode(stockPool, beforeDate,stockPool.getEndDate(), yesterday.getCode(), type);
                 //添加到allAverageLine
@@ -67,7 +67,7 @@ public class MeanReversionIStrategy implements IStrategy {
             stockYields.add(new StockYield(yesterday.getCode(), yield));
         }
 
-        this.returnPeriod = stockPool.getStrategyBackTestInputVO().getReturnPeriod();            //初始化形成期
+        this.returnPeriod = stockPool.getInputVO().getReturnPeriod();            //初始化形成期
 
         return stockYields;
     }

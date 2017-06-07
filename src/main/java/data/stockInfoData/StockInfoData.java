@@ -6,6 +6,7 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by wangxue on 2017/5/5.
@@ -21,9 +22,12 @@ public class StockInfoData implements StockInfoDAO{
     /*****stock内容和tushare获取实时数据接口返回内容有差异******/
     @Override
     public Current getStockRealTimeInfo(String code) {
-        Current current = (Current) hibernateTemplate
-                .find("from Current c where c.code = ? order by time desc ",code).iterator().next();
-        return current;
+        List<Current> list = (List<Current>) hibernateTemplate
+                .find("from Current c where c.code = ? ", code);
+        if(list == null || list.size() == 0){
+            return null;
+        }
+        return list.get(list.size()-1);
     }
 
     @Override
@@ -31,6 +35,20 @@ public class StockInfoData implements StockInfoDAO{
         Iterator<Current> current = (Iterator<Current>) hibernateTemplate
                 .find("from Current c where c.code = ?  ",code).iterator();
         return current;
+    }
+
+    @Override
+    public Iterator<Current> getLatestCurrents() {
+        try {
+            String latest = (String) hibernateTemplate
+                    .find("select max (c.time) from Current  c").iterator().next();
+
+            Iterator<Current> iterator = (Iterator<Current>) hibernateTemplate
+                    .find("from Current c where c.time = ? ", latest).iterator();
+            return iterator;
+        }catch (Exception e) {
+            return null;
+        }
     }
 
     @Override

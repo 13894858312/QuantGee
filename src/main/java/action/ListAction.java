@@ -26,6 +26,7 @@ public class ListAction extends ActionSupport {
 
     @Autowired
     StockBasicInfoService stockBasicInfoService;
+    @Autowired
     MarketInfoService marketInfoService;
 
     public String getResult(){

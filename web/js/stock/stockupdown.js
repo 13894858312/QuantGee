@@ -4,7 +4,7 @@
 var intervalTime = 180000;
 var taskId;
 ajax();
-setInterval(ajax,intervalTime);
+// setInterval(ajax,intervalTime);
 function ajax() {
     var stockUp;
     $.ajax({

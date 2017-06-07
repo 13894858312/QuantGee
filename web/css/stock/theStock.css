@@ -1,0 +1,388 @@
+.firstarea{
+	margin-left: 15%;
+	margin-top: 1%;
+	width: 1000px;
+	height: 150px;
+}
+.nameAndsearch{
+	float: left;
+	width:1000px;
+	height: 58px;
+	background-color: #FFFFFF;
+	border: 1px solid #000000;
+}
+.nameInfo{
+	float: left;
+	width: 750px;
+	height: 58px;
+	
+}
+.name{
+	float: left;
+	margin-left: 10px;
+	/*margin-right: 10px;*/
+	margin-top: 15px;
+	margin-bottom: 15px;
+	width: 100px;
+	height: 30px;
+	background-color: #FFFFFF;
+	font-size: 18px;
+	text-align: center;
+}
+.code{
+	float: left;
+	/*margin-left: 10px;*/
+	margin-right: 10px;
+	margin-top: 18px;
+	margin-bottom: 12px;
+	width: 100px;
+	height: 30px;
+	background-color: #FFFFFF;
+	font-size: 16px;
+	text-align: left;
+}
+.nowprice{
+	float: left;
+	margin-left: 300px;
+	margin-right: 10px;
+	margin-top: 11px;
+	margin-bottom: 9px;
+	width: 100px;
+	height: 40px;
+	background-color: #FFFFFF;
+	font-size: 24px;
+	text-align: center;
+	color: #FF0000;
+}
+.range-price-add{
+	float: left;
+	width: 100px;
+	height: 58px;
+	background-color: #FFFFFF;
+}
+.range{
+	float: left;
+	/*margin-left: 10px;*/
+	/*margin-right: 10px;*/
+	margin-top: 5px;
+	/*margin-bottom: 15px;*/
+	width: 40px;
+	height: 20px;
+	background-color: #FFFFFF;
+	font-size: 14px;
+	text-align: left;
+}
+.rangeprice{
+	float: left;
+	margin-left: 5px;
+	/*margin-right: 10px;*/
+	margin-top: 5px;
+	/*margin-bottom: 15px;*/
+	width: 40px;
+	height: 15px;
+	background-color: #FFFFFF;
+	font-size: 14px;
+	text-align: left;
+}
+.addimg{
+	margin-left: 6px;
+	margin-top: 30px;
+	width: 80px;
+	height: 28px;
+	background-color: #FFFFFF;
+	font-size: 16px;
+	text-align: left;
+}
+.searcharea{
+	float: left;
+	width: 250px;
+	height: 58px;
+	background-color: #FFFFFF;
+}
+.stockInfo{
+	float: left;
+	width:1000px;
+	height: 89px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+.openandclose{
+	float: left;
+	width:249px;
+	height: 89px;
+	background-color: #FFFFFF;
+	border-right: 1px solid #000000;
+}
+.octext{
+	float: left;
+	width: 100px;
+	margin-left: 10px;
+	margin-top: 5px;
+	height: 80px;
+	background-color: #FFFFFF;
+}
+.ctext{
+	float: left;
+	width: 100px;
+	margin-top: 10px;
+	height: 30px;
+	background-color: #FFFFFF;
+	font-size: 14px;
+}
+.otext{
+	float: left;
+	width: 100px;
+	margin-top: 10px;
+	height: 30px;
+	background-color: #FFFFFF;
+	font-size: 14px;
+}
+.ocnum{
+	float: left;
+	width: 100px;
+	margin-left: 39px;
+	margin-top: 5px;
+	height: 80px;
+	background-color: #FFFFFF;
+}
+.num{
+	float: left;
+	width: 100px;
+	margin-top: 12px;
+	height: 28px;
+	background-color: #FFFFFF;
+	font-size: 14px;
+	text-align: center;
+}
+.highandlow{
+	float: left;
+	width:249px;
+	height: 89px;
+	background-color: #FFFFFF;
+	border-right: 1px solid #000000;
+}
+.volumeandnum{
+	float: left;
+	width:249px;
+	height: 89px;
+	background-color: #FFFFFF;
+	border-right: 1px solid #000000;
+}
+.other{
+	float: left;
+	width:250px;
+	height: 89px;
+	background-color: #FFFFFF;
+}
+.realtimearea{
+	margin-left: 15%;
+	margin-top: 2%;
+	float: left;
+	width: 400px;
+	height: 500px;
+	background-color: #FFFFFF;
+}
+.realdata{
+	float: left;
+	width: 400px;
+	height: 29px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.realprice{
+	float: left;
+	width: 400px;
+	height: 209px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.realvolume{
+	float: left;
+	width: 400px;
+	height: 109px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.predicttextarea{
+	float: left;
+	width: 400px;
+	height: 29px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.predicttext{
+	margin-left: 40%;
+	font-size: 18px;
+	font-weight: 100;
+}
+.predictarea{
+	float: left;
+	width: 400px;
+	height: 118px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+.historicalarea{
+	margin-left: 40px;
+	margin-top: 2%;
+	float: left;
+	width: 560px;
+	height: 500px;
+	background-color: #FFFFFF;
+}
+.buttonarea{
+	float: left;
+	width: 560px;
+	height: 29px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.klinebutton{
+	float: left;
+	border-radius: 3px;
+	margin-top: 2px;
+	margin-left: 2px;
+	width: 50px;
+	height: 25px;
+	font-size: 16px;
+	text-align: center;
+}
+#daybutton{
+	background-color: #6C7B8B;
+	color: #FFFFFF;
+}
+#weekbutton{
+	background-color: #FFFFFF;
+	color: #000000;
+}
+#monthbutton{
+	background-color: #FFFFFF;
+	color: #000000;
+}
+.klinearea{
+	float: left;
+	width: 560px;
+	height: 209px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.historicalvolumearea{
+	float: left;
+	width: 560px;
+	height: 109px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.indexarea{
+	float: left;
+	width: 560px;
+	height: 29px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.indexbutton{
+	float: left;
+	border-radius: 3px;
+	margin-top: 2px;
+	margin-left: 2px;
+	width: 60px;
+	height: 25px;
+	font-size: 16px;
+	text-align: center;
+}
+.indexgrapharea{
+	float: left;
+	width: 560px;
+	height: 118px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+.stockanalysisarea{
+	float: left;
+	margin-left: 15%;
+	margin-top: 2%;
+	width: 1002px;
+	height: 200px;
+	background-color: #FFFFFF;
+}
+.analysistext{
+	float: left;
+	width: 1000px;
+	height: 39px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+.atext{
+	margin-left: 45%;
+	font-size: 24px;
+	font-weight: 100;
+}
+.MACDarea{
+	float: left;
+	width: 249px;
+	height: 158px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+.KDJarea{
+	float: left;
+	width: 249px;
+	height: 158px;
+	background-color: #FFFFFF;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+.RSIarea{
+	float: left;
+	width: 249px;
+	height: 158px;
+	background-color: #FFFFFF;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+.BOLLarea{
+	float: left;
+	width: 250px;
+	height: 158px;
+	background-color: #FFFFFF;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+.indextext{
+	margin-top: 10px;
+	margin-left: 100px;
+	font-size: 18px;
+	font-weight: 100;
+}

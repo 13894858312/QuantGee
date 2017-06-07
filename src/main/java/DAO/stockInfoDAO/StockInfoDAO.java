@@ -33,11 +33,17 @@ public interface StockInfoDAO {
     public Current getStockRealTimeInfo(String code);
 
     /**
-     * 获取一直股票今日分时信息（间隔两分钟）
+     * 获取一支股票今日分时信息（间隔两分钟）
      * @param code 股票代码
-     * @return 股票分十数据
+     * @return 股票分时数据
      */
     public Iterator<Current> getStockRealTimeList(String code);
+
+    /**
+     * 获取所有股票最新信息
+     * @return 所有股票最新信息
+     */
+    public Iterator<Current> getLatestCurrents();
 
     /**
      * 得到所有股票ID

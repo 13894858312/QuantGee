@@ -22,82 +22,31 @@ public class StockPool {
     @Autowired
     private StockInfoDAO stockInfoDAO;
 
-    private StrategyBackTestInputVO strategyBackTestInputVO; //用于判断该股票池是否可以继续被复用
-
-    private ArrayList<LineVO> blockBaseRaito = new ArrayList<>();
+    private StrategyBackTestInputVO inputVO; //用于判断该股票池是否可以继续被复用
 
     private HashMap<String, LogicStock> stocksMap = new HashMap<>();       //key是股票code
     private ArrayList<LogicStock> stocksList = new ArrayList<>();
+    private int tradeDays;                                      //时间区间內的交易日数，即投资天数
 
-    private int tradeDays;   //时间区间內的交易日数，即投资天数
-    private int startIndex;     //indexStocks的开始下标
-//    private int stockPoolSize;  //股票池的大小
-
-    private String blockType;
-    private int holdingStockNum;
     private ArrayList<Stock> indexStocks = new ArrayList<>(); //stockPO size最大的stock作为标杆
+    private int startIndex;                                    //indexStocks的开始下标
 
     public StockPool() {}
 
-    public void initStockPool(StrategyBackTestInputVO strategyBackTestInputVO) {
-        this.strategyBackTestInputVO = strategyBackTestInputVO;
-
-        this.initStocks(strategyBackTestInputVO);
+    public void initStockPool(StrategyBackTestInputVO inputVO) {
+        this.inputVO = inputVO;
+        this.initStocks(inputVO);
 
         this.tradeDays = indexStocks.size();
         this.startIndex = this.stocksMap.get(indexStocks.get(0).getCode()).getStartIndex();
         this.tradeDays = this.stocksMap.get(indexStocks.get(0).getCode()).getStockSize();
 
-        //确定持有股票的数量
-        if(strategyBackTestInputVO.getRatio() > 0) {
-            holdingStockNum = (int)(stocksList.size() * strategyBackTestInputVO.getRatio());
-        } else {
-            holdingStockNum = strategyBackTestInputVO.getHoldingStockNum();
-        }
-
-        if(strategyBackTestInputVO.getStockPoolType() == 0) {
-            blockType = strategyBackTestInputVO.getBlockType();
-        }
-
-        //如果是板块 初始化基准收益率
-        if(strategyBackTestInputVO.getStockPoolType() == 0 && strategyBackTestInputVO.getBlockType() != null) {
-            Iterator<Stock> stocks = stockInfoDAO.getStockInfo(strategyBackTestInputVO.getBlockType(),
-                    strategyBackTestInputVO.getStartDate(), this.strategyBackTestInputVO.getEndDate());
-
-            double initClose = stocks.next().getClose();
-
-            while(stocks.hasNext()) {
-                Stock stock = stocks.next();
-                //数据均是百分数 所以需要 /100
-                blockBaseRaito.add(new LineVO(stock.getDate(), (stock.getClose()-initClose)/initClose));
-            }
-        }
+        initBlockBaseRatio();
     }
 
-    /**
-     * 根据股票代码和时间获取股票数据
-     * @param stockCode stockCode
-     * @param date date
-     * @return Stock
-     */
-    public Stock getStockPOByCodeAndDate(String stockCode, String date) {
-       LogicStock temp = this.stocksMap.get(stockCode);
-       if(temp != null) {
-           return temp.getStockByDate(date);
-       }
+    private void initBlockBaseRatio() {
 
-       return null;
     }
-
-    /**
-     * 根据股票代码和时间获取股票数据
-     * @param stockCode stockCode
-     * @return LogicStock
-     */
-    public LogicStock getStockByCode(String stockCode) {
-        return this.stocksMap.get(stockCode);
-    }
-
 
     /**
      * 初始化股票池的股票信息
@@ -118,7 +67,7 @@ public class StockPool {
                 Iterator<Stock> stocks = stockInfoDAO.getStockInfo(codes.next(), s, e);
                 allStocks.add(transToList(stocks));
             }
-        //选择指定 股票 构造股票池
+            //选择指定 股票 构造股票池
         } else if(inputVO.getStockPoolType() == 1) {
             for(int i = 0; i< inputVO.getStockCodes().size(); ++i) {
                 Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getStockCodes().get(i), s, e);
@@ -139,7 +88,6 @@ public class StockPool {
     }
 
 
-
     /**
      * 初始化list和map
      * 同时初始化indexStocks
@@ -147,15 +95,14 @@ public class StockPool {
      */
     public void initStocksFromData(ArrayList<ArrayList<Stock>> allStockPOs) {
 
-        int index = 0;          //记录size最大的下标index
+        int index = 0;                       //记录size最大的下标index
         for(int i=0; i<allStockPOs.size(); ++i) {
             if(allStockPOs.get(i) != null && allStockPOs.get(i).size() != 0) {
-                LogicStock logicStock = new LogicStock(this.strategyBackTestInputVO.getStartDate(), allStockPOs.get(i));
+                LogicStock logicStock = new LogicStock(this.inputVO.getStartDate(), allStockPOs.get(i));
                 //如果该股票各项数据都有 才加入到股票池
                 if(logicStock.getBeforeStock() != null && logicStock.getStartDateStockPO() != null && logicStock.getYesterdayStock() != null) {
                     this.stocksMap.put(allStockPOs.get(i).get(0).getCode(), logicStock);           //初始化map
                     this.stocksList.add(logicStock);                                                 //初始化list
-//                this.stockPoolSize ++;
 
                     if(allStockPOs.get(i).size() > allStockPOs.get(index).size()) {           //用来确定indexStock
                         index = i;
@@ -169,19 +116,34 @@ public class StockPool {
 
 
     /**
-     * 获取指定板块基准收益率
-     * @return ArrayList<LineVO>
+     * 根据股票代码和时间获取股票数据
+     * @param stockCode stockCode
+     * @param date date
+     * @return Stock
      */
-    public ArrayList<LineVO> getBlockBaseRaito() {
-        return blockBaseRaito;
+    public Stock getStockPOByCodeAndDate(String stockCode, String date) {
+       LogicStock temp = this.stocksMap.get(stockCode);
+       if(temp != null) {
+           return temp.getStockByDate(date);
+       }
+       return null;
+    }
+
+    /**
+     * 根据股票代码和时间获取股票数据
+     * @param stockCode stockCode
+     * @return LogicStock
+     */
+    public LogicStock getStockByCode(String stockCode) {
+        return this.stocksMap.get(stockCode);
     }
 
     public String getStartDate() {
-        return strategyBackTestInputVO.getStartDate();
+        return inputVO.getStartDate();
     }
 
     public String getEndDate() {
-        return strategyBackTestInputVO.getEndDate();
+        return inputVO.getEndDate();
     }
 
     public ArrayList<LogicStock> getStocksList() {
@@ -196,20 +158,50 @@ public class StockPool {
         return startIndex;
     }
 
-    public StrategyBackTestInputVO getStrategyBackTestInputVO() {
-        return strategyBackTestInputVO;
-    }
-
-    public int getHoldingStockNum() {
-        return holdingStockNum;
-    }
-
-    public String getBlockType() {
-        return blockType;
+    public StrategyBackTestInputVO getInputVO() {
+        return inputVO;
     }
 
     public ArrayList<Stock> getIndexStocks() {
         return indexStocks;
     }
+
+    /**
+     * 获取指定板块基准收益率
+     * @return ArrayList<LineVO>
+     */
+    public ArrayList<LineVO> getBlockBaseRaito() {
+        ArrayList<LineVO> blockBaseRaito = new ArrayList<>();
+        //如果是板块 初始化基准收益率
+        if(inputVO.getStockPoolType() == 0 && inputVO.getBlockType() != null) {
+            Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getBlockType(), inputVO.getStartDate(), this.inputVO.getEndDate());
+            double initClose = stocks.next().getClose();
+            while(stocks.hasNext()) {
+                Stock stock = stocks.next();
+                //数据均是百分数 所以需要 /100
+                blockBaseRaito.add(new LineVO(stock.getDate(), (stock.getClose()-initClose)/initClose));
+            }
+        }
+
+        return blockBaseRaito;
+    }
+
+    /**
+     * 获取持有股票数量
+     * @return holdingStockNum
+     */
+    public int getHoldingStockNum() {
+
+        int holdingStockNum;
+
+        //确定持有股票的数量
+        if(inputVO.getRatio() > 0) {
+            holdingStockNum = (int)(stocksList.size() * inputVO.getRatio());
+        } else {
+            holdingStockNum = inputVO.getHoldingStockNum();
+        }
+        return holdingStockNum;
+    }
+
 }
 

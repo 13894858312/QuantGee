@@ -62,7 +62,7 @@ public class MarketInfoServiceImp implements MarketInfoService{
             }
 
             //ST股不同判断条件 判断指定日期板块的股票涨跌幅情况
-            if (code.startsWith("ST")) {
+            if (code.contains("st") || code.contains("ST")) {
                 if (rate <= -0.05) {
                     rateNums[0]++;
                 } else if (rate >= -0.05 && rate < 0) {
@@ -111,8 +111,12 @@ public class MarketInfoServiceImp implements MarketInfoService{
 
         while(codes.hasNext()) {
             Current current = stockInfoDAO.getStockRealTimeInfo(codes.next());
-            topStocks.add(new TopStock(current.getCode(), current.getChangepercent(), current.getTrade()));
+            if (current != null) {
+                topStocks.add(new TopStock(current.getCode(), current.getChangepercent(), current.getTrade()));
+            }
         }
+
+System.out.println("*********************************topstocks.size: " + topStocks.size());
 
         if (topStocks.size() == 0) {
             return null;
@@ -138,6 +142,8 @@ public class MarketInfoServiceImp implements MarketInfoService{
                 i --;
                 continue;
             }
+
+System.out.println("******************************loop: " + marketInfo.getCode());
 
             result.add(new TopStockVO(upOrDown, marketInfo.getCode(), marketInfo.getName(),
                     topStocks.get(topIndex).getIncreaseRate(), topStocks.get(topIndex).getNowPrice()));
@@ -165,6 +171,9 @@ public class MarketInfoServiceImp implements MarketInfoService{
 
             //初始化
             Current current = stockInfoDAO.getStockRealTimeInfo(topCode);
+            if (current == null) {
+                continue;
+            }
             double averagerate=current.getChangepercent(), rate=averagerate;
             int num = 1;
 
@@ -191,6 +200,7 @@ public class MarketInfoServiceImp implements MarketInfoService{
             topStocks.add(new TopStock(name, averagerate, topCode));
 
         }
+
 
         for (int i=0; i<TOP_NUMBER; ++i) {
             int topIndex = 0;
