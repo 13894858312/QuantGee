@@ -16,7 +16,7 @@ public class AbnormalReturnResultVO {
     private double bestAbnormalReturn;  //最优的超额收益率
     private double bestStategyWinRate;   //最优的策略胜率
 
-    private ArrayList<AbnormalReturnLineDataVO> abnormalReturnLineDataVOS;  //超额收益率和策略胜率图数据信息
+    private ArrayList<AbnormalReturnLineVO> abnormalReturnLineVOS;  //超额收益率和策略胜率图数据信息
 
     /**
      * @param isHoldingPeriodFixed true表示holdingPeriod不变，returnPeriod变化
@@ -24,16 +24,16 @@ public class AbnormalReturnResultVO {
      * @param bestReturnPeriod 最佳形成期
      * @param bestAbnormalReturn 最优的超额收益率
      * @param bestStategyWinRate 最优的策略胜率
-     * @param abnormalReturnLineDataVOS 超额收益率和策略胜率图数据信息
+     * @param abnormalReturnLineVOS 超额收益率和策略胜率图数据信息
      */
     public AbnormalReturnResultVO(boolean isHoldingPeriodFixed, int bestHoldingPeriod, int bestReturnPeriod, double bestAbnormalReturn,
-                                  double bestStategyWinRate, ArrayList<AbnormalReturnLineDataVO> abnormalReturnLineDataVOS) {
+                                  double bestStategyWinRate, ArrayList<AbnormalReturnLineVO> abnormalReturnLineVOS) {
         this.isHoldingPeriodFixed = isHoldingPeriodFixed;
         this.bestHoldingPeriod = bestHoldingPeriod;
         this.bestReturnPeriod = bestReturnPeriod;
         this.bestAbnormalReturn = MathHelper.formatData(bestAbnormalReturn*100, 2);
         this.bestStategyWinRate = MathHelper.formatData(bestStategyWinRate*100, 2);
-        this.abnormalReturnLineDataVOS = abnormalReturnLineDataVOS;
+        this.abnormalReturnLineVOS = abnormalReturnLineVOS;
     }
 
     public boolean isHoldingPeriodFixed() {
@@ -76,11 +76,11 @@ public class AbnormalReturnResultVO {
         this.bestStategyWinRate = bestStategyWinRate;
     }
 
-    public ArrayList<AbnormalReturnLineDataVO> getAbnormalReturnLineDataVOS() {
-        return abnormalReturnLineDataVOS;
+    public ArrayList<AbnormalReturnLineVO> getAbnormalReturnLineVOS() {
+        return abnormalReturnLineVOS;
     }
 
-    public void setAbnormalReturnLineDataVOS(ArrayList<AbnormalReturnLineDataVO> abnormalReturnLineDataVOS) {
-        this.abnormalReturnLineDataVOS = abnormalReturnLineDataVOS;
+    public void setAbnormalReturnLineVOS(ArrayList<AbnormalReturnLineVO> abnormalReturnLineVOS) {
+        this.abnormalReturnLineVOS = abnormalReturnLineVOS;
     }
 }

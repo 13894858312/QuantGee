@@ -1,10 +1,9 @@
 package logic.strategy.backTesting;
 
 import logic.tools.MathHelper;
-import org.springframework.stereotype.Service;
 import vo.stock.LineVO;
 import vo.strategy.CumulativeYieldResultVO;
-import vo.strategy.YieldHistogramLineDataVO;
+import vo.strategy.YieldHistogramLineVO;
 import vo.strategy.YieldHistogramResultVO;
 
 import java.util.ArrayList;
@@ -39,7 +38,7 @@ public class StrategyDataAnlysis {
         }
 
         maxYield = Math.max(maxYield, -minYield);
-        ArrayList<YieldHistogramLineDataVO> data = calculatePeriodYieldNum(maxYield, yieldPerPeriod);
+        ArrayList<YieldHistogramLineVO> data = calculatePeriodYieldNum(maxYield, yieldPerPeriod);
 
         double winRate = (double)positiveEarningNum /(double)(positiveEarningNum+negativeEarningNum);
         YieldHistogramResultVO result = new YieldHistogramResultVO(positiveEarningNum, negativeEarningNum, winRate,data);
@@ -106,10 +105,9 @@ System.out.println("analyseWinRate: " + yields.size());
      * 计算周期收益率
      * @param maxYield 最大的周期收益
       * @param yieldPerPeriod 周期收益率
-     * @return ArrayList<YieldHistogramLineDataVO>
+     * @return ArrayList<YieldHistogramLineVO>
      */
-    private ArrayList<YieldHistogramLineDataVO> calculatePeriodYieldNum(double maxYield, ArrayList<Double> yieldPerPeriod) {
-
+    private ArrayList<YieldHistogramLineVO> calculatePeriodYieldNum(double maxYield, ArrayList<Double> yieldPerPeriod) {
         int n = (int)(maxYield * 100) / interval + 1;
 
         int[] positiveYields = new int[n];          //正收益数量
@@ -145,12 +143,12 @@ System.out.println("analyseWinRate: " + yields.size());
             }
         }
 
-        ArrayList<YieldHistogramLineDataVO> result = new ArrayList<>();
+        ArrayList<YieldHistogramLineVO> result = new ArrayList<>();
 
         for(int i = 0;i<positiveYields.length; ++i) {
             double startRate = (double)i/(double)100 * interval;
             double endRate = (double)(i+1)/(double)100 * interval;
-            result.add(new YieldHistogramLineDataVO(startRate, endRate, positiveYields[i], negativeYields[i]));
+            result.add(new YieldHistogramLineVO(startRate, endRate, positiveYields[i], negativeYields[i]));
         }
 
         return result;
@@ -209,7 +207,6 @@ System.out.println("analyseWinRate: " + yields.size());
         for(int i=0; i<strategyYield.size(); ++i) {
             strategy[i] = strategyYield.get(i).getValue();
         }
-
         double[] base = new double[baseYield.size()];
         for(int i=0; i<baseYield.size(); ++i) {
             base[i] = baseYield.get(i).getValue();

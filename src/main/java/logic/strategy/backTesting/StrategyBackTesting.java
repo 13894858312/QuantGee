@@ -30,7 +30,6 @@ public class StrategyBackTesting {
     private int holdingStockNum;      //每个持有期持有的股票数量
     private ArrayList<LogicHoldingStock> holdingStocks;
 
-    private double allBaseY;            //总的基准收益率
     private boolean periodOnly;
     private ArrayList<Double> yieldPerPeriod;     //每个持有期结束后的收益率  周期收益率
 
@@ -73,19 +72,12 @@ public class StrategyBackTesting {
         //如果回测板块，获取板块的基准收益率
         if(stockPool.getStockPoolType() == 0) {
             baseYield = stockPool.getBlockBaseRaito();
-            this.allBaseY = (baseYield.get(baseYield.size()-1).getValue() - baseYield.get(0).getValue())/baseYield.get(0).getValue();
-        //自选股构造的股票池 基准收益率为所有股票的平均
-        } else {
-            this.allBaseY = (indexStocks.get(indexStocks.size()-1).getClose()-indexStocks.get(startIndex).getClose())/indexStocks.get(startIndex).getClose();
         }
-
 
         int holdingDaysIndex = holdingPeriod;  //记录是否达到一个holdingPeriod的index
         //循环主体
         for(int i=startIndex; i<indexStocks.size(); ++i) {
-
 System.out.println("mainLoop: " + indexStocks.get(i).getDate());
-
 
             String todayTemp = indexStocks.get(i).getDate();
 
@@ -102,7 +94,6 @@ System.out.println("mainLoop: " + indexStocks.get(i).getDate());
                 }
 
                 this.rebalance(formerDate, todayTemp, datesNextHoldingPeriod);
-
             } else {
                 holdingDaysIndex ++;
             }
@@ -125,20 +116,6 @@ System.out.println("mainLoop: " + indexStocks.get(i).getDate());
             this.calculateData();
         }
     }
-
-    /**
-     * 在第一次运行时 确定持有的股票
-     * 不同策略确定方法不一样
-     * @param dates 下一个持有期的日期
-     */
-//    private void initHoldingStocks(ArrayList<String> dates) {
-//        String date = dates.get(0);
-//        dates.remove(0);
-//        //不同策略确定方法不一样
-//        ArrayList<YieldStock> yieldStocks = IStrategy.initHoldingStocks(stockPool, dates);
-//        //在开始日期买入股票
-//        this.buyStock(yieldStocks, date);
-//    }
 
     /**
      * 一个持有期结束
@@ -281,6 +258,14 @@ System.out.println("                         当前周期收益：" + income);
      * @return 超额收益率
      */
     public double getAbnormalReturn() {
+        double allBaseY;
+        if(baseYield.size() == 0) {
+            ArrayList<Stock> indexStocks = stockPool.getIndexStocks();
+            allBaseY = (indexStocks.get(indexStocks.size()-1).getClose() - indexStocks.get(stockPool.getStartIndex()).getClose())/ indexStocks.get(stockPool.getStartIndex()).getClose();
+        } else {
+            allBaseY = (baseYield.get(baseYield.size()-1).getValue() - baseYield.get(0).getValue())/baseYield.get(0).getValue();
+        }
+
         double result = strategyDataAnlysis.analyseAbnormalReturn(income, initFund, allBaseY);
         return result;
     }

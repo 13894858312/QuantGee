@@ -14,7 +14,7 @@ public class YieldHistogramResultVO {
     private int negativeEarningNum; //负收益周期数
     private double winRate; //赢率
 
-    private ArrayList<YieldHistogramLineDataVO> yieldHistogramData; //坐标信息
+    private ArrayList<YieldHistogramLineVO> yieldHistogramData; //坐标信息
 
     /**
      *
@@ -24,7 +24,7 @@ public class YieldHistogramResultVO {
      * @param yieldHistogramData 坐标信息
      */
     public YieldHistogramResultVO(int positiveEarningNum, int negativeEarningNum, double winRate,
-                                  ArrayList<YieldHistogramLineDataVO> yieldHistogramData) {
+                                  ArrayList<YieldHistogramLineVO> yieldHistogramData) {
         this.positiveEarningNum = positiveEarningNum;
         this.negativeEarningNum = negativeEarningNum;
         this.winRate = MathHelper.formatData(winRate*100, 2);
@@ -55,11 +55,11 @@ public class YieldHistogramResultVO {
         this.winRate = winRate;
     }
 
-    public ArrayList<YieldHistogramLineDataVO> getYieldHistogramData() {
+    public ArrayList<YieldHistogramLineVO> getYieldHistogramData() {
         return yieldHistogramData;
     }
 
-    public void setYieldHistogramData(ArrayList<YieldHistogramLineDataVO> yieldHistogramData) {
+    public void setYieldHistogramData(ArrayList<YieldHistogramLineVO> yieldHistogramData) {
         this.yieldHistogramData = yieldHistogramData;
     }
 }
