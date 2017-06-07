@@ -20,8 +20,8 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/quantgee_data" />
         <property name="username" value="root" />
-        <!--<property name="password" value="wycg55967568w" />-->
-        <property name="password" value="19961112" />
+        <property name="password" value="wycg55967568w" />
+        <!--<property name="password" value="19961112" />-->
     </bean>
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
