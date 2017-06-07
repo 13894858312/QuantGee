@@ -2,7 +2,6 @@ package logic.strategy.backTesting;
 
 import bean.Stock;
 import logic.tools.MathHelper;
-import org.springframework.beans.factory.annotation.Autowired;
 import vo.stock.LineVO;
 import vo.strategy.StrategyBackTestResultVO;
 import vo.strategy.CumulativeYieldResultVO;
@@ -17,13 +16,12 @@ import java.util.ArrayList;
 public class StrategyBackTesting {
 
     private StrategyDataAnlysis strategyDataAnlysis = new StrategyDataAnlysis();
-
     private IStrategy IStrategy;
     private StockPool stockPool;
 
     private double initFund;        //起始资金
     private double income;           //总本金+收益
-    private double tempIncome;       //记录上一个周期的本金+收益，用于计算周期收益率
+    private double lastIncome;       //记录上一个周期的本金+收益，用于计算周期收益率
 
     private int holdingPeriod;       //持有期
     private int returnPeriod;        //形成期
@@ -31,7 +29,7 @@ public class StrategyBackTesting {
     private ArrayList<LogicHoldingStock> holdingStocks;
 
     private boolean periodOnly;
-    private ArrayList<Double> yieldPerPeriod;     //每个持有期结束后的收益率  周期收益率
+    private ArrayList<Double> yieldPerPeriod;     //每个持有期结束后的收益率 周期收益率
 
     private ArrayList<LineVO> strategyYield;  //每天的收益率
     private ArrayList<LineVO> baseYield; //基准收益率
@@ -53,7 +51,7 @@ public class StrategyBackTesting {
 
         this.initFund = stockPool.getInputVO().getInitFund();
         this.income = initFund;
-        this.tempIncome = income;
+        this.lastIncome = income;
         this.holdingStockNum = stockPool.getHoldingStockNum();
 
         this.holdingStocks = new ArrayList<>();
@@ -89,11 +87,11 @@ System.out.println("mainLoop: " + indexStocks.get(i).getDate());
 
                 ArrayList<String> datesNextHoldingPeriod = new ArrayList<>();
                 int end = Math.min(i+holdingPeriod+1, indexStocks.size());
-                for(int j=i; j<end; ++j) {
+                for(int j=i-1; j<end; ++j) {
                     datesNextHoldingPeriod.add(indexStocks.get(j).getDate());
                 }
 
-                this.rebalance(formerDate, todayTemp, datesNextHoldingPeriod);
+                this.rebalance(formerDate, datesNextHoldingPeriod);
             } else {
                 holdingDaysIndex ++;
             }
@@ -122,15 +120,17 @@ System.out.println("mainLoop: " + indexStocks.get(i).getDate());
      * 计算指定日期所有股票形成期收益，并获取前holdingStockNum个的股票代码
      * 不同策略确定方法不一样
      * @param beforeDate 形成期前的日期
-     * @param today 调仓日期
-     * @param dates 下一个持有期的日期
+     * @param dates 下一个持有期的日期 get(0)是today日期
      */
-    private void rebalance(String beforeDate, String today, ArrayList<String> dates) {
-        this.sellStock(today);           //卖出所有持有的且当天没有停盘的股票
+    private void rebalance(String beforeDate, ArrayList<String> dates) {
+        String yesterday = dates.get(0);
+        String today = dates.get(1);
+        this.sellStock(yesterday);           //卖出所有持有的且当天没有停盘的股票
         //计算股票池內所有股票的收益率 用于确定下次持有的股票 不同策略确定方法不一样
-        ArrayList<String> rebalancedStockCodes = IStrategy.getRebalancedStockCodes(stockPool, holdingStockNum, beforeDate, today, dates);
+        ArrayList<String> rebalancedStockCodes = IStrategy.getRebalancedStockCodes(stockPool, holdingStocks, holdingStockNum, beforeDate, dates);
         //确定前n的股票 买入
         this.buyStock(rebalancedStockCodes, today);
+        this.calculatePeriodYield();                // 计算周期收益率
     }
 
     /**
@@ -169,7 +169,7 @@ System.out.println("               买入后size:" + this.holdingStocks.size());
             return;
         }
 
-        tempIncome  = income;
+        lastIncome = income;
         income = 0;  //当前本金+收益
         for (int i = 0; i < this.holdingStocks.size(); ++i) {
             double numOfStock = this.holdingStocks.get(i).getNumOfStock();
@@ -181,7 +181,6 @@ System.out.println("               买入后size:" + this.holdingStocks.size());
             }
         }
         this.holdingStocks.clear();
-        this.calculatePeriodYield();                //计算周期收益率
     }
 
     /**
@@ -234,10 +233,10 @@ System.out.println("      IStrategy-Yield:" + yield);
      * 计算每个持有期结束后的收益率
      */
     private void calculatePeriodYield() {
-System.out.println("                         前一周期收益：" + tempIncome);
+System.out.println("                         前一周期收益：" + lastIncome);
 System.out.println("                         当前周期收益：" + income);
 
-        double yield = (income-tempIncome)/tempIncome;
+        double yield = (income-lastIncome)/ lastIncome;
         this.yieldPerPeriod.add(yield);
     }
 

@@ -8,6 +8,10 @@ public class YieldStock {
     private String stockCode;
     private double yield;
 
+    /**
+     * @param stockCode 股票代码
+     * @param yield 收益率
+     */
     public YieldStock(String stockCode, double yield) {
         this.stockCode = stockCode;
         this.yield = yield;

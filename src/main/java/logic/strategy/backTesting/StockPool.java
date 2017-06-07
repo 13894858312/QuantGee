@@ -53,9 +53,8 @@ public class StockPool {
      * 初始化股票池的股票信息
      */
     private void initStocks() {
-
-        String s = DateHelper.formerNTradeDay(inputVO.getStartDate(), inputVO.getReturnPeriod());
         //时间范围之前的returnPeriod天的数据也需要拿
+        String s = DateHelper.formerNTradeDay(inputVO.getStartDate(), inputVO.getReturnPeriod());
         String e = inputVO.getEndDate();
 
         ArrayList<ArrayList<Stock>> allStocks = new ArrayList<>();
