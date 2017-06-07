@@ -42,6 +42,7 @@ public class StrategyAbnormalReturn {
     public void start() {
         StrategyBackTesting strategyBackTesting;
 
+        //初始0坐标
         if(isHoldingPeriod) {
             this.abnormalReturnLines.add(new AbnormalReturnLineVO(period, 0, 0, 0));
         } else {

@@ -9,28 +9,47 @@ import java.util.ArrayList;
  */
 public class StrategyBackTestInputVO {
 
-    /***************回测必须参数**************/
+    /********************回测必须参数*******************/
     private int stockPoolType;              //0指定板块 1指定股票
-    private int strategyType;               //0动量策略 1均值回归
+    private int strategyType;               //0动量策略 1均值回归 2双均线策略 3羊驼策略
     private String blockType;               //若stockPoolType为0 则指定板块名
     private ArrayList<String> stockCodes;   //若stockPoolType为1 则指定股票代码
     private String startDate;               //回测开始时间
     private String endDate;                 //回测结束时间
     private double initFund;                //初始资金
-    private boolean notST;                  //排除st
+    private boolean notST;                  //是否排除st
     private int holdingPeriod;              //股票持有期
-    private int returnPeriod;               //基准收益率计算周期 (形成期)  若是均值回归策略，则是N日移动均线
-    /***************回测必须参数**************/
+    /********************回测必须参数********************/
 
-    /***************不同策略的可选参数**************/
-    private int holdingStockNum; //每次调仓持有的股票数量 动量策略不需要输入holdingStockNum
-    private double ratio;        //strategyType为0时需要此参数 持有股票的比例
-    /***************不同策略的可选参数**************/
+    /******************不同策略的可选参数*****************/
+    private int holdingStockNum;            //strategyType为1时需要此参数 每次调仓持有的股票数量
+    private double ratio;                   //strategyType为0时需要此参数 持有股票的比例
+    private int returnPeriod;               //strategyType为0、1、2时需要此参数
+                                                //strategyType为0时表示形成期 strategyType为1时表示N日移动均线 strategyType为2时表示第一条N日平滑均线(长周期)
+    private int returnPeriod2;              //strategyType为2时需要此参数 表示第二条N日平滑均线(短周期)
+    private int changeNumber;               //strategyType为3时需要此参数 表示每次换仓换股数量
+    /******************不同策略的可选参数*****************/
 
-
-    /***************寻找最佳形成期需要的参数**************/
+    /***************寻找最佳形成期需要的参数***************/
     private boolean isHoldingPeriodFixed;     //持有期是否为不变量 用于寻找最佳形成期或持有期
+    /***************寻找最佳形成期需要的参数***************/
 
+
+    public int getChangeNumber() {
+        return changeNumber;
+    }
+
+    public void setChangeNumber(int changeNumber) {
+        this.changeNumber = changeNumber;
+    }
+
+    public int getReturnPeriod2() {
+        return returnPeriod2;
+    }
+
+    public void setReturnPeriod2(int returnPeriod2) {
+        this.returnPeriod2 = returnPeriod2;
+    }
 
     public int getStockPoolType() {
         return stockPoolType;

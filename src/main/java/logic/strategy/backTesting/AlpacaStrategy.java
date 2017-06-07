@@ -1,8 +1,6 @@
 package logic.strategy.backTesting;
 
-
 import bean.Stock;
-import logic.stock.StockHelper;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -10,15 +8,14 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 /**
- * Created by Mark.W on 2017/3/29.
- * 动量策略
+ * Created by Mark.W on 2017/6/7.
+ * 羊驼策略
  */
-@Service("0")
+@Service("3")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class MomentumDriveIStrategy implements IStrategy {
-
+public class AlpacaStrategy implements IStrategy{
     @Override
-    public ArrayList<String> getRebalancedStockCodes(StockPool stockPool,ArrayList<LogicHoldingStock> holdingStocks, int holdingStockNum, String beforeDate,ArrayList<String> dates) {
+    public ArrayList<String> getRebalancedStockCodes(StockPool stockPool, ArrayList<LogicHoldingStock> holdingStocks, int holdingStockNum, String beforeDate, ArrayList<String> dates) {
         if (dates.size() == 0) {
             return null;
         }

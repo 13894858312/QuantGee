@@ -40,26 +40,6 @@ public class StockHelper {
         return result;
     }
 
-    public static ArrayList<String> getTopNStocks(ArrayList<YieldStock> stocks, int n) {
-        ArrayList<String> result = new ArrayList<>();
-
-        for(int i=0; i<n; ++i) {
-            int index = 0;
-            for(int j=1; j<stocks.size(); ++j) {
-                if(stocks.get(j).getYield() > stocks.get(index).getYield()) {
-                    index = j;
-                }
-            }
-            result.add(stocks.get(index).getStockCode());
-            stocks.remove(index);
-        }
-
-        assert (result.size() > 0) : "logic.stock.StockHelper.getTopNStocks返回值size为0";
-        return result;
-    }
-
-
-
     /**
      * 均线图是将每天的收盘价加权平均,从而得到一条带有趋势性的轨迹。
      * @param sourceStocks 股票信息
