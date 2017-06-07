@@ -1,7 +1,7 @@
-.realmarket{
+.hismarket{
 	width: 100%;
-	height: 400px;
-	background-color: #FFFFFF;
+	height: 550px;
+	background-color: #FFFFFF; 
 }
 .hismarkethead{
 	float: left;
@@ -46,11 +46,101 @@
 }
 .kline{
 	float: left;
-	width: 800px;
-	/*width: 70%;*/
+	width: 70%;
 	height: 340px;
 	margin-top: 2px;
 	margin-left: 15%;
+	background-color: #FFFFFF;
+}
+.volume{
+	float: left;
+	width: 70%;
+	height: 147px;
+	margin-top: 2px;
+	margin-left: 15%;
+	background-color: #FFFFFF;
+}
+.realmarket{
+	float: left;
+	width: 100%;
+	height: 250px;
+	background-color: #FFFFFF;
+}
+.shangz{
+	float: left;
+	width: 22%;
+	height: 250px;
+	margin-left: 15%;
+	background-color: #FFFFFF;
+}
+.text{
+	float: left;
+	width: 32%;
+	height: 59px;
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #C0C0C0;
+}
+.name{
+	margin-top: 8px;
+	margin-left: 10%;
+	width: 100%;
+	font-size: 18px;
+	font-family: "Roboto Mono", monospace;
+	height: 20px;
+}
+.code{
+	margin-top: 5px;
+	margin-left: 17%;
+	width: 100%;
+	font-size: 18px;
+	font-family: "Roboto Mono", monospace;
+	height: 20px;
+}
+.info{
+	float: left;
+	margin-top: 14px;
+	width: 66%;
+	height: 45px;
+	background-color: #FFFFFF;
+	border-left: 1px solid #C0C0C0;
+	border-top: 1px solid #C0C0C0;
+	font-size: 12px;
+	font-family: "Roboto Mono", monospace;
+}
+.data{
+	float: left;
+	margin-left: 5%;
+	margin-top: 4px;
+	width: 45%;
+	height: 20px;
+}
+.udrange{
+	float: left;
+	width: 45%;
+	height: 20px;
+}
+.toprice{
+	float: left;
+	width: 45%;
+	height: 20px;
+}
+.udprice{
+	float: left;
+	width: 45%;
+	height: 20px;
+}
+.shenz{
+	float: left;
+	width: 22%;
+	height: 250px;
+	margin-left: 2%;
+	background-color: #FFFFFF;
+}
+.chuangy{
+	float: left;
+	width: 22%;
+	height: 250px;
+	margin-left: 2%;
 	background-color: #FFFFFF;
 }
 /*.firstHead{

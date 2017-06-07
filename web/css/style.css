@@ -8,10 +8,11 @@ body {
 .head {
 	/*float: left;*/
     width: 100%;
-    height: 64px;
+    height: 63px;
     background-color: #FFFFFF;
     font-family: "Roboto Mono", monospace;
     border-radius: 2px;
+    border-bottom: 1px solid #c0c0c0;
 }
 .hdlogo {
     float: left;

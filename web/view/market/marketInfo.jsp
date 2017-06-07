@@ -76,7 +76,7 @@
 				</div>
 			</div>	
         </div>
-		<div class="realmarket">
+		<div class="hismarket">
 			<div class="hismarkethead">
 				<div class="hmtext">
 					历史大盘
@@ -95,6 +95,57 @@
 			</div>
 			<div class="kline" id="kline"></div>
 			<script src="../../js/marketInfo/KLine.js"></script>
+			<div class="volume" id="volume"></div>
+		</div>
+		<div class="realmarket">
+			<div class="shangz">
+				<div class="text">
+					<div class="name">
+						上证指数
+					</div>
+					<div class="code">
+						1A0001
+					</div>
+				</div>
+				<div class="info">
+					<div class="data">昨收:3140.32</div>
+					<div class="data">涨跌幅:10.12%</div>
+					<div class="data">今开:3132.12</div>
+					<div class="data">涨跌:3140.32</div>
+				</div>
+			</div>
+			<div class="shenz">
+				<div class="text">
+					<div class="name">
+						深证指数
+					</div>
+					<div class="code">
+						399001
+					</div>
+				</div>
+				<div class="info">
+					<div class="data">昨收:3140.32</div>
+					<div class="data">涨跌幅:10.12%</div>
+					<div class="data">今开:3132.12</div>
+					<div class="data">涨跌:3140.32</div>
+				</div>
+			</div>
+			<div class="chuangy">
+				<div class="text">
+					<div class="name">
+						创业板指
+					</div>
+					<div class="code">
+						399006
+					</div>
+				</div>
+				<div class="info">
+					<div class="data">昨收:3140.32</div>
+					<div class="data">涨跌幅:10.12%</div>
+					<div class="data">今开:3132.12</div>
+					<div class="data">涨跌:3140.32</div>
+				</div>
+			</div>
 		</div>
     <!--<div class="firstHead">
     	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
