@@ -84,6 +84,7 @@ public class StrategyBackTestingServiceImpTest {
         inputVO.setStockPoolType(1);
         inputVO.setStrategyType(0);
         inputVO.setStockCodes(stockIDs);
+        inputVO.setInitFund(10000);
         inputVO.setStartDate("2017-03-30");
         inputVO.setEndDate("2017-05-24");
         inputVO.setHoldingPeriodFixed(true);

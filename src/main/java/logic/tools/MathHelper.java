@@ -33,18 +33,19 @@ public class MathHelper {
     public static double covariance(double[] data1, double[] data2) {
         double average1 = average(data1);
         double average2 = average(data2);
+        double cov;
 
         if(data1.length <= data2.length) {
             for(int i=0; i<data1.length; ++i) {
                 data1[i] = data1[i] * data2[i];
             }
+            cov = average(data1) - average1 * average2;
         } else {
             for(int i=0; i<data2.length; ++i) {
                 data2[i] = data1[i] * data2[i];
             }
+            cov = average(data2) - average1 * average2;
         }
-
-        double cov = average(data1) - average1 * average2;
 
         return cov;
     }

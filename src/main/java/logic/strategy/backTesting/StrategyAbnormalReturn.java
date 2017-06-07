@@ -1,7 +1,7 @@
 package logic.strategy.backTesting;
 
 
-import vo.strategy.AbnormalReturnLineDataVO;
+import vo.strategy.AbnormalReturnLineVO;
 import vo.strategy.AbnormalReturnResultVO;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class StrategyAbnormalReturn {
     private int period;
     private boolean isHoldingPeriod;
 
-    private ArrayList<AbnormalReturnLineDataVO> abnormalReturnLines;  //超额收益率和策略胜率图数据信息
+    private ArrayList<AbnormalReturnLineVO> abnormalReturnLines;  //超额收益率和策略胜率图数据信息
     private AbnormalReturnResultVO abnormalReturnResult;
 
     /**
@@ -43,9 +43,9 @@ public class StrategyAbnormalReturn {
         StrategyBackTesting strategyBackTesting;
 
         if(isHoldingPeriod) {
-            this.abnormalReturnLines.add(new AbnormalReturnLineDataVO(period, 0, 0, 0));
+            this.abnormalReturnLines.add(new AbnormalReturnLineVO(period, 0, 0, 0));
         } else {
-            this.abnormalReturnLines.add(new AbnormalReturnLineDataVO(0, period, 0, 0));
+            this.abnormalReturnLines.add(new AbnormalReturnLineVO(0, period, 0, 0));
         }
 
         for(int i=START_PERIOD; i<=END_PERIOD; i+=INTERVAL) {
@@ -63,9 +63,9 @@ System.out.println("                                          " + i + " abnormal
 System.out.println("                                          " + i + " winRate " + winRate);
 
             if(isHoldingPeriod) {
-                this.abnormalReturnLines.add(new AbnormalReturnLineDataVO(period, i, abnormalReturn, winRate));
+                this.abnormalReturnLines.add(new AbnormalReturnLineVO(period, i, abnormalReturn, winRate));
             } else {
-                this.abnormalReturnLines.add(new AbnormalReturnLineDataVO(i, period, abnormalReturn, winRate));
+                this.abnormalReturnLines.add(new AbnormalReturnLineVO(i, period, abnormalReturn, winRate));
             }
         }
 
@@ -79,11 +79,11 @@ System.out.println("                                          " + i + " winRate 
         int bestHoldingPeriod = 0;  //最佳持有期
         int bestReturnPeriod = 0;   //最佳形成期
 
-        double bestAbnormalReturn = abnormalReturnLines.get(0).getAbnormalReturn();  //最优的超额收益率
-        double bestStategyWinRate = abnormalReturnLines.get(0).getStategyWinRate();   //最优的策略胜率
+        double bestAbnormalReturn = abnormalReturnLines.get(1).getAbnormalReturn();  //最优的超额收益率
+        double bestStategyWinRate = abnormalReturnLines.get(1).getStategyWinRate();   //最优的策略胜率
 
         //计算以上最优的数据
-        for(int i = 0; i<this.abnormalReturnLines.size(); ++i) {
+        for(int i = 2; i<this.abnormalReturnLines.size(); ++i) {
             if(this.abnormalReturnLines.get(i).getAbnormalReturn() > bestAbnormalReturn) {
                 bestAbnormalReturn = this.abnormalReturnLines.get(i).getAbnormalReturn();
                 bestHoldingPeriod = this.abnormalReturnLines.get(i).getHoldingPeriod();

@@ -4,7 +4,7 @@ package vo.strategy;
  * Created by Mark.W on 2017/3/23.
  * 超额收益率和策略胜率图的坐标信息
  */
-public class AbnormalReturnLineDataVO {
+public class AbnormalReturnLineVO {
 
     private int holdingPeriod;  //持有期
     private int returnPeriod;  //形成期
@@ -18,8 +18,8 @@ public class AbnormalReturnLineDataVO {
      * @param abnormalReturn 超额收益率
      * @param stategyWinRate 策略胜率
      */
-    public AbnormalReturnLineDataVO(int holdingPeriod, int returnPeriod,
-                                    double abnormalReturn, double stategyWinRate) {
+    public AbnormalReturnLineVO(int holdingPeriod, int returnPeriod,
+                                double abnormalReturn, double stategyWinRate) {
         this.holdingPeriod = holdingPeriod;
         this.returnPeriod = returnPeriod;
         this.abnormalReturn = abnormalReturn;
