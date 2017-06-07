@@ -38,6 +38,20 @@ public class StockInfoData implements StockInfoDAO{
     }
 
     @Override
+    public Iterator<Current> getLatestCurrents() {
+        try {
+            String latest = (String) hibernateTemplate
+                    .find("select max (c.time) from Current  c").iterator().next();
+
+            Iterator<Current> iterator = (Iterator<Current>) hibernateTemplate
+                    .find("from Current c where c.time = ? ", latest).iterator();
+            return iterator;
+        }catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
     public Iterator<Stock> getStockInfo(String code) {
         Iterator<Stock> iterator = (Iterator<Stock>)hibernateTemplate
                 .find("from Stock s where s.code = ? ",code).iterator();
