@@ -22,37 +22,48 @@
     </script>
 	<script src="../../echarts.js"></script>
     <script src="../../jquery-3.2.1.min.js"></script>
+    <script src="../../js/marketInfo/headcontroller.js"></script>
     <!--<script src="../../js/stock/someInfo.js"></script>-->
     <style type="text/css">
     	@import "../../css/style.css";
 		@import "../../css/stock/firstStock.css";
     </style>
 </head>
-<body>
-		<div class="header fixed">
-
-        <div class="w1200">
+<body onload="changewhole2()">
+		<div class="w1200">
 
             <div class="hdlogo">
 
-                <a target="_blank" class="site-logo" href=""> <img src="../../images/theLogo.png" title="MyQuantGee" alt="MyQuantGee"></a>
+                <a target="_blank" class="site-logo" href=""> <img src="../../images/quantgeelogo.png" title="MyQuantGee" alt="MyQuantGee"></a>
 
             </div>
 
-            <div class="nav">
-
-                <a href="../../view/market/marketInfo.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">大盘行情</a>
-                <a href="stockFirst.jsp" onmouseover="s1(this)" onmouseout="s2(this)">个股信息</a>
-                <a href="../../view/industry/industry.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">行业资讯</a>
-                <a href="../../view/strategy/strategy.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">策略大全</a>
-                <a href="../../view/trade/trade.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">模拟交易</a>
-                <a href="../../view/ucenter/user_center.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">个人中心</a>
-
+			<div class="menu" id="ha1">
+                <a class="menua" id="a1"  href="marketInfo.jsp">大盘行情</a>
             </div>
+            <div class="menu" id="ha2">
+                <a class="menua" id="a2" href="../../view/stock/stockFirst.jsp" target="_blank">个股信息</a>
+            </div>
+            <div class="menu" id="ha3">
+                <a class="menua" id="a3" href="../../view/strategy/strategy.jsp" target="_blank">策略大全</a>
+            </div>
+            <div class="menu" id="ha4">
+               	<a class="menua" id="a4" href="../../view/trade/trade.jsp" target="_blank">模拟交易</a>
+            </div>
+            <div class="menu" id="ha5">
+                <a class="menua" id="a5" href="../../view/ucenter/user_center.jsp" target="_blank">个人中心</a>
+			</div>
+			<div class="marketlog">
+				<div class="logimg">
+					<img />
+				</div>
+				<div ></div>
+			</div>	
+				
 
-            <div class="login-box">
+            <!--<div class="login-box">
 
-                <a href="../../view/ucenter/login.jsp" target="_blank">登录</a>
+                <a href="../../view/ucenter/login.jsp" target="_self">登录</a>
 
             </div>
 
@@ -64,11 +75,9 @@
 
                 <a href="javascript:;" id="header_logined_out" target="_self" class="homeloginout">退出</a>
 
-            </div>
+            </div>-->
 
         </div>
-
-    </div>
     <div class="rightrange">
     	<span class="rightrangehead">个股涨跌榜</span>
     </div>

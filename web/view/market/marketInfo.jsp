@@ -5,6 +5,7 @@
     <title>MarketInfo</title>
     <script src="../../echarts.js"></script>
     <script src="../../jquery-3.2.1.min.js"></script>
+    <script src="../../js/marketInfo/headcontroller.js"></script>
     <%--<script type="text/javascript" for="window" event="onload">--%>
         <%--var reftime = 3000;//默认每隔10秒向后台发送请求--%>
         <%--var taskId;--%>
@@ -30,43 +31,47 @@
             <%--});--%>
         <%--}--%>
     <%--</script>--%>
-    <script>
-        function s1(x) {
-            x.style.fontWeight = "bold";
-            x.style.color = "#fff";
-        }
-        function s2(x) {
-            x.style.fontWeight = "400";
-            x.style.color = "#b7b7b7";
-        }
-    </script>
     <style type="text/css">
         @import "../../css/market/market.css";
         @import "../../css/style.css";
     </style>
 </head>
-<body>
-    <div class="header fixed">
+<body onload="changewhole1()">
 
         <div class="w1200">
 
             <div class="hdlogo">
 
-                <a target="_blank" class="site-logo" href=""> <img src="../../images/theLogo.png" title="MyQuantGee" alt="MyQuantGee"></a>
+                <a target="_blank" class="site-logo" href=""> <img src="../../images/quantgeelogo.png" title="MyQuantGee" alt="MyQuantGee"></a>
 
             </div>
 
-            <div class="nav">
-
-                <a href="marketInfo.jsp" onmouseover="s1(this)" onmouseout="s2(this)">大盘行情</a>
-                <a href="../../view/stock/stockFirst.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">个股信息</a>
-                <a href="../../view/strategy/strategy.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">策略大全</a>
-                <a href="../../view/trade/trade.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">模拟交易</a>
-                <a href="../../view/ucenter/user_center.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">个人中心</a>
-
+			<div class="menu" id="ha1">
+                <a class="menua" id="a1"  href="marketInfo.jsp">大盘行情</a>
             </div>
+            <div class="menu" id="ha2">
+                <a class="menua" id="a2" href="../../view/stock/stockFirst.jsp" target="_blank">个股信息</a>
+            </div>
+            <div class="menu" id="ha3">
+                <a class="menua" id="a3" href="../../view/strategy/strategy.jsp" target="_blank">策略大全</a>
+            </div>
+            <div class="menu" id="ha4">
+               	<a class="menua" id="a4" href="../../view/trade/trade.jsp" target="_blank">模拟交易</a>
+            </div>
+            <div class="menu" id="ha5">
+                <a class="menua" id="a5" href="../../view/ucenter/user_center.jsp" target="_blank">个人中心</a>
+			</div>
+			<div class="marketlog">
+				<div class="logimg">
+					<img src="../../images/headlogin.png"/>
+				</div>
+				<div class="logintext">
+					<a style="color: rgba(0, 0, 0, 0.6);font-weight: 400;cursor: hand;" >登录</a>
+				</div>
+			</div>	
+				
 
-            <div class="login-box">
+            <!--<div class="login-box">
 
                 <a href="../../view/ucenter/login.jsp" target="_self">登录</a>
 
@@ -80,11 +85,10 @@
 
                 <a href="javascript:;" id="header_logined_out" target="_self" class="homeloginout">退出</a>
 
-            </div>
+            </div>-->
 
         </div>
 
-    </div>
     <!--<div class="firstHead">
     	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
     </div>
