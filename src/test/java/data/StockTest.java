@@ -190,5 +190,16 @@ public class StockTest {
             System.out.println(iterator.next());
         }
     }
+
+    @Test
+    public void getLatest(){
+        Iterator<Current> iterator = stockInfoDAO.getLatestCurrents();
+        int i = 0;
+        while (iterator.hasNext()){
+            iterator.next();
+            i++;
+        }
+        System.out.print(i);
+    }
 }
 
