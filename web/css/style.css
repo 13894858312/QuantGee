@@ -1,21 +1,24 @@
 body {
     background: rgb(143, 152, 159);
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
 }
-.w1200 {
-	float: left;
+.head {
+	/*float: left;*/
     width: 100%;
     height: 64px;
     background-color: #FFFFFF;
     font-family: "Roboto Mono", monospace;
+    border-radius: 2px;
 }
-
 .hdlogo {
     float: left;
     width: 250px;
     margin-top: 7px;
     margin-left: 40px;
 }
-
 .menu{
 	float: left;
 	margin-left: 40px;
@@ -42,11 +45,66 @@ a {
 a:-webkit-any-link {
     cursor: auto;
 }
+div.search {
+	padding: 18px 0;
+	margin-left: 5%;
+}
+
+form {
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+}
+
+input, button {
+    border: none;
+    outline: none;
+}
+
+input {
+	width: 100%;
+	height: 35px;
+	padding-left: 13px;
+}
+
+button {
+    height: 42px;
+    width: 42px;
+    cursor: pointer;
+    position: absolute;
+}
+.bar7 {
+	float: left;
+	height: 30px;
+}
+.bar7 form {
+    height: 64px;
+}
+.bar7 input {
+    width: 250px;
+    border-radius: 42px;
+    border: 2px solid #003366;
+    background: #FFFFFF;
+    transition: .3s linear;
+    float: right;
+}
+/*.bar7 input:focus {
+    width: 300px;
+}*/
+.bar7 button {
+	background: none;
+    top: -8px;
+    right: 8px;
+}
+.bar7 button:before{
+	content: url(../images/searchbutton.png);
+    font-family: FontAwesome;
+    color: #324b4e;
+}
 .marketlog{
 	float: right;
 	width: 7%;
 	height: 64px;
-	/*background-color: #F8F8F8;*/
 }
 .logimg{
 	float: left;
