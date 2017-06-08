@@ -201,5 +201,11 @@ public class StockTest {
         }
         System.out.print(i);
     }
+
+    @Test
+    public void getCode(){
+        String code = stockInfoDAO.getCodeByName("平安银行");
+        Assert.assertEquals("000001",code);
+    }
 }
 

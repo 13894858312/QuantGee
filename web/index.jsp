@@ -95,7 +95,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="fh5co-portfolio animate-box">
-                        <a href="#" data-nav-section="explore">
+                        <a>
                             <div class="portfolio-entry" style="background-image: url(images/portfolio-1.jpeg);">
                                 <div class="desc">
                                     <p>展示每日大盘实时信息，涨跌龙虎榜等投资信息。</p>
@@ -109,7 +109,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="fh5co-portfolio animate-box">
-                        <a href="#" data-nav-section="explore">
+                        <a>
                             <div class="portfolio-entry" style="background-image: url(images/portfolio-2.jpeg);">
                                 <div class="desc">
                                     <p>提供单支股票信息，股票可加入收藏以便查看。</p>
@@ -123,7 +123,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="fh5co-portfolio animate-box">
-                        <a href="#" data-nav-section="explore">
+                        <a >
                             <div class="portfolio-entry" style="background-image: url(images/portfolio-3.jpeg);">
                                 <div class="desc">
                                     <p>提供最新鲜的股票相关资讯，供您投资参考。</p>
@@ -137,7 +137,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="fh5co-portfolio animate-box">
-                        <a href="#" data-nav-section="explore">
+                        <a>
                             <div class="portfolio-entry" style="background-image: url(images/portfolio-4.jpeg);">
                                 <div class="desc">
                                     <p>以历史数据计算您的策略收益率。支持自定义策略的分享与收藏。</p>
@@ -151,7 +151,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="fh5co-portfolio animate-box">
-                        <a href="#" data-nav-section="explore">
+                        <a >
                             <div class="portfolio-entry" style="background-image: url(images/portfolio-5.jpeg);">
                                 <div class="desc">
                                     <p>采用机器学习算法预测下一交易日的股票走势，助您一臂之力。</p>
@@ -165,7 +165,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="fh5co-portfolio animate-box">
-                        <a href="#" data-nav-section="explore">
+                        <a >
                             <div class="portfolio-entry" style="background-image: url(images/portfolio-6.jpeg);">
                                 <div class="desc">
                                     <p>实盘虚拟交易，锻炼您的投资技巧。</p>
