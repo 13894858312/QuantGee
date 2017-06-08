@@ -6,6 +6,8 @@
     <script src="../../echarts.js"></script>
     <script src="../../jquery-3.2.1.min.js"></script>
     <script src="../../js/marketInfo/headcontroller.js"></script>
+    <%--<script src="../../js/marketInfo/KLine.js"></script>--%>
+    <script src="../../js/marketInfo/news.js"></script>
     <%--<script type="text/javascript" for="window" event="onload">--%>
         <%--var reftime = 3000;//默认每隔10秒向后台发送请求--%>
         <%--var taskId;--%>
@@ -95,7 +97,7 @@
 			</div>
 			<div class="kline" id="kline"></div>
 			<div class="volume" id="volume"></div>
-			<script src="../../js/marketInfo/KLine.js"></script>
+            <script src="../../js/marketInfo/KLine.js"></script>
 		</div>
 		<div class="realmarket">
 			<div class="shangz">
@@ -163,13 +165,13 @@
 					</div>
 					<div class="newscontent">
 						<li class="content">
-							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a href="" id="zqcj1">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
 						</li>
 						<li class="content">
-							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a href="" id="zqcj2">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
 						</li>
 						<li class="content">
-							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a href="" id="zqcj3">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
 						</li>
 					</div>
 				</div>
