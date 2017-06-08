@@ -24,6 +24,7 @@ public class StrategyTradeRecordVO {
         this.code = code;
         this.money = MathHelper.formatData(money,2);
         this.price = price;
+        this.action = action;
     }
 
     public String getDate() {
@@ -40,5 +41,9 @@ public class StrategyTradeRecordVO {
 
     public double getPrice() {
         return price;
+    }
+
+    public int getAction() {
+        return action;
     }
 }

@@ -7,16 +7,19 @@ package logic.strategy.backTesting;
 public class LogicHoldingStock {
     private String stockCode;
     private double numOfStock;
+    private double money;
 
     private boolean canContinueHold;      //调仓时可否继续持有
     /**
      * @param stockCode 股票代码
      * @param numOfStock 持有股票数
+     * @param money 投入的钱
      */
-    public LogicHoldingStock(String stockCode, double numOfStock) {
+    public LogicHoldingStock(String stockCode, double numOfStock, double money) {
         this.stockCode = stockCode;
         this.numOfStock = numOfStock;
-        canContinueHold = true;
+        this.money = money;
+        this.canContinueHold = true;
     }
 
     public String getStockCode() {
@@ -29,6 +32,10 @@ public class LogicHoldingStock {
 
     public boolean isCanContinueHold() {
         return canContinueHold;
+    }
+
+    public double getMoney() {
+        return money;
     }
 
     public void setCanContinueHold(boolean canContinueHold) {
