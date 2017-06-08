@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2017/5/25
-  Time: 11:18
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -53,6 +46,12 @@
             <div class="menu" id="ha5">
                 <a class="menua" id="a5" href="../../view/ucenter/user_center.jsp" target="_blank">个人中心</a>
 			</div>
+			<div class="search bar7">
+        		<form>
+            		<input type="text" placeholder="请输入股票代码">
+            		<button type="submit"></button>
+        		</form>
+    		</div>
 			<div class="marketlog">
 				<div class="logimg">
 					<img src="../../images/headlogin.png"/>
@@ -61,8 +60,118 @@
 					<a href="../../view/ucenter/login.jsp" style="color: rgba(0, 0, 0, 0.6);font-weight: 400;cursor: hand;" >登录</a>
 				</div>
 			</div>	
-    </div>
-    <div class="rightrange">
+  	</div>
+  	<div class="rangeandgraph">
+  		<div class="range">
+  			<div class="rangehead">
+  				<div class="rangeheadtext">个股排行</div>
+  			</div>
+  			<div class="rangecontent">
+  				<div class="row">
+  					<div class="column">股票</div>
+  					<div class="column">涨幅(%)</div>
+  					<div class="column">现价</div>
+  					<div class="column">加自选</div>
+  				</div>
+  				<div class="row" id="row1">
+  					<div class="column1"><a>万家文化</a></div>
+  					<div class="column2">10.03</div>
+  					<div class="column3">10.75</div>
+  					<div class="column4">
+  						<img src="../../images/addbutton.png" />
+  					</div>
+  				</div>
+  				<div class="row">
+  					<div class="column1"><a>继峰股份</a></div>
+  					<div class="column2">10.03</div>
+  					<div class="column3">15.80</div>
+  					<div class="column4">
+  						<img src="../../images/addbutton.png" />
+  					</div>
+  				</div>
+  				<div class="row">
+  					<div class="column1"><a>恒为科技</a></div>
+  					<div class="column2">10.02</div>
+  					<div class="column3">22.40</div>
+  					<div class="column4">
+  						<img src="../../images/addbutton.png" />
+  					</div>
+  				</div>
+  				<div class="row">
+  					<div class="column1"><a>华钰矿业</a></div>
+  					<div class="column2">10.02</div>
+  					<div class="column3">22.29</div>
+  					<div class="column4">
+  						<img src="../../images/addbutton.png" />
+  					</div>
+  				</div>
+  				<div class="row">
+  					<div class="column1"><a>同达创业</a></div>
+  					<div class="column2">10.02</div>
+  					<div class="column3">25.37</div>
+  					<div class="column4">
+  						<img src="../../images/addbutton.png" />
+  					</div>
+  				</div>
+  				<div class="row">
+  					<div class="column1"><a>华脉科技</a></div>
+  					<div class="column2">10.01</div>
+  					<div class="column3">23.73</div>
+  					<div class="column4">
+  						<img src="../../images/addbutton.png" />
+  					</div>
+  				</div>
+  				<div class="row">
+  					<div class="column1"><a>上海洗霸</a></div>
+  					<div class="column2">10.01</div>
+  					<div class="column3">40.24</div>
+  					<div class="column4">
+  						<img src="../../images/addbutton.png" />
+  					</div>
+  				</div>
+  				<div class="row">
+  					<div class="column1"><a>元成股份</a></div>
+  					<div class="column2">10.00</div>
+  					<div class="column3">30.31</div>
+  					<div class="column4">
+  						<img src="../../images/addbutton.png" />
+  					</div>
+  				</div>
+  				<div class="row">
+  					<div class="column1"><a>艾艾精工</a></div>
+  					<div class="column2">9.99</div>
+  					<div class="column3">30.28</div>
+  					<div class="column4">
+  						<img src="../../images/addbutton.png" />
+  					</div>
+  				</div> 
+  				<div class="row">
+  					<div class="column1"><a>日播时尚</a></div>
+  					<div class="column2">9.99</div>
+  					<div class="column3">18.06</div>
+  					<div class="column4">
+  						<img src="../../images/addbutton.png" />
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  		<div class="graph">
+  			<div class="graphhead">
+  				<div class="nemeandcode">
+  					<div class="name">万家文化</div>
+  					<div class="code">600576</div>
+  				</div>
+  				<div class="stockInfo">
+  					<span style="color: rgb(207,25,74);">市盈率:10.19%</span>
+  					<span style="color: rgb(62, 196, 131);">市净率:13.14%</span>
+  				</div>
+  			</div>
+  			<div class="kline" id="kline"></div>
+  			<div class="volume" id="volume"></div>
+  			<script src="../../js/marketInfo/KLine.js"></script>
+  		</div>
+  	</div>
+    <!--<div class="rightrange">
     	<span class="rightrangehead">个股涨跌榜</span>
     </div>
     <div class="data"></div>
@@ -497,6 +606,6 @@
     	</div>
     	<div class="leftcontent"></div>
     	<div class="rightcontent"></div>
-    </div>
+    </div>-->
 </body>
 </html>
