@@ -16,7 +16,7 @@ public class LogicHoldingStock {
     public LogicHoldingStock(String stockCode, double numOfStock) {
         this.stockCode = stockCode;
         this.numOfStock = numOfStock;
-        canContinueHold = false;
+        canContinueHold = true;
     }
 
     public String getStockCode() {

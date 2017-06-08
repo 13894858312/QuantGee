@@ -13,6 +13,7 @@ import java.util.HashMap;
 public class LogicStock {
 
     private int startIndex;
+    private String code;
     private Stock beforeStock; //第一次确定股票 时间区间前returnPeriod天的股票信息
     private Stock startDateStock; //开始日期的股票数据 如果为空 抛弃该股票
     private ArrayList<Stock> stocks;
@@ -20,6 +21,7 @@ public class LogicStock {
 
     public LogicStock(String startDate, ArrayList<Stock> stocks) {
         this.stocks = stocks;
+        this.code = stocks.get(0).getCode();
         this.init(startDate);
     }
 
@@ -58,7 +60,7 @@ public class LogicStock {
         return this.stocksMap.get(date);
     }
 
-    public Stock getStartDateStockPO() {
+    public Stock getStartDateStock() {
         return startDateStock;
     }
 
@@ -72,5 +74,9 @@ public class LogicStock {
 
     public int getStartIndex() {
         return startIndex;
+    }
+
+    public String getCode() {
+        return code;
     }
 }

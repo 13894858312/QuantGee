@@ -18,8 +18,7 @@ import java.util.HashMap;
 public class MeanReversionIStrategy implements IStrategy {
 
     //保存所有股票的N日移动均线
-    private ArrayList<HashMap<String, MaVO>> allMaLine = new ArrayList<>();
-    private int returnPeriod;               //形成期
+    private HashMap<String, HashMap<String, MaVO>> allMaLine = new HashMap<>();
 
     @Override
     public ArrayList<String> getRebalancedStockCodes(StockPool stockPool, ArrayList<LogicHoldingStock> holdingStocks, int holdingStockNum,
@@ -34,21 +33,7 @@ public class MeanReversionIStrategy implements IStrategy {
 
         for (int i = 0; i < stockPool.getStocksList().size(); ++i) {
             Stock yesterdayStock = stockPool.getStocksList().get(i).getStockByDate(yesterday);
-
-            if(yesterdayStock == null) {
-                continue;
-            }
-
-            HashMap<String, MaVO> maLine;
-            int maType = stockPool.getInputVO().getReturnPeriod();
-            if(this.returnPeriod != maType) {       //第一次加载 将allAverageLine初始化
-                //初始化第i只股票的N日移动均线
-                maLine = StrategyHelper.getMaFromStockPool(stockPool, yesterdayStock.getCode(), maType);
-                //添加到allAverageLine
-                allMaLine.add(maLine);
-            } else {     //不是第一次加载，直接从allAverageLine中获取
-                maLine = this.allMaLine.get(i);
-            }
+            if(yesterdayStock == null) { continue;}
 
             boolean live = true;                     //持有期內每天的股票信息必须有 否则不持有该股票
             for (int j = 1; j < dates.size(); ++j) {
@@ -58,17 +43,27 @@ public class MeanReversionIStrategy implements IStrategy {
                     break;
                 }
             }
+            if (!live) { continue;}
 
-            if (live) {
-                //计算偏离度 (均值-当天的开盘价)/ 均值
-                double average = 0;
-                if (maLine.get(yesterday) != null) {
-                    average = maLine.get(yesterday).getAverageValue();
+            HashMap<String, MaVO> maLine = allMaLine.get(yesterdayStock.getCode());
+            if(maLine == null) {                                                //第一次加载 将allAverageLine初始化
+                int maType = stockPool.getInputVO().getReturnPeriod();           //添加到allAverageLine
+                maLine = StrategyHelper.getMaFromStockPool(stockPool, yesterdayStock.getCode(), maType);
+                if(maLine != null) {
+                    allMaLine.put(yesterdayStock.getCode(),maLine);
+                } else {
+                    continue;
                 }
-
-                double yield = (average - yesterdayStock.getClose()) / average;
-                yieldStocks.add(new YieldStock(yesterdayStock.getCode(), yield));
             }
+
+            //计算偏离度 (均值-当天的开盘价)/ 均值
+            double average = 0;
+            if (maLine.get(yesterday) != null) {
+                average = maLine.get(yesterday).getMa();
+            }
+
+            double yield = (average - yesterdayStock.getClose()) / average;
+            yieldStocks.add(new YieldStock(yesterdayStock.getCode(), yield));
         }
 
         //得到收益前holdingStockNum的股票代码
@@ -79,20 +74,17 @@ public class MeanReversionIStrategy implements IStrategy {
 
         HashMap<String, LogicHoldingStock> hashMap = new HashMap<>();
         for (int i=0; i<holdingStocks.size(); ++i) {
+            holdingStocks.get(i).setCanContinueHold(false);         //假设现在持有的股票都不可以继续持有
             hashMap.put(holdingStocks.get(i).getStockCode(), holdingStocks.get(i));
         }
 
         for (int i=0; i<topCodes.size(); ++i) {
-            LogicHoldingStock temp = hashMap.get(topCodes.get(i));
-            if (temp != null) {
-                temp.setCanContinueHold(true);              //可以继续持有该股票
+            if (hashMap.get(topCodes.get(i)) != null) {
+                hashMap.get(topCodes.get(i)).setCanContinueHold(true);     //将可以继续持有的股票保留
             } else {
                 result.add(topCodes.get(i));
             }
         }
-
-        //初始化形成期
-        this.returnPeriod = stockPool.getInputVO().getReturnPeriod();
 
         return result;
     }
