@@ -30,7 +30,7 @@
     </style>
 </head>
 <body onload="changewhole2()">
-		<div class="w1200">
+		<div class="head">
 
             <div class="hdlogo">
 
@@ -55,29 +55,13 @@
 			</div>
 			<div class="marketlog">
 				<div class="logimg">
-					<img />
+					<img src="../../images/headlogin.png"/>
 				</div>
-				<div ></div>
+				<div class="logintext">
+					<a href="../../view/ucenter/login.jsp" style="color: rgba(0, 0, 0, 0.6);font-weight: 400;cursor: hand;" >登录</a>
+				</div>
 			</div>	
-				
-
-            <!--<div class="login-box">
-
-                <a href="../../view/ucenter/login.jsp" target="_self">登录</a>
-
-            </div>
-
-            <div class="logined_box hide fr">
-
-                <a href="http://stock.10jqka.com.cn/my/" target="_blank" id="J_username" style="background-position: 100% 40px;">linhanzi</a>
-
-                <span>|</span>
-
-                <a href="javascript:;" id="header_logined_out" target="_self" class="homeloginout">退出</a>
-
-            </div>-->
-
-        </div>
+    </div>
     <div class="rightrange">
     	<span class="rightrangehead">个股涨跌榜</span>
     </div>

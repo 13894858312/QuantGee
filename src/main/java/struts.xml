@@ -51,6 +51,11 @@
                 <param name="root">result</param>
             </result>
         </action>
+		<action name="getVolume" class="marketInfoAction" method="getVolume">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
 	</package>
 	<package name="list" extends="json-default,struts-default">
 		<action name="riseIndustryList" class="listAction" method="getIndustryUpList">

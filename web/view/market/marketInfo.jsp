@@ -38,7 +38,7 @@
 </head>
 <body onload="changewhole1()">
 
-        <div class="w1200">
+        <div class="head">
 
             <div class="hdlogo">
 
@@ -61,34 +61,156 @@
             <div class="menu" id="ha5">
                 <a class="menua" id="a5" href="../../view/ucenter/user_center.jsp" target="_blank">个人中心</a>
 			</div>
+			<div class="search bar7">
+        		<form>
+            		<input type="text" placeholder="请输入股票代码">
+            		<button type="submit"></button>
+        		</form>
+    		</div>
 			<div class="marketlog">
 				<div class="logimg">
 					<img src="../../images/headlogin.png"/>
 				</div>
 				<div class="logintext">
-					<a style="color: rgba(0, 0, 0, 0.6);font-weight: 400;cursor: hand;" >登录</a>
+					<a href="../../view/ucenter/login.jsp" style="color: rgba(0, 0, 0, 0.6);font-weight: 400;cursor: hand;" >登录</a>
 				</div>
 			</div>	
-				
-
-            <!--<div class="login-box">
-
-                <a href="../../view/ucenter/login.jsp" target="_self">登录</a>
-
-            </div>
-
-            <div class="logined_box hide fr">
-
-                <a href="http://stock.10jqka.com.cn/my/" target="_blank" id="J_username" style="background-position: 100% 40px;">linhanzi</a>
-
-                <span>|</span>
-
-                <a href="javascript:;" id="header_logined_out" target="_self" class="homeloginout">退出</a>
-
-            </div>-->
-
         </div>
-
+		<div class="hismarket">
+			<div class="hismarkethead">
+				<div class="hmtext">
+					历史大盘
+				</div>
+				<div class="mkbutton">
+					<div class="klinebutton">
+						日K线
+					</div>
+					<div class="klinebutton">
+						周K线
+					</div>
+					<div class="klinebutton">
+						月K线
+					</div>
+				</div>
+			</div>
+			<div class="kline" id="kline"></div>
+			<div class="volume" id="volume"></div>
+			<script src="../../js/marketInfo/KLine.js"></script>
+		</div>
+		<div class="realmarket">
+			<div class="shangz">
+				<div class="text">
+					<div class="name">
+						上证指数
+					</div>
+					<div class="code">
+						1A0001
+					</div>
+				</div>
+				<div class="info">
+					<div class="data">昨收:3140.32</div>
+					<div class="data">涨跌幅:10.12%</div>
+					<div class="data">今开:3132.12</div>
+					<div class="data">涨跌:3140.32</div>
+				</div>
+			</div>
+			<div class="shenz">
+				<div class="text">
+					<div class="name">
+						深证指数
+					</div>
+					<div class="code">
+						399001
+					</div>
+				</div>
+				<div class="info">
+					<div class="data">昨收:3140.32</div>
+					<div class="data">涨跌幅:10.12%</div>
+					<div class="data">今开:3132.12</div>
+					<div class="data">涨跌:3140.32</div>
+				</div>
+			</div>
+			<div class="chuangy">
+				<div class="text">
+					<div class="name">
+						创业板指
+					</div>
+					<div class="code">
+						399006
+					</div>
+				</div>
+				<div class="info">
+					<div class="data">昨收:3140.32</div>
+					<div class="data">涨跌幅:10.12%</div>
+					<div class="data">今开:3132.12</div>
+					<div class="data">涨跌:3140.32</div>
+				</div>
+			</div>
+		</div>
+		<div class="news">
+			<div class="newstext">
+				<div class="newshead">
+					<div class="nhname">新闻资讯</div>
+				</div>
+				<div class="zqcj">
+					<div class="titleimg">
+						<div class="num">1</div>
+					</div>
+					<div class="titletext">
+						证券交易
+					</div>
+					<div class="newscontent">
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+					</div>
+				</div>
+				<div class="gncj">
+					<div class="titleimg">
+						<div class="num">2</div>
+					</div>
+					<div class="titletext">
+						国内财经
+					</div>
+					<div class="newscontent">
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+					</div>
+				</div>
+				<div class="mgwh">
+					<div class="titleimg">
+						<div class="num">3</div>
+					</div>
+					<div class="titletext">
+						美股外汇
+					</div>
+					<div class="newscontent">
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+					</div>
+				</div>
+			</div>
+		</div>
     <!--<div class="firstHead">
     	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
     </div>
