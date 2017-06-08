@@ -35,6 +35,7 @@ body {
 a:hover{
 	color: rgb(62, 196, 131);
 	font-weight: 500;
+	cursor: hand;
 }
 a {
     outline: none;

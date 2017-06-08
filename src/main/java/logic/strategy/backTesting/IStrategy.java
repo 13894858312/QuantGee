@@ -14,9 +14,11 @@ public interface IStrategy {
      * @param stockPool 股票池
      * @param holdingStocks 当前持有的股票
      * @param holdingStockNum 持有的股票数量
-     * @param beforeDate 形成期第一天的时间
+     * @param formerRPeriodDate 上一个形成期的日期
+     * @param formerHPeriod 上一个持有期的日期
      * @param dates 下一个持有期每天的日期 get0是昨天日期
      * @return ArrayList<String>
      */
-    ArrayList<String> getRebalancedStockCodes(StockPool stockPool,ArrayList<LogicHoldingStock> holdingStocks, int holdingStockNum, String beforeDate, ArrayList<String> dates);
+    ArrayList<String> getRebalancedStockCodes(StockPool stockPool, ArrayList<LogicHoldingStock> holdingStocks,
+                                              int holdingStockNum, String formerRPeriodDate, String formerHPeriod,ArrayList<String> dates);
 }

@@ -93,4 +93,11 @@ public interface StockInfoDAO {
      * @return Iterator
      */
     public Iterator<String> getAllIndustryNames();
+
+    /**
+     * 根据股票名称获得股票代码（错误返回null）
+     * @param name 股票名称
+     * @return 股票代码
+     */
+    public String getCodeByName(String name);
 }

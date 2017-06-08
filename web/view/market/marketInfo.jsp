@@ -94,8 +94,8 @@
 				</div>
 			</div>
 			<div class="kline" id="kline"></div>
-			<script src="../../js/marketInfo/KLine.js"></script>
 			<div class="volume" id="volume"></div>
+			<script src="../../js/marketInfo/KLine.js"></script>
 		</div>
 		<div class="realmarket">
 			<div class="shangz">
@@ -144,6 +144,70 @@
 					<div class="data">涨跌幅:10.12%</div>
 					<div class="data">今开:3132.12</div>
 					<div class="data">涨跌:3140.32</div>
+				</div>
+			</div>
+		</div>
+		<div class="news">
+			<div class="newstext">
+				<div class="newshead">
+					<div class="nhname">新闻资讯</div>
+				</div>
+				<div class="zqcj">
+					<div class="titleimg">
+						<div class="num">1</div>
+					</div>
+					<div class="titletext">
+						证券交易
+					</div>
+					<div class="newscontent">
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+					</div>
+				</div>
+				<div class="gncj">
+					<div class="titleimg">
+						<div class="num">2</div>
+					</div>
+					<div class="titletext">
+						国内财经
+					</div>
+					<div class="newscontent">
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+					</div>
+				</div>
+				<div class="mgwh">
+					<div class="titleimg">
+						<div class="num">3</div>
+					</div>
+					<div class="titletext">
+						美股外汇
+					</div>
+					<div class="newscontent">
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+					</div>
 				</div>
 			</div>
 		</div>
