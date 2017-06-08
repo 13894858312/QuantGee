@@ -200,6 +200,9 @@
 	background-color: #FFFFFF;
 	border-bottom: 1px solid #C0C0C0;
 }
+.content a{
+    color: #000000;
+}
 .gncj{
 	float: left;
 	margin-left: 2%;
