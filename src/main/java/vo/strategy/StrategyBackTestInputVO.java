@@ -159,6 +159,30 @@ public class StrategyBackTestInputVO {
         isHoldingPeriodFixed = holdingPeriodFixed;
     }
 
+    public int getTrainPeriod() {
+        return trainPeriod;
+    }
+
+    public void setTrainPeriod(int trainPeriod) {
+        this.trainPeriod = trainPeriod;
+    }
+
+    public int getK() {
+        return k;
+    }
+
+    public void setK(int k) {
+        this.k = k;
+    }
+
+    public int getVectorLength() {
+        return vectorLength;
+    }
+
+    public void setVectorLength(int vectorLength) {
+        this.vectorLength = vectorLength;
+    }
+
     /**
      * 判断StrategyInputVO是否相同 用来确定是否要重新加载股票池
      * @param input StrategyBackTestInputVO
