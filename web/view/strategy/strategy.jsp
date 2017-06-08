@@ -105,36 +105,162 @@
 				<div class=tagContent id=tagContent3>第四个标签</div>
 			</div>
 		</div>
-		
+
 		<div id="strategybar">
 			<div class="hmtext">策略演示</div>
 		</div>
 
+		<div id="createStockPool">
+			<div id="tip">
+				<span >构造股票池</span>
+				<ul id=tip_tags>
+					<li >
+						<a onclick="" href="javascript:void(0)">按板块</a>
+					</li>
+					<li>
+						<A onclick="" href="javascript:void(0)">按股票</a>
+					</li>
+				</ul>
+			</div>
+			<div id=block style="vertical-align: text-bottom;">
+				<span style="height: 30px;">选择板块</span>
+				<select style="height: 30px; width: 100px;">
+					<option value="0">上证</option>
+					<option value="1">深证</option>
+					<option value="2">中小板</option>
+					<option value="3">创业板</option>
+				</select>
+			</div>
+			
+		</div>
+
 		<div id=con_str>
-			<ul id=tags_str>
+			<span id="chooseStrategy">选择策略</span>
+			<ul id=tip_tags>
 				<li class=selectTag_str>
-					<a onMouseover="selectStrategyTag('tagContent_str0',this)" href="javascript:void(0)">动量策略</a>
+					<a onclick="selectStrategyTag('tagContent_str0',this)" href="javascript:void(0)">动量策略</a>
 				</li>
 				<li>
-					<A onMouseover="selectStrategyTag('tagContent_str1',this)" href="javascript:void(0)">均值回归</a>
+					<A onclick="selectStrategyTag('tagContent_str1',this)" href="javascript:void(0)">均值回归</a>
 				</li>
 				<li>
-					<A onMouseover="selectStrategyTag('tagContent_str2',this)" href="javascript:void(0)">xx策略</a>
+					<A onclick="selectStrategyTag('tagContent_str2',this)" href="javascript:void(0)">xx策略</a>
 				</li>
 				<li>
-					<A onMouseover="selectStrategyTag('tagContent_str3',this)" href="javascript:void(0)">xx策略</a>
+					<A onclick="selectStrategyTag('tagContent_str3',this)" href="javascript:void(0)">xx策略</a>
 				</li>
 			</ul>
 			<div id=tagContent_str>
 				<div class="tagContent_str selectTag_str" id=tagContent_str0>
-					<table id="paramChoose">
-						<tr>
-							<th>Header</th>
-						</tr>
-						<tr>
-							<td>Data</td>
-						</tr>
-					</table>
+					<form id="param">
+						<table id="paramTable">
+							<tr>
+								<th>
+									<p>指定
+										<select onchange="changeStockPool(this[selectedIndex].value)">
+											<option value="0">板块</option>
+											<option value="1">股票</option>
+										</select>
+									</p>
+								</th>
+								<th>
+									<span id="poolName">板块名</span>
+									<select>
+										<option value="0">动量策略</option>
+									</select>
+								</th>
+								<th>
+									<span>选择策略</span>
+									<select>
+										<option value="0">动量策略</option>
+									</select>
+								</th>
+								<th>
+									<span>选择策略</span>
+									<select>
+										<option value="0">动量策略</option>
+									</select>
+								</th>
+								<th>
+									<span>选择策略</span>
+									<select>
+										<option value="0">动量策略</option>
+									</select>
+								</th>
+							</tr>
+							<tr>
+								<th>
+									<p>指定
+										<select>
+											<option value="0">板块</option>
+											<option value="1">股票</option>
+										</select>
+									</p>
+
+								</th>
+								<th>
+									<span>选择策略</span>
+									<select>
+										<option value="0">动量策略</option>
+									</select>
+								</th>
+								<th>
+									<span>选择策略</span>
+									<select>
+										<option value="0">动量策略</option>
+									</select>
+								</th>
+								<th>
+									<span>选择策略</span>
+									<select>
+										<option value="0">动量策略</option>
+									</select>
+								</th>
+								<th>
+									<span>选择策略</span>
+									<select>
+										<option value="0">动量策略</option>
+									</select>
+								</th>
+							</tr>
+							<tr>
+								<th>
+									<p>指定
+										<select>
+											<option value="0">板块</option>
+											<option value="1">股票</option>
+										</select>
+									</p>
+
+								</th>
+								<th>
+									<span>选择策略</span>
+									<select>
+										<option value="0">动量策略</option>
+									</select>
+								</th>
+								<th>
+									<span>选择策略</span>
+									<select>
+										<option value="0">动量策略</option>
+									</select>
+								</th>
+								<th>
+									<span>选择策略</span>
+									<select>
+										<option value="0">动量策略</option>
+									</select>
+								</th>
+								<th>
+									<span>选择策略</span>
+									<select>
+										<option value="0">动量策略</option>
+									</select>
+								</th>
+							</tr>
+
+						</table>
+					</form>
 				</div>
 				<div class=tagContent_str id=tagContent_str1>
 				</div>
@@ -143,7 +269,9 @@
 			</div>
 		</div>
 
-		
+		<hr />
+		<div style="height: 100%;"></div>
+
 	</body>
 
 </html>
