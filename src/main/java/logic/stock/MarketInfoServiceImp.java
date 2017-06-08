@@ -105,15 +105,13 @@ public class MarketInfoServiceImp implements MarketInfoService{
 
     @Override
     public ArrayList<TopStockVO> getTopStocks(int upOrDown) {
-        Iterator<String> codes = stockInfoDAO.getAllStockCodes();
+        Iterator<Current> stocks = stockInfoDAO.getLatestCurrents();
         ArrayList<TopStock> topStocks = new ArrayList<>();
         ArrayList<TopStockVO> result = new ArrayList<>();
 
-        while(codes.hasNext()) {
-            Current current = stockInfoDAO.getStockRealTimeInfo(codes.next());
-            if (current != null) {
-                topStocks.add(new TopStock(current.getCode(), current.getChangepercent(), current.getTrade()));
-            }
+        while(stocks.hasNext()) {
+            Current current = stocks.next();
+            topStocks.add(new TopStock(current.getCode(), current.getChangepercent(), current.getTrade()));
         }
 
 System.out.println("*********************************topstocks.size: " + topStocks.size());
