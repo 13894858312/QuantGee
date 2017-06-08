@@ -83,8 +83,6 @@ public class StrategyBackTesting {
         for(int i=startIndex; i<indexStocks.size(); ++i) {
 System.out.println("mainLoop: " + indexStocks.get(i).getDate());
 
-            int tempIndex = Math.max(i-this.returnPeriod, 0);
-            String formerDate = indexStocks.get(tempIndex).getDate();
             String todayTemp = indexStocks.get(i).getDate();
 
             if(holdingDaysIndex == holdingPeriod) {        //若达到holdingPeriod index置0
@@ -96,7 +94,12 @@ System.out.println("mainLoop: " + indexStocks.get(i).getDate());
                     datesNextHoldingPeriod.add(indexStocks.get(j).getDate());
                 }
 
-                this.rebalance(formerDate,datesNextHoldingPeriod);
+                int tempIndex = Math.max(i-this.returnPeriod, 0);
+                String formerRDate = indexStocks.get(tempIndex).getDate();
+                tempIndex = Math.max(i-this.holdingPeriod, 0);
+                String formerHDate = indexStocks.get(tempIndex).getDate();
+
+                this.rebalance(formerRDate,formerHDate,datesNextHoldingPeriod);
             } else {
                 holdingDaysIndex ++;
             }
@@ -124,18 +127,19 @@ System.out.println("mainLoop: " + indexStocks.get(i).getDate());
      * 一个持有期结束
      * 计算指定日期所有股票形成期收益，并获取前holdingStockNum个的股票代码
      * 不同策略确定方法不一样
+     * @param formerRDate 上一个形成期的日日期
+     * @param formerHDate 上一个持有期的日期
      * @param dates 下一个持有期的日期 get(0)是today日期
      */
-    private void rebalance(String formerDate, ArrayList<String> dates) {
+    private void rebalance(String formerRDate, String formerHDate, ArrayList<String> dates) {
         String yesterday = dates.get(0);
         String today = dates.get(1);
         //计算股票池內所有股票的收益率 用于确定下次持有的股票 不同策略确定方法不一样
-        ArrayList<String> rebalancedStockCodes = IStrategy.getRebalancedStockCodes(stockPool, holdingStocks, holdingStockNum,formerDate, null,dates);
+        ArrayList<String> rebalancedStockCodes = IStrategy.getRebalancedStockCodes(stockPool, holdingStocks, holdingStockNum,formerRDate, formerHDate, dates);
 
-        this.sellStock(yesterday);           //卖出所有持有的且当天没有停盘的股票
-        //确定前n的股票 买入
-        this.buyStock(rebalancedStockCodes, today);
-        this.calculatePeriodYield();                // 计算周期收益率
+        this.sellStock(yesterday);                          //卖出所有持有的且当天没有停盘的股票
+        this.buyStock(rebalancedStockCodes, today);         //确定前n的股票 买入
+        this.calculatePeriodYield();                        // 计算周期收益率
     }
 
     /**

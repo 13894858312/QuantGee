@@ -18,22 +18,24 @@ public class AlpacaStrategy implements IStrategy{
 
     @Override
     public ArrayList<String> getRebalancedStockCodes(StockPool stockPool, ArrayList<LogicHoldingStock> holdingStocks, int holdingStockNum,
-                                                     String formerRPeriodDate, String formerHPeriod,ArrayList<String> dates) {
-        if (dates.size() == 0) {
-            return null;
-        }
+                                                     String formerRPeriodDate, String formerHPeriodDate, ArrayList<String> dates) {
+        if (dates.size() == 0) {return null;}
+
         String yesterday = dates.get(0);
+        String today = dates.get(1);
+        int changeNum = stockPool.getInputVO().getChangeNumber();
 
         ArrayList<YieldStock> allstockYields = new ArrayList<>();
         ArrayList<YieldStock> holdingstockYields = new ArrayList<>();
-        ArrayList<String> addStockCodes;
+        ArrayList<String> addCodes;
+        ArrayList<String> sellCodes;
 
         for(int i = 0; i<stockPool.getStocksList().size(); ++i) {
             Stock before = stockPool.getStocksList().get(i).getStockByDate(formerRPeriodDate);
             Stock yesterdayStock = stockPool.getStocksList().get(i).getStockByDate(yesterday);
 
             if (yesterdayStock != null && before != null) {
-                boolean live = true;                                   //持有期內每天的股票信息必须有 否则不持有该股票
+                boolean live = true;                                   //持有期内每天的股票信息必须有 否则不持有该股票
                 for(int j=1; j<dates.size(); ++j) {
                     Stock po = stockPool.getStocksList().get(i).getStockByDate(dates.get(j));
                     if(po == null) {
@@ -49,25 +51,40 @@ public class AlpacaStrategy implements IStrategy{
                 }
             }
         }
-        //得到收益前holdingStockNum的股票代码
-        addStockCodes  = StrategyHelper.getTopNStocks(allstockYields, holdingStockNum, false);
 
-//
-//        HashMap<String, LogicHoldingStock> hashMap = new HashMap<>();
-//        for (int i=0; i<holdingStocks.size(); ++i) {
-//            hashMap.put(holdingStocks.get(i).getStockCode(), holdingStocks.get(i));
-//        }
-//
-//        for (int i=0; i<tempCodes.size(); ++i) {
-//            LogicHoldingStock temp = hashMap.get(tempCodes.get(i));
-//            if (temp != null) {
-//                temp.setCanContinueHold(true);              //可以继续持有该股票
-//            } else {
-//                addStockCodes.add(tempCodes.get(i));
-//            }
-//        }
+        if (holdingStocks.size() == 0) {
+            addCodes  = StrategyHelper.getTopNStocks(allstockYields, holdingStockNum, false);
+            return addCodes;
+        }
+        //得到收益后holdingStockNum的股票代码
+        addCodes  = StrategyHelper.getTopNStocks(allstockYields, changeNum, false);
 
-        return addStockCodes;
+        //先设置能可以继续持有所有现持有的股票 初始化
+        for (int i=0; i<holdingStocks.size(); ++i) {
+            holdingStocks.get(i).setCanContinueHold(true);
+        }
 
+        for (int i=0; i<holdingStocks.size(); ++i) {
+            String code = holdingStocks.get(i).getStockCode();
+            Stock beforeStock = stockPool.getStockByCodeAndDate(code, formerHPeriodDate);
+            Stock todayStock = stockPool.getStockByCodeAndDate(code, today);
+
+            if (todayStock != null && beforeStock != null) {
+                double yield = (todayStock.getClose()-beforeStock.getClose())/beforeStock.getClose();
+                holdingstockYields.add(new YieldStock(code, yield));
+            }
+        }
+
+        sellCodes = StrategyHelper.getTopNStocks(holdingstockYields, changeNum, false);
+        HashMap<String, LogicHoldingStock> hashMap = new HashMap<>();
+        for (int i=0; i<holdingStocks.size(); ++i) {
+            hashMap.put(holdingStocks.get(i).getStockCode(), holdingStocks.get(i));
+        }
+        //将收益后changeNum个卖出
+        for (int i=0; i<sellCodes.size(); ++i) {
+            hashMap.get(sellCodes.get(i)).setCanContinueHold(false);
+        }
+
+        return addCodes;
     }
 }

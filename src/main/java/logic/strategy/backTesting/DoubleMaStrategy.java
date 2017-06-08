@@ -12,6 +12,11 @@ import java.util.ArrayList;
  */
 @Service("2")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class DoubleMaStrategy{
+public class DoubleMaStrategy implements IStrategy {
 
+    @Override
+    public ArrayList<String> getRebalancedStockCodes(StockPool stockPool, ArrayList<LogicHoldingStock> holdingStocks, int holdingStockNum,
+                                                     String formerRPeriodDate, String formerHPeriod, ArrayList<String> dates) {
+        return null;
+    }
 }
