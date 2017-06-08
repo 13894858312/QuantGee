@@ -162,19 +162,86 @@ ol li {
 	DISPLAY: block
 }
 
-#chartsContent {
-	padding: 0px;
+#param {
+	width: 100%;
+}
+
+#paramTable {
+	width: 100%;
+}
+
+#paramTable th {
+	width: 20%;
+}
+
+#createStockPool {
+	margin: 20px auto;
+	width: 70%;
+}
+
+#createStockPool span{
+	float: left;
+    line-height: 40.14px;
+    font-size: 18px;
+    font-family: 'Cabin Condensed', sans-serif;
+    font-weight: bold;
+    color: #000000;
+    background: #FFFFFF;
+}
+
+#tip_tags {
 	margin: 0px;
-	background-color: #fff
+	padding: 0px;
+	margin-left: 90px;	
+	opacity: 0.8;
+	background-color: #FFFFFF;
+	height: 5%;
+	font-size: 18px;
+	font-family: 'Cabin Condensed', sans-serif;
+	font-weight: bold;
 }
 
-.chartsContent {
-	overflow-y: scroll;
-	/*border: 1px solid #000000;*/
-	DISPLAY: none;
+#tip_tags li {
+	float: left;
+	margin-right: 1px;
+	list-style-type: none;
 	height: 100%;
+	vertical-align: middle;
 }
 
-#chartsContent DIV.selectTag {
-	DISPLAY: block
+#tip_tags li a {
+	PADDING-RIGHT: 10px;
+	PADDING-LEFT: 10px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	COLOR: #999;
+	PADDING-TOP: 0px;
+	TEXT-DECORATION: none;
+	line-height: 40px;
+	height: 40px;
+	vertical-align: middle;
+}
+
+#tip_tags li.selectTag_str {
+	MARGIN-BOTTOM: -2px;
+	POSITION: relative;
+	HEIGHT: 100%
+}
+
+#tip_tags li.selectTag_str a {
+	border-bottom: 2px solid rgb(62, 196, 131);
+	COLOR: #000;
+	LINE-HEIGHT: 40px;
+	HEIGHT: 40px;
+	vertical-align: middle;
+}
+
+#chooseStrategy{
+	float: left;
+    line-height: 40.14px;
+    font-size: 18px;
+    font-family: 'Cabin Condensed', sans-serif;
+    font-weight: bold;
+    color: #000000;
+    background: #FFFFFF;
 }
