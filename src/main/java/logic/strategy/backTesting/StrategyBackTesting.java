@@ -130,7 +130,7 @@ System.out.println("mainLoop: " + indexStocks.get(i).getDate());
         String yesterday = dates.get(0);
         String today = dates.get(1);
         //计算股票池內所有股票的收益率 用于确定下次持有的股票 不同策略确定方法不一样
-        ArrayList<String> rebalancedStockCodes = IStrategy.getRebalancedStockCodes(stockPool, holdingStocks, holdingStockNum,formerDate,dates);
+        ArrayList<String> rebalancedStockCodes = IStrategy.getRebalancedStockCodes(stockPool, holdingStocks, holdingStockNum,formerDate, null,dates);
 
         this.sellStock(yesterday);           //卖出所有持有的且当天没有停盘的股票
         //确定前n的股票 买入
