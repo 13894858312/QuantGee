@@ -59,6 +59,7 @@ public class AlpacaStrategy implements IStrategy{
         //得到收益后holdingStockNum的股票代码
         addCodes  = StrategyHelper.getTopNStocks(allstockYields, changeNum, false);
 
+        //计算持有股票的收益率
         for (int i=0; i<holdingStocks.size(); ++i) {
             String code = holdingStocks.get(i).getStockCode();
 

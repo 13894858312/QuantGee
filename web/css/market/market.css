@@ -33,16 +33,29 @@
 .klinebutton{
 	float: left;
 	padding-top: 2px;
+	padding-top: 3px;
 	margin-left: 5%;
-	margin-top: 5px;
+	margin-top: 7px;
 	width: 45px;
-	height: 23px;
-	font-size: 16px;
+	height: 20px;
+	font-size: 14px;
 	font-family: "Roboto Mono", monospace;
-	background-color: #003366;
-	color: #FFFFFF;
+	opacity: 0.7;
+	cursor: hand;
 	text-align: center;
-	border-radius: 5px;
+	border-radius: 3px;
+}
+#dkbutton{
+    background-color: #003366;
+    color: #FFFFFF;
+}
+#wkbutton{
+    background-color: #FFFFFF;
+    color: #000000;
+}
+#mkbutton{
+    background-color: #FFFFFF;
+    color: #000000;
 }
 .kline{
 	float: left;
@@ -106,6 +119,14 @@
 	border-top: 1px solid #C0C0C0;
 	font-size: 12px;
 	font-family: "Roboto Mono", monospace;
+}
+.shangzgraph{
+	float: left;
+	margin-left: 5%;
+	margin-top: 10px;
+	width: 90%;
+	height: 180px;
+	background-color: #FFFFFF;
 }
 .data{
 	float: left;
@@ -178,6 +199,9 @@
 	height: 189px;
 	background-color: #FFFFFF;
 	border-bottom: 1px solid #C0C0C0;
+}
+.content a{
+    color: #000000;
 }
 .gncj{
 	float: left;

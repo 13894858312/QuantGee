@@ -6,7 +6,6 @@ function changewhole1() {
     var a1 = document.getElementById("a1");
     a1.style.color = "rgb(62, 196, 131)";
     ha1.style.borderBottom = "2px solid rgb(62, 196, 131)";
-
 }
 function changewhole2() {
     var ha2 = document.getElementById("ha2");

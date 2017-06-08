@@ -3,16 +3,6 @@
 <head>
 	 <meta charset="UTF-8">
     <title>StockFirst</title>
-    <script>
-        function s1(x) {
-            x.style.fontWeight = "bold";
-            x.style.color = "#fff";
-        }
-        function s2(x) {
-            x.style.fontWeight = "400";
-            x.style.color = "#b7b7b7";
-        }
-    </script>
 	<script src="../../echarts.js"></script>
     <script src="../../jquery-3.2.1.min.js"></script>
     <script src="../../js/marketInfo/headcontroller.js"></script>
@@ -32,10 +22,10 @@
             </div>
 
 			<div class="menu" id="ha1">
-                <a class="menua" id="a1"  href="marketInfo.jsp">大盘行情</a>
+                <a class="menua" id="a1"  href="../../view/market/marketInfo.jsp">大盘行情</a>
             </div>
             <div class="menu" id="ha2">
-                <a class="menua" id="a2" href="../../view/stock/stockFirst.jsp" target="_blank">个股信息</a>
+                <a class="menua" id="a2" href="stockFirst.jsp" target="_blank">个股信息</a>
             </div>
             <div class="menu" id="ha3">
                 <a class="menua" id="a3" href="../../view/strategy/strategy.jsp" target="_blank">策略大全</a>
@@ -158,8 +148,8 @@
   		<div class="graph">
   			<div class="graphhead">
   				<div class="nemeandcode">
-  					<div class="name">万家文化</div>
-  					<div class="code">600576</div>
+  					<div class="sname">万家文化</div>
+  					<div class="scode">600576</div>
   				</div>
   				<div class="stockInfo">
   					<span style="color: rgb(207,25,74);">市盈率:10.19%</span>
@@ -170,6 +160,125 @@
   			<div class="volume" id="volume"></div>
   			<script src="../../js/marketInfo/KLine.js"></script>
   		</div>
+  		<div class="todayrecommend">
+  			<div class="trhead">
+  				<div class="trheadtext">今日推荐</div>
+  			</div>
+  		</div>
+  		<div class="realmarket">
+			<div class="shangz">
+				<div class="text">
+					<div class="name">
+						上证指数
+					</div>
+					<div class="code">
+						1A0001
+					</div>
+				</div>
+				<div class="info">
+					<div class="data">昨收:3140.32</div>
+					<div class="data">涨跌幅:10.12%</div>
+					<div class="data">今开:3132.12</div>
+					<div class="data">涨跌:3140.32</div>
+				</div>
+			</div>
+			<div class="shenz">
+				<div class="text">
+					<div class="name">
+						深证指数
+					</div>
+					<div class="code">
+						399001
+					</div>
+				</div>
+				<div class="info">
+					<div class="data">昨收:3140.32</div>
+					<div class="data">涨跌幅:10.12%</div>
+					<div class="data">今开:3132.12</div>
+					<div class="data">涨跌:3140.32</div>
+				</div>
+			</div>
+			<div class="chuangy">
+				<div class="text">
+					<div class="name">
+						创业板指
+					</div>
+					<div class="code">
+						399006
+					</div>
+				</div>
+				<div class="info">
+					<div class="data">昨收:3140.32</div>
+					<div class="data">涨跌幅:10.12%</div>
+					<div class="data">今开:3132.12</div>
+					<div class="data">涨跌:3140.32</div>
+				</div>
+			</div>
+		</div>
+		<div class="news">
+			<div class="newstext">
+				<div class="newshead">
+					<div class="nhname">新闻资讯</div>
+				</div>
+				<div class="zqcj">
+					<div class="titleimg">
+						<div class="num">1</div>
+					</div>
+					<div class="titletext">
+						证券交易
+					</div>
+					<div class="newscontent">
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+					</div>
+				</div>
+				<div class="gncj">
+					<div class="titleimg">
+						<div class="num">2</div>
+					</div>
+					<div class="titletext">
+						国内财经
+					</div>
+					<div class="newscontent">
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+					</div>
+				</div>
+				<div class="mgwh">
+					<div class="titleimg">
+						<div class="num">3</div>
+					</div>
+					<div class="titletext">
+						美股外汇
+					</div>
+					<div class="newscontent">
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+						<li class="content">
+							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+						</li>
+					</div>
+				</div>
+			</div>
+		</div>
   	</div>
     <!--<div class="rightrange">
     	<span class="rightrangehead">个股涨跌榜</span>

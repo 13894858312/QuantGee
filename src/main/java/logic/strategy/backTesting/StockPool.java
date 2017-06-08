@@ -54,7 +54,13 @@ public class StockPool {
      */
     private void initStocks() {
         //时间范围之前的returnPeriod天的数据也需要拿
-        String s = DateHelper.formerNTradeDay(inputVO.getStartDate(), inputVO.getReturnPeriod());
+        String s;
+        if (inputVO.getStrategyType() == 4) {
+            s = DateHelper.formerNTradeDay(inputVO.getStartDate(), inputVO.getTrainPeriod());
+        } else {
+            s = DateHelper.formerNTradeDay(inputVO.getStartDate(), inputVO.getReturnPeriod());
+        }
+
         String e = inputVO.getEndDate();
 
         ArrayList<ArrayList<Stock>> allStocks = new ArrayList<>();

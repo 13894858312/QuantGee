@@ -172,16 +172,16 @@ System.out.println("          holdingstock-size:" + holdingStocks.size());
 
             if (stock != null) {
                 double close = this.stockPool.getStockByCodeAndDate(temp.getStockCode(), date).getClose();
-
                 if (!temp.isCanContinueHold()) {            //不能继续持有 卖出股票
                     this.moneyInHand += numOfStock * close;
-                    this.tradeRecords.add(new StrategyTradeRecordVO(date, stock.getCode(), 0, numOfStock * close, close));
+                    this.tradeRecords.add(new StrategyTradeRecordVO(date, stock.getCode(), 1, numOfStock * close, close));
                 } else {                                    //继续持有股票
                     newHoldingStocks.add(temp);
                 }
+            } else {
+                newHoldingStocks.add(temp);
             }
         }
-
         this.holdingStocks = newHoldingStocks;
 
 System.out.println("          卖出后size:" + this.holdingStocks.size());
@@ -201,15 +201,23 @@ System.out.println("              rebalancedStocks-size:" + rebalancedStocks.siz
             return;
         }
 
+        int codeSize = 0;
+        for(int i = 0; i< rebalancedStocks.size(); ++ i) {
+            Stock stock = this.stockPool.getStockByCodeAndDate(rebalancedStocks.get(i), date);
+            if(stock != null) {
+                codeSize ++;
+            }
+        }
+
         //买入股票
-        double moneyEachStock = moneyInHand/rebalancedStocks.size();
+        double moneyEachStock = moneyInHand/codeSize;
         for(int i = 0; i< rebalancedStocks.size(); ++ i) {
             Stock stock = this.stockPool.getStockByCodeAndDate(rebalancedStocks.get(i), date);
             if(stock != null) {
                 double close = stock.getClose();
                 double numOfStock = moneyEachStock/close;
-                this.holdingStocks.add(new LogicHoldingStock(rebalancedStocks.get(i), numOfStock));
-                this.tradeRecords.add(new StrategyTradeRecordVO(date, stock.getCode(), 1, moneyEachStock, close));
+                this.holdingStocks.add(new LogicHoldingStock(rebalancedStocks.get(i), numOfStock, moneyEachStock));
+                this.tradeRecords.add(new StrategyTradeRecordVO(date, stock.getCode(), 0, moneyEachStock, close));
             }
 
             if(this.holdingStocks.size() >= this.holdingStockNum) { //持有数量只能为holdingStockNum
@@ -281,14 +289,16 @@ System.out.println("                        当前周期moneyInStock:" + moneyIn
      * @return 钱
      */
     private double getMoneyInStock(String date) {
-        double result = 0;
+        double money = 0;
         for(int i = 0; i<this.holdingStocks.size(); ++i) {
             Stock stock = stockPool.getStockByCodeAndDate(this.holdingStocks.get(i).getStockCode(), date);
             if(stock != null) {  //如果该天的股票数据没有 暂时放弃该股票
-                result += holdingStocks.get(i).getNumOfStock() * stock.getClose();
+                money += holdingStocks.get(i).getNumOfStock() * stock.getClose();
+            } else {
+                money += holdingStocks.get(i).getMoney();
             }
         }
-        return result;
+        return money;
     }
 
 

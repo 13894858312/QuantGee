@@ -6,12 +6,7 @@ package vo.strategy;
  * 经典策略只需要指定策略类型
  */
 public class StrategyVO {
-    /**
-     * custom 自定义策略
-     * momentum 动量策略
-     * mean     均值回归策略
-     */
-    private String strategyType;
+    private int strategyType;
 
     private String strategyID;
     private String strategyName;

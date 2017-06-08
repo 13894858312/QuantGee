@@ -20,7 +20,7 @@ public class MomentumDriveIStrategy implements IStrategy {
 
     @Override
     public ArrayList<String> getRebalancedStockCodes(StockPool stockPool, ArrayList<LogicHoldingStock> holdingStocks, int holdingStockNum,
-                                                     String formerRPeriodDate,String formerHPeriod, ArrayList<String> dates) {
+                                                     String formerRPeriodDate, String formerHPeriodDate, ArrayList<String> dates) {
         if (dates.size() == 0) {
             return null;
         }

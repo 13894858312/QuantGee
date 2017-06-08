@@ -56,6 +56,16 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+		<action name="getRealSHDate" class="marketInfoAction" method="getRealSHDate">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="getRealSHPrice" class="marketInfoAction" method="getRealSHPrice">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
 	</package>
 	<package name="list" extends="json-default,struts-default">
 		<action name="riseIndustryList" class="listAction" method="getIndustryUpList">

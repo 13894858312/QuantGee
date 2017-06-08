@@ -36,7 +36,7 @@
         @import "../../css/style.css";
     </style>
 </head>
-<body onload="changewhole1()">
+<body onload="changewhole1();">
 
         <div class="head">
 
@@ -82,20 +82,20 @@
 					历史大盘
 				</div>
 				<div class="mkbutton">
-					<div class="klinebutton">
+					<div class="klinebutton" id="dkbutton" onclick="clickdkbutton();">
 						日K线
 					</div>
-					<div class="klinebutton">
+					<div class="klinebutton" id="wkbutton" onclick="clickwkbutton();">
 						周K线
 					</div>
-					<div class="klinebutton">
+					<div class="klinebutton" id="mkbutton" onclick="clickmkbutton();">
 						月K线
 					</div>
 				</div>
 			</div>
 			<div class="kline" id="kline"></div>
 			<div class="volume" id="volume"></div>
-			<script src="../../js/marketInfo/KLine.js"></script>
+            <script src="../../js/marketInfo/KLine.js"></script>
 		</div>
 		<div class="realmarket">
 			<div class="shangz">
@@ -113,6 +113,8 @@
 					<div class="data">今开:3132.12</div>
 					<div class="data">涨跌:3140.32</div>
 				</div>
+                <div class="shangzgraph" id="shangzgraph"></div>
+                <%--<script src="../../js/marketInfo/realInfo.js"></script>--%>
 			</div>
 			<div class="shenz">
 				<div class="text">
@@ -161,14 +163,15 @@
 					</div>
 					<div class="newscontent">
 						<li class="content">
-							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="zqcj1">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
 						</li>
 						<li class="content">
-							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="zqcj2">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
 						</li>
 						<li class="content">
-							<a>央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="zqcj3">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
 						</li>
+                        <script src="../../js/marketInfo/news.js"></script>
 					</div>
 				</div>
 				<div class="gncj">

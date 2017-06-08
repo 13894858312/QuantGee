@@ -9,6 +9,7 @@ import service.strategy.StrategyBackTestingService;
 import vo.strategy.AbnormalReturnResultVO;
 import vo.strategy.StrategyBackTestInputVO;
 import vo.strategy.StrategyBackTestResultVO;
+import vo.strategy.StrategyTradeRecordVO;
 
 import java.util.ArrayList;
 
@@ -123,7 +124,6 @@ public class StrategyBackTestingServiceImpTest {
         System.out.println("*********RESULT**********  BaseAnnualRevenue:  " + result.getCumulativeYieldResultVO().getBaseAnnualRevenue());
         System.out.println("*********RESULT**********  SharpeRatio:  " + result.getCumulativeYieldResultVO().getSharpeRatio());
         System.out.println("*********RESULT**********  MaxDrawdown:  " + result.getCumulativeYieldResultVO().getMaxDrawdown());
-
     }
 
     @Test
