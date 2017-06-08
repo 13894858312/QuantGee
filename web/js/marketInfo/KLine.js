@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2017/5/15.
  */
-dochart();
-function getKlineDate() {
+dochart(1);
+function getKlineDate(num) {
     var klineDate = [];
     var json;
     $.ajax({
@@ -18,12 +18,12 @@ function getKlineDate() {
             alert("error");
         }
     });
-    for(var i=0;i<json.length;i++){
+    for(var i=0;i<json.length;i+=num){
         klineDate.push(json[i]['date']);
     }
     return klineDate;
 }
-function getKlineBar() {
+function getKlineBar(num) {
     var klineBar = [];
     var json;
     $.ajax({
@@ -39,7 +39,7 @@ function getKlineBar() {
             alert("error");
         }
     });
-    for(var i=0;i<json.length;i++){
+    for(var i=0;i<json.length;i+=num){
         var temp = [];
         temp.push(json[i]['open']);
         temp.push(json[i]['close']);
@@ -49,7 +49,7 @@ function getKlineBar() {
     }
     return klineBar;
 }
-function getMA5() {
+function getMA5(num) {
     var klineMA5 = [];
     var json;
     $.ajax({
@@ -66,12 +66,12 @@ function getMA5() {
         }
     });
 
-    for(var i=0;i<json.length;i++){
+    for(var i=0;i<json.length;i+=num){
         klineMA5.push(json[i]['value']);
     }
     return klineMA5;
 }
-function getMA10() {
+function getMA10(num) {
     var klineMA10 = [];
     var json;
     $.ajax({
@@ -88,12 +88,12 @@ function getMA10() {
         }
     });
 
-    for(var i=0;i<json.length;i++){
+    for(var i=0;i<json.length;i+=num){
         klineMA10.push(json[i]['value']);
     }
     return klineMA10;
 }
-function getMA20(data) {
+function getMA20(num) {
     var klineMA20 = [];
     var json;
     $.ajax({
@@ -110,12 +110,12 @@ function getMA20(data) {
         }
     });
 
-    for(var i=0;i<json.length;i++){
+    for(var i=0;i<json.length;i+num){
         klineMA20.push(json[i]['value']);
     }
     return klineMA20;
 }
-function getVolume() {
+function getVolume(num) {
     var volume = [];
     var json;
     $.ajax({
@@ -131,12 +131,12 @@ function getVolume() {
             alert("error");
         }
     });
-    for(var i=0;i<json.length;i++){
+    for(var i=0;i<json.length;i+=num){
         volume.push(json[i]['value']);
     }
     return volume;
 }
-function dochart() {
+function dochart(num) {
 var myChart1 = echarts.init(document.getElementById('kline'));
 var myChart2 = echarts.init(document.getElementById('volume'));
 var option1 = {
@@ -148,18 +148,18 @@ var option1 = {
         }
     },
     legend: {
-        data: ['日K', 'MA5', 'MA10', 'MA20','涨','跌','成交量']
+        data: ['日K', 'MA5', 'MA10', 'MA20','成交量']
     },
     grid: {
     	top:'10%',
         left: '5%',
-        right: '5%',
+        right: '3%',
         bottom: '11%'
     },
     xAxis: {
     	show:false,
         type: 'category',
-        data: getKlineDate()
+        data: getKlineDate(num)
     },
     yAxis: {
         scale: true,
@@ -170,14 +170,14 @@ var option1 = {
     dataZoom: [
          {
             type: 'inside',
-            start: 50,
+            start: 75,
             end: 100
         },
         {
             show: true,
             type: 'slider',
             y: '90%',
-            start: 50,
+            start: 75,
             end: 100
         }
     ],
@@ -185,13 +185,13 @@ var option1 = {
         {
             name: '日K',
             type: 'candlestick',
-            data: getKlineBar()
+            data: getKlineBar(num)
 
         },
         {
             name: 'MA5',
             type: 'line',
-            data: getMA5(),
+            data: getMA5(num),
             smooth: true,
             lineStyle: {
                 normal: {opacity: 0.5}
@@ -200,7 +200,7 @@ var option1 = {
         {
             name: 'MA10',
             type: 'line',
-            data: getMA10(),
+            data: getMA10(num),
             smooth: true,
             lineStyle: {
                 normal: {opacity: 0.5}
@@ -209,23 +209,11 @@ var option1 = {
         {
             name: 'MA20',
             type: 'line',
-            data: getMA20(),
+            data: getMA20(num),
             smooth: true,
             lineStyle: {
                 normal: {opacity: 0.5}
             }
-        },
-		{
-            name: '涨',
-            type: 'bar',
-            data: []
-
-        },
-        {
-            name: '跌',
-            type: 'bar',
-            data: []
-
         },
         {
             name: '成交量',
@@ -249,13 +237,13 @@ var option1 = {
         grid: {
             top:'10%',
             left: '5%',
-            right: '5%',
+            right: '3%',
             bottom: '11%'
         },
         xAxis: {
             show:false,
             type: 'category',
-            data: getKlineDate()
+            data: getKlineDate(num)
         },
         yAxis: {
             scale: true,
@@ -266,16 +254,16 @@ var option1 = {
         dataZoom: [
             {
                 type: 'inside',
-                start: 50,
+                start: 75,
+                end: 100
+            },
+            {
+                show: false,
+                type: 'slider',
+                y: '90%',
+                start: 75,
                 end: 100
             }
-            // {
-            //     show: true,
-            //     type: 'slider',
-            //     y: '90%',
-            //     start: 50,
-            //     end: 100
-            // }
         ],
         series: [
             // {
@@ -287,7 +275,7 @@ var option1 = {
             {
                 name: '成交量',
                 type: 'bar',
-                data: getVolume()
+                data: getVolume(num)
             }
         ]
     };
