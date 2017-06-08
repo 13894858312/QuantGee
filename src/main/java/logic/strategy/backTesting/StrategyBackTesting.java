@@ -5,6 +5,7 @@ import logic.tools.MathHelper;
 import vo.stock.LineVO;
 import vo.strategy.StrategyBackTestResultVO;
 import vo.strategy.CumulativeYieldResultVO;
+import vo.strategy.StrategyTradeRecordVO;
 import vo.strategy.YieldHistogramResultVO;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class StrategyBackTesting {
     private double initFund;        //起始资金
     private double income;           //总本金+收益
     private double lastIncome;       //记录上一个周期的本金+收益，用于计算周期收益率
+    private double sellOutMoney;       //每次换仓卖出股票得到的钱
 
     private int holdingPeriod;       //持有期
     private int returnPeriod;        //形成期
@@ -34,6 +36,8 @@ public class StrategyBackTesting {
     private ArrayList<LineVO> strategyYield;  //每天的收益率
     private ArrayList<LineVO> baseYield; //基准收益率
     private StrategyBackTestResultVO strategyBackTestResultVO;
+
+    private ArrayList<StrategyTradeRecordVO> tradeRecords;      //交易记录
 
     /**
      * @param stockPool 股票池
@@ -52,12 +56,14 @@ public class StrategyBackTesting {
         this.initFund = stockPool.getInputVO().getInitFund();
         this.income = initFund;
         this.lastIncome = income;
+        this.sellOutMoney = initFund;
         this.holdingStockNum = stockPool.getHoldingStockNum();
 
         this.holdingStocks = new ArrayList<>();
         this.strategyYield = new ArrayList<>();
         this.baseYield = new ArrayList<>();
         this.yieldPerPeriod = new ArrayList<>();
+        this.tradeRecords = new ArrayList<>();
     }
 
     /**
@@ -82,16 +88,18 @@ System.out.println("mainLoop: " + indexStocks.get(i).getDate());
             if(holdingDaysIndex == holdingPeriod) {        //若达到holdingPeriod index置0
                 holdingDaysIndex = 0;                      //前一天进行rebalance,买入卖出
 
-                int tempIndex = Math.max(i-this.returnPeriod, 0);
-                String formerDate = indexStocks.get(tempIndex).getDate();
-
                 ArrayList<String> datesNextHoldingPeriod = new ArrayList<>();
                 int end = Math.min(i+holdingPeriod+1, indexStocks.size());
                 for(int j=i-1; j<end; ++j) {
                     datesNextHoldingPeriod.add(indexStocks.get(j).getDate());
                 }
 
-                this.rebalance(formerDate, datesNextHoldingPeriod);
+                int tempIndex = Math.max(i-this.returnPeriod, 0);
+                String formerRDate = indexStocks.get(tempIndex).getDate();
+                tempIndex = Math.max(i-this.holdingPeriod, 0);
+                String formerHDate = indexStocks.get(tempIndex).getDate();
+
+                this.rebalance(formerRDate,formerHDate,datesNextHoldingPeriod);
             } else {
                 holdingDaysIndex ++;
             }
@@ -119,18 +127,19 @@ System.out.println("mainLoop: " + indexStocks.get(i).getDate());
      * 一个持有期结束
      * 计算指定日期所有股票形成期收益，并获取前holdingStockNum个的股票代码
      * 不同策略确定方法不一样
-     * @param beforeDate 形成期前的日期
+     * @param formerRDate 上一个形成期的日日期
+     * @param formerHDate 上一个持有期的日期
      * @param dates 下一个持有期的日期 get(0)是today日期
      */
-    private void rebalance(String beforeDate, ArrayList<String> dates) {
+    private void rebalance(String formerRDate, String formerHDate, ArrayList<String> dates) {
         String yesterday = dates.get(0);
         String today = dates.get(1);
-        this.sellStock(yesterday);           //卖出所有持有的且当天没有停盘的股票
         //计算股票池內所有股票的收益率 用于确定下次持有的股票 不同策略确定方法不一样
-        ArrayList<String> rebalancedStockCodes = IStrategy.getRebalancedStockCodes(stockPool, holdingStocks, holdingStockNum, beforeDate, dates);
-        //确定前n的股票 买入
-        this.buyStock(rebalancedStockCodes, today);
-        this.calculatePeriodYield();                // 计算周期收益率
+        ArrayList<String> rebalancedStockCodes = IStrategy.getRebalancedStockCodes(stockPool, holdingStocks, holdingStockNum,formerRDate, formerHDate, dates);
+
+        this.sellStock(yesterday);                          //卖出所有持有的且当天没有停盘的股票
+        this.buyStock(rebalancedStockCodes, today);         //确定前n的股票 买入
+        this.calculatePeriodYield();                        // 计算周期收益率
     }
 
     /**
@@ -144,13 +153,14 @@ System.out.println("               买入前size:" + this.holdingStocks.size());
 System.out.println("               rebalancedStocks-size:" + rebalancedStocks.size());
 
         //买入股票
-        double moneyEachStock = income/this.holdingStockNum;
+        double moneyEachStock = sellOutMoney/rebalancedStocks.size();
         for(int i = 0; i< rebalancedStocks.size(); ++ i) {
             Stock stock = this.stockPool.getStockByCodeAndDate(rebalancedStocks.get(i), date);
             if(stock != null) {
-                double adj = stock.getClose();
-                double numOfStock = moneyEachStock/adj;
+                double close = stock.getClose();
+                double numOfStock = moneyEachStock/close;
                 this.holdingStocks.add(new LogicHoldingStock(rebalancedStocks.get(i), numOfStock));
+                this.tradeRecords.add(new StrategyTradeRecordVO(date, stock.getCode(), 0, moneyEachStock, close));
             }
             if(this.holdingStocks.size() >= this.holdingStockNum) { //持有数量只能为holdingStockNum
                 break;
@@ -169,18 +179,30 @@ System.out.println("               买入后size:" + this.holdingStocks.size());
             return;
         }
 
+        ArrayList<LogicHoldingStock> newHoldingStocks = new ArrayList<>();
         lastIncome = income;
-        income = 0;  //当前本金+收益
+        income = 0;                  //当前本金+收益
+        sellOutMoney = 0;            //卖出的股票获得的现金
         for (int i = 0; i < this.holdingStocks.size(); ++i) {
-            double numOfStock = this.holdingStocks.get(i).getNumOfStock();
-            Stock stock = this.stockPool.getStockByCodeAndDate(this.holdingStocks.get(i).getStockCode(), date);
+            LogicHoldingStock temp =  this.holdingStocks.get(i);
+            double numOfStock = temp.getNumOfStock();
+            Stock stock = this.stockPool.getStockByCodeAndDate(temp.getStockCode(), date);
 
             if (stock != null) {
-                double adj = this.stockPool.getStockByCodeAndDate(this.holdingStocks.get(i).getStockCode(), date).getClose();
-                income += numOfStock * adj;
+                double close = this.stockPool.getStockByCodeAndDate(temp.getStockCode(), date).getClose();
+                income += numOfStock * close;
+
+                if (!temp.isCanContinueHold()) {            //不能继续持有 卖出股票
+                    this.sellOutMoney += numOfStock * close;
+                    this.tradeRecords.add(new StrategyTradeRecordVO(date, stock.getCode(), 0, numOfStock * close, close));
+                } else {
+                    temp.setCanContinueHold(false);
+                    newHoldingStocks.add(temp);
+                }
             }
         }
-        this.holdingStocks.clear();
+
+        this.holdingStocks = newHoldingStocks;
     }
 
     /**
@@ -202,7 +224,6 @@ System.out.println("               买入后size:" + this.holdingStocks.size());
         this.strategyYield.add(new LineVO(date, MathHelper.formatData(yield,4)));
 
 System.out.println("      holdingStocks-size: " + this.holdingStocks.size());
-System.out.println("      IStrategy-income:" + yield);
 System.out.println("      IStrategy-Yield:" + yield);
     }
 

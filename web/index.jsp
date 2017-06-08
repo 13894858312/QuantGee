@@ -63,7 +63,7 @@
     </div>
 </header>
 
-<section id="fh5co-home" data-section="home" style="background-image: url(images/full_image_4.png);" data-stellar-background-ratio="0.5">
+<section id="fh5co-home" data-section="home" style="background-image: url(images/full_image_3.png);" data-stellar-background-ratio="0.5">
     <div class="gradient"></div>
     <div class="container">
         <div class="text-wrap">
@@ -188,13 +188,13 @@
                 <div class="animate-box col-md-6">
                     <h3 class="section-title">关于我们</h3>
                     <p>
-                        王友运
+                        王友运：151250150
                         <br>
-                        卞纯源
+                        卞纯源：151250002
                         <br>
-                        王雪
+                        王  雪：151250149
                         <br>
-                        赵德宇
+                        赵德宇：151250197
                     </p>
 
                 </div>

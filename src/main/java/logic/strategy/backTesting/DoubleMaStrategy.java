@@ -15,9 +15,8 @@ import java.util.ArrayList;
 public class DoubleMaStrategy implements IStrategy {
 
     @Override
-    public ArrayList<String> getRebalancedStockCodes(StockPool stockPool,ArrayList<LogicHoldingStock> holdingStocks, int holdingStockNum, String beforeDate, ArrayList<String> dates) {
-
-
+    public ArrayList<String> getRebalancedStockCodes(StockPool stockPool, ArrayList<LogicHoldingStock> holdingStocks, int holdingStockNum,
+                                                     String formerRPeriodDate, String formerHPeriod, ArrayList<String> dates) {
         return null;
     }
 }

@@ -31,7 +31,7 @@ public class StrategyBackTestingServiceImpTest {
         inputVO.setStrategyType(0);
         inputVO.setInitFund(10000);
         inputVO.setStockCodes(stockIDs);
-        inputVO.setStartDate("2017-03-30");
+        inputVO.setStartDate("2015-03-30");
         inputVO.setEndDate("2017-05-24");
         inputVO.setHoldingPeriodFixed(false);
         inputVO.setHoldingPeriod(10);
@@ -54,11 +54,11 @@ public class StrategyBackTestingServiceImpTest {
     public void getStrategyBackTesting2() throws Exception {
         StrategyBackTestInputVO inputVO = new StrategyBackTestInputVO();
         inputVO.setStockPoolType(0);
-        inputVO.setStrategyType(1);
+        inputVO.setStrategyType(0);
         inputVO.setInitFund(10000);
         inputVO.setBlockType("zxb");
-        inputVO.setStartDate("2017-03-30");
-        inputVO.setEndDate("2017-05-24");
+        inputVO.setStartDate("2015-03-30");
+        inputVO.setEndDate("2016-05-24");
         inputVO.setHoldingPeriodFixed(false);
         inputVO.setHoldingPeriod(10);
         inputVO.setReturnPeriod(10);

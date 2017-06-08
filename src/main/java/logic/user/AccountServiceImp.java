@@ -2,6 +2,7 @@ package logic.user;
 
 import DAO.accountDAO.AccountDAO;
 import bean.Account;
+import data.accountData.Encryption;
 import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -26,7 +27,7 @@ public class AccountServiceImp implements AccountService{
 
     @Override
     public boolean register(AccountVO accountVO) {
-        Account account = transferHelper.transToAccount(accountVO);
+        Account account = Encryption.getInstance().encrypt(transferHelper.transToAccount(accountVO));
         return accountDAO.addAccount(account);
     }
 
@@ -34,7 +35,7 @@ public class AccountServiceImp implements AccountService{
     public boolean login(AccountVO accountVO) {
         Account account = accountDAO.getAccount(accountVO.getAccountID());
 
-        if(accountVO.getPassword().equals(account.getPassword())) {
+        if(Encryption.getInstance().encryptPassword(accountVO.getPassword()).equals(account.getPassword())) {
             account.setIsLogIn(1);
             if(accountDAO.updateAccount(account)) {        //更新登陆状态
                 return true;
@@ -47,8 +48,9 @@ public class AccountServiceImp implements AccountService{
     @Override
     public boolean modifyPassword(AccountVO accountVO) {
         Account account = accountDAO.getAccount(accountVO.getAccountID());
-
         account.setPassword(accountVO.getPassword());
+
+        account = Encryption.getInstance().encrypt(account);
         if(accountDAO.updateAccount(account)) {        //更新密码
             return true;
         }
@@ -59,7 +61,6 @@ public class AccountServiceImp implements AccountService{
     @Override
     public boolean logout(AccountVO accountVO) {
         Account account = accountDAO.getAccount(accountVO.getAccountID());
-
         account.setIsLogIn(0);
         if(accountDAO.updateAccount(account)) {        //更新登出状态
             return true;
