@@ -3,6 +3,7 @@ package logic.stock;
 import DAO.stockInfoDAO.QuotaDAO;
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.*;
+import logic.tools.MathHelper;
 import logic.tools.TimeHelper;
 import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,8 +142,7 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         ArrayList<LineVO> up = new ArrayList<>();
         ArrayList<LineVO> low = new ArrayList<>();
 
-        Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getStockCode(),
-                inputVO.getStartDate(), inputVO.getEndDate());
+        Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getStockCode(), inputVO.getStartDate(), inputVO.getEndDate());
         Stock stock = null, formerStock;
         String date;
 
@@ -157,7 +157,7 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
             date = stock.getDate();
 
             kLine.add(new KLineVO(date, stock.getOpen(), stock.getClose(), stock.getLow(), stock.getHigh()));
-            volume.add(new LineVO(date, stock.getVolume()));
+            volume.add(new LineVO(date, MathHelper.formatData(stock.getVolume()/10000,2)));
             ma5.add(new LineVO(date, stock.getMa5()));
             ma10.add(new LineVO(date, stock.getMa10()));
             ma20.add(new LineVO(date, stock.getMa20()));

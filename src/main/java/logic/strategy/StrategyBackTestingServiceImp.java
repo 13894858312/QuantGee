@@ -27,14 +27,11 @@ public class StrategyBackTestingServiceImp implements StrategyBackTestingService
         stockPool.initStockPool(inputVO);
         IStrategy iStrategy = this.getStrategy(inputVO.getStrategyType());
 
-        //回测
-        StrategyBackTesting strategyBackTesting = new StrategyBackTesting(stockPool, inputVO.getHoldingPeriod(),
-                inputVO.getReturnPeriod(), iStrategy,false);
+        StrategyBackTesting strategyBackTesting = new StrategyBackTesting(stockPool, inputVO.getHoldingPeriod(), inputVO.getReturnPeriod(), iStrategy,false);
         strategyBackTesting.start();
+        StrategyBackTestResultVO result = strategyBackTesting.getStrategyBackTestResultVO();
 
-        StrategyBackTestResultVO strategyBackTestResultVO = strategyBackTesting.getStrategyBackTestResultVO();
-
-        return strategyBackTestResultVO;
+        return result;
     }
 
     @Override
@@ -51,10 +48,9 @@ public class StrategyBackTestingServiceImp implements StrategyBackTestingService
 
         StrategyAbnormalReturn strategyAbnormalReturn = new StrategyAbnormalReturn(stockPool, period, inputVO.isHoldingPeriodFixed(), iStrategy);
         strategyAbnormalReturn.start();
+        AbnormalReturnResultVO result = strategyAbnormalReturn.getAbnormalReturnResult();
 
-        AbnormalReturnResultVO abnormalReturnResultVO = strategyAbnormalReturn.getAbnormalReturnResultVO();
-
-        return abnormalReturnResultVO;
+        return result;
     }
 
 

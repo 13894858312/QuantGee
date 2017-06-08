@@ -47,63 +47,31 @@ public class CumulativeYieldResultVO {
         return annualRevenue;
     }
 
-    public void setAnnualRevenue(double annualRevenue) {
-        this.annualRevenue = annualRevenue;
-    }
-
     public double getBaseAnnualRevenue() {
         return baseAnnualRevenue;
-    }
-
-    public void setBaseAnnualRevenue(double baseAnnualRevenue) {
-        this.baseAnnualRevenue = baseAnnualRevenue;
     }
 
     public double getAlpha() {
         return alpha;
     }
 
-    public void setAlpha(double alpha) {
-        this.alpha = alpha;
-    }
-
     public double getBeta() {
         return beta;
-    }
-
-    public void setBeta(double beta) {
-        this.beta = beta;
     }
 
     public double getSharpeRatio() {
         return sharpeRatio;
     }
 
-    public void setSharpeRatio(double sharpeRatio) {
-        this.sharpeRatio = sharpeRatio;
-    }
-
     public double getMaxDrawdown() {
         return maxDrawdown;
-    }
-
-    public void setMaxDrawdown(double maxDrawdown) {
-        this.maxDrawdown = maxDrawdown;
     }
 
     public ArrayList<LineVO> getYieldData() {
         return yieldData;
     }
 
-    public void setYieldData(ArrayList<LineVO> yieldData) {
-        this.yieldData = yieldData;
-    }
-
     public ArrayList<LineVO> getBaseYieldData() {
         return baseYieldData;
-    }
-
-    public void setBaseYieldData(ArrayList<LineVO> baseYieldData) {
-        this.baseYieldData = baseYieldData;
     }
 }

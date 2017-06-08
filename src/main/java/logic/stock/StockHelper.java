@@ -1,6 +1,7 @@
 package logic.stock;
 
 import bean.*;
+import logic.strategy.backTesting.YieldStock;
 import logic.tools.MathHelper;
 import vo.stock.MaVO;
 

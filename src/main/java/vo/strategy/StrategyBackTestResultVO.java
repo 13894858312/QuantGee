@@ -22,15 +22,8 @@ public class StrategyBackTestResultVO {
         return cumulativeYieldResultVO;
     }
 
-    public void setCumulativeYieldResultVO(CumulativeYieldResultVO cumulativeYieldResultVO) {
-        this.cumulativeYieldResultVO = cumulativeYieldResultVO;
-    }
-
     public YieldHistogramResultVO getYieldHistogramResultVO() {
         return yieldHistogramResultVO;
     }
 
-    public void setYieldHistogramResultVO(YieldHistogramResultVO yieldHistogramResultVO) {
-        this.yieldHistogramResultVO = yieldHistogramResultVO;
-    }
 }
