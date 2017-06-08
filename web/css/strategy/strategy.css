@@ -3,16 +3,21 @@ ol li {
 }
 
 #strategybar {
-	margin-left: 5%;
-	margin-top: 1%;
-	height: 50px;
-	/*text-align: center;*/
+	margin-left: 15%;
+	margin-top: 10px;
+	height: 45px;
+	width: 70%;
 }
 
-#strategybar * {
-	vertical-align: middle;
-	font-weight: bold;
-	font-size: 18px;
+#strategybar .hmtext {
+	float: left;
+	width: 98%;
+	height: 35px;
+	margin-top: 10px;
+	margin-left: 1%;
+	font-size: 26px;
+	font-family: "Roboto Mono", monospace;
+	border-bottom: 1px solid #C0C0C0;
 }
 
 #strategybar span {
@@ -20,8 +25,8 @@ ol li {
 }
 
 #con {
-	margin: 20px auto;
-	width: 81%;
+	margin: 1px auto;
+	width: 70%;
 }
 
 #tags {
@@ -64,6 +69,7 @@ ol li {
 }
 
 #tags li.selectTag a {
+	border-bottom: 2px solid rgb(62, 196, 131);
 	COLOR: #000;
 	LINE-HEIGHT: 40px;
 	HEIGHT: 40px;
@@ -88,8 +94,8 @@ ol li {
 }
 
 #con_str {
-	margin: 20px auto;
-	width: 81%;
+	margin: 1px auto;
+	width: 70%;
 }
 
 #tags_str {
@@ -132,6 +138,7 @@ ol li {
 }
 
 #tags_str li.selectTag_str a {
+	border-bottom: 2px solid rgb(62, 196, 131);
 	COLOR: #000;
 	LINE-HEIGHT: 40px;
 	HEIGHT: 40px;
@@ -155,3 +162,19 @@ ol li {
 	DISPLAY: block
 }
 
+#chartsContent {
+	padding: 0px;
+	margin: 0px;
+	background-color: #fff
+}
+
+.chartsContent {
+	overflow-y: scroll;
+	/*border: 1px solid #000000;*/
+	DISPLAY: none;
+	height: 100%;
+}
+
+#chartsContent DIV.selectTag {
+	DISPLAY: block
+}
