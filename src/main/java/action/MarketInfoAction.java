@@ -7,6 +7,7 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import service.stock.StockBasicInfoService;
+import vo.stock.RealTimeLineVO;
 import vo.stock.StockHistoricalVO;
 import vo.stock.StockInputVO;
 
@@ -70,4 +71,19 @@ public class MarketInfoAction extends ActionSupport {
         result = jsonArray.toString();
         return SUCCESS;
     }
+
+    public String getRealSHDate(){
+        RealTimeLineVO realTimeLineVO = stockBasicInfoService.getStockRealTimeLineInfo("sh");
+        JSONArray jsonArray = JSONArray.fromObject(realTimeLineVO.getTimes());
+        result = jsonArray.toString();
+        return SUCCESS;
+    }
+
+    public String getRealSHPrice(){
+        RealTimeLineVO realTimeLineVO = stockBasicInfoService.getStockRealTimeLineInfo("sh");
+        JSONArray jsonArray = JSONArray.fromObject(realTimeLineVO.getNowPrice());
+        result = jsonArray.toString();
+        return SUCCESS;
+    }
+
 }

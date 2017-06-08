@@ -36,7 +36,7 @@
         @import "../../css/style.css";
     </style>
 </head>
-<body onload="changewhole1()">
+<body onload="changewhole1();">
 
         <div class="head">
 
@@ -82,13 +82,13 @@
 					历史大盘
 				</div>
 				<div class="mkbutton">
-					<div class="klinebutton">
+					<div class="klinebutton" id="dkbutton" onclick="clickdkbutton();">
 						日K线
 					</div>
-					<div class="klinebutton">
+					<div class="klinebutton" id="wkbutton" onclick="clickwkbutton();">
 						周K线
 					</div>
-					<div class="klinebutton">
+					<div class="klinebutton" id="mkbutton" onclick="clickmkbutton();">
 						月K线
 					</div>
 				</div>
@@ -113,6 +113,8 @@
 					<div class="data">今开:3132.12</div>
 					<div class="data">涨跌:3140.32</div>
 				</div>
+                <div class="shangzgraph" id="shangzgraph"></div>
+                <%--<script src="../../js/marketInfo/realInfo.js"></script>--%>
 			</div>
 			<div class="shenz">
 				<div class="text">
