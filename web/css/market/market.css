@@ -33,16 +33,18 @@
 .klinebutton{
 	float: left;
 	padding-top: 2px;
+	padding-top: 3px;
 	margin-left: 5%;
-	margin-top: 5px;
+	margin-top: 7px;
 	width: 45px;
-	height: 23px;
-	font-size: 16px;
+	height: 20px;
+	font-size: 14px;
 	font-family: "Roboto Mono", monospace;
 	background-color: #003366;
+	opacity: 0.7;
 	color: #FFFFFF;
 	text-align: center;
-	border-radius: 5px;
+	border-radius: 3px;
 }
 .kline{
 	float: left;

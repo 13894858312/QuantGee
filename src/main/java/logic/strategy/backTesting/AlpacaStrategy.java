@@ -59,13 +59,10 @@ public class AlpacaStrategy implements IStrategy{
         //得到收益后holdingStockNum的股票代码
         addCodes  = StrategyHelper.getTopNStocks(allstockYields, changeNum, false);
 
-        //先设置能可以继续持有所有现持有的股票 初始化
-        for (int i=0; i<holdingStocks.size(); ++i) {
-            holdingStocks.get(i).setCanContinueHold(true);
-        }
-
+        //计算持有股票的收益率
         for (int i=0; i<holdingStocks.size(); ++i) {
             String code = holdingStocks.get(i).getStockCode();
+
             Stock beforeStock = stockPool.getStockByCodeAndDate(code, formerHPeriodDate);
             Stock todayStock = stockPool.getStockByCodeAndDate(code, today);
 
