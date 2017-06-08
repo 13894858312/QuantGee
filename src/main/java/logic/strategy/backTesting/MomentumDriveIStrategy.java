@@ -61,13 +61,14 @@ public class MomentumDriveIStrategy implements IStrategy {
         }
         HashMap<String, LogicHoldingStock> hashMap = new HashMap<>();
         for (int i=0; i<holdingStocks.size(); ++i) {
+            holdingStocks.get(i).setCanContinueHold(false);         //假设现在持有的股票都不可以继续持有
             hashMap.put(holdingStocks.get(i).getStockCode(), holdingStocks.get(i));
         }
 
         for (int i=0; i<tempCodes.size(); ++i) {
             LogicHoldingStock temp = hashMap.get(tempCodes.get(i));
             if (temp != null) {
-                temp.setCanContinueHold(true);              //可以继续持有该股票
+                temp.setCanContinueHold(true);             //将可以继续持有的股票保留
             } else {
                 result.add(tempCodes.get(i));
             }

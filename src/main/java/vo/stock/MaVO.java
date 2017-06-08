@@ -8,21 +8,19 @@ public class MaVO {
     private String stockCode;
     private int period;
     private String date;
-    private double averageValue;
-
-    public MaVO() {}
+    private double ma;
 
     /**
      * @param stockCode 股票代码
      * @param period 周期
      * @param date 时间
-     * @param averageValue 均值
+     * @param ma 均值
      */
-    public MaVO(String stockCode, int period, String date, double averageValue) {
+    public MaVO(String stockCode, int period, String date, double ma) {
         this.stockCode = stockCode;
         this.period = period;
         this.date = date;
-        this.averageValue = averageValue;
+        this.ma = ma;
     }
 
     public String getStockCode() {
@@ -49,11 +47,11 @@ public class MaVO {
         this.date = date;
     }
 
-    public double getAverageValue() {
-        return averageValue;
+    public double getMa() {
+        return ma;
     }
 
-    public void setAverageValue(double averageValue) {
-        this.averageValue = averageValue;
+    public void setMa(double ma) {
+        this.ma = ma;
     }
 }

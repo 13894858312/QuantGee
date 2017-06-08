@@ -99,7 +99,7 @@ public class StockPool {
             if(allStocks.get(i) != null && allStocks.get(i).size() != 0) {
                 LogicStock logicStock = new LogicStock(this.inputVO.getStartDate(), allStocks.get(i));
                 //如果该股票各项数据都有 才加入到股票池
-                if(logicStock.getBeforeStock() != null && logicStock.getStartDateStockPO() != null) {
+                if(logicStock.getBeforeStock() != null && logicStock.getStartDateStock() != null) {
                     this.stocksMap.put(allStocks.get(i).get(0).getCode(), logicStock);           //初始化map
                     this.stocksList.add(logicStock);                                                 //初始化list
 
