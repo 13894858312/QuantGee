@@ -23,7 +23,7 @@ public class StockInfoData implements StockInfoDAO{
     @Override
     public Current getStockRealTimeInfo(String code) {
         List<Current> list = (List<Current>) hibernateTemplate
-                .find("from Current c where c.code = ? ", code);
+                .find("from Current where code = ? ", code);
         if(list == null || list.size() == 0){
             return null;
         }
@@ -33,7 +33,7 @@ public class StockInfoData implements StockInfoDAO{
     @Override
     public Iterator<Current> getStockRealTimeList(String code){
         Iterator<Current> current = (Iterator<Current>) hibernateTemplate
-                .find("from Current c where c.code = ?  ",code).iterator();
+                .find("from Current where code = ?  ",code).iterator();
         return current;
     }
 
@@ -41,10 +41,10 @@ public class StockInfoData implements StockInfoDAO{
     public Iterator<Current> getLatestCurrents() {
         try {
             String latest = (String) hibernateTemplate
-                    .find("select max (c.time) from Current  c").iterator().next();
+                    .find("select max (time) from Current ").iterator().next();
 
             Iterator<Current> iterator = (Iterator<Current>) hibernateTemplate
-                    .find("from Current c where c.time = ? ", latest).iterator();
+                    .find("from Current where time = ? ", latest).iterator();
             return iterator;
         }catch (Exception e) {
             return null;
@@ -135,6 +135,18 @@ public class StockInfoData implements StockInfoDAO{
         Iterator<String> iterator = (Iterator<String>) hibernateTemplate
                 .find("select distinct m.cName from MarketInfo m").iterator();
         return iterator;
+    }
+
+    @Override
+    public String getCodeByName(String name) {
+        try{
+            name = name.trim();
+            String code = (String) hibernateTemplate
+                    .find("select code from MarketInfo where name = ?" , name).iterator().next();
+            return code;
+        }catch (Exception e){
+            return null;
+        }
     }
 
 }

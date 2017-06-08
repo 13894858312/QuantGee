@@ -37,7 +37,7 @@ public class StockTest {
     public void getStockInfoTest(){
         Iterator<Stock> stockIterator = stockInfoDAO.getStockInfo("sh");
         while (stockIterator.hasNext()){
-            System.out.println(stockIterator.next().getTurnover());
+            System.out.println(stockIterator.next().getDate());
         }
     }
 
@@ -200,6 +200,12 @@ public class StockTest {
             i++;
         }
         System.out.print(i);
+    }
+
+    @Test
+    public void getCode(){
+        String code = stockInfoDAO.getCodeByName("平安银行");
+        Assert.assertEquals("000001",code);
     }
 }
 

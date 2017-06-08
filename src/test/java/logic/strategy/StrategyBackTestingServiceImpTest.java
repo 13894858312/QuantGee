@@ -9,6 +9,7 @@ import service.strategy.StrategyBackTestingService;
 import vo.strategy.AbnormalReturnResultVO;
 import vo.strategy.StrategyBackTestInputVO;
 import vo.strategy.StrategyBackTestResultVO;
+import vo.strategy.StrategyTradeRecordVO;
 
 import java.util.ArrayList;
 
@@ -23,8 +24,9 @@ public class StrategyBackTestingServiceImpTest {
     private StrategyBackTestingService strategyBackTestingService;
     private ArrayList<String> stockIDs;
 
+    //动量策略
     @Test
-    public void getStrategyBackTesting1() throws Exception {
+    public void getStrategyBackTesting0() throws Exception {
         initStockIDs();
         StrategyBackTestInputVO inputVO = new StrategyBackTestInputVO();
         inputVO.setStockPoolType(1);
@@ -37,8 +39,6 @@ public class StrategyBackTestingServiceImpTest {
         inputVO.setHoldingPeriod(10);
         inputVO.setReturnPeriod(10);
         inputVO.setRatio(0.2);
-        inputVO.setHoldingStockNum(9);
-
         StrategyBackTestResultVO result = strategyBackTestingService.getStrategyBackTesting(inputVO);
 
         System.out.println("*********RESULT**********  AnnualRevenue:  " + result.getCumulativeYieldResultVO().getAnnualRevenue());
@@ -47,14 +47,14 @@ public class StrategyBackTestingServiceImpTest {
         System.out.println("*********RESULT**********  BaseAnnualRevenue:  " + result.getCumulativeYieldResultVO().getBaseAnnualRevenue());
         System.out.println("*********RESULT**********  SharpeRatio:  " + result.getCumulativeYieldResultVO().getSharpeRatio());
         System.out.println("*********RESULT**********  MaxDrawdown:  " + result.getCumulativeYieldResultVO().getMaxDrawdown());
-
     }
 
+    //均值回归策略
     @Test
-    public void getStrategyBackTesting2() throws Exception {
+    public void getStrategyBackTesting1() throws Exception {
         StrategyBackTestInputVO inputVO = new StrategyBackTestInputVO();
         inputVO.setStockPoolType(0);
-        inputVO.setStrategyType(0);
+        inputVO.setStrategyType(1);
         inputVO.setInitFund(10000);
         inputVO.setBlockType("zxb");
         inputVO.setStartDate("2015-03-30");
@@ -62,8 +62,7 @@ public class StrategyBackTestingServiceImpTest {
         inputVO.setHoldingPeriodFixed(false);
         inputVO.setHoldingPeriod(10);
         inputVO.setReturnPeriod(10);
-        inputVO.setRatio(0.2);
-        inputVO.setHoldingStockNum(9);
+        inputVO.setHoldingStockNum(100);
 
         StrategyBackTestResultVO result = strategyBackTestingService.getStrategyBackTesting(inputVO);
 
@@ -73,7 +72,58 @@ public class StrategyBackTestingServiceImpTest {
         System.out.println("*********RESULT**********  BaseAnnualRevenue:  " + result.getCumulativeYieldResultVO().getBaseAnnualRevenue());
         System.out.println("*********RESULT**********  SharpeRatio:  " + result.getCumulativeYieldResultVO().getSharpeRatio());
         System.out.println("*********RESULT**********  MaxDrawdown:  " + result.getCumulativeYieldResultVO().getMaxDrawdown());
+    }
 
+    //双均线策略
+    @Test
+    public void getStrategyBackTesting2() throws Exception {
+        StrategyBackTestInputVO inputVO = new StrategyBackTestInputVO();
+        inputVO.setStockPoolType(0);
+        inputVO.setStrategyType(2);
+        inputVO.setInitFund(10000);
+        inputVO.setBlockType("zxb");
+        inputVO.setStartDate("2015-03-30");
+        inputVO.setEndDate("2015-08-24");
+        inputVO.setHoldingPeriodFixed(false);
+        inputVO.setHoldingPeriod(2);
+        inputVO.setReturnPeriod(20);
+        inputVO.setShortReturnPeriod(5);
+        inputVO.setHoldingStockNum(90);
+
+        StrategyBackTestResultVO result = strategyBackTestingService.getStrategyBackTesting(inputVO);
+
+        System.out.println("*********RESULT**********  AnnualRevenue:  " + result.getCumulativeYieldResultVO().getAnnualRevenue());
+        System.out.println("*********RESULT**********  Alpha:  " + result.getCumulativeYieldResultVO().getAlpha());
+        System.out.println("*********RESULT**********  Beta:  " + result.getCumulativeYieldResultVO().getBeta());
+        System.out.println("*********RESULT**********  BaseAnnualRevenue:  " + result.getCumulativeYieldResultVO().getBaseAnnualRevenue());
+        System.out.println("*********RESULT**********  SharpeRatio:  " + result.getCumulativeYieldResultVO().getSharpeRatio());
+        System.out.println("*********RESULT**********  MaxDrawdown:  " + result.getCumulativeYieldResultVO().getMaxDrawdown());
+    }
+
+    //羊驼策略
+    @Test
+    public void getStrategyBackTesting3() throws Exception {
+        StrategyBackTestInputVO inputVO = new StrategyBackTestInputVO();
+        inputVO.setStockPoolType(0);
+        inputVO.setStrategyType(3);
+        inputVO.setInitFund(10000);
+        inputVO.setBlockType("zxb");
+        inputVO.setStartDate("2015-03-30");
+        inputVO.setEndDate("2016-05-24");
+        inputVO.setHoldingPeriodFixed(false);
+        inputVO.setHoldingPeriod(10);
+        inputVO.setReturnPeriod(10);
+        inputVO.setHoldingStockNum(80);
+        inputVO.setChangeNumber(40);
+
+        StrategyBackTestResultVO result = strategyBackTestingService.getStrategyBackTesting(inputVO);
+
+        System.out.println("*********RESULT**********  AnnualRevenue:  " + result.getCumulativeYieldResultVO().getAnnualRevenue());
+        System.out.println("*********RESULT**********  Alpha:  " + result.getCumulativeYieldResultVO().getAlpha());
+        System.out.println("*********RESULT**********  Beta:  " + result.getCumulativeYieldResultVO().getBeta());
+        System.out.println("*********RESULT**********  BaseAnnualRevenue:  " + result.getCumulativeYieldResultVO().getBaseAnnualRevenue());
+        System.out.println("*********RESULT**********  SharpeRatio:  " + result.getCumulativeYieldResultVO().getSharpeRatio());
+        System.out.println("*********RESULT**********  MaxDrawdown:  " + result.getCumulativeYieldResultVO().getMaxDrawdown());
     }
 
     @Test

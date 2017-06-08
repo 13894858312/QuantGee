@@ -21,14 +21,16 @@ public class StrategyBackTestInputVO {
     private int holdingPeriod;              //股票持有期
     /********************回测必须参数********************/
 
+
     /******************不同策略的可选参数*****************/
-    private int holdingStockNum;            //strategyType为1时需要此参数 每次调仓持有的股票数量
-    private double ratio;                   //strategyType为0时需要此参数 持有股票的比例
-    private int returnPeriod;               //strategyType为0、1、2时需要此参数
-                                                //strategyType为0时表示形成期 strategyType为1时表示N日移动均线 strategyType为2时表示第一条N日平滑均线(长周期)
-    private int returnPeriod2;              //strategyType为2时需要此参数 表示第二条N日平滑均线(短周期)
+    private int holdingStockNum;            //strategyType为1,2,3时需要此参数 持有的股票数量
+    private double ratio;                   //strategyType为0时需要此参数 持有股票的比例,用于计算持有的股票数量
+
+    private int returnPeriod;               //strategyType为0、1、2时需要此参数 strategyType为0时表示形成期 strategyType为1时表示N日移动均线 strategyType为2时表示第一条N日平滑均线(长周期)
+    private int shortReturnPeriod;          //strategyType为2时需要此参数 表示第二条N日平滑均线(短周期)
     private int changeNumber;               //strategyType为3时需要此参数 表示每次换仓换股数量
     /******************不同策略的可选参数*****************/
+
 
     /***************寻找最佳形成期需要的参数***************/
     private boolean isHoldingPeriodFixed;     //持有期是否为不变量 用于寻找最佳形成期或持有期
@@ -43,12 +45,12 @@ public class StrategyBackTestInputVO {
         this.changeNumber = changeNumber;
     }
 
-    public int getReturnPeriod2() {
-        return returnPeriod2;
+    public int getShortReturnPeriod() {
+        return shortReturnPeriod;
     }
 
-    public void setReturnPeriod2(int returnPeriod2) {
-        this.returnPeriod2 = returnPeriod2;
+    public void setShortReturnPeriod(int shortReturnPeriod) {
+        this.shortReturnPeriod = shortReturnPeriod;
     }
 
     public int getStockPoolType() {

@@ -10,19 +10,35 @@
     <link rel="stylesheet" href="../../css/ucenter/main.css">
     <link rel="stylesheet" href="../../css/ucenter/login.css">
 
+    <link rel="shortcut icon" href="../../images/logo20x20.png">
+
+    <style type="text/css">
+        @import "../../css/market/market.css";
+        @import "../../css/style.css";
+    </style>
+
+    <%--<!-- Style -->--%>
+    <%--<link rel="stylesheet" href="../../css/index/style.css">--%>
+
     <script type="text/javascript" src="../../jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="../../js/ucenter/login.js"></script>
+
 </head>
 
 <body>
-<div class="header">
-    <div class="control">
-				<span class="p_center fl">
-		            <a href="../../view/market/marketInfo.html" class="logo">
-		            	<img src="../../images/ucenter/logo.png" width="134px" height="48px"/>
-		            </a>
-		            <span id="test" class="person">用户登录</span>
-				</span>
+<div class="head">
+
+    <div class="hdlogo">
+
+        <a target="_blank" class="site-logo" href=""> <img src="../../images/quantgeelogo.png" title="MyQuantGee" alt="MyQuantGee"></a>
+
+    </div>
+
+    <div class="menu" id="ha1">
+        <a class="menua" id="a1"  href="../../index.jsp">返回首页</a>
+    </div>
+    <div class="menu" id="ha2">
+        <a class="menua" id="a2" href="../../view/market/marketInfo.jsp">进入大盘</a>
     </div>
 </div>
 <div id="showcasebg">
@@ -35,20 +51,17 @@
             <input type="password" id="login_password" name="accountVO.password" placeholder="请输入密码"/>
             <p id="login_password_tip"></p>
             <input type="submit" id="login_submit" class="submit" value="登录"
-                   style="width:252px;height: 48px;font-size: 20px;text-align: center;background: #19A3D1;"/>
+                   style="width:252px;height: 48px;font-size: 20px;text-align: center;background: #3EC483;"/>
         </form>
         <div class="forget">
-            <a href="/account/ForgetPassword" target="_parent">忘记密码？</a>
+            <a id="register1">免费注册</a><span></span>
+            <a href="account/ForgetPassword" target="_parent">忘记密码</a>
         </div>
         <input type="hidden" id="returnUrl" value="/">
-        <div class="regist">
-            <span>没有账号？</span>
-            <a id="register1">免费注册&gt;&gt;</a>
-        </div>
     </div>
 
     <div class="registbox" id="registbox">
-        <img src="../../images/ucenter/back.png" onclick="returnLogin()"/>
+        <img src="../../images/back.png" onclick="returnLogin()"/>
         <h1>账号注册</h1>
 
         <form action="register" onsubmit="return validate_register_form()" method="post">
@@ -64,13 +77,13 @@
                    onblur="if(this.value=='') {this.value='请输入手机号码';this.style.color='#fff';}" value="请输入手机号码"/>
             <p id="register_phone_tip"></p>
             <input type="submit" id="register_submit" class="submit" value="注册"
-                   style="width:252px;height: 48px; margin-bottom=0px: ; font-size: 20px;text-align: center;background: #19A3D1;"/>
+                   style="width:252px;height: 48px; margin-bottom: 0px ; font-size: 20px;text-align: center;background: #3EC483;"/>
         </form>
     </div>
 
     <div id="image_1" class="showcase" style="background-color:#5bc4f2; ">
         <div class="showarea">
-            <img src="../../images/login_background.jpg" alt="" style="float:left;">
+            <img src="../../images/login_background.png" alt="" style="float:left;">
         </div>
     </div>
 

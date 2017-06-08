@@ -1100,17 +1100,17 @@ i.uarr {
 table.colums {
 	/*position: absolute;*/
 	/*left: 0;*/
-	width: 482px;
+	width: 440px;
 	float: left;
 }
 
 table.colums th {
-	text-align: right;
+	text-align: center;
 }
 
 table.colums td {
 	/*width:49px;*/
-	text-align: right;
+	text-align: center;
 }
 
 #stockdata td {
@@ -1304,7 +1304,7 @@ i.rmv,
 }
 
 table.codename {
-	width: 360px;
+	width: 400px;
 	position: relative;
 }
 
