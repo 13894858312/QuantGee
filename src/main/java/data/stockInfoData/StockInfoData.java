@@ -149,4 +149,34 @@ public class StockInfoData implements StockInfoDAO{
         }
     }
 
+    @Override
+    public Iterator<CurrentIndex> getCurrentIndexByCode(String indexCode) {
+        Iterator<CurrentIndex> currentIndexIterator = (Iterator<CurrentIndex>) hibernateTemplate
+                .find("from CurrentIndex where code = ?", indexCode).iterator();
+        return currentIndexIterator;
+    }
+
+    @Override
+    public Iterator<IndexInfo> getAllIndexCodesAndNames() {
+        Iterator<IndexInfo> indexIterator = (Iterator<IndexInfo>) hibernateTemplate
+                .find("from IndexInfo ").iterator();
+        return indexIterator;
+    }
+
+    @Override
+    public String getIndexCodeByName(String name) {
+        try{
+            String code = (String) hibernateTemplate
+                    .find("select code from IndexInfo where name = ?", name).iterator().next();
+            return code;
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public String getIndexNameByCode(String code) {
+        return hibernateTemplate.get(IndexInfo.class, code).getName();
+    }
+
 }

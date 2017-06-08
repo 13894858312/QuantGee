@@ -207,5 +207,24 @@ public class StockTest {
         String code = stockInfoDAO.getCodeByName("平安银行");
         Assert.assertEquals("000001",code);
     }
+
+    @Test
+    public void getCurrentIndex(){
+        Iterator<CurrentIndex> indexIterator = stockInfoDAO.getCurrentIndexByCode("000001");
+        while(indexIterator.hasNext()){
+            System.out.println(indexIterator.next().getT());
+        }
+    }
+
+    @Test
+    public void indexTest(){
+        Iterator<IndexInfo> indexIterator = stockInfoDAO.getAllIndexCodesAndNames();
+        while (indexIterator.hasNext()){
+            System.out.println(indexIterator.next().getName());
+        }
+        Assert.assertEquals(stockInfoDAO.getIndexCodeByName("上证指数"), "000001");
+        Assert.assertEquals(stockInfoDAO.getIndexNameByCode("000001"), "上证指数");
+    }
+
 }
 
