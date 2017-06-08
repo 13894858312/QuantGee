@@ -11,7 +11,7 @@ public class StrategyBackTestInputVO {
 
     /********************回测必须参数*******************/
     private int stockPoolType;              //0指定板块 1指定股票
-    private int strategyType;               //0动量策略 1均值回归 2双均线策略 3羊驼策略
+    private int strategyType;               //0动量策略 1均值回归 2双均线策略 3羊驼策略 4KNN机器学习策略
     private String blockType;               //若stockPoolType为0 则指定板块名
     private ArrayList<String> stockCodes;   //若stockPoolType为1 则指定股票代码
     private String startDate;               //回测开始时间
@@ -19,16 +19,18 @@ public class StrategyBackTestInputVO {
     private double initFund;                //初始资金
     private boolean notST;                  //是否排除st
     private int holdingPeriod;              //股票持有期
+    private int returnPeriod;               //形成期 (strategyType为1时表示N日移动均线 strategyType为2时表示第一条N日平滑均线(长周期)）
     /********************回测必须参数********************/
 
 
     /******************不同策略的可选参数*****************/
     private int holdingStockNum;            //strategyType为1,2,3时需要此参数 持有的股票数量
     private double ratio;                   //strategyType为0时需要此参数 持有股票的比例,用于计算持有的股票数量
-
-    private int returnPeriod;               //strategyType为0、1、2时需要此参数 strategyType为0时表示形成期 strategyType为1时表示N日移动均线 strategyType为2时表示第一条N日平滑均线(长周期)
     private int shortReturnPeriod;          //strategyType为2时需要此参数 表示第二条N日平滑均线(短周期)
     private int changeNumber;               //strategyType为3时需要此参数 表示每次换仓换股数量
+    private int trainPeriod;                //strategyType为4时需要此参数 表示训练数据的天数
+    private int k;                          //strategyType为4时需要此参数 表示最近邻的数量
+    private int vectorLength;               //strategyType为4时需要此参数 表示最近邻向量的长度
     /******************不同策略的可选参数*****************/
 
 
