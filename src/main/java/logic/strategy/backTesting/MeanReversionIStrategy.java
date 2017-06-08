@@ -22,17 +22,22 @@ public class MeanReversionIStrategy implements IStrategy {
     private int returnPeriod;               //形成期
 
     @Override
-    public ArrayList<String> getRebalancedStockCodes(StockPool stockPool,ArrayList<LogicHoldingStock> holdingStocks,int holdingStockNum, String beforeDate, ArrayList<String> dates) {
+    public ArrayList<String> getRebalancedStockCodes(StockPool stockPool, ArrayList<LogicHoldingStock> holdingStocks, int holdingStockNum,
+                                                     String formerRPeriodDate,String formerHPeriod, ArrayList<String> dates) {
         if (dates.size() == 0) {
             return null;
         }
         String yesterday = dates.get(0);
         ArrayList<YieldStock> yieldStocks = new ArrayList<>();
-        ArrayList<String> result;
+        ArrayList<String> topCodes;
+        ArrayList<String> result = new ArrayList<>();
 
         for (int i = 0; i < stockPool.getStocksList().size(); ++i) {
-            Stock beforeStock = stockPool.getStocksList().get(i).getStockByDate(beforeDate);
             Stock yesterdayStock = stockPool.getStocksList().get(i).getStockByDate(yesterday);
+
+            if(yesterdayStock == null) {
+                continue;
+            }
 
             HashMap<String, MaVO> maLine;
             int maType = stockPool.getInputVO().getReturnPeriod();
@@ -46,7 +51,7 @@ public class MeanReversionIStrategy implements IStrategy {
             }
 
             boolean live = true;                     //持有期內每天的股票信息必须有 否则不持有该股票
-            for (int j = 0; j < dates.size(); ++j) {
+            for (int j = 1; j < dates.size(); ++j) {
                 Stock po = stockPool.getStocksList().get(i).getStockByDate(dates.get(j));
                 if (po == null) {
                     live = false;
@@ -54,7 +59,7 @@ public class MeanReversionIStrategy implements IStrategy {
                 }
             }
 
-            if (live && yesterdayStock != null && beforeStock != null) {
+            if (live) {
                 //计算偏离度 (均值-当天的开盘价)/ 均值
                 double average = 0;
                 if (maLine.get(yesterday) != null) {
@@ -67,7 +72,25 @@ public class MeanReversionIStrategy implements IStrategy {
         }
 
         //得到收益前holdingStockNum的股票代码
-        result = StrategyHelper.getTopNStocks(yieldStocks, holdingStockNum);
+        topCodes = StrategyHelper.getTopNStocks(yieldStocks, holdingStockNum,true);
+        if(holdingStocks.size() == 0) {
+            return topCodes;
+        }
+
+        HashMap<String, LogicHoldingStock> hashMap = new HashMap<>();
+        for (int i=0; i<holdingStocks.size(); ++i) {
+            hashMap.put(holdingStocks.get(i).getStockCode(), holdingStocks.get(i));
+        }
+
+        for (int i=0; i<topCodes.size(); ++i) {
+            LogicHoldingStock temp = hashMap.get(topCodes.get(i));
+            if (temp != null) {
+                temp.setCanContinueHold(true);              //可以继续持有该股票
+            } else {
+                result.add(topCodes.get(i));
+            }
+        }
+
         //初始化形成期
         this.returnPeriod = stockPool.getInputVO().getReturnPeriod();
 

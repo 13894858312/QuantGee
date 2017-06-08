@@ -115,17 +115,30 @@ function getMA20(data) {
     }
     return klineMA20;
 }
-function getRiseStock() {
-    var numOfRiseStock = [];
+function getVolume() {
+    var volume = [];
     var json;
-    // $.ajax({
-    //     cache:false,
-    //     async:false,
-    //     url:
-    // })
+    $.ajax({
+        cache:false,
+        async:false,
+        url:'getVolume.action',
+        type:'GET',
+        dataType:'json',
+        success:function (data) {
+            json = JSON.parse(data);
+        },
+        error:function (data) {
+            alert("error");
+        }
+    });
+    for(var i=0;i<json.length;i++){
+        volume.push(json[i]['value']);
+    }
+    return volume;
 }
 function dochart() {
 var myChart1 = echarts.init(document.getElementById('kline'));
+var myChart2 = echarts.init(document.getElementById('volume'));
 var option1 = {
     backgroundColor: '#FFFFFF',
     tooltip: {
@@ -222,5 +235,63 @@ var option1 = {
         }
     ]
 };
+    var option2 = {
+        backgroundColor: '#FFFFFF',
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            }
+        },
+        // legend: {
+        //     data: ['日K', 'MA5', 'MA10', 'MA20','涨','跌','成交量']
+        // },
+        grid: {
+            top:'10%',
+            left: '5%',
+            right: '5%',
+            bottom: '11%'
+        },
+        xAxis: {
+            show:false,
+            type: 'category',
+            data: getKlineDate()
+        },
+        yAxis: {
+            scale: true,
+            splitArea: {
+                show: true
+            }
+        },
+        dataZoom: [
+            {
+                type: 'inside',
+                start: 50,
+                end: 100
+            }
+            // {
+            //     show: true,
+            //     type: 'slider',
+            //     y: '90%',
+            //     start: 50,
+            //     end: 100
+            // }
+        ],
+        series: [
+            // {
+            //     name: '跌',
+            //     type: 'bar',
+            //     data: []
+            //
+            // },
+            {
+                name: '成交量',
+                type: 'bar',
+                data: getVolume()
+            }
+        ]
+    };
 myChart1.setOption(option1);
+myChart2.setOption(option2);
+echarts.connect([myChart1,myChart2]);
 }

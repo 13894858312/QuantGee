@@ -17,17 +17,25 @@ public class StrategyHelper {
      * 获取前n股票
      * @param stocks  stocks
      * @param n n
+     * @param up 获取收益最高的n个或是收益最低的n个
      * @return 前n的股票代码
      */
-    public static ArrayList<String> getTopNStocks(ArrayList<YieldStock> stocks, int n) {
+    public static ArrayList<String> getTopNStocks(ArrayList<YieldStock> stocks, int n, boolean up) {
         ArrayList<String> result = new ArrayList<>();
 
         for(int i=0; i<n; ++i) {
             int index = 0;
             for(int j=1; j<stocks.size(); ++j) {
-                if(stocks.get(j).getYield() > stocks.get(index).getYield()) {
-                    index = j;
+                if(up) {
+                    if(stocks.get(j).getYield() > stocks.get(index).getYield()) {
+                        index = j;
+                    }
+                } else {
+                    if(stocks.get(j).getYield() < stocks.get(index).getYield()) {
+                        index = j;
+                    }
                 }
+
             }
             result.add(stocks.get(index).getStockCode());
             stocks.remove(index);
@@ -43,7 +51,7 @@ public class StrategyHelper {
      * @param stockCode 股票代码
      * @return HashMap date-ma
      */
-    public static HashMap<String, MaVO> getMaFromStockPool(StockPool stockPool, String stockCode, int dayNums) {
+    public static HashMap<String,MaVO> getMaFromStockPool(StockPool stockPool, String stockCode, int dayNums) {
         assert (stockCode != null && !stockCode.equals("")) : "logic.calculation.GraphCalculation.getAverageLineInfoByCode参数异常";
 
         ArrayList<Stock> stocks = stockPool.getStockByCode(stockCode).getStocks();

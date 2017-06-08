@@ -40,7 +40,6 @@ public class StockAction extends ActionSupport{
         String date = DateHelper.getNowDate();
         String enddate = DateHelper.formerNTradeDay(date, 20);
         String startdate = DateHelper.formerNTradeDay(enddate, 480);
-System.out.println(stockCode);
         StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate);
         StockHistoricalVO stockHistoricalVO = stockBasicInfoService.getStockHistoricalInfo(stockInputVO);
         return stockHistoricalVO;
