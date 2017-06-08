@@ -1,6 +1,7 @@
 package action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import logic.tools.DateHelper;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +33,10 @@ public class MarketInfoAction extends ActionSupport {
     }
 
     private StockHistoricalVO getMarketInfo(){
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.add(Calendar.MONTH, -1);
-        date = calendar.getTime();
-        String startdate = simpleDateFormat.format(date);
-        calendar.add(Calendar.MONTH, -5);
-        date = calendar.getTime();
-        String enddate = simpleDateFormat.format(date);
-        StockInputVO stockInputVO = new StockInputVO("000001", enddate, startdate);
+        String date = DateHelper.getNowDate();
+        String enddate = DateHelper.formerNTradeDay(date, 20);
+        String startdate = DateHelper.formerNTradeDay(enddate, 480);
+        StockInputVO stockInputVO = new StockInputVO("000001", startdate, enddate);
         StockHistoricalVO stockHistoricalVO = stockBasicInfoService.getStockHistoricalInfo(stockInputVO);
         return stockHistoricalVO;
     }
@@ -71,8 +65,9 @@ public class MarketInfoAction extends ActionSupport {
         return SUCCESS;
     }
 
-    public String getRise(){
-//        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().)
+    public String getVolume(){
+        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().getVolume());
+        result = jsonArray.toString();
         return SUCCESS;
     }
 }

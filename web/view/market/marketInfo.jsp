@@ -94,8 +94,8 @@
 				</div>
 			</div>
 			<div class="kline" id="kline"></div>
-			<script src="../../js/marketInfo/KLine.js"></script>
 			<div class="volume" id="volume"></div>
+			<script src="../../js/marketInfo/KLine.js"></script>
 		</div>
 		<div class="realmarket">
 			<div class="shangz">
