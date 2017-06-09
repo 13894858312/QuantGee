@@ -45,7 +45,7 @@
     <div class="loginbox" id="loginbox">
         <h1>账号登录</h1>
         <form action="login" onsubmit="return validate_login_form()" method="post">
-            <input type="text" id="login_userName" name="accountVO.accountID" maxlength="32" onfocus=temp(this)
+            <input type="text" id="login_userName" name="accountVO.accountID" maxlength="20" onfocus=temp(this)
                    onblur="if(this.value=='') {this.value='请输入帐号';this.style.color='#fff';}" value="请输入帐号"/>
             <p id="login_username_tip"></p>
             <input type="password" id="login_password" name="accountVO.password" placeholder="请输入密码"/>
@@ -65,7 +65,7 @@
         <h1>账号注册</h1>
 
         <form action="register" onsubmit="return validate_register_form()" method="post">
-            <input type="text" id="register_userName" name="accountVO.accountID" maxlength="32" onfocus=temp(this)
+            <input type="text" id="register_userName" name="accountVO.accountID" maxlength="20" onfocus=temp(this)
                    onblur="if(this.value=='') {this.value='请输入帐号';this.style.color='#fff';}" value="请输入帐号"/>
             <p id="register_username_tip"></p>
             <input type="password" id="register_password" name="accountVO.password" placeholder="请输入密码"/>

@@ -181,13 +181,13 @@ public class TransferHelper {
             name = StrategyHelper.getStrategyName(vo.getStrategyType()) + time.replace(":", "");
         }
 
-        result.setUserID(vo.getUserID());
+        result.setUserId(vo.getUserID());
         result.setTime(time);
-        result.setStrateygyName(name);
+        result.setStrategyName(name);
         result.setStrategyType(vo.getStrategyType());
         result.setLastYield(vo.getLastYield());
         result.setInitFund(vo.getInitFund());
-        result.setNotST(vo.isNotST());
+        result.setNotSt(bool_to_byte(vo.isNotST()));
         result.setHoldingPeriod(vo.getHoldingPeriod());
         result.setReturnPeriod(vo.getReturnPeriod());
         result.setStopLoss(vo.getStopLoss());
@@ -209,12 +209,27 @@ public class TransferHelper {
      * @return StrategyVO
      */
     public StrategyVO transToStrategyVO(Strategy strategy) {
-        StrategyVO result = new StrategyVO(strategy.getStrategyID(), strategy.getUserID(), strategy.getStrateygyName(),strategy.getTime(),
-                strategy.getLastYield(), strategy.getStrategyType(), strategy.getInitFund(), strategy.isNotST(), strategy.getHoldingPeriod(),
+        StrategyVO result = new StrategyVO(strategy.getStrategyId(), strategy.getUserId(), strategy.getStrategyName(),strategy.getTime(),
+                strategy.getLastYield(), strategy.getStrategyType(), strategy.getInitFund(), byte_to_bool(strategy.getNotSt()), strategy.getHoldingPeriod(),
                 strategy.getReturnPeriod(), strategy.getStopLoss(), strategy.getStopProfit(), strategy.getRatio(),strategy.getHoldingStockNum(),
                 strategy.getShortReturnPeriod(), strategy.getChangeNumber(), strategy.getTrainPeriod(), strategy.getK(),strategy.getVectorLength());
 
         return result;
     }
 
+    private boolean byte_to_bool(byte a){
+        if(a == (byte) 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private byte bool_to_byte(boolean b){
+        if(b){
+            return (byte) 1;
+        }else {
+            return (byte) 0;
+        }
+    }
 }
