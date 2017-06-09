@@ -9,19 +9,58 @@
             <column name="strategyID" sql-type="int(11)"/>
         </id>
         <property name="strategyName">
-            <column name="strategyName" sql-type="text"/>
-        </property>
-        <property name="strategyType">
-            <column name="strategyType" sql-type="varchar(20)" length="20"/>
-        </property>
-        <property name="strategyContent">
-            <column name="strategyContent" sql-type="text" not-null="true"/>
+            <column name="strategyName" sql-type="varchar(30)" length="30"/>
         </property>
         <property name="userId">
             <column name="userID" sql-type="varchar(20)" length="20"/>
         </property>
-        <property name="posted">
-            <column name="posted" sql-type="int(11)" not-null="true"/>
+        <property name="time">
+            <column name="time" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="strategyType">
+            <column name="strategyType" sql-type="int(11)"/>
+        </property>
+        <property name="initFund">
+            <column name="initFund" sql-type="double" precision="-1"/>
+        </property>
+        <property name="notSt">
+            <column name="notST" sql-type="tinyint(1)"/>
+        </property>
+        <property name="holdingPeriod">
+            <column name="holdingPeriod" sql-type="int(11)"/>
+        </property>
+        <property name="returnPeriod">
+            <column name="returnPeriod" sql-type="int(11)"/>
+        </property>
+        <property name="stopLoss">
+            <column name="stopLoss" sql-type="double" precision="-1"/>
+        </property>
+        <property name="stopProfit">
+            <column name="stopProfit" sql-type="double" precision="-1"/>
+        </property>
+        <property name="lastYield">
+            <column name="lastYield" sql-type="double" precision="-1"/>
+        </property>
+        <property name="ratio">
+            <column name="ratio" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="holdingStockNum">
+            <column name="holdingStockNum" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="shortReturnPeriod">
+            <column name="shortReturnPeriod" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="changeNumber">
+            <column name="changeNumber" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="trainPeriod">
+            <column name="trainPeriod" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="k">
+            <column name="k" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="vectorLength">
+            <column name="vectorLength" sql-type="int(11)" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>

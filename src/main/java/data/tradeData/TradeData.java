@@ -2,6 +2,7 @@ package data.tradeData;
 
 import DAO.tradeDAO.TradeDAO;
 import bean.HoldingStock;
+import bean.HoldingStockPK;
 import bean.Trade;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,19 +22,27 @@ public class TradeData implements TradeDAO{
 
     @Override
     public Iterator<Trade> getUserTradeList(String userID, String stockCode) {
-        return null;
+        return (Iterator<Trade>) hibernateTemplate
+                .find("from Trade where userId = ? and code = ?", new String[]{userID, stockCode});
     }
 
     @Override
     public HoldingStock getHoldingStock(String userID, String stockCode) {
-        return null;
+        HoldingStockPK holdingStockPK = new HoldingStockPK();
+        holdingStockPK.setCode(stockCode);
+        holdingStockPK.setUserId(userID);
+        return hibernateTemplate.get(HoldingStock.class, holdingStockPK);
     }
 
     @Override
     public boolean addTradeInfo(Trade trade) {
-        hibernateTemplate.save(trade);
-        hibernateTemplate.flush();
-        return true;
+        try{
+            hibernateTemplate.save(trade);
+            hibernateTemplate.flush();
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
@@ -53,6 +62,7 @@ public class TradeData implements TradeDAO{
 
     @Override
     public boolean updateHoldingStock(HoldingStock holdingStock) {
+        try{
         int newNum = holdingStock.getHoldNum();
         String stockID = holdingStock.getCode();
         String userID = holdingStock.getUserId();
@@ -82,6 +92,9 @@ public class TradeData implements TradeDAO{
         hibernateTemplate.save(holdingStock);
         hibernateTemplate.flush();
         return true;
+        } catch (Exception e){
+            return false;
+        }
     }
 
 }

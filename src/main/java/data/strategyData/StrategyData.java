@@ -23,17 +23,35 @@ public class StrategyData implements StrategyDAO {
 
     @Override
     public boolean addMyStrategy(Strategy strategy) {
-        return false;
+        try{
+            hibernateTemplate.save(strategy);
+            hibernateTemplate.flush();
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public boolean removeMyStrategy(String userID, int strategyID) {
-        return false;
+        try{
+            Strategy strategy = hibernateTemplate.get(Strategy.class, strategyID);
+            if(strategy.getUserId() == userID){
+                hibernateTemplate.delete(strategy);
+                hibernateTemplate.flush();
+                return true;
+            }
+            return false;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public Iterator<Strategy> getMyStrategy(String userID) {
-        return null;
+        Iterator<Strategy> iterator = (Iterator<Strategy>) hibernateTemplate
+                .find("from Strategy where userId = ?", userID).iterator();
+        return iterator;
     }
 
 //
