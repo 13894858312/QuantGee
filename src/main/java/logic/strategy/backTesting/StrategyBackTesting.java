@@ -128,7 +128,7 @@ System.out.println("mainLoop: " + indexStocks.get(i).getDate());
                 this.calculateStrategyYield(todayTemp);          //计算收益， 用昨日adj
             }
 
-            if(i == indexStocks.size()-1 && holdingDaysIndex != holdingPeriod) {
+            if(i == (indexStocks.size()-1) && holdingDaysIndex != holdingPeriod) {
                 this.sellStock(todayTemp);                       //如果最后剩余的天数不足holdingPeriod，仍然计算周期收益率
                 this.calculatePeriodYield(todayTemp);
             }
@@ -157,9 +157,15 @@ System.out.println("mainLoop: " + indexStocks.get(i).getDate());
                 yield = (nowMoney-holdingStocks.get(i).getMoney())/holdingStocks.get(i).getMoney();
 
                 if (yield >= stopProfit || yield <= stopLoss) {         //卖出股票
+                    int sellType;
+                    if (yield >= stopProfit) {
+                        sellType = 2;
+                    } else {
+                        sellType = 1;
+                    }
                     codes.add(holdingStocks.get(i).getCode());
                     moneyInHand += nowMoney;                             //持有的钱增加
-                    this.tradeRecords.add(new StrategyTradeRecordVO(holdingStocks.get(i).getCode(), holdingStocks.get(i).getDate(), date, holdingStocks.get(i).getMoney(), nowMoney));
+                    this.tradeRecords.add(new StrategyTradeRecordVO(holdingStocks.get(i).getCode(), holdingStocks.get(i).getDate(), date, holdingStocks.get(i).getMoney(), nowMoney, sellType));
                 }
             }
         }
@@ -217,7 +223,7 @@ System.out.println("          holdingstock-size:" + holdingStocks.size());
                 double close = this.stockPool.getStockByCodeAndDate(temp.getCode(), date).getClose();
                 if (!temp.isCanContinueHold()) {            //不能继续持有 卖出股票
                     this.moneyInHand += numOfStock * close;
-                    this.tradeRecords.add(new StrategyTradeRecordVO(temp.getCode(), temp.getDate(), date, temp.getMoney(), numOfStock * close));
+                    this.tradeRecords.add(new StrategyTradeRecordVO(temp.getCode(), temp.getDate(), date, temp.getMoney(), numOfStock * close, 0));
                 } else {                                    //继续持有股票
                     newHoldingStocks.add(temp);
                 }

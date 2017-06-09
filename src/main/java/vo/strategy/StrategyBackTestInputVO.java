@@ -208,49 +208,4 @@ public class StrategyBackTestInputVO {
     public void setStopProfit(double stopProfit) {
         this.stopProfit = stopProfit;
     }
-
-    /**
-     * 判断StrategyInputVO是否相同 用来确定是否要重新加载股票池
-     * @param input StrategyBackTestInputVO
-     * @return boolean
-     */
-    public boolean equals(StrategyBackTestInputVO input) {
-
-        if (input == null) {
-            return false;
-        }
-
-        boolean temp1 = input.startDate.equals(startDate)
-                && input.endDate.equals(endDate)
-                && (input.stockPoolType == this.stockPoolType)
-                && (input.blockType == this.blockType);
-
-        boolean temp2 = stockNamesEqual(input.stockCodes);
-
-
-        return (temp1 && temp2);
-    }
-
-    private boolean stockNamesEqual(ArrayList<String> s) {
-        if(this.stockCodes == null || this.stockCodes.size() == 0) {
-            if(s == null || s.size() == 0) {
-                return true;
-            }
-        }
-
-        if(s.size() != this.stockCodes.size()) {
-            return false;
-        }
-
-        boolean temp = true;
-        for(int i = 0; i<this.stockCodes.size(); ++i) {
-            if(!stockCodes.get(i).equals(s.get(i))) {
-                temp = false;
-                break;
-            }
-        }
-
-        return temp;
-    }
-
 }

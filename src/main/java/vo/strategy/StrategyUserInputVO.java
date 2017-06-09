@@ -5,6 +5,6 @@ package vo.strategy;
  */
 public class StrategyUserInputVO {
     private String userID;
-    private String strategyID;
+    private int strategyID;
 
 }

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 @Service
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class MyStrategyServiceImp implements MyStrategyService {
+
     @Override
     public boolean addMyStartegy(StrategyAddInputVO strategyAddInputVO) {
         return false;
