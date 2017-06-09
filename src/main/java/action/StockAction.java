@@ -10,6 +10,8 @@ import service.stock.StockBasicInfoService;
 import vo.stock.StockHistoricalVO;
 import vo.stock.StockInputVO;
 
+import java.util.ArrayList;
+
 /**
  * Created by Administrator on 2017/6/5.
  */
@@ -36,51 +38,27 @@ public class StockAction extends ActionSupport{
     public void setStockCode(String stockCode) {
         this.stockCode = stockCode;
     }
-    private StockHistoricalVO getStockHistoricalVO(){
+
+    private StockHistoricalVO getStockHistoricalVO(int num1, int num2){
         String date = DateHelper.getNowDate();
-        String enddate = DateHelper.formerNTradeDay(date, 20);
-        String startdate = DateHelper.formerNTradeDay(enddate, 480);
+        String enddate = DateHelper.formerNTradeDay(date, num1);
+        String startdate = DateHelper.formerNTradeDay(enddate, num2);
         StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate);
         StockHistoricalVO stockHistoricalVO = stockBasicInfoService.getStockHistoricalInfo(stockInputVO);
         return stockHistoricalVO;
     }
 
-    public String stockCode(){
-        JSONObject jsonObject = JSONObject.fromObject(stockCode);
+    public String getStockKlineInfo(){
+        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,480));
         result = jsonObject.toString();
-        return SUCCESS;
-    }
-    public String getStockFirstInfo(){
-        JSONArray jsonArray = JSONArray.fromObject(getStockHistoricalVO().getkLine());
-        result = jsonArray.toString();
-        return SUCCESS;
-    }
-
-    public String getMA5(){
-        JSONArray jsonArray = JSONArray.fromObject(getStockHistoricalVO().getMa5());
-        result = jsonArray.toString();
-        return SUCCESS;
-    }
-
-    public String getMA10(){
-        JSONArray jsonArray = JSONArray.fromObject(getStockHistoricalVO().getMa10());
-        result = jsonArray.toString();
-        return SUCCESS;
-    }
-
-    public String getMA20(){
-        JSONArray jsonArray = JSONArray.fromObject(getStockHistoricalVO().getMa20());
-        result = jsonArray.toString();
-        return SUCCESS;
-    }
-
-    public String getVolume(){
-        JSONArray jsonArray = JSONArray.fromObject(getStockHistoricalVO().getVolume());
-        result = jsonArray.toString();
         return SUCCESS;
     }
 
     public String totheStock(){
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add(stockCode);
+        JSONArray jsonArray = JSONArray.fromObject(arrayList);
+        result = jsonArray.toString();
         return SUCCESS;
     }
 }

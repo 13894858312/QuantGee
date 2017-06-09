@@ -35,7 +35,7 @@ function changewhole5() {
     ha5.style.borderBottom = "2px solid rgb(62, 196, 131)";
 }
 function totheStockView() {
-    var stockCode = document.getElementById("inputStockCode");
+    var code = document.getElementById("inputStockCode");
     $.ajax({
         cache:false,
         async:false,
@@ -43,7 +43,7 @@ function totheStockView() {
         type:'POST',
         dataType:'json',
         data:{
-          stockCode: stockCode
+          stockCode: code.value
         },
         success:function (data) {
             window.location.href = '../../view/stock/theStock.jsp';

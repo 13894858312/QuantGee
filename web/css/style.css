@@ -94,8 +94,10 @@ button {
 }*/
 .bar7 button {
 	background: none;
-    top: -8px;
-    right: 8px;
+	margin-left: 200px;
+	margin-top: -7px;
+    /*top: -8px;*/
+    /*right: 8px;*/
 }
 .bar7 button:before{
 	content: url(../images/searchbutton.png);
