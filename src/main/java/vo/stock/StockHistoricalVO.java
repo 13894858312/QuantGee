@@ -29,33 +29,9 @@ public class StockHistoricalVO {
     //对数收益
     private ArrayList<LineVO> logarithmYield;
 
-    //macd
-    private ArrayList<LineVO> diff;
-    private ArrayList<LineVO> dea;
-    private ArrayList<LineVO> macd;
-
-    //kdj
-    private ArrayList<LineVO> k;
-    private ArrayList<LineVO> d;
-    private ArrayList<LineVO> j;
-
-    //rsi
-    private ArrayList<LineVO> rsi6;
-    private ArrayList<LineVO> rsi12;
-    private ArrayList<LineVO> rsi24;
-
-    //boll
-    private ArrayList<LineVO> mid;
-    private ArrayList<LineVO> up;
-    private ArrayList<LineVO> low;
-
-    public StockHistoricalVO(String code, String name, String stockMarket, String startDate,
-                             String endDate, ArrayList<KLineVO> kLine, ArrayList<LineVO> volume,
-                             ArrayList<LineVO> ma5, ArrayList<LineVO> ma10, ArrayList<LineVO> ma20,
-                             ArrayList<LineVO> logarithmYield, ArrayList<LineVO> diff, ArrayList<LineVO> dea,
-                             ArrayList<LineVO> macd, ArrayList<LineVO> k, ArrayList<LineVO> d, ArrayList<LineVO> j,
-                             ArrayList<LineVO> rsi6, ArrayList<LineVO> rsi12, ArrayList<LineVO> rsi24,
-                             ArrayList<LineVO> mid, ArrayList<LineVO> up, ArrayList<LineVO> low) {
+    public StockHistoricalVO(String code, String name, String stockMarket, String startDate, String endDate,
+                             ArrayList<KLineVO> kLine, ArrayList<LineVO> volume, ArrayList<LineVO> ma5,
+                             ArrayList<LineVO> ma10, ArrayList<LineVO> ma20, ArrayList<LineVO> logarithmYield) {
         this.code = code;
         this.name = name;
         this.stockMarket = stockMarket;
@@ -67,18 +43,6 @@ public class StockHistoricalVO {
         this.ma10 = ma10;
         this.ma20 = ma20;
         this.logarithmYield = logarithmYield;
-        this.diff = diff;
-        this.dea = dea;
-        this.macd = macd;
-        this.k = k;
-        this.d = d;
-        this.j = j;
-        this.rsi6 = rsi6;
-        this.rsi12 = rsi12;
-        this.rsi24 = rsi24;
-        this.mid = mid;
-        this.up = up;
-        this.low = low;
     }
 
     public String getCode() {
@@ -167,101 +131,5 @@ public class StockHistoricalVO {
 
     public void setLogarithmYield(ArrayList<LineVO> logarithmYield) {
         this.logarithmYield = logarithmYield;
-    }
-
-    public ArrayList<LineVO> getDiff() {
-        return diff;
-    }
-
-    public void setDiff(ArrayList<LineVO> diff) {
-        this.diff = diff;
-    }
-
-    public ArrayList<LineVO> getDea() {
-        return dea;
-    }
-
-    public void setDea(ArrayList<LineVO> dea) {
-        this.dea = dea;
-    }
-
-    public ArrayList<LineVO> getMacd() {
-        return macd;
-    }
-
-    public void setMacd(ArrayList<LineVO> macd) {
-        this.macd = macd;
-    }
-
-    public ArrayList<LineVO> getK() {
-        return k;
-    }
-
-    public void setK(ArrayList<LineVO> k) {
-        this.k = k;
-    }
-
-    public ArrayList<LineVO> getD() {
-        return d;
-    }
-
-    public void setD(ArrayList<LineVO> d) {
-        this.d = d;
-    }
-
-    public ArrayList<LineVO> getJ() {
-        return j;
-    }
-
-    public void setJ(ArrayList<LineVO> j) {
-        this.j = j;
-    }
-
-    public ArrayList<LineVO> getRsi6() {
-        return rsi6;
-    }
-
-    public void setRsi6(ArrayList<LineVO> rsi6) {
-        this.rsi6 = rsi6;
-    }
-
-    public ArrayList<LineVO> getRsi12() {
-        return rsi12;
-    }
-
-    public void setRsi12(ArrayList<LineVO> rsi12) {
-        this.rsi12 = rsi12;
-    }
-
-    public ArrayList<LineVO> getRsi24() {
-        return rsi24;
-    }
-
-    public void setRsi24(ArrayList<LineVO> rsi24) {
-        this.rsi24 = rsi24;
-    }
-
-    public ArrayList<LineVO> getMid() {
-        return mid;
-    }
-
-    public void setMid(ArrayList<LineVO> mid) {
-        this.mid = mid;
-    }
-
-    public ArrayList<LineVO> getUp() {
-        return up;
-    }
-
-    public void setUp(ArrayList<LineVO> up) {
-        this.up = up;
-    }
-
-    public ArrayList<LineVO> getLow() {
-        return low;
-    }
-
-    public void setLow(ArrayList<LineVO> low) {
-        this.low = low;
     }
 }
