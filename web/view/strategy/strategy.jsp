@@ -23,10 +23,12 @@
 			}
 		</script>
 		<script type="text/javascript" src="../../jquery-3.2.1.min.js"></script>
+		<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="../../js/strategy/strategy.js"></script>
 		<link rel="stylesheet" href="../../css/style.css" />
 		<link rel="stylesheet" href="../../css/strategy/strategy.css" />
-		<link rel="stylesheet" href="../../css/strategy/new.css" />
+		<!-- 新 Bootstrap 核心 CSS 文件 -->
+		<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
 	</head>
 
@@ -112,18 +114,18 @@
 
 		<div id="createStockPool">
 			<div id="tip">
-				<span >构造股票池</span>
-				<ul id=tip_tags>
-					<li >
-						<a onclick="" href="javascript:void(0)">按板块</a>
+				<span id="pool_tip">构造股票池</span>
+				<ul id=pool_tags>
+					<li class="selectTag_Pool">
+						<a onclick="selectPoolTag('pool_Content0',this)" href="javascript:void(0)">按板块</a>
 					</li>
 					<li>
-						<A onclick="" href="javascript:void(0)">按股票</a>
+						<A onclick="selectPoolTag('pool_Content1',this)" href="javascript:void(0)">按股票</a>
 					</li>
 				</ul>
 			</div>
-			<div id=block style="vertical-align: text-bottom;">
-				<span style="height: 30px;">选择板块</span>
+			<div class="pool_Content" style="display: block;" id=pool_Content0>
+				<span>选择板块</span>
 				<select style="height: 30px; width: 100px;">
 					<option value="0">上证</option>
 					<option value="1">深证</option>
@@ -131,7 +133,61 @@
 					<option value="3">创业板</option>
 				</select>
 			</div>
-			
+			<div class="pool_Content" id=pool_Content1 style="height: 200px;">
+				<div style="height: 40px;">
+
+					<span>选择股票</span>
+					<input type="text" placeholder="请输入股票代码" style="
+				    width: 250px;
+				    margin-left: 15px;
+				    border-radius: 42px;
+				    border: 2px solid rgb(41,29,29);
+				    background: #FFFFFF;
+				    transition: .3s linear;
+				    height: 30px;
+				">
+					<button style="
+				    width: 80px;
+				    border-radius: 42px;
+				    margin-left: 10px;
+				    border: 2px solid rgb(41,29,29);
+				    background: #FFFFFF;
+				    padding: 1px;
+				    transition: .3s linear;
+				    height: 30px;
+				">添加</button>
+				</div>
+
+				<div style="height: 40px;">
+					<span>选择收藏股票</span>
+					<!--<select multiple="multiple"
+						style="
+					    margin-left: 10px;
+					    width: 200px;
+					    border-radius: 42px;
+					    border: 2px solid rgb(41,29,29);
+					">
+						<option value="0" >hh</option>
+						<option value="0">hh</option>
+						<option value="0">hh</option>
+					</select>-->
+					<select id="usertype" name="usertype" class="selectpicker show-tick form-control" multiple data-live-search="false">
+                                        <option value="0">苹果</option>
+                                        <option value="1">菠萝</option>
+                                        <option value="2">香蕉</option>
+                                        <option value="3">火龙果</option>
+                                        <option value="4">梨子</option>
+                                        <option value="5">草莓</option>
+                                        <option value="6">哈密瓜</option>
+                                        <option value="7">椰子</option>
+                                        <option value="8">猕猴桃</option>
+                                        <option value="9">桃子</option>
+                                </select>
+					</select>
+				</div>
+
+			</div>
+
 		</div>
 
 		<div id=con_str>
