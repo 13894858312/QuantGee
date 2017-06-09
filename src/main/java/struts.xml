@@ -31,27 +31,7 @@
 		</action>
 	</package>
 	<package name="marketInfo" extends="json-default,struts-default">
-		<action name="candle-volume" class="marketInfoAction" method="getCandleStick">
-			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
-		<action name="MA5" class="marketInfoAction" method="getMA5">
-            <result name="success" type="json">
-                <param name="root">result</param>
-            </result>
-        </action>
-        <action name="MA10" class="marketInfoAction" method="getMA10">
-            <result name="success" type="json">
-                <param name="root">result</param>
-            </result>
-        </action>
-        <action name="MA20" class="marketInfoAction" method="getMA20">
-            <result name="success" type="json">
-                <param name="root">result</param>
-            </result>
-        </action>
-		<action name="getVolume" class="marketInfoAction" method="getVolume">
+		<action name="dayKline" class="marketInfoAction" method="getDayKline">
 			<result name="success" type="json">
 				<param name="root">result</param>
 			</result>
@@ -73,7 +53,17 @@
                 <param name="root">result</param>
             </result>
 		</action>
+        <action name="getStockKline" class="listAction" method="getStockKline">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
         <action name="upStockList" class="listAction" method="getStockUpList">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="getStockCurrentVO" class="listAction" method="getStockCurrentVO">
             <result name="success" type="json">
                 <param name="root">result</param>
             </result>
@@ -87,35 +77,15 @@
         </action>
     </package>
 	<package name="stock" extends="json-default,struts-default">
-		<action name="getCode" class="stockAction" method="code">
+		<action name="getStockKlineInfo" class="stockAction" method="getStockKlineInfo">
 			<result name="success" type="json">
 				<param name="root">result</param>
 			</result>
 		</action>
-		<action name="getStock" class="stockAction" method="getStockFirstInfo">
-			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
-		<action name="stockMA5" class="stockAction" method="getMA5">
-			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
-		<action name="stockMA10" class="stockAction" method="getMA10">
-			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
-		<action name="stockMA20" class="stockAction" method="getMA20">
-			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
-		<action name="stockVolume" class="stockAction" method="getVolume">
-			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
+        <action name="totheStock" class="stockAction" method="totheStock">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
 	</package>
 </struts>

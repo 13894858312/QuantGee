@@ -144,12 +144,25 @@
 	border-bottom: 1px solid #C0C0C0;
 }
 .mkbutton{
+    cursor: hand;
 	float: left;
 	width: 18%;
 	height: 35px;
 	margin-top: 10px;
 	border-left: 1px solid #C0C0C0;
 	border-top: 1px solid #C0C0C0;
+}
+#dkbutton{
+	background-color: #003366;
+	color: #FFFFFF;
+}
+#wkbutton{
+	background-color: #FFFFFF;
+	color: #000000;
+}
+#mkbutton{
+	background-color: #FFFFFF;
+	color: #000000;
 }
 .klinebutton{
 	float: left;
@@ -198,6 +211,41 @@
 	margin-left: 15%;
 	background-color: #FFFFFF;
 	/*border-bottom: 1px solid #F5F5F5;*/
+}
+.indextext{
+	float: left;
+	width: 70%;
+	height: 27px;
+	margin-top: 18px;
+	margin-left: 3%;
+	font-size: 20px;
+	font-family: "Roboto Mono", monospace;
+	border-bottom: 1px solid #C0C0C0;
+}
+.indexbutton{
+    cursor: hand;
+	float: left;
+	width: 26%;
+	height: 35px;
+	margin-top: 10px;
+	border-left: 1px solid #C0C0C0;
+	border-top: 1px solid #C0C0C0;
+}
+.mkrbbutton{
+	float: left;
+	padding-top: 2px;
+	padding-top: 3px;
+	margin-left: 5%;
+	margin-top: 7px;
+	width: 48px;
+	height: 20px;
+	font-size: 15px;
+	font-family: "Roboto Mono", monospace;
+	background-color: #003366;
+	opacity: 0.8;
+	color: #FFFFFF;
+	text-align: center;
+	border-radius: 3px;
 }
 .analysis{
 	float: left;

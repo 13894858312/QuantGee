@@ -1,6 +1,7 @@
 package action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import logic.tools.DateHelper;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import java.util.Date;
 public class ListAction extends ActionSupport {
     private String result;
     private String stockName;
+    private String stockCode;
 
     @Autowired
     StockBasicInfoService stockBasicInfoService;
@@ -46,23 +48,34 @@ public class ListAction extends ActionSupport {
         this.stockName = stockName;
     }
 
-    //    private StockHistoricalVO getMarketInfo(){
-//        Date date = new Date();
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTime(date);
-//        calendar.add(Calendar.MONTH, -1);
-//        date = calendar.getTime();
-//        String startdate = simpleDateFormat.format(date);
-//        calendar.add(Calendar.MONTH, -5);
-//        date = calendar.getTime();
-//        String enddate = simpleDateFormat.format(date);
-//        StockInputVO stockInputVO = new StockInputVO("000001", enddate, startdate);
-//        StockHistoricalVO stockHistoricalVO = stockBasicInfoService.getStockHistoricalInfo(stockInputVO);
-//        return stockHistoricalVO;
-//    }
+    public String getStockCode() {
+        return stockCode;
+    }
+
+    public void setStockCode(String stockCode) {
+        this.stockCode = stockCode;
+    }
+
+    private StockHistoricalVO getStockVOInlist(int num1, int num2){
+        String date = DateHelper.getNowDate();
+        String enddate = DateHelper.formerNTradeDay(date, num1);
+        String startdate = DateHelper.formerNTradeDay(enddate, num2);
+        stockCode = stockBasicInfoService.getCodeByName(stockName);
+        StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate);
+        StockHistoricalVO stockHistoricalVO = stockBasicInfoService.getStockHistoricalInfo(stockInputVO);
+        return stockHistoricalVO;
+    }
+
     public String getWebStockName(){
-        JSONObject jsonObject = JSONObject.fromObject(stockName);
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add(stockName);
+        JSONArray jsonArray = JSONArray.fromObject(arrayList);
+        result = jsonArray.toString();
+        return SUCCESS;
+    }
+
+    public String getStockKline(){
+        JSONObject jsonObject = JSONObject.fromObject(getStockVOInlist(20,480));
         result = jsonObject.toString();
         return SUCCESS;
     }
@@ -74,4 +87,10 @@ public class ListAction extends ActionSupport {
         return SUCCESS;
     }
 
+    public String getStockCurrentVO(){
+        StockCurrentVO stockCurrentVO = stockBasicInfoService.getStockRealTimeInfo(stockCode);
+        JSONArray jsonArray = JSONArray.fromObject(stockCurrentVO);
+        result = jsonArray.toString();
+        return SUCCESS;
+    }
 }
