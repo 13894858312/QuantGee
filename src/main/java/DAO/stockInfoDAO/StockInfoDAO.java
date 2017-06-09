@@ -100,4 +100,32 @@ public interface StockInfoDAO {
      * @return 股票代码
      */
     public String getCodeByName(String name);
+
+    /**
+     * 按指数代码得到实时大盘指数信息
+     * @param indexCode 大盘指数代码
+     * @return 实时大盘指数
+     */
+    public Iterator<CurrentIndex> getCurrentIndexByCode(String indexCode);
+
+    /**
+     * 得到所有大盘指数代码及名称（如000001 上证指数）
+     * @return 所有大盘指数代码及名称
+     */
+    public Iterator<IndexInfo> getAllIndexCodesAndNames();
+
+    /**
+     * 根据大盘名称获取指数代码
+     * @param name 大盘指数名称
+     * @return 大盘指数代码
+     */
+    public String getIndexCodeByName(String name);
+
+    /**
+     * 根据大盘指数代码获取大盘名称
+     * @param code 大盘指数代码
+     * @return 大盘指数名称
+     */
+    public String getIndexNameByCode(String code);
+
 }

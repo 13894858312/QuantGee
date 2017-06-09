@@ -110,7 +110,7 @@ function getMA20(num) {
         }
     });
 
-    for(var i=0;i<json.length;i+num){
+    for(var i=0;i<json.length;i+=num){
         klineMA20.push(json[i]['value']);
     }
     return klineMA20;
@@ -282,4 +282,40 @@ var option1 = {
 myChart1.setOption(option1);
 myChart2.setOption(option2);
 echarts.connect([myChart1,myChart2]);
+}
+function clickdkbutton() {
+    var dkbutton = document.getElementById("dkbutton");
+    var wkbutton = document.getElementById("wkbutton");
+    var mkbutton = document.getElementById("mkbutton");
+    dkbutton.style.backgroundColor = "#003366";
+    dkbutton.style.color = "#FFFFFF";
+    wkbutton.style.backgroundColor = "#FFFFFF";
+    wkbutton.style.color = "#000000";
+    mkbutton.style.backgroundColor = "#FFFFFF";
+    mkbutton.style.color = "#000000";
+    dochart(1);
+}
+function clickwkbutton() {
+    var dkbutton = document.getElementById("dkbutton");
+    var wkbutton = document.getElementById("wkbutton");
+    var mkbutton = document.getElementById("mkbutton");
+    dkbutton.style.backgroundColor = "#FFFFFF";
+    dkbutton.style.color = "#000000";
+    wkbutton.style.backgroundColor = "#003366";
+    wkbutton.style.color = "#FFFFFF";
+    mkbutton.style.backgroundColor = "#FFFFFF";
+    mkbutton.style.color = "#000000";
+    dochart(5);
+}
+function clickmkbutton() {
+    var dkbutton = document.getElementById("dkbutton");
+    var wkbutton = document.getElementById("wkbutton");
+    var mkbutton = document.getElementById("mkbutton");
+    dkbutton.style.backgroundColor = "#FFFFFF";
+    dkbutton.style.color = "#000000";
+    wkbutton.style.backgroundColor = "#FFFFFF";
+    wkbutton.style.color = "#000000";
+    mkbutton.style.backgroundColor = "#003366";
+    mkbutton.style.color = "#FFFFFF";
+    dochart(15);
 }
