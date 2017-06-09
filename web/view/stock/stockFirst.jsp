@@ -6,6 +6,7 @@
 	<script src="../../echarts.js"></script>
     <script src="../../jquery-3.2.1.min.js"></script>
     <script src="../../js/marketInfo/headcontroller.js"></script>
+	<script src="../../js/stock/stockfirst/listcontroller.js"></script>
     <!--<script src="../../js/stock/someInfo.js"></script>-->
     <style type="text/css">
     	@import "../../css/style.css";
@@ -63,15 +64,15 @@
   					<div class="column">现价</div>
   					<div class="column">加自选</div>
   				</div>
-  				<div class="row" id="row1">
-  					<div class="column1"><a>万家文化</a></div>
+  				<div class="row" id="row1" onclick="showrow(this)">
+  					<div class="column1"><a id="r1c1a" onclick="changeChart()">万家文化</a></div>
   					<div class="column2">10.03</div>
   					<div class="column3">10.75</div>
   					<div class="column4">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
-  				<div class="row">
+  				<div class="row" id="row2" onclick="showrow(this)">
   					<div class="column1"><a>继峰股份</a></div>
   					<div class="column2">10.03</div>
   					<div class="column3">15.80</div>
@@ -79,7 +80,7 @@
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
-  				<div class="row">
+  				<div class="row" id="row3" onclick="showrow(this)">
   					<div class="column1"><a>恒为科技</a></div>
   					<div class="column2">10.02</div>
   					<div class="column3">22.40</div>
@@ -87,7 +88,7 @@
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
-  				<div class="row">
+  				<div class="row" id="row4" onclick="showrow(this)">
   					<div class="column1"><a>华钰矿业</a></div>
   					<div class="column2">10.02</div>
   					<div class="column3">22.29</div>
@@ -95,7 +96,7 @@
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
-  				<div class="row">
+  				<div class="row" id="row5" onclick="showrow(this)">
   					<div class="column1"><a>同达创业</a></div>
   					<div class="column2">10.02</div>
   					<div class="column3">25.37</div>
@@ -103,7 +104,7 @@
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
-  				<div class="row">
+  				<div class="row" id="row6" onclick="showrow(this)">
   					<div class="column1"><a>华脉科技</a></div>
   					<div class="column2">10.01</div>
   					<div class="column3">23.73</div>
@@ -111,7 +112,7 @@
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
-  				<div class="row">
+  				<div class="row" id="row7" onclick="showrow(this)">
   					<div class="column1"><a>上海洗霸</a></div>
   					<div class="column2">10.01</div>
   					<div class="column3">40.24</div>
@@ -119,7 +120,7 @@
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
-  				<div class="row">
+  				<div class="row" id="row8" onclick="showrow(this)">
   					<div class="column1"><a>元成股份</a></div>
   					<div class="column2">10.00</div>
   					<div class="column3">30.31</div>
@@ -127,7 +128,7 @@
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
-  				<div class="row">
+  				<div class="row" id="row9" onclick="showrow(this)">
   					<div class="column1"><a>艾艾精工</a></div>
   					<div class="column2">9.99</div>
   					<div class="column3">30.28</div>
@@ -135,7 +136,7 @@
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div> 
-  				<div class="row">
+  				<div class="row" id="row10" onclick="showrow(this)">
   					<div class="column1"><a>日播时尚</a></div>
   					<div class="column2">9.99</div>
   					<div class="column3">18.06</div>
