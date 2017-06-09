@@ -11,9 +11,9 @@ public class StrategyVO {
     private String userID;                  //用户id
 
     //策略列表展示的时候可以选择展示这三项 策略名字-策略添加时间-上一次回测的收益率
-    private String strateygyName;           //可以用户输入名字 若不输入传递则系统指定
-    private String time;                    //添加时间 传当前时间
-    private double lastYield;                   //最近一次回测的收益率 没有回测过填0
+    private String strateygyName;           //可以用户输入名字 若不输入则指定为 策略类型名字+时间数字 如 动量策略095523 (09:55:23添加)
+    private String time;                    //添加时间(第一次添加时不必填此参数)
+    private double lastYield;               //最近一次回测的收益率 没有回测过填0
 
     private int strategyType;               //0动量策略 1均值回归 2双均线策略 3羊驼策略 4KNN机器学习策略
     private double initFund;                //初始资金
@@ -62,24 +62,28 @@ public class StrategyVO {
         this.vectorLength = vectorLength;
     }
 
+    public int getStrategyID() {
+        return strategyID;
+    }
+
+    public void setStrategyID(int strategyID) {
+        this.strategyID = strategyID;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
     public String getStrateygyName() {
         return strateygyName;
     }
 
     public void setStrateygyName(String strateygyName) {
         this.strateygyName = strateygyName;
-    }
-
-    public double getLastYield() {
-        return lastYield;
-    }
-
-    public void setLastYield(double lastYield) {
-        this.lastYield = lastYield;
-    }
-
-    public String getUserID() {
-        return userID;
     }
 
     public String getTime() {
@@ -90,16 +94,12 @@ public class StrategyVO {
         this.time = time;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public double getLastYield() {
+        return lastYield;
     }
 
-    public int getStrategyID() {
-        return strategyID;
-    }
-
-    public void setStrategyID(int strategyID) {
-        this.strategyID = strategyID;
+    public void setLastYield(double lastYield) {
+        this.lastYield = lastYield;
     }
 
     public int getStrategyType() {

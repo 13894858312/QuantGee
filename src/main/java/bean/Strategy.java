@@ -1,10 +1,5 @@
 package bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 /**
  * Created by wangxue on 2017/5/23.
  */
@@ -25,7 +20,7 @@ public class Strategy {
     private double stopLoss;                //止损点 输入百分数 如20表示20%
     private double stopProfit;              //止盈点
 
-    private double yield;                   //最近一次回测的收益率
+    private double lastYield;                   //最近一次回测的收益率
     /********************必须参数********************/
 
     /******************不同策略的可选参数*****************/
@@ -126,12 +121,12 @@ public class Strategy {
         this.stopProfit = stopProfit;
     }
 
-    public double getYield() {
-        return yield;
+    public double getLastYield() {
+        return lastYield;
     }
 
-    public void setYield(double yield) {
-        this.yield = yield;
+    public void setLastYield(double lastYield) {
+        this.lastYield = lastYield;
     }
 
     public double getRatio() {

@@ -1,6 +1,7 @@
 package logic.tools;
 
 import bean.*;
+import logic.strategy.backTesting.StrategyHelper;
 import org.springframework.stereotype.Service;
 import po.UserAnalysisDataPO;
 import vo.admin.UserAnalysisDataVO;
@@ -165,8 +166,55 @@ public class TransferHelper {
         return trade;
     }
 
-    public Strategy transToStrategy(StrategyVO strategyVO) {
+    /**
+     * 将StrategyVO转换为Strategy
+     * @param vo StrategyVO
+     * @return Strategy
+     */
+    public Strategy transToStrategy(StrategyVO vo) {
         Strategy result = new Strategy();
+        String name;
+        String time = TimeHelper.getNowTime();
+        if(vo.getStrateygyName() != null) {
+            name = vo.getStrateygyName();
+        } else {
+            name = StrategyHelper.getStrategyName(vo.getStrategyType()) + time.replace(":", "");
+        }
+
+        result.setUserID(vo.getUserID());
+        result.setTime(time);
+        result.setStrateygyName(name);
+        result.setStrategyType(vo.getStrategyType());
+        result.setLastYield(vo.getLastYield());
+        result.setInitFund(vo.getInitFund());
+        result.setNotST(vo.isNotST());
+        result.setHoldingPeriod(vo.getHoldingPeriod());
+        result.setReturnPeriod(vo.getReturnPeriod());
+        result.setStopLoss(vo.getStopLoss());
+        result.setStopProfit(vo.getStopProfit());
+        result.setRatio(vo.getRatio());
+        result.setHoldingStockNum(vo.getHoldingStockNum());
+        result.setShortReturnPeriod(vo.getShortReturnPeriod());
+        result.setChangeNumber(vo.getChangeNumber());
+        result.setTrainPeriod(vo.getTrainPeriod());
+        result.setK(vo.getK());
+        result.setVectorLength(vo.getVectorLength());
+
         return result;
     }
+
+    /**
+     * 将Strategy转换为StrategyVO
+     * @param strategy Strategy
+     * @return StrategyVO
+     */
+    public StrategyVO transToStrategyVO(Strategy strategy) {
+        StrategyVO result = new StrategyVO(strategy.getStrategyID(), strategy.getUserID(), strategy.getStrateygyName(),strategy.getTime(),
+                strategy.getLastYield(), strategy.getStrategyType(), strategy.getInitFund(), strategy.isNotST(), strategy.getHoldingPeriod(),
+                strategy.getReturnPeriod(), strategy.getStopLoss(), strategy.getStopProfit(), strategy.getRatio(),strategy.getHoldingStockNum(),
+                strategy.getShortReturnPeriod(), strategy.getChangeNumber(), strategy.getTrainPeriod(), strategy.getK(),strategy.getVectorLength());
+
+        return result;
+    }
+
 }

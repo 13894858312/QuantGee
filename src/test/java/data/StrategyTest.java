@@ -29,7 +29,7 @@ public class StrategyTest {
         strategy.setStrategyName("我是名字");
         strategy.setStrategyType("我是类型");
         strategy.setPosted(0);
-        Assert.assertEquals(strategyDAO.addStrategy(strategy),true);
+        Assert.assertEquals(strategyDAO.addMyStrategy(strategy),true);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class StrategyTest {
 
     @Test
     public void getUserStrategyTest(){
-        Iterator<Strategy> iterator = strategyDAO.getUserStrategy("123123");
+        Iterator<Strategy> iterator = strategyDAO.getMyStrategy("123123");
         while (iterator.hasNext()){
             System.out.println(iterator.next().getStrategyName());
         }
@@ -80,7 +80,7 @@ public class StrategyTest {
 
     @Test
     public void removeStrategyTest(){
-        Assert.assertEquals(strategyDAO.removeStrategy(2),true);
+        Assert.assertEquals(strategyDAO.removeMyStrategy(2),true);
     }
 
 

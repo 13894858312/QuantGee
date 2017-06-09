@@ -123,4 +123,31 @@ public class StrategyHelper {
         return result;
     }
 
+    /**
+     * 根据策略类型代码获取策略名字
+     * @param strategyType 类型代码
+     * @return 名字
+     */
+    public static String getStrategyName(int strategyType) {
+        String result = null;
+        switch (strategyType) {
+            case 0:
+                result = "动量策略";
+                break;
+            case 1:
+                result = "均值回归策略";
+                break;
+            case 2:
+                result = "双均线策略";
+                break;
+            case 3:
+                result = "羊驼策略";
+                break;
+            case 4:
+                result = "KNN机器学习策略";
+                break;
+        }
+        return result;
+    }
+
 }
