@@ -2,141 +2,61 @@
  * Created by Administrator on 2017/5/15.
  */
 dochart(1);
-function getKlineDate(num) {
-    var klineDate = [];
-    var json;
+var klineDate = [];
+var klineBar = [];
+var klineMA5 = [];
+var klineMA10 = [];
+var klineMA20 = [];
+var volume = [];
+var json;
+function getDayKline() {
+    klineDate = [];
+    klineBar = [];
+    klineMA5 = [];
+    klineMA10 = [];
+    klineMA20 = [];
+    volume = [];
     $.ajax({
-        cache:false,
-        async:false,
-        url:'candle-volume.action',
-        type:'GET',
-        dataType:'json',
-        success:function (data) {
+        cache: false,
+        async: false,
+        url: 'dayKline.action',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
             json = JSON.parse(data);
         },
-        error:function (data) {
+        error: function (data) {
             alert("error");
         }
     });
-    for(var i=0;i<json.length;i+=num){
-        klineDate.push(json[i]['date']);
+    for (var i = 0; i < json['kLine'].length; i++) {
+        klineDate.push(json['kLine'][i]['date']);
     }
-    return klineDate;
-}
-function getKlineBar(num) {
-    var klineBar = [];
-    var json;
-    $.ajax({
-        cache:false,
-        async:false,
-        url:'candle-volume.action',
-        type:'GET',
-        dataType:'json',
-        success:function (data) {
-            json = JSON.parse(data);
-        },
-        error:function (data) {
-            alert("error");
-        }
-    });
-    for(var i=0;i<json.length;i+=num){
+    for (var i = 0; i < json['kLine'].length; i++) {
         var temp = [];
-        temp.push(json[i]['open']);
-        temp.push(json[i]['close']);
-        temp.push(json[i]['low']);
-        temp.push(json[i]['high']);
+        temp.push(json['kLine'][i]['open']);
+        temp.push(json['kLine'][i]['close']);
+        temp.push(json['kLine'][i]['low']);
+        temp.push(json['kLine'][i]['high']);
         klineBar.push(temp);
     }
-    return klineBar;
-}
-function getMA5(num) {
-    var klineMA5 = [];
-    var json;
-    $.ajax({
-        cache:false,
-        async:false,
-        url:'MA5.action',
-        type:'GET',
-        dataType:'json',
-        success:function (data) {
-            json = JSON.parse(data);
-        },
-        error:function (data) {
-            alert("error");
-        }
-    });
-
-    for(var i=0;i<json.length;i+=num){
-        klineMA5.push(json[i]['value']);
+    for (var i = 0; i < json['ma5'].length; i++) {
+        klineMA5.push(json['ma5'][i]['value']);
     }
-    return klineMA5;
-}
-function getMA10(num) {
-    var klineMA10 = [];
-    var json;
-    $.ajax({
-        cache:false,
-        async:false,
-        url:'MA10.action',
-        type:'GET',
-        dataType:'json',
-        success:function (data) {
-            json = JSON.parse(data);
-        },
-        error:function (data) {
-            alert("error");
-        }
-    });
-
-    for(var i=0;i<json.length;i+=num){
-        klineMA10.push(json[i]['value']);
+    for (var i = 0; i < json['ma10'].length; i++) {
+        klineMA10.push(json['ma10'][i]['value']);
     }
-    return klineMA10;
-}
-function getMA20(num) {
-    var klineMA20 = [];
-    var json;
-    $.ajax({
-        cache:false,
-        async:false,
-        url:'MA20.action',
-        type:'GET',
-        dataType:'json',
-        success:function (data) {
-            json = JSON.parse(data);
-        },
-        error:function (data) {
-            alert("error");
-        }
-    });
-
-    for(var i=0;i<json.length;i+=num){
-        klineMA20.push(json[i]['value']);
+    for (var i = 0; i < json['ma20'].length; i++) {
+        klineMA20.push(json['ma20'][i]['value']);
     }
-    return klineMA20;
-}
-function getVolume(num) {
-    var volume = [];
-    var json;
-    $.ajax({
-        cache:false,
-        async:false,
-        url:'getVolume.action',
-        type:'GET',
-        dataType:'json',
-        success:function (data) {
-            json = JSON.parse(data);
-        },
-        error:function (data) {
-            alert("error");
-        }
-    });
-    for(var i=0;i<json.length;i+=num){
-        volume.push(json[i]['value']);
+    for (var i = 0; i < json['volume'].length; i++) {
+        volume.push(json['volume'][i]['value']);
     }
-    return volume;
 }
 function dochart(num) {
+    if(num == 1){
+        getDayKline();
+    }
 var myChart1 = echarts.init(document.getElementById('kline'));
 var myChart2 = echarts.init(document.getElementById('volume'));
 var option1 = {
@@ -159,7 +79,7 @@ var option1 = {
     xAxis: {
     	show:false,
         type: 'category',
-        data: getKlineDate(num)
+        data: klineDate
     },
     yAxis: {
         scale: true,
@@ -185,13 +105,13 @@ var option1 = {
         {
             name: '日K',
             type: 'candlestick',
-            data: getKlineBar(num)
+            data: klineBar
 
         },
         {
             name: 'MA5',
             type: 'line',
-            data: getMA5(num),
+            data: klineMA5,
             smooth: true,
             lineStyle: {
                 normal: {opacity: 0.5}
@@ -200,7 +120,7 @@ var option1 = {
         {
             name: 'MA10',
             type: 'line',
-            data: getMA10(num),
+            data: klineMA10,
             smooth: true,
             lineStyle: {
                 normal: {opacity: 0.5}
@@ -209,7 +129,7 @@ var option1 = {
         {
             name: 'MA20',
             type: 'line',
-            data: getMA20(num),
+            data: klineMA20,
             smooth: true,
             lineStyle: {
                 normal: {opacity: 0.5}
@@ -243,7 +163,7 @@ var option1 = {
         xAxis: {
             show:false,
             type: 'category',
-            data: getKlineDate(num)
+            data: klineDate
         },
         yAxis: {
             scale: true,
@@ -275,7 +195,7 @@ var option1 = {
             {
                 name: '成交量',
                 type: 'bar',
-                data: getVolume(num)
+                data: volume
             }
         ]
     };
@@ -305,7 +225,7 @@ function clickwkbutton() {
     wkbutton.style.color = "#FFFFFF";
     mkbutton.style.backgroundColor = "#FFFFFF";
     mkbutton.style.color = "#000000";
-    dochart(5);
+    dochart(1);
 }
 function clickmkbutton() {
     var dkbutton = document.getElementById("dkbutton");
@@ -317,5 +237,5 @@ function clickmkbutton() {
     wkbutton.style.color = "#000000";
     mkbutton.style.backgroundColor = "#003366";
     mkbutton.style.color = "#FFFFFF";
-    dochart(15);
+    dochart(1);
 }

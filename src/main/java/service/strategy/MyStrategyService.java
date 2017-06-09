@@ -1,6 +1,5 @@
 package service.strategy;
 
-import vo.strategy.StrategyAddInputVO;
 import vo.strategy.StrategyUserInputVO;
 import vo.strategy.StrategyVO;
 
@@ -13,10 +12,10 @@ import java.util.ArrayList;
 public interface MyStrategyService {
     /**
      * 添加自己的量化策略
-     * @param strategyAddInputVO StrategyVO和useID
+     * @param strategyVO StrategyVO和useID
      * @return boolean
      */
-    public boolean addMyStartegy(StrategyAddInputVO strategyAddInputVO);
+    public boolean addMyStartegy(StrategyVO strategyVO);
 
     /**
      * 获取我自己的的所有策略

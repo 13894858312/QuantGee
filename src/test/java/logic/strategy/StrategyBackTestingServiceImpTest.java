@@ -32,7 +32,7 @@ public class StrategyBackTestingServiceImpTest {
         inputVO.setInitFund(10000);
         inputVO.setStockCodes(initStockIDs());
         inputVO.setStartDate("2015-01-30");
-        inputVO.setEndDate("2016-08-24");
+        inputVO.setEndDate("2016-08-28");
         inputVO.setHoldingPeriod(10);
         inputVO.setReturnPeriod(10);
         inputVO.setNotST(false);
@@ -49,6 +49,12 @@ public class StrategyBackTestingServiceImpTest {
         System.out.println("*********RESULT**********  BaseAnnualRevenue:  " + result.getCumulativeYieldResultVO().getBaseAnnualRevenue());
         System.out.println("*********RESULT**********  SharpeRatio:  " + result.getCumulativeYieldResultVO().getSharpeRatio());
         System.out.println("*********RESULT**********  MaxDrawdown:  " + result.getCumulativeYieldResultVO().getMaxDrawdown());
+
+        for (int i=0; i<result.getTradeRecords().size(); ++i) {
+            StrategyTradeRecordVO record = result.getTradeRecords().get(i);
+            System.out.print(record.getCode()+ "   " +record.getBuyDate()+ "   " +record.getSellDate()+ "   " +record.getBuyMoney()+ "   " +record.getSellMoney()+ "   " + record.getRate());
+            System.out.println();
+        }
     }
 
     //均值回归策略

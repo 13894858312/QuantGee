@@ -6,6 +6,7 @@ import po.UserAnalysisDataPO;
 import vo.admin.UserAnalysisDataVO;
 import vo.stock.NewsVO;
 import vo.stock.StockCurrentVO;
+import vo.strategy.StrategyVO;
 import vo.trade.HoldingStockVO;
 import vo.trade.TradeRecordVO;
 import vo.user.AccountVO;
@@ -162,5 +163,10 @@ public class TransferHelper {
         trade.setTime(tradeRecordVO.getTime());
 
         return trade;
+    }
+
+    public Strategy transToStrategy(StrategyVO strategyVO) {
+        Strategy result = new Strategy();
+        return result;
     }
 }
