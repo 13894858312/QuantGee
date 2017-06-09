@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="bean.StockMonth" table="StockMonth" schema="quantgee_data">
+        <composite-id mapped="true" class="bean.StockMonthPK">
+            <key-property name="date">
+                <column name="date" sql-type="varchar(10)" length="10"/>
+            </key-property>
+            <key-property name="stockId">
+                <column name="stockID" sql-type="varchar(6)" length="6"/>
+            </key-property>
+        </composite-id>
+        <property name="open">
+            <column name="open" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="high">
+            <column name="high" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="close">
+            <column name="close" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="low">
+            <column name="low" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="volume">
+            <column name="volume" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="priceChange">
+            <column name="price_change" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="pChange">
+            <column name="p_change" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="ma5">
+            <column name="ma5" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="ma10">
+            <column name="ma10" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="ma20">
+            <column name="ma20" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="vMa5">
+            <column name="v_ma5" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="vMa10">
+            <column name="v_ma10" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="vMa20">
+            <column name="v_ma20" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+        <property name="turnover">
+            <column name="turnover" sql-type="double" precision="-1" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
