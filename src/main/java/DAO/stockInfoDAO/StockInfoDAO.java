@@ -128,4 +128,35 @@ public interface StockInfoDAO {
      */
     public String getIndexNameByCode(String code);
 
+    /**
+     * 得到周k
+     * @param code 股票代码
+     * @return 周k数据
+     */
+    public Iterator<StockWeek> getWeekK(String code);
+
+    /**
+     * 得到周k
+     * @param code 股票代码
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @return 周k数据
+     */
+    public Iterator<StockWeek> getWeekK(String code, String startDate, String endDate);
+
+    /**
+     * 得到月k
+     * @param code 股票代码
+     * @return 月k数据
+     */
+    public Iterator<StockMonth> getMonthK(String code);
+
+    /**
+     * 得到月k
+     * @param code 股票代码
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @return 月k数据
+     */
+    public Iterator<StockMonth> getMonthK(String code, String startDate, String endDate);
 }

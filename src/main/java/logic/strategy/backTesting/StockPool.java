@@ -1,6 +1,7 @@
 package logic.strategy.backTesting;
 
 import DAO.stockInfoDAO.StockInfoDAO;
+import bean.MarketInfo;
 import bean.Stock;
 import logic.tools.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +70,14 @@ public class StockPool {
         if(inputVO.getStockPoolType() == 0) {
             Iterator<String> codes = stockInfoDAO.getAllStockCodesByBlock(inputVO.getBlockType());
             while(codes.hasNext()) {
-                Iterator<Stock> stocks = stockInfoDAO.getStockInfo(codes.next(), s, e);
+                String code = codes.next();
+                if (inputVO.isNotST()) {
+                    MarketInfo marketInfo = stockInfoDAO.getMarketInfo(code);
+                    if (marketInfo.getName().contains("ST")) {
+                        continue;
+                    }
+                }
+                Iterator<Stock> stocks = stockInfoDAO.getStockInfo(code, s, e);
                 allStocks.add(transToList(stocks));
             }
             //选择指定 股票 构造股票池

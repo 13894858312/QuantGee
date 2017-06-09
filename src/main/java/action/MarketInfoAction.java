@@ -33,42 +33,18 @@ public class MarketInfoAction extends ActionSupport {
         this.result = result;
     }
 
-    private StockHistoricalVO getMarketInfo(){
+    private StockHistoricalVO getMarketInfo(int num1, int num2){
         String date = DateHelper.getNowDate();
-        String enddate = DateHelper.formerNTradeDay(date, 20);
-        String startdate = DateHelper.formerNTradeDay(enddate, 480);
+        String enddate = DateHelper.formerNTradeDay(date, num1);
+        String startdate = DateHelper.formerNTradeDay(enddate, num2);
         StockInputVO stockInputVO = new StockInputVO("sh", startdate, enddate);
         StockHistoricalVO stockHistoricalVO = stockBasicInfoService.getStockHistoricalInfo(stockInputVO);
         return stockHistoricalVO;
     }
 
-    public String getCandleStick(){
-        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().getkLine());
-        result = jsonArray.toString();
-        return SUCCESS;
-    }
-
-    public String getMA5(){
-        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().getMa5());
-        result = jsonArray.toString();
-        return SUCCESS;
-    }
-
-    public String getMA10(){
-        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().getMa10());
-        result = jsonArray.toString();
-        return SUCCESS;
-    }
-
-    public String getMA20(){
-        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().getMa20());
-        result = jsonArray.toString();
-        return SUCCESS;
-    }
-
-    public String getVolume(){
-        JSONArray jsonArray = JSONArray.fromObject(getMarketInfo().getVolume());
-        result = jsonArray.toString();
+    public String getDayKline(){
+        JSONObject jsonObject = JSONObject.fromObject(getMarketInfo(20,480));
+        result = jsonObject.toString();
         return SUCCESS;
     }
 

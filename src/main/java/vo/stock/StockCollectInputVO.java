@@ -6,7 +6,7 @@ package vo.stock;
  */
 public class StockCollectInputVO {
     private String userID;
-    private String stockCode;
+    private String code;
 
     public String getUserID() {
         return userID;
@@ -16,11 +16,11 @@ public class StockCollectInputVO {
         this.userID = userID;
     }
 
-    public String getStockCode() {
-        return stockCode;
+    public String getCode() {
+        return code;
     }
 
-    public void setStockCode(String stockCode) {
-        this.stockCode = stockCode;
+    public void setCode(String code) {
+        this.code = code;
     }
 }

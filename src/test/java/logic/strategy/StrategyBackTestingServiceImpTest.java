@@ -32,10 +32,15 @@ public class StrategyBackTestingServiceImpTest {
         inputVO.setInitFund(10000);
         inputVO.setStockCodes(initStockIDs());
         inputVO.setStartDate("2015-01-30");
-        inputVO.setEndDate("2016-08-24");
+        inputVO.setEndDate("2016-08-28");
         inputVO.setHoldingPeriod(10);
         inputVO.setReturnPeriod(10);
-        inputVO.setRatio(0.2);
+        inputVO.setNotST(false);
+        inputVO.setStopLoss(20);
+        inputVO.setStopProfit(20);
+
+        inputVO.setRatio(20);
+
         StrategyBackTestResultVO result = strategyBackTestingService.getStrategyBackTesting(inputVO);
 
         System.out.println("*********RESULT**********  AnnualRevenue:  " + result.getCumulativeYieldResultVO().getAnnualRevenue());
@@ -44,6 +49,12 @@ public class StrategyBackTestingServiceImpTest {
         System.out.println("*********RESULT**********  BaseAnnualRevenue:  " + result.getCumulativeYieldResultVO().getBaseAnnualRevenue());
         System.out.println("*********RESULT**********  SharpeRatio:  " + result.getCumulativeYieldResultVO().getSharpeRatio());
         System.out.println("*********RESULT**********  MaxDrawdown:  " + result.getCumulativeYieldResultVO().getMaxDrawdown());
+
+        for (int i=0; i<result.getTradeRecords().size(); ++i) {
+            StrategyTradeRecordVO record = result.getTradeRecords().get(i);
+            System.out.print(record.getCode()+ "   " +record.getBuyDate()+ "   " +record.getSellDate()+ "   " +record.getBuyMoney()+ "   " +record.getSellMoney()+ "   " + record.getRate());
+            System.out.println();
+        }
     }
 
     //均值回归策略
@@ -58,6 +69,10 @@ public class StrategyBackTestingServiceImpTest {
         inputVO.setEndDate("2016-08-24");
         inputVO.setHoldingPeriod(10);
         inputVO.setReturnPeriod(10);
+        inputVO.setNotST(false);
+        inputVO.setStopLoss(20);
+        inputVO.setStopProfit(20);
+
         inputVO.setHoldingStockNum(100);
 
         StrategyBackTestResultVO result = strategyBackTestingService.getStrategyBackTesting(inputVO);
@@ -82,6 +97,10 @@ public class StrategyBackTestingServiceImpTest {
         inputVO.setEndDate("2015-08-24");
         inputVO.setHoldingPeriod(2);
         inputVO.setReturnPeriod(20);
+        inputVO.setNotST(false);
+        inputVO.setStopLoss(20);
+        inputVO.setStopProfit(20);
+
         inputVO.setShortReturnPeriod(5);
         inputVO.setHoldingStockNum(90);
 
@@ -107,6 +126,10 @@ public class StrategyBackTestingServiceImpTest {
         inputVO.setEndDate("2015-08-24");
         inputVO.setHoldingPeriod(10);
         inputVO.setReturnPeriod(10);
+        inputVO.setNotST(false);
+        inputVO.setStopLoss(20);
+        inputVO.setStopProfit(20);
+
         inputVO.setHoldingStockNum(80);
         inputVO.setChangeNumber(40);
 
@@ -134,6 +157,10 @@ public class StrategyBackTestingServiceImpTest {
         inputVO.setHoldingPeriod(10);
         inputVO.setReturnPeriod(10);
         inputVO.setTrainPeriod(100);
+        inputVO.setNotST(false);
+        inputVO.setStopLoss(20);
+        inputVO.setStopProfit(20);
+
         inputVO.setK(10);
         inputVO.setVectorLength(20);
         inputVO.setHoldingStockNum(5);

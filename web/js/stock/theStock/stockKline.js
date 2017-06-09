@@ -1,73 +1,6 @@
 /**
  * Created by Administrator on 2017/6/9.
  */
-function showrow(obj) {
-    var rowborder = document.getElementsByClassName("row");
-    for(var i=0;i<rowborder.length;i++){
-        rowborder[i].style.borderRight = "2px solid #FFFFFF";
-    }
-    var row = document.getElementById(obj.id);
-    row.style.borderRight = "2px solid #C0C0C0";
-}
-function getId(obj) {
-    var a = document.getElementById(obj.id);
-    return a.text;
-}
-function changeChart(aid) {
-    // var obj = document.getElementById('r1c1a');
-    var stockName = getId(aid);
-    $.ajax({
-        cache:false,
-        async:false,
-        url:'getWebStockName.action',
-        type:'POST',
-        dataType:'json',
-        data:{
-            stockName:stockName
-        },
-        success:function (data) {
-        },
-        error:function (data) {
-            alert("error")
-        }
-    });
-    $.ajax({
-        cache:false,
-        async:false,
-        url:'getStockCurrentVO.action',
-        type:'GET',
-        dataType:'json',
-        success:function (data) {
-            setContent(data);
-        },
-        error:function (data) {
-            alert("error")
-        }
-    });
-    dochart(1);
-}
-
-function setContent(result) {
-    var json = JSON.parse(result);
-    $("#hsname").text(json['stockName']);
-    $("#hscode").text(json['stockCode']);
-    if(json['per']>=0){
-        var mer = document.getElementById("hsiearn");
-        mer.style.color = "rgb(207,25,74)";
-    }else{
-        var mer = document.getElementById("hsiearn");
-        mer.style.color = "rgb(62, 196, 131)";
-    }
-    $("#hsiearn").text(json['per']);
-    if(json['pb']>=0){
-        var mb = document.getElementById("hsiclean");
-        mb.style.color = "rgb(207,25,74)";
-    }else{
-        var mb = document.getElementById("hsiclean");
-        mb.style.color = "rgb(62, 196, 131)";
-    }
-    $("#hsiclean").text(json['pb']);
-}
 
 var klineDate = [];
 var klineBar = [];
@@ -76,6 +9,21 @@ var klineMA10 = [];
 var klineMA20 = [];
 var volume = [];
 var json;
+$.ajax({
+    cache: false,
+    async: false,
+    url: 'getStockKlineInfo.action',
+    type: 'GET',
+    dataType: 'json',
+    success: function (data) {
+        json = JSON.parse(data);
+    },
+    error: function (data) {
+        alert("error");
+    }
+});
+$("#tsname").text(json['name']);
+$("#tscode").text("(" + json['code'] + ")");
 function getDayKline() {
     klineDate = [];
     klineBar = [];
@@ -83,19 +31,6 @@ function getDayKline() {
     klineMA10 = [];
     klineMA20 = [];
     volume = [];
-    $.ajax({
-        cache: false,
-        async: false,
-        url: 'getStockKline.action',
-        type: 'GET',
-        dataType: 'json',
-        success: function (data) {
-            json = JSON.parse(data);
-        },
-        error: function (data) {
-            alert("error");
-        }
-    });
     for (var i = 0; i < json['kLine'].length; i++) {
         klineDate.push(json['kLine'][i]['date']);
     }
@@ -120,8 +55,11 @@ function getDayKline() {
         volume.push(json['volume'][i]['value']);
     }
 }
-function dochart() {
-    getDayKline();
+dochart(1);
+function dochart(num) {
+    if(num == 1){
+        getDayKline();
+    }
     var myChart1 = echarts.init(document.getElementById('kline'));
     var myChart2 = echarts.init(document.getElementById('volume'));
     var option1 = {
@@ -251,6 +189,12 @@ function dochart() {
             }
         ],
         series: [
+            // {
+            //     name: '跌',
+            //     type: 'bar',
+            //     data: []
+            //
+            // },
             {
                 name: '成交量',
                 type: 'bar',
@@ -261,4 +205,40 @@ function dochart() {
     myChart1.setOption(option1);
     myChart2.setOption(option2);
     echarts.connect([myChart1,myChart2]);
+}
+function clickdkbutton() {
+    var dkbutton = document.getElementById("dkbutton");
+    var wkbutton = document.getElementById("wkbutton");
+    var mkbutton = document.getElementById("mkbutton");
+    dkbutton.style.backgroundColor = "#003366";
+    dkbutton.style.color = "#FFFFFF";
+    wkbutton.style.backgroundColor = "#FFFFFF";
+    wkbutton.style.color = "#000000";
+    mkbutton.style.backgroundColor = "#FFFFFF";
+    mkbutton.style.color = "#000000";
+    dochart(1);
+}
+function clickwkbutton() {
+    var dkbutton = document.getElementById("dkbutton");
+    var wkbutton = document.getElementById("wkbutton");
+    var mkbutton = document.getElementById("mkbutton");
+    dkbutton.style.backgroundColor = "#FFFFFF";
+    dkbutton.style.color = "#000000";
+    wkbutton.style.backgroundColor = "#003366";
+    wkbutton.style.color = "#FFFFFF";
+    mkbutton.style.backgroundColor = "#FFFFFF";
+    mkbutton.style.color = "#000000";
+    dochart(1);
+}
+function clickmkbutton() {
+    var dkbutton = document.getElementById("dkbutton");
+    var wkbutton = document.getElementById("wkbutton");
+    var mkbutton = document.getElementById("mkbutton");
+    dkbutton.style.backgroundColor = "#FFFFFF";
+    dkbutton.style.color = "#000000";
+    wkbutton.style.backgroundColor = "#FFFFFF";
+    wkbutton.style.color = "#000000";
+    mkbutton.style.backgroundColor = "#003366";
+    mkbutton.style.color = "#FFFFFF";
+    dochart(1);
 }

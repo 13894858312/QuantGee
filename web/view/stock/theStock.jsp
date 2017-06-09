@@ -36,10 +36,8 @@
                 <a class="menua" id="a5" href="../../view/ucenter/user_center.jsp" target="_blank">个人中心</a>
 			</div>
 			<div class="search bar7">
-        		<form>
-            		<input type="text" placeholder="请输入股票代码">
-            		<button type="submit"></button>
-        		</form>
+            		<input id="inputStockCode" type="text" placeholder="请输入股票代码">
+            		<button type="submit" onclick="totheStockView()"></button>
     		</div>
 			<div class="marketlog">
 				<div class="logimg">
@@ -48,12 +46,12 @@
 				<div class="logintext">
 					<a href="../../view/ucenter/login.jsp" style="color: rgba(0, 0, 0, 0.6);font-weight: 400;cursor: hand;" >登录</a>
 				</div>
-			</div>	
+			</div>
   </div>
   <div class="tshead">
   	<div class="tsheadname">
-  		<div class="tsname">平安银行</div>
-  		<div class="tscode">(000001)</div>
+  		<div class="tsname" id="tsname"></div>
+  		<div class="tscode" id="tscode"></div>
   	</div>
   	<div class="tsinfo">
   		<div class="tsinfol1">
@@ -82,38 +80,40 @@
 					历史数据
 				</div>
 				<div class="mkbutton">
-					<div class="klinebutton">
+					<div class="klinebutton" id="dkbutton" onclick="clickdkbutton();">
 						日K线
 					</div>
-					<div class="klinebutton">
+					<div class="klinebutton" id="wkbutton" onclick="clickwkbutton();">
 						周K线
 					</div>
-					<div class="klinebutton">
+					<div class="klinebutton" id="mkbutton" onclick="clickmkbutton();">
 						月K线
 					</div>
 				</div>
 			</div>
 			<div class="kline" id="kline"></div>
 			<div class="volume" id="volume"></div>
-			<script src="../../js/marketInfo/KLine.js"></script>
+			<script src="../../js/stock/theStock/stockKline.js"></script>
 			<div class="indexhead">
-				<div class="hmtext">
+				<div class="indextext">
 					指标分析
 				</div>
-				<div class="mkbutton">
-					<div class="klinebutton">
-						日K线
+				<div class="indexbutton">
+					<div class="mkrbbutton">
+						MACD
 					</div>
-					<div class="klinebutton">
-						周K线
+					<div class="mkrbbutton">
+						KDJ
 					</div>
-					<div class="klinebutton">
-						月K线
+					<div class="mkrbbutton">
+						RSI
+					</div>
+					<div class="mkrbbutton">
+						BOLL
 					</div>
 				</div>
 			</div>
 			<div class="index" id="index"></div>
-			<script src="../../js/marketInfo/KLine.js"></script>
 	</div>
 	<div class="analysis">
 		<div class="anahead">

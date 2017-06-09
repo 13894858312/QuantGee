@@ -18,8 +18,13 @@ public class UserData implements UserDAO{
 
     @Override
     public boolean updateUserInfo(User user) {
-        hibernateTemplate.update(user);
-        return true;
+        try {
+            hibernateTemplate.update(user);
+            hibernateTemplate.flush();
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override

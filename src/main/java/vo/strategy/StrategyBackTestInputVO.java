@@ -20,12 +20,14 @@ public class StrategyBackTestInputVO {
     private boolean notST;                  //是否排除st
     private int holdingPeriod;              //股票持有期
     private int returnPeriod;               //形成期 (strategyType为1时表示N日移动均线 strategyType为2时表示第一条N日平滑均线(长周期)）
+    private double stopLoss;                //止损点 输入百分数 如20表示20%
+    private double stopProfit;              //止盈点
     /********************回测必须参数********************/
 
 
     /******************不同策略的可选参数*****************/
+    private double ratio;                   //strategyType为0时需要此参数 持有股票的比例,用于计算持有的股票数量 输入百分数 如20表示20%
     private int holdingStockNum;            //strategyType为1,2,3时需要此参数 持有的股票数量
-    private double ratio;                   //strategyType为0时需要此参数 持有股票的比例,用于计算持有的股票数量
     private int shortReturnPeriod;          //strategyType为2时需要此参数 表示第二条N日平滑均线(短周期)
     private int changeNumber;               //strategyType为3时需要此参数 表示每次换仓换股数量
     private int trainPeriod;                //strategyType为4时需要此参数 表示训练数据的天数(n)
@@ -144,7 +146,7 @@ public class StrategyBackTestInputVO {
     }
 
     public double getRatio() {
-        return ratio;
+        return ratio/100;
     }
 
     public void setRatio(double ratio) {
@@ -184,47 +186,26 @@ public class StrategyBackTestInputVO {
     }
 
     /**
-     * 判断StrategyInputVO是否相同 用来确定是否要重新加载股票池
-     * @param input StrategyBackTestInputVO
-     * @return boolean
+     * 获取止损 转换为小数
+     * @return double
      */
-    public boolean equals(StrategyBackTestInputVO input) {
-
-        if (input == null) {
-            return false;
-        }
-
-        boolean temp1 = input.startDate.equals(startDate)
-                && input.endDate.equals(endDate)
-                && (input.stockPoolType == this.stockPoolType)
-                && (input.blockType == this.blockType);
-
-        boolean temp2 = stockNamesEqual(input.stockCodes);
-
-
-        return (temp1 && temp2);
+    public double getStopLoss() {
+        return (-stopLoss/100);
     }
 
-    private boolean stockNamesEqual(ArrayList<String> s) {
-        if(this.stockCodes == null || this.stockCodes.size() == 0) {
-            if(s == null || s.size() == 0) {
-                return true;
-            }
-        }
-
-        if(s.size() != this.stockCodes.size()) {
-            return false;
-        }
-
-        boolean temp = true;
-        for(int i = 0; i<this.stockCodes.size(); ++i) {
-            if(!stockCodes.get(i).equals(s.get(i))) {
-                temp = false;
-                break;
-            }
-        }
-
-        return temp;
+    public void setStopLoss(double stopLoss) {
+        this.stopLoss = stopLoss;
     }
 
+    /**
+     * 获取止盈 转换为小数
+     * @return double
+     */
+    public double getStopProfit() {
+        return stopProfit/100;
+    }
+
+    public void setStopProfit(double stopProfit) {
+        this.stopProfit = stopProfit;
+    }
 }

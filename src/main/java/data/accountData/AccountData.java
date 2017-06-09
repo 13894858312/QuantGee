@@ -31,38 +31,48 @@ public class AccountData implements AccountDAO {
     @Override
     public boolean addAccount(Account account) {
 
-        Encryption.getInstance().encrypt(account);
+        try{
 
-        hibernateTemplate.flush();
-        if(hibernateTemplate.get(Account.class, account.getUserId())!=null){
+            Encryption.getInstance().encrypt(account);
+
+            hibernateTemplate.flush();
+            if(hibernateTemplate.get(Account.class, account.getUserId())!=null){
+                return false;
+            }
+            Analysis analysis = hibernateTemplate.get(Analysis.class, account.getRegisterDate());
+            if(analysis!=null){
+                int oriNum = analysis.getNum();
+                analysis.setNum(oriNum+1);
+                hibernateTemplate.update(analysis);
+            }else{
+                Analysis analysis1 = new Analysis();
+                analysis1.setNum(1);
+                analysis1.setDate(account.getRegisterDate());
+              hibernateTemplate.save(analysis1);
+            }
+
+            hibernateTemplate.save(account);
+
+            User user = new User();
+            user.setUserId(account.getUserId());
+            hibernateTemplate.save(user);
+            hibernateTemplate.flush();
+
+            return true;
+        } catch (Exception e){
             return false;
         }
-        Analysis analysis = hibernateTemplate.get(Analysis.class, account.getRegisterDate());
-        if(analysis!=null){
-            int oriNum = analysis.getNum();
-            analysis.setNum(oriNum+1);
-            hibernateTemplate.update(analysis);
-        }else{
-            Analysis analysis1 = new Analysis();
-            analysis1.setNum(1);
-            analysis1.setDate(account.getRegisterDate());
-            hibernateTemplate.save(analysis1);
-        }
-
-        hibernateTemplate.save(account);
-
-        User user = new User();
-        user.setUserId(account.getUserId());
-        hibernateTemplate.save(user);
-        hibernateTemplate.flush();
-
-        return true;
     }
 
     @Override
     public boolean updateAccount(Account account) {
-        hibernateTemplate.update(account);
-        return true;
+        try{
+            hibernateTemplate.update(account);
+            hibernateTemplate.flush();
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override

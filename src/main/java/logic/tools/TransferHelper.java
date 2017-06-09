@@ -1,11 +1,13 @@
 package logic.tools;
 
 import bean.*;
+import logic.strategy.backTesting.StrategyHelper;
 import org.springframework.stereotype.Service;
 import po.UserAnalysisDataPO;
 import vo.admin.UserAnalysisDataVO;
 import vo.stock.NewsVO;
 import vo.stock.StockCurrentVO;
+import vo.strategy.StrategyVO;
 import vo.trade.HoldingStockVO;
 import vo.trade.TradeRecordVO;
 import vo.user.AccountVO;
@@ -162,5 +164,72 @@ public class TransferHelper {
         trade.setTime(tradeRecordVO.getTime());
 
         return trade;
+    }
+
+    /**
+     * 将StrategyVO转换为Strategy
+     * @param vo StrategyVO
+     * @return Strategy
+     */
+    public Strategy transToStrategy(StrategyVO vo) {
+        Strategy result = new Strategy();
+        String name;
+        String time = TimeHelper.getNowTime();
+        if(vo.getStrateygyName() != null) {
+            name = vo.getStrateygyName();
+        } else {
+            name = StrategyHelper.getStrategyName(vo.getStrategyType()) + time.replace(":", "");
+        }
+
+        result.setUserId(vo.getUserID());
+        result.setTime(time);
+        result.setStrategyName(name);
+        result.setStrategyType(vo.getStrategyType());
+        result.setLastYield(vo.getLastYield());
+        result.setInitFund(vo.getInitFund());
+        result.setNotSt(bool_to_byte(vo.isNotST()));
+        result.setHoldingPeriod(vo.getHoldingPeriod());
+        result.setReturnPeriod(vo.getReturnPeriod());
+        result.setStopLoss(vo.getStopLoss());
+        result.setStopProfit(vo.getStopProfit());
+        result.setRatio(vo.getRatio());
+        result.setHoldingStockNum(vo.getHoldingStockNum());
+        result.setShortReturnPeriod(vo.getShortReturnPeriod());
+        result.setChangeNumber(vo.getChangeNumber());
+        result.setTrainPeriod(vo.getTrainPeriod());
+        result.setK(vo.getK());
+        result.setVectorLength(vo.getVectorLength());
+
+        return result;
+    }
+
+    /**
+     * 将Strategy转换为StrategyVO
+     * @param strategy Strategy
+     * @return StrategyVO
+     */
+    public StrategyVO transToStrategyVO(Strategy strategy) {
+        StrategyVO result = new StrategyVO(strategy.getStrategyId(), strategy.getUserId(), strategy.getStrategyName(),strategy.getTime(),
+                strategy.getLastYield(), strategy.getStrategyType(), strategy.getInitFund(), byte_to_bool(strategy.getNotSt()), strategy.getHoldingPeriod(),
+                strategy.getReturnPeriod(), strategy.getStopLoss(), strategy.getStopProfit(), strategy.getRatio(),strategy.getHoldingStockNum(),
+                strategy.getShortReturnPeriod(), strategy.getChangeNumber(), strategy.getTrainPeriod(), strategy.getK(),strategy.getVectorLength());
+
+        return result;
+    }
+
+    private boolean byte_to_bool(byte a){
+        if(a == (byte) 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private byte bool_to_byte(boolean b){
+        if(b){
+            return (byte) 1;
+        }else {
+            return (byte) 0;
+        }
     }
 }

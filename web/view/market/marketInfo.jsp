@@ -62,10 +62,10 @@
                 <a class="menua" id="a5" href="../../view/ucenter/user_center.jsp" target="_blank">个人中心</a>
 			</div>
 			<div class="search bar7">
-        		<form>
-            		<input type="text" placeholder="请输入股票代码">
-            		<button type="submit"></button>
-        		</form>
+        		<!--<form>-->
+            		<input id="inputStockCode" type="text" placeholder="请输入股票代码">
+					<button onclick="totheStockView()"></button>
+        		<!--</form>-->
     		</div>
 			<div class="marketlog">
 				<div class="logimg">
@@ -191,6 +191,7 @@
 						<li class="content">
 							<a id="gncj3">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
 						</li>
+                        <script src="../../js/marketInfo/news.js"></script>
 					</div>
 				</div>
 				<div class="mgwh">
@@ -210,6 +211,7 @@
 						<li class="content">
 							<a id="mgwh3">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
 						</li>
+                        <script src="../../js/marketInfo/news.js"></script>
 					</div>
 				</div>
 			</div>

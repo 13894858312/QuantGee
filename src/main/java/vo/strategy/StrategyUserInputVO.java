@@ -5,6 +5,21 @@ package vo.strategy;
  */
 public class StrategyUserInputVO {
     private String userID;
-    private String strategyID;
+    private int strategyID;
 
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public int getStrategyID() {
+        return strategyID;
+    }
+
+    public void setStrategyID(int strategyID) {
+        this.strategyID = strategyID;
+    }
 }

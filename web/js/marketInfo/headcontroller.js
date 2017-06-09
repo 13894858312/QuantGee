@@ -34,3 +34,22 @@ function changewhole5() {
     a5.style.color = "rgb(62, 196, 131)";
     ha5.style.borderBottom = "2px solid rgb(62, 196, 131)";
 }
+function totheStockView() {
+    var code = document.getElementById("inputStockCode");
+    $.ajax({
+        cache:false,
+        async:false,
+        url:'totheStock.action',
+        type:'POST',
+        dataType:'json',
+        data:{
+          stockCode: code.value
+        },
+        success:function (data) {
+            window.location.href = '../../view/stock/theStock.jsp';
+        },
+        error:function (data) {
+            alert("error")
+        }
+    });
+}
