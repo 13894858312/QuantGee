@@ -155,7 +155,7 @@
                 <s:iterator value="stockCurrentVOS">
                     <tr>
                         <td>
-                            <a target="_blank"><s:property value="stockName"/> </a>
+                            <a target="_blank"><s:property value="name"/> </a>
                         </td>
                         <td>
                             <a target="_blank"><s:property value="code"/> </a>
