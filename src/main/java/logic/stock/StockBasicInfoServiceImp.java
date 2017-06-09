@@ -85,6 +85,11 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         return this.getStockCurrentVOs(codes);
     }
 
+    @Override
+    public String getCodeByName(String name) {
+        return stockInfoDAO.getCodeByName(name);
+    }
+
     /**
      * 根据代码列表获取数据 用来方法服用
      * @param codes 代码
