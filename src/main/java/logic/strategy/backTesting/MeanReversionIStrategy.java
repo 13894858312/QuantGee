@@ -22,7 +22,7 @@ public class MeanReversionIStrategy implements IStrategy {
 
     @Override
     public ArrayList<String> getRebalancedStockCodes(StockPool stockPool, ArrayList<LogicHoldingStock> holdingStocks, int holdingStockNum,
-                                                     String formerRPeriodDate, String formerHPeriodDate, ArrayList<String> nextDates) {
+                                                     String formerRPeriodDate, String formerHPeriodDate, ArrayList<String> nextDates, ArrayList<String> formerDates) {
         if (nextDates.size() == 0) {
             return null;
         }
@@ -87,6 +87,11 @@ public class MeanReversionIStrategy implements IStrategy {
         }
 
         return result;
+    }
+
+    @Override
+    public int getStrategyType() {
+        return 1;
     }
 
 }

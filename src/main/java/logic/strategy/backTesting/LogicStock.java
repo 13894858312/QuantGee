@@ -37,7 +37,7 @@ public class LogicStock {
             tempDays = days;
             days = DateHelper.calculateDaysBetween(this.stocks.get(i).getDate(), startDate);
 
-            if((days == 0) || (days > 0 && tempDays < 0)) {
+            if((days == 0) || (days < 0 && tempDays > 0)) {
                 startIndex = i;
                 this.startDateStock = this.stocks.get(i);           //初始化开始日期的股票数据
             }
