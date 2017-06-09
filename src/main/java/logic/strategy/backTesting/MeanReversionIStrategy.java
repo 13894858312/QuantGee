@@ -22,7 +22,7 @@ public class MeanReversionIStrategy implements IStrategy {
 
     @Override
     public ArrayList<String> getRebalancedStockCodes(StockPool stockPool, ArrayList<LogicHoldingStock> holdingStocks, int holdingStockNum,
-                                                     String formerRPeriodDate, String formerHPeriodDate, ArrayList<String> nextDates) {
+                                                     String formerRPeriodDate, String formerHPeriodDate, ArrayList<String> nextDates, ArrayList<String> formerDates) {
         if (nextDates.size() == 0) {
             return null;
         }
@@ -75,7 +75,7 @@ public class MeanReversionIStrategy implements IStrategy {
         HashMap<String, LogicHoldingStock> hashMap = new HashMap<>();
         for (int i=0; i<holdingStocks.size(); ++i) {
             holdingStocks.get(i).setCanContinueHold(false);         //假设现在持有的股票都不可以继续持有
-            hashMap.put(holdingStocks.get(i).getStockCode(), holdingStocks.get(i));
+            hashMap.put(holdingStocks.get(i).getCode(), holdingStocks.get(i));
         }
 
         for (int i=0; i<topCodes.size(); ++i) {
@@ -87,6 +87,11 @@ public class MeanReversionIStrategy implements IStrategy {
         }
 
         return result;
+    }
+
+    @Override
+    public int getStrategyType() {
+        return 1;
     }
 
 }

@@ -9,8 +9,8 @@ import java.util.ArrayList;
  */
 public class StockHistoricalVO {
 
-    private String stockCode;
-    private String stockName;
+    private String code;
+    private String name;
     private String stockMarket;
     private String startDate;
     private String endDate;
@@ -49,15 +49,15 @@ public class StockHistoricalVO {
     private ArrayList<LineVO> up;
     private ArrayList<LineVO> low;
 
-    public StockHistoricalVO(String stockCode, String stockName, String stockMarket, String startDate,
+    public StockHistoricalVO(String code, String name, String stockMarket, String startDate,
                              String endDate, ArrayList<KLineVO> kLine, ArrayList<LineVO> volume,
                              ArrayList<LineVO> ma5, ArrayList<LineVO> ma10, ArrayList<LineVO> ma20,
                              ArrayList<LineVO> logarithmYield, ArrayList<LineVO> diff, ArrayList<LineVO> dea,
                              ArrayList<LineVO> macd, ArrayList<LineVO> k, ArrayList<LineVO> d, ArrayList<LineVO> j,
                              ArrayList<LineVO> rsi6, ArrayList<LineVO> rsi12, ArrayList<LineVO> rsi24,
                              ArrayList<LineVO> mid, ArrayList<LineVO> up, ArrayList<LineVO> low) {
-        this.stockCode = stockCode;
-        this.stockName = stockName;
+        this.code = code;
+        this.name = name;
         this.stockMarket = stockMarket;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -81,20 +81,20 @@ public class StockHistoricalVO {
         this.low = low;
     }
 
-    public String getStockCode() {
-        return stockCode;
+    public String getCode() {
+        return code;
     }
 
-    public void setStockCode(String stockCode) {
-        this.stockCode = stockCode;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getStockName() {
-        return stockName;
+    public String getName() {
+        return name;
     }
 
-    public void setStockName(String stockName) {
-        this.stockName = stockName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getStockMarket() {

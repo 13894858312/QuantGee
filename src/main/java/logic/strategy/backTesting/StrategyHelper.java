@@ -22,6 +22,7 @@ public class StrategyHelper {
      */
     public static ArrayList<String> getTopNStocks(ArrayList<YieldStock> stocks, int n, boolean up) {
         ArrayList<String> result = new ArrayList<>();
+        int size = stocks.size();
 
         for(int i=0; i<n; ++i) {
             int index = 0;
@@ -35,6 +36,9 @@ public class StrategyHelper {
                         index = j;
                     }
                 }
+            }
+            if (stocks.size() == 0) {
+                break;
             }
             result.add(stocks.get(index).getStockCode());
             stocks.remove(index);

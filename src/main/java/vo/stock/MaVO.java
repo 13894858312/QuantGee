@@ -5,30 +5,30 @@ package vo.stock;
  * 均线图的vo
  */
 public class MaVO {
-    private String stockCode;
+    private String code;
     private int period;
     private String date;
     private double ma;
 
     /**
-     * @param stockCode 股票代码
+     * @param code 股票代码
      * @param period 周期
      * @param date 时间
      * @param ma 均值
      */
-    public MaVO(String stockCode, int period, String date, double ma) {
-        this.stockCode = stockCode;
+    public MaVO(String code, int period, String date, double ma) {
+        this.code = code;
         this.period = period;
         this.date = date;
         this.ma = ma;
     }
 
-    public String getStockCode() {
-        return stockCode;
+    public String getCode() {
+        return code;
     }
 
-    public void setStockCode(String stockCode) {
-        this.stockCode = stockCode;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public int getPeriod() {

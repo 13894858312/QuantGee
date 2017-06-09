@@ -1,6 +1,7 @@
 package logic.strategy.backTesting;
 
 import DAO.stockInfoDAO.StockInfoDAO;
+import bean.MarketInfo;
 import bean.Stock;
 import logic.tools.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,8 @@ public class StockPool {
     private String startDate;
     private String endDate;
 
-    private HashMap<String, LogicStock> stocksMap;       //key是股票code
-    private ArrayList<LogicStock> stocksList;
+    private HashMap<String, LogicStock> stocksMap = new HashMap<>();       //key是股票code
+    private ArrayList<LogicStock> stocksList = new ArrayList<>();
     private int tradeDays;                                      //时间区间內的交易日数，即投资天数
 
     private ArrayList<Stock> indexStocks;                       //stockPO size最大的stock作为标杆
@@ -69,7 +70,14 @@ public class StockPool {
         if(inputVO.getStockPoolType() == 0) {
             Iterator<String> codes = stockInfoDAO.getAllStockCodesByBlock(inputVO.getBlockType());
             while(codes.hasNext()) {
-                Iterator<Stock> stocks = stockInfoDAO.getStockInfo(codes.next(), s, e);
+                String code = codes.next();
+                if (inputVO.isNotST()) {
+                    MarketInfo marketInfo = stockInfoDAO.getMarketInfo(code);
+                    if (marketInfo.getName().contains("ST")) {
+                        continue;
+                    }
+                }
+                Iterator<Stock> stocks = stockInfoDAO.getStockInfo(code, s, e);
                 allStocks.add(transToList(stocks));
             }
             //选择指定 股票 构造股票池
@@ -97,15 +105,17 @@ public class StockPool {
      * @param allStocks 从数据层获取的po
      */
     public void initStocksFromData(ArrayList<ArrayList<Stock>> allStocks) {
-        stocksMap = new HashMap<>();
-        stocksList = new ArrayList<>();
-
-        int index = 0;                       //记录size最大的下标index
+        int index = 0;  //记录size最大的下标index
+        boolean first = true;
         for(int i = 0; i< allStocks.size(); ++i) {
             if(allStocks.get(i) != null && allStocks.get(i).size() != 0) {
                 LogicStock logicStock = new LogicStock(this.inputVO.getStartDate(), allStocks.get(i));
                 //如果该股票各项数据都有 才加入到股票池
                 if(logicStock.getBeforeStock() != null && logicStock.getStartDateStock() != null) {
+                    if (first) {
+                        index = i;
+                        first = false;
+                    }
                     this.stocksMap.put(allStocks.get(i).get(0).getCode(), logicStock);           //初始化map
                     this.stocksList.add(logicStock);                                                 //初始化list
 
