@@ -158,7 +158,7 @@
                             <a target="_blank"><s:property value="stockName"/> </a>
                         </td>
                         <td>
-                            <a target="_blank"><s:property value="stockCode"/> </a>
+                            <a target="_blank"><s:property value="code"/> </a>
                         </td>
                         <td><s:property value="trade"/></td>
                         <td><s:property value="changePercent"/></td>

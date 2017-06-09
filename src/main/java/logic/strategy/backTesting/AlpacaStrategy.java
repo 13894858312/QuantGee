@@ -61,7 +61,7 @@ public class AlpacaStrategy implements IStrategy{
 
         //计算持有股票的收益率
         for (int i=0; i<holdingStocks.size(); ++i) {
-            String code = holdingStocks.get(i).getStockCode();
+            String code = holdingStocks.get(i).getCode();
 
             Stock beforeStock = stockPool.getStockByCodeAndDate(code, formerHPeriodDate);
             Stock todayStock = stockPool.getStockByCodeAndDate(code, today);
@@ -75,7 +75,7 @@ public class AlpacaStrategy implements IStrategy{
         sellCodes = StrategyHelper.getTopNStocks(holdingstockYields, changeNum, false);
         HashMap<String, LogicHoldingStock> hashMap = new HashMap<>();
         for (int i=0; i<holdingStocks.size(); ++i) {
-            hashMap.put(holdingStocks.get(i).getStockCode(), holdingStocks.get(i));
+            hashMap.put(holdingStocks.get(i).getCode(), holdingStocks.get(i));
         }
         //将收益后changeNum个卖出
         for (int i=0; i<sellCodes.size(); ++i) {

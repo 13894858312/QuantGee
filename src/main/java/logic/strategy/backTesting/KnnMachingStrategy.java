@@ -46,9 +46,6 @@ public class KnnMachingStrategy implements IStrategy {
 
 System.out.println("****************************************** predictPrice:"+predictPrice );
 System.out.println("****************************************** yield:"+yield );
-if (yield >0) {
-    System.out.println("***********************************************************************************************************************");
-}
             if (predictPrice > 0) {
                 yieldStocks.add(new YieldStock(formerStock.getCode(), yield));
             }

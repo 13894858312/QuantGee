@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import vo.stock.MaVO;
 
-import javax.jws.Oneway;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -89,7 +88,7 @@ public class DoubleMaStrategy implements IStrategy {
         if (holdingStocks.size() > 0) {
             HashMap<String, LogicHoldingStock> hashMap = new HashMap<>();
             for (int i=0; i<holdingStocks.size(); ++i) {
-                hashMap.put(holdingStocks.get(i).getStockCode(), holdingStocks.get(i));
+                hashMap.put(holdingStocks.get(i).getCode(), holdingStocks.get(i));
             }
 
             for (int i=0; i<sellCodes.size(); ++i) {
