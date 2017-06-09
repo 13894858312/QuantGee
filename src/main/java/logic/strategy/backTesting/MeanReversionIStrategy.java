@@ -22,11 +22,11 @@ public class MeanReversionIStrategy implements IStrategy {
 
     @Override
     public ArrayList<String> getRebalancedStockCodes(StockPool stockPool, ArrayList<LogicHoldingStock> holdingStocks, int holdingStockNum,
-                                                     String formerRPeriodDate, String formerHPeriodDate, ArrayList<String> dates) {
-        if (dates.size() == 0) {
+                                                     String formerRPeriodDate, String formerHPeriodDate, ArrayList<String> nextDates) {
+        if (nextDates.size() == 0) {
             return null;
         }
-        String yesterday = dates.get(0);
+        String yesterday = nextDates.get(0);
         ArrayList<YieldStock> yieldStocks = new ArrayList<>();
         ArrayList<String> topCodes;
         ArrayList<String> result = new ArrayList<>();
@@ -36,8 +36,8 @@ public class MeanReversionIStrategy implements IStrategy {
             if(yesterdayStock == null) { continue;}
 
             boolean live = true;                     //持有期內每天的股票信息必须有 否则不持有该股票
-            for (int j = 1; j < dates.size(); ++j) {
-                Stock po = stockPool.getStocksList().get(i).getStockByDate(dates.get(j));
+            for (int j = 1; j < nextDates.size(); ++j) {
+                Stock po = stockPool.getStocksList().get(i).getStockByDate(nextDates.get(j));
                 if (po == null) {
                     live = false;
                     break;
