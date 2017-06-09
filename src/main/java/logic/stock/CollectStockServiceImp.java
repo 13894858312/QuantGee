@@ -1,17 +1,11 @@
 package logic.stock;
 
 import DAO.stockInfoDAO.CollectStockDAO;
-import DAO.stockInfoDAO.StockInfoDAO;
-import bean.Current;
-import bean.MarketInfo;
-import bean.Stock;
-import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import service.stock.CollectStockService;
-import service.stock.StockBasicInfoService;
 import vo.stock.StockCollectInputVO;
 import vo.stock.StockCurrentVO;
 
@@ -39,7 +33,7 @@ public class CollectStockServiceImp implements CollectStockService{
 
     @Override
     public boolean collectStock(StockCollectInputVO inputVO) {
-        if(collectStockDAO.addCollectedStock(inputVO.getUserID(), inputVO.getStockCode())) {
+        if(collectStockDAO.addCollectedStock(inputVO.getUserID(), inputVO.getCode())) {
             return true;
         }
 
@@ -48,7 +42,7 @@ public class CollectStockServiceImp implements CollectStockService{
 
     @Override
     public boolean deleteCollectedStock(StockCollectInputVO inputVO) {
-        if(collectStockDAO.removeCollectedStock(inputVO.getUserID(), inputVO.getStockCode())) {
+        if(collectStockDAO.removeCollectedStock(inputVO.getUserID(), inputVO.getCode())) {
             return true;
         }
 

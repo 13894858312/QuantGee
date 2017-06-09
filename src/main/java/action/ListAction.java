@@ -23,6 +23,7 @@ import java.util.Date;
 @Controller
 public class ListAction extends ActionSupport {
     private String result;
+    private String stockName;
 
     @Autowired
     StockBasicInfoService stockBasicInfoService;
@@ -37,33 +38,32 @@ public class ListAction extends ActionSupport {
         this.result = result;
     }
 
-    private StockHistoricalVO getMarketInfo(){
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.add(Calendar.MONTH, -1);
-        date = calendar.getTime();
-        String startdate = simpleDateFormat.format(date);
-        calendar.add(Calendar.MONTH, -5);
-        date = calendar.getTime();
-        String enddate = simpleDateFormat.format(date);
-        StockInputVO stockInputVO = new StockInputVO("000001", enddate, startdate);
-        StockHistoricalVO stockHistoricalVO = stockBasicInfoService.getStockHistoricalInfo(stockInputVO);
-        return stockHistoricalVO;
+    public String getStockName() {
+        return stockName;
     }
 
-    public String getIndustryUpList(){
-        ArrayList<TopStockVO> topStockVOArrayList = marketInfoService.getTopIndustryStocks(0);
-        JSONArray jsonArray = JSONArray.fromObject(topStockVOArrayList);
-        result = jsonArray.toString();
-        return SUCCESS;
+    public void setStockName(String stockName) {
+        this.stockName = stockName;
     }
 
-    public String getIndustryDownList(){
-        ArrayList<TopStockVO> topStockVOArrayList = marketInfoService.getTopIndustryStocks(1);
-        JSONArray jsonArray = JSONArray.fromObject(topStockVOArrayList);
-        result = jsonArray.toString();
+    //    private StockHistoricalVO getMarketInfo(){
+//        Date date = new Date();
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTime(date);
+//        calendar.add(Calendar.MONTH, -1);
+//        date = calendar.getTime();
+//        String startdate = simpleDateFormat.format(date);
+//        calendar.add(Calendar.MONTH, -5);
+//        date = calendar.getTime();
+//        String enddate = simpleDateFormat.format(date);
+//        StockInputVO stockInputVO = new StockInputVO("000001", enddate, startdate);
+//        StockHistoricalVO stockHistoricalVO = stockBasicInfoService.getStockHistoricalInfo(stockInputVO);
+//        return stockHistoricalVO;
+//    }
+    public String getWebStockName(){
+        JSONObject jsonObject = JSONObject.fromObject(stockName);
+        result = jsonObject.toString();
         return SUCCESS;
     }
 
@@ -74,10 +74,4 @@ public class ListAction extends ActionSupport {
         return SUCCESS;
     }
 
-    public String getStockDownList(){
-        ArrayList<TopStockVO> topStockVOArrayList = marketInfoService.getTopStocks(1);
-        JSONArray jsonArray = JSONArray.fromObject(topStockVOArrayList);
-        result = jsonArray.toString();
-        return SUCCESS;
-    }
 }

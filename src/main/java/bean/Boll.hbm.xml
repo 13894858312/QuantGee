@@ -9,8 +9,8 @@
             <key-property name="code">
                 <column name="code" sql-type="varchar(6)" length="6"/>
             </key-property>
-            <key-property name="date">
-                <column name="date" sql-type="varchar(10)" length="10"/>
+            <key-property name="buyDate">
+                <column name="buyDate" sql-type="varchar(10)" length="10"/>
             </key-property>
         </composite-id>
         <property name="mid">

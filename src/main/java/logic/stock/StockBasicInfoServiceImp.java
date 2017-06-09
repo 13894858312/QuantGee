@@ -11,7 +11,6 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import service.stock.StockBasicInfoService;
-import sun.security.pkcs11.wrapper.CK_DATE;
 import vo.stock.*;
 
 import java.util.ArrayList;
@@ -85,6 +84,11 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         return this.getStockCurrentVOs(codes);
     }
 
+    @Override
+    public String getCodeByName(String name) {
+        return stockInfoDAO.getCodeByName(name);
+    }
+
     /**
      * 根据代码列表获取数据 用来方法服用
      * @param codes 代码
@@ -142,7 +146,7 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         ArrayList<LineVO> up = new ArrayList<>();
         ArrayList<LineVO> low = new ArrayList<>();
 
-        Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getStockCode(), inputVO.getStartDate(), inputVO.getEndDate());
+        Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getCode(), inputVO.getStartDate(), inputVO.getEndDate());
         Stock stock = null, formerStock;
         String date;
 
@@ -169,10 +173,10 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
             }
         }
 
-        Iterator<Macd> macds = quotaDAO.getMACDs(inputVO.getStartDate(), inputVO.getEndDate(), inputVO.getStockCode());
-        Iterator<Kdj> kdjs = quotaDAO.getKDJs(inputVO.getStartDate(), inputVO.getEndDate(), inputVO.getStockCode());
-        Iterator<Rsi> rsis = quotaDAO.getRSIs(inputVO.getStartDate(), inputVO.getEndDate(), inputVO.getStockCode());
-        Iterator<Boll> bolls = quotaDAO.getBOLLs(inputVO.getStartDate(), inputVO.getEndDate(), inputVO.getStockCode());
+        Iterator<Macd> macds = quotaDAO.getMACDs(inputVO.getStartDate(), inputVO.getEndDate(), inputVO.getCode());
+        Iterator<Kdj> kdjs = quotaDAO.getKDJs(inputVO.getStartDate(), inputVO.getEndDate(), inputVO.getCode());
+        Iterator<Rsi> rsis = quotaDAO.getRSIs(inputVO.getStartDate(), inputVO.getEndDate(), inputVO.getCode());
+        Iterator<Boll> bolls = quotaDAO.getBOLLs(inputVO.getStartDate(), inputVO.getEndDate(), inputVO.getCode());
 
         Macd m;
         while(macds.hasNext()) {
@@ -207,15 +211,15 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         }
 
         String stockName;
-        if(!StockHelper.isBlock(inputVO.getStockCode())) {
-            MarketInfo market = stockInfoDAO.getMarketInfo(inputVO.getStockCode());
+        if(!StockHelper.isBlock(inputVO.getCode())) {
+            MarketInfo market = stockInfoDAO.getMarketInfo(inputVO.getCode());
             stockName = market.getName();
         } else {
             stockName = "";
         }
 
 
-        StockHistoricalVO result = new StockHistoricalVO(inputVO.getStockCode(), stockName, StockHelper.getMarketName(inputVO.getStockCode()),
+        StockHistoricalVO result = new StockHistoricalVO(inputVO.getCode(), stockName, StockHelper.getMarketName(inputVO.getCode()),
                 inputVO.getStartDate(), inputVO.getEndDate(), kLine, volume, ma5, ma10, ma20, logarithmYields, diff, dea, macd,
                 k, d, j, rsi6, rsi12, rsi24, mid, up, low);
 

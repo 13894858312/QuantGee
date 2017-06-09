@@ -7,7 +7,7 @@ package vo.stock;
  */
 public class StockCurrentVO {
 
-    private String stockCode;
+    private String code;
     private String stockName;
     private String stockMarket;
     private String time;
@@ -28,7 +28,7 @@ public class StockCurrentVO {
     private double mktcap;
 
     /**
-     * @param stockCode 股票代码
+     * @param code 股票代码
      * @param stockName 股票名称
      * @param stockMarket 股票所属的市场
      * @param time 时间戳
@@ -45,11 +45,11 @@ public class StockCurrentVO {
      * @param pb 市净率
      * @param mktcap 总市值
      */
-    public StockCurrentVO(String stockCode, String stockName, String stockMarket, String time,
-                          double trade, double open,  double low, double high,
+    public StockCurrentVO(String code, String stockName, String stockMarket, String time,
+                          double trade, double open, double low, double high,
                           double amount, double volume, double changePercent, double turnover,
                           double settlement, double per, double pb, double mktcap) {
-        this.stockCode = stockCode;
+        this.code = code;
         this.stockName = stockName;
         this.stockMarket = stockMarket;
         this.time = time;
@@ -67,12 +67,12 @@ public class StockCurrentVO {
         this.mktcap = mktcap;
     }
 
-    public String getStockCode() {
-        return stockCode;
+    public String getCode() {
+        return code;
     }
 
-    public void setStockCode(String stockCode) {
-        this.stockCode = stockCode;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getStockName() {

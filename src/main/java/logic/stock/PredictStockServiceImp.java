@@ -32,7 +32,7 @@ public class PredictStockServiceImp implements PredictStockService {
 
     @Override
     public StockPredictVO getStockPredictInfo(StockInputVO inputVO) {
-        Iterator<StockPredict> stockPredicts = quotaDAO.getPredictData(inputVO.getStockCode(), inputVO.getStartDate(), inputVO.getEndDate());
+        Iterator<StockPredict> stockPredicts = quotaDAO.getPredictData(inputVO.getCode(), inputVO.getStartDate(), inputVO.getEndDate());
 
         ArrayList<LineVO> actualValues = new ArrayList<>();
         ArrayList<LineVO> predictedValues = new ArrayList<>();
@@ -49,7 +49,7 @@ public class PredictStockServiceImp implements PredictStockService {
         }
 
         //此时temp为今天的数据
-        StockPredictVO result = new StockPredictVO(inputVO.getStockCode(), temp.getPredictedPrice(),
+        StockPredictVO result = new StockPredictVO(inputVO.getCode(), temp.getPredictedPrice(),
                 temp.getPredictIncrease(), temp.getHistoryDeviation(), actualValues, predictedValues);
 
         return result;

@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import vo.stock.MaVO;
 
-import javax.jws.Oneway;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,19 +23,19 @@ public class DoubleMaStrategy implements IStrategy {
 
     @Override
     public ArrayList<String> getRebalancedStockCodes(StockPool stockPool, ArrayList<LogicHoldingStock> holdingStocks, int holdingStockNum,
-                                                     String formerRPeriodDate, String formerHPeriodDate, ArrayList<String> dates) {
-        if (dates.size() == 0) {return null;}
+                                                     String formerRPeriodDate, String formerHPeriodDate, ArrayList<String> nextDates, ArrayList<String> formerDates) {
+        if (nextDates.size() == 0) {return null;}
 
-        String yesterday = dates.get(0);
-        String today = dates.get(1);
+        String yesterday = nextDates.get(0);
+        String today = nextDates.get(1);
         ArrayList<String> buyCodes = new ArrayList<>();
         ArrayList<String> sellCodes = new ArrayList<>();
 
         for (int i=0; i<stockPool.getStocksList().size(); ++i) {
             LogicStock stock = stockPool.getStocksList().get(i);
             boolean live = true;                     //持有期內每天的股票信息必须有 否则不持有该股票
-            for (int j = 1; j < dates.size(); ++j) {
-                Stock po = stock.getStockByDate(dates.get(j));
+            for (int j = 1; j < nextDates.size(); ++j) {
+                Stock po = stock.getStockByDate(nextDates.get(j));
                 if (po == null) {
                     live = false;
                     break;
@@ -89,7 +88,7 @@ public class DoubleMaStrategy implements IStrategy {
         if (holdingStocks.size() > 0) {
             HashMap<String, LogicHoldingStock> hashMap = new HashMap<>();
             for (int i=0; i<holdingStocks.size(); ++i) {
-                hashMap.put(holdingStocks.get(i).getStockCode(), holdingStocks.get(i));
+                hashMap.put(holdingStocks.get(i).getCode(), holdingStocks.get(i));
             }
 
             for (int i=0; i<sellCodes.size(); ++i) {
@@ -99,5 +98,10 @@ public class DoubleMaStrategy implements IStrategy {
             }
         }
         return buyCodes;
+    }
+
+    @Override
+    public int getStrategyType() {
+        return 2;
     }
 }

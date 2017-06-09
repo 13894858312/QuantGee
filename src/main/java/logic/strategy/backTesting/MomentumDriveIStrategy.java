@@ -2,7 +2,6 @@ package logic.strategy.backTesting;
 
 
 import bean.Stock;
-import logic.tools.DateHelper;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -20,11 +19,11 @@ public class MomentumDriveIStrategy implements IStrategy {
 
     @Override
     public ArrayList<String> getRebalancedStockCodes(StockPool stockPool, ArrayList<LogicHoldingStock> holdingStocks, int holdingStockNum,
-                                                     String formerRPeriodDate, String formerHPeriodDate, ArrayList<String> dates) {
-        if (dates.size() == 0) {
+                                                     String formerRPeriodDate, String formerHPeriodDate, ArrayList<String> nextDates, ArrayList<String> formerDates) {
+        if (nextDates.size() == 0) {
             return null;
         }
-        String yesterday = dates.get(0);
+        String yesterday = nextDates.get(0);
 
         ArrayList<YieldStock> yieldStocks = new ArrayList<>();
         ArrayList<String> tempCodes;
@@ -39,8 +38,8 @@ public class MomentumDriveIStrategy implements IStrategy {
             }
 
             boolean live = true;                                   //持有期內每天的股票信息必须有 否则不持有该股票
-            for(int j=1; j<dates.size(); ++j) {
-                Stock po = stockPool.getStocksList().get(i).getStockByDate(dates.get(j));
+            for(int j = 1; j< nextDates.size(); ++j) {
+                Stock po = stockPool.getStocksList().get(i).getStockByDate(nextDates.get(j));
                 if(po == null) {
                     live = false;
                     break;
@@ -62,7 +61,7 @@ public class MomentumDriveIStrategy implements IStrategy {
         HashMap<String, LogicHoldingStock> hashMap = new HashMap<>();
         for (int i=0; i<holdingStocks.size(); ++i) {
             holdingStocks.get(i).setCanContinueHold(false);         //假设现在持有的股票都不可以继续持有
-            hashMap.put(holdingStocks.get(i).getStockCode(), holdingStocks.get(i));
+            hashMap.put(holdingStocks.get(i).getCode(), holdingStocks.get(i));
         }
 
         for (int i=0; i<tempCodes.size(); ++i) {
@@ -75,5 +74,10 @@ public class MomentumDriveIStrategy implements IStrategy {
         }
 
         return result;
+    }
+
+    @Override
+    public int getStrategyType() {
+        return 0;
     }
 }

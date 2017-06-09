@@ -68,22 +68,12 @@
 		</action>
 	</package>
 	<package name="list" extends="json-default,struts-default">
-		<action name="riseIndustryList" class="listAction" method="getIndustryUpList">
+		<action name="getWebStockName" class="listAction" method="getWebStockName">
 			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
-		<action name="downIndustryList" class="listAction" method="getIndustryDownList">
-			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
-        <action name="upStockList" class="listAction" method="getStockUpList">
-            <result name="success" type="json">
                 <param name="root">result</param>
             </result>
-        </action>
-        <action name="downStockList" class="listAction" method="getStockDownList">
+		</action>
+        <action name="upStockList" class="listAction" method="getStockUpList">
             <result name="success" type="json">
                 <param name="root">result</param>
             </result>
@@ -97,7 +87,7 @@
         </action>
     </package>
 	<package name="stock" extends="json-default,struts-default">
-		<action name="getCode" class="stockAction" method="stockCode">
+		<action name="getCode" class="stockAction" method="code">
 			<result name="success" type="json">
 				<param name="root">result</param>
 			</result>

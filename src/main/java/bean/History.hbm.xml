@@ -6,8 +6,8 @@
 
     <class name="bean.History" table="History" schema="quantgee_data">
         <composite-id mapped="true" class="bean.HistoryPK">
-            <key-property name="date">
-                <column name="date" sql-type="varchar(20)" length="20"/>
+            <key-property name="buyDate">
+                <column name="buyDate" sql-type="varchar(20)" length="20"/>
             </key-property>
             <key-property name="code">
                 <column name="stockID" sql-type="varchar(6)" length="6"/>

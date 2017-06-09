@@ -37,7 +37,7 @@ public class LogicStock {
             tempDays = days;
             days = DateHelper.calculateDaysBetween(this.stocks.get(i).getDate(), startDate);
 
-            if((days == 0) || (days > 0 && tempDays < 0)) {
+            if((days == 0) || (days < 0 && tempDays > 0)) {
                 startIndex = i;
                 this.startDateStock = this.stocks.get(i);           //初始化开始日期的股票数据
             }
@@ -49,14 +49,12 @@ public class LogicStock {
     /**
      * 根据日期获得股票数据 待优化
      * @param date 日期
-     * @return Stock
+     * @return 如果获取开始日期之前的股票，返回前returnperiod的stock
      */
     public Stock getStockByDate(String date) {
-        //如果获取开始日期之前的股票，返回前returnperiod的stock
         if(DateHelper.calculateDaysBetween(date, startDateStock.getDate()) > 0) {
             return beforeStock;
         }
-
         return this.stocksMap.get(date);
     }
 

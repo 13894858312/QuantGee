@@ -1,49 +1,54 @@
 package vo.strategy;
 
-import logic.tools.MathHelper;
 
 /**
  * Created by Mark.W on 2017/6/7.
  */
 public class StrategyTradeRecordVO {
-    private String date;
     private String code;
-    private int action;
-    private double money;
-    private double price;
+    private String buyDate;
+    private String sellDate;
+    private double buyMoney;
+    private double sellMoney;
+    private double rate;
 
     /**
-     * @param date 时间
      * @param code 股票代码
-     * @param action 操作类型 0 买入 1卖出
-     * @param money 交易金钱
-     * @param price 交易时的股价
+     * @param buyDate 买入时间
+     * @param sellDate 卖出时间
+     * @param buyMoney 交易金钱
+     * @param sellMoney 交易金钱
      */
-    public StrategyTradeRecordVO(String date, String code,int action, double money, double price) {
-        this.date = date;
+    public StrategyTradeRecordVO(String code, String buyDate, String sellDate, double buyMoney, double sellMoney) {
         this.code = code;
-        this.money = MathHelper.formatData(money,2);
-        this.price = price;
-        this.action = action;
-    }
-
-    public String getDate() {
-        return date;
+        this.buyDate = buyDate;
+        this.sellDate = sellDate;
+        this.buyMoney = buyMoney;
+        this.sellMoney = sellMoney;
+        this.rate = (sellMoney-buyMoney)/buyMoney;
     }
 
     public String getCode() {
         return code;
     }
 
-    public double getMoney() {
-        return money;
+    public String getBuyDate() {
+        return buyDate;
     }
 
-    public double getPrice() {
-        return price;
+    public String getSellDate() {
+        return sellDate;
     }
 
-    public int getAction() {
-        return action;
+    public double getBuyMoney() {
+        return buyMoney;
+    }
+
+    public double getSellMoney() {
+        return sellMoney;
+    }
+
+    public double getRate() {
+        return rate;
     }
 }
