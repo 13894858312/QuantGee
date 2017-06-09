@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class StrategyBackTesting {
 
     private StrategyDataAnlysis strategyDataAnlysis = new StrategyDataAnlysis();
-    private IStrategy IStrategy;
+    private IStrategy iStrategy;
     private StockPool stockPool;
 
     private double initFund;        //起始资金
@@ -45,12 +45,12 @@ public class StrategyBackTesting {
      * @param stockPool 股票池
      * @param holdingPeriod 持有期
      * @param returnPeriod 形成期
-     * @param IStrategy 不同策略选择股票的接口
+     * @param iStrategy 不同策略选择股票的接口
      * @param periodOnly 是否是计算超额收益
      */
-    public StrategyBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod, IStrategy IStrategy, boolean periodOnly) {
+    public StrategyBackTesting(StockPool stockPool, int holdingPeriod, int returnPeriod, IStrategy iStrategy, boolean periodOnly) {
         this.stockPool = stockPool;
-        this.IStrategy = IStrategy;
+        this.iStrategy = iStrategy;
         this.returnPeriod = returnPeriod;
         this.holdingPeriod = holdingPeriod;
         this.periodOnly = periodOnly;
@@ -91,10 +91,18 @@ System.out.println("mainLoop: " + indexStocks.get(i).getDate());
             if(holdingDaysIndex == holdingPeriod) {        //若达到holdingPeriod index置0
                 holdingDaysIndex = 0;                      //前一天进行rebalance,买入卖出
 
-                ArrayList<String> datesNextHoldingPeriod = new ArrayList<>();
+                ArrayList<String> nextDates = new ArrayList<>();
                 int end = Math.min(i+holdingPeriod+1, indexStocks.size());
                 for(int j=i-1; j<end; ++j) {
-                    datesNextHoldingPeriod.add(indexStocks.get(j).getDate());
+                    nextDates.add(indexStocks.get(j).getDate());
+                }
+
+                ArrayList<String> formerDates = new ArrayList<>();
+                if(iStrategy.getStrategyType() == 4) {
+                    int start = Math.max(i-stockPool.getInputVO().getTrainPeriod(), 0);
+                    for(int j=start; j<=i; ++j) {
+                        formerDates.add(indexStocks.get(j).getDate());
+                    }
                 }
 
                 int tempIndex = Math.max(i-this.returnPeriod, 0);
@@ -102,7 +110,7 @@ System.out.println("mainLoop: " + indexStocks.get(i).getDate());
                 tempIndex = Math.max(i-this.holdingPeriod, 0);
                 String formerHDate = indexStocks.get(tempIndex).getDate();
 
-                this.rebalance(formerRDate,formerHDate,datesNextHoldingPeriod);
+                this.rebalance(formerRDate,formerHDate,nextDates,formerDates);
             } else {
                 holdingDaysIndex ++;
             }
@@ -134,11 +142,11 @@ System.out.println("mainLoop: " + indexStocks.get(i).getDate());
      * @param formerHDate 上一个持有期的日期
      * @param dates 下一个持有期的日期 get(0)是today日期
      */
-    private void rebalance(String formerRDate, String formerHDate, ArrayList<String> dates) {
+    private void rebalance(String formerRDate, String formerHDate, ArrayList<String> dates, ArrayList<String> formerDates) {
         String yesterday = dates.get(0);
         String today = dates.get(1);
         //计算股票池內所有股票的收益率 用于确定下次持有的股票 不同策略确定方法不一样
-        ArrayList<String> rebalancedStockCodes = IStrategy.getRebalancedStockCodes(stockPool, holdingStocks, holdingStockNum,formerRDate, formerHDate, dates);
+        ArrayList<String> rebalancedStockCodes = iStrategy.getRebalancedStockCodes(stockPool, holdingStocks, holdingStockNum,formerRDate, formerHDate, dates,formerDates);
 
         this.sellStock(yesterday);                          //卖出所有持有的且当天没有停盘的股票
         this.buyStock(rebalancedStockCodes, today);         //确定前n的股票 买入
@@ -240,7 +248,7 @@ System.out.println("              买入后size:" + this.holdingStocks.size());
         this.strategyYield.add(new LineVO(date, MathHelper.formatData(yield,4)));
 
 System.out.println("      holdingStocks-size: " + this.holdingStocks.size());
-System.out.println("      IStrategy-Yield:" + yield);
+System.out.println("      iStrategy-Yield:" + yield);
     }
 
     /**
