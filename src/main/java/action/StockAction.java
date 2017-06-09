@@ -16,7 +16,7 @@ import vo.stock.StockInputVO;
 @Controller
 public class StockAction extends ActionSupport{
     private String result;
-    private String stockCode = "000001";
+    private String stockCode;
 
     @Autowired
     private StockBasicInfoService stockBasicInfoService;
@@ -77,6 +77,10 @@ public class StockAction extends ActionSupport{
     public String getVolume(){
         JSONArray jsonArray = JSONArray.fromObject(getStockHistoricalVO().getVolume());
         result = jsonArray.toString();
+        return SUCCESS;
+    }
+
+    public String totheStock(){
         return SUCCESS;
     }
 }
