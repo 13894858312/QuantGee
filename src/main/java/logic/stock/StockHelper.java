@@ -25,16 +25,16 @@ public class StockHelper {
         return false;
     }
 
-    public static String getMarketName(String code) {
+    public static String getBlockName(String code) {
         String result = null;
 
         if (code.startsWith("300")) { //cyb
             result = "创业板";
-        } else if (code.startsWith("60")) {  //sh
+        } else if (code.startsWith("600") || code.startsWith("601") || code.startsWith("603") ) {  //sh
             result = "上证";
-        } else if (code.startsWith("00")) { //sz
+        } else if (code.startsWith("000")) { //sz
             result = "深证";
-        } else if (code.startsWith("20")){ //zxb
+        } else if (code.startsWith("002")){ //zxb
             result = "中小板";
         }
         return result;

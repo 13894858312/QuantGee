@@ -27,11 +27,7 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
     private StockInfoDAO stockInfoDAO;
 
     @Autowired
-    private QuotaDAO quotaDAO;
-
-    @Autowired
     private TransferHelper transferHelper;
-
 
     @Override
     public RealTimeLineVO getStockRealTimeLineInfo(String code) {
@@ -118,7 +114,6 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
     @Override
     public StockHistoricalVO getStockHistoricalInfo(StockInputVO inputVO) {
         assert inputVO != null : "StockBasicInfoServiceImp.getStockHistoricalInfo.inputvo为null";
-
         //日k
         ArrayList<KLineVO> kLine = new ArrayList<>();
         //成交量
@@ -129,24 +124,24 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         ArrayList<LineVO> ma20 = new ArrayList<>();
         //对数收益
         ArrayList<LineVO> logarithmYields = new ArrayList<>();
-        //macd
-        ArrayList<LineVO> diff = new ArrayList<>();
-        ArrayList<LineVO> dea = new ArrayList<>();
-        ArrayList<LineVO> macd = new ArrayList<>();
-        //kdj
-        ArrayList<LineVO> k = new ArrayList<>();
-        ArrayList<LineVO> d = new ArrayList<>();
-        ArrayList<LineVO> j = new ArrayList<>();
-        //rsi
-        ArrayList<LineVO> rsi6 = new ArrayList<>();
-        ArrayList<LineVO> rsi12 = new ArrayList<>();
-        ArrayList<LineVO> rsi24 = new ArrayList<>();
-        //boll
-        ArrayList<LineVO> mid = new ArrayList<>();
-        ArrayList<LineVO> up = new ArrayList<>();
-        ArrayList<LineVO> low = new ArrayList<>();
 
         Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getCode(), inputVO.getStartDate(), inputVO.getEndDate());
+
+        //判断周k还是日k
+        if(inputVO.getType().equals("w")) {
+            Iterator<StockWeek> stockWeeks = stockInfoDAO.getWeekK(inputVO.getCode(), inputVO.getStartDate(), inputVO.getEndDate());
+            while(stockWeeks.hasNext()) {
+                StockWeek stockWeek = stockWeeks.next();
+                kLine.add(new KLineVO(stockWeek.getDate(), stockWeek.getOpen(), stockWeek.getClose(), stockWeek.getLow(), stockWeek.getHigh()));
+            }
+        } else if (inputVO.getType().equals("m")) {
+            Iterator<StockMonth> stockMonths = stockInfoDAO.getMonthK(inputVO.getCode(), inputVO.getStartDate(), inputVO.getEndDate());
+            while(stockMonths.hasNext()) {
+                StockMonth stockMonth = stockMonths.next();
+                kLine.add(new KLineVO(stockMonth.getDate(), stockMonth.getOpen(), stockMonth.getClose(), stockMonth.getLow(), stockMonth.getHigh()));
+            }
+        }
+
         Stock stock = null, formerStock;
         String date;
 
@@ -160,7 +155,9 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
 
             date = stock.getDate();
 
-            kLine.add(new KLineVO(date, stock.getOpen(), stock.getClose(), stock.getLow(), stock.getHigh()));
+            if (inputVO.getType().equals("d")) {
+                kLine.add(new KLineVO(date, stock.getOpen(), stock.getClose(), stock.getLow(), stock.getHigh()));
+            }
             volume.add(new LineVO(date, MathHelper.formatData(stock.getVolume()/10000,2)));
             ma5.add(new LineVO(date, stock.getMa5()));
             ma10.add(new LineVO(date, stock.getMa10()));
@@ -173,43 +170,6 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
             }
         }
 
-        Iterator<Macd> macds = quotaDAO.getMACDs(inputVO.getStartDate(), inputVO.getEndDate(), inputVO.getCode());
-        Iterator<Kdj> kdjs = quotaDAO.getKDJs(inputVO.getStartDate(), inputVO.getEndDate(), inputVO.getCode());
-        Iterator<Rsi> rsis = quotaDAO.getRSIs(inputVO.getStartDate(), inputVO.getEndDate(), inputVO.getCode());
-        Iterator<Boll> bolls = quotaDAO.getBOLLs(inputVO.getStartDate(), inputVO.getEndDate(), inputVO.getCode());
-
-        Macd m;
-        while(macds.hasNext()) {
-            m = macds.next();
-            diff.add(new LineVO(m.getDate(), m.getDiff()));
-            dea.add(new LineVO(m.getDate(), m.getDea()));
-            macd.add(new LineVO(m.getDate(), m.getMacd()));
-        }
-
-        Kdj kdj;
-        while(kdjs.hasNext()) {
-            kdj = kdjs.next();
-            k.add(new LineVO(kdj.getDate(), kdj.getK()));
-            d.add(new LineVO(kdj.getDate(), kdj.getD()));
-            j.add(new LineVO(kdj.getDate(), kdj.getJ()));
-        }
-
-        Rsi rsi;
-        while(rsis.hasNext()) {
-            rsi = rsis.next();
-            rsi6.add(new LineVO(rsi.getDate(), rsi.getRsi6()));
-            rsi12.add(new LineVO(rsi.getDate(), rsi.getRsi12()));
-            rsi24.add(new LineVO(rsi.getDate(), rsi.getRsi24()));
-        }
-
-        Boll boll;
-        while(bolls.hasNext()) {
-            boll = bolls.next();
-            mid.add(new LineVO(boll.getDate(), boll.getMid()));
-            up.add(new LineVO(boll.getDate(), boll.getUp()));
-            low.add(new LineVO(boll.getDate(), boll.getLow()));
-        }
-
         String stockName;
         if(!StockHelper.isBlock(inputVO.getCode())) {
             MarketInfo market = stockInfoDAO.getMarketInfo(inputVO.getCode());
@@ -218,10 +178,8 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
             stockName = "";
         }
 
-
-        StockHistoricalVO result = new StockHistoricalVO(inputVO.getCode(), stockName, StockHelper.getMarketName(inputVO.getCode()),
-                inputVO.getStartDate(), inputVO.getEndDate(), kLine, volume, ma5, ma10, ma20, logarithmYields, diff, dea, macd,
-                k, d, j, rsi6, rsi12, rsi24, mid, up, low);
+        StockHistoricalVO result = new StockHistoricalVO(inputVO.getCode(), stockName, StockHelper.getBlockName(inputVO.getCode()),
+                inputVO.getStartDate(), inputVO.getEndDate(), kLine, volume, ma5, ma10, ma20, logarithmYields);
 
         return result;
     }

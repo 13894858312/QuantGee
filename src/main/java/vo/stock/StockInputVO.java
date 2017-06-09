@@ -8,6 +8,7 @@ public class StockInputVO {
     private String code;
     private String startDate;       //格式yyyy-MM-dd
     private String endDate;         //结束时间 默认为昨天
+    private String type = "d";      //日k:d 周k:w 月k:m
 
     public StockInputVO() {}
 
@@ -39,5 +40,13 @@ public class StockInputVO {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
