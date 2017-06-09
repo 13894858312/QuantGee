@@ -1,5 +1,7 @@
 package logic.strategy;
 
+import DAO.strategyDAO.StrategyDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -17,9 +19,13 @@ import java.util.ArrayList;
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class MyStrategyServiceImp implements MyStrategyService {
 
+    @Autowired
+    private StrategyDAO strategyDAO;
+
     @Override
-    public boolean addMyStartegy(StrategyAddInputVO strategyAddInputVO) {
-        return false;
+    public boolean addMyStartegy(StrategyVO strategyVO) {
+
+        return true;
     }
 
     @Override
