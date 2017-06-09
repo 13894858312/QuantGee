@@ -27,8 +27,7 @@
 		<script type="text/javascript" src="../../js/strategy/strategy.js"></script>
 		<link rel="stylesheet" href="../../css/style.css" />
 		<link rel="stylesheet" href="../../css/strategy/strategy.css" />
-		<!-- 新 Bootstrap 核心 CSS 文件 -->
-		<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
 
 	</head>
 
@@ -171,18 +170,10 @@
 						<option value="0">hh</option>
 						<option value="0">hh</option>
 					</select>-->
-					<select id="usertype" name="usertype" class="selectpicker show-tick form-control" multiple data-live-search="false">
-                                        <option value="0">苹果</option>
-                                        <option value="1">菠萝</option>
-                                        <option value="2">香蕉</option>
-                                        <option value="3">火龙果</option>
-                                        <option value="4">梨子</option>
-                                        <option value="5">草莓</option>
-                                        <option value="6">哈密瓜</option>
-                                        <option value="7">椰子</option>
-                                        <option value="8">猕猴桃</option>
-                                        <option value="9">桃子</option>
-                                </select>
+					<select class="selectpicker">
+						<option>Mustard</option>
+						<option>Ketchup</option>
+						<option>Relish</option>
 					</select>
 				</div>
 
