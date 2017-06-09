@@ -179,4 +179,32 @@ public class StockInfoData implements StockInfoDAO{
         return hibernateTemplate.get(IndexInfo.class, code).getName();
     }
 
+    @Override
+    public Iterator<StockWeek> getWeekK(String code) {
+        Iterator<StockWeek> iterator = (Iterator<StockWeek>)hibernateTemplate
+                .find("from StockWeek s where s.stockId = ? ",code).iterator();
+        return iterator;
+    }
+
+    @Override
+    public Iterator<StockWeek> getWeekK(String code, String startDate, String endDate) {
+        Iterator<StockWeek> iterator = (Iterator<StockWeek>) hibernateTemplate
+                .find("from StockWeek s where s.stockId =? and s.date> ? and s.date<? ", new String[]{code,startDate,endDate}).iterator();
+        return iterator;
+    }
+
+    @Override
+    public Iterator<StockMonth> getMonthK(String code) {
+        Iterator<StockMonth> iterator = (Iterator<StockMonth>)hibernateTemplate
+                .find("from StockMonth s where s.stockId = ? ",code).iterator();
+        return iterator;
+    }
+
+    @Override
+    public Iterator<StockMonth> getMonthK(String code, String startDate, String endDate) {
+        Iterator<StockMonth> iterator = (Iterator<StockMonth>) hibernateTemplate
+                .find("from StockMonth s where s.stockId =? and s.date> ? and s.date<? ", new String[]{code,startDate,endDate}).iterator();
+        return iterator;
+    }
+
 }
