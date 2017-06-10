@@ -20,7 +20,6 @@ public class DateHelper {
         return date;
     }
 
-
     /**
      * 计算两个日期间相差的天数
      * @param startDate 开始日期
@@ -39,7 +38,6 @@ public class DateHelper {
         int res = (int) ((end - start) / (1000 * 60 * 60 * 24));
         return res;
     }
-
 
     /**
      * 将string格式化为日期

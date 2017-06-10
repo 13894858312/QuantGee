@@ -86,4 +86,9 @@ public class QuotaData implements QuotaDAO {
         return stockPredict;
     }
 
+    @Override
+    public Iterator<StockPredict> getAllStockPredictData(String date) {
+        return null;
+    }
+
 }

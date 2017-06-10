@@ -31,4 +31,14 @@ public interface CollectStockService {
      * @return boolean
      */
     public boolean deleteCollectedStock(StockCollectInputVO stockCollectInputVO);
+
+
+    /**
+     * 获取推荐股票 猜你喜欢
+     * @param userID 用户id
+     * @param n n
+     * @return 股票代码
+     */
+    public ArrayList<String> getRecommendedStock(String userID, int n);
+
 }

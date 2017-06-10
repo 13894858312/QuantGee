@@ -6,7 +6,7 @@ import vo.stock.StockInputVO;
 /**
  * Created by Mark.W on 2017/6/9.
  */
-public interface StockIndexService {
+public interface StockQuotaService {
 
     /**
      * 根据股票代码和时间的段获取股票指标数据

@@ -1,6 +1,8 @@
 package logic.stock;
 
 import DAO.stockInfoDAO.CollectStockDAO;
+import DAO.stockInfoDAO.QuotaDAO;
+import bean.StockPredict;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -21,6 +23,9 @@ public class CollectStockServiceImp implements CollectStockService{
 
     @Autowired
     private CollectStockDAO collectStockDAO;
+
+    @Autowired
+    private QuotaDAO quotaDAO;
 
     @Autowired
     private StockBasicInfoServiceImp stockBasicInfoServiceImp;
@@ -47,5 +52,10 @@ public class CollectStockServiceImp implements CollectStockService{
         }
 
         return false;
+    }
+
+    @Override
+    public ArrayList<String> getRecommendedStock(String userID, int n) {
+        return null;
     }
 }

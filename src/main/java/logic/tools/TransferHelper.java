@@ -5,6 +5,7 @@ import logic.strategy.backTesting.StrategyHelper;
 import org.springframework.stereotype.Service;
 import po.UserAnalysisDataPO;
 import vo.admin.UserAnalysisDataVO;
+import vo.stock.CurrentIndexVO;
 import vo.stock.NewsVO;
 import vo.stock.StockCurrentVO;
 import vo.strategy.StrategyVO;
@@ -231,5 +232,12 @@ public class TransferHelper {
         }else {
             return (byte) 0;
         }
+    }
+
+    public CurrentIndexVO transToCurrentIndexVO(CurrentIndex currentIndex) {
+        CurrentIndexVO result = new CurrentIndexVO(currentIndex.getCode(), currentIndex.getPreclose(), currentIndex.getHigh(),
+                currentIndex.getLow(), currentIndex.getVolume(),currentIndex.getAmount(),currentIndex.getOpenNum(),
+                currentIndex.getCloseNum(), currentIndex.getChanges(),currentIndex.getT());
+        return result;
     }
 }
