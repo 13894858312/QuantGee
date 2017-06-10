@@ -145,14 +145,14 @@ var option1 = {
     dataZoom: [
          {
             type: 'inside',
-            start: 75,
+            start: 0,
             end: 100
         },
         {
             show: true,
             type: 'slider',
             y: '90%',
-            start: 75,
+            start: 0,
             end: 100
         }
     ],
@@ -229,14 +229,14 @@ var option1 = {
         dataZoom: [
             {
                 type: 'inside',
-                start: 75,
+                start: 0,
                 end: 100
             },
             {
                 show: false,
                 type: 'slider',
                 y: '90%',
-                start: 75,
+                start: 0,
                 end: 100
             }
         ],

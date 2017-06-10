@@ -247,6 +247,22 @@
 	text-align: center;
 	border-radius: 3px;
 }
+#MACDbutton{
+	color: #FFFFFF;
+	background-color: #003366;
+}
+#KDJbutton{
+	color: #000000;
+	background-color: #FFFFFF;
+}
+#RSIbutton{
+	color: #000000;
+	background-color: #FFFFFF;
+}
+#BOLLbutton{
+	color: #000000;
+	background-color: #FFFFFF;
+}
 .analysis{
 	float: left;
 	width: 100%;
