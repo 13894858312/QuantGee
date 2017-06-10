@@ -13,7 +13,7 @@
     <title>QuantGee &mdash; 股票数据专家</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="股票数据系统quantgee" />
-    <meta name="keywords" content="quantgee,股票,股票信息,模拟炒股,策略回测" />
+    <meta name="keywords" content="quantgee,股票,股票信息,模拟炒股,策略回测,QuantGee" />
 
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
