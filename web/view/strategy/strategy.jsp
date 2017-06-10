@@ -9,6 +9,7 @@
 <html>
 
 	<head>
+		<link rel="shortcut icon" href="../../images/logo20x20.png">
 		<meta charset="UTF-8">
 		<title>Strategy</title>
 		<script>

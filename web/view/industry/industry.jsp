@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+	<link rel="shortcut icon" href="../../images/logo20x20.png">
 	  <meta charset="UTF-8">
     <title>Industry</title>
     <script>

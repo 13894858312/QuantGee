@@ -13,13 +13,13 @@
     <title>QuantGee &mdash; 股票数据专家</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="股票数据系统quantgee" />
-    <meta name="keywords" content="quantgee,股票,股票信息,模拟炒股,策略回测" />
+    <meta name="keywords" content="quantgee,股票,股票信息,模拟炒股,策略回测,QuantGee" />
 
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="shortcut icon" href="images/logo20x20.png">
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400" rel="stylesheet">
+    <%--<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400" rel="stylesheet">--%>
 
     <!-- Animate.css -->
     <link rel="stylesheet" href="css/index/animate.css">
@@ -49,7 +49,11 @@
                 <div class="navbar-header">
                     <!-- Mobile Toggle Menu Button -->
                     <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                    <a class="navbar-brand" href="index.jsp">QuantGee</a>
+                    <div class="hdlogo">
+
+                        <a target="_blank" class="site-logo" href=""> <img src="images/quantgeelogo.png" title="MyQuantGee" alt="MyQuantGee"></a>
+
+                    </div>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -140,7 +144,7 @@
                         <a>
                             <div class="portfolio-entry" style="background-image: url(images/portfolio-4.jpeg);">
                                 <div class="desc">
-                                    <p>以历史数据计算您的策略收益率。支持自定义策略的分享与收藏。</p>
+                                    <p>以历史数据计算您的策略收益率。支持自定义策略定制。</p>
                                 </div>
                             </div>
                             <div class="portfolio-text text-center"><br>

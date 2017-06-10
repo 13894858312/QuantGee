@@ -7,6 +7,7 @@
     <title>个人中心</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../../css/ucenter/main.css">
+    <link rel="shortcut icon" href="../../images/logo20x20.png">
 </head>
 
 <body>

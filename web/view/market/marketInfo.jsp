@@ -6,6 +6,7 @@
     <script src="../../echarts.js"></script>
     <script src="../../jquery-3.2.1.min.js"></script>
     <script src="../../js/marketInfo/headcontroller.js"></script>
+	<link rel="shortcut icon" href="../../images/logo20x20.png">
     <%--<script type="text/javascript" for="window" event="onload">--%>
         <%--var reftime = 3000;//默认每隔10秒向后台发送请求--%>
         <%--var taskId;--%>
