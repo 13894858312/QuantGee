@@ -35,7 +35,7 @@ public interface CollectStockService {
 
     /**
      * 获取推荐股票 猜你喜欢
-     * @param userID 用户id
+     * @param userID 用户id 如果没有登录 传递null
      * @param n n
      * @return 股票代码
      */
