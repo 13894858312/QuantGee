@@ -121,7 +121,7 @@
 .hismarket{
 	float: left;
 	width: 100%;
-	height: 700px;
+	height: 750px;
 	background-color: #FFFFFF; 
 }
 .hismarkethead{
@@ -199,7 +199,7 @@
 .index{
 	float: left;
 	width: 70%;
-	height: 147px;
+	height: 197px;
 	margin-top: 2px;
 	margin-left: 15%;
 	background-color: #FFFFFF;
@@ -241,11 +241,25 @@
 	height: 20px;
 	font-size: 15px;
 	font-family: "Roboto Mono", monospace;
-	background-color: #003366;
 	opacity: 0.8;
-	color: #FFFFFF;
 	text-align: center;
 	border-radius: 3px;
+}
+#MACDbutton{
+	color: #FFFFFF;
+	background-color: #003366;
+}
+#KDJbutton{
+	color: #000000;
+	background-color: #FFFFFF;
+}
+#RSIbutton{
+	color: #000000;
+	background-color: #FFFFFF;
+}
+#BOLLbutton{
+	color: #000000;
+	background-color: #FFFFFF;
 }
 .analysis{
 	float: left;

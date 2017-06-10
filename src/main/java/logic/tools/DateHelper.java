@@ -20,6 +20,30 @@ public class DateHelper {
         return date;
     }
 
+    /**
+     * 判断当前时间是否已经收盘
+     * @return boolean
+     */
+    public static boolean isClosed() {
+        return false;
+    }
+
+    /**
+     * 判断指定时期是否是交易日
+     * @param date 日期
+     * @return boolean
+     */
+    public static boolean isTradeDay(String date) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(stringTransToDate(date));
+        c.add(Calendar.DAY_OF_MONTH, -1);
+
+        if (c.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY && c.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+            return false;
+        }
+
+        return true;
+    }
 
     /**
      * 计算两个日期间相差的天数
@@ -39,7 +63,6 @@ public class DateHelper {
         int res = (int) ((end - start) / (1000 * 60 * 60 * 24));
         return res;
     }
-
 
     /**
      * 将string格式化为日期
@@ -74,6 +97,23 @@ public class DateHelper {
 
         while(c.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
             c.add(Calendar.DAY_OF_MONTH, -1);
+        }
+
+        return dateTransToString(c.getTime());
+    }
+
+    /**
+     * 给定日期计算下一个交易日（除去周末）
+     * @param date 日期
+     * @return Date
+     */
+    public static String nextTradeDay(String date) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(stringTransToDate(date));
+        c.add(Calendar.DAY_OF_MONTH, 1);
+
+        while(c.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            c.add(Calendar.DAY_OF_MONTH, 1);
         }
 
         return dateTransToString(c.getTime());

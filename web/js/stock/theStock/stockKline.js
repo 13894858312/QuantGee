@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/6/9.
  */
-
+dochart(1);
 var klineDate = [];
 var klineBar = [];
 var klineMA5 = [];
@@ -109,7 +109,7 @@ function getKline(num) {
         volume.push(json['volume'][i]['value']);
     }
 }
-dochart(1);
+
 function dochart(num) {
     getKline(num);
     var myChart1 = echarts.init(document.getElementById('kline'));
@@ -212,7 +212,7 @@ function dochart(num) {
         grid: {
             top:'10%',
             left: '5%',
-            right: '3%',
+            right: '0%',
             bottom: '11%'
         },
         xAxis: {

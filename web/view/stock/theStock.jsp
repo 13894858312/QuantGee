@@ -115,7 +115,7 @@
 				</div>
 			</div>
 			<div class="index" id="index"></div>
-			<script src="../../js/trade/klineandindex.js"></script>
+	  		<script src="../../js/stock/theStock/index.js"></script>
 	</div>
 	<div class="analysis">
 		<div class="anahead">

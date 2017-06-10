@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-import service.stock.StockIndexService;
+import service.stock.StockQuotaService;
 import vo.stock.LineVO;
 import vo.stock.StockIndexVO;
 import vo.stock.StockInputVO;
@@ -20,7 +20,7 @@ import java.util.Iterator;
  */
 @Service
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class StockIndexServiceImp implements StockIndexService {
+public class StockQuotaServiceImp implements StockQuotaService {
 
     @Autowired
     private QuotaDAO quotaDAO;

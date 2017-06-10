@@ -112,5 +112,10 @@
                 <param name="root">result</param>
             </result>
         </action>
+        <action name="getIndex" class="stockAction" method="getIndex">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
 	</package>
 </struts>
