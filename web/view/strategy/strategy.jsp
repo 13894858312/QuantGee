@@ -713,8 +713,8 @@ width: 80px;
 									    margin-top: 13px;
 									    float: left;
 									">
-										<label style="font-weight: 100;width: 100px;height: 40px;line-height: 40px;/* margin-bottom: 20px; */">剔除ST股</label>
-									
+									<label style="font-weight: 100;width: 100px;height: 40px;line-height: 40px;/* margin-bottom: 20px; */">剔除ST股</label>
+
 								</th>
 							</tr>
 							<tr>
@@ -760,13 +760,14 @@ width: 80px;
 							</tr>
 						</table>
 					</form>
-					
+
 				</div>
 			</div>
-			
-		</div>
 
-		<hr />
+		</div>
+		<div style="text-align: center; margin-top: 10px; height: 40px;">
+			<button class="button">开始回测</button>
+		</div>
 
 		<div style="height: 100%;"></div>
 
