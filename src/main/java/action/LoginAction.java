@@ -37,9 +37,7 @@ public class LoginAction extends ActionSupport {
         if (accountService.login(accountVO)) {
             ActionContext actionContext = ActionContext.getContext();
             Map session = actionContext.getSession();
-            session.put("USER_NAME","Test User");
-            String a=(String)session.get("USER_NAME");
-            System.out.println(a);
+            session.put("accountID",accountVO.getAccountID());
 //            stockCurrentVOS = collectStockService.getCollectedStocks(accountVO.getAccountID());
             stockCurrentVOS = new ArrayList<>();
             StockCurrentVO stockCurrentVO1 = new StockCurrentVO("111111","wddygg","zg","123",1,2,3,4,5,6,7,8,9,1,2,1);
@@ -74,6 +72,15 @@ public class LoginAction extends ActionSupport {
         }
     }
 
+    public String haveLogin(){
+        ActionContext actionContext = ActionContext.getContext();
+        Map session = actionContext.getSession();
+        if (session.get("username")!=null){
+            return (String)session.get("username");
+        }else {
+            return "fail";
+        }
+    }
 
     public AccountVO getAccountVO() {
         return accountVO;
