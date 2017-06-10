@@ -39,7 +39,6 @@ ol li {
 	height: 5%;
 	font-size: 20px;
 	font-family: "Roboto Mono", monospace;
-	
 	font-weight: 100;
 }
 
@@ -159,8 +158,8 @@ ol li {
 .tagContent_str {
 	overflow-y: scroll;
 	/*border: 1px solid #000000;*/
+	margin-top: 10px;
 	DISPLAY: none;
-	height: 20%;
 }
 
 #tagContent_str DIV.selectTag_str {
@@ -177,6 +176,8 @@ ol li {
 
 #paramTable th {
 	width: 33%;
+	font-weight: 100;
+	padding: 10px;
 }
 
 #createStockPool {
@@ -320,4 +321,11 @@ ol li {
 
 .pool_Content select {
 	height: 30px;
+}
+
+.button {
+	width: 100px;
+	background-color: white;
+	border: 1px solid lightblue;
+	border-radius: 6px;
 }
