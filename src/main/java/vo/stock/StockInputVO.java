@@ -12,10 +12,11 @@ public class StockInputVO {
 
     public StockInputVO() {}
 
-    public StockInputVO(String code, String startDate, String endDate) {
+    public StockInputVO(String code, String startDate, String endDate, String type) {
         this.code = code;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.type = type;
     }
 
     public String getCode() {

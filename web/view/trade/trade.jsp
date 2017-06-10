@@ -84,25 +84,36 @@
     			<div class="realdata"></div>
     		</div>
     	</div>
-    	<div class="testtradehead">
-    		<div class="testheadtext">
-    			<div class="text">持仓交易</div>
-    			<div class="buy" onclick="addrow()">买入</div>
-    		</div>
-    		<div class="stocktable">
-    			<table class="st" id="st">
-    				<tr>
-    					<td class="stth">股票名称</td>
-    					<td class="stth">股票代码</td>
-    					<td class="stth">持仓股数</td>
-    					<td class="stth">持仓市值</td>
-    					<td class="stth">最新价</th>
-    					<td class="stth">日涨跌幅</td>
-    					<td class="delete">操作</td>
-    				</tr>
-    			</table>
-    		</div>
+    </div>
+    <div class="testtradehead">
+    	<div class="testheadtext">
+    		<div class="text">持仓交易</div>
+    		<div class="buy" onclick="addrow()">买入</div>
     	</div>
     </div>
+    <div class="stocktable">
+    	<table class="st" id="st">
+    		<tr>
+    			<td class="stth">股票名称</td>
+    			<td class="stth">股票代码</td>
+    			<td class="stth">持仓股数</td>
+    			<td class="stth">持仓市值</td>
+    			<td class="stth">最新价</th>
+    			<td class="stth">日涨跌幅</td>
+    			<td class="delete">操作</td>
+    		</tr>
+    	</table>
+    </div>
+    <div class="analysis">
+		<div class="anahead">
+			<div class="anaheadtext">股票预测</div>
+		</div>
+		<div class="analysisgraph"></div>
+		<div class="analysisdata">
+			<div class="resultl"></div>
+			<div class="resultm"></div>
+			<div class="resultr"></div>
+		</div>
+	</div>
 </body>
 </html>
