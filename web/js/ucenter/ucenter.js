@@ -5,5 +5,16 @@ function changecolumns(){
 }
 
 function getSession(){
-	var value = <%=session.getAttribute("username")%>;
+	$.ajax({
+		type:'get',
+		url:'haveLogin.action',
+		async:false,
+		dataType:'json',
+		success:function(data){
+			alert(data);
+		},
+		error:function(data){
+			alert("error");
+		}
+	});
 }

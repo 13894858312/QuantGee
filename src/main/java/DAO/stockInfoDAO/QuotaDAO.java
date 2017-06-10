@@ -81,4 +81,12 @@ public interface QuotaDAO {
      */
     public Iterator<StockPredict> getPredictData(String code , String startDate, String endDate);
 
+
+    /**
+     * 根据日期获取股票预测数据
+     * @param date 日期
+     * @return 所有股票的预测数据
+     */
+    public Iterator<StockPredict> getAllStockPredictData(String date);
+
 }

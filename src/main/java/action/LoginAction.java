@@ -2,6 +2,8 @@ package action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.sun.org.apache.regexp.internal.RE;
+import net.sf.json.JSONObject;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ public class LoginAction extends ActionSupport {
 
     private ArrayList<StockCurrentVO> stockCurrentVOS; //用户收藏的股票
 
+    private String result;
 
     @Autowired
     private AccountService accountService;
@@ -73,10 +76,13 @@ public class LoginAction extends ActionSupport {
     }
 
     public String haveLogin(){
+        System.out.println("success");
         ActionContext actionContext = ActionContext.getContext();
         Map session = actionContext.getSession();
+        JSONObject jsonObject = JSONObject.fromObject(session);
+        result = jsonObject.toString();
         if (session.get("username")!=null){
-            return (String)session.get("username");
+            return SUCCESS;
         }else {
             return "fail";
         }

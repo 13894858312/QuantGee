@@ -12,7 +12,7 @@ public class StrategyBackTestInputVO {
     /********************回测必须参数*******************/
     private int stockPoolType;              //0指定板块 1指定股票
     private int strategyType;               //0动量策略 1均值回归 2双均线策略 3羊驼策略 4KNN机器学习策略
-    private String blockType;               //若stockPoolType为0 则指定板块名
+    private String blockType;               //若stockPoolType为0 则指定板块代码 sh=上证A股 sz=深证A股 zxb=中小板 cyb=创业板
     private ArrayList<String> stockCodes;   //若stockPoolType为1 则指定股票代码
     private String startDate;               //回测开始时间
     private String endDate;                 //回测结束时间
