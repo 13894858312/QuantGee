@@ -6,6 +6,7 @@
 	<script src="../../echarts.js"></script>
 	<script src="../../jquery-3.2.1.min.js"></script>
 	<script src="../../js/marketInfo/headcontroller.js"></script>
+	<link rel="shortcut icon" href="../../images/logo20x20.png">
     <style type="text/css">
     	@import "../../css/style.css";
     	@import "../../css/stock/theStock.css";
