@@ -21,7 +21,7 @@ public class QuotaData implements QuotaDAO {
     @Override
     public Iterator<Macd> getMACDs(String startDate, String endDate, String code) {
         Iterator<Macd> iterator = (Iterator<Macd>) hibernateTemplate
-                .find("from Macd m where m.code = ? and m.date>? and m.date<?",
+                .find("from Macd m where m.code = ? and m.date>=? and m.date<=?",
                         new String[]{code,startDate,endDate}).iterator();
         return iterator;
     }
@@ -36,7 +36,7 @@ public class QuotaData implements QuotaDAO {
     @Override
     public Iterator<Kdj> getKDJs(String startDate, String endDate, String code) {
         Iterator<Kdj> iterator = (Iterator<Kdj>) hibernateTemplate
-                .find("from Kdj k where k.code = ? and k.date>? and k.date<?",
+                .find("from Kdj k where k.code = ? and k.date>=? and k.date<=?",
                         new String[]{code,startDate,endDate}).iterator();
         return iterator;
     }
@@ -51,7 +51,7 @@ public class QuotaData implements QuotaDAO {
     @Override
     public Iterator<Rsi> getRSIs(String startDate, String endDate, String code) {
         Iterator<Rsi> iterator = (Iterator<Rsi>) hibernateTemplate
-                .find("from Rsi r where r.code = ? and r.date>? and r.date<?",
+                .find("from Rsi r where r.code = ? and r.date>=? and r.date<=?",
                         new String[] {code,startDate,endDate}).iterator();
         return iterator;
     }
@@ -66,7 +66,7 @@ public class QuotaData implements QuotaDAO {
     @Override
     public Iterator<Boll> getBOLLs(String startDate, String endDate, String code) {
         Iterator<Boll> iterator = (Iterator<Boll>)hibernateTemplate
-                .find("from Boll b where b.code = ? and b.date>? and b.date<?",
+                .find("from Boll b where b.code = ? and b.date>=? and b.date<=?",
                         new String[]{code,startDate,endDate}).iterator();
         return iterator;
     }
@@ -81,7 +81,7 @@ public class QuotaData implements QuotaDAO {
     @Override
     public Iterator<StockPredict> getPredictData(String code, String startDate, String endDate) {
         Iterator<StockPredict> stockPredict = (Iterator<StockPredict>) hibernateTemplate
-                .find("from StockPredict s where s.code = ? and s.date > ? and s.date < ?",
+                .find("from StockPredict s where s.code = ? and s.date >= ? and s.date <= ?",
                         new String[]{code,startDate,endDate}).iterator();
         return stockPredict;
     }
