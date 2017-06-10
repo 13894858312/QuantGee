@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.sun.org.apache.regexp.internal.RE;
 import net.sf.json.JSONObject;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,7 @@ public class LoginAction extends ActionSupport {
             stockCurrentVOS.add(stockCurrentVO3);
             return SUCCESS;
         } else {
+            request= ServletActionContext.getRequest();
             request.setAttribute("tipMessage", "登陆失败！");
             return "fail";
         }
