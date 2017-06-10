@@ -56,6 +56,9 @@ public class CollectStockServiceImp implements CollectStockService{
 
     @Override
     public ArrayList<String> getRecommendedStock(String userID, int n) {
+
+
+
         return null;
     }
 }

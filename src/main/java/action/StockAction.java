@@ -7,7 +7,7 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import service.stock.StockBasicInfoService;
-import service.stock.StockIndexService;
+import service.stock.StockQuotaService;
 import vo.stock.StockHistoricalVO;
 import vo.stock.StockIndexVO;
 import vo.stock.StockInputVO;
@@ -25,7 +25,7 @@ public class StockAction extends ActionSupport{
     @Autowired
     private StockBasicInfoService stockBasicInfoService;
     @Autowired
-    private StockIndexService stockIndexService;
+    private StockQuotaService stockQuotaService;
 
     public String getResult() {
         return result;
@@ -81,7 +81,7 @@ public class StockAction extends ActionSupport{
         String enddate = DateHelper.formerNTradeDay(date, 20);
         String startdate = DateHelper.formerNTradeDay(enddate, 480);
         StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate, "d");
-        StockIndexVO stockIndexVO = stockIndexService.getStockIndex(stockInputVO);
+        StockIndexVO stockIndexVO = stockQuotaService.getStockIndex(stockInputVO);
         JSONObject jsonObject = JSONObject.fromObject(stockIndexVO);
         result = jsonObject.toString();
         return SUCCESS;
