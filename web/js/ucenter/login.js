@@ -85,3 +85,11 @@ $(document).ready(function () {
         $("#test").text("用户注册");
     })
 })
+
+$(document).ready(function () {
+    $("a#register1").click(function () {
+        $("#loginbox").hide();
+        $("#registbox").show();
+        $("#test").text("用户注册");
+    })
+})

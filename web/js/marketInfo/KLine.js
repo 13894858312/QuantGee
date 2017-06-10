@@ -10,8 +10,8 @@ var klineMA20 = [];
 var volume = [];
 var json;
 function getDayData() {
-    var spinner = document.getElementById("spinner");
-    spinner.style.display = "block";
+    // var spinner = document.getElementById("spinner");
+    // spinner.style.display = "block";
     $.ajax({
         cache: false,
         async: false,
@@ -19,9 +19,9 @@ function getDayData() {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
+            json = JSON.parse(data);
             var spinner = document.getElementById("spinner");
             spinner.style.display = "none";
-            json = JSON.parse(data);
         },
         error: function (data) {
             // var spinner = document.getElementById("spinner");
@@ -31,17 +31,17 @@ function getDayData() {
     });
 }
 function getWeekData() {
-    var spinner = document.getElementById("spinner");
-    spinner.style.display = "block";
+    // var spinner = document.getElementById("spinner");
+    // spinner.style.display = "block";
     $.ajax({
         cache: false,
         async: false,
-        url: 'dayKline.action',
+        url: 'weekKline.action',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            var spinner = document.getElementById("spinner");
-            spinner.style.display = "none";
+            // var spinner = document.getElementById("spinner");
+            // spinner.style.display = "none";
             json = JSON.parse(data);
         },
         error: function (data) {
@@ -52,17 +52,17 @@ function getWeekData() {
     });
 }
 function getMonthData() {
-    var spinner = document.getElementById("spinner");
-    spinner.style.display = "block";
+    // var spinner = document.getElementById("spinner");
+    // spinner.style.display = "block";
     $.ajax({
         cache: false,
         async: false,
-        url: 'dayKline.action',
+        url: 'monthKline.action',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            var spinner = document.getElementById("spinner");
-            spinner.style.display = "none";
+            // var spinner = document.getElementById("spinner");
+            // spinner.style.display = "none";
             json = JSON.parse(data);
         },
         error: function (data) {
@@ -123,7 +123,7 @@ var option1 = {
         }
     },
     legend: {
-        data: ['日K', 'MA5', 'MA10', 'MA20','成交量']
+        data: ['K线', 'MA5', 'MA10', 'MA20','成交量']
     },
     grid: {
     	top:'10%',
@@ -158,7 +158,7 @@ var option1 = {
     ],
     series: [
         {
-            name: '日K',
+            name: 'k线',
             type: 'candlestick',
             data: klineBar
 
@@ -241,12 +241,6 @@ var option1 = {
             }
         ],
         series: [
-            // {
-            //     name: '跌',
-            //     type: 'bar',
-            //     data: []
-            //
-            // },
             {
                 name: '成交量',
                 type: 'bar',

@@ -6,6 +6,7 @@
 	<script src="../../echarts.js"></script>
 	<script src="../../jquery-3.2.1.min.js"></script>
 	<script src="../../js/marketInfo/headcontroller.js"></script>
+	<link rel="shortcut icon" href="../../images/logo20x20.png">
     <style type="text/css">
     	@import "../../css/style.css";
     	@import "../../css/stock/theStock.css";
@@ -99,21 +100,22 @@
 					指标分析
 				</div>
 				<div class="indexbutton">
-					<div class="mkrbbutton">
+					<div class="mkrbbutton"  id="MACDbutton" onclick="clickMACDbutton()">
 						MACD
 					</div>
-					<div class="mkrbbutton">
+					<div class="mkrbbutton"  id="KDJbutton" onclick="clickKDJbutton()">
 						KDJ
 					</div>
-					<div class="mkrbbutton">
+					<div class="mkrbbutton"  id="RSIbutton" onclick="clickRSIbutton()">
 						RSI
 					</div>
-					<div class="mkrbbutton">
+					<div class="mkrbbutton"  id="BOLLbutton" onclick="clickBOLLbutton()">
 						BOLL
 					</div>
 				</div>
 			</div>
 			<div class="index" id="index"></div>
+			<script src="../../js/trade/klineandindex.js"></script>
 	</div>
 	<div class="analysis">
 		<div class="anahead">

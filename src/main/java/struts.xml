@@ -7,7 +7,7 @@
 <struts>
 	<!--<constant name="struts.objectFactory" value="spring" />-->
 
-	<package name="default" namespace="/" extends="struts-default">
+	<package name="default" namespace="/" extends="json-default">
 		<action name="login" class="loginAction" method="login">
 			<result name="success">/view/ucenter/user_center.jsp</result>
 			<result name="fail">/view/ucenter/login.jsp</result>
@@ -19,6 +19,11 @@
 		<action name="register" class="loginAction" method="register">
 			<result name="fail">/view/ucenter/account_settings.html</result>
 			<result name="success">/view/ucenter/login.jsp</result>
+		</action>
+		<action name="haveLogin" class="loginAction" method="haveLogin">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
 		</action>
 
 
@@ -32,6 +37,16 @@
 	</package>
 	<package name="marketInfo" extends="json-default,struts-default">
 		<action name="dayKline" class="marketInfoAction" method="getDayKline">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="weekKline" class="marketInfoAction" method="getWeekKline">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="monthKline" class="marketInfoAction" method="getMonthKline">
 			<result name="success" type="json">
 				<param name="root">result</param>
 			</result>
@@ -77,11 +92,21 @@
         </action>
     </package>
 	<package name="stock" extends="json-default,struts-default">
-		<action name="getStockKlineInfo" class="stockAction" method="getStockKlineInfo">
+		<action name="getStockDayKlineInfo" class="stockAction" method="getStockDayKlineInfo">
 			<result name="success" type="json">
 				<param name="root">result</param>
 			</result>
 		</action>
+        <action name="getStockWeekKlineInfo" class="stockAction" method="getStockWeekKlineInfo">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="getStockMonthKlineInfo" class="stockAction" method="getStockMonthKlineInfo">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
         <action name="totheStock" class="stockAction" method="totheStock">
             <result name="success" type="json">
                 <param name="root">result</param>

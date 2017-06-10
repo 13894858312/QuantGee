@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
-		<title>我的策略</title>
+		<title>我的收藏</title>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
 		<link rel="stylesheet" href="../../css/ucenter/main.css">
 	</head>
+
 	<body>
-		<div class="header">
-			<div class="control">
-				<span class="p_center fl">
-            <a href="/marketInfo.html" class="logo"></a>
-            <a href="my.html" target="_self" class="person">个人中心</a>
-        </span>
-				<div class="hd_right fr">
-					<div class="loginedbox">
-						<a id="J_username" class="sns_username dib freshIcon" href="http://stock.10jqka.com.cn/my/" target="_blank"></a>
-						<span class="boundary dib">|</span>
-						<a class="c_login dib homeloginout" target="_self" id="header_logined_out" href="javascript:void(0);">退 出</a>
-					</div>
-				</div>
+		<div class="head">
+
+			<div class="hdlogo">
+
+				<a target="_blank" class="site-logo" href=""> <img src="../../images/quantgeelogo.png" title="MyQuantGee" alt="MyQuantGee"></a>
+
+			</div>
+
+			<div class="menu" id="ha1">
+				<a class="menua" id="a1" href="../../view/market/marketInfo.jsp" target="_self">大盘行情</a>
+			</div>
+			<div class="menu" id="ha2">
+				<a class="menua" id="a2" href="../../view/stock/stockFirst.jsp" target="_self">个股信息</a>
+			</div>
+			<div class="menu" id="ha3">
+				<a class="menua" id="a3" href="../../view/strategy/strategy.jsp">策略大全</a>
+			</div>
+			<div class="menu" id="ha4">
+				<a class="menua" id="a4" href="../../view/trade/trade.jsp" target="_blank">模拟交易</a>
+			</div>
+			<div class="menu" id="ha5" style="border-bottom: 2px solid rgb(62, 196, 131);">
+				<a class="menua" id="a5" href="../../view/ucenter/user_center.jsp" target="_blank" style="color: rgb(62, 196, 131);">个人中心</a>
 			</div>
 		</div>
+
 		<div class="info_panel day">
 			<div class="control">
 				<h1 class="person_pic"><a href="http://t.10jqka.com.cn/newcircle/user/profile/" target="_blank"><i></i></a><span id="page-title">我的收藏</span></h1>
@@ -34,7 +47,7 @@
 			<div class="left_bar">
 				<ul class="inner ta-parent-box" data-taid="wdzx_dh1" data-fid="wdzx_djall">
 					<li class="nav-btn person_sel" data-id="zixuan" data-title="我的自选">
-						<a href="user_center.html">我的自选</a>
+						<a href="user_center.jsp">我的自选</a>
 					</li>
 					<li class="nav-btn receive" data-id="focus" data-title="我的策略">
 						<a href="my_strategy.html">我的策略</a>
@@ -43,100 +56,36 @@
 						<a href="my_collection.html">我的收藏</a>
 					</li>
 				</ul>
-				
+
 				<hr>
 				<ul class="outer ta-parent-box" data-taid="wdzx_dh2" data-fid="wdzx_djall">
 					<li class="hqcenter">
-						<a href="/marketInfo.html" target="_blank">行情中心</a>
+						<a href="../../view/market/marketInfo.jsp" target="_blank">行情中心</a>
 					</li>
 					<li class="clcenter">
-						<a target="_blank">策略中心</a>
+						<a href="../../view/strategy/strategy.jsp" target="_blank">策略中心</a>
 					</li>
 				</ul>
-				
+
 				<hr>
-					
+
 				<ul class="outer ta-parent-box" data-taid="wdzx_dh2" data-fid="wdzx_djall">
 					<li class="map">
 						<a href="account_settings.html">帐号信息</a>
 					</li>
 				</ul>
-				
-				<div class="framebox hot_stock ta-parent-box" data-taid="wdzx_rmgp" data-fid="wdzx_djall">
-					<div class="wrap ta-scroll-box" data-scroll-taid="wdzx_llhotstock" id="wdzx-rmgp">
-						<h2>经典策略</h2>
-					</div>
-					<table>
-						<thead>
-							<tr>
-								<th>策略名称</th>
-								<th>策略收益</th>
-								<th>趋势</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<a target="_blank">aaa</a>
-								</td>
-								<td>1</td>
-								<td><i class="uarr"></i></td>
-							</tr>
-							<tr>
-								<td>
-									<a target="_blank">bbb</a>
-								</td>
-								<td>1</td>
-								<td><i class="uarr"></i></td>
-							</tr>
-							<tr>
-								<td>
-									<a target="_blank">ccc</a>
-								</td>
-								<td>1</td>
-								<td><i class="uarr"></i></td>
-							</tr>
-							<tr>
-								<td>
-									<a target="_blank">ddd</a>
-								</td>
-								<td>1</td>
-								<td><i class="uarr"></i></td>
-							</tr>
-							<tr>
-								<td>
-									<a target="_blank">eee</a>
-								</td>
-								<td>1</td>
-								<td><i class="uarr"></i></td>
-							</tr>
-							<tr>
-								<td>
-									<a target="_blank">fff</a>
-								</td>
-								<td>1</td>
-								<td><i class="uarr"></i></td>
-							</tr>
-							<tr>
-								<td>
-									<a target="_blank">ggg</a>
-								</td>
-								<td>1</td>
-								<td><i class="uarr"></i></td>
-							</tr>
 
-						</tbody>
-					</table>
+				</div>
+
+			<div class="right_content fr">
+				<!-- 我的关注开始-->
+				<div class="right_bar_tit">
+					<span style="float:left;">我的收藏</span>
+				</div>
+				<div class="concern_detail_list ta-parent-box" data-taid="wdgz_wdgz" data-fid="wdgz_djall" id="master-list">
+					<a href="http://master.10jqka.com.cn/" target="_blank">你还没有收藏策略，快去看看好的策略吧&gt;&gt;</a>
 				</div>
 			</div>
-			
-		<div class="right_content fr">
-      		<!-- 我的关注开始-->
-        	<div class="right_bar_tit">
-            	<span style="float:left;">我的收藏</span>
-            </div>
-            <div class="concern_detail_list ta-parent-box" data-taid="wdgz_wdgz" data-fid="wdgz_djall" id="master-list">
-            <a href="http://master.10jqka.com.cn/" target="_blank">你还没有收藏策略，快去看看好的策略吧&gt;&gt;</a></div>
-        </div>
 	</body>
+
 </html>

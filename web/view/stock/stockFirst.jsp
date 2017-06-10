@@ -7,6 +7,7 @@
     <script src="../../jquery-3.2.1.min.js"></script>
     <script src="../../js/marketInfo/headcontroller.js"></script>
 	<script src="../../js/stock/stockfirst/listcontroller.js"></script>
+	<link rel="shortcut icon" href="../../images/logo20x20.png">
     <!--<script src="../../js/stock/someInfo.js"></script>-->
     <style type="text/css">
     	@import "../../css/style.css";

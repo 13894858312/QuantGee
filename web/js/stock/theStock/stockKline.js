@@ -12,7 +12,7 @@ var json;
 $.ajax({
     cache: false,
     async: false,
-    url: 'getStockKlineInfo.action',
+    url: 'totheStock.action',
     type: 'GET',
     dataType: 'json',
     success: function (data) {
@@ -24,13 +24,67 @@ $.ajax({
 });
 $("#tsname").text(json['name']);
 $("#tscode").text("(" + json['code'] + ")");
-function getDayKline() {
+function getDayData() {
+    $.ajax({
+        cache: false,
+        async: false,
+        url: 'getStockDayKlineInfo.action',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            json = JSON.parse(data);
+        },
+        error: function (data) {
+            alert("error");
+        }
+    });
+}
+function getWeekData() {
+    $.ajax({
+        cache: false,
+        async: false,
+        url: 'getStockWeekKlineInfo.action',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            json = JSON.parse(data);
+        },
+        error: function (data) {
+            alert("error");
+        }
+    });
+}
+function getMonthData() {
+    $.ajax({
+        cache: false,
+        async: false,
+        url: 'getStockMonthKlineInfo.action',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            json = JSON.parse(data);
+        },
+        error: function (data) {
+            alert("error");
+        }
+    });
+}
+
+
+function getKline(num) {
     klineDate = [];
     klineBar = [];
     klineMA5 = [];
     klineMA10 = [];
     klineMA20 = [];
     volume = [];
+    if(num == 1){
+        getDayData();
+    }else if(num == 2){
+        getWeekData();
+    }else {
+        getMonthData()
+    }
     for (var i = 0; i < json['kLine'].length; i++) {
         klineDate.push(json['kLine'][i]['date']);
     }
@@ -57,9 +111,7 @@ function getDayKline() {
 }
 dochart(1);
 function dochart(num) {
-    if(num == 1){
-        getDayKline();
-    }
+    getKline(num);
     var myChart1 = echarts.init(document.getElementById('kline'));
     var myChart2 = echarts.init(document.getElementById('volume'));
     var option1 = {
@@ -71,7 +123,7 @@ function dochart(num) {
             }
         },
         legend: {
-            data: ['日K', 'MA5', 'MA10', 'MA20','成交量']
+            data: ['k线', 'MA5', 'MA10', 'MA20','成交量']
         },
         grid: {
             top:'10%',
@@ -106,7 +158,7 @@ function dochart(num) {
         ],
         series: [
             {
-                name: '日K',
+                name: 'k线',
                 type: 'candlestick',
                 data: klineBar
 
@@ -189,12 +241,6 @@ function dochart(num) {
             }
         ],
         series: [
-            // {
-            //     name: '跌',
-            //     type: 'bar',
-            //     data: []
-            //
-            // },
             {
                 name: '成交量',
                 type: 'bar',
@@ -228,7 +274,7 @@ function clickwkbutton() {
     wkbutton.style.color = "#FFFFFF";
     mkbutton.style.backgroundColor = "#FFFFFF";
     mkbutton.style.color = "#000000";
-    dochart(1);
+    dochart(2);
 }
 function clickmkbutton() {
     var dkbutton = document.getElementById("dkbutton");
@@ -240,5 +286,5 @@ function clickmkbutton() {
     wkbutton.style.color = "#000000";
     mkbutton.style.backgroundColor = "#003366";
     mkbutton.style.color = "#FFFFFF";
-    dochart(1);
+    dochart(3);
 }

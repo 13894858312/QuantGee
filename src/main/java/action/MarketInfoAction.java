@@ -33,29 +33,29 @@ public class MarketInfoAction extends ActionSupport {
         this.result = result;
     }
 
-    private StockHistoricalVO getMarketInfo(int num1, int num2){
+    private StockHistoricalVO getMarketInfo(int num1, int num2, String type){
         String date = DateHelper.getNowDate();
         String enddate = DateHelper.formerNTradeDay(date, num1);
         String startdate = DateHelper.formerNTradeDay(enddate, num2);
-        StockInputVO stockInputVO = new StockInputVO("sh", startdate, enddate);
+        StockInputVO stockInputVO = new StockInputVO("sh", startdate, enddate, type);
         StockHistoricalVO stockHistoricalVO = stockBasicInfoService.getStockHistoricalInfo(stockInputVO);
         return stockHistoricalVO;
     }
 
     public String getDayKline(){
-        JSONObject jsonObject = JSONObject.fromObject(getMarketInfo(20,480));
+        JSONObject jsonObject = JSONObject.fromObject(getMarketInfo(20,300, "d"));
         result = jsonObject.toString();
         return SUCCESS;
     }
 
     public String getWeekKline(){
-        JSONObject jsonObject = JSONObject.fromObject(getMarketInfo(20,480));
+        JSONObject jsonObject = JSONObject.fromObject(getMarketInfo(20,600, "w"));
         result = jsonObject.toString();
         return SUCCESS;
     }
 
     public String getMonthKline(){
-        JSONObject jsonObject = JSONObject.fromObject(getMarketInfo(20,480));
+        JSONObject jsonObject = JSONObject.fromObject(getMarketInfo(20,800, "m"));
         result = jsonObject.toString();
         return SUCCESS;
     }

@@ -2,6 +2,8 @@ package action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.sun.org.apache.regexp.internal.RE;
+import net.sf.json.JSONObject;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ public class LoginAction extends ActionSupport {
 
     private ArrayList<StockCurrentVO> stockCurrentVOS; //用户收藏的股票
 
+    private String result;
 
     @Autowired
     private AccountService accountService;
@@ -37,9 +40,7 @@ public class LoginAction extends ActionSupport {
         if (accountService.login(accountVO)) {
             ActionContext actionContext = ActionContext.getContext();
             Map session = actionContext.getSession();
-            session.put("USER_NAME","Test User");
-            String a=(String)session.get("USER_NAME");
-            System.out.println(a);
+            session.put("accountID",accountVO.getAccountID());
 //            stockCurrentVOS = collectStockService.getCollectedStocks(accountVO.getAccountID());
             stockCurrentVOS = new ArrayList<>();
             StockCurrentVO stockCurrentVO1 = new StockCurrentVO("111111","wddygg","zg","123",1,2,3,4,5,6,7,8,9,1,2,1);
@@ -74,6 +75,18 @@ public class LoginAction extends ActionSupport {
         }
     }
 
+    public String haveLogin(){
+        System.out.println("success");
+        ActionContext actionContext = ActionContext.getContext();
+        Map session = actionContext.getSession();
+        JSONObject jsonObject = JSONObject.fromObject(session);
+        result = jsonObject.toString();
+        if (session.get("username")!=null){
+            return SUCCESS;
+        }else {
+            return "fail";
+        }
+    }
 
     public AccountVO getAccountVO() {
         return accountVO;
