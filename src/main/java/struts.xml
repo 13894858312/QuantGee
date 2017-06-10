@@ -7,7 +7,7 @@
 <struts>
 	<!--<constant name="struts.objectFactory" value="spring" />-->
 
-	<package name="default" namespace="/" extends="struts-default">
+	<package name="default" namespace="/" extends="json-default">
 		<action name="login" class="loginAction" method="login">
 			<result name="success">/view/ucenter/user_center.jsp</result>
 			<result name="fail">/view/ucenter/login.jsp</result>
@@ -19,6 +19,11 @@
 		<action name="register" class="loginAction" method="register">
 			<result name="fail">/view/ucenter/account_settings.html</result>
 			<result name="success">/view/ucenter/login.jsp</result>
+		</action>
+		<action name="haveLogin" class="loginAction" method="haveLogin">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
 		</action>
 
 

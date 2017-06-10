@@ -8,8 +8,8 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="../../css/ucenter/main.css">
 		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
-		
-		<script type="text/javascript" src="../../js/ucenter/ucenter.js" ></script>
+		<script type="text/javascript" src="../../jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../../js/ucenter/ucenter.js"></script>
 	</head>
 
 	<body>
@@ -27,8 +27,8 @@
 			<div class="menu" id="ha2">
 				<a class="menua" id="a2" href="../../view/stock/stockFirst.jsp" target="_self">个股信息</a>
 			</div>
-			<div class="menu" id="ha3" >
-				<a class="menua" id="a3" href="../../view/strategy/strategy.jsp" >策略大全</a>
+			<div class="menu" id="ha3">
+				<a class="menua" id="a3" href="../../view/strategy/strategy.jsp">策略大全</a>
 			</div>
 			<div class="menu" id="ha4">
 				<a class="menua" id="a4" href="../../view/trade/trade.jsp" target="_blank">模拟交易</a>
@@ -54,7 +54,8 @@
 						<a href="user_center.jsp">我的自选</a>
 					</li>
 					<li class="nav-btn receive" data-id="focus" data-title="我的策略">
-						<a href="my_strategy.html">我的策略</a>
+						<!--<a href="my_strategy.html">我的策略</a>-->
+						<button onclick="getSession()">点我</button>
 					</li>
 					<li class="nav-btn pconcern" data-id="collection" data-title="我的收藏">
 						<a href="my_collection.html">我的收藏</a>
@@ -79,74 +80,9 @@
 					</li>
 				</ul>
 
-				<div class="framebox hot_stock ta-parent-box" data-taid="wdzx_rmgp" data-fid="wdzx_djall">
-					<div class="wrap ta-scroll-box" data-scroll-taid="wdzx_llhotstock" id="wdzx-rmgp">
-						<h2>上涨股票</h2>
-					</div>
-					<table>
-						<thead>
-							<tr>
-								<th>公司</th>
-								<th>涨幅</th>
-								<th>趋势</th>
-							</tr>
-						</thead>
-						<tbody>
-							<s:iterator value="testStrings">
-								<tr>
-									<td>
-										<a target="_blank"><s:property/> </a>
-									</td>
-									<td>1</td>
-									<td><i class="uarr"></i></td>
-								</tr>
-							</s:iterator>
-
-						</tbody>
-					</table>
-				</div>
 			</div>
 
 			<div class="right_content fr">
-				<div class="flash_panel clearfix ta-parent-box" data-taid="wdzx_hq" data-fid="wdzx_djall">
-					<div class="shangz item">
-						<span class="single_flash" data-code="hs_1A0001">上证指数</span>
-						<div class="detailnum">
-							<span class="freshval">--</span>
-							<label>
-                        <span>--</span>
-                        <span>--</span>
-                    </label>
-						</div>
-					</div>
-					<div class="shenz item">
-						<span class="single_flash" data-code="hs_399001">深证指数</span>
-						<div class="detailnum">
-							<span class="freshval">--</span>
-							<label>
-                        <span>--</span>
-                        <span>--</span>
-                    </label>
-						</div>
-					</div>
-					<div class="chuangye item">
-						<span class="single_flash" data-code="hs_399006">创业指数</span>
-						<div class="detailnum">
-							<span class="freshval">--</span>
-							<label>
-                        <span>--</span>
-                        <span>--</span>
-                    </label>
-						</div>
-					</div>
-					<div class="section fr">
-						<div class="wrapSel">
-							<input id="search_input" value="添加自选股" class="addStock">
-							<i class="search"></i>
-							<ul class="autocompleteMine hide"></ul>
-						</div>
-					</div>
-				</div>
 
 				<div class="data_panel ta-parent-box" data-taid="wdzx_hq" data-fid="wdzx_djall">
 
@@ -235,38 +171,8 @@
 						</tbody>
 					</table>
 
-					<p class="expand">
-						<span class="nomore hide">没有更多</span>
-						<span class="my-fund hide" onclick="window.open('http://fund.10jqka.com.cn/zixuan/index.html')">自选基金</span>
-					</p>
-					<div class="loading hide"><img src="http://i.thsi.cn/images/ucenter/website/loading.gif"></div>
 				</div>
 
-				<div class="stocklist">
-					<div class="head clearfix">
-						<ul class="tab-box">
-							<!-- <li class="active" load-type="all">
-                <a href="###">全部</a>
-            </li>-->
-							<li load-type="sc" class="active">
-								<a class="ta-own-box" data-taid="wdzx_xxsc" data-fid="wdzx_xxall,wdzx_djall" href="###">新闻资讯</a>
-							</li>
-							<li load-type="sd">
-								<a class="ta-own-box" data-taid="wdzx_xxsd" data-fid="wdzx_xxall,wdzx_djall" href="###">策略论坛</a>
-							</li>
-						</ul>
-					</div>
-					<div class="tab-container">
-						<!-- <ul class="lists item" load-type="all">
-        </ul>-->
-						<ul class="item lists ta-parent-box" data-taid="wdzx_xxsc" data-fid="wdzx_xxall,wdzx_djall" load-type="sc">
-							<li load-flag="loadmore" class="loadmore">正在加载...</li>
-						</ul>
-						<ul class="item lists hide ta-parent-box" data-taid="wdzx_xxsd" data-fid="wdzx_xxall,wdzx_djall" load-type="sd">
-							<li load-flag="loadmore" class="loadmore">正在加载...</li>
-						</ul>
-					</div>
-				</div>
 			</div>
 		</div>
 	</body>
