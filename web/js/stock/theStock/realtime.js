@@ -97,4 +97,6 @@ function setRealContent() {
     $("#tsr8").text(content['volume']);
     $("#tsr9").text(content['amount']);
     $("#tsr10").text(content['mktcap']);
+    $("#tsrr").text(content['changePercent']);
+    $("#tsnprice").text(content['trade']);
 }

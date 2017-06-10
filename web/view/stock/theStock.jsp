@@ -58,10 +58,10 @@
   		<div class="tsinfol1">
   			<div class="tstext">
   				<img src="" />
-  				<div class="tsnprice">9.85</div>
-  				<div class="rd">涨跌幅度</div>
+  				<div class="tsnprice" id="tsnprice">9.85</div>
+  				<div class="rd" >涨跌幅度</div>
   				<!--<div class="tsrp">0.14</div>-->
-  				<div class="tsrr">0.68%</div>
+  				<div class="tsrr" id="tsrr">0.68%</div>
   				<div class="tsab">
 	  				<div class="abimg">
 	  					<img src="../../images/addbutton44.png" />
