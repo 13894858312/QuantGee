@@ -56,12 +56,12 @@ public class ListAction extends ActionSupport {
         this.stockCode = stockCode;
     }
 
-    private StockHistoricalVO getStockVOInlist(int num1, int num2){
+    private StockHistoricalVO getStockVOInlist(int num1, int num2, String type){
         String date = DateHelper.getNowDate();
         String enddate = DateHelper.formerNTradeDay(date, num1);
         String startdate = DateHelper.formerNTradeDay(enddate, num2);
         stockCode = stockBasicInfoService.getCodeByName(stockName);
-        StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate);
+        StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate, type);
         StockHistoricalVO stockHistoricalVO = stockBasicInfoService.getStockHistoricalInfo(stockInputVO);
         return stockHistoricalVO;
     }
@@ -75,7 +75,7 @@ public class ListAction extends ActionSupport {
     }
 
     public String getStockKline(){
-        JSONObject jsonObject = JSONObject.fromObject(getStockVOInlist(20,480));
+        JSONObject jsonObject = JSONObject.fromObject(getStockVOInlist(20,480, "d"));
         result = jsonObject.toString();
         return SUCCESS;
     }

@@ -60,7 +60,8 @@
     	</div>
     	<div class="graph">
     		<div class="kimgandindex">
-    			<div class="kimg"></div>
+    			<div class="kimg" id="kline"></div>
+    			<script src="../../js/trade/klineandindex.js"></script>
     			<div class="indexhead">
     				<div class="indexbutton">
     					<div class="mkrbbutton">

@@ -39,26 +39,36 @@ public class StockAction extends ActionSupport{
         this.stockCode = stockCode;
     }
 
-    private StockHistoricalVO getStockHistoricalVO(int num1, int num2){
+    private StockHistoricalVO getStockHistoricalVO(int num1, int num2, String type){
         String date = DateHelper.getNowDate();
         String enddate = DateHelper.formerNTradeDay(date, num1);
         String startdate = DateHelper.formerNTradeDay(enddate, num2);
-        StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate);
+        StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate, type);
         StockHistoricalVO stockHistoricalVO = stockBasicInfoService.getStockHistoricalInfo(stockInputVO);
         return stockHistoricalVO;
     }
 
-    public String getStockKlineInfo(){
-        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,480));
+    public String getStockDayKlineInfo(){
+        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,480, "d"));
+        result = jsonObject.toString();
+        return SUCCESS;
+    }
+
+    public String getStockWeekKlineInfo(){
+        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,480, "w"));
+        result = jsonObject.toString();
+        return SUCCESS;
+    }
+
+    public String getStockMonthKlineInfo(){
+        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,480, "m"));
         result = jsonObject.toString();
         return SUCCESS;
     }
 
     public String totheStock(){
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add(stockCode);
-        JSONArray jsonArray = JSONArray.fromObject(arrayList);
-        result = jsonArray.toString();
+        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,30,"d"));
+        result = jsonObject.toString();
         return SUCCESS;
     }
 }
