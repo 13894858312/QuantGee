@@ -28,7 +28,7 @@ public interface StockBasicInfoService {
     /**
      * 获取指定时间段和股票代码股票历史数据
      * 包括股票k线图 均线图 成交量直方图 的历史数据
-     * 大盘  sh=上证指数 sz=深圳成指 hs300=沪深300指数 sz50=上证50 zxb=中小板 cyb=创业板
+     *   sh=上证指数 sz=深圳成指 hs300=沪深300指数 sz50=上证50 zxb=中小板 cyb=创业板
      * @return ArrayList<StockHistoricalVO>
      */
     public StockHistoricalVO getStockHistoricalInfo(StockInputVO stockInputVO);
