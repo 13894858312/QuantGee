@@ -13,17 +13,31 @@ import service.user.AccountService;
 import vo.stock.StockCurrentVO;
 import vo.user.AccountVO;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Map;
 
 @Controller
 public class LoginAction extends ActionSupport {
 
+    private HttpServletResponse response;
+    private HttpServletRequest request;
+
     //	private AccountVO accountVO = new AccountVO(); // 表单中的姓名
     private AccountVO accountVO; // 表单中的姓名
 
 
     private ArrayList<StockCurrentVO> stockCurrentVOS; //用户收藏的股票
+
+    public String getResult() {
+
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
 
     private String result;
 
@@ -51,6 +65,7 @@ public class LoginAction extends ActionSupport {
             stockCurrentVOS.add(stockCurrentVO3);
             return SUCCESS;
         } else {
+            request.setAttribute("tipMessage", "登陆失败！");
             return "fail";
         }
 
@@ -76,12 +91,12 @@ public class LoginAction extends ActionSupport {
     }
 
     public String haveLogin(){
-        System.out.println("success");
         ActionContext actionContext = ActionContext.getContext();
         Map session = actionContext.getSession();
         JSONObject jsonObject = JSONObject.fromObject(session);
         result = jsonObject.toString();
-        if (session.get("username")!=null){
+        System.out.println("haveLogin"+result);
+        if (session.get("accountID")!=null){
             return SUCCESS;
         }else {
             return "fail";
