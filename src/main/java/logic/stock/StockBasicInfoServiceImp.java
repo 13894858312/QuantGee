@@ -125,48 +125,87 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         //对数收益
         ArrayList<LineVO> logarithmYields = new ArrayList<>();
 
-        Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getCode(), inputVO.getStartDate(), inputVO.getEndDate());
-
         //判断周k还是日k
         if(inputVO.getType().equals("w")) {
+
             Iterator<StockWeek> stockWeeks = stockInfoDAO.getWeekK(inputVO.getCode(), inputVO.getStartDate(), inputVO.getEndDate());
+            StockWeek formerWeek, stockWeek=null;
+            String date;
             while(stockWeeks.hasNext()) {
-                StockWeek stockWeek = stockWeeks.next();
-                kLine.add(new KLineVO(stockWeek.getDate(), stockWeek.getOpen(), stockWeek.getClose(), stockWeek.getLow(), stockWeek.getHigh()));
+                formerWeek = stockWeek;
+                stockWeek = stockWeeks.next();
+
+                if (stockWeek != null) {
+                    date = stockWeek.getDate();
+
+                    kLine.add(new KLineVO(date, stockWeek.getOpen(), stockWeek.getClose(), stockWeek.getLow(), stockWeek.getHigh()));
+                    volume.add(new LineVO(date, MathHelper.formatData(stockWeek.getVolume() / 10000, 2)));
+                    ma5.add(new LineVO(date, stockWeek.getMa5()));
+                    ma10.add(new LineVO(date, stockWeek.getMa10()));
+                    ma20.add(new LineVO(date, stockWeek.getMa20()));
+
+                    //对数收益率
+                    if (formerWeek != null) {
+                        double logarithmYield = Math.log(stockWeek.getClose() / formerWeek.getClose());
+                        logarithmYields.add(new LineVO(date, logarithmYield));
+                    }
+                }
             }
+
         } else if (inputVO.getType().equals("m")) {
+
             Iterator<StockMonth> stockMonths = stockInfoDAO.getMonthK(inputVO.getCode(), inputVO.getStartDate(), inputVO.getEndDate());
+            StockMonth formerMonth, stockMonth=null;
+            String date;
             while(stockMonths.hasNext()) {
-                StockMonth stockMonth = stockMonths.next();
-                kLine.add(new KLineVO(stockMonth.getDate(), stockMonth.getOpen(), stockMonth.getClose(), stockMonth.getLow(), stockMonth.getHigh()));
+                formerMonth = stockMonth;
+                stockMonth = stockMonths.next();
+
+                if(stockMonth == null) {
+                    continue;
+                }
+
+                date = stockMonth.getDate();
+
+                kLine.add(new KLineVO(date, stockMonth.getOpen(), stockMonth.getClose(), stockMonth.getLow(), stockMonth.getHigh()));
+                volume.add(new LineVO(date, MathHelper.formatData(stockMonth.getVolume()/10000,2)));
+                ma5.add(new LineVO(date, stockMonth.getMa5()));
+                ma10.add(new LineVO(date, stockMonth.getMa10()));
+                ma20.add(new LineVO(date, stockMonth.getMa20()));
+
+                //对数收益率
+                if(formerMonth != null) {
+                    double logarithmYield = Math.log(stockMonth.getClose() / formerMonth.getClose());
+                    logarithmYields.add(new LineVO(date, logarithmYield));
+                }
             }
-        }
 
-        Stock stock = null, formerStock;
-        String date;
+        } else if (inputVO.getType().equals("d")) {
+            Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getCode(), inputVO.getStartDate(), inputVO.getEndDate());
+            Stock stock = null, formerStock;
+            String date;
 
-        while(stocks.hasNext()) {
-            formerStock = stock;
-            stock = stocks.next();
+            while(stocks.hasNext()) {
+                formerStock = stock;
+                stock = stocks.next();
 
-            if(stock == null) {
-                continue;
-            }
+                if(stock == null) {
+                    continue;
+                }
 
-            date = stock.getDate();
+                date = stock.getDate();
 
-            if (inputVO.getType().equals("d")) {
                 kLine.add(new KLineVO(date, stock.getOpen(), stock.getClose(), stock.getLow(), stock.getHigh()));
-            }
-            volume.add(new LineVO(date, MathHelper.formatData(stock.getVolume()/10000,2)));
-            ma5.add(new LineVO(date, stock.getMa5()));
-            ma10.add(new LineVO(date, stock.getMa10()));
-            ma20.add(new LineVO(date, stock.getMa20()));
+                volume.add(new LineVO(date, MathHelper.formatData(stock.getVolume()/10000,2)));
+                ma5.add(new LineVO(date, stock.getMa5()));
+                ma10.add(new LineVO(date, stock.getMa10()));
+                ma20.add(new LineVO(date, stock.getMa20()));
 
-            //对数收益率
-            if(formerStock != null) {
-                double logarithmYield = Math.log(stock.getClose() / formerStock.getClose());
-                logarithmYields.add(new LineVO(date, logarithmYield));
+                //对数收益率
+                if(formerStock != null) {
+                    double logarithmYield = Math.log(stock.getClose() / formerStock.getClose());
+                    logarithmYields.add(new LineVO(date, logarithmYield));
+                }
             }
         }
 
