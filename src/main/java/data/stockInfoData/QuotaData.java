@@ -88,7 +88,9 @@ public class QuotaData implements QuotaDAO {
 
     @Override
     public Iterator<StockPredict> getAllStockPredictData(String date) {
-        return null;
+        Iterator<StockPredict> iterator = (Iterator<StockPredict>) hibernateTemplate
+                .find("from StockPredict where date = ?", date).iterator();
+        return iterator;
     }
 
 }
