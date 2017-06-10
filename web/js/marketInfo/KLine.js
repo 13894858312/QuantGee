@@ -9,13 +9,9 @@ var klineMA10 = [];
 var klineMA20 = [];
 var volume = [];
 var json;
-function getDayKline() {
-    klineDate = [];
-    klineBar = [];
-    klineMA5 = [];
-    klineMA10 = [];
-    klineMA20 = [];
-    volume = [];
+function getDayData() {
+    var spinner = document.getElementById("spinner");
+    spinner.style.display = "block";
     $.ajax({
         cache: false,
         async: false,
@@ -23,12 +19,73 @@ function getDayKline() {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
+            var spinner = document.getElementById("spinner");
+            spinner.style.display = "none";
             json = JSON.parse(data);
         },
         error: function (data) {
+            // var spinner = document.getElementById("spinner");
+            // spinner.style.display = "none";
             alert("error");
         }
     });
+}
+function getWeekData() {
+    var spinner = document.getElementById("spinner");
+    spinner.style.display = "block";
+    $.ajax({
+        cache: false,
+        async: false,
+        url: 'dayKline.action',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            var spinner = document.getElementById("spinner");
+            spinner.style.display = "none";
+            json = JSON.parse(data);
+        },
+        error: function (data) {
+            // var spinner = document.getElementById("spinner");
+            // spinner.style.display = "none";
+            alert("error");
+        }
+    });
+}
+function getMonthData() {
+    var spinner = document.getElementById("spinner");
+    spinner.style.display = "block";
+    $.ajax({
+        cache: false,
+        async: false,
+        url: 'dayKline.action',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            var spinner = document.getElementById("spinner");
+            spinner.style.display = "none";
+            json = JSON.parse(data);
+        },
+        error: function (data) {
+            // var spinner = document.getElementById("spinner");
+            // spinner.style.display = "none";
+            alert("error");
+        }
+    });
+}
+function getKline(num) {
+    klineDate = [];
+    klineBar = [];
+    klineMA5 = [];
+    klineMA10 = [];
+    klineMA20 = [];
+    volume = [];
+    if(num == 1){
+        getDayData();
+    }else if(num == 2){
+        getWeekData();
+    }else{
+        getMonthData();
+    }
     for (var i = 0; i < json['kLine'].length; i++) {
         klineDate.push(json['kLine'][i]['date']);
     }
@@ -54,9 +111,7 @@ function getDayKline() {
     }
 }
 function dochart(num) {
-    if(num == 1){
-        getDayKline();
-    }
+    getKline(num);
 var myChart1 = echarts.init(document.getElementById('kline'));
 var myChart2 = echarts.init(document.getElementById('volume'));
 var option1 = {

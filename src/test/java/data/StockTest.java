@@ -138,7 +138,7 @@ public class StockTest {
 
     @Test
     public void getMacdTest(){
-        Iterator<Macd> iterator = quotaDAO.getMACDs("200","232","123123");
+        Iterator<Macd> iterator = quotaDAO.getMACDs("2017-01-01","2017-01-30","000001");
         while (iterator.hasNext()){
             System.out.print(iterator.next().getDea());
         }
@@ -157,9 +157,25 @@ public class StockTest {
 
     @Test
     public void getKDJTest(){
-        Iterator<Kdj> kdjIterator = quotaDAO.getKDJs("0","3010","000001");
+        Iterator<Kdj> kdjIterator = quotaDAO.getKDJs("2016-01-01","2017-06-01","000001");
         while (kdjIterator.hasNext()){
             System.out.println(kdjIterator.next().getDate());
+        }
+    }
+
+    @Test
+    public void getBollTest(){
+        Iterator<Boll> iterator = quotaDAO.getBOLLs("2016-01-01","2017-06-01","000001");
+        while (iterator.hasNext()){
+            System.out.println(iterator.next().getDate());
+        }
+    }
+
+    @Test
+    public void getRsiTest(){
+        Iterator<Rsi> iterator = quotaDAO.getRSIs("2016-01-01","2017-06-01","000001");
+        while (iterator.hasNext()){
+            System.out.println(iterator.next().getDate());
         }
     }
 

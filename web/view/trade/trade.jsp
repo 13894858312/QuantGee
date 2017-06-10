@@ -1,91 +1,118 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2017/5/25
-  Time: 19:41
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
 		<meta charset="UTF-8">
     <title>Trade</title>
-    <script>
-        function s1(x) {
-            x.style.fontWeight = "bold";
-            x.style.color = "#fff";
-        }
-        function s2(x) {
-            x.style.fontWeight = "400";
-            x.style.color = "#b7b7b7";
-        }
-    </script>
+    <script src="../../echarts.js"></script>
+    <script src="../../jquery-3.2.1.min.js"></script>
+    <script src="../../js/marketInfo/headcontroller.js"></script>
+    <script src="../../js/trade/addlist.js"></script>
     <style type="text/css">
         @import "../../css/style.css";
         @import "../../css/trade/trade.css";
     </style>
 </head>
-<body>
-		<div class="header fixed">
-
-        <div class="w1200">
+<body onload="changewhole4()">
+		<div class="head">
 
             <div class="hdlogo">
 
-                <a target="_blank" class="site-logo" href=""> <img src="../../images/theLogo.png" title="MyQuantGee" alt="MyQuantGee"></a>
+                <a target="_blank" class="site-logo" href=""> <img src="../../images/quantgeelogo.png" title="MyQuantGee" alt="MyQuantGee"></a>
 
             </div>
 
-            <div class="nav">
-
-                <a href="marketInfo.jsp" target="_blank" nmouseover="s1(this)" onmouseout="s2(this)">大盘行情</a>
-                <a href="../../view/stock/stockFirst.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">个股信息</a>
-                <a href="../../view/industry/industry.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">行业资讯</a>
-                <a href="../../view/strategy/strategy.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">策略大全</a>
-                <a href="trade.jsp" onmouseover="s1(this)" onmouseout="s2(this)">模拟交易</a>
-                <a href="../../view/ucenter/user_center.jsp" target="_blank" onmouseover="s1(this)" onmouseout="s2(this)">个人中心</a>
-
+			<div class="menu" id="ha1">
+                <a class="menua" id="a1"  href="../../view/market/marketInfo.jsp" target="_blank">大盘行情</a>
             </div>
-
-            <div class="login-box">
-
-                <a href="../../view/ucenter/login.jsp" target="_blank">登录</a>
-
+            <div class="menu" id="ha2">
+                <a class="menua" id="a2" href="../../view/stock/stockFirst.jsp" target="_blank">个股信息</a>
             </div>
-
-            <div class="logined_box hide fr">
-
-                <a href="http://stock.10jqka.com.cn/my/" target="_blank" id="J_username" style="background-position: 100% 40px;">linhanzi</a>
-
-                <span>|</span>
-
-                <a href="javascript:;" id="header_logined_out" target="_self" class="homeloginout">退出</a>
-
+            <div class="menu" id="ha3">
+                <a class="menua" id="a3" href="../../view/strategy/strategy.jsp" target="_blank">策略大全</a>
             </div>
-
-        </div>
-
+            <div class="menu" id="ha4">
+               	<a class="menua" id="a4" href="trade/trade.jsp" target="_blank">模拟交易</a>
+            </div>
+            <div class="menu" id="ha5">
+                <a class="menua" id="a5" href="../../view/ucenter/user_center.jsp" target="_blank">个人中心</a>
+			</div>
+			<div class="search bar7">
+        		<!--<form>-->
+            		<input id="inputStockCode" type="text" placeholder="请输入股票代码">
+					<button onclick="totheStockView()"></button>
+        		<!--</form>-->
+    		</div>
+			<div class="marketlog">
+				<div class="logimg">
+					<img src="../../images/headlogin.png"/>
+				</div>
+				<div class="logintext">
+					<a href="../../view/ucenter/login.jsp" style="color: rgba(0, 0, 0, 0.6);font-weight: 400;cursor: hand;" >登录</a>
+				</div>
+			</div>	
     </div>
-    <div class="firstHead">
-    	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
+    <div class="datahelper">
+    	<div class="datahelperhead">
+    		<div class="dhheantext">
+    			数据助手
+    		</div>
+    	</div>
+    	<div class="graph">
+    		<div class="kimgandindex">
+    			<div class="kimg"></div>
+    			<div class="indexhead">
+    				<div class="indexbutton">
+    					<div class="mkrbbutton">
+							MACD
+						</div>
+						<div class="mkrbbutton">
+							KDJ
+						</div>
+						<div class="mkrbbutton">
+							RSI
+						</div>
+						<div class="mkrbbutton">
+							BOLL
+						</div>
+	    			</div>
+    			</div>
+    			<div class="idneximg"></div>
+    		</div>
+    		<div class="realanddata">
+    			<div class="realimg"></div>
+    			<div class="realdata"></div>
+    		</div>
+    	</div>
     </div>
-    <div class="firstText">
-    	<span>模拟交易</span>
+    <div class="testtradehead">
+    	<div class="testheadtext">
+    		<div class="text">持仓交易</div>
+    		<div class="buy" onclick="addrow()">买入</div>
+    	</div>
     </div>
-    <div class="data">
-    	
+    <div class="stocktable">
+    	<table class="st" id="st">
+    		<tr>
+    			<td class="stth">股票名称</td>
+    			<td class="stth">股票代码</td>
+    			<td class="stth">持仓股数</td>
+    			<td class="stth">持仓市值</td>
+    			<td class="stth">最新价</th>
+    			<td class="stth">日涨跌幅</td>
+    			<td class="delete">操作</td>
+    		</tr>
+    	</table>
     </div>
-    <div class="execute"></div>
-    <div class="secondHead">
-    	<img src="../../images/标签1.png" class="imageHead" style="width: 80px;height: 50px;"/>
-    </div>
-    <div class="secondText">
-    	<span>辅助预测</span>
-    </div>
-    <div class="predict"></div>
-    <div class="MACD"></div>
-    <div class="KDJ"></div>
-    <div class="BOLL"></div>
-    <div class="RSI"></div>
+    <div class="analysis">
+		<div class="anahead">
+			<div class="anaheadtext">股票预测</div>
+		</div>
+		<div class="analysisgraph"></div>
+		<div class="analysisdata">
+			<div class="resultl"></div>
+			<div class="resultm"></div>
+			<div class="resultr"></div>
+		</div>
+	</div>
 </body>
 </html>

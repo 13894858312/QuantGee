@@ -1,89 +1,226 @@
-.firstHead{
-	position: absolute;
-	left: 5%;
-	top: 12%;
-}
-.firstText{
-	position: absolute;
-	left: 11%;
-	top: 14%;
-	font-weight: bold;
-	font-size: 18px;
-	font-family: 'Cabin Condensed', sans-serif;
-}
-.data{
-	position: absolute;
-	left:8%;
-	top: 23%;
-	width: 81%;
-	height: 70%;
+.datahelper{
+	width: 100%;
+	height: 500px;
 	background-color: #FFFFFF;
-	border: 1px solid #000000;
 }
-.execute{
-	position: absolute;
-	left: 8%;
-	top: 93%;
-	width: 81%;
-	height: 10%;
-	background-color: #FFFFFF;
-	border: 1px solid #000000;
+.datahelperhead{
+	float: left;
+	margin-left: 15%;
+	width: 70%;
+	height: 49px;
+	border-bottom: 1px solid #C0C0C0;
 }
-.secondHead{
-	position: absolute;
-	left: 5%;
-	top: 106%;
+.dhheantext{
+	float: left;
+	margin-top: 15px;
+	text-align: left;
+	width: 15%;
+	height: 39px;
+	font-size: 26px;
+	font-weight: 100;
+	font-family: "Roboto Mono", monospace;
 }
-.secondText{
-	position: absolute;
-	left: 11%;
-	top: 108%;
-	font-weight: bold;
+.graph{
+	float: left;
+	margin-left: 15%;
+	width: 70%;
+	height: 450px;
+}
+.kimgandindex{
+	float: left;
+	width: 60%;
+	height: 450px;
+	/*background-color: #F8F8F8;*/
+}
+.kimg{
+	float: left;
+	width: 100%;
+	height:300px;
+	/*background-color: #F8F8F8;*/
+}
+.indexhead{
+	float: left;
+	width: 100%;
+	height:20px;
+	/*background-color: #F8F8F8;*/
+}
+.idneximg{
+	float: left;
+	width: 100%;
+	height:130px;
+	/*background-color: #F8F8F8;*/
+}
+.indexbutton{
+	float: left;
+	margin-left: 72%;
+	width: 28%;
+	height: 20px;
+	background-color: #F8F8F8;
+}
+.mkrbbutton{
+	cursor: hand;
+	float: left;
+	text-align: center;
+	margin-left: 3%;
+	width: 22%;
+	height: 20px;
+	color: #FFFFFF;
+	background-color: #003366;
+	opacity: 0.8;
+	border-radius: 3px;
+	font-size: 14px;
+	font-weight: 100;
+	font-family: "Roboto Mono", monospace;
+}
+.realanddata{
+	float: left;
+	width: 40%;
+	height: 450px;
+	/*background-color: #000000;*/
+}
+.realimg{
+	float: left;
+	width: 100%;
+	height: 300px;
+	/*background-color: #F8F8F8;*/
+}
+.realdata{
+	float: left;
+	width: 100%;
+	height: 150px;
+	/*background-color: #F8F8F8;*/
+}
+.testtradehead{
+	float: left;
+	width: 100%;
+	height: 50px;
+	/*background-color: #F8F8F8;*/
+}
+.testheadtext{
+	float: left;
+	margin-left: 15%;
+	width: 70%;
+	height: 49px;
+	/*background-color: #F8F8F8;*/
+	border-bottom: 1px solid #C0C0C0;
+}
+.text{
+	float: left;
+	/*margin-left: 15%;*/
+	width: 15%;
+	margin-top: 15px;
+	height: 34px;
+	font-size: 26px;
+	font-weight: 100;
+	font-family: "Roboto Mono", monospace;
+}
+.buy{
+	cursor: hand;
+	float: left;
+	text-align: center;
+	margin-top: 20px;
+	margin-left: 76%;
+	width: 5%;
+	height: 22px;
+	color: #FFFFFF;
+	background-color: #003366;
+	opacity: 0.8;
+	border-radius: 3px;
 	font-size: 18px;
-	font-family: 'Cabin Condensed', sans-serif;
+	font-weight: 100;
+	font-family: "Roboto Mono", monospace;
+}
+.stocktable{
+	float: left;
+	margin-left: 15%;
+	width: 67%;
+}
+.st{
+	float: left;
+	width: 100%;
+}
+.stth{
+	text-align: left;
+	width: 12%;
+	font-size: 14px;
+	font-weight: 100;
+	font-family: "Roboto Mono", monospace;
+}
+.delete{
+	text-align: right;
+	width: 12%;
+	font-size: 14px;
+	font-weight: 100;
+	font-family: "Roboto Mono", monospace;
 }
 .predict{
-	position: absolute;
-	left: 8%;
-	top: 114%;
-	width: 81%;
-	height: 20%;
-	background-color: #FFFFFF;
-	border: 1px solid #000000;
+	float: left;
+	margin-top: 100px;
+	width: 100%;
+	height: 300px;
+	background-color: #F8F8F8;
 }
-.MACD{
-	position: absolute;
-	left: 8%;
-	top: 134%;
-	width: 81%;
-	height: 20%;
+.analysis{
+	float: left;
+	margin-top: 100px;
+	width: 100%;
+	height: 250px;
 	background-color: #FFFFFF;
-	border: 1px solid #000000;
 }
-.KDJ{
-	position: absolute;
-	left: 8%;
-	top: 154%;
-	width: 81%;
-	height: 20%;
+.anahead{
+	float: left;
+	width: 70%;
+	margin-left: 15%;
+	margin-top: 10px;
+	height: 49px;
 	background-color: #FFFFFF;
-	border: 1px solid #000000;
+	border-bottom: 1px solid #C0C0C0;
 }
-.BOLL{
-	position: absolute;
-	left: 8%;
-	top: 174%;
-	width: 81%;
-	height: 20%;
-	background-color: #FFFFFF;
-	border: 1px solid #000000;
+.anaheadtext{
+	margin-left: 45%;
+	width: 80px;
+	margin-top: 15px;
+	height: 30px;
+	font-family: "Roboto Mono", monospace;
+	font-size: 20px;
 }
-.RSI{
-	position: absolute;
-	left: 8%;
-	top: 194%;
-	width: 81%;
-	height: 20%;
+.analysisgraph{
+	float: left;
+	width: 70%;
+	margin-left: 15%;
+	height: 139px;
 	background-color: #FFFFFF;
-	border: 1px solid #000000;
+	border-bottom: 1px solid #C0C0C0;
+}
+.analysisdata{
+	float: left;
+	width: 70%;
+	margin-left: 15%;
+	height: 50px;
+	background-color: #FFFFFF;
+}
+.resultl{
+	float: left;
+	width: 32%;
+	margin-top: 5px;
+	height: 40px;
+	background-color: #FFFFFF;
+	border-right: 1px solid #C0C0C0;
+}
+.resultm{
+	float: left;
+	width: 32%;
+	margin-left: 2%;
+	margin-top: 5px;
+	height: 40px;
+	background-color: #FFFFFF;
+	border-right: 1px solid #C0C0C0;
+}
+.resultr{
+	float: left;
+	width: 31%;
+	margin-left: 2%;
+	margin-top: 5px;
+	height: 40px;
+	background-color: #FFFFFF;
 }
