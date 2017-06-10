@@ -4,13 +4,13 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="bean.StockPredict" table="StockPredict" schema="quantgee_data">
+    <class name="bean.StockPredict" table="stockpredict" schema="quantgee_data">
         <composite-id mapped="true" class="bean.StockPredictPK">
             <key-property name="code">
                 <column name="code" sql-type="varchar(6)" length="6"/>
             </key-property>
-            <key-property name="buyDate">
-                <column name="buyDate" sql-type="varchar(10)" length="10"/>
+            <key-property name="date">
+                <column name="date" sql-type="varchar(10)" length="10"/>
             </key-property>
         </composite-id>
         <property name="predictedPrice">
