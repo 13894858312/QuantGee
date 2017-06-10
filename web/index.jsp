@@ -51,7 +51,7 @@
                     <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
                     <div class="hdlogo">
 
-                        <a target="_blank" class="site-logo" href=""> <img src="images/quantgeelogo.png" title="MyQuantGee" alt="MyQuantGee"></a>
+                        <a href="" class="site-logo"> <img src="images/quantgeelogo.png" title="MyQuantGee" alt="MyQuantGee"></a>
 
                     </div>
                 </div>

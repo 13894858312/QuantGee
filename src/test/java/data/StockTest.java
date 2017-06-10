@@ -242,5 +242,13 @@ public class StockTest {
         Assert.assertEquals(stockInfoDAO.getIndexNameByCode("000001"), "上证指数");
     }
 
+    @Test
+    public void getStockWeek(){
+        Iterator<StockMonth> iterator = stockInfoDAO.getMonthK("sh");
+        while (iterator.hasNext()){
+            System.out.println(iterator.next().getMa5());
+        }
+    }
+
 }
 
