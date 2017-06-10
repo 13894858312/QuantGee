@@ -59,8 +59,8 @@
   			<div class="tstext">
   				<img src="" />
   				<div class="tsnprice">9.85</div>
-  				<div class="rd">涨跌</div>
-  				<div class="tsrp">0.14</div>
+  				<div class="rd">涨跌幅度</div>
+  				<!--<div class="tsrp">0.14</div>-->
   				<div class="tsrr">0.68%</div>
   				<div class="tsab">
 	  				<div class="abimg">
@@ -70,10 +70,66 @@
   				</div>
   			</div>
   		</div>
-  		<div class="tsinfo2"></div>
-  		<div class="tsinfo2"></div>
+  		<div class="tsinfo2">
+  			<table class="tsrtable">
+	  			<tr>
+	  				<td>昨日收盘价：</td>
+	  				<td width="50px"></td>
+	  				<td id="tsr1">34.45</td>
+	  			</tr>
+	  			<tr>
+	  				<td>今日开盘价：</td>
+	  				<td width="50px"></td>
+	  				<td id="tsr2">33.98</td>
+	  			</tr>
+	  			<tr>
+	  				<td>最低价：</td>
+	  				<td width="50px"></td>
+	  				<td id="tsr3">33.65</td>
+	  			</tr>
+	  			<tr>
+	  				<td>最高价：</td>
+	  				<td width="50px"></td>
+	  				<td id="tsr4">34.98</td>
+	  			</tr>
+	  			<tr>
+	  				<td>换手率：</td>
+	  				<td width="50px"></td>
+	  				<td id="tsr5">12.24%</td>
+	  			</tr>
+  			</table>
+  		</div>
+  		<div class="tsinfo2">
+  			<table class="tsrtable">
+	  			<tr>
+	  				<td>市盈率：</td>
+	  				<td width="60px"></td>
+	  				<td id="tsr6">11.34%</td>
+	  			</tr>
+	  			<tr>
+	  				<td>市净率：</td>
+	  				<td width="60px"></td>
+	  				<td id="tsr7">10.98%</td>
+	  			</tr>
+	  			<tr>
+	  				<td>成交量：</td>
+	  				<td width="60px"></td>
+	  				<td id="tsr8">24.75</td>
+	  			</tr>
+	  			<tr>
+	  				<td>成交额：</td>
+	  				<td width="60px"></td>
+	  				<td id="tsr9">24765万</td>
+	  			</tr>
+	  			<tr>
+	  				<td>总市值：</td>
+	  				<td width="60px"></td>
+	  				<td id="tsr10">15.78亿</td>
+	  			</tr>
+  			</table>
+  		</div>
   		<div class="tsrealtime" id="tsrealtime"></div>
-
+        <script src="../../js/stock/theStock/realtime.js"></script>
   	</div>
   </div>
   <div class="hismarket">

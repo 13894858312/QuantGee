@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import service.stock.StockBasicInfoService;
 import service.stock.StockQuotaService;
-import vo.stock.RealTimeLineVO;
-import vo.stock.StockHistoricalVO;
-import vo.stock.StockIndexVO;
-import vo.stock.StockInputVO;
+import vo.stock.*;
 
 import java.util.ArrayList;
 
@@ -89,8 +86,18 @@ public class StockAction extends ActionSupport{
     }
 
     public String getRealTimeInfo(){
+
+        System.out.println("success");
+
         RealTimeLineVO realTimeLineVO = stockBasicInfoService.getStockRealTimeLineInfo(stockCode);
         JSONObject jsonObject = JSONObject.fromObject(realTimeLineVO);
+        result = jsonObject.toString();
+        return SUCCESS;
+    }
+
+    public String getRealCurrentInfo(){
+        StockCurrentVO stockCurrentVO = stockBasicInfoService.getStockRealTimeInfo(stockCode);
+        JSONObject jsonObject = JSONObject.fromObject(stockCurrentVO);
         result = jsonObject.toString();
         return SUCCESS;
     }

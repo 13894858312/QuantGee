@@ -81,9 +81,7 @@ public class ListAction extends ActionSupport {
     }
 
     public String getStockUpList(){
-        System.out.println("success");
         ArrayList<TopStockVO> topStockVOArrayList = marketInfoService.getTopStocks(0);
-System.out.println(topStockVOArrayList == null);
         JSONArray jsonArray = JSONArray.fromObject(topStockVOArrayList);
         result = jsonArray.toString();
         return SUCCESS;
