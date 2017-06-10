@@ -280,7 +280,7 @@ function clickwkbutton() {
     wkbutton.style.color = "#FFFFFF";
     mkbutton.style.backgroundColor = "#FFFFFF";
     mkbutton.style.color = "#000000";
-    dochart(1);
+    dochart(2);
 }
 function clickmkbutton() {
     var dkbutton = document.getElementById("dkbutton");
@@ -292,5 +292,5 @@ function clickmkbutton() {
     wkbutton.style.color = "#000000";
     mkbutton.style.backgroundColor = "#003366";
     mkbutton.style.color = "#FFFFFF";
-    dochart(1);
+    dochart(3);
 }
