@@ -212,7 +212,7 @@ function dochart(num) {
         grid: {
             top:'10%',
             left: '5%',
-            right: '3%',
+            right: '0%',
             bottom: '11%'
         },
         xAxis: {

@@ -79,7 +79,7 @@ public class StockAction extends ActionSupport{
     public String getIndex(){
         String date = DateHelper.getNowDate();
         String enddate = DateHelper.formerNTradeDay(date, 20);
-        String startdate = DateHelper.formerNTradeDay(enddate, 480);
+        String startdate = DateHelper.formerNTradeDay(enddate, 120);
         StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate, "d");
         StockIndexVO stockIndexVO = stockQuotaService.getStockIndex(stockInputVO);
         JSONObject jsonObject = JSONObject.fromObject(stockIndexVO);
