@@ -1,5 +1,4 @@
 function returnLogin() {
-    document.getElementById("test").innerHTML = "用户登陆";
     var x = document.getElementById("registbox");
     x.style.display = "none";
     document.getElementById("loginbox").style.display = "inherit";
