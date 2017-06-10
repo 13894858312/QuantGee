@@ -34,6 +34,7 @@
     <style type="text/css">
         @import "../../css/market/market.css";
         @import "../../css/style.css";
+        @import "../../css/market/loading.css";
     </style>
 </head>
 <body onload="changewhole1();">
@@ -93,7 +94,16 @@
 					</div>
 				</div>
 			</div>
-			<div class="kline" id="kline"></div>
+			<div class="kline" id="kline">
+				<div class="spinner" id="spinner">
+				  <div class="bounce1"></div>
+				  <div class="bounce2"></div>
+				  <div class="bounce3"></div>
+				  <div class="bounce4"></div>
+				  <div class="bounce5"></div>
+				</div>
+			</div>
+			
 			<div class="volume" id="volume"></div>
             <script src="../../js/marketInfo/KLine.js"></script>
 		</div>

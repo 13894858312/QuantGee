@@ -48,6 +48,12 @@ public class MarketInfoAction extends ActionSupport {
         return SUCCESS;
     }
 
+    public String getWeekKline(){
+        JSONObject jsonObject = JSONObject.fromObject(getMarketInfo(20,480));
+        result = jsonObject.toString();
+        return SUCCESS;
+    }
+
     public String getRealSHDate(){
         RealTimeLineVO realTimeLineVO = stockBasicInfoService.getStockRealTimeLineInfo("sh");
         JSONArray jsonArray = JSONArray.fromObject(realTimeLineVO.getTimes());
