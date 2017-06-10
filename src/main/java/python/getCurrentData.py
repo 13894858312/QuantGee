@@ -305,16 +305,39 @@
 #     date = time.strftime('%Y-%m-%d',time.localtime(time.time()))
 #     hour = time.asctime()[11:13]
 #     minute = time.asctime()[14:16]
+#     week = time.asctime()[0:3]
 #     print hour + ':' + minute
+#
+#     if week == 'Sat' or week == 'Sun':
+#         print 'weekend'
+#         time.sleep(7200)
+#         continue
+#
 #     if hour >= '09':
+#
 #         if hour < '16':
 #             get_current_data()
+#             time.sleep(120)
+#
 #         elif hour == '16':
-#             for l in list:
-#                 getStockInfo(l, date)
+#             if minute < '05':
+#                 for l in list:
+#                     getStockInfo(l, date)
+#             time.sleep(3600)
+#
+#         else:
+#             time.sleep(3600)
+#
+#         continue
+#
 #     if hour == '08':
+#
 #         if minute < '05':
 #             replace()
-#     # getStockInfo('000001',date)
-#     print 'over'
-#     time.sleep(120)
+#
+#         time.sleep(120)
+#         continue
+#
+#     time.sleep(3600)
+#     continue
+#
