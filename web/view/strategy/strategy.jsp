@@ -36,7 +36,7 @@
 		<script type="text/javascript" src="../../js/strategy/strategy.js"></script>
 		<link rel="stylesheet" href="../../css/style.css" />
 		<link rel="stylesheet" href="../../css/strategy/strategy.css" />
-		<link rel="stylesheet" href="../../Checkboxes/css/build.css" />
+		<!--<link rel="stylesheet" href="../../css/strategy/build.css" />-->
 
 	</head>
 
@@ -249,7 +249,9 @@ width: 80px;
     font-family: &quot;Roboto Mono&quot;, monospace;
     background: #FFFFFF;
 ">股票池</span> </div>
+
 		</div>
+
 		<div id=con_str>
 			<span id="chooseStrategy">选择策略</span>
 			<ul id=tip_tags>
@@ -303,58 +305,58 @@ width: 80px;
 									</script>
 								</th>
 								<th>
-									<div class="checkbox">
-										<input id="checkbox1" class="styled" type="checkbox">
-										<label for="checkbox1">
-		                            是否包含ST股
-		                        </label>
+									<div id="initFund">
+										<label style="font-weight: 100; width: 64px;">初始资金</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
 								</th>
 							</tr>
 							<tr>
 								<th>
-									<p>指定
-										<select>
-											<option value="0">板块</option>
-											<option value="1">股票</option>
-										</select>
-									</p>
+									<div id="holdingPeriod">
+										<label style="font-weight: 100; width: 64px;">持有期</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
 
 								</th>
+
 								<th>
-									<span>选择策略</span>
-									<select>
-										<option value="0">动量策略</option>
-									</select>
+									<div id="returnPeriod">
+										<label style="font-weight: 100; width: 64px;">形成期</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
 								</th>
 								<th>
-									<span>选择策略</span>
-									<select>
-										<option value="0">动量策略</option>
-									</select>
+									<input type="checkbox" name="category" value="今日话题" style="
+									    width: 20px;
+									    height: 20px;
+									    margin: 0;
+									    margin-top: 13px;
+									    float: left;
+									">
+									<label style="font-weight: 100;width: 100px;height: 40px;line-height: 40px;/* margin-bottom: 20px; */">剔除ST股</label>
+
 								</th>
 							</tr>
 							<tr>
 								<th>
-									<p>指定
-										<select>
-											<option value="0">板块</option>
-											<option value="1">股票</option>
-										</select>
-									</p>
+									<div id="ratio">
+										<label style="font-weight: 100;width: 64px;">持股比例（％）</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
 
 								</th>
 								<th>
-									<span>选择策略</span>
-									<select>
-										<option value="0">动量策略</option>
-									</select>
+									<div id="ratio">
+										<label style="font-weight: 100;width: 64px;">止损点（％）</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
 								</th>
 								<th>
-									<span>选择策略</span>
-									<select>
-										<option value="0">动量策略</option>
-									</select>
+									<div id="ratio">
+										<label style="font-weight: 100;width: 64px;">止盈点（％）</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
 								</th>
 							</tr>
 
@@ -362,22 +364,406 @@ width: 80px;
 					</form>
 				</div>
 				<div class=tagContent_str id=tagContent_str1>
-					<div class="col-xs-12 col-sm-4">
-						<div class="controls" style="width: 100px;">
-							<input class="datepicker form-control" type="text" />
-						</div>
-					</div>
-					<script type="text/javascript">
-						$('.datepicker').datepicker({
-							weekStart: 1,
-							color: 'red'
-						});
-					</script>
+					<form id="param">
+						<table id="paramTable">
+							<tr>
+								<th>
+									<span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
+									<div class="col-xs-12 col-sm-4">
+										<div class="startTime" style="width: 100px;">
+											<input class="datepicker form-control" type="text" />
+										</div>
+									</div>
+									<script type="text/javascript">
+										$('.datepicker').datepicker({
+											weekStart: 1,
+											color: 'red'
+										});
+									</script>
+								</th>
+								<th>
+									<span style="float: left; height: 35px; line-height: 35px;">结束时间</span>
+									<div class="col-xs-12 col-sm-4">
+										<div class="endTime" style="width: 100px;">
+											<input class="datepicker form-control" type="text" />
+										</div>
+									</div>
+									<script type="text/javascript">
+										$('.datepicker').datepicker({
+											weekStart: 1,
+											color: 'red'
+										});
+									</script>
+								</th>
+								<th>
+									<div id="initFund">
+										<label style="font-weight: 100; width: 64px;">初始资金</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+							</tr>
+							<tr>
+								<th>
+									<div id="holdingPeriod">
+										<label style="font-weight: 100; width: 64px;">持有期</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+
+								</th>
+
+								<th>
+									<div id="returnPeriod">
+										<label style="font-weight: 100; width: 64px;">形成期</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+								<th>
+									<input type="checkbox" name="category" style="
+									    width: 20px;
+									    height: 20px;
+									    margin: 0;
+									    margin-top: 13px;
+									    float: left;
+									">
+									<label style="font-weight: 100;width: 100px;height: 40px;line-height: 40px;/* margin-bottom: 20px; */">剔除ST股</label>
+
+								</th>
+							</tr>
+							<tr>
+								<th>
+									<div id="holdingStockNum">
+										<label style="font-weight: 100;width: 64px;">持股数量</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+
+								</th>
+								<th>
+									<div id="ratio">
+										<label style="font-weight: 100;width: 64px;">止损点（％）</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+								<th>
+									<div id="ratio">
+										<label style="font-weight: 100;width: 64px;">止盈点（％）</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+							</tr>
+
+						</table>
+					</form>
 				</div>
-				<div class=tagContent_str id=tagContent_str2>第三个标签</div>
-				<div class=tagContent_str id=tagContent_str3>第四个标签</div>
-				<div class=tagContent_str id=tagContent_str4>第四个标签</div>
+				<div class=tagContent_str id=tagContent_str2>
+					<form id="param">
+						<table id="paramTable">
+							<tr>
+								<th>
+									<span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
+									<div class="col-xs-12 col-sm-4">
+										<div class="startTime" style="width: 100px;">
+											<input class="datepicker form-control" type="text" />
+										</div>
+									</div>
+									<script type="text/javascript">
+										$('.datepicker').datepicker({
+											weekStart: 1,
+											color: 'red'
+										});
+									</script>
+								</th>
+								<th>
+									<span style="float: left; height: 35px; line-height: 35px;">结束时间</span>
+									<div class="col-xs-12 col-sm-4">
+										<div class="endTime" style="width: 100px;">
+											<input class="datepicker form-control" type="text" />
+										</div>
+									</div>
+									<script type="text/javascript">
+										$('.datepicker').datepicker({
+											weekStart: 1,
+											color: 'red'
+										});
+									</script>
+								</th>
+								<th>
+									<div id="initFund">
+										<label style="font-weight: 100; width: 64px;">初始资金</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+							</tr>
+							<tr>
+								<th>
+									<div id="holdingPeriod">
+										<label style="font-weight: 100; width: 64px;">持有期</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+
+								</th>
+
+								<th>
+									<div id="returnPeriod">
+										<label style="font-weight: 100; width: 64px;">形成期</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+								<th>
+									<input type="checkbox" name="category" style="
+									    width: 20px;
+									    height: 20px;
+									    margin: 0;
+									    margin-top: 13px;
+									    float: left;
+									">
+									<label style="font-weight: 100;width: 100px;height: 40px;line-height: 40px;/* margin-bottom: 20px; */">剔除ST股</label>
+
+								</th>
+							</tr>
+							<tr>
+								<th>
+									<div id="holdingStockNum">
+										<label style="font-weight: 100;width: 64px;">持股数量</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+
+								</th>
+								<th>
+									<div id="ratio">
+										<label style="font-weight: 100;width: 64px;">止损点（％）</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+								<th>
+									<div id="ratio">
+										<label style="font-weight: 100;width: 64px;">止盈点（％）</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+							</tr>
+							<tr>
+								<th>
+									<div id="shortReturnPeriod">
+										<label style="font-weight: 100;width: 64px;">第二条N日均线</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+							</tr>
+
+						</table>
+					</form>
+				</div>
+				<div class=tagContent_str id=tagContent_str3>
+					<form id="param">
+						<table id="paramTable">
+							<tr>
+								<th>
+									<span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
+									<div class="col-xs-12 col-sm-4">
+										<div class="startTime" style="width: 100px;">
+											<input class="datepicker form-control" type="text" />
+										</div>
+									</div>
+									<script type="text/javascript">
+										$('.datepicker').datepicker({
+											weekStart: 1,
+											color: 'red'
+										});
+									</script>
+								</th>
+								<th>
+									<span style="float: left; height: 35px; line-height: 35px;">结束时间</span>
+									<div class="col-xs-12 col-sm-4">
+										<div class="endTime" style="width: 100px;">
+											<input class="datepicker form-control" type="text" />
+										</div>
+									</div>
+									<script type="text/javascript">
+										$('.datepicker').datepicker({
+											weekStart: 1,
+											color: 'red'
+										});
+									</script>
+								</th>
+								<th>
+									<div id="initFund">
+										<label style="font-weight: 100; width: 64px;">初始资金</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+							</tr>
+							<tr>
+								<th>
+									<div id="holdingPeriod">
+										<label style="font-weight: 100; width: 64px;">持有期</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+
+								</th>
+
+								<th>
+									<div id="returnPeriod">
+										<label style="font-weight: 100; width: 64px;">形成期</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+								<th>
+									<input type="checkbox" name="category" style="
+									    width: 20px;
+									    height: 20px;
+									    margin: 0;
+									    margin-top: 13px;
+									    float: left;
+									">
+									<label style="font-weight: 100;width: 100px;height: 40px;line-height: 40px;/* margin-bottom: 20px; */">剔除ST股</label>
+
+								</th>
+							</tr>
+							<tr>
+								<th>
+									<div id="holdingStockNum">
+										<label style="font-weight: 100;width: 64px;">持股数量</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+
+								</th>
+								<th>
+									<div id="ratio">
+										<label style="font-weight: 100;width: 64px;">止损点（％）</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+								<th>
+									<div id="ratio">
+										<label style="font-weight: 100;width: 64px;">止盈点（％）</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+							</tr>
+							<tr>
+								<th>
+									<div id="changeNumber">
+										<label style="font-weight: 100;width: 64px;">换仓股票数量</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div class=tagContent_str id=tagContent_str4>
+					<form id="param">
+						<table id="paramTable">
+							<tr>
+								<th>
+									<span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
+									<div class="col-xs-12 col-sm-4">
+										<div class="startTime" style="width: 100px;">
+											<input class="datepicker form-control" type="text" />
+										</div>
+									</div>
+									<script type="text/javascript">
+										$('.datepicker').datepicker({
+											weekStart: 1,
+											color: 'red'
+										});
+									</script>
+								</th>
+								<th>
+									<span style="float: left; height: 35px; line-height: 35px;">结束时间</span>
+									<div class="col-xs-12 col-sm-4">
+										<div class="endTime" style="width: 100px;">
+											<input class="datepicker form-control" type="text" />
+										</div>
+									</div>
+									<script type="text/javascript">
+										$('.datepicker').datepicker({
+											weekStart: 1,
+											color: 'red'
+										});
+									</script>
+								</th>
+								<th>
+									<div id="initFund">
+										<label style="font-weight: 100; width: 64px;">初始资金</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+							</tr>
+							<tr>
+								<th>
+									<div id="holdingPeriod">
+										<label style="font-weight: 100; width: 64px;">持有期</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+
+								</th>
+
+								<th>
+									<div id="returnPeriod">
+										<label style="font-weight: 100; width: 64px;">形成期</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+								<th>
+									<input type="checkbox" name="category" style="
+									    width: 20px;
+									    height: 20px;
+									    margin: 0;
+									    margin-top: 13px;
+									    float: left;
+									">
+										<label style="font-weight: 100;width: 100px;height: 40px;line-height: 40px;/* margin-bottom: 20px; */">剔除ST股</label>
+									
+								</th>
+							</tr>
+							<tr>
+								<th>
+									<div id="ratio">
+										<label style="font-weight: 100;width: 64px;">持股比例（％）</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+
+								</th>
+								<th>
+									<div id="ratio">
+										<label style="font-weight: 100;width: 64px;">止损点（％）</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+								<th>
+									<div id="ratio">
+										<label style="font-weight: 100;width: 64px;">止盈点（％）</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+							</tr>
+							<tr>
+								<th>
+									<div id="trainPeriod">
+										<label style="font-weight: 100;width: 64px;">训练天数</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+								<th>
+									<div id="k">
+										<label style="font-weight: 100;width: 64px;">最邻近数量</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+								<th>
+									<div id="vectorLength">
+										<label style="font-weight: 100;width: 64px;">最邻近向量长度</label>
+										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+									</div>
+								</th>
+							</tr>
+						</table>
+					</form>
+					
+				</div>
 			</div>
+			
 		</div>
 
 		<hr />

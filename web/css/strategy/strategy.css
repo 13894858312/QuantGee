@@ -159,8 +159,8 @@ ol li {
 .tagContent_str {
 	overflow-y: scroll;
 	/*border: 1px solid #000000;*/
+	margin-top: 10px;
 	DISPLAY: none;
-	height: 20%;
 }
 
 #tagContent_str DIV.selectTag_str {
@@ -177,6 +177,9 @@ ol li {
 
 #paramTable th {
 	width: 33%;
+	font-weight: 100;
+	padding : 10px;
+	
 }
 
 #createStockPool {
