@@ -72,7 +72,8 @@
   		</div>
   		<div class="tsinfo2"></div>
   		<div class="tsinfo2"></div>
-  		<div class="tsrealtime"></div>
+  		<div class="tsrealtime" id="tsrealtime"></div>
+
   	</div>
   </div>
   <div class="hismarket">

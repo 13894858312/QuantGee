@@ -117,5 +117,27 @@
                 <param name="root">result</param>
             </result>
         </action>
+        <action name="getRealTimeInfo" class="stockAction" method="getRealTimeInfo">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
 	</package>
+    <package name="trade" extends="json-default,struts-default">
+        <action name="getdkInfo" class="tradeAction" method="getStockDayKlineInfo">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="getTradeIndex" class="tradeAction" method="getTradeIndex">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="getSTCodeInfo" class="tradeAction" method="getSTCodeInfo">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
 </struts>

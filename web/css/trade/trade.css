@@ -130,12 +130,59 @@
 	font-weight: 100;
 	font-family: "Roboto Mono", monospace;
 }
+#inputstcode{
+	float: left;
+	margin-left: 15%;
+	width: 15%;
+	margin-top: 20px;
+	height: 25px;
+	border-radius: 3px;
+	border: 1px solid #C0C0C0;
+}
+#inputnumofcode{
+	float: left;
+	margin-left: 3%;
+	width: 15%;
+	margin-top: 20px;
+	height: 25px;
+	border-radius: 3px;
+	border: 1px solid #C0C0C0;
+}
+.nowmoney{
+	float: left;
+	width: 5%;
+	margin-top: 23px;
+	height: 25px;
+}
+.nowmoneytext{
+	float: left;
+	margin-left: 3%;
+	width: 9%;
+	margin-top: 23px;
+	height: 25px;
+}
+.check{
+	cursor: hand;
+	float: left;
+	text-align: center;
+	margin-top: 20px;
+	margin-left: 5%;
+	width: 5%;
+	height: 22px;
+	color: #FFFFFF;
+	background-color: #003366;
+	opacity: 0.8;
+	border-radius: 3px;
+	font-size: 18px;
+	font-weight: 100;
+	font-family: "Roboto Mono", monospace;
+}
 .buy{
 	cursor: hand;
 	float: left;
 	text-align: center;
 	margin-top: 20px;
-	margin-left: 76%;
+	margin-left: 1%;
 	width: 5%;
 	height: 22px;
 	color: #FFFFFF;

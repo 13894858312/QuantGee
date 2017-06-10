@@ -61,7 +61,7 @@
     	<div class="graph">
     		<div class="kimgandindex">
     			<div class="kimg" id="kline"></div>
-    			<script src="../../js/trade/klineandindex.js"></script>
+    			<%--<script src="../../js/trade/klineandindex.js"></script>--%>
     			<div class="indexhead">
     				<div class="indexbutton">
     					<div class="mkrbbutton" id="MACDbutton" onclick="clickMACDbutton()">
@@ -78,8 +78,8 @@
 						</div>
 	    			</div>
     			</div>
-    			<div class="idneximg" id="indeximg"></div>
-    			<script src="../../js/trade/klineandindex.js"></script>
+    			<div class="idneximg" id="index"></div>
+    			<script src="../../js/trade/tradeIndex.js"></script>
     		</div>
     		<div class="realanddata">
     			<div class="realimg"></div>
@@ -90,6 +90,11 @@
     <div class="testtradehead">
     	<div class="testheadtext">
     		<div class="text">持仓交易</div>
+    		<input id="inputstcode" type="text" placeholder="请输入股票代码">
+    		<input id="inputnumofcode" type="text" placeholder="请输入持仓股数">
+    		<div class="nowmoneytext">当前余额：</div>	
+    		<div class="nowmoney" id="nowmoney">100000</div>
+    		<div class="check" onclick="getCheck()">查询</div>
     		<div class="buy" onclick="addrow()">买入</div>
     	</div>
     </div>
