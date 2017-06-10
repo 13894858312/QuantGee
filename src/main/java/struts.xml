@@ -36,6 +36,16 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+		<action name="weekKline" class="marketInfoAction" method="getWeekKline">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="monthKline" class="marketInfoAction" method="getMonthKline">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
 		<action name="getRealSHDate" class="marketInfoAction" method="getRealSHDate">
 			<result name="success" type="json">
 				<param name="root">result</param>
@@ -77,11 +87,21 @@
         </action>
     </package>
 	<package name="stock" extends="json-default,struts-default">
-		<action name="getStockKlineInfo" class="stockAction" method="getStockKlineInfo">
+		<action name="getStockDayKlineInfo" class="stockAction" method="getStockDayKlineInfo">
 			<result name="success" type="json">
 				<param name="root">result</param>
 			</result>
 		</action>
+        <action name="getStockWeekKlineInfo" class="stockAction" method="getStockWeekKlineInfo">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="getStockMonthKlineInfo" class="stockAction" method="getStockMonthKlineInfo">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
         <action name="totheStock" class="stockAction" method="totheStock">
             <result name="success" type="json">
                 <param name="root">result</param>
