@@ -55,7 +55,7 @@
 	margin-left: 72%;
 	width: 28%;
 	height: 20px;
-	background-color: #F8F8F8;
+	/*background-color: #F8F8F8;*/
 }
 .mkrbbutton{
 	cursor: hand;
@@ -71,6 +71,22 @@
 	font-size: 14px;
 	font-weight: 100;
 	font-family: "Roboto Mono", monospace;
+}
+#MACDbutton{
+	color: #FFFFFF;
+	background-color: #003366;
+}
+#KDJbutton{
+	color: #000000;
+	background-color: #FFFFFF;
+}
+#RSIbutton{
+	color: #000000;
+	background-color: #FFFFFF;
+}
+#BOLLbutton{
+	color: #000000;
+	background-color: #FFFFFF;
 }
 .realanddata{
 	float: left;

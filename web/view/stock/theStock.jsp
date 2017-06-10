@@ -100,21 +100,22 @@
 					指标分析
 				</div>
 				<div class="indexbutton">
-					<div class="mkrbbutton">
+					<div class="mkrbbutton"  id="MACDbutton" onclick="clickMACDbutton()">
 						MACD
 					</div>
-					<div class="mkrbbutton">
+					<div class="mkrbbutton"  id="KDJbutton" onclick="clickKDJbutton()">
 						KDJ
 					</div>
-					<div class="mkrbbutton">
+					<div class="mkrbbutton"  id="RSIbutton" onclick="clickRSIbutton()">
 						RSI
 					</div>
-					<div class="mkrbbutton">
+					<div class="mkrbbutton"  id="BOLLbutton" onclick="clickBOLLbutton()">
 						BOLL
 					</div>
 				</div>
 			</div>
 			<div class="index" id="index"></div>
+			<script src="../../js/trade/klineandindex.js"></script>
 	</div>
 	<div class="analysis">
 		<div class="anahead">

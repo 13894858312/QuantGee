@@ -71,4 +71,6 @@ public class StockAction extends ActionSupport{
         result = jsonObject.toString();
         return SUCCESS;
     }
+
+
 }
