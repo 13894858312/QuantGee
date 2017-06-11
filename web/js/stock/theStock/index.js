@@ -1,20 +1,6 @@
 /**
  * Created by Administrator on 2017/6/10.
  */
-var json;
-$.ajax({
-    cache:false,
-    async:false,
-    url:'getIndex.action',
-    type:'GET',
-    dataType:'json',
-    success:function (data) {
-        json = JSON.parse(data);
-    },
-    error:function (data) {
-        alert("error");
-    }
-});
 var date = [];
 //macd
 var diffdata = [];
@@ -35,48 +21,87 @@ var rsi24data = [];
 var middata = [];
 var updata = [];
 var lowdata = [];
-for(var i=0;i<json['diff'].length;i++){
-    date.push(json['diff'][i]['date']);
-}
-for(var i=0;i<json['diff'].length;i++){
-    diffdata.push(json['diff'][i]['value']);
-}
-for(var i=0;i<json['dea'].length;i++){
-    deadata.push(json['dea'][i]['value']);
-}
-for(var i=0;i<json['macd'].length;i++){
-    macddata.push(json['macd'][i]['value']);
-}
-for(var i=0;i<json['k'].length;i++){
-    kdata.push(json['k'][i]['value']);
-}
-for(var i=0;i<json['d'].length;i++){
-    ddata.push(json['d'][i]['value']);
-}
-for(var i=0;i<json['j'].length;i++){
-    jdata.push(json['j'][i]['value']);
-}
-for(var i=0;i<json['rsi6'].length;i++){
-    rsi6data.push(json['rsi6'][i]['value']);
-}
-for(var i=0;i<json['rsi12'].length;i++){
-    rsi12data.push(json['rsi12'][i]['value']);
-}
-for(var i=0;i<json['rsi24'].length;i++){
-    rsi24data.push(json['rsi24'][i]['value']);
-}
-for(var i=0;i<json['mid'].length;i++){
-    middata.push(json['mid'][i]['value']);
-}
-for(var i=0;i<json['up'].length;i++){
-    updata.push(json['up'][i]['value']);
-}
-for(var i=0;i<json['low'].length;i++){
-    lowdata.push(json['low'][i]['value']);
+
+
+function setDate() {
+    var json;
+    date = [];
+//macd
+    diffdata = [];
+    deadata = [];
+    macddata = [];
+
+//kdj
+    kdata = [];
+    ddata = [];
+    jdata = [];
+
+//rsi
+    rsi6data = [];
+    rsi12data = [];
+    rsi24data = [];
+
+//boll
+    middata = [];
+    updata = [];
+    lowdata = [];
+    $.ajax({
+        cache:false,
+        async:false,
+        url:'getIndex.action',
+        type:'GET',
+        dataType:'json',
+        success:function (data) {
+            json = JSON.parse(data);
+        },
+        error:function (data) {
+            alert("error");
+        }
+    });
+    for(var i=0;i<json['diff'].length;i++){
+        date.push(json['diff'][i]['date']);
+    }
+    for(var i=0;i<json['diff'].length;i++){
+        diffdata.push(json['diff'][i]['value']);
+    }
+    for(var i=0;i<json['dea'].length;i++){
+        deadata.push(json['dea'][i]['value']);
+    }
+    for(var i=0;i<json['macd'].length;i++){
+        macddata.push(json['macd'][i]['value']);
+    }
+    for(var i=0;i<json['k'].length;i++){
+        kdata.push(json['k'][i]['value']);
+    }
+    for(var i=0;i<json['d'].length;i++){
+        ddata.push(json['d'][i]['value']);
+    }
+    for(var i=0;i<json['j'].length;i++){
+        jdata.push(json['j'][i]['value']);
+    }
+    for(var i=0;i<json['rsi6'].length;i++){
+        rsi6data.push(json['rsi6'][i]['value']);
+    }
+    for(var i=0;i<json['rsi12'].length;i++){
+        rsi12data.push(json['rsi12'][i]['value']);
+    }
+    for(var i=0;i<json['rsi24'].length;i++){
+        rsi24data.push(json['rsi24'][i]['value']);
+    }
+    for(var i=0;i<json['mid'].length;i++){
+        middata.push(json['mid'][i]['value']);
+    }
+    for(var i=0;i<json['up'].length;i++){
+        updata.push(json['up'][i]['value']);
+    }
+    for(var i=0;i<json['low'].length;i++){
+        lowdata.push(json['low'][i]['value']);
+    }
+
 }
 drawMACD();
 function drawMACD() {
-
+    setDate();
     var myChart = echarts.init(document.getElementById("index"));
     var option = {
         tooltip: {
@@ -95,6 +120,7 @@ function drawMACD() {
             bottom: '11%'
         },
         xAxis:  {
+            boundaryGap: true,
             type: 'category',
             data: date
         },
@@ -118,7 +144,7 @@ function drawMACD() {
             },
             {
                 name:'macd',
-                type:'line',
+                type:'bar',
                 data:macddata
             }
         ]
@@ -126,6 +152,7 @@ function drawMACD() {
     myChart.setOption(option);
 }
 function drwaKDJ() {
+    setDate();
     var myChart = echarts.init(document.getElementById("index"));
     var option = {
         tooltip: {
@@ -144,6 +171,7 @@ function drwaKDJ() {
             bottom: '11%'
         },
         xAxis:  {
+            boundaryGap: true,
             type: 'category',
             data: date
         },
@@ -175,6 +203,7 @@ function drwaKDJ() {
     myChart.setOption(option);
 }
 function drawRSI() {
+    setDate();
     var myChart = echarts.init(document.getElementById("index"));
     var option = {
         tooltip: {
@@ -223,7 +252,31 @@ function drawRSI() {
     };
     myChart.setOption(option);
 }
+function getKline() {
+    var kline;
+    var klinebar = [];
+    $.ajax({
+        cache:false,
+        async:false,
+        url:'getBOLLKline.action',
+        type:'GET',
+        dataType:'json',
+        success:function (data) {
+            kline = JSON.parse(data);
+        }
+    });
+    for(var i=0;i<kline['kLine'].length;i++){
+        var temp = [];
+        temp.push(kline['kLine'][i]['open']);
+        temp.push(kline['kLine'][i]['close']);
+        temp.push(kline['kLine'][i]['low']);
+        temp.push(kline['kLine'][i]['high']);
+        klinebar.push(temp);
+    }
+    return klinebar;
+}
 function drawBOLL() {
+    setDate();
     var myChart = echarts.init(document.getElementById("index"));
     var option = {
         tooltip: {
@@ -233,7 +286,7 @@ function drawBOLL() {
             }
         },
         legend: {
-            data:['mid','up','low']
+            data:['日k','mid','up','low']
         },
         grid: {
             top:'13%',
@@ -253,6 +306,11 @@ function drawBOLL() {
             scale:true
         },
         series: [
+            {
+                name:'日k',
+                type: 'candlestick',
+                data: getKline()
+            },
             {
                 name:'mid',
                 type:'line',

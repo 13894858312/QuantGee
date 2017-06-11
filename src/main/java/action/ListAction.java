@@ -67,6 +67,7 @@ public class ListAction extends ActionSupport {
     }
 
     public String getWebStockName(){
+        stockCode = stockBasicInfoService.getCodeByName(stockName);
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add(stockName);
         JSONArray jsonArray = JSONArray.fromObject(arrayList);
@@ -89,8 +90,8 @@ public class ListAction extends ActionSupport {
 
     public String getStockCurrentVO(){
         StockCurrentVO stockCurrentVO = stockBasicInfoService.getStockRealTimeInfo(stockCode);
-        JSONArray jsonArray = JSONArray.fromObject(stockCurrentVO);
-        result = jsonArray.toString();
+        JSONObject jsonObject = JSONObject.fromObject(stockCurrentVO);
+        result = jsonObject.toString();
         return SUCCESS;
     }
 }

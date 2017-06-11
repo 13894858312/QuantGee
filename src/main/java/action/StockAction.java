@@ -88,6 +88,12 @@ public class StockAction extends ActionSupport{
         return SUCCESS;
     }
 
+    public String getBOLLKline(){
+        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,120, "d"));
+        result = jsonObject.toString();
+        return SUCCESS;
+    }
+
     public String getRealTimeInfo(){
 
         System.out.println("success");

@@ -132,6 +132,11 @@
                 <param name="root">result</param>
             </result>
         </action>
+        <action name="getBOLLKline" class="stockAction" method="getBOLLKline">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
 	</package>
     <package name="trade" extends="json-default,struts-default">
         <action name="getdkInfo" class="tradeAction" method="getStockDayKlineInfo">
@@ -150,6 +155,11 @@
             </result>
         </action>
         <action name="getPredictResult" class="tradeAction" method="getPredictResult">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="getBOLLKlineInfo" class="tradeAction" method="getBOLLKlineInfo">
             <result name="success" type="json">
                 <param name="root">result</param>
             </result>

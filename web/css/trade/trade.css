@@ -49,7 +49,7 @@
 	float: left;
 	margin-left: 15%;
 	width: 70%;
-	height:150px;
+	height:180px;
 	/*background-color: #F8F8F8;*/
 }
 .indexbutton{
@@ -117,6 +117,7 @@
 	background-color: #FFFFFF;
 }
 .testtradehead{
+	margin-top: 30px;
 	float: left;
 	width: 100%;
 	height: 50px;
