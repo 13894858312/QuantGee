@@ -10,6 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
 		<script type="text/javascript" src="../../jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="../../js/ucenter/ucenter.js"></script>
+		<!--<script type="text/javascript" src="../../js/marketInfo/headcontroller.js" ></script>-->
 	</head>
 
 	<body>
@@ -36,6 +37,15 @@
 			<div class="menu" id="ha5" style="border-bottom: 2px solid rgb(62, 196, 131);">
 				<a class="menua" id="a5" href="../../view/ucenter/user_center.jsp" target="_blank" style="color: rgb(62, 196, 131);">个人中心</a>
 			</div>
+			<div>
+				<span id="username" style="
+				    float: right;
+				    margin-right: 100px;
+				    margin-top: 24px;
+				    font-size: 20px;
+				">bcy</span> 
+			</div>
+
 		</div>
 		<div class="info_panel day">
 			<div class="control">
@@ -99,10 +109,10 @@
 							<s:iterator value="stockCurrentVOS">
 								<tr>
 									<td>
-										<a target="_blank"><s:property value="name" /></a>
+										<a onclick="totheStockView()" target="_blank"><s:property value="stockName" /></a>
 									</td>
 									<td>
-										<a target="_blank"><s:property value="code" /></a>
+										<a id="inputStockCode" onclick="totheStockView()" target="_blank"><s:property value="code" /></a>
 									</td>
 									<td><s:property value="trade" /></td>
 									<td><s:property value="changePercent" /></td>
@@ -129,11 +139,11 @@
 									<td><s:property value="mktcap" /></td>
 									<td><s:property value="per" /></td>
 									<td><s:property value="pb" /></td>
- 								</tr>
+								</tr>
 							</s:iterator>
 						</tbody>
 					</table>
-					<table class="colums hide" >
+					<table class="colums hide">
 						<thead>
 							<tr style="border: 1px solid #e4f2ff;">
 								<th class="table_sort" style="width:110px;"><i></i><span>昨日收盘价</span></th>
