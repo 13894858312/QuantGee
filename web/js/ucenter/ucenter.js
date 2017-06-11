@@ -1,6 +1,7 @@
 var accountID;
 var collectedStrategy;
 var Stock;
+var userInfo;
 
 $(document).ready(function() {
 //判断当前登陆用户
@@ -54,14 +55,19 @@ $(document).ready(function() {
 //获取用户信息
 		$.ajax({
 			type: 'get',
-			url: 'getCollectStock.action',
+			url: 'getUserInfo.action',
 			async: false,
 			data: {
 				accountID: accountID
 			},
 			dataType: 'json',
 			success: function(data) {
-				collectedStock = JSON.parse(data);
+				alert(data);
+				userInfo = JSON.parse(data);
+				document.getElementById("accountIDInfo").value = userInfo["accountID"];
+				document.getElementById("usernameInfo").value = userInfo["userName"];
+				document.getElementById("phoneNumber").value = userInfo["phoneNumber"];
+				
 			},
 			error: function(data) {
 				alert("error");
@@ -82,22 +88,6 @@ function changecolumns() {
 		document.getElementById("next").style.backgroundPositionY = "-767px";
 	}
 
-}
-
-function getSession() {
-	$.ajax({
-		type: 'get',
-		url: 'haveLogin.action',
-		async: false,
-		dataType: 'json',
-		success: function(data) {
-			//			alert(data);
-		},
-		error: function(data) {
-			return "hh";
-			alert("error");
-		}
-	});
 }
 
 function totheStockView() {
@@ -136,4 +126,10 @@ function accountSettingPanel() {
 	document.getElementById("myStock").style.display = "none";
 	document.getElementById("myStrategy").style.display = "none";
 	document.getElementById("accountSetting").style.display = "block";
+}
+
+function changeInfo(infoField){
+	document.getElementById(infoField).removeAttribute("readonly");
+	document.getElementById(infoField).focus();
+	document.getElementById("changeInfoButton").style.display = "block";
 }

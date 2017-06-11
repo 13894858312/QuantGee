@@ -18,20 +18,21 @@
 		<action name="register" class="loginAction" method="register">
 			<result name="success">/view/ucenter/login.jsp</result>
 		</action>
-		<action name="haveLogin" class="loginAction" method="haveLogin">
-			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
+
     </package>
 
     <package name="ucenter" extends="json-default,struts-default">
+        <action name="haveLogin" class="action.UcenterAction" method="haveLogin">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
         <action name="getCollectStock" class="action.UserStockAction" method="getCollectStock">
             <result name="success" type="json">
                 <param name="root">result</param>
             </result>
         </action>
-        <action name="getUserInfo" class="action.LoginAction" method="getUserInfo">
+        <action name="getUserInfo" class="action.UcenterAction" method="getUserInfo">
             <result name="success" type="json">
                 <param name="root">result</param>
             </result>

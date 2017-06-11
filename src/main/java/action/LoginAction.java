@@ -28,7 +28,6 @@ public class LoginAction extends ActionSupport {
     //	private AccountVO accountVO = new AccountVO(); // 表单中的姓名
     private AccountVO accountVO; // 表单中的姓名
 
-
     private ArrayList<StockCurrentVO> stockCurrentVOS; //用户收藏的股票
 
 
@@ -77,26 +76,6 @@ public class LoginAction extends ActionSupport {
         } else {
             return "fail";
         }
-    }
-
-    public String haveLogin() {
-        ActionContext actionContext = ActionContext.getContext();
-        Map session = actionContext.getSession();
-        JSONObject jsonObject = JSONObject.fromObject(session);
-        result = jsonObject.toString();
-        if (session.get("accountID") != null) {
-            return SUCCESS;
-        } else {
-            result="{"+'"'+"accountID"+'"'+":"+'"'+'"'+"}";
-        }
-        return SUCCESS;
-    }
-
-    public String getUserInfo(){
-        UserVO userVO = userService.getUserInfo(accountVO.getAccountID());
-        JSONObject json = JSONObject.fromObject(userVO);
-        result = json.toString();
-        return SUCCESS;
     }
 
     public String getResult() {
