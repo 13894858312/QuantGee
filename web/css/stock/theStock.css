@@ -52,9 +52,16 @@
 	/*font-family: "Roboto Mono", monospace;
 	font-size: 40px;*/
 }
+.tsimg{
+	float: left;
+	width: 30%;
+	margin-top: 2px;
+	height: 50px;
+}
 .tsnprice{
-	margin-left: 30%;
-	width: 70%;
+	float: left;
+	margin-left: 18%;
+	width: 60%;
 	height: 70px;
 	font-family: "Roboto Mono", monospace;
 	font-size: 48px;
@@ -107,6 +114,10 @@
 	height: 180px;
 	background-color: #FFFFFF;
 	border-left: 1px solid #C0C0C0;
+}
+.numtd{
+	font-size: 16px;
+	font-weight: 700;
 }
 .tsrtable{
 	text-align: left;
@@ -331,5 +342,21 @@
 	margin-left: 2%;
 	margin-top: 5px;
 	height: 40px;
+	background-color: #FFFFFF;
+}
+.resulttext{
+	float: left;
+	margin-top: 10px;
+	margin-left: 15%;
+	font-size: 20px;
+	font-family: "Roboto Mono", monospace;
+	background-color: #FFFFFF;
+}
+.resultdata{
+	float: left;
+	margin-left: 5%;
+	margin-top: 10px;
+	font-size: 20px;
+	font-family: "Roboto Mono", monospace;
 	background-color: #FFFFFF;
 }

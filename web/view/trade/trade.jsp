@@ -61,8 +61,25 @@
     	<div class="graph">
     		<div class="kimgandindex">
     			<div class="kimg" id="kline"></div>
-    			<%--<script src="../../js/trade/klineandindex.js"></script>--%>
-    			<div class="indexhead">
+	    			<div class="realanddata">
+		    			<div class="realdata">
+		    				<div class="resulttext">预测明日价格:</div>
+							<div class="resultdata" id="resultdata1">-----</div>
+		    			</div>
+		    			<div class="realdata">
+		    				<div class="resulttext">预测明日涨跌幅:</div>
+							<div class="resultdata" id="resultdata2">-----</div>
+		    			</div>
+		    			<div class="realdata">
+		    				<div class="resulttext">历史预测正确率:</div>
+							<div class="resultdata" id="resultdata3">-----</div>
+		    			</div>
+	    			</div>
+    			</div>
+    		</div>
+    	</div>
+    		
+    		<div class="indexhead">
     				<div class="indexbutton">
     					<div class="mkrbbutton" id="MACDbutton" onclick="clickMACDbutton()">
 							MACD
@@ -80,13 +97,6 @@
     			</div>
     			<div class="idneximg" id="index"></div>
     			<script src="../../js/trade/tradeIndex.js"></script>
-    		</div>
-    		<div class="realanddata">
-    			<div class="realimg"></div>
-    			<div class="realdata"></div>
-    		</div>
-    	</div>
-    </div>
     <div class="testtradehead">
     	<div class="testheadtext">
     		<div class="text">持仓交易</div>
@@ -111,16 +121,5 @@
     		</tr>
     	</table>
     </div>
-    <div class="analysis">
-		<div class="anahead">
-			<div class="anaheadtext">股票预测</div>
-		</div>
-		<div class="analysisgraph"></div>
-		<div class="analysisdata">
-			<div class="resultl"></div>
-			<div class="resultm"></div>
-			<div class="resultr"></div>
-		</div>
-	</div>
 </body>
 </html>
