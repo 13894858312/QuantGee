@@ -31,14 +31,6 @@ public class LoginAction extends ActionSupport {
 
     private ArrayList<StockCurrentVO> stockCurrentVOS; //用户收藏的股票
 
-    public String getResult() {
-
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
 
     private String result;
 
@@ -55,18 +47,18 @@ public class LoginAction extends ActionSupport {
         if (accountService.login(accountVO)) {
             ActionContext actionContext = ActionContext.getContext();
             Map session = actionContext.getSession();
-            session.put("accountID",accountVO.getAccountID());
-//            stockCurrentVOS = collectStockService.getCollectedStocks(accountVO.getAccountID());
+            session.put("accountID", accountVO.getAccountID());
+            stockCurrentVOS = collectStockService.getCollectedStocks(accountVO.getAccountID());
             stockCurrentVOS = new ArrayList<>();
-            StockCurrentVO stockCurrentVO1 = new StockCurrentVO("111111","wddygg","zg","123",1,2,3,4,5,6,7,8,9,1,2,1);
-            StockCurrentVO stockCurrentVO2 = new StockCurrentVO("222222","wddygg","zg","123",1,2,3,4,5,6,7,8,9,1,2,1);
-            StockCurrentVO stockCurrentVO3 = new StockCurrentVO("333333","wddygg","zg","123",1,2,3,4,5,6,7,8,9,1,2,1);
+            StockCurrentVO stockCurrentVO1 = new StockCurrentVO("111111", "wddygg", "zg", "123", 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 1);
+            StockCurrentVO stockCurrentVO2 = new StockCurrentVO("222222", "wddygg", "zg", "123", 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 1);
+            StockCurrentVO stockCurrentVO3 = new StockCurrentVO("333333", "wddygg", "zg", "123", 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 1);
             stockCurrentVOS.add(stockCurrentVO1);
             stockCurrentVOS.add(stockCurrentVO2);
             stockCurrentVOS.add(stockCurrentVO3);
             return SUCCESS;
         } else {
-            request= ServletActionContext.getRequest();
+            request = ServletActionContext.getRequest();
             request.setAttribute("tipMessage", "登陆失败！");
             return "fail";
         }
@@ -92,17 +84,26 @@ public class LoginAction extends ActionSupport {
         }
     }
 
-    public String haveLogin(){
+    public String haveLogin() {
         ActionContext actionContext = ActionContext.getContext();
         Map session = actionContext.getSession();
         JSONObject jsonObject = JSONObject.fromObject(session);
         result = jsonObject.toString();
-        System.out.println("haveLogin"+result);
-        if (session.get("accountID")!=null){
+        System.out.println("haveLogin" + result);
+        if (session.get("accountID") != null) {
             return SUCCESS;
-        }else {
+        } else {
             return "fail";
         }
+    }
+
+    public String getResult() {
+
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 
     public AccountVO getAccountVO() {
