@@ -75,6 +75,6 @@ myChart.setOption(option);
 // var resultdata3 = document.getElementById("resultdata3");
 // if(json[])
 $("#resultdata1").text(json['predictTomorrowPrice']);
-$("#resultdata2").text(json['predictTomorrowIncrease']);
-$("#resultdata3").text(json['historyDeviation']);
-$("#prerangedata").text(json['predictTomorrowIncrease']);
+$("#resultdata2").text(String(json['predictTomorrowIncrease'])+"%");
+$("#resultdata3").text(String(json['historyDeviation'])+"%");
+$("#prerangedata").text(String(json['predictTomorrowIncrease'])+"%");

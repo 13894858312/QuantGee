@@ -533,6 +533,7 @@ function clickBOLLbutton() {
     drawBOLL();
 }
 function getCheck() {
+    var stocktemp;
     var temp;
     var stockCode = document.getElementById("inputstcode");
     $.ajax({
@@ -545,7 +546,7 @@ function getCheck() {
         },
         dataType:'json',
         success:function (data) {
-            temp = JSON.parse(data);
+            stocktemp = JSON.parse(data);
         },
         error:function (data) {
             alert("error")
@@ -568,5 +569,7 @@ function getCheck() {
     $("#resultdata1").text(temp['predictTomorrowPrice']);
     $("#resultdata2").text(temp['predictTomorrowIncrease']);
     $("#resultdata3").text(temp['historyDeviation']);
+    $("#resulttext0").text(stocktemp['stockName']);
+    $("#resultdata0").text(stocktemp['code']);
     drawMACD();
 }
