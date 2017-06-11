@@ -51,6 +51,22 @@ $(document).ready(function() {
 				alert("error");
 			}
 		});
+//获取用户信息
+		$.ajax({
+			type: 'get',
+			url: 'getCollectStock.action',
+			async: false,
+			data: {
+				accountID: accountID
+			},
+			dataType: 'json',
+			success: function(data) {
+				collectedStock = JSON.parse(data);
+			},
+			error: function(data) {
+				alert("error");
+			}
+		});
 	}
 })
 

@@ -43,7 +43,7 @@
 				    margin-right: 100px;
 				    margin-top: 24px;
 				    font-size: 20px;
-				">bcy</span> 
+				">bcy</span>
 			</div>
 
 		</div>
@@ -175,16 +175,32 @@
 				</div>
 
 			</div>
-		
-				<div id="myStrategy" class="right_bar_tit" style="display: none;">
-					<span style="float:left;">我的策略</span>
-					<a class="ta-own-box" href="../../view/strategy/strategy.jsp" data-taid="wdgz_wdzg" data-fid="wdgz_djall" target="_blank">进入策略研究&gt;&gt;</a>
+
+			<div id="myStrategy" class="right_bar_tit" style="display: none;">
+				<span style="float:left;">我的策略</span>
+				<a class="ta-own-box" href="../../view/strategy/strategy.jsp" data-taid="wdgz_wdzg" data-fid="wdgz_djall" target="_blank">进入策略研究&gt;&gt;</a>
+			</div>
+
+			<div id="accountSetting" class="right_bar_tit" style="display: none;float: left;width: 902px;">
+				<div id="userInfo_accountID" style="margin-top: 20px;">
+					<div id="returnPeriod" style="text-align: center;width: 500px;margin:10px auto;">
+						<label style="font-size: 16px; font-weight: 100; width: 64px;">账号ID</label>
+						<input type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+						<button class="button" style="margin-left: 20px; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改</button>
+					</div>
+					<div id="returnPeriod" style="text-align: center;width: 500px;margin: 10px auto;">
+						<label style="font-size: 16px; font-weight: 100; width: 64px;">账号ID</label>
+						<input type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+						<button class="button" style="margin-left: 20px; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改</button>
+					</div>
+					<div id="returnPeriod" style="text-align: center;width: 500px;margin: 10px auto;">
+						<label style="font-size: 16px; font-weight: 100; width: 64px;">账号ID</label>
+						<input type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+						<button class="button" style="margin-left: 20px; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改</button>
+					</div>
 				</div>
-				
-				<div id="accountSetting" class="right_bar_tit" style="display: none;">
-					
-				</div>
-			
+			</div>
+
 		</div>
 	</body>
 
