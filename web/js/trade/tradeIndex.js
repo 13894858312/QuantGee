@@ -4,6 +4,21 @@
 /**
  * Created by Administrator on 2017/6/10.
  */
+$.ajax({
+    cache:false,
+    async:false,
+    type:'POST',
+    data:{
+        stockCode: "sh"
+    },
+    url:'getSTCodeInfo.action',
+    dataType:'json',
+    success:function (data) {
+    },
+    error:function (data) {
+        alert("error")
+    }
+});
 dochart();
 var klineDate = [];
 var klineBar = [];
@@ -540,10 +555,10 @@ function getCheck() {
         cache:false,
         async:false,
         type:'POST',
-        url:'getSTCodeInfo.action',
         data:{
             stockCode: stockCode.value
         },
+        url:'getSTCodeInfo.action',
         dataType:'json',
         success:function (data) {
             stocktemp = JSON.parse(data);
@@ -567,8 +582,8 @@ function getCheck() {
         }
     });
     $("#resultdata1").text(temp['predictTomorrowPrice']);
-    $("#resultdata2").text(temp['predictTomorrowIncrease']);
-    $("#resultdata3").text(temp['historyDeviation']);
+    $("#resultdata2").text(String(temp['predictTomorrowIncrease'])+"%");
+    $("#resultdata3").text(String(temp['historyDeviation'])+"%");
     $("#resulttext0").text(stocktemp['stockName']);
     $("#resultdata0").text(stocktemp['code']);
     drawMACD();

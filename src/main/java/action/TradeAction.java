@@ -5,6 +5,7 @@ import logic.tools.DateHelper;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import service.stock.MarketInfoService;
 import service.stock.PredictStockService;
 import service.stock.StockBasicInfoService;
 import service.stock.StockQuotaService;
@@ -27,6 +28,8 @@ public class TradeAction extends ActionSupport{
     private StockQuotaService stockQuotaService;
     @Autowired
     private PredictStockService predictStockService;
+    @Autowired
+    private MarketInfoService marketInfoService;
 
     public String getResult() {
         return result;
@@ -45,10 +48,6 @@ public class TradeAction extends ActionSupport{
     }
 
     private StockHistoricalVO getStockHistoricalVO(int num1, int num2, String type){
-        if (stockCode == null){
-            stockCode = "sh";
-        }
-        System.out.println(stockCode);
         String date = DateHelper.getNowDate();
         String enddate = DateHelper.formerNTradeDay(date, num1);
         String startdate = DateHelper.formerNTradeDay(enddate, num2);
@@ -64,7 +63,12 @@ public class TradeAction extends ActionSupport{
     }
 
     public String getSTCodeInfo(){
-        JSONObject jsonObject = JSONObject.fromObject(stockBasicInfoService.getStockRealTimeInfo(stockCode));
+        JSONObject jsonObject = new JSONObject();
+        if(stockCode == "sh") {
+            jsonObject = JSONObject.fromObject(stockBasicInfoService.getStockRealTimeInfo(stockCode));
+        }else {
+            jsonObject = JSONObject.fromObject(marketInfoService.getIndexRealTimeInfo(stockCode));
+        }
         result = jsonObject.toString();
         return SUCCESS;
     }
