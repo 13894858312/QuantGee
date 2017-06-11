@@ -32,6 +32,9 @@ body {
 	font-size: 16px;
 	
 }
+#a5{
+	color: #FFFFFF;
+}
 a:hover{
 	color: rgb(62, 196, 131);
 	font-weight: 500;
