@@ -6,6 +6,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import service.stock.PredictStockService;
 import service.stock.StockBasicInfoService;
 import service.stock.StockQuotaService;
 import vo.stock.*;
@@ -24,6 +25,8 @@ public class StockAction extends ActionSupport{
     private StockBasicInfoService stockBasicInfoService;
     @Autowired
     private StockQuotaService stockQuotaService;
+    @Autowired
+    private PredictStockService predictStockService;
 
     public String getResult() {
         return result;
@@ -98,6 +101,17 @@ public class StockAction extends ActionSupport{
     public String getRealCurrentInfo(){
         StockCurrentVO stockCurrentVO = stockBasicInfoService.getStockRealTimeInfo(stockCode);
         JSONObject jsonObject = JSONObject.fromObject(stockCurrentVO);
+        result = jsonObject.toString();
+        return SUCCESS;
+    }
+
+    public String getPredictInfo(){
+        String date = DateHelper.getNowDate();
+        String enddate = DateHelper.formerNTradeDay(date, 1);
+        String startdate = DateHelper.formerNTradeDay(enddate, 120);
+        StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate, "d");
+        StockPredictVO stockPredictVO = predictStockService.getStockPredictInfo(stockInputVO);
+        JSONObject jsonObject = JSONObject.fromObject(stockPredictVO);
         result = jsonObject.toString();
         return SUCCESS;
     }

@@ -12,6 +12,27 @@ var klineMA10 = [];
 var klineMA20 = [];
 var volume = [];
 var json;
+var json1;
+var date = [];
+//macd
+var diffdata = [];
+var deadata = [];
+var macddata = [];
+
+//kdj
+var kdata = [];
+var ddata = [];
+var jdata = [];
+
+//rsi
+var rsi6data = [];
+var rsi12data = [];
+var rsi24data = [];
+
+//boll
+var middata = [];
+var updata = [];
+var lowdata = [];
 function getDayData() {
     $.ajax({
         cache: false,
@@ -142,27 +163,7 @@ function dochart() {
     myChart1.setOption(option1);
 }
 
-var json1;
-var date = [];
-//macd
-var diffdata = [];
-var deadata = [];
-var macddata = [];
 
-//kdj
-var kdata = [];
-var ddata = [];
-var jdata = [];
-
-//rsi
-var rsi6data = [];
-var rsi12data = [];
-var rsi24data = [];
-
-//boll
-var middata = [];
-var updata = [];
-var lowdata = [];
 function setData() {
     $.ajax({
         cache:false,
@@ -171,7 +172,7 @@ function setData() {
         type:'GET',
         dataType:'json',
         success:function (data) {
-            json = JSON.parse(data);
+            json1 = JSON.parse(data);
         },
         error:function (data) {
             alert("error");
@@ -201,8 +202,8 @@ function setData() {
     for(var i=0;i<json1['rsi6'].length;i++){
         rsi6data.push(json1['rsi6'][i]['value']);
     }
-    for(var i=0;i<json['rsi12'].length;i++){
-        rsi12data.push(json['rsi12'][i]['value']);
+    for(var i=0;i<json1['rsi12'].length;i++){
+        rsi12data.push(json1['rsi12'][i]['value']);
     }
     for(var i=0;i<json1['rsi24'].length;i++){
         rsi24data.push(json1['rsi24'][i]['value']);
@@ -238,7 +239,6 @@ function drawMACD() {
             bottom: '11%'
         },
         xAxis:  {
-            show:false,
             boundaryGap: true,
             type: 'category',
             data: date
@@ -290,7 +290,6 @@ function drwaKDJ() {
             bottom: '11%'
         },
         xAxis:  {
-            show:false,
             boundaryGap: true,
             type: 'category',
             data: date
@@ -342,7 +341,6 @@ function drawRSI() {
             bottom: '11%'
         },
         xAxis:  {
-            show:false,
             boundaryGap: true,
             type: 'category',
             data: date
@@ -394,7 +392,6 @@ function drawBOLL() {
             bottom: '11%'
         },
         xAxis:  {
-            show:false,
             type: 'category',
             data: date
         },
@@ -506,5 +503,21 @@ function getCheck() {
         }
     });
     dochart();
+    $.ajax({
+        cache:false,
+        async:false,
+        type:'GET',
+        url:'getPredictResult.action',
+        dataType:'json',
+        success:function (data) {
+            temp = JSON.parse(data);
+        },
+        error:function (data) {
+            alert("error")
+        }
+    });
+    $("#resultdata1").text(temp['predictTomorrowPrice']);
+    $("#resultdata2").text(temp['predictTomorrowIncrease']);
+    $("#resultdata3").text(temp['historyDeviation']);
     drawMACD();
 }

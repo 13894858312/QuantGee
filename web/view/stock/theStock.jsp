@@ -57,7 +57,9 @@
   	<div class="tsinfo">
   		<div class="tsinfol1">
   			<div class="tstext">
-  				<img src="" />
+  				<!--<div class="tsimg" id="tsimg">
+  					<img src="../../images/riseicon.png" />
+  				</div>-->
   				<div class="tsnprice" id="tsnprice">9.85</div>
   				<div class="rd" >涨跌幅度</div>
   				<!--<div class="tsrp">0.14</div>-->
@@ -75,27 +77,27 @@
 	  			<tr>
 	  				<td>昨日收盘价：</td>
 	  				<td width="50px"></td>
-	  				<td id="tsr1">34.45</td>
+	  				<td class="numtd" id="tsr1">34.45</td>
 	  			</tr>
 	  			<tr>
 	  				<td>今日开盘价：</td>
 	  				<td width="50px"></td>
-	  				<td id="tsr2">33.98</td>
+	  				<td class="numtd" id="tsr2">33.98</td>
 	  			</tr>
 	  			<tr>
 	  				<td>最低价：</td>
 	  				<td width="50px"></td>
-	  				<td id="tsr3">33.65</td>
+	  				<td class="numtd" id="tsr3">33.65</td>
 	  			</tr>
 	  			<tr>
 	  				<td>最高价：</td>
 	  				<td width="50px"></td>
-	  				<td id="tsr4">34.98</td>
+	  				<td class="numtd" id="tsr4">34.98</td>
 	  			</tr>
 	  			<tr>
 	  				<td>换手率：</td>
 	  				<td width="50px"></td>
-	  				<td id="tsr5">12.24%</td>
+	  				<td class="numtd" id="tsr5">12.24%</td>
 	  			</tr>
   			</table>
   		</div>
@@ -104,27 +106,27 @@
 	  			<tr>
 	  				<td>市盈率：</td>
 	  				<td width="60px"></td>
-	  				<td id="tsr6">11.34%</td>
+	  				<td class="numtd" id="tsr6">11.34%</td>
 	  			</tr>
 	  			<tr>
 	  				<td>市净率：</td>
 	  				<td width="60px"></td>
-	  				<td id="tsr7">10.98%</td>
+	  				<td class="numtd" id="tsr7">10.98%</td>
 	  			</tr>
 	  			<tr>
 	  				<td>成交量：</td>
 	  				<td width="60px"></td>
-	  				<td id="tsr8">24.75</td>
+	  				<td class="numtd" id="tsr8">24.75</td>
 	  			</tr>
 	  			<tr>
 	  				<td>成交额：</td>
 	  				<td width="60px"></td>
-	  				<td id="tsr9">24765万</td>
+	  				<td class="numtd" id="tsr9">24765万</td>
 	  			</tr>
 	  			<tr>
 	  				<td>总市值：</td>
 	  				<td width="60px"></td>
-	  				<td id="tsr10">15.78亿</td>
+	  				<td class="numtd" id="tsr10">15.78亿</td>
 	  			</tr>
   			</table>
   		</div>
@@ -178,11 +180,21 @@
 		<div class="anahead">
 			<div class="anaheadtext">股票预测</div>
 		</div>
-		<div class="analysisgraph"></div>
+		<div class="analysisgraph" id="analysisgraph"></div>
+        <script src="../../js/stock/theStock/stockpredict.js"></script>
 		<div class="analysisdata">
-			<div class="resultl"></div>
-			<div class="resultm"></div>
-			<div class="resultr"></div>
+			<div class="resultl">
+				<div class="resulttext">预测明日价格:</div>
+				<div class="resultdata" id="resultdata1">10.98</div>
+			</div>
+			<div class="resultm">
+				<div class="resulttext">预测明日涨跌幅:</div>
+				<div class="resultdata" id="resultdata2">3.45%</div>
+			</div>
+			<div class="resultr">
+				<div class="resulttext">历史预测准确率:</div>
+				<div class="resultdata" id="resultdata3">60.98%</div>
+			</div>
 		</div>
 	</div>
 </body>
