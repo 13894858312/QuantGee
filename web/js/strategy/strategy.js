@@ -20,12 +20,11 @@ $(document).ready(function() {
 			url: "getCollectStock.action",
 			async: false,
 			data: {
-				accountID: accountID["accountID"];
+				accountID: accountID["accountID"]
 			},
 			dataType: 'json',
 			success: function(data) {
-				alert(data);
-				//				collectedStock = JSON.parse(data);
+				collectedStock = JSON.parse(data);
 			},
 			error: function(data) {
 				alert("error");

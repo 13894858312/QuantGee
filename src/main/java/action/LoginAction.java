@@ -81,7 +81,6 @@ public class LoginAction extends ActionSupport {
         Map session = actionContext.getSession();
         JSONObject jsonObject = JSONObject.fromObject(session);
         result = jsonObject.toString();
-        System.out.println("haveLogin" + result);
         if (session.get("accountID") != null) {
             return SUCCESS;
         } else {

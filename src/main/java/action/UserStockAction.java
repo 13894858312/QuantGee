@@ -2,7 +2,6 @@ package action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import service.stock.CollectStockService;
