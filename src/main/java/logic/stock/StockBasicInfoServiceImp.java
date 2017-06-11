@@ -39,6 +39,10 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
 
         while(stocks.hasNext()) {
             Current temp = stocks.next();
+            int timeFlag = TimeHelper.isMarketOpen(temp.getTime());
+            if (timeFlag !=0 && timeFlag != 1) {
+                continue;
+            }
             times.add(temp.getTime());
             nowPrice.add(temp.getTrade());
             volumn.add((double)temp.getVolume());
@@ -51,12 +55,59 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
             time = TimeHelper.getNowTime();
         }
 
-        while(TimeHelper.isMarketOpen(time) != -1) {
-            time = TimeHelper.nextNMinutes(time, 2);
-            times.add(time);
+        int flag = TimeHelper.isMarketOpen(time);
+        if (flag == 0) {
+            while(TimeHelper.isMarketOpen(time) == 0) {
+                time = TimeHelper.nextNMinutes(time, 2);
+                if (TimeHelper.isMarketOpen(time) != 0) {
+                    break;
+                }
+                times.add(time);
+            }
+
+            time = "13:00";
+            while(TimeHelper.isMarketOpen(time) == 1) {
+                times.add(time);
+                time = TimeHelper.nextNMinutes(time, 2);
+            }
+        } else if (flag == 1) {
+            while(TimeHelper.isMarketOpen(time) == 1) {
+                time = TimeHelper.nextNMinutes(time, 2);
+                if (TimeHelper.isMarketOpen(time) != 1) {
+                    break;
+                }
+                times.add(time);
+            }
+        } else if (flag == 2) {
+            time = "13:00";
+            while(TimeHelper.isMarketOpen(time) == 1) {
+                times.add(time);
+                time = TimeHelper.nextNMinutes(time, 2);
+            }
         }
 
         RealTimeLineVO result = new RealTimeLineVO(code, times, nowPrice, volumn);
+
+        System.out.println("***************************************************************************");
+        System.out.println("***************************************************************************");
+        System.out.println("***************************************************************************");
+        System.out.println("***************************************************************************");
+        System.out.println("***************************************************************************");
+        System.out.println("***************************************************************************");
+        System.out.println(result.getCode());
+        System.out.println("time");
+        for (int i=0; i<result.getTimes().size(); ++i) {
+            System.out.print(result.getTimes().get(i) + " ");
+        }
+        System.out.println("volumn");
+        for (int i=0; i<result.getVolumn().size(); ++i) {
+            System.out.print(result.getVolumn().get(i) + " ");
+        }
+        System.out.println("nowPrice");
+        for (int i=0; i<result.getNowPrice().size(); ++i) {
+            System.out.print(result.getNowPrice().get(i) + " ");
+        }
+        System.out.println();
         return result;
     }
 
@@ -85,6 +136,7 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         return stockInfoDAO.getCodeByName(name);
     }
 
+
     @Override
     public ArrayList<String> getAllStockCodes() {
         Iterator<String> codes = stockInfoDAO.getAllStockCodes();
@@ -93,6 +145,11 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
             result.add(codes.next());
         }
         return result;
+    }
+
+    @Override
+    public ArrayList<String> getAllStockNames() {
+        return null;
     }
 
     /**

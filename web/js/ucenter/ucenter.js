@@ -1,3 +1,59 @@
+var accountID;
+var collectedStrategy;
+var Stock;
+
+$(document).ready(function() {
+//判断当前登陆用户
+	$.ajax({
+		type: 'get',
+		url: 'haveLogin.action',
+		async: false,
+		dataType: 'json',
+		success: function(data) {
+			accountID = JSON.parse(data);
+			document.getElementById("username").innerHTML = "欢迎，" + accountID["accountID"] + "!";
+		},
+		error: function(data) {
+			alert("error");
+		}
+	});
+
+	if(accountID[accountID] != "") {
+//获取收藏的股票
+		$.ajax({
+			type: 'get',
+			url: 'getCollectStock.action',
+			async: false,
+			data: {
+				accountID: accountID["accountID"]
+			},
+			dataType: 'json',
+			success: function(data) {
+				collectedStock = JSON.parse(data);
+			},
+			error: function(data) {
+				alert("error");
+			}
+		});
+//获取收藏的策略
+		$.ajax({
+			type: 'get',
+			url: 'getCollectStock.action',
+			async: false,
+			data: {
+				accountID: accountID["accountID"]
+			},
+			dataType: 'json',
+			success: function(data) {
+				collectedStock = JSON.parse(data);
+			},
+			error: function(data) {
+				alert("error");
+			}
+		});
+	}
+})
+
 function changecolumns() {
 
 	if(document.getElementById("next").style.backgroundPositionY == "-767px") {
@@ -19,32 +75,14 @@ function getSession() {
 		async: false,
 		dataType: 'json',
 		success: function(data) {
-//			alert(data);
+			//			alert(data);
 		},
 		error: function(data) {
-			return "hh" ;
+			return "hh";
 			alert("error");
 		}
 	});
 }
-
-var accountID;
-
-$(document).ready(function() {
-	$.ajax({
-		type: 'get',
-		url: 'haveLogin.action',
-		async: false,
-		dataType: 'json',
-		success: function(data) {
-			accountID = JSON.parse(data);
-			document.getElementById("username").innerHTML = "欢迎，"+accountID["accountID"]+"!";
-		},
-		error: function(data) {
-			alert("error");
-		}
-	});
-})
 
 function totheStockView() {
 	var code = document.getElementById("inputStockCode");
@@ -66,18 +104,20 @@ function totheStockView() {
 	});
 }
 
-function myStock(){
-	document.getElementById("myStock").style.display="block";
-	document.getElementById("myStrategy").style.display="none";
-	document.getElementById("accountSetting").style.display="none";
+function myStockPanel() {
+	document.getElementById("myStock").style.display = "block";
+	document.getElementById("myStrategy").style.display = "none";
+	document.getElementById("accountSetting").style.display = "none";
 }
-function myStrategy(){
-	document.getElementById("myStock").style.display="none";
-	document.getElementById("myStrategy").style.display="block";
-	document.getElementById("accountSetting").style.display="none";
+
+function myStrategyPanel() {
+	document.getElementById("myStock").style.display = "none";
+	document.getElementById("myStrategy").style.display = "block";
+	document.getElementById("accountSetting").style.display = "none";
 }
-function accountSetting(){
-	document.getElementById("myStock").style.display="none";
-	document.getElementById("myStrategy").style.display="none";
-	document.getElementById("accountSetting").style.display="block";
+
+function accountSettingPanel() {
+	document.getElementById("myStock").style.display = "none";
+	document.getElementById("myStrategy").style.display = "none";
+	document.getElementById("accountSetting").style.display = "block";
 }
