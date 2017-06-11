@@ -78,7 +78,7 @@
 					<img src="../../images/headlogin.png"/>
 				</div>
 				<div class="logintext">
-					<a href="../../view/ucenter/login.jsp" style="color: rgba(0, 0, 0, 0.6);font-weight: 400;cursor: hand;" >登录</a>
+					<a id="la" href="../../view/ucenter/login.jsp" style="color: rgba(0, 0, 0, 0.6);font-weight: 400;cursor: hand;" ></a>
 				</div>
 			</div>	
         </div>

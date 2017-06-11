@@ -12,17 +12,6 @@
 		<link rel="shortcut icon" href="../../images/logo20x20.png">
 		<meta charset="UTF-8">
 		<title>Strategy</title>
-		<script>
-			function s1(x) {
-				x.style.fontWeight = "bold";
-				x.style.color = "#fff";
-			}
-
-			function s2(x) {
-				x.style.fontWeight = "400";
-				x.style.color = "#b7b7b7";
-			}
-		</script>
 		<script type="text/javascript" src="../../jquery-3.2.1.min.js"></script>
 
 		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
@@ -35,51 +24,60 @@
 		<script type="text/javascript" src="../../bootstrap/bootstrap-datepicler/js/bootstrap-datepicker.js"></script>
 
 		<script type="text/javascript" src="../../js/strategy/strategy.js"></script>
+		<script src="../../echarts.js"></script>
+		<script src="../../jquery-3.2.1.min.js"></script>
+		<script src="../../js/marketInfo/headcontroller.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.autocomplete.js"></script>
+		<link rel="Stylesheet" href="../../css/jquery.autocomplete.css" />
 		<link rel="stylesheet" href="../../css/style.css" />
 		<link rel="stylesheet" href="../../css/strategy/strategy.css" />
 		<!--<link rel="stylesheet" href="../../css/strategy/build.css" />-->
-
+        <style type="text/css">
+            @import "../../css/style.css";
+        </style>
 	</head>
 
-	<body>
-		<div class="head">
+	<body onload="changewhole3()">
+	<div class="head">
 
-			<div class="hdlogo">
+		<div class="hdlogo">
 
-				<a target="_blank" class="site-logo" href=""> <img src="../../images/quantgeelogo.png" title="MyQuantGee" alt="MyQuantGee"></a>
+			<a target="_blank" class="site-logo" href=""> <img src="../../images/quantgeelogo.png" title="MyQuantGee" alt="MyQuantGee"></a>
 
-			</div>
+		</div>
 
-			<div class="menu" id="ha1">
-				<a class="menua" id="a1" href="../../view/market/marketInfo.jsp" target="_self">大盘行情</a>
+		<div class="menu" id="ha1">
+			<a class="menua" id="a1"  href="marketInfo.jsp">大盘行情</a>
+		</div>
+		<div class="menu" id="ha2">
+			<a class="menua" id="a2" href="../../view/stock/stockFirst.jsp">个股信息</a>
+		</div>
+		<div class="menu" id="ha3">
+			<a class="menua" id="a3" href="../../view/strategy/strategy.jsp">策略大全</a>
+		</div>
+		<div class="menu" id="ha4">
+			<a class="menua" id="a4" href="../../view/trade/trade.jsp">模拟交易</a>
+		</div>
+		<div class="menu" id="ha5">
+			<a class="menua" id="a5" href="" >个人中心</a>
+		</div>
+		<div class="search bar7">
+			<!--<form>-->
+			<input id="inputStockCode" type="text" placeholder="请输入股票代码">
+			<script src="../../js/fuzzysearch.js"></script>
+			<button onclick="totheStockView()"></button>
+			<!--</form>-->
+		</div>
+		<div class="marketlog">
+			<div class="logimg">
+				<img src="../../images/headlogin.png"/>
 			</div>
-			<div class="menu" id="ha2">
-				<a class="menua" id="a2" href="../../view/stock/stockFirst.jsp" target="_self">个股信息</a>
-			</div>
-			<div class="menu" id="ha3" style="border-bottom: 2px solid rgb(62, 196, 131);">
-				<a class="menua" id="a3" href="../../view/strategy/strategy.jsp" style="color: rgb(62, 196, 131);">策略大全</a>
-			</div>
-			<div class="menu" id="ha4">
-				<a class="menua" id="a4" href="../../view/trade/trade.jsp" target="_self">模拟交易</a>
-			</div>
-			<div class="menu" id="ha5">
-				<a class="menua" id="a5" href="../../view/ucenter/user_center.jsp" target="_self">个人中心</a>
-			</div>
-			<div class="search bar7">
-				<form>
-					<input type="text" placeholder="请输入股票代码">
-					<button type="submit"></button>
-				</form>
-			</div>
-			<div class="marketlog">
-				<div class="logimg">
-					<img src="../../images/headlogin.png">
-				</div>
-				<div class="logintext">
-					<a href="../../view/ucenter/login.jsp" style="color: rgba(0, 0, 0, 0.6);font-weight: 400;cursor: hand;">登录</a>
-				</div>
+			<div class="logintext">
+				<a id="la" href="../../view/ucenter/login.jsp" style="color: rgba(0, 0, 0, 0.6);font-weight: 400;cursor: hand;" ></a>
 			</div>
 		</div>
+	</div>
 		<div id="strategybar">
 			<div class="hmtext">策略讲解</div>
 		</div>
