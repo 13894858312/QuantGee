@@ -61,7 +61,7 @@ public class StockCurrentVO {
         this.high = high;
         this.amount = MathHelper.formatData(amount/10000,2);
         this.volume = MathHelper.formatData(volume/10000,2);
-        this.changePercent = changePercent;
+        this.changePercent = MathHelper.formatData(changePercent,2);
         this.turnover = MathHelper.formatData(turnover,2);
         this.settlement = settlement;
         this.per = MathHelper.formatData(per,2);
