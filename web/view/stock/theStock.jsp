@@ -8,6 +8,9 @@
 	<script src="../../js/marketInfo/headcontroller.js"></script>
     <script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="../../js/jquery.autocomplete.js"></script>
+    <script type="text/javascript" src="../../js/stock/theStock/addstock.js"></script>
+    <script type="text/javascript" src="../../js/sweet-alert.min.js"></script>
+    <link rel="stylesheet" href="../../css/sweet-alert.css">
     <link rel="Stylesheet" href="../../css/jquery.autocomplete.css" />
 	<link rel="shortcut icon" href="../../images/logo20x20.png">
     <style type="text/css">
@@ -69,7 +72,7 @@
   				<div class="prerangetext"><a href="#anaheadtext" style="color: #000000;">预测涨跌幅:</a></div>
   				<div class="prerangedata" id="prerangedata"></div>
   				<div class="tsab">
-	  				<div class="abimg">
+	  				<div class="abimg" onclick="addstock()">
 	  					<img src="../../images/addbutton44.png" />
 	  				</div>
 	  				<div class="abtext">加入自选</div>

@@ -5,6 +5,7 @@ import net.sf.json.JSONArray;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import service.stock.CollectStockService;
+import service.stock.StockBasicInfoService;
 import vo.stock.StockCollectInputVO;
 import vo.stock.StockCurrentVO;
 
@@ -22,11 +23,13 @@ public class UserStockAction extends ActionSupport{
 
     private String result;
     private String codeID;
-
+    private String stockName;
 
 
     @Autowired
     private CollectStockService collectStockService;
+    @Autowired
+    private StockBasicInfoService stockBasicInfoService;
 
     public String getCollectStock(){
         System.out.println(accountID);
@@ -46,6 +49,23 @@ public class UserStockAction extends ActionSupport{
             request.setAttribute("tipMessage", "删除失败！");
             return "fail";
         }
+    }
+
+    public String addCollectedStock(){
+        System.out.println(stockName);
+        System.out.println(accountID);
+        if(collectStockService.collectStock(new StockCollectInputVO(accountID, stockBasicInfoService.getCodeByName(stockName)))){
+            ArrayList<String> arrayList = new ArrayList<>();
+            arrayList.add("success");
+            JSONArray jsonArray = JSONArray.fromObject(arrayList);
+            result = jsonArray.toString();
+        }else{
+            ArrayList<String> arrayList = new ArrayList<>();
+            arrayList.add("error");
+            JSONArray jsonArray = JSONArray.fromObject(arrayList);
+            result = jsonArray.toString();
+        }
+        return SUCCESS;
     }
 
 
@@ -79,5 +99,13 @@ public class UserStockAction extends ActionSupport{
 
     public void setCodeID(String codeID) {
         this.codeID = codeID;
+    }
+
+    public String getStockName() {
+        return stockName;
+    }
+
+    public void setStockName(String stockName) {
+        this.stockName = stockName;
     }
 }

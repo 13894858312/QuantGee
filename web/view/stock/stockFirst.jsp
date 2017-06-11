@@ -8,6 +8,9 @@
     <script src="../../js/marketInfo/headcontroller.js"></script>
     <script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="../../js/jquery.autocomplete.js"></script>
+	<script type="text/javascript" src="../../js/stock/stockfirst/addstock.js"></script>
+    <script type="text/javascript" src="../../js/sweet-alert.min.js"></script>
+    <link rel="stylesheet" href="../../css/sweet-alert.css">
     <link rel="Stylesheet" href="../../css/jquery.autocomplete.css" />
 	<%--<script src="../../js/stock/stockfirst/listcontroller.js"></script>--%>
 	<link rel="shortcut icon" href="../../images/logo20x20.png">
@@ -68,81 +71,81 @@
   				</div>
   				<div class="row" id="row1" onclick="showrow(this)">
   					<div class="column1" id="r1c1div" onclick="changeChart(this)"><a id="r1c1a"></a></div>
-  					<div class="column2" id="r1c2div">10.03</div>
-  					<div class="column3" id="r1c3div">10.75</div>
-  					<div class="column4">
+  					<div class="column2" id="r1c2div"></div>
+  					<div class="column3" id="r1c3div"></div>
+  					<div class="column4" onclick="getNamediv1()">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   				<div class="row" id="row2" onclick="showrow(this)">
   					<div class="column1" id="r2c1div" onclick="changeChart(this)"><a id="r2c1a"></a></div>
-  					<div class="column2" id="r2c2div">10.03</div>
-  					<div class="column3" id="r2c3div">15.80</div>
-  					<div class="column4">
+  					<div class="column2" id="r2c2div"></div>
+  					<div class="column3" id="r2c3div"></div>
+  					<div class="column4" onclick="getNamediv2()">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   				<div class="row" id="row3" onclick="showrow(this)">
   					<div class="column1" id="r3c1div" onclick="changeChart(this)"><a id="r3c1a"></a></div>
-  					<div class="column2" id="r3c2div">10.02</div>
-  					<div class="column3" id="r3c3div">22.40</div>
-  					<div class="column4">
+  					<div class="column2" id="r3c2div"></div>
+  					<div class="column3" id="r3c3div"></div>
+  					<div class="column4" onclick="getNamediv3()">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   				<div class="row" id="row4" onclick="showrow(this)">
   					<div class="column1" id="r4c1div" onclick="changeChart(this)"><a id="r4c1a"></a></div>
-  					<div class="column2" id="r4c2div">10.02</div>
-  					<div class="column3" id="r4c3div">22.29</div>
-  					<div class="column4">
+  					<div class="column2" id="r4c2div"></div>
+  					<div class="column3" id="r4c3div"></div>
+  					<div class="column4" onclick="getNamediv4()">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   				<div class="row" id="row5" onclick="showrow(this)">
   					<div class="column1" id="r5c1div" onclick="changeChart(this)"><a id="r5c1a"></a></div>
-  					<div class="column2" id="r5c2div">10.02</div>
-  					<div class="column3" id="r5c3div">25.37</div>
-  					<div class="column4">
+  					<div class="column2" id="r5c2div"></div>
+  					<div class="column3" id="r5c3div"></div>
+  					<div class="column4" onclick="getNamediv5()">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   				<div class="row" id="row6" onclick="showrow(this)">
   					<div class="column1" id="r6c1div" onclick="changeChart(this)"><a id="r6c1a"></a></div>
-  					<div class="column2" id="r6c2div">10.01</div>
-  					<div class="column3" id="r6c3div">23.73</div>
-  					<div class="column4">
+  					<div class="column2" id="r6c2div"></div>
+  					<div class="column3" id="r6c3div"></div>
+  					<div class="column4" onclick="getNamediv6()">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   				<div class="row" id="row7" onclick="showrow(this)">
   					<div class="column1" id="r7c1div" onclick="changeChart(this)"><a id="r7c1a"></a></div>
-  					<div class="column2" id="r7c2div">10.01</div>
-  					<div class="column3" id="r7c3div">40.24</div>
-  					<div class="column4">
+  					<div class="column2" id="r7c2div"></div>
+  					<div class="column3" id="r7c3div"></div>
+  					<div class="column4" onclick="getNamediv7()">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   				<div class="row" id="row8" onclick="showrow(this)">
   					<div class="column1" id="r8c1div" onclick="changeChart(this)"><a id="r8c1a"></a></div>
-  					<div class="column2" id="r8c2div">10.00</div>
-  					<div class="column3" id="r8c3div">30.31</div>
-  					<div class="column4">
+  					<div class="column2" id="r8c2div"></div>
+  					<div class="column3" id="r8c3div"></div>
+  					<div class="column4" onclick="getNamediv8()">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   				<div class="row" id="row9" onclick="showrow(this)">
   					<div class="column1" id="r9c1div" onclick="changeChart(this)"><a id="r9c1a"></a></div>
-  					<div class="column2" id="r9c2div">9.99</div>
-  					<div class="column3" id="r9c3div">30.28</div>
-  					<div class="column4">
+  					<div class="column2" id="r9c2div"></div>
+  					<div class="column3" id="r9c3div"></div>
+  					<div class="column4" onclick="getNamediv9()">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div> 
   				<div class="row" id="row10" onclick="showrow(this)">
   					<div class="column1" id="r10c1div" onclick="changeChart(this)"><a id="r10c1a"></a></div>
-  					<div class="column2" id="r10c2div">9.99</div>
-  					<div class="column3" id="r10c3div">18.06</div>
-  					<div class="column4">
+  					<div class="column2" id="r10c2div"></div>
+  					<div class="column3" id="r10c3div"></div>
+  					<div class="column4" onclick="getNamediv10()">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
@@ -152,8 +155,8 @@
   		<div class="graph">
   			<div class="graphhead">
   				<div class="nemeandcode">
-  					<div class="sname" id="hsname">万家文化</div>
-  					<div class="scode" id="hscode">600576</div>
+  					<div class="sname" id="hsname"></div>
+  					<div class="scode" id="hscode"></div>
   				</div>
   				<div class="stockInfo">
   					<span>市盈率:</span>
