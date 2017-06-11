@@ -52,8 +52,6 @@ public class UserStockAction extends ActionSupport{
     }
 
     public String addCollectedStock(){
-        System.out.println(stockName);
-        System.out.println(accountID);
         if(collectStockService.collectStock(new StockCollectInputVO(accountID, stockBasicInfoService.getCodeByName(stockName)))){
             ArrayList<String> arrayList = new ArrayList<>();
             arrayList.add("success");
