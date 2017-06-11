@@ -66,9 +66,9 @@ public class StrategyBackTesting {
         this.moneyInHand = initFund;
         this.lastMoneyInHand = moneyInHand;
 
+        this.baseYield = stockPool.getBlockBaseRaito();;
         this.holdingStocks = new ArrayList<>();
         this.strategyYield = new ArrayList<>();
-        this.baseYield = new ArrayList<>();
         this.yieldPerPeriod = new ArrayList<>();
         this.tradeRecords = new ArrayList<>();
     }
@@ -80,10 +80,10 @@ public class StrategyBackTesting {
         ArrayList<Stock> indexStocks = stockPool.getIndexStocks();
         int startIndex = stockPool.getStartIndex(); //初始化访问股票的下标index
 
-        //如果回测板块，获取板块的基准收益率
-        if(stockPool.getStockPoolType() == 0) {
-            baseYield = stockPool.getBlockBaseRaito();
-        }
+//        //如果回测板块，获取板块的基准收益率
+//        if(stockPool.getStockPoolType() == 0) {
+//            baseYield = stockPool.getBlockBaseRaito();
+//        }
 
         int holdingDaysIndex = holdingPeriod;  //记录是否达到一个holdingPeriod的index
         //循环主体
@@ -121,10 +121,10 @@ System.out.println("mainLoop: " + indexStocks.get(i).getDate());
             }
 
             if(!periodOnly) {
-                //每天需要计算的数据
-                if(stockPool.getStockPoolType() == 1) {         //如果不是回测板块 则需要计算基准收益率
-                    this.calculateBaseYield(todayTemp);         //基准收益率计算 用今日adj
-                }
+//                //每天需要计算的数据
+//                if(stockPool.getStockPoolType() == 1) {         //如果不是回测板块 则需要计算基准收益率
+//                    this.calculateBaseYield(todayTemp);         //基准收益率计算 用今日adj
+//                }
                 this.calculateStrategyYield(todayTemp);          //计算收益， 用昨日adj
             }
 
@@ -291,28 +291,28 @@ System.out.println("      holdingStocks-size: " + this.holdingStocks.size());
 System.out.println("      iStrategy-Yield:" + yield);
     }
 
-    /**
-     * 不是按照板块回测时 计算基准收益率的方法
-     * @param date 日期
-     */
-    private void calculateBaseYield(String date) {
-        int stockNum = 0;           //用于求平均
-        double yield = 0;           //收益率
-
-        for(int i = 0; i<stockPool.getStocksList().size(); ++i) {
-            Stock firstDay = stockPool.getStocksList().get(i).getStartDateStock();
-            Stock today = stockPool.getStocksList().get(i).getStockByDate(date);
-
-            if(firstDay != null && today != null) {
-                //计算基准累计收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
-                yield += (today.getClose()-firstDay.getClose())/firstDay.getClose();
-                stockNum ++;
-            }
-        }
-
-        yield = yield/stockNum;
-        this.baseYield.add(new LineVO(date, MathHelper.formatData(yield,4)));
-    }
+//    /**
+//     * 不是按照板块回测时 计算基准收益率的方法
+//     * @param date 日期
+//     */
+//    private void calculateBaseYield(String date) {
+//        int stockNum = 0;           //用于求平均
+//        double yield = 0;           //收益率
+//
+//        for(int i = 0; i<stockPool.getStocksList().size(); ++i) {
+//            Stock firstDay = stockPool.getStocksList().get(i).getStartDateStock();
+//            Stock today = stockPool.getStocksList().get(i).getStockByDate(date);
+//
+//            if(firstDay != null && today != null) {
+//                //计算基准累计收益，昨天的收盘价- returnPeriod天前的收盘价)/ returnPeriod天前的收盘价
+//                yield += (today.getClose()-firstDay.getClose())/firstDay.getClose();
+//                stockNum ++;
+//            }
+//        }
+//
+//        yield = yield/stockNum;
+//        this.baseYield.add(new LineVO(date, MathHelper.formatData(yield,4)));
+//    }
 
     /**
      * 计算每个持有期结束后的收益率
