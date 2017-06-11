@@ -25,16 +25,16 @@
                 <a class="menua" id="a1"  href="../../view/market/marketInfo.jsp">大盘行情</a>
             </div>
             <div class="menu" id="ha2">
-                <a class="menua" id="a2" href="stockFirst.jsp" target="_blank">个股信息</a>
+                <a class="menua" id="a2" href="stockFirst.jsp">个股信息</a>
             </div>
             <div class="menu" id="ha3">
-                <a class="menua" id="a3" href="../../view/strategy/strategy.jsp" target="_blank">策略大全</a>
+                <a class="menua" id="a3" href="../../view/strategy/strategy.jsp">策略大全</a>
             </div>
             <div class="menu" id="ha4">
-               	<a class="menua" id="a4" href="../../view/trade/trade.jsp" target="_blank">模拟交易</a>
+               	<a class="menua" id="a4" href="../../view/trade/trade.jsp">模拟交易</a>
             </div>
             <div class="menu" id="ha5">
-                <a class="menua" id="a5" href="../../view/ucenter/user_center.jsp" target="_blank">个人中心</a>
+                <a class="menua" id="a5" href="">个人中心</a>
 			</div>
 			<div class="search bar7">
             		<input id="inputStockCode" type="text" placeholder="请输入股票代码">
@@ -183,7 +183,6 @@
 			<div class="anaheadtext" id="anaheadtext">股票预测</div>
 		</div>
 		<div class="analysisgraph" id="analysisgraph"></div>
-        <script src="../../js/stock/theStock/stockpredict.js"></script>
 		<div class="analysisdata">
 			<div class="resultl">
 				<div class="resulttext">预测明日价格:</div>
@@ -198,6 +197,7 @@
 				<div class="resultdata" id="resultdata3">60.98%</div>
 			</div>
 		</div>
+		<script src="../../js/stock/theStock/stockpredict.js"></script>
 	</div>
 </body>
 </html>
