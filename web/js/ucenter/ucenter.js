@@ -65,3 +65,19 @@ function totheStockView() {
 		}
 	});
 }
+
+function myStock(){
+	document.getElementById("myStock").style.display="block";
+	document.getElementById("myStrategy").style.display="none";
+	document.getElementById("accountSetting").style.display="none";
+}
+function myStrategy(){
+	document.getElementById("myStock").style.display="none";
+	document.getElementById("myStrategy").style.display="block";
+	document.getElementById("accountSetting").style.display="none";
+}
+function accountSetting(){
+	document.getElementById("myStock").style.display="none";
+	document.getElementById("myStrategy").style.display="none";
+	document.getElementById("accountSetting").style.display="block";
+}

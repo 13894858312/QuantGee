@@ -61,14 +61,10 @@
 			<div class="left_bar">
 				<ul class="inner ta-parent-box" data-taid="wdzx_dh1" data-fid="wdzx_djall">
 					<li class="nav-btn person_sel" data-id="zixuan" data-title="我的自选">
-						<a href="user_center.jsp">我的自选</a>
+						<a onclick="myStock()">我的自选</a>
 					</li>
 					<li class="nav-btn receive" data-id="focus" data-title="我的策略">
-						<a href="my_strategy.html">我的策略</a>
-						<!--<button onclick="getSession()">点我</button>-->
-					</li>
-					<li class="nav-btn pconcern" data-id="collection" data-title="我的收藏">
-						<a href="my_collection.html">我的收藏</a>
+						<a onclick="myStrategy()">我的策略</a>
 					</li>
 				</ul>
 
@@ -86,7 +82,7 @@
 
 				<ul class="outer ta-parent-box" data-taid="wdzx_dh2" data-fid="wdzx_djall">
 					<li class="map">
-						<a href="account_settings.html">帐号信息</a>
+						<a onclick="accountSetting()">帐号信息</a>
 					</li>
 				</ul>
 
@@ -94,7 +90,7 @@
 
 			<div class="right_content fr">
 
-				<div class="data_panel ta-parent-box" data-taid="wdzx_hq" data-fid="wdzx_djall">
+				<div id="myStock" class="data_panel ta-parent-box" data-taid="wdzx_hq" data-fid="wdzx_djall" style="display: block;">
 
 					<table class="codename fl">
 						<thead>
@@ -179,6 +175,16 @@
 				</div>
 
 			</div>
+		
+				<div id="myStrategy" class="right_bar_tit" style="display: none;">
+					<span style="float:left;">我的策略</span>
+					<a class="ta-own-box" href="../../view/strategy/strategy.jsp" data-taid="wdgz_wdzg" data-fid="wdgz_djall" target="_blank">进入策略研究&gt;&gt;</a>
+				</div>
+				
+				<div id="accountSetting" class="right_bar_tit" style="display: none;">
+					
+				</div>
+			
 		</div>
 	</body>
 
