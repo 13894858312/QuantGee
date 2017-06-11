@@ -146,6 +146,7 @@ function submitInfoChagnes() {
 			document.getElementById("usernameInfo").readOnly = "readonly";
 			document.getElementById("phoneNumber").value = userInfo["phoneNumber"];
 			document.getElementById("phoneNumber").readOnly = "readonly";
+			document.getElementById("changeInfoButton").style.display = "none";
 		},
 		error: function(data) {
 			alert("error");

@@ -201,13 +201,6 @@
 					<div id="returnPeriod" style="text-align: center;width: 500px;margin: 10px auto;">
 						<button onclick="submitInfoChagnes()" id="changeInfoButton" class="button" style="margin-left: 20%; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;display: none;">提交</button>
 					</div>
-					<script type="text/javascript">
-						var msg = "${requestScope.tipMessage}";
-						if(msg != "") {
-							alert(msg);
-						}
-					</script>
-
 				</div>
 			</div>
 
