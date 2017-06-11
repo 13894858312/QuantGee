@@ -306,8 +306,8 @@ function drwaKDJ() {
         },
         grid: {
             top:'15%',
-            left: '8%',
-            right: '0%',
+            left: '6%',
+            right: '3%',
             bottom: '11%'
         },
         xAxis:  {
@@ -357,7 +357,7 @@ function drawRSI() {
         },
         grid: {
             top:'15%',
-            left: '8%',
+            left: '6%',
             right: '3%',
             bottom: '11%'
         },
@@ -431,8 +431,8 @@ function drawBOLL() {
         },
         grid: {
             top:'15%',
-            left: '8%',
-            right: '0%',
+            left: '6%',
+            right: '3%',
             bottom: '11%'
         },
         xAxis:  {

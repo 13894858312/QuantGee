@@ -19,11 +19,11 @@ public class main {
 
 //        BollCalculation bollCalculation = (BollCalculation)context.getBean("bollCalculation");
 //        bollCalculation.start();
-//
+
 //        RsiCalculation rsiCalculation = (RsiCalculation)context.getBean("rsiCalculation");
 //        rsiCalculation.start();
 
-        BpPredict bpPredict = (BpPredict) context.getBean("bpPredict");
-        bpPredict.start();
+//        BpPredict bpPredict = (BpPredict) context.getBean("bpPredict");
+//        bpPredict.start();
     }
 }

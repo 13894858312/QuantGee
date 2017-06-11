@@ -252,7 +252,7 @@ function drawRSI() {
     };
     myChart.setOption(option);
 }
-function getKline() {
+function getKlineInfo() {
     var kline;
     var klinebar = [];
     $.ajax({
@@ -309,7 +309,7 @@ function drawBOLL() {
             {
                 name:'日k',
                 type: 'candlestick',
-                data: getKline()
+                data: getKlineInfo()
             },
             {
                 name:'mid',

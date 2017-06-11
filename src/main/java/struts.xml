@@ -61,6 +61,11 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+        <action name="getAllStock" class="marketInfoAction" method="getAllStock">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
 	</package>
 	<package name="list" extends="json-default,struts-default">
 		<action name="getWebStockName" class="listAction" method="getWebStockName">
