@@ -43,7 +43,7 @@
 				    margin-right: 100px;
 				    margin-top: 24px;
 				    font-size: 20px;
-				">bcy</span>
+				"></span>
 			</div>
 
 		</div>
@@ -61,10 +61,10 @@
 			<div class="left_bar">
 				<ul class="inner ta-parent-box" data-taid="wdzx_dh1" data-fid="wdzx_djall">
 					<li class="nav-btn person_sel" data-id="focus" data-title="我的自选">
-						<a onclick="myStockPanel()">我的自选</a>
+						<a onclick="changePanel('myStock')">我的自选</a>
 					</li>
 					<li class="nav-btn receive" data-id="focus" data-title="我的策略">
-						<a onclick="myStrategyPanel()">我的策略</a>
+						<a onclick="changePanel('myStrategy')">我的策略</a>
 					</li>
 				</ul>
 
@@ -82,7 +82,7 @@
 
 				<ul class="outer ta-parent-box" data-taid="wdzx_dh2" data-fid="wdzx_djall">
 					<li class="map">
-						<a onclick="accountSettingPanel()">帐号信息</a>
+						<a onclick="changePanel('accountSetting')">帐号信息</a>
 					</li>
 				</ul>
 
@@ -184,19 +184,22 @@
 			<div id="accountSetting" class="right_bar_tit" style="display: none;float: left;width: 902px;">
 				<div id="userInfo_accountID" style="margin-top: 20px;">
 					<div id="returnPeriod" style="text-align: center;width: 500px;margin:10px auto;">
-						<label style="font-size: 16px; font-weight: 100; width: 64px;">账号ID</label>
-						<input type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-						<button class="button" style="margin-left: 20px; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改</button>
+						<label style="font-size: 16px; font-weight: 100; width: 64px;margin-left: 16px; margin-right: 16px;">账号</label>
+						<input id="accountIDInfo" type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;" readonly="readonly" value="hhh" />
+						<button onclick="changeInfo('accountIDInfo')" style="margin-left: 20px; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改</button>
 					</div>
 					<div id="returnPeriod" style="text-align: center;width: 500px;margin: 10px auto;">
-						<label style="font-size: 16px; font-weight: 100; width: 64px;">账号ID</label>
-						<input type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-						<button class="button" style="margin-left: 20px; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改</button>
+						<label style="font-size: 16px; font-weight: 100; width: 64px;">用户昵称</label>
+						<input id="usernameInfo" type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+						<button onclick="changeInfo('usernameInfo')" style="margin-left: 20px; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改</button>
 					</div>
 					<div id="returnPeriod" style="text-align: center;width: 500px;margin: 10px auto;">
-						<label style="font-size: 16px; font-weight: 100; width: 64px;">账号ID</label>
-						<input type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-						<button class="button" style="margin-left: 20px; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改</button>
+						<label style="font-size: 16px; font-weight: 100; width: 64px;">手机号码</label>
+						<input id="phoneNumber" type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+						<button onclick="changeInfo('phoneNumber')" style="margin-left: 20px; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改</button>
+					</div>
+					<div id="returnPeriod" style="text-align: center;width: 500px;margin: 10px auto;">
+						<button onclick="submitInfoChagnes()" id="changeInfoButton" class="button" style="margin-left: 20%; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;display: none;">提交</button>
 					</div>
 				</div>
 			</div>
