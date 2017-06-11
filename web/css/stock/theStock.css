@@ -80,6 +80,19 @@
 }
 .tsrr{
 	float: left;
+	margin-left: 10%;
+	width: 30%;
+	height: 25px;
+}
+.prerangetext{
+	float: left;
+	margin-top: 3px;
+	width: 70%;
+	height: 22px;
+	font-family: "Roboto Mono", monospace;
+}
+.prerangedata{
+	float: left;
 	width: 30%;
 	height: 25px;
 }
