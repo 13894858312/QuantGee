@@ -202,8 +202,8 @@ function setData() {
     for(var i=0;i<json1['rsi6'].length;i++){
         rsi6data.push(json1['rsi6'][i]['value']);
     }
-    for(var i=0;i<json['rsi12'].length;i++){
-        rsi12data.push(json['rsi12'][i]['value']);
+    for(var i=0;i<json1['rsi12'].length;i++){
+        rsi12data.push(json1['rsi12'][i]['value']);
     }
     for(var i=0;i<json1['rsi24'].length;i++){
         rsi24data.push(json1['rsi24'][i]['value']);
@@ -239,7 +239,6 @@ function drawMACD() {
             bottom: '11%'
         },
         xAxis:  {
-            show:false,
             boundaryGap: true,
             type: 'category',
             data: date
@@ -291,7 +290,6 @@ function drwaKDJ() {
             bottom: '11%'
         },
         xAxis:  {
-            show:false,
             boundaryGap: true,
             type: 'category',
             data: date
@@ -343,7 +341,6 @@ function drawRSI() {
             bottom: '11%'
         },
         xAxis:  {
-            show:false,
             boundaryGap: true,
             type: 'category',
             data: date
@@ -395,7 +392,6 @@ function drawBOLL() {
             bottom: '11%'
         },
         xAxis:  {
-            show:false,
             type: 'category',
             data: date
         },

@@ -70,7 +70,7 @@ public class TradeAction extends ActionSupport{
     }
 
     public String getTradeIndex(){
-        if (stockCode == null){
+        if (stockCode == "sh"){
             stockCode = "000001";
         }
 System.out.println(stockCode);
