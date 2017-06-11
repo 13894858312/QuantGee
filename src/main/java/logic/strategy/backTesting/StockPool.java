@@ -68,7 +68,7 @@ public class StockPool {
 
         //选择指定 板块 构造股票池
         if(inputVO.getStockPoolType() == 0) {
-            Iterator<String> codes = stockInfoDAO.getAllStockCodesByBlock(inputVO.getBlockType());
+            Iterator<String> codes = stockInfoDAO.getAllStockCodesByBlock(inputVO.getBackTestBlock());
             while(codes.hasNext()) {
                 String code = codes.next();
                 if (inputVO.isNotST()) {
@@ -186,21 +186,32 @@ public class StockPool {
     }
 
     /**
-     * 获取指定板块基准收益率
+     * 初始化基准收益率
      * @return ArrayList<LineVO>
      */
     public ArrayList<LineVO> getBlockBaseRaito() {
         ArrayList<LineVO> blockBaseRaito = new ArrayList<>();
-        //如果是板块 初始化基准收益率
-        if(inputVO.getStockPoolType() == 0 && inputVO.getBlockType() != null) {
-            Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getBlockType(), inputVO.getStartDate(), this.inputVO.getEndDate());
-            double initClose = stocks.next().getClose();
-            while(stocks.hasNext()) {
-                Stock stock = stocks.next();
-                //数据均是百分数 所以需要 /100
-                blockBaseRaito.add(new LineVO(stock.getDate(), (stock.getClose()-initClose)/initClose));
-            }
+
+        assert (inputVO.getBaseYieldBlock() != null) : "inputVO.getBaseYieldBlock()为null";
+
+        Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getBaseYieldBlock() , inputVO.getStartDate(), this.inputVO.getEndDate());
+        double initClose = stocks.next().getClose();
+        while(stocks.hasNext()) {
+            Stock stock = stocks.next();
+            //数据均是百分数 所以需要 /100
+            blockBaseRaito.add(new LineVO(stock.getDate(), (stock.getClose()-initClose)/initClose));
         }
+
+//        if (inputVO.getBackTestBlock() != null && inputVO.getStockPoolType() == 1) {
+//            Iterator<Stock> stocks = stockInfoDAO.getStockInfo(inputVO.getBackTestBlock() , inputVO.getStartDate(), this.inputVO.getEndDate());
+//            double initClose = stocks.next().getClose();
+//            while(stocks.hasNext()) {
+//                Stock stock = stocks.next();
+//                //数据均是百分数 所以需要 /100
+//                blockBaseRaito.add(new LineVO(stock.getDate(), (stock.getClose()-initClose)/initClose));
+//            }
+//        }
+
         return blockBaseRaito;
     }
 

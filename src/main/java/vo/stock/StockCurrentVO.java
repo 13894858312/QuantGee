@@ -1,5 +1,7 @@
 package vo.stock;
 
+import logic.tools.MathHelper;
+
 /**
  * Created by Mark.W on 2017/5/10.
  * 股票数据的vo(实时数据）
@@ -57,14 +59,14 @@ public class StockCurrentVO {
         this.open = open;
         this.low = low;
         this.high = high;
-        this.amount = amount;
-        this.volume = volume;
+        this.amount = MathHelper.formatData(amount/10000,2);
+        this.volume = MathHelper.formatData(volume/10000,2);
         this.changePercent = changePercent;
-        this.turnover = turnover;
+        this.turnover = MathHelper.formatData(turnover,2);
         this.settlement = settlement;
-        this.per = per;
-        this.pb = pb;
-        this.mktcap = mktcap;
+        this.per = MathHelper.formatData(per,2);
+        this.pb = MathHelper.formatData(pb,2);
+        this.mktcap = MathHelper.formatData(mktcap/10000,2);
     }
 
     public String getCode() {

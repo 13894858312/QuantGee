@@ -12,7 +12,8 @@ public class StrategyBackTestInputVO {
     /********************回测必须参数*******************/
     private int stockPoolType;              //0指定板块 1指定股票
     private int strategyType;               //0动量策略 1均值回归 2双均线策略 3羊驼策略 4KNN机器学习策略
-    private String blockType;               //若stockPoolType为0 则指定板块代码 sh=上证A股 sz=深证A股 zxb=中小板 cyb=创业板
+    private String baseYieldBlock="hs300";  //基准收益率的指数 默认沪深300  sh=上证指数 sz=深圳成指 hs300=沪深300指数 sz50=上证50 zxb=中小板 cyb=创业板
+    private String backTestBlock;           //若stockPoolType为0 回测指定板块的股票 则指定板块代码 sh=上证A股 sz=深证A股 zxb=中小板 cyb=创业板
     private ArrayList<String> stockCodes;   //若stockPoolType为1 则指定股票代码
     private String startDate;               //回测开始时间
     private String endDate;                 //回测结束时间
@@ -73,12 +74,12 @@ public class StrategyBackTestInputVO {
         this.strategyType = strategyType;
     }
 
-    public String getBlockType() {
-        return blockType;
+    public String getBackTestBlock() {
+        return backTestBlock;
     }
 
-    public void setBlockType(String blockType) {
-        this.blockType = blockType;
+    public void setBackTestBlock(String backTestBlock) {
+        this.backTestBlock = backTestBlock;
     }
 
     public ArrayList<String> getStockCodes() {
@@ -207,5 +208,13 @@ public class StrategyBackTestInputVO {
 
     public void setStopProfit(double stopProfit) {
         this.stopProfit = stopProfit;
+    }
+
+    public String getBaseYieldBlock() {
+        return baseYieldBlock;
+    }
+
+    public void setBaseYieldBlock(String baseYieldBlock) {
+        this.baseYieldBlock = baseYieldBlock;
     }
 }
