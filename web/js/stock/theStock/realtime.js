@@ -91,12 +91,19 @@ function setRealContent() {
     }
     $("#tsr3").text(content['low']);
     $("#tsr4").text(content['high']);
-    $("#tsr5").text(content['turnover']);
+    $("#tsr5").text(String(content['turnover'])+"%");
     $("#tsr6").text(content['per']);
     $("#tsr7").text(content['pb']);
-    $("#tsr8").text(content['volume']);
-    $("#tsr9").text(content['amount']);
-    $("#tsr10").text(content['mktcap']);
-    $("#tsrr").text(content['changePercent']);
+    $("#tsr8").text(String(content['volume'])+"万");
+    $("#tsr9").text(String(content['amount'])+"万");
+    $("#tsr10").text(String(content['mktcap'])+"亿");
+    if(content['trade']>0){
+        var temp = document.getElementById("#tsrr");
+        temp.style.color = "rgb(207,25,74)";
+    }else{
+        var temp = document.getElementById("#tsrr");
+        temp.style.color = "rgb(62, 196, 131)";
+    }
+    $("#tsrr").text(String(content['changePercent'])+"%");
     $("#tsnprice").text(content['trade']);
 }

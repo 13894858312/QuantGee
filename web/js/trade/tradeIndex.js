@@ -12,7 +12,7 @@ var klineMA10 = [];
 var klineMA20 = [];
 var volume = [];
 var json;
-var json1;
+
 var date = [];
 //macd
 var diffdata = [];
@@ -165,6 +165,27 @@ function dochart() {
 
 
 function setData() {
+    var json1;
+    date = [];
+//macd
+    diffdata = [];
+    deadata = [];
+    macddata = [];
+
+//kdj
+    kdata = [];
+    ddata = [];
+    jdata = [];
+
+//rsi
+    rsi6data = [];
+    rsi12data = [];
+    rsi24data = [];
+
+//boll
+    middata = [];
+    updata = [];
+    lowdata = [];
     $.ajax({
         cache:false,
         async:false,
@@ -234,8 +255,8 @@ function drawMACD() {
         },
         grid: {
             top:'15%',
-            left: '8%',
-            right: '0%',
+            left: '6%',
+            right: '3%',
             bottom: '11%'
         },
         xAxis:  {
@@ -263,7 +284,7 @@ function drawMACD() {
             },
             {
                 name:'macd',
-                type:'line',
+                type:'bar',
                 data:macddata
             }
         ]
@@ -285,8 +306,8 @@ function drwaKDJ() {
         },
         grid: {
             top:'15%',
-            left: '8%',
-            right: '0%',
+            left: '6%',
+            right: '3%',
             bottom: '11%'
         },
         xAxis:  {
@@ -336,7 +357,7 @@ function drawRSI() {
         },
         grid: {
             top:'15%',
-            left: '8%',
+            left: '6%',
             right: '3%',
             bottom: '11%'
         },
@@ -372,6 +393,29 @@ function drawRSI() {
     };
     myChart.setOption(option);
 }
+function getKlineBar() {
+    var kline;
+    var klinebar = [];
+    $.ajax({
+        cache:false,
+        async:false,
+        url:'getBOLLKlineInfo.action',
+        type:'GET',
+        dataType:'json',
+        success:function (data) {
+            kline = JSON.parse(data);
+        }
+    });
+    for(var i=0;i<kline['kLine'].length;i++){
+        var temp = [];
+        temp.push(kline['kLine'][i]['open']);
+        temp.push(kline['kLine'][i]['close']);
+        temp.push(kline['kLine'][i]['low']);
+        temp.push(kline['kLine'][i]['high']);
+        klinebar.push(temp);
+    }
+    return klinebar;
+}
 function drawBOLL() {
     setData();
     var myChart = echarts.init(document.getElementById("index"));
@@ -383,12 +427,12 @@ function drawBOLL() {
             }
         },
         legend: {
-            data:['mid','up','low']
+            data:['日k','mid','up','low']
         },
         grid: {
             top:'15%',
-            left: '8%',
-            right: '0%',
+            left: '6%',
+            right: '3%',
             bottom: '11%'
         },
         xAxis:  {
@@ -404,6 +448,11 @@ function drawBOLL() {
             scale:true
         },
         series: [
+            {
+                name:'日k',
+                type:'candlestick',
+                data:getKlineBar()
+            },
             {
                 name:'mid',
                 type:'line',

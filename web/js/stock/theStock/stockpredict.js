@@ -23,10 +23,10 @@ for(var i=0;i<json['actualValues'].length;i++){
     date.push(json['actualValues'][i]['date'])
 }
 for(var i=0;i<json['actualValues'].length;i++){
-    date.push(json['actualValues'][i]['value'])
+    actual.push(json['actualValues'][i]['value'])
 }
 for(var i=0;i<json['predictedValues'].length;i++){
-    date.push(json['predictedValues'][i]['value'])
+    predict.push(json['predictedValues'][i]['value'])
 }
 var myChart = echarts.init(document.getElementById("analysisgraph"));
 var option = {

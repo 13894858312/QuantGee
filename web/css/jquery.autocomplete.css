@@ -1,6 +1,11 @@
 .ac_results {
+	margin-left: 14px;
 	padding: 0px;
-	border: 1px solid black;
+	border-left: 2px solid rgb(41,29,29);
+	border-bottom: 2px solid rgb(41,29,29);
+	border-right: 2px solid rgb(41,29,29);
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
 	background-color: white;
 	overflow: hidden;
 	z-index: 99999;
@@ -17,7 +22,7 @@
 .ac_results li {
 	margin: 0px;
 	padding: 2px 5px;
-	cursor: default;
+	cursor: hand;
 	display: block;
 	/* 
 	if width will be 100% horizontal scrollbar will apear 
@@ -25,7 +30,9 @@
 	*/
 	/*width: 100%;*/
 	font: menu;
-	font-size: 12px;
+	font-size: 14px;
+	font-weight: 700;
+	font-family: "Roboto Mono", monospace;
 	/* 
 	it is very important, if line-height not setted or setted 
 	in relative units scroll will be broken in firefox
@@ -34,15 +41,5 @@
 	overflow: hidden;
 }
 
-.ac_loading {
-	background: white url('indicator.gif') right center no-repeat;
-}
 
-.ac_odd {
-	background-color: #eee;
-}
 
-.ac_over {
-	background-color: #0A246A;
-	color: white;
-}
