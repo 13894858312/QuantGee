@@ -97,8 +97,8 @@ public class StockAction extends ActionSupport{
     public String getRealTimeInfo(){
 
         System.out.println("success");
-
         RealTimeLineVO realTimeLineVO = stockBasicInfoService.getStockRealTimeLineInfo(stockCode);
+        System.out.println(realTimeLineVO.getCode());
         JSONObject jsonObject = JSONObject.fromObject(realTimeLineVO);
         result = jsonObject.toString();
         return SUCCESS;

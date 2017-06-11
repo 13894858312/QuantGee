@@ -6,9 +6,6 @@ drawRealImg();
 var interval = 3000;
 setInterval(interval,drawRealImg());
 function drawRealImg() {
-    setRealContent();
-
-
     var json;
     $.ajax({
         cache:false,
@@ -67,6 +64,7 @@ function drawRealImg() {
         ]
     };
     myChart.setOption(option);
+    setRealContent();
 }
 function setRealContent() {
     var content;
@@ -98,12 +96,12 @@ function setRealContent() {
     $("#tsr9").text(String(content['amount'])+"万");
     $("#tsr10").text(String(content['mktcap'])+"亿");
     if(content['trade']>0){
-        var temp = document.getElementById("#tsrr");
+        var temp = document.getElementById("#tsrrdata");
         temp.style.color = "rgb(207,25,74)";
     }else{
-        var temp = document.getElementById("#tsrr");
+        var temp = document.getElementById("#tsrrdata");
         temp.style.color = "rgb(62, 196, 131)";
     }
-    $("#tsrr").text(String(content['changePercent'])+"%");
+    $("#tsrrdata").text(String(content['changePercent'])+"%");
     $("#tsnprice").text(content['trade']);
 }

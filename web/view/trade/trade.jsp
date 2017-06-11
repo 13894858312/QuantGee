@@ -62,6 +62,10 @@
     		<div class="kimgandindex">
     			<div class="kimg" id="kline"></div>
 	    			<div class="realanddata">
+	    				<div class="realdatahead">
+		    				<div class="resulttext0" id="resulttext0">上证指数</div>
+							<div class="resultdata0" id="resultdata0">1A0001</div>
+		    			</div>
 		    			<div class="realdata">
 		    				<div class="resulttext">预测明日价格:</div>
 							<div class="resultdata" id="resultdata1">-----</div>

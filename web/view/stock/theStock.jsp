@@ -62,8 +62,7 @@
   				</div>-->
   				<div class="tsnprice" id="tsnprice">9.85</div>
   				<div class="rd" >涨跌幅度</div>
-  				<!--<div class="tsrp">0.14</div>-->
-  				<div class="tsrr" id="tsrr">0.68%</div>
+  				<div class="tsrr" id="tsrrdata">0.68%</div>
   				<div class="prerangetext"><a href="#anaheadtext" style="color: #000000;">预测涨跌幅:</a></div>
   				<div class="prerangedata" id="prerangedata"></div>
   				<div class="tsab">
@@ -133,9 +132,9 @@
   			</table>
   		</div>
   		<div class="tsrealtime" id="tsrealtime"></div>
-        <script src="../../js/stock/theStock/realtime.js"></script>
   	</div>
   </div>
+    <script src="../../js/stock/theStock/realtime.js"></script>
   <div class="hismarket">
 			<div class="hismarkethead">
 				<div class="hmtext">
