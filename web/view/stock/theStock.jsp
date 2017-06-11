@@ -64,6 +64,8 @@
   				<div class="rd" >涨跌幅度</div>
   				<!--<div class="tsrp">0.14</div>-->
   				<div class="tsrr" id="tsrr">0.68%</div>
+  				<div class="prerangetext"><a href="#anaheadtext" style="color: #000000;">预测涨跌幅:</a></div>
+  				<div class="prerangedata" id="prerangedata"></div>
   				<div class="tsab">
 	  				<div class="abimg">
 	  					<img src="../../images/addbutton44.png" />
@@ -178,7 +180,7 @@
 	</div>
 	<div class="analysis">
 		<div class="anahead">
-			<div class="anaheadtext">股票预测</div>
+			<div class="anaheadtext" id="anaheadtext">股票预测</div>
 		</div>
 		<div class="analysisgraph" id="analysisgraph"></div>
         <script src="../../js/stock/theStock/stockpredict.js"></script>

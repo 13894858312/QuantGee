@@ -101,8 +101,6 @@ public interface StockInfoDAO {
      */
     public String getCodeByName(String name);
 
-
-
     /**
      * 按指数代码得到实时大盘指数信息
      * @param indexCode 大盘指数代码
@@ -163,6 +161,12 @@ public interface StockInfoDAO {
      * @return 月k数据
      */
     public Iterator<StockMonth> getMonthK(String code);
+
+    /**
+     * 得到所有股票名称
+     * @return 所有股票名称
+     */
+    public Iterator<String> getAllStockNames();
 
 
 }

@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.StringJoiner;
 
 /**
  * Created by wangxue on 2017/5/5.
@@ -204,6 +205,13 @@ public class StockInfoData implements StockInfoDAO{
     public Iterator<StockMonth> getMonthK(String code, String startDate, String endDate) {
         Iterator<StockMonth> iterator = (Iterator<StockMonth>) hibernateTemplate
                 .find("from StockMonth s where s.stockId =? and s.date>= ? and s.date<= ? ", new String[]{code,startDate,endDate}).iterator();
+        return iterator;
+    }
+
+    @Override
+    public Iterator<String> getAllStockNames(){
+        Iterator<String> iterator = (Iterator<String>) hibernateTemplate
+                .find("select name from MarketInfo ").iterator();
         return iterator;
     }
 

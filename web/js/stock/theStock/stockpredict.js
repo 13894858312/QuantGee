@@ -77,3 +77,4 @@ myChart.setOption(option);
 $("#resultdata1").text(json['predictTomorrowPrice']);
 $("#resultdata2").text(json['predictTomorrowIncrease']);
 $("#resultdata3").text(json['historyDeviation']);
+$("#anaheadtext").text(json['predictTomorrowIncrease']);
