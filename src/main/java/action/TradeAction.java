@@ -70,9 +70,6 @@ public class TradeAction extends ActionSupport{
     }
 
     public String getTradeIndex(){
-        if (stockCode == "sh"){
-            stockCode = "000001";
-        }
         String date = DateHelper.getNowDate();
         String enddate = DateHelper.formerNTradeDay(date, 20);
         String startdate = DateHelper.formerNTradeDay(enddate, 120);
