@@ -87,27 +87,6 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         }
 
         RealTimeLineVO result = new RealTimeLineVO(code, times, nowPrice, volumn);
-
-        System.out.println("***************************************************************************");
-        System.out.println("***************************************************************************");
-        System.out.println("***************************************************************************");
-        System.out.println("***************************************************************************");
-        System.out.println("***************************************************************************");
-        System.out.println("***************************************************************************");
-        System.out.println(result.getCode());
-        System.out.println("time");
-        for (int i=0; i<result.getTimes().size(); ++i) {
-            System.out.print(result.getTimes().get(i) + " ");
-        }
-        System.out.println("volumn");
-        for (int i=0; i<result.getVolumn().size(); ++i) {
-            System.out.print(result.getVolumn().get(i) + " ");
-        }
-        System.out.println("nowPrice");
-        for (int i=0; i<result.getNowPrice().size(); ++i) {
-            System.out.print(result.getNowPrice().get(i) + " ");
-        }
-        System.out.println();
         return result;
     }
 

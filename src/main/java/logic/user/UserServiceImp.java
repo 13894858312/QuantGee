@@ -38,9 +38,6 @@ public class UserServiceImp implements UserService {
     public UserVO getUserInfo(String accountID) {
         User user = userDAO.searchUser(accountID);
         return transferHelper.transToUserVO(user);
-
-//        UserVO userVO = new UserVO("wyy", "wyyyy", "wyyyyyy");
-//        return userVO;
     }
 
 }

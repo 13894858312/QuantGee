@@ -65,9 +65,9 @@ public class TradeAction extends ActionSupport{
     public String getSTCodeInfo(){
         JSONObject jsonObject = new JSONObject();
         if(stockCode == "sh") {
-            jsonObject = JSONObject.fromObject(stockBasicInfoService.getStockRealTimeInfo(stockCode));
-        }else {
             jsonObject = JSONObject.fromObject(marketInfoService.getIndexRealTimeInfo(stockCode));
+        }else {
+            jsonObject = JSONObject.fromObject(stockBasicInfoService.getStockRealTimeInfo(stockCode));
         }
         result = jsonObject.toString();
         return SUCCESS;
