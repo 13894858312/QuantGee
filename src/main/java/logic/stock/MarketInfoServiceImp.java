@@ -126,10 +126,11 @@ System.out.println("*********************************topstocks.size: " + topStoc
             MarketInfo marketInfo = stockInfoDAO.getMarketInfo(topStocks.get(topIndex).getCode());
             if (marketInfo == null) {
                 i --;
+                topStocks.remove(topIndex);
                 continue;
             }
 
-System.out.println("******************************loop: " + marketInfo.getCode());
+System.out.println("******************************************************************************loop: " + marketInfo.getCode());
 
             result.add(new TopStockVO(upOrDown, marketInfo.getCode(), marketInfo.getName(),
                     topStocks.get(topIndex).getIncreaseRate(), topStocks.get(topIndex).getNowPrice()));

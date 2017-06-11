@@ -26,3 +26,11 @@ function getSession() {
 		}
 	});
 }
+
+//$(document).ready(function(){
+//	$.ajax({
+//		type:"get",
+//		url:"",
+//		async:true
+//	});
+//})

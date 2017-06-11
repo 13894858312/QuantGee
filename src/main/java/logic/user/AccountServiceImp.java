@@ -35,10 +35,12 @@ public class AccountServiceImp implements AccountService{
     public boolean login(AccountVO accountVO) {
         Account account = accountDAO.getAccount(accountVO.getAccountID());
 
-        if(Encryption.getInstance().encryptPassword(accountVO.getPassword()).equals(account.getPassword())) {
-            account.setIsLogIn(1);
-            if(accountDAO.updateAccount(account)) {        //更新登陆状态
-                return true;
+        if (account != null) {
+            if(Encryption.getInstance().encryptPassword(accountVO.getPassword()).equals(account.getPassword())) {
+                account.setIsLogIn(1);
+                if(accountDAO.updateAccount(account)) {        //更新登陆状态
+                    return true;
+                }
             }
         }
 
@@ -48,6 +50,9 @@ public class AccountServiceImp implements AccountService{
     @Override
     public boolean modifyPassword(AccountVO accountVO) {
         Account account = accountDAO.getAccount(accountVO.getAccountID());
+        if (account == null) {
+            return false;
+        }
         account.setPassword(accountVO.getPassword());
 
         account = Encryption.getInstance().encrypt(account);
@@ -61,6 +66,9 @@ public class AccountServiceImp implements AccountService{
     @Override
     public boolean logout(AccountVO accountVO) {
         Account account = accountDAO.getAccount(accountVO.getAccountID());
+        if (account == null) {
+         return false;
+        }
         account.setIsLogIn(0);
         if(accountDAO.updateAccount(account)) {        //更新登出状态
             return true;

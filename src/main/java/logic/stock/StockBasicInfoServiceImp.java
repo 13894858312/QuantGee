@@ -85,6 +85,16 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         return stockInfoDAO.getCodeByName(name);
     }
 
+    @Override
+    public ArrayList<String> getAllStockCodes() {
+        Iterator<String> codes = stockInfoDAO.getAllStockCodes();
+        ArrayList<String> result = new ArrayList<>();
+        while(codes.hasNext()) {
+            result.add(codes.next());
+        }
+        return result;
+    }
+
     /**
      * 根据代码列表获取数据 用来方法服用
      * @param codes 代码
