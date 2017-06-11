@@ -31,7 +31,11 @@
                 <param name="root">result</param>
             </result>
         </action>
-
+        <action name="getUserInfo" class="action.LoginAction" method="getUserInfo">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
     </package>
 
 	<package name="json" extends="json-default">

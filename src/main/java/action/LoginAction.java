@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import service.stock.CollectStockService;
 import service.user.AccountService;
+import service.user.UserService;
 import vo.stock.StockCurrentVO;
 import vo.user.AccountVO;
+import vo.user.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +24,6 @@ import java.util.Map;
 @Controller
 public class LoginAction extends ActionSupport {
 
-    private HttpServletRequest request;
 
     //	private AccountVO accountVO = new AccountVO(); // 表单中的姓名
     private AccountVO accountVO; // 表单中的姓名
@@ -37,6 +38,8 @@ public class LoginAction extends ActionSupport {
     private AccountService accountService;
     @Autowired
     private CollectStockService collectStockService;
+    @Autowired
+    private UserService userService;
 
     //	@Result({
 //			@Result(name = "success" ,value = "/view/ucenter/user_center.jsp"),
@@ -50,7 +53,7 @@ public class LoginAction extends ActionSupport {
             stockCurrentVOS = collectStockService.getCollectedStocks(accountVO.getAccountID());
             return SUCCESS;
         } else {
-            request = ServletActionContext.getRequest();
+            HttpServletRequest request = ServletActionContext.getRequest();
             request.setAttribute("tipMessage", "登陆失败！");
             return "fail";
         }
@@ -90,10 +93,10 @@ public class LoginAction extends ActionSupport {
     }
 
     public String getUserInfo(){
-        ActionContext actionContext = ActionContext.getContext();
-        Map session = actionContext.getSession();
-
-        return result;
+        UserVO userVO = userService.getUserInfo(accountVO.getAccountID());
+        JSONObject json = JSONObject.fromObject(userVO);
+        result = json.toString();
+        return SUCCESS;
     }
 
     public String getResult() {
