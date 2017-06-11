@@ -4,7 +4,7 @@ var Stock;
 var userInfo;
 
 $(document).ready(function() {
-//判断当前登陆用户
+	//判断当前登陆用户
 	$.ajax({
 		type: 'get',
 		url: 'haveLogin.action',
@@ -20,7 +20,7 @@ $(document).ready(function() {
 	});
 
 	if(accountID[accountID] != "") {
-//获取收藏的股票
+		//获取收藏的股票
 		$.ajax({
 			type: 'get',
 			url: 'getCollectStock.action',
@@ -36,7 +36,7 @@ $(document).ready(function() {
 				alert("error");
 			}
 		});
-//获取收藏的策略
+		//获取收藏的策略
 		$.ajax({
 			type: 'get',
 			url: 'getCollectStock.action',
@@ -52,7 +52,7 @@ $(document).ready(function() {
 				alert("error");
 			}
 		});
-//获取用户信息
+		//获取用户信息
 		$.ajax({
 			type: 'get',
 			url: 'getUserInfo.action',
@@ -62,12 +62,11 @@ $(document).ready(function() {
 			},
 			dataType: 'json',
 			success: function(data) {
-				alert(data);
 				userInfo = JSON.parse(data);
 				document.getElementById("accountIDInfo").value = userInfo["accountID"];
 				document.getElementById("usernameInfo").value = userInfo["userName"];
 				document.getElementById("phoneNumber").value = userInfo["phoneNumber"];
-				
+
 			},
 			error: function(data) {
 				alert("error");
@@ -110,26 +109,46 @@ function totheStockView() {
 	});
 }
 
-function myStockPanel() {
-	document.getElementById("myStock").style.display = "block";
-	document.getElementById("myStrategy").style.display = "none";
-	document.getElementById("accountSetting").style.display = "none";
-}
-
-function myStrategyPanel() {
-	document.getElementById("myStock").style.display = "none";
-	document.getElementById("myStrategy").style.display = "block";
-	document.getElementById("accountSetting").style.display = "none";
-}
-
-function accountSettingPanel() {
+function changePanel(panelName) {
 	document.getElementById("myStock").style.display = "none";
 	document.getElementById("myStrategy").style.display = "none";
-	document.getElementById("accountSetting").style.display = "block";
+	document.getElementById("accountSetting").style.display = "none";
+	document.getElementById(panelName).style.display = "block";
 }
 
-function changeInfo(infoField){
+function changeInfo(infoField) {
 	document.getElementById(infoField).removeAttribute("readonly");
 	document.getElementById(infoField).focus();
 	document.getElementById("changeInfoButton").style.display = "block";
+}
+
+function submitInfoChagnes() {
+	var accountVO = {
+		'userVO.accountID': document.getElementById("accountIDInfo").value,
+		'userVO.userName': document.getElementById("usernameInfo").value,
+		'userVO.phoneNumber': document.getElementById("phoneNumber").value
+	};
+	$.ajax({
+		type: 'post',
+		url: 'updateUserInfo.action',
+		async: false,
+		data: {
+			'userVO.accountID': document.getElementById("accountIDInfo").value,
+			'userVO.userName': document.getElementById("usernameInfo").value,
+			'userVO.phoneNumber': document.getElementById("phoneNumber").value
+		},
+		dataType: 'json',
+		success: function(data) {
+			userInfo = JSON.parse(data);
+			document.getElementById("accountIDInfo").value = userInfo["accountID"];
+			document.getElementById("accountIDInfo").readOnly = "readonly";
+			document.getElementById("usernameInfo").value = userInfo["userName"];
+			document.getElementById("usernameInfo").readOnly = "readonly";
+			document.getElementById("phoneNumber").value = userInfo["phoneNumber"];
+			document.getElementById("phoneNumber").readOnly = "readonly";
+		},
+		error: function(data) {
+			alert("error");
+		}
+	});
 }

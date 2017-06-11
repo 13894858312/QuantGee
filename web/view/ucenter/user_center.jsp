@@ -61,10 +61,10 @@
 			<div class="left_bar">
 				<ul class="inner ta-parent-box" data-taid="wdzx_dh1" data-fid="wdzx_djall">
 					<li class="nav-btn person_sel" data-id="focus" data-title="我的自选">
-						<a onclick="myStockPanel()">我的自选</a>
+						<a onclick="changePanel('myStock')">我的自选</a>
 					</li>
 					<li class="nav-btn receive" data-id="focus" data-title="我的策略">
-						<a onclick="myStrategyPanel()">我的策略</a>
+						<a onclick="changePanel('myStrategy')">我的策略</a>
 					</li>
 				</ul>
 
@@ -82,7 +82,7 @@
 
 				<ul class="outer ta-parent-box" data-taid="wdzx_dh2" data-fid="wdzx_djall">
 					<li class="map">
-						<a onclick="accountSettingPanel()">帐号信息</a>
+						<a onclick="changePanel('accountSetting')">帐号信息</a>
 					</li>
 				</ul>
 
@@ -185,7 +185,7 @@
 				<div id="userInfo_accountID" style="margin-top: 20px;">
 					<div id="returnPeriod" style="text-align: center;width: 500px;margin:10px auto;">
 						<label style="font-size: 16px; font-weight: 100; width: 64px;margin-left: 16px; margin-right: 16px;">账号</label>
-						<input id="accountIDInfo" type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;" readonly="readonly" value="hhh"/>
+						<input id="accountIDInfo" type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;" readonly="readonly" value="hhh" />
 						<button onclick="changeInfo('accountIDInfo')" style="margin-left: 20px; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改</button>
 					</div>
 					<div id="returnPeriod" style="text-align: center;width: 500px;margin: 10px auto;">
@@ -199,9 +199,15 @@
 						<button onclick="changeInfo('phoneNumber')" style="margin-left: 20px; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改</button>
 					</div>
 					<div id="returnPeriod" style="text-align: center;width: 500px;margin: 10px auto;">
-						<button id="changeInfoButton" class="button" style="margin-left: 20%; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;display: none;">提交</button>
+						<button onclick="submitInfoChagnes()" id="changeInfoButton" class="button" style="margin-left: 20%; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;display: none;">提交</button>
 					</div>
-					
+					<script type="text/javascript">
+						var msg = "${requestScope.tipMessage}";
+						if(msg != "") {
+							alert(msg);
+						}
+					</script>
+
 				</div>
 			</div>
 

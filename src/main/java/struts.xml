@@ -27,6 +27,12 @@
                 <param name="root">result</param>
             </result>
         </action>
+        <action name="updateUserInfo" class="action.UcenterAction" method="updateUserInfo">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+
         <action name="getCollectStock" class="action.UserStockAction" method="getCollectStock">
             <result name="success" type="json">
                 <param name="root">result</param>
