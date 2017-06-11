@@ -10,8 +10,8 @@ $(document).ready(function() {
 		async: false,
 		dataType: 'json',
 		success: function(data) {
-			accountID = JSON.parse(data);
-			document.getElementById("username").innerHTML = "欢迎，" + accountID["accountID"] + "!";
+			accountID = JSON.parse(data)["accountID"];
+			document.getElementById("username").innerHTML = "欢迎，" + accountID + "!";
 		},
 		error: function(data) {
 			alert("error");
@@ -25,7 +25,7 @@ $(document).ready(function() {
 			url: 'getCollectStock.action',
 			async: false,
 			data: {
-				accountID: accountID["accountID"]
+				accountID: accountID
 			},
 			dataType: 'json',
 			success: function(data) {
@@ -41,7 +41,7 @@ $(document).ready(function() {
 			url: 'getCollectStock.action',
 			async: false,
 			data: {
-				accountID: accountID["accountID"]
+				accountID: accountID
 			},
 			dataType: 'json',
 			success: function(data) {

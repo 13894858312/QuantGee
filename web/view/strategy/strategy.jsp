@@ -60,10 +60,10 @@
 				<a class="menua" id="a3" href="../../view/strategy/strategy.jsp" style="color: rgb(62, 196, 131);">策略大全</a>
 			</div>
 			<div class="menu" id="ha4">
-				<a class="menua" id="a4" href="../../view/trade/trade.jsp" target="_blank">模拟交易</a>
+				<a class="menua" id="a4" href="../../view/trade/trade.jsp" target="_self">模拟交易</a>
 			</div>
 			<div class="menu" id="ha5">
-				<a class="menua" id="a5" href="../../view/ucenter/user_center.jsp" target="_blank">个人中心</a>
+				<a class="menua" id="a5" href="../../view/ucenter/user_center.jsp" target="_self">个人中心</a>
 			</div>
 			<div class="search bar7">
 				<form>
