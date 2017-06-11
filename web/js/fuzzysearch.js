@@ -3,20 +3,21 @@
  */
 $(function() {
     var stock = [];
+    var json;
     $.ajax({
         cache:false,
         async:false,
-        url:'getBOLLKlineInfo.action',
+        url:'getAllStock.action',
         type:'GET',
         dataType:'json',
         success:function (data) {
-            kline = JSON.parse(data);
+            json = JSON.parse(data);
         }
     });
-    test.push("Core");
-    var data = "Core Selectors Attributes Traversing Manipulation CSS Events Effects Ajax Utilities".split(" ");
+    for(var i=0;i<json.length;i++){
+        stock.push(json[i]);
+    }
 
-    $('#keyword').autocomplete(test).result(function(event, data, formatted) {
-        alert(test);
+    $('#inputStockCode').autocomplete(stock,{width:200,max:5,cacheLength: 5,scroll: true}).result(function(event, data, formatted) {
     });
 });

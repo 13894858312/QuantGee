@@ -71,7 +71,7 @@
 							<div class="resultdata" id="resultdata2">-----</div>
 		    			</div>
 		    			<div class="realdata">
-		    				<div class="resulttext">历史预测正确率:</div>
+		    				<div class="resulttext">历史误差率:</div>
 							<div class="resultdata" id="resultdata3">-----</div>
 		    			</div>
 	    			</div>

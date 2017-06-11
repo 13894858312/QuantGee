@@ -100,7 +100,7 @@ function setInfo(data) {
         var mb = document.getElementById("hsiclean");
         mb.style.color = "rgb(62, 196, 131)";
     }
-    $("#hsiclean").text(json['pb']);
+    $("#hsiclean").text(content['pb']);
 }
 
 var klineDate = [];

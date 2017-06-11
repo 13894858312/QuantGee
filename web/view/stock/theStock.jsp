@@ -105,27 +105,27 @@
   			<table class="tsrtable">
 	  			<tr>
 	  				<td>市盈率：</td>
-	  				<td width="60px"></td>
+	  				<td width="50px"></td>
 	  				<td class="numtd" id="tsr6">11.34%</td>
 	  			</tr>
 	  			<tr>
 	  				<td>市净率：</td>
-	  				<td width="60px"></td>
+	  				<td width="50px"></td>
 	  				<td class="numtd" id="tsr7">10.98%</td>
 	  			</tr>
 	  			<tr>
 	  				<td>成交量：</td>
-	  				<td width="60px"></td>
+	  				<td width="50px"></td>
 	  				<td class="numtd" id="tsr8">24.75</td>
 	  			</tr>
 	  			<tr>
 	  				<td>成交额：</td>
-	  				<td width="60px"></td>
+	  				<td width="50px"></td>
 	  				<td class="numtd" id="tsr9">24765万</td>
 	  			</tr>
 	  			<tr>
 	  				<td>总市值：</td>
-	  				<td width="60px"></td>
+	  				<td width="50px"></td>
 	  				<td class="numtd" id="tsr10">15.78亿</td>
 	  			</tr>
   			</table>
@@ -140,13 +140,13 @@
 					历史数据
 				</div>
 				<div class="mkbutton">
-					<div class="klinebutton" id="dkbutton" onclick="clickdkbutton();">
+					<div class="klinebutton" id="dkbutton" onclick="clickdkbutton()">
 						日K线
 					</div>
-					<div class="klinebutton" id="wkbutton" onclick="clickwkbutton();">
+					<div class="klinebutton" id="wkbutton" onclick="clickwkbutton()">
 						周K线
 					</div>
-					<div class="klinebutton" id="mkbutton" onclick="clickmkbutton();">
+					<div class="klinebutton" id="mkbutton" onclick="clickmkbutton()">
 						月K线
 					</div>
 				</div>
@@ -192,7 +192,7 @@
 				<div class="resultdata" id="resultdata2">3.45%</div>
 			</div>
 			<div class="resultr">
-				<div class="resulttext">历史预测准确率:</div>
+				<div class="resulttext">历史误差率:</div>
 				<div class="resultdata" id="resultdata3">60.98%</div>
 			</div>
 		</div>

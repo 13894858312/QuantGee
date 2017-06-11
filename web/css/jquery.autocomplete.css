@@ -1,13 +1,16 @@
 .ac_results {
+	margin-left: 50px;
 	padding: 0px;
-	border: 1px solid black;
+	border-left: 2px solid rgb(41,29,29);
+	border-bottom: 2px solid rgb(41,29,29);
+	border-right: 2px solid rgb(41,29,29);
 	background-color: white;
 	overflow: hidden;
 	z-index: 99999;
 }
 
 .ac_results ul {
-	width: 100%;
+	width: 80%;
 	list-style-position: outside;
 	list-style: none;
 	padding: 0;
@@ -26,6 +29,8 @@
 	/*width: 100%;*/
 	font: menu;
 	font-size: 12px;
+	font-weight: 100;
+	font-family: "Roboto Mono", monospace;
 	/* 
 	it is very important, if line-height not setted or setted 
 	in relative units scroll will be broken in firefox
@@ -38,11 +43,3 @@
 	background: white url('indicator.gif') right center no-repeat;
 }
 
-.ac_odd {
-	background-color: #eee;
-}
-
-.ac_over {
-	background-color: #0A246A;
-	color: white;
-}
