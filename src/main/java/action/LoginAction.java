@@ -22,7 +22,6 @@ import java.util.Map;
 @Controller
 public class LoginAction extends ActionSupport {
 
-    private HttpServletResponse response;
     private HttpServletRequest request;
 
     //	private AccountVO accountVO = new AccountVO(); // 表单中的姓名
@@ -49,13 +48,6 @@ public class LoginAction extends ActionSupport {
             Map session = actionContext.getSession();
             session.put("accountID", accountVO.getAccountID());
             stockCurrentVOS = collectStockService.getCollectedStocks(accountVO.getAccountID());
-            stockCurrentVOS = new ArrayList<>();
-            StockCurrentVO stockCurrentVO1 = new StockCurrentVO("111111", "wddygg", "zg", "123", 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 1);
-            StockCurrentVO stockCurrentVO2 = new StockCurrentVO("222222", "wddygg", "zg", "123", 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 1);
-            StockCurrentVO stockCurrentVO3 = new StockCurrentVO("333333", "wddygg", "zg", "123", 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 1);
-            stockCurrentVOS.add(stockCurrentVO1);
-            stockCurrentVOS.add(stockCurrentVO2);
-            stockCurrentVOS.add(stockCurrentVO3);
             return SUCCESS;
         } else {
             request = ServletActionContext.getRequest();
@@ -95,6 +87,13 @@ public class LoginAction extends ActionSupport {
         } else {
             return "fail";
         }
+    }
+
+    public String getUserInfo(){
+        ActionContext actionContext = ActionContext.getContext();
+        Map session = actionContext.getSession();
+
+        return result;
     }
 
     public String getResult() {
