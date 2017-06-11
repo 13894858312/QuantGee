@@ -73,7 +73,6 @@ public class TradeAction extends ActionSupport{
         if (stockCode == "sh"){
             stockCode = "000001";
         }
-System.out.println(stockCode);
         String date = DateHelper.getNowDate();
         String enddate = DateHelper.formerNTradeDay(date, 20);
         String startdate = DateHelper.formerNTradeDay(enddate, 120);
@@ -91,6 +90,12 @@ System.out.println(stockCode);
         StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate, "d");
         StockPredictVO stockPredictVO = predictStockService.getStockPredictInfo(stockInputVO);
         JSONObject jsonObject = JSONObject.fromObject(stockPredictVO);
+        result = jsonObject.toString();
+        return SUCCESS;
+    }
+
+    public String getBOLLKlineInfo(){
+        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,120, "d"));
         result = jsonObject.toString();
         return SUCCESS;
     }

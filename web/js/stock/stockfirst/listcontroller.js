@@ -1,6 +1,39 @@
 /**
  * Created by Administrator on 2017/6/9.
  */
+$.ajax({
+    cache:false,
+    async:false,
+    url:'getStockCurrentVO.action',
+    type:'GET',
+    dataType:'json',
+    success:function (data) {
+         var content = JSON.parse(data);
+        $("#hsname").text(content['stockName']);
+        $("#hscode").text(content['code']);
+        if(content['per']>=0){
+            var mer = document.getElementById("hsiearn");
+            mer.style.color = "rgb(207,25,74)";
+        }else{
+            var mer = document.getElementById("hsiearn");
+            mer.style.color = "rgb(62, 196, 131)";
+        }
+        $("#hsiearn").text(content['per']);
+        if(content['pb']>=0){
+            var mb = document.getElementById("hsiclean");
+            mb.style.color = "rgb(207,25,74)";
+        }else{
+            var mb = document.getElementById("hsiclean");
+            mb.style.color = "rgb(62, 196, 131)";
+        }
+        $("#hsiclean").text(json['pb']);
+    },
+    error:function (data) {
+        alert("error")
+    }
+});
+
+dochart();
 function showrow(obj) {
     var rowborder = document.getElementsByClassName("row");
     for(var i=0;i<rowborder.length;i++){
@@ -11,7 +44,7 @@ function showrow(obj) {
 }
 function getId(obj) {
     var a = document.getElementById(obj.id);
-    return a.text;
+    return a.textContent;
 }
 function changeChart(aid) {
     // var obj = document.getElementById('r1c1a');
@@ -19,8 +52,8 @@ function changeChart(aid) {
     $.ajax({
         cache:false,
         async:false,
-        url:'getWebStockName.action',
         type:'POST',
+        url:'getWebStockName.action',
         dataType:'json',
         data:{
             stockName:stockName
@@ -38,28 +71,29 @@ function changeChart(aid) {
         type:'GET',
         dataType:'json',
         success:function (data) {
-            setContent(data);
+            setInfo(data);
         },
         error:function (data) {
             alert("error")
         }
     });
-    dochart(1);
+
+    dochart();
 }
 
-function setContent(result) {
-    var json = JSON.parse(result);
-    $("#hsname").text(json['stockName']);
-    $("#hscode").text(json['stockCode']);
-    if(json['per']>=0){
+function setInfo(data) {
+    var content = JSON.parse(data);
+    $("#hsname").text(content['stockName']);
+    $("#hscode").text(content['code']);
+    if(content['per']>=0){
         var mer = document.getElementById("hsiearn");
         mer.style.color = "rgb(207,25,74)";
     }else{
         var mer = document.getElementById("hsiearn");
         mer.style.color = "rgb(62, 196, 131)";
     }
-    $("#hsiearn").text(json['per']);
-    if(json['pb']>=0){
+    $("#hsiearn").text(content['per']);
+    if(content['pb']>=0){
         var mb = document.getElementById("hsiclean");
         mb.style.color = "rgb(207,25,74)";
     }else{
