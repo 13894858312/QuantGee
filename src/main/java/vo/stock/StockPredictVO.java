@@ -1,5 +1,7 @@
 package vo.stock;
 
+import logic.tools.MathHelper;
+
 import java.util.ArrayList;
 
 /**
@@ -18,9 +20,9 @@ public class StockPredictVO {
     public StockPredictVO(String code,  double predictTomorrowPrice, double predictTomorrowIncrease,
                           double historyDeviation, ArrayList<LineVO> actualValues, ArrayList<LineVO> predictedValues) {
         this.code = code;
-        this.predictTomorrowPrice = predictTomorrowPrice;
-        this.predictTomorrowIncrease = predictTomorrowIncrease;
-        this.historyDeviation = historyDeviation;
+        this.predictTomorrowPrice = MathHelper.formatData(predictTomorrowPrice,2);
+        this.predictTomorrowIncrease = MathHelper.formatData(predictTomorrowIncrease*100,2);
+        this.historyDeviation = MathHelper.formatData(historyDeviation*100,2);
         this.actualValues = actualValues;
         this.predictedValues = predictedValues;
     }

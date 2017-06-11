@@ -85,6 +85,7 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
         return stockInfoDAO.getCodeByName(name);
     }
 
+
     @Override
     public ArrayList<String> getAllStockCodes() {
         Iterator<String> codes = stockInfoDAO.getAllStockCodes();
@@ -93,6 +94,11 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
             result.add(codes.next());
         }
         return result;
+    }
+
+    @Override
+    public ArrayList<String> getAllStockNames() {
+        return null;
     }
 
     /**
