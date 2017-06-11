@@ -128,7 +128,7 @@ function dochart(num) {
         grid: {
             top:'10%',
             left: '5%',
-            right: '3%',
+            right: '0%',
             bottom: '11%'
         },
         xAxis: {
@@ -145,14 +145,14 @@ function dochart(num) {
         dataZoom: [
             {
                 type: 'inside',
-                start: 75,
+                start: 0,
                 end: 100
             },
             {
                 show: true,
                 type: 'slider',
                 y: '90%',
-                start: 75,
+                start: 0,
                 end: 100
             }
         ],
@@ -212,7 +212,7 @@ function dochart(num) {
         grid: {
             top:'10%',
             left: '5%',
-            right: '3%',
+            right: '0%',
             bottom: '11%'
         },
         xAxis: {
@@ -229,14 +229,14 @@ function dochart(num) {
         dataZoom: [
             {
                 type: 'inside',
-                start: 75,
+                start: 0,
                 end: 100
             },
             {
                 show: false,
                 type: 'slider',
                 y: '90%',
-                start: 75,
+                start: 0,
                 end: 100
             }
         ],

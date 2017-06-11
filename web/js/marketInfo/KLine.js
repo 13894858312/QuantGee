@@ -24,15 +24,11 @@ function getDayData() {
             spinner.style.display = "none";
         },
         error: function (data) {
-            // var spinner = document.getElementById("spinner");
-            // spinner.style.display = "none";
             alert("error");
         }
     });
 }
 function getWeekData() {
-    // var spinner = document.getElementById("spinner");
-    // spinner.style.display = "block";
     $.ajax({
         cache: false,
         async: false,
@@ -40,20 +36,14 @@ function getWeekData() {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            // var spinner = document.getElementById("spinner");
-            // spinner.style.display = "none";
             json = JSON.parse(data);
         },
         error: function (data) {
-            // var spinner = document.getElementById("spinner");
-            // spinner.style.display = "none";
             alert("error");
         }
     });
 }
 function getMonthData() {
-    // var spinner = document.getElementById("spinner");
-    // spinner.style.display = "block";
     $.ajax({
         cache: false,
         async: false,
@@ -61,13 +51,9 @@ function getMonthData() {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            // var spinner = document.getElementById("spinner");
-            // spinner.style.display = "none";
             json = JSON.parse(data);
         },
         error: function (data) {
-            // var spinner = document.getElementById("spinner");
-            // spinner.style.display = "none";
             alert("error");
         }
     });

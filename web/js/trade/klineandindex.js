@@ -13,7 +13,7 @@ function getDayData() {
     $.ajax({
         cache: false,
         async: false,
-        url: 'dayKline.action',
+        url: 'getdkInfo.action',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
@@ -73,8 +73,8 @@ function dochart() {
         grid: {
             top:'10%',
             left: '8%',
-            right: '1%',
-            bottom: '5%'
+            right: '0%',
+            bottom: '2%'
         },
         xAxis: {
             show:false,
@@ -137,60 +137,4 @@ function dochart() {
         ]
     };
     myChart1.setOption(option1);
-}
-function clickMACDbutton() {
-    var MACDbutton = document.getElementById("MACDbutton");
-    var KDJbutton = document.getElementById("KDJbutton");
-    var RSIbutton = document.getElementById("RSIbutton");
-    var BOLLbutton = document.getElementById("BOLLbutton");
-    MACDbutton.style.backgroundColor = "#003366";
-    MACDbutton.style.color = "#FFFFFF";
-    KDJbutton.style.backgroundColor = "#FFFFFF";
-    KDJbutton.style.color = "#000000";
-    RSIbutton.style.backgroundColor = "#FFFFFF";
-    RSIbutton.style.color = "#000000";
-    BOLLbutton.style.backgroundColor = "#FFFFFF";
-    BOLLbutton.style.color = "#000000";
-}
-function clickKDJbutton() {
-    var MACDbutton = document.getElementById("MACDbutton");
-    var KDJbutton = document.getElementById("KDJbutton");
-    var RSIbutton = document.getElementById("RSIbutton");
-    var BOLLbutton = document.getElementById("BOLLbutton");
-    MACDbutton.style.backgroundColor = "#FFFFFF";
-    MACDbutton.style.color = "#000000";
-    KDJbutton.style.backgroundColor = "#003366";
-    KDJbutton.style.color = "#FFFFFF";
-    RSIbutton.style.backgroundColor = "#FFFFFF";
-    RSIbutton.style.color = "#000000";
-    BOLLbutton.style.backgroundColor = "#FFFFFF";
-    BOLLbutton.style.color = "#000000";
-}
-function clickRSIbutton() {
-    var MACDbutton = document.getElementById("MACDbutton");
-    var KDJbutton = document.getElementById("KDJbutton");
-    var RSIbutton = document.getElementById("RSIbutton");
-    var BOLLbutton = document.getElementById("BOLLbutton");
-    MACDbutton.style.backgroundColor = "#FFFFFF";
-    MACDbutton.style.color = "#000000";
-    KDJbutton.style.backgroundColor = "#FFFFFF";
-    KDJbutton.style.color = "#000000";
-    RSIbutton.style.backgroundColor = "#003366";
-    RSIbutton.style.color = "#FFFFFF";
-    BOLLbutton.style.backgroundColor = "#FFFFFF";
-    BOLLbutton.style.color = "#000000";
-}
-function clickBOLLbutton() {
-    var MACDbutton = document.getElementById("MACDbutton");
-    var KDJbutton = document.getElementById("KDJbutton");
-    var RSIbutton = document.getElementById("RSIbutton");
-    var BOLLbutton = document.getElementById("BOLLbutton");
-    MACDbutton.style.backgroundColor = "#FFFFFF";
-    MACDbutton.style.color = "#000000";
-    KDJbutton.style.backgroundColor = "#FFFFFF";
-    KDJbutton.style.color = "#000000";
-    RSIbutton.style.backgroundColor = "#FFFFFF";
-    RSIbutton.style.color = "#000000";
-    BOLLbutton.style.backgroundColor = "#003366";
-    BOLLbutton.style.color = "#FFFFFF";
 }

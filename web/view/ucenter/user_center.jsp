@@ -54,8 +54,8 @@
 						<a href="user_center.jsp">我的自选</a>
 					</li>
 					<li class="nav-btn receive" data-id="focus" data-title="我的策略">
-						<!--<a href="my_strategy.html">我的策略</a>-->
-						<button onclick="getSession()">点我</button>
+						<a href="my_strategy.html">我的策略</a>
+						<!--<button onclick="getSession()">点我</button>-->
 					</li>
 					<li class="nav-btn pconcern" data-id="collection" data-title="我的收藏">
 						<a href="my_collection.html">我的收藏</a>
@@ -88,26 +88,24 @@
 
 					<table class="codename fl">
 						<thead>
-							<tr>
+							<tr style="border: 1px solid #e4f2ff;">
 								<th style="width:120px"><span class="type">股票名称</span></th>
 								<th style="width:120px"><span class="type">股票代码</span></th>
 								<th class="table_sort" style="width:70px"><i></i><span>当前</span></th>
 								<th style="width:137px" class="table_sort"><i></i><span>涨跌幅</span></th>
-								<th class="arr_l"><i onselectstart="return false;"></i></th>
 							</tr>
 						</thead>
 						<tbody>
 							<s:iterator value="stockCurrentVOS">
 								<tr>
 									<td>
-										<a target="_blank"><s:property value="name" /> </a>
+										<a target="_blank"><s:property value="name" /></a>
 									</td>
 									<td>
-										<a target="_blank"><s:property value="code" /> </a>
+										<a target="_blank"><s:property value="code" /></a>
 									</td>
 									<td><s:property value="trade" /></td>
 									<td><s:property value="changePercent" /></td>
-									<td><s:property value="trade" /></td>
 									<%--<td><i class="uarr"></i></td>--%>
 								</tr>
 							</s:iterator>
@@ -115,7 +113,7 @@
 					</table>
 					<table class="colums">
 						<thead>
-							<tr>
+							<tr style="border: 1px solid #e4f2ff;">
 								<th class="table_sort" style="width:110px;"><i></i><span>成交量(手)</span></th>
 								<th class="table_sort"><i></i><span>成交额</span></th>
 								<th class="table_sort"><i></i><span>市值</span></th>
@@ -131,19 +129,18 @@
 									<td><s:property value="mktcap" /></td>
 									<td><s:property value="per" /></td>
 									<td><s:property value="pb" /></td>
-									<td><i class="uarr"></i></td>
-								</tr>
+ 								</tr>
 							</s:iterator>
 						</tbody>
 					</table>
-					<table class="colums hide">
+					<table class="colums hide" >
 						<thead>
-							<tr>
-								<th class="table_sort">昨收</th>
-								<th class="table_sort">今开</th>
-								<th class="table_sort">最高</th>
-								<th class="table_sort">最低</th>
-								<th class="table_sort">换手率</th>
+							<tr style="border: 1px solid #e4f2ff;">
+								<th class="table_sort" style="width:110px;"><i></i><span>昨日收盘价</span></th>
+								<th class="table_sort"><i></i><span>今日开盘价</span></th>
+								<th class="table_sort"><i></i><span>最高价</span></th>
+								<th class="table_sort"><i></i><span>最低价</span></th>
+								<th class="table_sort"><i></i><span>换手率</span></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -154,7 +151,6 @@
 									<td><s:property value="high" /></td>
 									<td><s:property value="low" /></td>
 									<td><s:property value="turnover" /></td>
-									<td><i class="uarr"></i></td>
 								</tr>
 							</s:iterator>
 						</tbody>
@@ -163,8 +159,7 @@
 					<table class="fr operate">
 						<thead>
 							<tr>
-								<th class="arr_r"><i onselectstart="changecolumns()"></i></th>
-								<th><i class="fresh"></i></th>
+								<th class="arr_r" style="width: 50px ; height: 50px;"><i id="next" onclick="changecolumns()"></i></th>
 							</tr>
 						</thead>
 						<tbody>

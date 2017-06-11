@@ -146,7 +146,7 @@ i {
 }
 
 .fr {
-	float: right;
+	float: left;
 }
 
 i.darr,
@@ -359,7 +359,7 @@ ul.inner li a {
 }
 
 .right_content {
-	width: 960px;
+	width: 902px;
 }
 
 .framebox {
@@ -1077,10 +1077,11 @@ i.uarr {
 
 .data_panel td,
 .data_panel th {
+	width: 20%;
 	border-bottom: 1px solid #e4f2ff;
 	line-height: 48px;
 	background-color: #fff;
-	font-size: 14px;
+	font-size: 12px;
 	text-align: center;
 	_height: 48px;
 }
@@ -1422,7 +1423,7 @@ i.rmv:hover {
 }
 
 table.operate {
-	width: 116px;
+	width: 60px;
 	position: relative;
 }
 
