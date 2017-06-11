@@ -60,11 +60,11 @@
 		<div class="lay_out control">
 			<div class="left_bar">
 				<ul class="inner ta-parent-box" data-taid="wdzx_dh1" data-fid="wdzx_djall">
-					<li class="nav-btn person_sel" data-id="zixuan" data-title="我的自选">
-						<a onclick="myStock()">我的自选</a>
+					<li class="nav-btn person_sel" data-id="focus" data-title="我的自选">
+						<a onclick="myStockPanel()">我的自选</a>
 					</li>
 					<li class="nav-btn receive" data-id="focus" data-title="我的策略">
-						<a onclick="myStrategy()">我的策略</a>
+						<a onclick="myStrategyPanel()">我的策略</a>
 					</li>
 				</ul>
 
@@ -82,7 +82,7 @@
 
 				<ul class="outer ta-parent-box" data-taid="wdzx_dh2" data-fid="wdzx_djall">
 					<li class="map">
-						<a onclick="accountSetting()">帐号信息</a>
+						<a onclick="accountSettingPanel()">帐号信息</a>
 					</li>
 				</ul>
 
