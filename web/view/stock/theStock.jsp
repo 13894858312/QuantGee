@@ -68,7 +68,7 @@
 	  				<div class="abimg">
 	  					<img src="../../images/addbutton44.png" />
 	  				</div>
-	  				<div class="abtext">加入收藏</div>
+	  				<div class="abtext">加入自选</div>
   				</div>
   			</div>
   		</div>
@@ -77,27 +77,27 @@
 	  			<tr>
 	  				<td>昨日收盘价：</td>
 	  				<td width="50px"></td>
-	  				<td class="numtd" id="tsr1">34.45</td>
+	  				<td class="numtd" id="tsr1"></td>
 	  			</tr>
 	  			<tr>
 	  				<td>今日开盘价：</td>
 	  				<td width="50px"></td>
-	  				<td class="numtd" id="tsr2">33.98</td>
+	  				<td class="numtd" id="tsr2"></td>
 	  			</tr>
 	  			<tr>
 	  				<td>最低价：</td>
 	  				<td width="50px"></td>
-	  				<td class="numtd" id="tsr3">33.65</td>
+	  				<td class="numtd" id="tsr3"></td>
 	  			</tr>
 	  			<tr>
 	  				<td>最高价：</td>
 	  				<td width="50px"></td>
-	  				<td class="numtd" id="tsr4">34.98</td>
+	  				<td class="numtd" id="tsr4"></td>
 	  			</tr>
 	  			<tr>
 	  				<td>换手率：</td>
 	  				<td width="50px"></td>
-	  				<td class="numtd" id="tsr5">12.24%</td>
+	  				<td class="numtd" id="tsr5"></td>
 	  			</tr>
   			</table>
   		</div>
@@ -106,27 +106,27 @@
 	  			<tr>
 	  				<td>市盈率：</td>
 	  				<td width="50px"></td>
-	  				<td class="numtd" id="tsr6">11.34%</td>
+	  				<td class="numtd" id="tsr6"></td>
 	  			</tr>
 	  			<tr>
 	  				<td>市净率：</td>
 	  				<td width="50px"></td>
-	  				<td class="numtd" id="tsr7">10.98%</td>
+	  				<td class="numtd" id="tsr7"></td>
 	  			</tr>
 	  			<tr>
 	  				<td>成交量：</td>
 	  				<td width="50px"></td>
-	  				<td class="numtd" id="tsr8">24.75</td>
+	  				<td class="numtd" id="tsr8"></td>
 	  			</tr>
 	  			<tr>
 	  				<td>成交额：</td>
 	  				<td width="50px"></td>
-	  				<td class="numtd" id="tsr9">24765万</td>
+	  				<td class="numtd" id="tsr9"></td>
 	  			</tr>
 	  			<tr>
 	  				<td>总市值：</td>
 	  				<td width="50px"></td>
-	  				<td class="numtd" id="tsr10">15.78亿</td>
+	  				<td class="numtd" id="tsr10"></td>
 	  			</tr>
   			</table>
   		</div>

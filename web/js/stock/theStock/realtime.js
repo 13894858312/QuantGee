@@ -96,7 +96,14 @@ function setRealContent() {
     $("#tsr7").text(content['pb']);
     $("#tsr8").text(String(content['volume'])+"万");
     $("#tsr9").text(String(content['amount'])+"万");
-    $("#tsr10").text(String(content['mktcap'])+"万");
+    $("#tsr10").text(String(content['mktcap'])+"亿");
+    if(content['trade']>0){
+        var temp = document.getElementById("#tsrr");
+        temp.style.color = "rgb(207,25,74)";
+    }else{
+        var temp = document.getElementById("#tsrr");
+        temp.style.color = "rgb(62, 196, 131)";
+    }
     $("#tsrr").text(String(content['changePercent'])+"%");
     $("#tsnprice").text(content['trade']);
 }

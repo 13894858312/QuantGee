@@ -18,6 +18,6 @@ $(function() {
         stock.push(json[i]);
     }
 
-    $('#inputStockCode').autocomplete(stock,{width:200,max:5,cacheLength: 5,scroll: true}).result(function(event, data, formatted) {
+    $('#inputStockCode').autocomplete(stock,{width:195,cacheLength: 5,scroll:false}).result(function(event, data, formatted) {
     });
 });
