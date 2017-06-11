@@ -1,20 +1,148 @@
 /**
  * Created by Administrator on 2017/6/10.
  */
+/**
+ * Created by Administrator on 2017/6/10.
+ */
+dochart();
+var klineDate = [];
+var klineBar = [];
+var klineMA5 = [];
+var klineMA10 = [];
+var klineMA20 = [];
+var volume = [];
 var json;
-$.ajax({
-    cache:false,
-    async:false,
-    url:'getIndex.action',
-    type:'GET',
-    dataType:'json',
-    success:function (data) {
-        json = JSON.parse(data);
-    },
-    error:function (data) {
-        alert("error");
+function getDayData() {
+    $.ajax({
+        cache: false,
+        async: false,
+        url: 'getdkInfo.action',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            json = JSON.parse(data);
+        },
+        error: function (data) {
+            alert("error");
+        }
+    });
+}
+function getKline() {
+    klineDate = [];
+    klineBar = [];
+    klineMA5 = [];
+    klineMA10 = [];
+    klineMA20 = [];
+    volume = [];
+    getDayData();
+    for (var i = 0; i < json['kLine'].length; i++) {
+        klineDate.push(json['kLine'][i]['date']);
     }
-});
+    for (var i = 0; i < json['kLine'].length; i++) {
+        var temp = [];
+        temp.push(json['kLine'][i]['open']);
+        temp.push(json['kLine'][i]['close']);
+        temp.push(json['kLine'][i]['low']);
+        temp.push(json['kLine'][i]['high']);
+        klineBar.push(temp);
+    }
+    for (var i = 0; i < json['ma5'].length; i++) {
+        klineMA5.push(json['ma5'][i]['value']);
+    }
+    for (var i = 0; i < json['ma10'].length; i++) {
+        klineMA10.push(json['ma10'][i]['value']);
+    }
+    for (var i = 0; i < json['ma20'].length; i++) {
+        klineMA20.push(json['ma20'][i]['value']);
+    }
+    for (var i = 0; i < json['volume'].length; i++) {
+        volume.push(json['volume'][i]['value']);
+    }
+}
+function dochart() {
+    getKline();
+    var myChart1 = echarts.init(document.getElementById('kline'));
+    var option1 = {
+        backgroundColor: '#FFFFFF',
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            }
+        },
+        legend: {
+            data: ['candle', 'MA5', 'MA10', 'MA20']
+        },
+        grid: {
+            top:'10%',
+            left: '8%',
+            right: '0%',
+            bottom: '2%'
+        },
+        xAxis: {
+            show:false,
+            type: 'category',
+            data: klineDate
+        },
+        yAxis: {
+            scale: true,
+            splitArea: {
+                show: true
+            }
+        },
+        dataZoom: [
+            {
+                type: 'inside',
+                start: 75,
+                end: 100
+            }
+        ],
+        series: [
+            {
+                name: 'candle',
+                type: 'candlestick',
+                data: klineBar
+
+            },
+            {
+                name: 'MA5',
+                type: 'line',
+                data: klineMA5,
+                smooth: true,
+                lineStyle: {
+                    normal: {opacity: 0.5}
+                }
+            },
+            {
+                name: 'MA10',
+                type: 'line',
+                data: klineMA10,
+                smooth: true,
+                lineStyle: {
+                    normal: {opacity: 0.5}
+                }
+            },
+            {
+                name: 'MA20',
+                type: 'line',
+                data: klineMA20,
+                smooth: true,
+                lineStyle: {
+                    normal: {opacity: 0.5}
+                }
+            },
+            {
+                name: '成交量',
+                type: 'line',
+                data: []
+
+            }
+        ]
+    };
+    myChart1.setOption(option1);
+}
+
+var json1;
 var date = [];
 //macd
 var diffdata = [];
@@ -35,48 +163,63 @@ var rsi24data = [];
 var middata = [];
 var updata = [];
 var lowdata = [];
-for(var i=0;i<json['diff'].length;i++){
-    date.push(json['diff'][i]['date']);
-}
-for(var i=0;i<json['diff'].length;i++){
-    diffdata.push(json['diff'][i]['value']);
-}
-for(var i=0;i<json['dea'].length;i++){
-    deadata.push(json['dea'][i]['value']);
-}
-for(var i=0;i<json['macd'].length;i++){
-    macddata.push(json['macd'][i]['value']);
-}
-for(var i=0;i<json['k'].length;i++){
-    kdata.push(json['k'][i]['value']);
-}
-for(var i=0;i<json['d'].length;i++){
-    ddata.push(json['d'][i]['value']);
-}
-for(var i=0;i<json['j'].length;i++){
-    jdata.push(json['j'][i]['value']);
-}
-for(var i=0;i<json['rsi6'].length;i++){
-    rsi6data.push(json['rsi6'][i]['value']);
-}
-for(var i=0;i<json['rsi12'].length;i++){
-    rsi12data.push(json['rsi12'][i]['value']);
-}
-for(var i=0;i<json['rsi24'].length;i++){
-    rsi24data.push(json['rsi24'][i]['value']);
-}
-for(var i=0;i<json['mid'].length;i++){
-    middata.push(json['mid'][i]['value']);
-}
-for(var i=0;i<json['up'].length;i++){
-    updata.push(json['up'][i]['value']);
-}
-for(var i=0;i<json['low'].length;i++){
-    lowdata.push(json['low'][i]['value']);
+function setData() {
+    $.ajax({
+        cache:false,
+        async:false,
+        url:'getTradeIndex.action',
+        type:'GET',
+        dataType:'json',
+        success:function (data) {
+            json = JSON.parse(data);
+        },
+        error:function (data) {
+            alert("error");
+        }
+    });
+    for(var i=0;i<json1['diff'].length;i++){
+        date.push(json1['diff'][i]['date']);
+    }
+    for(var i=0;i<json1['diff'].length;i++){
+        diffdata.push(json1['diff'][i]['value']);
+    }
+    for(var i=0;i<json1['dea'].length;i++){
+        deadata.push(json1['dea'][i]['value']);
+    }
+    for(var i=0;i<json1['macd'].length;i++){
+        macddata.push(json1['macd'][i]['value']);
+    }
+    for(var i=0;i<json1['k'].length;i++){
+        kdata.push(json1['k'][i]['value']);
+    }
+    for(var i=0;i<json1['d'].length;i++){
+        ddata.push(json1['d'][i]['value']);
+    }
+    for(var i=0;i<json1['j'].length;i++){
+        jdata.push(json1['j'][i]['value']);
+    }
+    for(var i=0;i<json1['rsi6'].length;i++){
+        rsi6data.push(json1['rsi6'][i]['value']);
+    }
+    for(var i=0;i<json['rsi12'].length;i++){
+        rsi12data.push(json['rsi12'][i]['value']);
+    }
+    for(var i=0;i<json1['rsi24'].length;i++){
+        rsi24data.push(json1['rsi24'][i]['value']);
+    }
+    for(var i=0;i<json1['mid'].length;i++){
+        middata.push(json1['mid'][i]['value']);
+    }
+    for(var i=0;i<json1['up'].length;i++){
+        updata.push(json1['up'][i]['value']);
+    }
+    for(var i=0;i<json1['low'].length;i++){
+        lowdata.push(json1['low'][i]['value']);
+    }
 }
 drawMACD();
 function drawMACD() {
-
+    setData();
     var myChart = echarts.init(document.getElementById("index"));
     var option = {
         tooltip: {
@@ -89,12 +232,14 @@ function drawMACD() {
             data:['diff','dea','macd']
         },
         grid: {
-            top:'13%',
-            left: '5%',
+            top:'15%',
+            left: '8%',
             right: '0%',
             bottom: '11%'
         },
         xAxis:  {
+            show:false,
+            boundaryGap: true,
             type: 'category',
             data: date
         },
@@ -126,6 +271,7 @@ function drawMACD() {
     myChart.setOption(option);
 }
 function drwaKDJ() {
+    setData();
     var myChart = echarts.init(document.getElementById("index"));
     var option = {
         tooltip: {
@@ -138,12 +284,14 @@ function drwaKDJ() {
             data:['k','d','j']
         },
         grid: {
-            top:'13%',
-            left: '5%',
+            top:'15%',
+            left: '8%',
             right: '0%',
             bottom: '11%'
         },
         xAxis:  {
+            show:false,
+            boundaryGap: true,
             type: 'category',
             data: date
         },
@@ -175,6 +323,7 @@ function drwaKDJ() {
     myChart.setOption(option);
 }
 function drawRSI() {
+    setData();
     var myChart = echarts.init(document.getElementById("index"));
     var option = {
         tooltip: {
@@ -187,12 +336,14 @@ function drawRSI() {
             data:['rsi6','rsi12','rsi24']
         },
         grid: {
-            top:'13%',
-            left: '5%',
-            right: '0%',
+            top:'15%',
+            left: '8%',
+            right: '3%',
             bottom: '11%'
         },
         xAxis:  {
+            show:false,
+            boundaryGap: true,
             type: 'category',
             data: date
         },
@@ -224,6 +375,7 @@ function drawRSI() {
     myChart.setOption(option);
 }
 function drawBOLL() {
+    setData();
     var myChart = echarts.init(document.getElementById("index"));
     var option = {
         tooltip: {
@@ -236,17 +388,19 @@ function drawBOLL() {
             data:['mid','up','low']
         },
         grid: {
-            top:'13%',
-            left: '5%',
+            top:'15%',
+            left: '8%',
             right: '0%',
             bottom: '11%'
         },
         xAxis:  {
+            show:false,
             type: 'category',
             data: date
         },
         yAxis: {
             type: 'value',
+            boundaryGap: true,
             splitArea: {
                 show: true
             },
@@ -331,4 +485,26 @@ function clickBOLLbutton() {
     BOLLbutton.style.backgroundColor = "#003366";
     BOLLbutton.style.color = "#FFFFFF";
     drawBOLL();
+}
+function getCheck() {
+    var temp;
+    var stockCode = document.getElementById("inputstcode");
+    $.ajax({
+        cache:false,
+        async:false,
+        type:'POST',
+        url:'getSTCodeInfo.action',
+        data:{
+            stockCode: stockCode.value
+        },
+        dataType:'json',
+        success:function (data) {
+            temp = JSON.parse(data);
+        },
+        error:function (data) {
+            alert("error")
+        }
+    });
+    dochart();
+    drawMACD();
 }

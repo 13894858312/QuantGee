@@ -41,6 +41,12 @@ public interface StockBasicInfoService {
     public String getCodeByName(String name);
 
     /**
+     * 获取所有的代码
+     * @return 代码
+     */
+    public ArrayList<String> getAllStockCodes();
+
+    /**
      * 获取所有股票的实时信息 用于列表展示
      * @return ArrayList<Stock>
      */

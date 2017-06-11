@@ -62,7 +62,7 @@
 .rd{
 	float: left;
 	margin-top: 3px;
-	width: 30%;
+	width: 60%;
 	height: 22px;
 	font-family: "Roboto Mono", monospace;
 }
@@ -107,6 +107,15 @@
 	height: 180px;
 	background-color: #FFFFFF;
 	border-left: 1px solid #C0C0C0;
+}
+.tsrtable{
+	text-align: left;
+	margin-left: 10%;
+	font-family: "Roboto Mono", monospace;
+	font-size: 14px;
+}
+.tsrtable tr{
+	height: 35px;
 }
 .tsrealtime{
 	float: left;

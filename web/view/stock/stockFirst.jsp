@@ -64,86 +64,87 @@
   					<div class="column">加自选</div>
   				</div>
   				<div class="row" id="row1" onclick="showrow(this)">
-  					<div class="column1"><a id="r1c1a" onclick="changeChart(this)">万家文化</a></div>
-  					<div class="column2">10.03</div>
-  					<div class="column3">10.75</div>
+  					<div class="column1" id="r1c1div"><a id="r1c1a" onclick="changeChart(this)">万家文化</a></div>
+  					<div class="column2" id="r1c2div">10.03</div>
+  					<div class="column3" id="r1c3div">10.75</div>
   					<div class="column4">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   				<div class="row" id="row2" onclick="showrow(this)">
-  					<div class="column1"><a id="r2c1a" onclick="changeChart(this)">继峰股份</a></div>
-  					<div class="column2">10.03</div>
-  					<div class="column3">15.80</div>
+  					<div class="column1" id="r2c1div"><a id="r2c1a" onclick="changeChart(this)">继峰股份</a></div>
+  					<div class="column2" id="r2c2div">10.03</div>
+  					<div class="column3" id="r2c3div">15.80</div>
   					<div class="column4">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   				<div class="row" id="row3" onclick="showrow(this)">
-  					<div class="column1"><a id="r3c1a" onclick="changeChart(this)">长春一东</a></div>
-  					<div class="column2">10.02</div>
-  					<div class="column3">22.40</div>
+  					<div class="column1" id="r3c1div"><a id="r3c1a" onclick="changeChart(this)">长春一东</a></div>
+  					<div class="column2" id="r3c2div">10.02</div>
+  					<div class="column3" id="r3c3div">22.40</div>
   					<div class="column4">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   				<div class="row" id="row4" onclick="showrow(this)">
-  					<div class="column1"><a id="r4c1a" onclick="changeChart(this)">三一重工</a></div>
-  					<div class="column2">10.02</div>
-  					<div class="column3">22.29</div>
+  					<div class="column1" id="r4c1div"><a id="r4c1a" onclick="changeChart(this)">三一重工</a></div>
+  					<div class="column2" id="r4c2div">10.02</div>
+  					<div class="column3" id="r4c3div">22.29</div>
   					<div class="column4">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   				<div class="row" id="row5" onclick="showrow(this)">
-  					<div class="column1"><a id="r5c1a" onclick="changeChart(this)">同达创业</a></div>
-  					<div class="column2">10.02</div>
-  					<div class="column3">25.37</div>
+  					<div class="column1" id="r5c1div"><a id="r5c1a" onclick="changeChart(this)">同达创业</a></div>
+  					<div class="column2" id="r5c2div">10.02</div>
+  					<div class="column3" id="r5c3div">25.37</div>
   					<div class="column4">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   				<div class="row" id="row6" onclick="showrow(this)">
-  					<div class="column1"><a id="r6c1a" onclick="changeChart(this)">太化股份</a></div>
-  					<div class="column2">10.01</div>
-  					<div class="column3">23.73</div>
+  					<div class="column1" id="r6c1div"><a id="r6c1a" onclick="changeChart(this)">太化股份</a></div>
+  					<div class="column2" id="r6c2div">10.01</div>
+  					<div class="column3" id="r6c3div">23.73</div>
   					<div class="column4">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   				<div class="row" id="row7" onclick="showrow(this)">
-  					<div class="column1"><a id="r7c1a" onclick="changeChart(this)">东方创业</a></div>
-  					<div class="column2">10.01</div>
-  					<div class="column3">40.24</div>
+  					<div class="column1" id="r7c1div"><a id="r7c1a" onclick="changeChart(this)">东方创业</a></div>
+  					<div class="column2" id="r7c2div">10.01</div>
+  					<div class="column3" id="r7c3div">40.24</div>
   					<div class="column4">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   				<div class="row" id="row8" onclick="showrow(this)">
-  					<div class="column1"><a id="r8c1a" onclick="changeChart(this)">华业资本</a></div>
-  					<div class="column2">10.00</div>
-  					<div class="column3">30.31</div>
+  					<div class="column1" id="r8c1div"><a id="r8c1a" onclick="changeChart(this)">华业资本</a></div>
+  					<div class="column2" id="r8c2div">10.00</div>
+  					<div class="column3" id="r8c3div">30.31</div>
   					<div class="column4">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   				<div class="row" id="row9" onclick="showrow(this)">
-  					<div class="column1"><a id="r9c1a" onclick="changeChart(this)">青岛啤酒</a></div>
-  					<div class="column2">9.99</div>
-  					<div class="column3">30.28</div>
+  					<div class="column1" id="r9c1div"><a id="r9c1a" onclick="changeChart(this)">青岛啤酒</a></div>
+  					<div class="column2" id="r9c2div">9.99</div>
+  					<div class="column3" id="r9c3div">30.28</div>
   					<div class="column4">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div> 
   				<div class="row" id="row10" onclick="showrow(this)">
-  					<div class="column1"><a id="r10c1a" onclick="changeChart(this)">中航高科</a></div>
-  					<div class="column2">9.99</div>
-  					<div class="column3">18.06</div>
+  					<div class="column1" id="r10c1div"><a id="r10c1a" onclick="changeChart(this)">中航高科</a></div>
+  					<div class="column2" id="r10c2div">9.99</div>
+  					<div class="column3" id="r10c3div">18.06</div>
   					<div class="column4">
   						<img src="../../images/addbutton.png" />
   					</div>
   				</div>
   			</div>
+			<script src="../../js/stock/stockfirst/rangelist.js"></script>
   		</div>
   		<div class="graph">
   			<div class="graphhead">
@@ -158,7 +159,7 @@
   			</div>
   			<div class="kline" id="kline"></div>
   			<div class="volume" id="volume"></div>
-  			<script src="../../js/marketInfo/KLine.js"></script>
+  			<%--<script src="../../js/marketInfo/KLine.js"></script>--%>
             <script src="../../js/stock/stockfirst/listcontroller.js"></script>
   		</div>
   		<div class="todayrecommend">

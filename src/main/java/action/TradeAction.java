@@ -2,21 +2,20 @@ package action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import logic.tools.DateHelper;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import service.stock.StockBasicInfoService;
 import service.stock.StockQuotaService;
-import vo.stock.*;
-
-import java.util.ArrayList;
+import vo.stock.StockHistoricalVO;
+import vo.stock.StockIndexVO;
+import vo.stock.StockInputVO;
 
 /**
- * Created by Administrator on 2017/6/5.
+ * Created by Administrator on 2017/6/11.
  */
 @Controller
-public class StockAction extends ActionSupport{
+public class TradeAction extends ActionSupport{
     private String result;
     private String stockCode;
 
@@ -42,6 +41,10 @@ public class StockAction extends ActionSupport{
     }
 
     private StockHistoricalVO getStockHistoricalVO(int num1, int num2, String type){
+        if (stockCode == null){
+            stockCode = "sh";
+        }
+        System.out.println(stockCode);
         String date = DateHelper.getNowDate();
         String enddate = DateHelper.formerNTradeDay(date, num1);
         String startdate = DateHelper.formerNTradeDay(enddate, num2);
@@ -56,48 +59,22 @@ public class StockAction extends ActionSupport{
         return SUCCESS;
     }
 
-    public String getStockWeekKlineInfo(){
-        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,480, "w"));
+    public String getSTCodeInfo(){
+        JSONObject jsonObject = JSONObject.fromObject(stockBasicInfoService.getStockRealTimeInfo(stockCode));
         result = jsonObject.toString();
         return SUCCESS;
     }
 
-    public String getStockMonthKlineInfo(){
-        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,480, "m"));
-        result = jsonObject.toString();
-        return SUCCESS;
-    }
-
-    public String totheStock(){
-        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,30,"d"));
-        result = jsonObject.toString();
-        return SUCCESS;
-    }
-
-    public String getIndex(){
+    public String getTradeIndex(){
+        if (stockCode == null){
+            stockCode = "sh";
+        }
         String date = DateHelper.getNowDate();
         String enddate = DateHelper.formerNTradeDay(date, 20);
         String startdate = DateHelper.formerNTradeDay(enddate, 120);
         StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate, "d");
         StockIndexVO stockIndexVO = stockQuotaService.getStockIndex(stockInputVO);
         JSONObject jsonObject = JSONObject.fromObject(stockIndexVO);
-        result = jsonObject.toString();
-        return SUCCESS;
-    }
-
-    public String getRealTimeInfo(){
-
-        System.out.println("success");
-
-        RealTimeLineVO realTimeLineVO = stockBasicInfoService.getStockRealTimeLineInfo(stockCode);
-        JSONObject jsonObject = JSONObject.fromObject(realTimeLineVO);
-        result = jsonObject.toString();
-        return SUCCESS;
-    }
-
-    public String getRealCurrentInfo(){
-        StockCurrentVO stockCurrentVO = stockBasicInfoService.getStockRealTimeInfo(stockCode);
-        JSONObject jsonObject = JSONObject.fromObject(stockCurrentVO);
         result = jsonObject.toString();
         return SUCCESS;
     }
