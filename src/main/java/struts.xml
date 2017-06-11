@@ -5,89 +5,91 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-	<!--<constant name="struts.objectFactory" value="spring" />-->
+    <!--<constant name="struts.objectFactory" value="spring" />-->
 
-	<package name="default" namespace="/" extends="json-default">
-		<action name="login" class="loginAction" method="login">
-			<result name="success">/view/ucenter/user_center.jsp</result>
-			<result name="fail">/view/ucenter/login.jsp</result>
-		</action>
-		<action name="logout" class="loginAction" method="logout">
-			<result name="success">/view/ucenter/login.jsp</result>
-		</action>
-		<action name="register" class="loginAction" method="register">
-			<result name="success">/view/ucenter/login.jsp</result>
-		</action>
-		<action name="haveLogin" class="loginAction" method="haveLogin">
-			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
+    <package name="default" namespace="/" extends="json-default">
+        <action name="login" class="loginAction" method="login">
+            <result name="success">/view/ucenter/user_center.jsp</result>
+            <result name="fail">/view/ucenter/login.jsp</result>
+        </action>
+        <action name="logout" class="loginAction" method="logout">
+            <result name="success">/view/ucenter/login.jsp</result>
+        </action>
+        <action name="register" class="loginAction" method="register">
+            <result name="success">/view/ucenter/login.jsp</result>
+        </action>
+
     </package>
 
     <package name="ucenter" extends="json-default,struts-default">
+        <action name="haveLogin" class="action.UcenterAction" method="haveLogin">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="updateUserInfo" class="action.UcenterAction" method="updateUserInfo">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+
         <action name="getCollectStock" class="action.UserStockAction" method="getCollectStock">
             <result name="success" type="json">
                 <param name="root">result</param>
             </result>
         </action>
-        <action name="addCollectedStock" class="action.UserStockAction" method="addCollectedStock">
-            <result name="success" type="json">
-                <param name="root">result</param>
-            </result>
-        </action>
-        <action name="getUserInfo" class="action.LoginAction" method="getUserInfo">
+        <action name="getUserInfo" class="action.UcenterAction" method="getUserInfo">
             <result name="success" type="json">
                 <param name="root">result</param>
             </result>
         </action>
     </package>
 
-	<package name="json" extends="json-default">
-		<action name="ajax" class="testAction">
-			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
-	</package>
-	<package name="marketInfo" extends="json-default,struts-default">
-		<action name="dayKline" class="marketInfoAction" method="getDayKline">
-			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
-		<action name="weekKline" class="marketInfoAction" method="getWeekKline">
-			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
-		<action name="monthKline" class="marketInfoAction" method="getMonthKline">
-			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
-		<action name="getRealSHDate" class="marketInfoAction" method="getRealSHDate">
-			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
-		<action name="getRealSHPrice" class="marketInfoAction" method="getRealSHPrice">
-			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
+    <package name="json" extends="json-default">
+        <action name="ajax" class="testAction">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
+    <package name="marketInfo" extends="json-default,struts-default">
+        <action name="dayKline" class="marketInfoAction" method="getDayKline">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="weekKline" class="marketInfoAction" method="getWeekKline">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="monthKline" class="marketInfoAction" method="getMonthKline">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="getRealSHDate" class="marketInfoAction" method="getRealSHDate">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="getRealSHPrice" class="marketInfoAction" method="getRealSHPrice">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
         <action name="getAllStock" class="marketInfoAction" method="getAllStock">
             <result name="success" type="json">
                 <param name="root">result</param>
             </result>
         </action>
-	</package>
-	<package name="list" extends="json-default,struts-default">
-		<action name="getWebStockName" class="listAction" method="getWebStockName">
-			<result name="success" type="json">
+    </package>
+    <package name="list" extends="json-default,struts-default">
+        <action name="getWebStockName" class="listAction" method="getWebStockName">
+            <result name="success" type="json">
                 <param name="root">result</param>
             </result>
-		</action>
+        </action>
         <action name="getStockKline" class="listAction" method="getStockKline">
             <result name="success" type="json">
                 <param name="root">result</param>
@@ -103,7 +105,7 @@
                 <param name="root">result</param>
             </result>
         </action>
-	</package>
+    </package>
     <package name="news" extends="json-default,struts-default">
         <action name="getnews" class="newsAction" method="getNews">
             <result name="success" type="json">
@@ -111,12 +113,12 @@
             </result>
         </action>
     </package>
-	<package name="stock" extends="json-default,struts-default">
-		<action name="getStockDayKlineInfo" class="stockAction" method="getStockDayKlineInfo">
-			<result name="success" type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
+    <package name="stock" extends="json-default,struts-default">
+        <action name="getStockDayKlineInfo" class="stockAction" method="getStockDayKlineInfo">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
         <action name="getStockWeekKlineInfo" class="stockAction" method="getStockWeekKlineInfo">
             <result name="success" type="json">
                 <param name="root">result</param>
@@ -157,7 +159,7 @@
                 <param name="root">result</param>
             </result>
         </action>
-	</package>
+    </package>
     <package name="trade" extends="json-default,struts-default">
         <action name="getdkInfo" class="tradeAction" method="getStockDayKlineInfo">
             <result name="success" type="json">
