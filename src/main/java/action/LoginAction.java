@@ -85,8 +85,9 @@ public class LoginAction extends ActionSupport {
         if (session.get("accountID") != null) {
             return SUCCESS;
         } else {
-            return "fail";
+            result="{"+'"'+"accountID"+'"'+":"+'"'+'"'+"}";
         }
+        return SUCCESS;
     }
 
     public String getUserInfo(){

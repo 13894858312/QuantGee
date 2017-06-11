@@ -8,6 +8,14 @@ public class StockCollectInputVO {
     private String userID;
     private String code;
 
+    public StockCollectInputVO() {
+    }
+
+    public StockCollectInputVO(String userID, String code) {
+        this.userID = userID;
+        this.code = code;
+    }
+
     public String getUserID() {
         return userID;
     }

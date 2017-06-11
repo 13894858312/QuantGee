@@ -13,11 +13,9 @@
 			<result name="fail">/view/ucenter/login.jsp</result>
 		</action>
 		<action name="logout" class="loginAction" method="logout">
-			<result name="fail">/view/ucenter/account_settings.html</result>
 			<result name="success">/view/ucenter/login.jsp</result>
 		</action>
 		<action name="register" class="loginAction" method="register">
-			<result name="fail">/view/ucenter/account_settings.html</result>
 			<result name="success">/view/ucenter/login.jsp</result>
 		</action>
 		<action name="haveLogin" class="loginAction" method="haveLogin">
@@ -25,9 +23,16 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+    </package>
 
+    <package name="ucenter" extends="json-default,struts-default">
+        <action name="getCollectStock" class="action.UserStockAction" method="getCollectStock">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
 
-</package>
 	<package name="json" extends="json-default">
 		<action name="ajax" class="testAction">
 			<result name="success" type="json">
