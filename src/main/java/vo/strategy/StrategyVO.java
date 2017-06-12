@@ -7,7 +7,6 @@ package vo.strategy;
 public class StrategyVO {
 
     /***********************必须参数*******************/
-    private int strategyID;                 //策略id 收藏后该id由数据库确定 初次添加无需指定id
     private String userID;                  //用户id
 
     //策略列表展示的时候可以选择展示这三项 策略名字-策略添加时间-上一次回测的收益率
@@ -37,11 +36,10 @@ public class StrategyVO {
     public StrategyVO() {
     }
 
-    public StrategyVO(int strategyID, String userID, String strateygyName, String time, double lastYield,
+    public StrategyVO(String userID, String strateygyName, String time, double lastYield,
                       int strategyType, double initFund, boolean notST, int holdingPeriod, int returnPeriod,
                       double stopLoss, double stopProfit, double ratio, int holdingStockNum,
                       int shortReturnPeriod, int changeNumber, int trainPeriod, int k, int vectorLength) {
-        this.strategyID = strategyID;
         this.userID = userID;
         this.strateygyName = strateygyName;
         this.time = time;
@@ -60,14 +58,6 @@ public class StrategyVO {
         this.trainPeriod = trainPeriod;
         this.k = k;
         this.vectorLength = vectorLength;
-    }
-
-    public int getStrategyID() {
-        return strategyID;
-    }
-
-    public void setStrategyID(int strategyID) {
-        this.strategyID = strategyID;
     }
 
     public String getUserID() {
