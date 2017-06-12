@@ -4,6 +4,7 @@ var collectedStock;
 //回测参数
 var stockPoolType;
 var stockCodes = [];
+var strategyType;
 
 $(document).ready(function() {
 	//判断当前登陆用户
@@ -31,7 +32,6 @@ $(document).ready(function() {
 			},
 			dataType: 'json',
 			success: function(data) {
-				alert(data);
 				collectedStock = JSON.parse(data);
 			},
 			error: function(data) {
@@ -77,7 +77,7 @@ function selectStrategyTag(showContent, selfObj) {
 		j.style.display = "none";
 	}
 	document.getElementById(showContent).style.display = "block";
-
+	strategyType = parseInt(showContent.charAt(showContent.length-1));
 }
 
 function selectPoolTag(showContent, selfObj) {
