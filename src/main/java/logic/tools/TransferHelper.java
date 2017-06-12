@@ -147,7 +147,7 @@ public class TransferHelper {
      * @return TradeRecordVO
      */
     public TradeRecordVO transToTradeRecordVO(Trade trade) {
-        TradeRecordVO result = new TradeRecordVO(trade.getTime(), trade.getUserId(), trade.getCode(),
+        TradeRecordVO result = new TradeRecordVO(trade.getTime(), trade.getUserId(), trade.getStockId(),
                 trade.getAction(), trade.getNumOfStock(), trade.getPrice());
         return result;
     }
@@ -161,7 +161,7 @@ public class TransferHelper {
         Trade trade = new Trade();
         trade.setAction(tradeRecordVO.getAction());
         trade.setNumOfStock(tradeRecordVO.getNumOfStock());
-        trade.setCode(tradeRecordVO.getStockCode());
+        trade.setStockId(tradeRecordVO.getStockCode());
         trade.setUserId(tradeRecordVO.getUserID());
         trade.setPrice(tradeRecordVO.getPrice());
         trade.setTime(tradeRecordVO.getTime());
@@ -212,7 +212,7 @@ public class TransferHelper {
      * @return StrategyVO
      */
     public StrategyVO transToStrategyVO(Strategy strategy) {
-        StrategyVO result = new StrategyVO(strategy.getStrategyId(), strategy.getUserId(), strategy.getStrategyName(),strategy.getTime(),
+        StrategyVO result = new StrategyVO(strategy.getUserId(), strategy.getStrategyName(),strategy.getTime(),
                 strategy.getLastYield(), strategy.getStrategyType(), strategy.getInitFund(), byte_to_bool(strategy.getNotSt()), strategy.getHoldingPeriod(),
                 strategy.getReturnPeriod(), strategy.getStopLoss(), strategy.getStopProfit(), strategy.getRatio(),strategy.getHoldingStockNum(),
                 strategy.getShortReturnPeriod(), strategy.getChangeNumber(), strategy.getTrainPeriod(), strategy.getK(),strategy.getVectorLength());
