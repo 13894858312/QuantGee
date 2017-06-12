@@ -207,7 +207,7 @@
 					</div>
 					<div style="text-align: center;width: 500px;margin:10px auto;">
 						<label style="font-size: 16px; font-weight: 100; width: 64px;margin-left: 16px; margin-right: 16px;">密码</label>
-						<input id="passwordInfo" type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;" readonly="readonly">
+						<input id="passwordInfo" type="password" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;" readonly="readonly">
 						<button id="changePasswordBut" onclick="changePassword()" style="margin-left: 20px; height: 39px; width: 64px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改密码</button>
 					</div>
 					<div style="text-align: center;width: 500px;margin: 10px auto;">
