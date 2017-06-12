@@ -4,6 +4,7 @@ import DAO.tradeDAO.TradeDAO;
 import bean.HoldingStock;
 import bean.HoldingStockPK;
 import bean.Trade;
+import bean.UserMoney;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -96,12 +97,26 @@ public class TradeData implements TradeDAO{
 
     @Override
     public boolean updateUserMoney(String userID, double money) {
-        return false;
+        UserMoney userMoney = hibernateTemplate.get(UserMoney.class, userID);
+        try{
+            if(userMoney != null){
+                userMoney.setMoney(money);
+                hibernateTemplate.update(userMoney);
+                hibernateTemplate.flush();
+            }
+            return false;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public double getUserMoney(String userID) {
-        return 0;
+        UserMoney userMoney = hibernateTemplate.get(UserMoney.class, userID);
+        if(userMoney!=null){
+            return userMoney.getMoney();
+        }
+        return -1;
     }
 
 

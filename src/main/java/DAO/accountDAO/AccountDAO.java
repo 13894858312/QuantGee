@@ -9,7 +9,7 @@ import po.UserAnalysisDataPO;
 public interface AccountDAO {
 
     /**
-     * 添加用户账户,user并更新注册统计数据
+     * 添加用户账户,user,remianMoney并更新注册统计数据
      * @param account 要添加的用户账户
      * @return boolean 是否添加成功
      */
