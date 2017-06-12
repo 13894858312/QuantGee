@@ -7,10 +7,13 @@
 		<title>个人中心</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="../../css/ucenter/main.css">
-		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/ucenter/style.css" />
 		<script type="text/javascript" src="../../jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="../../js/ucenter/ucenter.js"></script>
-		<!--<script type="text/javascript" src="../../js/marketInfo/headcontroller.js" ></script>-->
+		
+		<link rel="stylesheet" href="../../js/ucenter/sweetalert/sweetalert.css" />
+		<!--<link rel="stylesheet" href="../../css/sweet-alert.css" />-->
+		<script type="text/javascript" src="../../js/ucenter/sweetalert/sweetalert.min.js" ></script>
 	</head>
 
 	<body>
@@ -182,23 +185,32 @@
 			</div>
 
 			<div id="accountSetting" class="right_bar_tit" style="display: none;float: left;width: 902px;">
+				<!--<div>
+					<label style="font-size: 30px; font-weight: 100; width: 64px;margin-left: 16px; margin-right: 16px;">账号信息</label>
+				</div>-->
+
 				<div id="userInfo_accountID" style="margin-top: 20px;">
-					<div id="returnPeriod" style="text-align: center;width: 500px;margin:10px auto;">
+					<div style="text-align: center;width: 500px;margin:10px auto;">
 						<label style="font-size: 16px; font-weight: 100; width: 64px;margin-left: 16px; margin-right: 16px;">账号</label>
-						<input id="accountIDInfo" type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;" readonly="readonly" value="hhh" />
-						<button onclick="changeInfo('accountIDInfo')" style="margin-left: 20px; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改</button>
+						<input id="accountIDInfo" type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;" readonly="readonly" />
+						<button style="margin-left: 20px; height: 39px; width: 64px;background-color: white;border: 1px solid white;" ></button>
 					</div>
-					<div id="returnPeriod" style="text-align: center;width: 500px;margin: 10px auto;">
+					<div style="text-align: center;width: 500px;margin: 10px auto;">
 						<label style="font-size: 16px; font-weight: 100; width: 64px;">用户昵称</label>
-						<input id="usernameInfo" type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-						<button onclick="changeInfo('usernameInfo')" style="margin-left: 20px; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改</button>
+						<input id="usernameInfo" type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;" readonly="readonly">
+						<button onclick="changeInfo('usernameInfo')" style="margin-left: 20px; height: 39px; width: 64px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改</button>
 					</div>
-					<div id="returnPeriod" style="text-align: center;width: 500px;margin: 10px auto;">
+					<div style="text-align: center;width: 500px;margin: 10px auto;">
 						<label style="font-size: 16px; font-weight: 100; width: 64px;">手机号码</label>
-						<input id="phoneNumber" type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-						<button onclick="changeInfo('phoneNumber')" style="margin-left: 20px; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改</button>
+						<input id="phoneNumber" type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;" readonly="readonly">
+						<button onclick="changeInfo('phoneNumber')" style="margin-left: 20px; height: 39px; width: 64px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改</button>
 					</div>
-					<div id="returnPeriod" style="text-align: center;width: 500px;margin: 10px auto;">
+					<div style="text-align: center;width: 500px;margin:10px auto;">
+						<label style="font-size: 16px; font-weight: 100; width: 64px;margin-left: 16px; margin-right: 16px;">密码</label>
+						<input id="passwordInfo" type="text" style="width: 300px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;" readonly="readonly">
+						<button id="changePasswordBut" onclick="changePassword()" style="margin-left: 20px; height: 39px; width: 64px;background-color: white;border: 1px solid lightblue;border-radius: 6px;">修改密码</button>
+					</div>
+					<div style="text-align: center;width: 500px;margin: 10px auto;">
 						<button onclick="submitInfoChagnes()" id="changeInfoButton" class="button" style="margin-left: 20%; height: 39px; width: 50px;background-color: white;border: 1px solid lightblue;border-radius: 6px;display: none;">提交</button>
 					</div>
 				</div>
