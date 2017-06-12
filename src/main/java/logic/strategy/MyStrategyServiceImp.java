@@ -50,9 +50,9 @@ public class MyStrategyServiceImp implements MyStrategyService {
 
     @Override
     public boolean deleteMyStrategy(StrategyUserInputVO input) {
-//        if (strategyDAO.removeMyStrategy(input.getUserID(), input.getStrategyName())) {
-//            return true;
-//        }
+        if (strategyDAO.removeMyStrategy(input.getUserID(), input.getStrategyName())) {
+            return true;
+        }
         return false;
     }
 }
