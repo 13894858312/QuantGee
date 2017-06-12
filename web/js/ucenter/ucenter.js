@@ -156,27 +156,79 @@ function submitInfoChagnes() {
 }
 
 function changePassword() {
-	document.getElementById("passwordInfo").removeAttribute("readonly");
-	swal({
-			title: "验证用户",
-			text: "请输入原密码",
-			type: "input",
-			inputType:"password",
-			showCancelButton: true,
-			closeOnConfirm: false,
-			animation: "slide-from-top",
-			inputPlaceholder: "请输入原密码"
-		},
-		function(inputValue) {
-			if(inputValue === false) return false;
+	if(document.getElementById("changePasswordBut").innerHTML == "修改密码") {
+		swal({
+				title: "验证用户",
+				text: "请输入原密码",
+				type: "input",
+				inputType: "password",
+				showCancelButton: true,
+				closeOnConfirm: false,
+				animation: "slide-from-top",
+				inputPlaceholder: "请输入原密码"
+			},
+			function(inputValue) {
+				if(inputValue === false) return false;
 
-			if(inputValue === "") {
-				swal.showInputError("请输入原密码");
-				return false
+				if(inputValue === "") {
+					swal.showInputError("请输入原密码");
+					return false
+				}
+
+				$.ajax({
+					type: "post",
+					url: "checkAccount.action",
+					async: false,
+					data: {
+						'accountVO.accountID': accountID,
+						'accountVO.password': inputValue
+
+					},
+					dataType: 'json',
+					success: function(data) {
+						if(data == "success") {
+							swal("验证成功！", "", "success");
+							document.getElementById("changePasswordBut").innerHTML = "确认修改";
+							document.getElementById("passwordInfo").removeAttribute("readonly");
+							document.getElementById("passwordInfo").focus();
+						} else {
+							swal("验证失败！", "", "success");
+						}
+					},
+					error: function(data) {
+						swal("失败", "貌似出错了。重试一下", "success");
+					}
+				});
+			});
+	} else {
+		
+		if(document.getElementById("passwordInfo").value==""){
+			swal("请输入新密码！");
+			return false;
+		}
+		
+		$.ajax({
+			type: "post",
+			url: "modifyPassword.action",
+			async: false,
+			data: {
+				'accountVO.accountID': accountID,
+				'accountVO.password': document.getElementById("passwordInfo").value
+			},
+			dataType: 'json',
+			success: function(data) {
+				if(data == "success") {
+					document.getElementById("changePasswordBut").innerHTML = "修改密码";
+					document.getElementById("passwordInfo").readOnly = "readonly";
+					document.getElementById("passwordInfo").value = "";
+					swal("修改成功！", "", "success");
+				} else {
+					swal("修改失败！", "", "success");
+				}
+			},
+			error: function(data) {
+				swal("失败", "貌似出错了。重试一下", "success");
 			}
-
-			swal("非常好！", "你输入了：" + inputValue, "success");
 		});
-	document.getElementById("passwordInfo").focus();
-	document.getElementById("changePasswordBut").innerHTML = "确认修改";
+	}
 }

@@ -48,6 +48,17 @@
                 <param name="root">result</param>
             </result>
         </action>
+        <action name="checkAccount" class="action.UcenterAction" method="checkAccount">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="modifyPassword" class="action.UcenterAction" method="modifyPassword">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+
     </package>
 
     <package name="json" extends="json-default">
