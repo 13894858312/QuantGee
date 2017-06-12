@@ -2,10 +2,8 @@ package logic.trade;
 
 import DAO.stockInfoDAO.StockInfoDAO;
 import DAO.tradeDAO.TradeDAO;
-import bean.Current;
-import bean.HoldingStock;
-import bean.MarketInfo;
-import bean.Trade;
+import bean.*;
+import logic.tools.DateHelper;
 import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -61,7 +59,9 @@ public class TradeServiceImp implements TradeService {
     @Override
     public boolean addTradeRecord(TradeRecordVO tradeRecord) {
         Trade trade = transferHelper.transToTrade(tradeRecord);
-        tradeDAO.addTradeInfo(trade);
+        if(!tradeDAO.addTradeInfo(trade)) {
+            return false;
+        }
 
         HoldingStock holdingStock = tradeDAO.getHoldingStock(tradeRecord.getUserID(), tradeRecord.getStockCode());
 
@@ -103,9 +103,18 @@ public class TradeServiceImp implements TradeService {
     @Override
     public HoldingStockVO getRealTimeHoldingStockInfo(TradeInputVO inputVO) {
         HoldingStock holdingStock = tradeDAO.getHoldingStock(inputVO.getUserID(), inputVO.getStockCode());
+        double nowPrice = 0;
         Current current = stockInfoDAO.getStockRealTimeInfo(inputVO.getStockCode());
+        if (current == null) {
+            String date = DateHelper.formerTradeDay(DateHelper.getNowDate());
+            Stock stock = stockInfoDAO.getStockInfo(inputVO.getStockCode(), date);
+            nowPrice = stock.getClose();
+        } else {
+            nowPrice = current.getTrade();
+        }
+
         MarketInfo marketInfo = stockInfoDAO.getMarketInfo(inputVO.getStockCode());
-        return transferHelper.transToHoldingStockVO(holdingStock, current.getTrade(), marketInfo.getName());
+        return transferHelper.transToHoldingStockVO(holdingStock, nowPrice, marketInfo.getName());
     }
 
     @Override
@@ -115,9 +124,20 @@ public class TradeServiceImp implements TradeService {
 
         while(holdingStocks.hasNext()) {
             HoldingStock temp = holdingStocks.next();
+            //获取当前股票价格
+            double nowPrice = 0;
             Current current = stockInfoDAO.getStockRealTimeInfo(temp.getCode());
+            if (current == null) {
+                String date = DateHelper.formerTradeDay(DateHelper.getNowDate());
+                Stock stock = stockInfoDAO.getStockInfo(temp.getCode(), date);
+                nowPrice = stock.getClose();
+            } else {
+                nowPrice = current.getTrade();
+            }
+
+            //获取股票名称
             MarketInfo marketInfo = stockInfoDAO.getMarketInfo(temp.getCode());
-            result.add(transferHelper.transToHoldingStockVO(temp, current.getTrade(), marketInfo.getName()));
+            result.add(transferHelper.transToHoldingStockVO(temp, nowPrice, marketInfo.getName()));
         }
         return result;
     }

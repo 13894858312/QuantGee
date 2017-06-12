@@ -13,10 +13,9 @@ public class TradeRecordVO {
 
     private double price;
 
-    public TradeRecordVO() {}
-
     /**
      * @param time 时间 具体到时分秒
+     * @param userID 用户名
      * @param stockCode 股票代码
      * @param action 买入或卖出
      * @param numOfStock 买入或者卖出的股票数量
