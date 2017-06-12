@@ -209,10 +209,7 @@ public class StockInfoData implements StockInfoDAO{
     }
 
     @Override
-    public Iterator<String> getAllStockNames(){
-        Iterator<String> iterator = (Iterator<String>) hibernateTemplate
-                .find("select name from MarketInfo ").iterator();
-        return iterator;
+    public Iterator<MarketInfo> getAllStockAndNames() {
+        return null;
     }
-
 }

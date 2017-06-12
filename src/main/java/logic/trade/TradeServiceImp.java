@@ -58,16 +58,17 @@ public class TradeServiceImp implements TradeService {
     }
 
     @Override
-    public boolean addTradeRecord(TradeRecordVO tradeRecord) {
+    public double addTradeRecord(TradeRecordVO tradeRecord) {
         Trade trade = transferHelper.transToTrade(tradeRecord);
         if(!tradeDAO.addTradeInfo(trade)) {
-            return false;
+            return -1;
         }
 
         HoldingStock holdingStock = tradeDAO.getHoldingStock(tradeRecord.getUserID(), tradeRecord.getStockCode());
 
         //用于获取实时股票价格
         Current current = stockInfoDAO.getStockRealTimeInfo(tradeRecord.getStockCode());
+        double userMoney;
 
         //添加一条新持有股票
         if (holdingStock == null || holdingStock.getHoldNum() == 0) {
@@ -81,8 +82,15 @@ public class TradeServiceImp implements TradeService {
             //根据实时股票价格来确定买入的资金
             newHoldingStock.setInitFund(current.getTrade() * tradeRecord.getNumOfStock());
 
+            userMoney = tradeDAO.getUserMoney(tradeRecord.getUserID());
+            userMoney -= current.getTrade() * tradeRecord.getNumOfStock();
+
+            if (!tradeDAO.updateUserMoney(tradeRecord.getUserID(), userMoney)) {
+                return -1;
+            }
+
             if(!tradeDAO.updateHoldingStock(newHoldingStock)) {
-                return false;
+                return -1;
             }
         } else {
             //买入 覆盖原先的记录
@@ -90,25 +98,38 @@ public class TradeServiceImp implements TradeService {
                 holdingStock.setHoldNum(holdingStock.getHoldNum() + tradeRecord.getNumOfStock());
                 holdingStock.setInitFund(holdingStock.getInitFund() + tradeRecord.getNumOfStock() * tradeRecord.getPrice());
 
+                userMoney = tradeDAO.getUserMoney(tradeRecord.getUserID());
+                userMoney -= current.getTrade() * tradeRecord.getNumOfStock();
+
+                if (!tradeDAO.updateUserMoney(tradeRecord.getUserID(), userMoney)) {
+                    return -1;
+                }
             } else {
                 assert (holdingStock.getHoldNum() - tradeRecord.getNumOfStock() >= 0) : "logic.TradeServiceImp.addTradeRecord.HoldNum小于0";
 
                 holdingStock.setHoldNum(holdingStock.getHoldNum() - tradeRecord.getNumOfStock());
                 holdingStock.setSellOutMoney(holdingStock.getSellOutMoney() + current.getTrade() * tradeRecord.getNumOfStock());
+
+                userMoney = tradeDAO.getUserMoney(tradeRecord.getUserID());
+                userMoney += current.getTrade() * tradeRecord.getNumOfStock();
+
+                if (!tradeDAO.updateUserMoney(tradeRecord.getUserID(), userMoney)) {
+                    return -1;
+                }
             }
 
             if(!tradeDAO.updateHoldingStock(holdingStock)) {
-                return false;
+                return -1;
             }
         }
 
-        return true;
+        return userMoney;
     }
 
     @Override
     public HoldingStockVO getRealTimeHoldingStockInfo(TradeInputVO inputVO) {
         HoldingStock holdingStock = tradeDAO.getHoldingStock(inputVO.getUserID(), inputVO.getStockCode());
-        double nowPrice = 0;
+        double nowPrice;
         Current current = stockInfoDAO.getStockRealTimeInfo(inputVO.getStockCode());
         if (current == null) {
             String date = DateHelper.formerTradeDay(DateHelper.getNowDate());
@@ -130,7 +151,7 @@ public class TradeServiceImp implements TradeService {
         while(holdingStocks.hasNext()) {
             HoldingStock temp = holdingStocks.next();
             //获取当前股票价格
-            double nowPrice = 0;
+            double nowPrice;
             Current current = stockInfoDAO.getStockRealTimeInfo(temp.getCode());
             if (current == null) {
                 String date = DateHelper.formerTradeDay(DateHelper.getNowDate());
