@@ -75,13 +75,9 @@ public class TradeData implements TradeDAO{
 
         if(iterator.hasNext()){
             HoldingStock old = iterator.next();
-            int oriNum = old.getHoldNum();
-            if(newNum + oriNum < 0){
-                return false;
-            }
             old.setInitFund(initFund);
             old.setSellOutMoney(sellOutMoney);
-            old.setHoldNum(newNum+oriNum);
+            old.setHoldNum(newNum);
             hibernateTemplate.update(old);
             return true;
         }
@@ -97,5 +93,16 @@ public class TradeData implements TradeDAO{
             return false;
         }
     }
+
+    @Override
+    public boolean updateUserMoney(String userID, double money) {
+        return false;
+    }
+
+    @Override
+    public double getUserMoney(String userID) {
+        return 0;
+    }
+
 
 }
