@@ -134,7 +134,6 @@
     		</tr>
     	</table>
     </div>
-    <script type="text/javascript" src="../../js/trade/initTrade.js"></script>
     <div class="recordtext">
     	<div class="testheadtext">
     		<div class="text">交易记录</div>
@@ -152,5 +151,6 @@
     		</tr>
     	</table>
     </div>
+        <script type="text/javascript" src="../../js/trade/initTrade.js"></script>
 </body>
 </html>
