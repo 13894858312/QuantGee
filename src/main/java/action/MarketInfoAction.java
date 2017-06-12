@@ -6,11 +6,9 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import service.stock.MarketInfoService;
 import service.stock.StockBasicInfoService;
-import vo.stock.RealTimeLineVO;
-import vo.stock.StockCurrentVO;
-import vo.stock.StockHistoricalVO;
-import vo.stock.StockInputVO;
+import vo.stock.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,6 +24,8 @@ public class MarketInfoAction extends ActionSupport {
 
     @Autowired
     private StockBasicInfoService stockBasicInfoService;
+    @Autowired
+    private MarketInfoService marketInfoService;
 
     public String getResult(){
         return result;
@@ -62,17 +62,17 @@ public class MarketInfoAction extends ActionSupport {
         return SUCCESS;
     }
 
-    public String getRealSHDate(){
-        RealTimeLineVO realTimeLineVO = stockBasicInfoService.getStockRealTimeLineInfo("sh");
-        JSONArray jsonArray = JSONArray.fromObject(realTimeLineVO.getTimes());
-        result = jsonArray.toString();
+    public String getRealSH(){
+        RealTimeLineVO realTimeLineVO = marketInfoService.getIndexRealTimeLine("上证指数");
+        JSONObject jsonObject = JSONObject.fromObject(realTimeLineVO);
+        result = jsonObject.toString();
         return SUCCESS;
     }
 
-    public String getRealSHPrice(){
-        RealTimeLineVO realTimeLineVO = stockBasicInfoService.getStockRealTimeLineInfo("sh");
-        JSONArray jsonArray = JSONArray.fromObject(realTimeLineVO.getNowPrice());
-        result = jsonArray.toString();
+    public String getRealSHData(){
+        CurrentIndexVO currentIndexVO = marketInfoService.getIndexRealTimeInfo("上证指数");
+        JSONObject jsonObject = JSONObject.fromObject(currentIndexVO);
+        result = jsonObject.toString();
         return SUCCESS;
     }
 

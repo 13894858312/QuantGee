@@ -1,8 +1,50 @@
 /**
  * Created by Administrator on 2017/6/3.
  */
+var intervaltime = 3000;
 doshchart();
+setInterval(doshchart, 3000);
 function doshchart() {
+    var realdata;
+    $.ajax({
+        cache:false,
+        async:false,
+        url:'getRealSHData.action',
+        type:'GET',
+        dataType:'json',
+        success:function (data) {
+            realdata = JSON.parse(data);
+        },
+        error:function (data) {
+            alert("error");
+        }
+    });
+    $("#yesclose").text("昨收:" + String(realdata['preclose']));
+    $("#todopen").text("今开:" + String(realdata['openNum']));
+    $("#highest").text("最高:" + String(realdata['high']));
+    $("#lowest").text("最低:" + String(realdata['low']));
+    var realDate = [];
+    var realPrice = [];
+    var json;
+    $.ajax({
+        cache:false,
+        async:false,
+        url:'getRealSH.action',
+        type:'GET',
+        dataType:'json',
+        success:function (data) {
+            json = JSON.parse(data);
+        },
+        error:function (data) {
+            alert("error");
+        }
+    });
+    for(var i=0;i<json['times'].length;i++){
+        realDate.push(json['times'][i]);
+    }
+    for(var i=0;i<json['nowPrice'].length;i++){
+        realPrice.push(json['nowPrice'][i]);
+    }
     var shChart = echarts.init(document.getElementById('shangzgraph'));
     var option = {
         backgroundColor: '#FFFFFF',
@@ -24,7 +66,7 @@ function doshchart() {
         xAxis: {
             show:true,
             type: 'category',
-            data: getSHRealDate()
+            data: realDate
         },
         yAxis: {
             scale: true,
@@ -36,53 +78,10 @@ function doshchart() {
             {
                 name: '现价',
                 type: 'candlestick',
-                data: getSHRealPrice()
+                data: realPrice
 
             }
         ]
     };
     shChart.setOption(option);
-}
-function getSHRealDate() {
-    var realDate = [];
-    var json;
-    $.ajax({
-        cache:false,
-        async:false,
-        url:'getRealSHDate.action',
-        type:'GET',
-        dataType:'json',
-        success:function (data) {
-            alert(data);
-            json = JSON.parse(data);
-        },
-        error:function (data) {
-            alert("error");
-        }
-    });
-    for(var i=0;i<json.length;i++){
-        realDate.push(json[i]);
-    }
-    return realDate;
-}
-function getSHRealPrice() {
-    var realPrice = [];
-    var json;
-    $.ajax({
-        cache:false,
-        async:false,
-        url:'getRealSHPrice.action',
-        type:'GET',
-        dataType:'json',
-        success:function (data) {
-            json = JSON.parse(data);
-        },
-        error:function (data) {
-            alert("error");
-        }
-    });
-    for(var i=0;i<json.length;i++){
-        realPrice.push(json[i]);
-    }
-    return realPrice;
 }
