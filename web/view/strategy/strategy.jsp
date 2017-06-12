@@ -27,12 +27,12 @@
 
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" href="../../bootstrap/bootstrap-select/css/bootstrap-select.css">
-    <link rel="stylesheet" href="../../bootstrap/bootstrap-datepicler/css/bootstrap-datepicker.css"/>
-    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+    <!--<link rel="stylesheet" href="../../bootstrap/bootstrap-datepicler/css/bootstrap-datepicker.css"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">-->
 
     <script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../../bootstrap/bootstrap-select/js/bootstrap-select.js"></script>
-    <script type="text/javascript" src="../../bootstrap/bootstrap-datepicler/js/bootstrap-datepicker.js"></script>
+    <!--<script type="text/javascript" src="../../bootstrap/bootstrap-datepicler/js/bootstrap-datepicker.js"></script>-->
 
     <script type="text/javascript" src="../../js/strategy/strategy.js"></script>
     <link rel="stylesheet" href="../../css/style.css"/>
@@ -257,9 +257,10 @@
     background: #FFFFFF;
 ">选择收藏</span>
     <div class="col-sm-4">
-        <select id="usertype" name="usertype" class="selectpicker input-sm form-control" multiple
+        <select id="usertype"  class="selectpicker input-sm form-control" multiple
                 data-live-search="true">
-            <option value="0">000001</option>
+                <option>请先登陆</option>
+            <!--<option value="0">000001</option>
             <option value="1">600001</option>
             <option value="2">321000</option>
             <option value="3">000123</option>
@@ -268,7 +269,7 @@
             <option value="6">124002</option>
             <option value="7">423300</option>
             <option value="8">240022</option>
-            <option value="9">332003</option>
+            <option value="9">332003</option>-->
         </select>
     </div>
 
@@ -345,21 +346,25 @@ width: 80px;
                     <tr>
                         <th>
                             <span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
-                            <div class="col-xs-12 col-sm-4">
+                                                            <input type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            <!--<div class="col-xs-12 col-sm-4">
                                 <div class="startTime" style="width: 100px;">
                                     <input class="datepicker form-control" type="text"/>
                                 </div>
-                            </div>
-                            <script type="text/javascript">
+                            </div>-->
+                            <!--<script type="text/javascript">
                                 $('.datepicker').datepicker({
                                     weekStart: 1,
                                     color: 'red'
                                 });
-                            </script>
+                            </script>-->
                         </th>
                         <th>
                             <span style="float: left; height: 35px; line-height: 35px;">结束时间</span>
-                            <div class="col-xs-12 col-sm-4">
+                                                            <input type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            <!--<div class="col-xs-12 col-sm-4">
                                 <div class="endTime" style="width: 100px;">
                                     <input class="datepicker form-control" type="text"/>
                                 </div>
@@ -369,7 +374,7 @@ width: 80px;
                                     weekStart: 1,
                                     color: 'red'
                                 });
-                            </script>
+                            </script>-->
                         </th>
                         <th>
                             <div class="initFund">
@@ -442,31 +447,15 @@ width: 80px;
                     <tr>
                         <th>
                             <span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
-                            <div class="col-xs-12 col-sm-4">
-                                <div class="startTime" style="width: 100px;">
-                                    <input class="datepicker form-control" type="text"/>
-                                </div>
-                            </div>
-                            <script type="text/javascript">
-                                $('.datepicker').datepicker({
-                                    weekStart: 1,
-                                    color: 'red'
-                                });
-                            </script>
+                            <input type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                
                         </th>
                         <th>
                             <span style="float: left; height: 35px; line-height: 35px;">结束时间</span>
-                            <div class="col-xs-12 col-sm-4">
-                                <div class="endTime" style="width: 100px;">
-                                    <input class="datepicker form-control" type="text"/>
-                                </div>
-                            </div>
-                            <script type="text/javascript">
-                                $('.datepicker').datepicker({
-                                    weekStart: 1,
-                                    color: 'red'
-                                });
-                            </script>
+                            <input type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                
                         </th>
                         <th>
                             <div class="initFund">
@@ -539,31 +528,15 @@ width: 80px;
                     <tr>
                         <th>
                             <span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
-                            <div class="col-xs-12 col-sm-4">
-                                <div class="startTime" style="width: 100px;">
-                                    <input class="datepicker form-control" type="text"/>
-                                </div>
-                            </div>
-                            <script type="text/javascript">
-                                $('.datepicker').datepicker({
-                                    weekStart: 1,
-                                    color: 'red'
-                                });
-                            </script>
+                            <input type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                
                         </th>
                         <th>
                             <span style="float: left; height: 35px; line-height: 35px;">结束时间</span>
-                            <div class="col-xs-12 col-sm-4">
-                                <div class="endTime" style="width: 100px;">
-                                    <input class="datepicker form-control" type="text"/>
-                                </div>
-                            </div>
-                            <script type="text/javascript">
-                                $('.datepicker').datepicker({
-                                    weekStart: 1,
-                                    color: 'red'
-                                });
-                            </script>
+                            <input type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                
                         </th>
                         <th>
                             <div class="initFund">
@@ -645,31 +618,15 @@ width: 80px;
                     <tr>
                         <th>
                             <span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
-                            <div class="col-xs-12 col-sm-4">
-                                <div class="startTime" style="width: 100px;">
-                                    <input class="datepicker form-control" type="text"/>
-                                </div>
-                            </div>
-                            <script type="text/javascript">
-                                $('.datepicker').datepicker({
-                                    weekStart: 1,
-                                    color: 'red'
-                                });
-                            </script>
+                            <input type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                
                         </th>
                         <th>
                             <span style="float: left; height: 35px; line-height: 35px;">结束时间</span>
-                            <div class="col-xs-12 col-sm-4">
-                                <div class="endTime" style="width: 100px;">
-                                    <input class="datepicker form-control" type="text"/>
-                                </div>
-                            </div>
-                            <script type="text/javascript">
-                                $('.datepicker').datepicker({
-                                    weekStart: 1,
-                                    color: 'red'
-                                });
-                            </script>
+                            <input type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                
                         </th>
                         <th>
                             <div class="initFund">
@@ -750,31 +707,15 @@ width: 80px;
                     <tr>
                         <th>
                             <span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
-                            <div class="col-xs-12 col-sm-4">
-                                <div class="startTime" style="width: 100px;">
-                                    <input class="datepicker form-control" type="text"/>
-                                </div>
-                            </div>
-                            <script type="text/javascript">
-                                $('.datepicker').datepicker({
-                                    weekStart: 1,
-                                    color: 'red'
-                                });
-                            </script>
+                            <input type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                
                         </th>
                         <th>
                             <span style="float: left; height: 35px; line-height: 35px;">结束时间</span>
-                            <div class="col-xs-12 col-sm-4">
-                                <div class="endTime" style="width: 100px;">
-                                    <input class="datepicker form-control" type="text"/>
-                                </div>
-                            </div>
-                            <script type="text/javascript">
-                                $('.datepicker').datepicker({
-                                    weekStart: 1,
-                                    color: 'red'
-                                });
-                            </script>
+                            <input type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                
                         </th>
                         <th>
                             <div class="initFund">
