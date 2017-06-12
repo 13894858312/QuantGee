@@ -18,10 +18,11 @@ public interface StrategyDAO {
 
     /**
      * 删除策略并删除对应策略收藏
-     * @param strategyID 要删除的策略编号
+     * @param userID 用户ID
+     * @param strategyName 要删除的策略编号
      * @return boolean 是否添加成功
      */
-    public boolean removeMyStrategy(String userID, int strategyID);
+    public boolean removeMyStrategy(String userID, String strategyName);
 
     /**
      * 得到用户创建的全部策略
