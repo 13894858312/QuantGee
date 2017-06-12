@@ -59,7 +59,9 @@ public class TradeServiceImp implements TradeService {
     @Override
     public boolean addTradeRecord(TradeRecordVO tradeRecord) {
         Trade trade = transferHelper.transToTrade(tradeRecord);
-        tradeDAO.addTradeInfo(trade);
+        if(!tradeDAO.addTradeInfo(trade)) {
+            return false;
+        }
 
         HoldingStock holdingStock = tradeDAO.getHoldingStock(tradeRecord.getUserID(), tradeRecord.getStockCode());
 
