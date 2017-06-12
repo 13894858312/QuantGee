@@ -45,19 +45,19 @@ public class MarketInfoAction extends ActionSupport {
     }
 
     public String getDayKline(){
-        JSONObject jsonObject = JSONObject.fromObject(getMarketInfo(20,300, "d"));
+        JSONObject jsonObject = JSONObject.fromObject(getMarketInfo(1,300, "d"));
         result = jsonObject.toString();
         return SUCCESS;
     }
 
     public String getWeekKline(){
-        JSONObject jsonObject = JSONObject.fromObject(getMarketInfo(20,600, "w"));
+        JSONObject jsonObject = JSONObject.fromObject(getMarketInfo(1,600, "w"));
         result = jsonObject.toString();
         return SUCCESS;
     }
 
     public String getMonthKline(){
-        JSONObject jsonObject = JSONObject.fromObject(getMarketInfo(20,800, "m"));
+        JSONObject jsonObject = JSONObject.fromObject(getMarketInfo(1,800, "m"));
         result = jsonObject.toString();
         return SUCCESS;
     }

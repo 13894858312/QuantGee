@@ -76,7 +76,7 @@ public class ListAction extends ActionSupport {
     }
 
     public String getStockKline(){
-        JSONObject jsonObject = JSONObject.fromObject(getStockVOInlist(20,480, "d"));
+        JSONObject jsonObject = JSONObject.fromObject(getStockVOInlist(1,480, "d"));
         result = jsonObject.toString();
         return SUCCESS;
     }

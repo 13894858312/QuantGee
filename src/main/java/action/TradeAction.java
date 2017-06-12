@@ -106,7 +106,7 @@ public class TradeAction extends ActionSupport{
     }
 
     public String getStockDayKlineInfo(){
-        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,480, "d"));
+        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(1,480, "d"));
         result = jsonObject.toString();
         return SUCCESS;
     }
@@ -124,7 +124,7 @@ public class TradeAction extends ActionSupport{
 
     public String getTradeIndex(){
         String date = DateHelper.getNowDate();
-        String enddate = DateHelper.formerNTradeDay(date, 20);
+        String enddate = DateHelper.formerNTradeDay(date, 1);
         String startdate = DateHelper.formerNTradeDay(enddate, 120);
         StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate, "d");
         StockIndexVO stockIndexVO = stockQuotaService.getStockIndex(stockInputVO);
@@ -145,7 +145,7 @@ public class TradeAction extends ActionSupport{
     }
 
     public String getBOLLKlineInfo(){
-        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,120, "d"));
+        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(1,120, "d"));
         result = jsonObject.toString();
         return SUCCESS;
     }
