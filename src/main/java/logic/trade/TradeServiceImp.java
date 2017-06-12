@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import service.trade.TradeService;
 import vo.trade.HoldingStockVO;
 import vo.trade.TradeInputVO;
@@ -80,7 +81,7 @@ public class TradeServiceImp implements TradeService {
             //根据实时股票价格来确定买入的资金
             newHoldingStock.setInitFund(current.getTrade() * tradeRecord.getNumOfStock());
 
-            if(!tradeDAO.updateHoldingStock(holdingStock)) {
+            if(!tradeDAO.updateHoldingStock(newHoldingStock)) {
                 return false;
             }
         } else {

@@ -37,4 +37,11 @@ public interface AccountService {
 	 */
     public boolean logout(AccountVO account);
 
+	/**
+	 * 验证原密码 用来修改密码
+	 * @param account  帐号信息
+	 * @return boolean
+	 */
+	public boolean checkAccount(AccountVO account);
+
 }
