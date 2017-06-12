@@ -5,7 +5,7 @@ package vo.strategy;
  */
 public class StrategyUserInputVO {
     private String userID;
-    private int strategyID;
+    private String strategyName;
 
     public String getUserID() {
         return userID;
@@ -15,11 +15,11 @@ public class StrategyUserInputVO {
         this.userID = userID;
     }
 
-    public int getStrategyID() {
-        return strategyID;
+    public String getStrategyName() {
+        return strategyName;
     }
 
-    public void setStrategyID(int strategyID) {
-        this.strategyID = strategyID;
+    public void setStrategyName(String strategyName) {
+        this.strategyName = strategyName;
     }
 }
