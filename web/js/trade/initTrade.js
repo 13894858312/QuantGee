@@ -49,9 +49,9 @@ if(accountID == ""){
             theValueOfStock.innerHTML = json[i]['initFund'];
             nowPrice.innerHTML = json[i]['nowPrice'];
             range.innerHTML = json[i]['yield'];
-            deletedo.innerHTML = "<img src='../../images/deletebutton.png' />";
-            deletedo.style.textAlign = "right";
-            deletedo.style.cursor = "hand";
+            // deletedo.innerHTML = "<img src='../../images/deletebutton.png' />";
+            // deletedo.style.textAlign = "right";
+            // deletedo.style.cursor = "hand";
             // deletedo.onclick = function () {
             //     if(getTradeRetunResult(1))
             //     document.getElementById('st').deleteRow(x.rowIndex)

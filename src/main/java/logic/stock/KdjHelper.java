@@ -49,7 +49,7 @@ public class KdjHelper {
     private static final String KDJ_INFO_22 = "K、D、J三值都小于50，表示空方力量占优。";
 
     private static final String KDJ_INFO_31 = "近期K线向上穿过D线，形成金叉，为买入信号。金叉出现的位置越高，信号越强烈。";
-    private static final String KDJ_INFO_32 = "近期K线向下穿过D线，形成死叉，为卖出信号。金叉出现的位置越低，信号越强烈。";
+    private static final String KDJ_INFO_32 = "近期K线向下穿过D线，形成死叉，为卖出信号。死叉出现的位置越低，信号越强烈。";
     private static final String KDJ_INFO_33 = "近期K线与D线没有交叉，投资者宜观望。";
 
     private static final String KDJ_INFO = "股票数据缺失,无法获得分析数据。";

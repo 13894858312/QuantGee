@@ -1,5 +1,7 @@
 package vo.stock;
 
+import logic.tools.MathHelper;
+
 /**
  * Created by Mark.W on 2017/6/10.
  * 大盘实时数据 用于列表展示
@@ -19,14 +21,14 @@ public class CurrentIndexVO {
     public CurrentIndexVO(String code, Double preclose, Double high, Double low, Long volume,
                           Double amount, Double openNum, Double closeNum, Double changes, String time) {
         this.code = code;
-        this.preclose = preclose;
-        this.high = high;
-        this.low = low;
+        this.preclose = MathHelper.formatData(preclose,2);
+        this.high = MathHelper.formatData(high,2);
+        this.low = MathHelper.formatData(low, 2);
         this.volume = volume;
         this.amount = amount;
-        this.openNum = openNum;
-        this.closeNum = closeNum;
-        this.changes = changes;
+        this.openNum = MathHelper.formatData(openNum,2);
+        this.closeNum = MathHelper.formatData(closeNum, 2);
+        this.changes = MathHelper.formatData(changes,2);
         this.time = time;
     }
 

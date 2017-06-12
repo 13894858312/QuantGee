@@ -1,6 +1,7 @@
 /**
  * Created by Administrator on 2017/6/10.
  */
+var balance;
 function buyStock() {
     var accountID;
     $.ajax({
@@ -18,18 +19,59 @@ function buyStock() {
     if(accountID == ""){
         swal("请先登录","","warning");
     }else {
-        var stockCode = document.getElementById("stcode");
+        var stockCode = document.getElementById("stname");
         var num = document.getElementById("stnum");
         if (stockCode.value == null || num.value == null) {
             swal("请输入完整信息", "", "warning");
         } else {
             if (getTradeRetunResult(0)) {
-
+                var json;
+                $.ajax({
+                    cache: false,
+                    async: false,
+                    type: 'POST',
+                    url: 'getUserTradeStockInfo.action',
+                    data: {
+                        accountID: accountID
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        json = JSON.parse(data);
+                    },
+                    error: function (data) {
+                        alert("error")
+                    }
+                });
+                var info = "买入" + json['stockName'] + num.value + "股";
+                swal("交易成功",info,"success");
+                if(json.length>0){
+                    for(var i=0;i<json.length;i++){
+                        var money = document.getElementById("nowmoney");
+                        var x = document.getElementById('st').insertRow(document.getElementById('st').rows.length);
+                        var stockName = x.insertCell(0);
+                        var stockCode = x.insertCell(1);
+                        var theNumOfStock = x.insertCell(2);
+                        var theValueOfStock = x.insertCell(3);
+                        var nowPrice = x.insertCell(4);
+                        var range = x.insertCell(5);
+                        var deletedo = x.insertCell(6);
+                        money.innerHTML = balance;
+                        stockName.innerHTML = json[i]['stockName'];
+                        stockCode.innerHTML = json[i]['stockCode'];
+                        theNumOfStock.innerHTML = json[i]['holdNum'];
+                        theValueOfStock.innerHTML = json[i]['initFund'];
+                        nowPrice.innerHTML = json[i]['nowPrice'];
+                        range.innerHTML = json[i]['yield'];
+                    }
+                }
+            }else{
+                swal("交易失败","","error");
             }
         }
     }
 }
-function addrow() {
+
+function sellStock() {
     var accountID;
     $.ajax({
         type: 'get',
@@ -46,23 +88,20 @@ function addrow() {
     if(accountID == ""){
         swal("请先登录","","warning");
     }else {
-
-        var stockCode = document.getElementById("inputstcode");
-        var num = document.getElementById("inputnumofcode");
-        if(stockCode.value == null || num.value == null){
-            swal("请输入完整信息","","warning");
-        }else{
-            if(getTradeRetunResult(0)){
-
+        var stockCode = document.getElementById("stname");
+        var num = document.getElementById("stnum");
+        if (stockCode.value == null || num.value == null) {
+            swal("请输入完整信息", "", "warning");
+        } else {
+            if (getTradeRetunResult(1)) {
                 var json;
                 $.ajax({
                     cache: false,
                     async: false,
                     type: 'POST',
-                    url: 'getTheStockTradeInfo.action',
+                    url: 'getUserTradeStockInfo.action',
                     data: {
-                        accountID: accountID,
-                        stockCode: stockCode.value
+                        accountID: accountID
                     },
                     dataType: 'json',
                     success: function (data) {
@@ -72,49 +111,37 @@ function addrow() {
                         alert("error")
                     }
                 });
-
-                var money = document.getElementById("nowmoney");
-                //HoldingStockvo里面暂时没有现价
-                // if ((Number(money.textContent) - (json['nowPrice'] * Number(num.value))) > 0) {
-                    var info = "买入" + json['stockName'];
-                    swal("交易成功",info,"success");
-                    var x = document.getElementById('st').insertRow(document.getElementById('st').rows.length);
-                    var stockName = x.insertCell(0);
-                    var stockCode = x.insertCell(1);
-                    var theNumOfStock = x.insertCell(2);
-                    var theValueOfStock = x.insertCell(3);
-                    var nowPrice = x.insertCell(4);
-                    var range = x.insertCell(5);
-                    var deletedo = x.insertCell(6);
-                    stockName.innerHTML = json['stockName'];
-                    stockCode.innerHTML = json['stockCode'];
-                    theNumOfStock.innerHTML = json['holdNum'];
-                    theValueOfStock.innerHTML = json['initFund'];
-                    nowPrice.innerHTML = json['nowPrice'];
-                    range.innerHTML = json['yield'];
-                    deletedo.innerHTML = "<img src='../../images/deletebutton.png' />";
-                    deletedo.style.textAlign = "right";
-                    deletedo.style.cursor = "hand";
-                    // deletedo.onclick = function () {
-                    //     if(getTradeRetunResult(1))
-                    //     document.getElementById('st').deleteRow(x.rowIndex)
-                    //     money.innerHTML = Number(money.textContent) + (json['trade'] * Number(num.value));
-                    // }
-                    money.innerHTML = Number(money.textContent) - (json[''] * Number(num.value));
-                // } else {
-                //     swal("您的资产不足以购买","","warning");
-                // }
-
+                var info = "卖出" + json['stockName'] + num.value + "股";
+                swal("交易成功",info,"success");
+                if(json.length>0){
+                    for(var i=0;i<json.length;i++){
+                        var money = document.getElementById("nowmoney");
+                        var x = document.getElementById('st').insertRow(document.getElementById('st').rows.length);
+                        var stockName = x.insertCell(0);
+                        var stockCode = x.insertCell(1);
+                        var theNumOfStock = x.insertCell(2);
+                        var theValueOfStock = x.insertCell(3);
+                        var nowPrice = x.insertCell(4);
+                        var range = x.insertCell(5);
+                        var deletedo = x.insertCell(6);
+                        money.innerHTML = balance;
+                        stockName.innerHTML = json[i]['stockName'];
+                        stockCode.innerHTML = json[i]['stockCode'];
+                        theNumOfStock.innerHTML = json[i]['holdNum'];
+                        theValueOfStock.innerHTML = json[i]['initFund'];
+                        nowPrice.innerHTML = json[i]['nowPrice'];
+                        range.innerHTML = json[i]['yield'];
+                    }
+                }
             }else{
-                swal("交易失败","","error")
+                swal("交易失败","","error");
             }
         }
-
     }
 }
 function getTradeRetunResult(addordelete) {
-    var stockCode = document.getElementById("inputstcode");
-    var num = document.getElementById("inputnumofcode");
+    var stockCode = document.getElementById("stname");
+    var num = document.getElementById("stnum");
     var returnResult;
     var nowPrice;
     $.ajax({
@@ -147,7 +174,6 @@ function getTradeRetunResult(addordelete) {
         },
         dataType: 'json',
         success: function (data) {
-            alert(data);
             returnResult = JSON.parse(data);
         },
         error: function (data) {
@@ -155,10 +181,11 @@ function getTradeRetunResult(addordelete) {
         }
     });
     var result;
-    if(returnResult[0] == "success"){
-        result = true;
-    }else{
+    if(returnResult[0] == "error"){
         result = false;
+    }else{
+        balance = Number(returnResult[0]);
+        result = true;
     }
     return result;
 }

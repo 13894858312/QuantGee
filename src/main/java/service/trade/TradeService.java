@@ -51,4 +51,11 @@ public interface TradeService {
      */
     public ArrayList<HoldingStockVO> getHoldingStocks(String userID);
 
+    /**
+     * 获取用户当前余额
+     * @param userID 用户id
+     * @return 余额
+     */
+    public double getUserMoney(String userID);
+
 }
