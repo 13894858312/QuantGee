@@ -53,8 +53,12 @@ public class AccountServiceImp implements AccountService{
         if (account == null) {
             return false;
         }
-        account.setPassword(accountVO.getPassword());
 
+        if(!Encryption.getInstance().encryptPassword(accountVO.getFormerPassword()).equals(account.getPassword())) {
+            return false;
+        }
+
+        account.setPassword(accountVO.getPassword());
         account = Encryption.getInstance().encrypt(account);
         if(accountDAO.updateAccount(account)) {        //更新密码
             return true;

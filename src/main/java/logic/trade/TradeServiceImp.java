@@ -4,6 +4,7 @@ import DAO.stockInfoDAO.StockInfoDAO;
 import DAO.tradeDAO.TradeDAO;
 import bean.Current;
 import bean.HoldingStock;
+import bean.MarketInfo;
 import bean.Trade;
 import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,7 +104,8 @@ public class TradeServiceImp implements TradeService {
     public HoldingStockVO getRealTimeHoldingStockInfo(TradeInputVO inputVO) {
         HoldingStock holdingStock = tradeDAO.getHoldingStock(inputVO.getUserID(), inputVO.getStockCode());
         Current current = stockInfoDAO.getStockRealTimeInfo(inputVO.getStockCode());
-        return transferHelper.transToHoldingStockVO(holdingStock, current.getTrade());
+        MarketInfo marketInfo = stockInfoDAO.getMarketInfo(inputVO.getStockCode());
+        return transferHelper.transToHoldingStockVO(holdingStock, current.getTrade(), marketInfo.getName());
     }
 
     @Override
@@ -114,7 +116,8 @@ public class TradeServiceImp implements TradeService {
         while(holdingStocks.hasNext()) {
             HoldingStock temp = holdingStocks.next();
             Current current = stockInfoDAO.getStockRealTimeInfo(temp.getCode());
-            result.add(transferHelper.transToHoldingStockVO(temp, current.getTrade()));
+            MarketInfo marketInfo = stockInfoDAO.getMarketInfo(temp.getCode());
+            result.add(transferHelper.transToHoldingStockVO(temp, current.getTrade(), marketInfo.getName()));
         }
         return result;
     }
