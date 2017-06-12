@@ -23,7 +23,7 @@ public class TradeData implements TradeDAO{
     @Override
     public Iterator<Trade> getUserTradeList(String userID, String stockCode) {
         return (Iterator<Trade>) hibernateTemplate
-                .find("from Trade where userId = ? and code = ?", new String[]{userID, stockCode});
+                .find("from Trade where userId = ? and stockId = ?", new String[]{userID, stockCode});
     }
 
     @Override
@@ -69,11 +69,12 @@ public class TradeData implements TradeDAO{
         double sellOutMoney = holdingStock.getSellOutMoney();
         double initFund = holdingStock.getInitFund();
 
-        HoldingStock old = (HoldingStock) hibernateTemplate
+        Iterator<HoldingStock> iterator = (Iterator<HoldingStock>) hibernateTemplate
                 .find("from HoldingStock  h where h.userId = ? and h.code = ?",
-                        new String[] {userID, stockID}).iterator().next();
+                        new String[] {userID, stockID}).iterator();
 
-        if(old != null){
+        if(iterator.hasNext()){
+            HoldingStock old = iterator.next();
             int oriNum = old.getHoldNum();
             if(newNum + oriNum < 0){
                 return false;

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import service.user.AccountService;
 import service.user.UserService;
+import vo.user.AccountVO;
 import vo.user.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ public class UcenterAction extends ActionSupport {
 
     private String result;
     private String accountID;
+    private AccountVO accountVO;
     private UserVO userVO;
 
     @Autowired
@@ -62,6 +64,26 @@ public class UcenterAction extends ActionSupport {
         }
     }
 
+    public String checkAccount(){
+        if (accountService.checkAccount(accountVO)) {
+            result = "success";
+            return SUCCESS;
+        }else {
+            result = "fail";
+            return SUCCESS;
+        }
+    }
+
+    public String modifyPassword(){
+        if (accountService.modifyPassword(accountVO)){
+            result = "success";
+            return SUCCESS;
+        }else {
+            result="fail";
+            return SUCCESS;
+        }
+    }
+
     public String getResult() {
         return result;
     }
@@ -84,5 +106,13 @@ public class UcenterAction extends ActionSupport {
 
     public void setUserVO(UserVO userVO) {
         this.userVO = userVO;
+    }
+
+    public AccountVO getAccountVO() {
+        return accountVO;
+    }
+
+    public void setAccountVO(AccountVO accountVO) {
+        this.accountVO = accountVO;
     }
 }
