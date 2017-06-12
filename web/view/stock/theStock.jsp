@@ -183,6 +183,41 @@
 			<div class="index" id="index"></div>
 	  		<script src="../../js/stock/theStock/index.js"></script>
 	</div>
+	<div class="mkrbins">
+		<div class="instruction">
+			<div class="macdrsikdjbollh">MACD</div>
+			<div id="macdtext">
+				<div class="area">
+					<li class="content" id="macdcontent"></li>
+				</div>
+			</div>
+		</div>
+		<div class="instruction">
+			<div class="macdrsikdjbollh">RSI</div>
+			<div id="rsitext">
+				<div class="area">
+					<li class="content" id="rsicontent"></li>
+				</div>
+			</div>
+		</div>
+		<div class="instruction">
+			<div class="macdrsikdjbollh">KDJ</div>
+			<div id="kdjtext">
+				<div class="area">
+					<li class="content" id="kdjcontent"></li>
+				</div>
+			</div>
+		</div>
+		<div class="instruction">
+			<div class="macdrsikdjbollh">BOLL</div>
+			<div id="bolltext">
+				<div class="area">
+					<li class="content" id="bollcontent"></li>
+				</div>
+			</div>
+		</div>
+	</div>
+    <script src="../../js/stock/theStock/indexanalysis.js"></script>
 	<div class="analysis">
 		<div class="anahead">
 			<div class="anaheadtext" id="anaheadtext">股票预测</div>

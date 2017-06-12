@@ -54,32 +54,32 @@ public class StockAction extends ActionSupport{
     }
 
     public String getStockDayKlineInfo(){
-        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,480, "d"));
+        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(1,480, "d"));
         result = jsonObject.toString();
         return SUCCESS;
     }
 
     public String getStockWeekKlineInfo(){
-        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,480, "w"));
+        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(1,480, "w"));
         result = jsonObject.toString();
         return SUCCESS;
     }
 
     public String getStockMonthKlineInfo(){
-        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,480, "m"));
+        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(1,480, "m"));
         result = jsonObject.toString();
         return SUCCESS;
     }
 
     public String totheStock(){
-        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,30,"d"));
+        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(1,30,"d"));
         result = jsonObject.toString();
         return SUCCESS;
     }
 
     public String getIndex(){
         String date = DateHelper.getNowDate();
-        String enddate = DateHelper.formerNTradeDay(date, 20);
+        String enddate = DateHelper.formerNTradeDay(date, 1);
         String startdate = DateHelper.formerNTradeDay(enddate, 120);
         StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate, "d");
         StockIndexVO stockIndexVO = stockQuotaService.getStockIndex(stockInputVO);
@@ -89,7 +89,7 @@ public class StockAction extends ActionSupport{
     }
 
     public String getBOLLKline(){
-        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,120, "d"));
+        JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(1,120, "d"));
         result = jsonObject.toString();
         return SUCCESS;
     }
@@ -118,6 +118,13 @@ public class StockAction extends ActionSupport{
         StockInputVO stockInputVO = new StockInputVO(stockCode, startdate, enddate, "d");
         StockPredictVO stockPredictVO = predictStockService.getStockPredictInfo(stockInputVO);
         JSONObject jsonObject = JSONObject.fromObject(stockPredictVO);
+        result = jsonObject.toString();
+        return SUCCESS;
+    }
+
+    public String getMKRBInfo(){
+        StockAnalysisVO stockAnalysisVO = predictStockService.getStockAnalysisInfo(stockCode);
+        JSONObject jsonObject = JSONObject.fromObject(stockAnalysisVO);
         result = jsonObject.toString();
         return SUCCESS;
     }

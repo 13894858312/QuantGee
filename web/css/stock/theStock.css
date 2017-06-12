@@ -143,10 +143,11 @@
 }
 .tsrealtime{
 	float: left;
+	margin-left: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	margin-left: 1%;
-	width: 26%;
+	width: 25%;
 	height: 180px;
 	background-color: #FFFFFF;
 	border-left: 1px solid #C0C0C0;
@@ -294,6 +295,71 @@
 	color: #000000;
 	background-color: #FFFFFF;
 }
+.mkrbins{
+	float: left;
+	margin-left: 17%;
+	width: 68%;
+	height: 250px;
+	border-top: 1px solid #c0c0c0;
+}
+.instruction{
+	margin-left: 1%;
+	float: left;
+	width: 24%;
+	height: 249px;
+}
+.macdrsikdjbollh{
+	margin-top: 20px;
+	height: 30px;
+	font-size: 20px;
+	font-weight: 100;
+	font-family: "Roboto Mono", monospace;
+	text-align: center;
+}
+#macdtext{
+	width: 100%;
+	margin-top: 10px;
+	height: 170px;
+	font-size: 14px;
+	font-weight: 100;
+	font-family: "Roboto Mono", monospace;
+	border-right: 1px solid #C0C0C0;
+}
+#rsitext{
+	width: 100%;
+	margin-top: 10px;
+	height: 170px;
+	font-size: 14px;
+	font-weight: 100;
+	font-family: "Roboto Mono", monospace;
+	border-right: 1px solid #C0C0C0;
+}
+#kdjtext{
+	width: 100%;
+	margin-top: 10px;
+	height: 170px;
+	font-size: 14px;
+	font-weight: 100;
+	font-family: "Roboto Mono", monospace;
+	border-right: 1px solid #C0C0C0;
+}
+#bolltext{
+	width: 100%;
+	margin-top: 10px;
+	height: 170px;
+	font-size: 14px;
+	font-weight: 100;
+	font-family: "Roboto Mono", monospace;
+}
+.area{
+	margin-left: 7%;
+	width: 86%;
+}
+li{
+	list-style-type:none;
+	word-wrap:break-word;  
+    word-break:break-all;
+}
 .analysis{
 	float: left;
 	width: 100%;
@@ -302,8 +368,8 @@
 }
 .anahead{
 	float: left;
-	width: 70%;
-	margin-left: 15%;
+	width: 68%;
+	margin-left: 17%;
 	margin-top: 10px;
 	height: 49px;
 	background-color: #FFFFFF;
@@ -319,8 +385,8 @@
 }
 .analysisgraph{
 	float: left;
-	width: 70%;
-	margin-left: 15%;
+	width: 68%;
+	margin-left: 17%;
 	height: 189px;
 	background-color: #FFFFFF;
 	border-bottom: 1px solid #C0C0C0;
