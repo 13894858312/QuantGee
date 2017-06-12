@@ -53,11 +53,6 @@ public class AccountServiceImp implements AccountService{
         if (account == null) {
             return false;
         }
-
-        if(!Encryption.getInstance().encryptPassword(accountVO.getFormerPassword()).equals(account.getPassword())) {
-            return false;
-        }
-
         account.setPassword(accountVO.getPassword());
         account = Encryption.getInstance().encrypt(account);
         if(accountDAO.updateAccount(account)) {        //更新密码
@@ -77,6 +72,18 @@ public class AccountServiceImp implements AccountService{
         if(accountDAO.updateAccount(account)) {        //更新登出状态
             return true;
         }
+        return false;
+    }
+
+    @Override
+    public boolean checkAccount(AccountVO accountVO) {
+        Account account = accountDAO.getAccount(accountVO.getAccountID());
+        if (account != null) {
+            if(Encryption.getInstance().encryptPassword(accountVO.getPassword()).equals(account.getPassword())) {
+                return true;
+            }
+        }
+
         return false;
     }
 }

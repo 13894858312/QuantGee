@@ -140,6 +140,7 @@ function submitInfoChagnes() {
 		dataType: 'json',
 		success: function(data) {
 			userInfo = JSON.parse(data);
+			swal("修改成功！", "", "success");
 			document.getElementById("accountIDInfo").value = userInfo["accountID"];
 			document.getElementById("accountIDInfo").readOnly = "readonly";
 			document.getElementById("usernameInfo").value = userInfo["userName"];
@@ -152,4 +153,30 @@ function submitInfoChagnes() {
 			alert("error");
 		}
 	});
+}
+
+function changePassword() {
+	document.getElementById("passwordInfo").removeAttribute("readonly");
+	swal({
+			title: "验证用户",
+			text: "请输入原密码",
+			type: "input",
+			inputType:"password",
+			showCancelButton: true,
+			closeOnConfirm: false,
+			animation: "slide-from-top",
+			inputPlaceholder: "请输入原密码"
+		},
+		function(inputValue) {
+			if(inputValue === false) return false;
+
+			if(inputValue === "") {
+				swal.showInputError("请输入原密码");
+				return false
+			}
+
+			swal("非常好！", "你输入了：" + inputValue, "success");
+		});
+	document.getElementById("passwordInfo").focus();
+	document.getElementById("changePasswordBut").innerHTML = "确认修改";
 }
