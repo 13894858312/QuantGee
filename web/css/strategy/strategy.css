@@ -2,14 +2,14 @@ ol li {
 	MARGIN: 8px
 }
 
-#strategybar {
+.strategybar {
 	margin-left: 15%;
 	margin-top: 10px;
 	height: 45px;
 	width: 70%;
 }
 
-#strategybar .hmtext {
+.strategybar .hmtext {
 	float: left;
 	width: 98%;
 	height: 35px;
@@ -21,7 +21,7 @@ ol li {
 	border-bottom: 1px solid #C0C0C0;
 }
 
-#strategybar span {
+.strategybar span {
 	height: 30px;
 }
 
@@ -166,15 +166,15 @@ ol li {
 	DISPLAY: block
 }
 
-#param {
+.param {
 	width: 100%;
 }
 
-#paramTable {
+.paramTable {
 	width: 100%;
 }
 
-#paramTable th {
+.paramTable th {
 	width: 33%;
 	font-weight: 100;
 	padding: 10px;

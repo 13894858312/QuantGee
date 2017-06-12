@@ -192,18 +192,18 @@ function changePassword() {
 							document.getElementById("passwordInfo").removeAttribute("readonly");
 							document.getElementById("passwordInfo").focus();
 						} else {
-							swal("验证失败！", "", "success");
+							swal("验证失败！", "", "error");
 						}
 					},
 					error: function(data) {
-						swal("失败", "貌似出错了。重试一下", "success");
+						swal("失败", "貌似出错了。重试一下", "error");
 					}
 				});
 			});
 	} else {
 		
 		if(document.getElementById("passwordInfo").value==""){
-			swal("请输入新密码！");
+			swal("请输入新密码！","","error");
 			return false;
 		}
 		
@@ -223,11 +223,11 @@ function changePassword() {
 					document.getElementById("passwordInfo").value = "";
 					swal("修改成功！", "", "success");
 				} else {
-					swal("修改失败！", "", "success");
+					swal("修改失败！", "", "error");
 				}
 			},
 			error: function(data) {
-				swal("失败", "貌似出错了。重试一下", "success");
+				swal("失败", "貌似出错了。重试一下", "error");
 			}
 		});
 	}
