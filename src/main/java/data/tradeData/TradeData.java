@@ -104,7 +104,7 @@ public class TradeData implements TradeDAO{
                 hibernateTemplate.update(userMoney);
                 hibernateTemplate.flush();
             }
-            return false;
+            return true;
         }catch (Exception e){
             return false;
         }
