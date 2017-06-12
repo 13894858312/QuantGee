@@ -2,6 +2,7 @@ package action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import logic.tools.DateHelper;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,10 +10,18 @@ import service.stock.MarketInfoService;
 import service.stock.PredictStockService;
 import service.stock.StockBasicInfoService;
 import service.stock.StockQuotaService;
+import service.trade.TradeService;
 import vo.stock.StockHistoricalVO;
 import vo.stock.StockIndexVO;
 import vo.stock.StockInputVO;
 import vo.stock.StockPredictVO;
+import vo.trade.HoldingStockVO;
+import vo.trade.TradeInputVO;
+import vo.trade.TradeRecordVO;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2017/6/11.
@@ -21,6 +30,12 @@ import vo.stock.StockPredictVO;
 public class TradeAction extends ActionSupport{
     private String result;
     private String stockCode;
+    private String accountID;
+    private int tradeAction;
+    private String numOfStock;
+    private double nowPrice;
+
+
 
     @Autowired
     private StockBasicInfoService stockBasicInfoService;
@@ -30,6 +45,8 @@ public class TradeAction extends ActionSupport{
     private PredictStockService predictStockService;
     @Autowired
     private MarketInfoService marketInfoService;
+    @Autowired
+    private TradeService tradeService;
 
     public String getResult() {
         return result;
@@ -45,6 +62,38 @@ public class TradeAction extends ActionSupport{
 
     public void setStockCode(String stockCode) {
         this.stockCode = stockCode;
+    }
+
+    public String getAccountID() {
+        return accountID;
+    }
+
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
+    }
+
+    public int getTradeAction() {
+        return tradeAction;
+    }
+
+    public void setTradeAction(int tradeAction) {
+        this.tradeAction = tradeAction;
+    }
+
+    public String getNumOfStock() {
+        return numOfStock;
+    }
+
+    public void setNumOfStock(String numOfStock) {
+        this.numOfStock = numOfStock;
+    }
+
+    public double getNowPrice() {
+        return nowPrice;
+    }
+
+    public void setNowPrice(double nowPrice) {
+        this.nowPrice = nowPrice;
     }
 
     private StockHistoricalVO getStockHistoricalVO(int num1, int num2, String type){
@@ -97,6 +146,47 @@ public class TradeAction extends ActionSupport{
 
     public String getBOLLKlineInfo(){
         JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(20,120, "d"));
+        result = jsonObject.toString();
+        return SUCCESS;
+    }
+
+    public String getTradeActionResult(){
+        Date now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = dateFormat.format(now);
+
+        System.out.println(date);
+        System.out.println(accountID);
+        System.out.println(stockCode);
+        System.out.println(tradeAction);
+        System.out.println(numOfStock);
+        System.out.println(nowPrice);
+
+        TradeRecordVO tradeRecordVO = new TradeRecordVO(date, accountID, stockCode, tradeAction, Integer.parseInt(numOfStock), nowPrice);
+        if(tradeService.addTradeRecord(tradeRecordVO)){
+            ArrayList<String> arrayList = new ArrayList<>();
+            arrayList.add("success");
+            JSONArray jsonArray = JSONArray.fromObject(arrayList);
+            result = jsonArray.toString();
+        }else{
+            ArrayList<String> arrayList = new ArrayList<>();
+            arrayList.add("error");
+            JSONArray jsonArray = JSONArray.fromObject(arrayList);
+            result = jsonArray.toString();
+        }
+        return SUCCESS;
+    }
+
+    public String getUserTradeStockInfo(){
+        ArrayList<HoldingStockVO> holdingStockVOArrayList = tradeService.getHoldingStocks(accountID);
+        JSONArray jsonArray = JSONArray.fromObject(holdingStockVOArrayList);
+        result = jsonArray.toString();
+        return SUCCESS;
+    }
+
+    public String getTheStockTradeInfo(){
+        HoldingStockVO holdingStockVO = tradeService.getRealTimeHoldingStockInfo(new TradeInputVO(accountID,stockCode));
+        JSONObject jsonObject = JSONObject.fromObject(holdingStockVO);
         result = jsonObject.toString();
         return SUCCESS;
     }

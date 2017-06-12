@@ -129,13 +129,15 @@ public class TransferHelper {
     /**
      * 将HoldingStockVO转换为HoldingStock
      * @param holdingStock holdingStock
-     * @param price price
+     * @param price 当前价格
+     * @param price 股票名字
      * @return HoldingStockVO
      */
-    public HoldingStockVO transToHoldingStockVO(HoldingStock holdingStock, double price) {
+    public HoldingStockVO transToHoldingStockVO(HoldingStock holdingStock, double price, String stockName) {
         double yield = (holdingStock.getHoldNum() * price + holdingStock.getSellOutMoney() - holdingStock.getInitFund())/holdingStock.getInitFund();
-        HoldingStockVO result = new HoldingStockVO(holdingStock.getCode(), holdingStock.getUserId(),
-                holdingStock.getHoldNum(), holdingStock.getInitFund(), MathHelper.formatData(yield, 4));
+
+        HoldingStockVO result = new HoldingStockVO(holdingStock.getCode(), stockName,holdingStock.getUserId(),
+                holdingStock.getHoldNum(),price, holdingStock.getInitFund(), MathHelper.formatData(yield, 4));
         return result;
     }
 

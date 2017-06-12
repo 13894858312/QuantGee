@@ -95,13 +95,13 @@ function setRealContent() {
     $("#tsr8").text(String(content['volume'])+"万");
     $("#tsr9").text(String(content['amount'])+"万");
     $("#tsr10").text(String(content['mktcap'])+"亿");
-    if(content['trade']>0){
-        var temp = document.getElementById("#tsrrdata");
-        temp.style.color = "rgb(207,25,74)";
-    }else{
-        var temp = document.getElementById("#tsrrdata");
-        temp.style.color = "rgb(62, 196, 131)";
-    }
+    // if(content['trade']>0){
+    //     var temp = document.getElementById("#tsrrdata");
+    //     temp.style.color = "rgb(207,25,74)";
+    // }else{
+    //     var temp = document.getElementById("#tsrrdata");
+    //     temp.style.color = "rgb(62, 196, 131)";
+    // }
     $("#tsrrdata").text(String(content['changePercent'])+"%");
     $("#tsnprice").text(content['trade']);
 }
