@@ -115,7 +115,7 @@
     		<input class="stinput" id="stname" type="text" placeholder="请输入股票代码">
     		<input class="stinput" id="stnum" type="text" placeholder="请输入购股数">
     		<div class="nowmoneytext">余额:</div>	
-    		<div class="nowmoney" id="nowmoney">10万</div>
+    		<div class="nowmoney" id="nowmoney">100000</div>
     		<!--<div class="buy" onclick="addrow()">买入</div>-->
     	</div>
     </div>
