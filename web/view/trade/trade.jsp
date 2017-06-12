@@ -9,6 +9,8 @@
     <script src="../../js/trade/addlist.js"></script>
 	<script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="../../js/jquery.autocomplete.js"></script>
+	<script type="text/javascript" src="../../js/sweet-alert.min.js"></script>
+	<link rel="stylesheet" href="../../css/sweet-alert.css">
 	<link rel="Stylesheet" href="../../css/jquery.autocomplete.css" />
 	<link rel="shortcut icon" href="../../images/logo20x20.png">
     <style type="text/css">
@@ -121,12 +123,13 @@
     			<td class="stth">股票名称</td>
     			<td class="stth">股票代码</td>
     			<td class="stth">持仓股数</td>
-    			<td class="stth">持仓市值</td>
+    			<td class="stth">初始投入</td>
     			<td class="stth">最新价</th>
-    			<td class="stth">日涨跌幅</td>
+    			<td class="stth">收益率</td>
     			<td class="delete">操作</td>
     		</tr>
     	</table>
     </div>
+    <script type="text/javascript" src="../../js/trade/initTrade.js"></script>
 </body>
 </html>

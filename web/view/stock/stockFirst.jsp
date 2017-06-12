@@ -177,53 +177,57 @@
   		<div class="realmarket">
 			<div class="shangz">
 				<div class="text">
-					<div class="name">
+					<div class="name" id="name1">
 						上证指数
 					</div>
-					<div class="code">
+					<div class="code" id="code1">
 						1A0001
 					</div>
 				</div>
 				<div class="info">
-					<div class="data">昨收:3140.32</div>
-					<div class="data">涨跌幅:10.12%</div>
-					<div class="data">今开:3132.12</div>
-					<div class="data">涨跌:3140.32</div>
+					<div class="data" id="yesclose1">昨收:3140.32</div>
+					<div class="data" id="highest1">涨跌幅:10.12%</div>
+					<div class="data" id="todopen1">今开:3132.12</div>
+					<div class="data" id="lowest1">涨跌:3140.32</div>
 				</div>
+				<div class="recommand" id="firstrecommand"></div>
 			</div>
 			<div class="shenz">
 				<div class="text">
-					<div class="name">
+					<div class="name" id="name2">
 						深证指数
 					</div>
-					<div class="code">
+					<div class="code" id="code2">
 						399001
 					</div>
 				</div>
 				<div class="info">
-					<div class="data">昨收:3140.32</div>
-					<div class="data">涨跌幅:10.12%</div>
-					<div class="data">今开:3132.12</div>
-					<div class="data">涨跌:3140.32</div>
+                    <div class="data" id="yesclose2">昨收:3140.32</div>
+                    <div class="data" id="highest2">涨跌幅:10.12%</div>
+                    <div class="data" id="todopen2">今开:3132.12</div>
+                    <div class="data" id="lowest2">涨跌:3140.32</div>
 				</div>
+                <div class="recommand" id="secondrecommand"></div>
 			</div>
 			<div class="chuangy">
 				<div class="text">
-					<div class="name">
+					<div class="name" id="name3">
 						创业板指
 					</div>
-					<div class="code">
+					<div class="code" id="code3">
 						399006
 					</div>
 				</div>
 				<div class="info">
-					<div class="data">昨收:3140.32</div>
-					<div class="data">涨跌幅:10.12%</div>
-					<div class="data">今开:3132.12</div>
-					<div class="data">涨跌:3140.32</div>
+                    <div class="data" id="yesclose3">昨收:3140.32</div>
+                    <div class="data" id="highest3">涨跌幅:10.12%</div>
+                    <div class="data" id="todopen3">今开:3132.12</div>
+                    <div class="data" id="lowest3">涨跌:3140.32</div>
 				</div>
+                <div class="recommand" id="thirdrecommand"></div>
 			</div>
 		</div>
+        <script src="../../js/stock/stockfirst/recommandstock.js"></script>
 		<div class="news">
 			<div class="newstext">
 				<div class="newshead">

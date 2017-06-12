@@ -5,13 +5,15 @@
 <hibernate-mapping>
 
     <class name="bean.Trade" table="Trade" schema="quantgee_data">
-        <id name="trageId">
-            <column name="trageID" sql-type="int(11)"/>
-        </id>
-        <property name="userId">
-            <column name="userID" sql-type="varchar(20)" length="20"/>
-        </property>
-        <property name="code">
+        <composite-id mapped="true" class="bean.TradePK">
+            <key-property name="userId">
+                <column name="userID" sql-type="varchar(20)" length="20"/>
+            </key-property>
+            <key-property name="time">
+                <column name="time" sql-type="varchar(20)" length="20"/>
+            </key-property>
+        </composite-id>
+        <property name="stockId">
             <column name="stockID" sql-type="varchar(10)" length="10"/>
         </property>
         <property name="action">
@@ -19,9 +21,6 @@
         </property>
         <property name="numOfStock">
             <column name="numOfStock" sql-type="int(11)"/>
-        </property>
-        <property name="time">
-            <column name="time" sql-type="varchar(20)" length="20" not-null="true"/>
         </property>
         <property name="price">
             <column name="price" sql-type="double" precision="-1" not-null="true"/>

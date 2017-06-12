@@ -6,12 +6,10 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import service.stock.CollectStockService;
 import service.stock.MarketInfoService;
 import service.stock.StockBasicInfoService;
-import vo.stock.StockCurrentVO;
-import vo.stock.StockHistoricalVO;
-import vo.stock.StockInputVO;
-import vo.stock.TopStockVO;
+import vo.stock.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,9 +26,11 @@ public class ListAction extends ActionSupport {
     private String stockCode;
 
     @Autowired
-    StockBasicInfoService stockBasicInfoService;
+    private StockBasicInfoService stockBasicInfoService;
     @Autowired
-    MarketInfoService marketInfoService;
+    private MarketInfoService marketInfoService;
+    @Autowired
+    private CollectStockService collectStockService;
 
     public String getResult(){
         return result;
@@ -89,6 +89,27 @@ public class ListAction extends ActionSupport {
     }
 
     public String getStockCurrentVO(){
+        StockCurrentVO stockCurrentVO = stockBasicInfoService.getStockRealTimeInfo(stockCode);
+        JSONObject jsonObject = JSONObject.fromObject(stockCurrentVO);
+        result = jsonObject.toString();
+        return SUCCESS;
+    }
+
+    public String getRecommandStock(){
+        ArrayList<String> arrayList = collectStockService.getRecommendedStock(null, 3);
+        JSONArray jsonArray = JSONArray.fromObject(arrayList);
+        result = jsonArray.toString();
+        return SUCCESS;
+    }
+
+    public String getStockReal(){
+        RealTimeLineVO realTimeLineVO = stockBasicInfoService.getStockRealTimeLineInfo(stockCode);
+        JSONObject jsonObject = JSONObject.fromObject(realTimeLineVO);
+        result = jsonObject.toString();
+        return SUCCESS;
+    }
+
+    public String getTheRealStockDateInfo(){
         StockCurrentVO stockCurrentVO = stockBasicInfoService.getStockRealTimeInfo(stockCode);
         JSONObject jsonObject = JSONObject.fromObject(stockCurrentVO);
         result = jsonObject.toString();

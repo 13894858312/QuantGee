@@ -8,6 +8,11 @@ public class TradeInputVO {
     private String userID;
     private String stockCode;
 
+    public TradeInputVO(String userID, String stockCode) {
+        this.userID = userID;
+        this.stockCode = stockCode;
+    }
+
     public String getUserID() {
         return userID;
     }

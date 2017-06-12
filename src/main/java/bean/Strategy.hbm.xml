@@ -5,15 +5,14 @@
 <hibernate-mapping>
 
     <class name="bean.Strategy" table="Strategy" schema="quantgee_data">
-        <id name="strategyId">
-            <column name="strategyID" sql-type="int(11)"/>
-        </id>
-        <property name="strategyName">
-            <column name="strategyName" sql-type="varchar(30)" length="30"/>
-        </property>
-        <property name="userId">
-            <column name="userID" sql-type="varchar(20)" length="20"/>
-        </property>
+        <composite-id mapped="true" class="bean.StrategyPK">
+            <key-property name="strategyName">
+                <column name="strategyName" sql-type="varchar(30)" length="30"/>
+            </key-property>
+            <key-property name="userId">
+                <column name="userID" sql-type="varchar(20)" length="20"/>
+            </key-property>
+        </composite-id>
         <property name="time">
             <column name="time" sql-type="varchar(20)" length="20"/>
         </property>

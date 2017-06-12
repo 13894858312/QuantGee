@@ -4,6 +4,7 @@ import DAO.strategyDAO.StrategyDAO;
 import bean.CollectStock;
 import bean.CollectStrategy;
 import bean.Strategy;
+import bean.StrategyPK;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,9 +34,12 @@ public class StrategyData implements StrategyDAO {
     }
 
     @Override
-    public boolean removeMyStrategy(String userID, int strategyID) {
+    public boolean removeMyStrategy(String userID, String strategyName) {
         try{
-            Strategy strategy = hibernateTemplate.get(Strategy.class, strategyID);
+            StrategyPK strategyPK = new StrategyPK();
+            strategyPK.setUserId(userID);
+            strategyPK.setStrategyName(strategyName);
+            Strategy strategy = hibernateTemplate.get(Strategy.class, strategyPK);
             if(strategy.getUserId() == userID){
                 hibernateTemplate.delete(strategy);
                 hibernateTemplate.flush();

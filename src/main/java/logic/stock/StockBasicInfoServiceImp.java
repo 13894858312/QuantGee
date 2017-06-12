@@ -128,7 +128,12 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
 
     @Override
     public ArrayList<String> getAllStockNames() {
-        return null;
+        Iterator<String> codes = stockInfoDAO.getAllStockNames();
+        ArrayList<String> result = new ArrayList<>();
+        while(codes.hasNext()) {
+            result.add(codes.next());
+        }
+        return result;
     }
 
     /**

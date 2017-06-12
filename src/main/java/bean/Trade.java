@@ -1,35 +1,21 @@
 package bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/5/31.
+ * Created by wangxue on 2017/6/12.
  */
 @Entity
+@IdClass(TradePK.class)
 public class Trade {
-
-    private int trageId;//不要set
     private String userId;
-    private String code;
-    private int action;//买入卖出
-    private int numOfStock; //买入或者卖出的股票数量
-    private Double price;//进行该交易时股票的价格
-    private String time; //时间格式 YYYY-MM-DD HH:mm:ss
+    private String stockId;
+    private int action;
+    private int numOfStock;
+    private String time;
+    private Double price;
 
     @Id
-    @Column(name = "trageID", nullable = false)
-    public int getTrageId() {
-        return trageId;
-    }
-
-    public void setTrageId(int trageId) {
-        this.trageId = trageId;
-    }
-
-    @Basic
     @Column(name = "userID", nullable = false, length = 20)
     public String getUserId() {
         return userId;
@@ -41,12 +27,12 @@ public class Trade {
 
     @Basic
     @Column(name = "stockID", nullable = false, length = 10)
-    public String getCode() {
-        return code;
+    public String getStockId() {
+        return stockId;
     }
 
-    public void setCode(String stockId) {
-        this.code = stockId;
+    public void setStockId(String stockId) {
+        this.stockId = stockId;
     }
 
     @Basic
@@ -69,8 +55,8 @@ public class Trade {
         this.numOfStock = numOfStock;
     }
 
-    @Basic
-    @Column(name = "time", nullable = true, length = 20)
+    @Id
+    @Column(name = "time", nullable = false, length = 20)
     public String getTime() {
         return time;
     }
@@ -96,11 +82,10 @@ public class Trade {
 
         Trade trade = (Trade) o;
 
-        if (trageId != trade.trageId) return false;
         if (action != trade.action) return false;
         if (numOfStock != trade.numOfStock) return false;
         if (userId != null ? !userId.equals(trade.userId) : trade.userId != null) return false;
-        if (code != null ? !code.equals(trade.code) : trade.code != null) return false;
+        if (stockId != null ? !stockId.equals(trade.stockId) : trade.stockId != null) return false;
         if (time != null ? !time.equals(trade.time) : trade.time != null) return false;
         if (price != null ? !price.equals(trade.price) : trade.price != null) return false;
 
@@ -109,9 +94,8 @@ public class Trade {
 
     @Override
     public int hashCode() {
-        int result = trageId;
-        result = 31 * result + (userId != null ? userId.hashCode() : 0);
-        result = 31 * result + (code != null ? code.hashCode() : 0);
+        int result = userId != null ? userId.hashCode() : 0;
+        result = 31 * result + (stockId != null ? stockId.hashCode() : 0);
         result = 31 * result + action;
         result = 31 * result + numOfStock;
         result = 31 * result + (time != null ? time.hashCode() : 0);

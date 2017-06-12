@@ -129,13 +129,15 @@ public class TransferHelper {
     /**
      * 将HoldingStockVO转换为HoldingStock
      * @param holdingStock holdingStock
-     * @param price price
+     * @param price 当前价格
+     * @param price 股票名字
      * @return HoldingStockVO
      */
-    public HoldingStockVO transToHoldingStockVO(HoldingStock holdingStock, double price) {
+    public HoldingStockVO transToHoldingStockVO(HoldingStock holdingStock, double price, String stockName) {
         double yield = (holdingStock.getHoldNum() * price + holdingStock.getSellOutMoney() - holdingStock.getInitFund())/holdingStock.getInitFund();
-        HoldingStockVO result = new HoldingStockVO(holdingStock.getCode(), holdingStock.getUserId(),
-                holdingStock.getHoldNum(), holdingStock.getInitFund(), MathHelper.formatData(yield, 4));
+
+        HoldingStockVO result = new HoldingStockVO(holdingStock.getCode(), stockName,holdingStock.getUserId(),
+                holdingStock.getHoldNum(),price, holdingStock.getInitFund(), MathHelper.formatData(yield, 4));
         return result;
     }
 
@@ -145,7 +147,7 @@ public class TransferHelper {
      * @return TradeRecordVO
      */
     public TradeRecordVO transToTradeRecordVO(Trade trade) {
-        TradeRecordVO result = new TradeRecordVO(trade.getTime(), trade.getUserId(), trade.getCode(),
+        TradeRecordVO result = new TradeRecordVO(trade.getTime(), trade.getUserId(), trade.getStockId(),
                 trade.getAction(), trade.getNumOfStock(), trade.getPrice());
         return result;
     }
@@ -159,7 +161,7 @@ public class TransferHelper {
         Trade trade = new Trade();
         trade.setAction(tradeRecordVO.getAction());
         trade.setNumOfStock(tradeRecordVO.getNumOfStock());
-        trade.setCode(tradeRecordVO.getStockCode());
+        trade.setStockId(tradeRecordVO.getStockCode());
         trade.setUserId(tradeRecordVO.getUserID());
         trade.setPrice(tradeRecordVO.getPrice());
         trade.setTime(tradeRecordVO.getTime());
@@ -210,7 +212,7 @@ public class TransferHelper {
      * @return StrategyVO
      */
     public StrategyVO transToStrategyVO(Strategy strategy) {
-        StrategyVO result = new StrategyVO(strategy.getStrategyId(), strategy.getUserId(), strategy.getStrategyName(),strategy.getTime(),
+        StrategyVO result = new StrategyVO(strategy.getUserId(), strategy.getStrategyName(),strategy.getTime(),
                 strategy.getLastYield(), strategy.getStrategyType(), strategy.getInitFund(), byte_to_bool(strategy.getNotSt()), strategy.getHoldingPeriod(),
                 strategy.getReturnPeriod(), strategy.getStopLoss(), strategy.getStopProfit(), strategy.getRatio(),strategy.getHoldingStockNum(),
                 strategy.getShortReturnPeriod(), strategy.getChangeNumber(), strategy.getTrainPeriod(), strategy.getK(),strategy.getVectorLength());
