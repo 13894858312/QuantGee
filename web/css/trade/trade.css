@@ -259,7 +259,7 @@ tr{
 .stocktable{
 	float: left;
 	margin-left: 15%;
-	margin-bottom: 300px;
+	margin-bottom: 200px;
 	width: 67%;
 }
 .st{
@@ -289,4 +289,16 @@ tr{
 	width: 100%;
 	height: 300px;
 	background-color: #F8F8F8;
+}
+.traderecordtable{
+	float: left;
+	margin-left: 15%;
+	margin-bottom: 300px;
+	width: 67%;
+}
+.recordtext{
+	float: left;
+	width: 100%;
+	height: 50px;
+	/*background-color: #F8F8F8;*/
 }

@@ -190,4 +190,11 @@ public class TradeAction extends ActionSupport{
         result = jsonObject.toString();
         return SUCCESS;
     }
+
+    public String getAllTradeRecord(){
+        ArrayList<TradeRecordVO> tradeRecordVOS = tradeService.getTradeRecords(accountID);
+        JSONArray jsonArray = JSONArray.fromObject(tradeRecordVOS);
+        result = jsonArray.toString();
+        return SUCCESS;
+    }
 }

@@ -59,4 +59,22 @@ if(accountID == ""){
             // }
         }
     }
+
+    var alltraderecords;
+    $.ajax({
+        type: 'POST',
+        url: 'getAllTradeRecord.action',
+        async: false,
+        dataType: 'json',
+        data:{
+            accountID: accountID
+        },
+        success: function (data) {
+            alltraderecords = JSON.parse(data);
+        },
+        error: function (data) {
+            alert("error");
+        }
+    });
+
 }
