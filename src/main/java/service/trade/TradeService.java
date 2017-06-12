@@ -32,9 +32,9 @@ public interface TradeService {
     /**
      * 购买或者卖出股票
      * @param tradeRecordVO	tradeRecordVO
-     * @return boolean 是否成功
+     * @return 操作完成后账户余额 若返回-1.0 则表示添加记录失败
      */
-    public boolean addTradeRecord(TradeRecordVO tradeRecordVO);
+    public double addTradeRecord(TradeRecordVO tradeRecordVO);
 
     /**
      * 获取实时的模拟买入股票收益率数据

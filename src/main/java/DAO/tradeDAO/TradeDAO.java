@@ -54,4 +54,19 @@ public interface TradeDAO {
      */
     public Iterator<HoldingStock> getHoldingStocks(String userID);
 
+    /**
+     * 更新模拟交易用户的余额
+     * @param userID 用户id
+     * @param money 余额
+     * @return boolean
+     */
+    public boolean updateUserMoney(String userID, double money);
+
+    /**
+     * 获取模拟交易用户的余额
+     * @param userID 用户id
+     * @return 余额
+     */
+    public double getUserMoney(String userID);
+
 }

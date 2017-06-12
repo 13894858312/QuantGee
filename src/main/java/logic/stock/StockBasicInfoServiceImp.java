@@ -117,23 +117,15 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
 
 
     @Override
-    public ArrayList<String> getAllStockCodes() {
-        Iterator<String> codes = stockInfoDAO.getAllStockCodes();
-        ArrayList<String> result = new ArrayList<>();
-        while(codes.hasNext()) {
-            result.add(codes.next());
-        }
-        return result;
-    }
+    public ArrayList<String> getAllStockCodeAndNames() {
+       Iterator<MarketInfo> marketInfos = stockInfoDAO.getAllStockAndNames();
+       ArrayList<String> result = new ArrayList<>();
+       while(marketInfos.hasNext()) {
+           MarketInfo temp = marketInfos.next();
+           result.add(temp.getCode() + " " + temp.getName());
+       }
 
-    @Override
-    public ArrayList<String> getAllStockNames() {
-        Iterator<String> codes = stockInfoDAO.getAllStockNames();
-        ArrayList<String> result = new ArrayList<>();
-        while(codes.hasNext()) {
-            result.add(codes.next());
-        }
-        return result;
+       return result;
     }
 
     /**

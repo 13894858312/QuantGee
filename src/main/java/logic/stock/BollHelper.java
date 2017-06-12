@@ -48,7 +48,6 @@ public class BollHelper {
     public static String anaylyseBoll(Iterator<Boll> bollIterator, Iterator<Stock> stockIterator) {
         StringBuffer result = new StringBuffer();
         ArrayList<Boll> bolls = new ArrayList<>();
-        ArrayList<Stock> stocks = new ArrayList<>();
 
         while(bollIterator.hasNext()) {
             bolls.add(bollIterator.next());

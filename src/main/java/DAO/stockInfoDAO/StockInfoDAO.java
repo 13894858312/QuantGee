@@ -163,10 +163,8 @@ public interface StockInfoDAO {
     public Iterator<StockMonth> getMonthK(String code);
 
     /**
-     * 得到所有股票名称
-     * @return 所有股票名称
+     * 获取所有股票的代码和名字
+     * @return Iterator<MarketInfo>
      */
-    public Iterator<String> getAllStockNames();
-
-
+    public Iterator<MarketInfo> getAllStockAndNames();
 }

@@ -10,10 +10,7 @@ import service.stock.MarketInfoService;
 import service.stock.StockBasicInfoService;
 import vo.stock.*;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by Administrator on 2017/6/2.
@@ -77,7 +74,7 @@ public class MarketInfoAction extends ActionSupport {
     }
 
     public String getAllStock(){
-        ArrayList<String> arrayList = stockBasicInfoService.getAllStockCodes();
+        ArrayList<String> arrayList = stockBasicInfoService.getAllStockCodeAndNames();
         JSONArray jsonArray = JSONArray.fromObject(arrayList);
         result = jsonArray.toString();
         return SUCCESS;
