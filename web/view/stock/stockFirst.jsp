@@ -190,6 +190,7 @@
 					<div class="data">今开:3132.12</div>
 					<div class="data">涨跌:3140.32</div>
 				</div>
+				<div class="recommand" id="firstrecommand"></div>
 			</div>
 			<div class="shenz">
 				<div class="text">
@@ -206,6 +207,7 @@
 					<div class="data">今开:3132.12</div>
 					<div class="data">涨跌:3140.32</div>
 				</div>
+                <div class="recommand" id="secondrecommand"></div>
 			</div>
 			<div class="chuangy">
 				<div class="text">
@@ -222,6 +224,7 @@
 					<div class="data">今开:3132.12</div>
 					<div class="data">涨跌:3140.32</div>
 				</div>
+                <div class="recommand" id="thirdrecommand"></div>
 			</div>
 		</div>
 		<div class="news">
