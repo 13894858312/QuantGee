@@ -163,9 +163,9 @@ public class TradeAction extends ActionSupport{
         System.out.println(nowPrice);
 
         TradeRecordVO tradeRecordVO = new TradeRecordVO(date, accountID, stockCode, tradeAction, Integer.parseInt(numOfStock), nowPrice);
-        if(tradeService.addTradeRecord(tradeRecordVO)){
+        if(tradeService.addTradeRecord(tradeRecordVO) != -1){
             ArrayList<String> arrayList = new ArrayList<>();
-            arrayList.add("success");
+            arrayList.add(String.valueOf(tradeService.addTradeRecord(tradeRecordVO)));
             JSONArray jsonArray = JSONArray.fromObject(arrayList);
             result = jsonArray.toString();
         }else{
