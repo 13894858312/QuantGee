@@ -182,33 +182,30 @@
 #
 #
 # def getStockInfo(code, start):
-#     # df = ts.get_hist_data(code=code, start='2017-06-03')
-#     # df['stockID'] = code
-#     # print code
-#     # engine = create_engine('mysql+pymysql://root:19961112@localhost:3306/quantgee_data?charset=utf8')
-#     # df.to_sql('Stock', engine, if_exists='append')
-#     #
-#     # return
-#     str = ''
-#     df0 = ts.get_hist_data(code=code,start=start)
 #     try:
-#         conn = MySQLdb.connect(host='127.0.0.1', port=3306, user='root', passwd='19961112',
-#                                db='quantgee_data', charset='utf8')
-#         cur = conn.cursor()
-#         for n in range(0, len(df0)):
-#             s = df0.iloc[n]
-#             SQL = "Insert into Stock (date, open, high, close, low, volume, price_change, p_change, ma5, ma10 , ma20" \
-#                   ", v_ma5, v_ma10, v_ma20, turnover, stockID) Values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-#             l = (s['date'], s['open'], s['high'], s['close'], s['low'], s['volume'], s['price_change'], s['p_change'],
-#                  s['ma5'], s['ma10'], s['ma20'], s['v_ma5'], s['v_ma10'], s['v_ma20'], s['turnover'], code)
-#             cur.execute(SQL, l)
-#         conn.commit()
-#         cur.close()
-#         conn.close()
-#
+#         # conn = MySQLdb.connect(host='127.0.0.1', port=3306, user='root', passwd='19961112',
+#         #                        db='quantgee_data', charset='utf8')
+#         # cur = conn.cursor()
+#         # for n in range(0, len(df0)):
+#         #     s = df0.iloc[n]
+#         #     SQL = "Insert into Stock (date, open, high, close, low, volume, price_change, p_change, ma5, ma10 , ma20" \
+#         #           ", v_ma5, v_ma10, v_ma20, turnover, stockID) Values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+#         #     l = (s['date'], s['open'], s['high'], s['close'], s['low'], s['volume'], s['price_change'], s['p_change'],
+#         #          s['ma5'], s['ma10'], s['ma20'], s['v_ma5'], s['v_ma10'], s['v_ma20'], s['turnover'], code)
+#         #     cur.execute(SQL, l)
+#         # conn.commit()
+#         # cur.close()
+#         # conn.close()
+#         df = ts.get_hist_data(code=code, start=start)
+#         df['stockID'] = code
+#         print code
+#         engine = create_engine('mysql+pymysql://root:19961112@localhost:3306/quantgee_data?charset=utf8')
+#         df.to_sql('Stock', engine, if_exists='append')
 #     except AttributeError, e:
 #         print e
 #     except TypeError, e:
+#         print e
+#     except KeyError,e:
 #         print e
 #
 #     print 'stock_over'
@@ -275,6 +272,8 @@
 #         print e
 #     except MySQLdb.ProgrammingError, e:
 #         print e
+#     except KeyError, e:
+#         print e
 #
 #     print 'get_over'
 #     return
@@ -315,12 +314,12 @@
 #
 #     if hour >= '09':
 #
-#         if hour < '16':
+#         if hour < '12' or ( hour < '16' and hour >= '13'):
 #             get_current_data()
 #             time.sleep(120)
 #
 #         elif hour == '16':
-#             if minute < '05':
+#             if minute < '02':
 #                 for l in list:
 #                     getStockInfo(l, date)
 #             time.sleep(3600)
@@ -330,12 +329,12 @@
 #
 #         continue
 #
-#     if hour == '08':
+#     if hour == '08' or hour == '07' or hour == '06':
 #
 #         if minute < '05':
 #             replace()
 #
-#         time.sleep(120)
+#         time.sleep(1200)
 #         continue
 #
 #     time.sleep(3600)
