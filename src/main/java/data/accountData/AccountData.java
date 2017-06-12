@@ -4,6 +4,7 @@ import DAO.accountDAO.AccountDAO;
 import bean.Account;
 import bean.Analysis;
 import bean.User;
+import bean.UserMoney;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -55,7 +56,14 @@ public class AccountData implements AccountDAO {
 
             User user = new User();
             user.setUserId(account.getUserId());
+
+            UserMoney userMoney = new UserMoney();
+            userMoney.setUserId(account.getUserId());
+            userMoney.setMoney(100000.0);
+
             hibernateTemplate.save(user);
+            hibernateTemplate.save(userMoney);
+
             hibernateTemplate.flush();
 
             return true;
