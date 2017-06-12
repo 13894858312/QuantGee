@@ -165,13 +165,27 @@
 	font-family: "Roboto Mono", monospace;
 }
 #inputstcode{
+	margin-left: 59%;
 	float: left;
-	margin-left: 48%;
 	width: 20%;
 	margin-top: 20px;
 	height: 25px;
 	border-radius: 3px;
 	border: 1px solid #C0C0C0;
+}
+.stinput{
+	float: left;
+	width: 15%;
+	margin-top: 20px;
+	height: 25px;
+	border-radius: 3px;
+	border: 1px solid #C0C0C0;
+}
+#stname{
+	margin-left: 43%;
+}
+#stnum{
+	margin-left: 2%;
 }
 /*#inputnumofcode{
 	float: left;

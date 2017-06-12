@@ -2,26 +2,32 @@
  * Created by Administrator on 2017/6/10.
  */
 function buyStock() {
-    swal({
-            title: "输入！",
-            text: "输入一些有趣的话：",
-            type: "input",
-            showCancelButton: true,
-            closeOnConfirm: false,
-            animation: "slide-from-top",
-            inputPlaceholder: "输入一些话"
+    var accountID;
+    $.ajax({
+        type: 'get',
+        url: 'haveLogin.action',
+        async: false,
+        dataType: 'json',
+        success: function (data) {
+            accountID = JSON.parse(data)["accountID"];
         },
-        function(inputValue){
-            if (inputValue === false) returnfalse;
+        error: function (data) {
+            alert("error");
+        }
+    });
+    if(accountID == ""){
+        swal("请先登录","","warning");
+    }else {
+        var stockCode = document.getElementById("stcode");
+        var num = document.getElementById("stnum");
+        if (stockCode.value == null || num.value == null) {
+            swal("请输入完整信息", "", "warning");
+        } else {
+            if (getTradeRetunResult(0)) {
 
-            if (inputValue === "") {
-                swal.showInputError("你需要输入一些话！");
-                return false
             }
-
-            swal("非常好！", "你输入了：" + inputValue,"success");
-        });
-    // swal("收藏成功","","success");
+        }
+    }
 }
 function addrow() {
     var accountID;

@@ -9,11 +9,9 @@
     <script src="../../js/trade/addlist.js"></script>
 	<script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="../../js/jquery.autocomplete.js"></script>
-    <script src="../../js/ucenter/sweetalert/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="../../js/ucenter/sweetalert/sweetalert.css">
-	<%--<script type="text/javascript" src="../../js/sweet-alert.min.js"></script>--%>
-    <%--<script src="http://sandbox.runjs.cn/uploads/rs/499/ixc5vbvz/sweetalert.min.js"></script>--%>
-	<%--<link rel="stylesheet" href="../../css/sweet-alert.css">--%>
+    <script type="text/javascript" src="../../js/trade/jquery.leanModal.min.js"></script>
+	<script type="text/javascript" src="../../js/sweet-alert.min.js"></script>
+	<link rel="stylesheet" href="../../css/sweet-alert.css">
 	<link rel="Stylesheet" href="../../css/jquery.autocomplete.css" />
 	<link rel="shortcut icon" href="../../images/logo20x20.png">
     <style type="text/css">
@@ -65,6 +63,8 @@
     		<div class="dhheantext">
     			数据助手
     		</div>
+    		<input id="inputstcode" type="text" placeholder="请输入股票代码">
+    		<div class="check" onclick="getCheck()">查询</div>
     	</div>
     	<div class="graph">
     		<div class="kimgandindex">
@@ -112,11 +112,8 @@
     <div class="testtradehead">
     	<div class="testheadtext">
     		<div class="text">持仓交易</div>
-    		<input id="inputstcode" type="text" placeholder="请输入股票代码">
-    		<!--<input id="inputnumofcode" type="text" placeholder="请输入持仓股数">-->
-    		
-    		
-    		<div class="check" onclick="getCheck()">查询</div>
+    		<input class="stinput" id="stname" type="text" placeholder="请输入股票代码">
+    		<input class="stinput" id="stnum" type="text" placeholder="请输入购股数">
     		<div class="nowmoneytext">余额:</div>	
     		<div class="nowmoney" id="nowmoney">10万</div>
     		<!--<div class="buy" onclick="addrow()">买入</div>-->
@@ -131,8 +128,8 @@
     			<td class="stth">初始投入</td>
     			<td class="stth">最新价</th>
     			<td class="stth">收益率</td>
-    			<td class="add"><div class="tdbutton" onclick="buyStock()">买入</div></td>
-    			<td class="delete"><div class="tdbutton" onclick="sellStock()">卖出</div></td>
+    			<td class="add"><div class="tdbutton" id="buybutton" onclick="buyStock()">买入</div></td>
+    			<td class="delete"><div class="tdbutton" id="sellbutton" onclick="sellStock()">卖出</div></td>
     			<!--<td class="delete">操作</td>-->
     		</tr>
     	</table>
