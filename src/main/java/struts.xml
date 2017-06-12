@@ -115,6 +115,16 @@
                 <param name="root">result</param>
             </result>
         </action>
+        <action name="getStockReal" class="listAction" method="getStockReal">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="getTheRealStockDateInfo" class="listAction" method="getTheRealStockDateInfo">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
     </package>
     <package name="news" extends="json-default,struts-default">
         <action name="getnews" class="newsAction" method="getNews">

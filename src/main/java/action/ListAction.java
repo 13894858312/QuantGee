@@ -9,10 +9,7 @@ import org.springframework.stereotype.Controller;
 import service.stock.CollectStockService;
 import service.stock.MarketInfoService;
 import service.stock.StockBasicInfoService;
-import vo.stock.StockCurrentVO;
-import vo.stock.StockHistoricalVO;
-import vo.stock.StockInputVO;
-import vo.stock.TopStockVO;
+import vo.stock.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -102,6 +99,20 @@ public class ListAction extends ActionSupport {
         ArrayList<String> arrayList = collectStockService.getRecommendedStock(null, 3);
         JSONArray jsonArray = JSONArray.fromObject(arrayList);
         result = jsonArray.toString();
+        return SUCCESS;
+    }
+
+    public String getStockReal(){
+        RealTimeLineVO realTimeLineVO = stockBasicInfoService.getStockRealTimeLineInfo(stockCode);
+        JSONObject jsonObject = JSONObject.fromObject(realTimeLineVO);
+        result = jsonObject.toString();
+        return SUCCESS;
+    }
+
+    public String getTheRealStockDateInfo(){
+        StockCurrentVO stockCurrentVO = stockBasicInfoService.getStockRealTimeInfo(stockCode);
+        JSONObject jsonObject = JSONObject.fromObject(stockCurrentVO);
+        result = jsonObject.toString();
         return SUCCESS;
     }
 }

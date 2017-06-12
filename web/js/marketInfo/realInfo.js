@@ -77,7 +77,7 @@ function doshchart() {
         series: [
             {
                 name: '现价',
-                type: 'candlestick',
+                type: 'line',
                 data: realPrice
 
             }

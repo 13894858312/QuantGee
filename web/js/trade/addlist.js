@@ -119,6 +119,7 @@ function getTradeRetunResult(addordelete) {
         },
         dataType: 'json',
         success: function (data) {
+            alert(data);
             returnResult = JSON.parse(data);
         },
         error: function (data) {
