@@ -191,5 +191,20 @@
                 <param name="root">result</param>
             </result>
         </action>
+        <action name="getTradeActionResult" class="tradeAction" method="getTradeActionResult">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="getUserTradeStockInfo" class="tradeAction" method="getUserTradeStockInfo">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="getTheStockTradeInfo" class="tradeAction" method="getTheStockTradeInfo">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
     </package>
 </struts>
