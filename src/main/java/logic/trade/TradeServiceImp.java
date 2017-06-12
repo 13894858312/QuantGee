@@ -38,10 +38,11 @@ public class TradeServiceImp implements TradeService {
     @Override
     public ArrayList<TradeRecordVO> getTradeRecords(TradeInputVO inputVO) {
         Iterator<Trade> trades = tradeDAO.getUserTradeList(inputVO.getUserID(), inputVO.getStockCode());
+        MarketInfo marketInfo = stockInfoDAO.getMarketInfo(inputVO.getStockCode());
         ArrayList<TradeRecordVO> result = new ArrayList<>();
 
         while(trades.hasNext()) {
-            result.add(transferHelper.transToTradeRecordVO(trades.next()));
+            result.add(transferHelper.transToTradeRecordVO(trades.next(), marketInfo.getName()));
         }
         return result;
     }
@@ -52,7 +53,9 @@ public class TradeServiceImp implements TradeService {
         ArrayList<TradeRecordVO> result = new ArrayList<>();
 
         while(trades.hasNext()) {
-            result.add(transferHelper.transToTradeRecordVO(trades.next()));
+            Trade temp = trades.next();
+            MarketInfo marketInfo = stockInfoDAO.getMarketInfo(temp.getStockId());
+            result.add(transferHelper.transToTradeRecordVO(temp, marketInfo.getName()));
         }
         return result;
     }
@@ -83,6 +86,9 @@ public class TradeServiceImp implements TradeService {
             newHoldingStock.setInitFund(current.getTrade() * tradeRecord.getNumOfStock());
 
             userMoney = tradeDAO.getUserMoney(tradeRecord.getUserID());
+            if(userMoney == -1) {
+                return -1;
+            }
             userMoney -= current.getTrade() * tradeRecord.getNumOfStock();
 
             if (!tradeDAO.updateUserMoney(tradeRecord.getUserID(), userMoney)) {
@@ -99,6 +105,9 @@ public class TradeServiceImp implements TradeService {
                 holdingStock.setInitFund(holdingStock.getInitFund() + tradeRecord.getNumOfStock() * tradeRecord.getPrice());
 
                 userMoney = tradeDAO.getUserMoney(tradeRecord.getUserID());
+                if(userMoney == -1) {
+                    return -1;
+                }
                 userMoney -= current.getTrade() * tradeRecord.getNumOfStock();
 
                 if (!tradeDAO.updateUserMoney(tradeRecord.getUserID(), userMoney)) {
@@ -111,6 +120,9 @@ public class TradeServiceImp implements TradeService {
                 holdingStock.setSellOutMoney(holdingStock.getSellOutMoney() + current.getTrade() * tradeRecord.getNumOfStock());
 
                 userMoney = tradeDAO.getUserMoney(tradeRecord.getUserID());
+                if(userMoney == -1) {
+                    return -1;
+                }
                 userMoney += current.getTrade() * tradeRecord.getNumOfStock();
 
                 if (!tradeDAO.updateUserMoney(tradeRecord.getUserID(), userMoney)) {

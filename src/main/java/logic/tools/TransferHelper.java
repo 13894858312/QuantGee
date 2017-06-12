@@ -146,8 +146,8 @@ public class TransferHelper {
      * @param trade trade
      * @return TradeRecordVO
      */
-    public TradeRecordVO transToTradeRecordVO(Trade trade) {
-        TradeRecordVO result = new TradeRecordVO(trade.getTime(), trade.getUserId(), trade.getStockId(),
+    public TradeRecordVO transToTradeRecordVO(Trade trade, String stockName) {
+        TradeRecordVO result = new TradeRecordVO(trade.getTime(), trade.getUserId(), trade.getStockId(),stockName,
                 trade.getAction(), trade.getNumOfStock(), trade.getPrice());
         return result;
     }
