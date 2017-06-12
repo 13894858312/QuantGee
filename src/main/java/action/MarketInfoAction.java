@@ -80,4 +80,13 @@ public class MarketInfoAction extends ActionSupport {
         return SUCCESS;
     }
 
+    public String getMarketRiseAndDown(){
+        String date = DateHelper.getNowDate();
+        String enddate = DateHelper.formerNTradeDay(date, 1);
+        MarketInfoVO marketInfoVO = marketInfoService.getHistoryMarketInfo("sh", enddate);
+        JSONObject jsonObject = JSONObject.fromObject(marketInfoVO);
+        result = jsonObject.toString();
+        return SUCCESS;
+    }
+
 }

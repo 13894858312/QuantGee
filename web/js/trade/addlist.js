@@ -2,8 +2,9 @@
  * Created by Administrator on 2017/6/10.
  */
 var balance;
+var accountID;
+var stockName;
 function buyStock() {
-    var accountID;
     $.ajax({
         type: 'get',
         url: 'haveLogin.action',
@@ -25,6 +26,14 @@ function buyStock() {
             swal("请输入完整信息", "", "warning");
         } else {
             if (getTradeRetunResult(0)) {
+                var row1 = document.getElementById('st').rows.length;
+                for(var i=row1-1;i>0;i--){
+                    document.getElementById('st').deleteRow(i);
+                }
+                var row2 = document.getElementById('record').rows.length;
+                for(var i=row2-1;i>0;i--){
+                    document.getElementById('record').deleteRow(i);
+                }
                 var json;
                 $.ajax({
                     cache: false,
@@ -42,11 +51,12 @@ function buyStock() {
                         alert("error")
                     }
                 });
-                var info = "买入" + json['stockName'] + num.value + "股";
+                var info = "买入" + stockName.textContent + num.value + "股";
                 swal("交易成功",info,"success");
+                var money = document.getElementById("nowmoney");
+                money.innerHTML = balance;
                 if(json.length>0){
                     for(var i=0;i<json.length;i++){
-                        var money = document.getElementById("nowmoney");
                         var x = document.getElementById('st').insertRow(document.getElementById('st').rows.length);
                         var stockName = x.insertCell(0);
                         var stockCode = x.insertCell(1);
@@ -62,6 +72,43 @@ function buyStock() {
                         theValueOfStock.innerHTML = json[i]['initFund'];
                         nowPrice.innerHTML = json[i]['nowPrice'];
                         range.innerHTML = json[i]['yield'];
+                    }
+                }
+                var alltraderecords;
+                $.ajax({
+                    type: 'POST',
+                    url: 'getAllTradeRecord.action',
+                    async: false,
+                    dataType: 'json',
+                    data:{
+                        accountID: accountID
+                    },
+                    success: function (data) {
+                        alltraderecords = JSON.parse(data);
+                    },
+                    error: function (data) {
+                        alert("error");
+                    }
+                });
+                if(alltraderecords.length>0){
+                    for(var i=0;i<alltraderecords.length;i++){
+                        var x = document.getElementById('record').insertRow(document.getElementById('record').rows.length);
+                        var stockName = x.insertCell(0);
+                        var stockCode = x.insertCell(1);
+                        var action = x.insertCell(2);
+                        var theNumOfStock = x.insertCell(3);
+                        var tradePrice = x.insertCell(4);
+                        var tradeTime = x.insertCell(5);
+                        stockName.innerHTML = alltraderecords[i]['stockName'];
+                        stockCode.innerHTML = alltraderecords[i]['stockCode'];
+                        if(alltraderecords[i]['action'] == 0) {
+                            action.innerHTML = "买入";
+                        }else{
+                            action.innerHTML = "卖出";
+                        }
+                        theNumOfStock.innerHTML = alltraderecords[i]['numOfStock'];
+                        tradePrice.innerHTML = alltraderecords[i]['price'];
+                        tradeTime.innerHTML = alltraderecords[i]['time'];
                     }
                 }
             }else{
@@ -94,6 +141,14 @@ function sellStock() {
             swal("请输入完整信息", "", "warning");
         } else {
             if (getTradeRetunResult(1)) {
+                var row1 = document.getElementById('st').rows.length;
+                for(var i=row1-1;i>0;i--){
+                    document.getElementById('st').deleteRow(i);
+                }
+                var row2 = document.getElementById('record').rows.length;
+                for(var i=row2-1;i>0;i--){
+                    document.getElementById('record').deleteRow(i);
+                }
                 var json;
                 $.ajax({
                     cache: false,
@@ -111,11 +166,12 @@ function sellStock() {
                         alert("error")
                     }
                 });
-                var info = "卖出" + json['stockName'] + num.value + "股";
+                var info = "卖出" + stockName + num.value + "股";
                 swal("交易成功",info,"success");
+                var money = document.getElementById("nowmoney");
+                money.innerHTML = balance;
                 if(json.length>0){
                     for(var i=0;i<json.length;i++){
-                        var money = document.getElementById("nowmoney");
                         var x = document.getElementById('st').insertRow(document.getElementById('st').rows.length);
                         var stockName = x.insertCell(0);
                         var stockCode = x.insertCell(1);
@@ -131,6 +187,43 @@ function sellStock() {
                         theValueOfStock.innerHTML = json[i]['initFund'];
                         nowPrice.innerHTML = json[i]['nowPrice'];
                         range.innerHTML = json[i]['yield'];
+                    }
+                }
+                var alltraderecords;
+                $.ajax({
+                    type: 'POST',
+                    url: 'getAllTradeRecord.action',
+                    async: false,
+                    dataType: 'json',
+                    data:{
+                        accountID: accountID
+                    },
+                    success: function (data) {
+                        alltraderecords = JSON.parse(data);
+                    },
+                    error: function (data) {
+                        alert("error");
+                    }
+                });
+                if(alltraderecords.length>0){
+                    for(var i=0;i<alltraderecords.length;i++){
+                        var x = document.getElementById('record').insertRow(document.getElementById('record').rows.length);
+                        var stockName = x.insertCell(0);
+                        var stockCode = x.insertCell(1);
+                        var action = x.insertCell(2);
+                        var theNumOfStock = x.insertCell(3);
+                        var tradePrice = x.insertCell(4);
+                        var tradeTime = x.insertCell(5);
+                        stockName.innerHTML = alltraderecords[i]['stockName'];
+                        stockCode.innerHTML = alltraderecords[i]['stockCode'];
+                        if(alltraderecords[i]['action'] == 0) {
+                            action.innerHTML = "买入";
+                        }else{
+                            action.innerHTML = "卖出";
+                        }
+                        theNumOfStock.innerHTML = alltraderecords[i]['numOfStock'];
+                        tradePrice.innerHTML = alltraderecords[i]['price'];
+                        tradeTime.innerHTML = alltraderecords[i]['time'];
                     }
                 }
             }else{
@@ -184,7 +277,25 @@ function getTradeRetunResult(addordelete) {
     if(returnResult[0] == "error"){
         result = false;
     }else{
-        balance = Number(returnResult[0]);
+        var money;
+        $.ajax({
+            cache: false,
+            async: false,
+            type: 'POST',
+            url: 'getBalance.action',
+            data: {
+                accountID:accountID
+            },
+            dataType: 'json',
+            success: function (data) {
+                money = JSON.parse(data);
+            },
+            error: function (data) {
+                alert("error")
+            }
+        });
+        balance = money[0];
+        stockName = returnResult[1];
         result = true;
     }
     return result;

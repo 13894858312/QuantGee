@@ -150,16 +150,9 @@
 	width: 45%;
 	height: 20px;
 }
-.shenz{
+.riseanddownStock{
 	float: left;
-	width: 22%;
-	height: 250px;
-	margin-left: 2%;
-	background-color: #FFFFFF;
-}
-.chuangy{
-	float: left;
-	width: 22%;
+	width: 45%;
 	height: 250px;
 	margin-left: 2%;
 	background-color: #FFFFFF;
@@ -169,6 +162,7 @@
 	width: 100%;
 	height: 250px;
 	background-color: #FFFFFF;
+	margin-bottom: 50px;
 }
 .newstext{
 	float: left;
@@ -198,7 +192,6 @@
 	width: 32%;
 	height: 189px;
 	background-color: #FFFFFF;
-	border-bottom: 1px solid #C0C0C0;
 }
 .content a{
     color: #000000;
@@ -209,7 +202,6 @@
 	width: 32%;
 	height: 189px;
 	background-color: #FFFFFF;
-	border-bottom: 1px solid #C0C0C0;
 }
 .mgwh{
 	float: left;
@@ -217,7 +209,6 @@
 	width: 32%;
 	height: 189px;
 	background-color: #FFFFFF;
-	border-bottom: 1px solid #C0C0C0;
 }
 .titleimg{
 	float: left;

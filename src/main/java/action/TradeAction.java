@@ -154,33 +154,17 @@ public class TradeAction extends ActionSupport{
         Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = dateFormat.format(now);
-
-        System.out.println(date);
-        System.out.println(accountID);
-        System.out.println(stockCode);
-        System.out.println(tradeAction);
-        System.out.println(numOfStock);
-        System.out.println(nowPrice);
-
         String stockName = stockBasicInfoService.getCodeByName(stockCode);
-
-        System.out.println(stockName);
-
         TradeRecordVO tradeRecordVO = new TradeRecordVO(date, accountID, stockCode, stockName, tradeAction, Integer.parseInt(numOfStock), nowPrice);
         if(tradeService.addTradeRecord(tradeRecordVO) != -1){
             ArrayList<String> arrayList = new ArrayList<>();
-            arrayList.add(String.valueOf(tradeService.addTradeRecord(tradeRecordVO)));
-
-            System.out.println(arrayList.size() + "success");
-
+            arrayList.add("success");
+            arrayList.add(stockName);
             JSONArray jsonArray = JSONArray.fromObject(arrayList);
             result = jsonArray.toString();
         }else{
             ArrayList<String> arrayList = new ArrayList<>();
             arrayList.add("error");
-
-            System.out.println(arrayList.size() + "success");
-
             JSONArray jsonArray = JSONArray.fromObject(arrayList);
             result = jsonArray.toString();
         }
