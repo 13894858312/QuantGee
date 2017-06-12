@@ -161,16 +161,26 @@ public class TradeAction extends ActionSupport{
         System.out.println(tradeAction);
         System.out.println(numOfStock);
         System.out.println(nowPrice);
+
         String stockName = stockBasicInfoService.getCodeByName(stockCode);
+
+        System.out.println(stockName);
+
         TradeRecordVO tradeRecordVO = new TradeRecordVO(date, accountID, stockCode, stockName, tradeAction, Integer.parseInt(numOfStock), nowPrice);
         if(tradeService.addTradeRecord(tradeRecordVO) != -1){
             ArrayList<String> arrayList = new ArrayList<>();
             arrayList.add(String.valueOf(tradeService.addTradeRecord(tradeRecordVO)));
+
+            System.out.println(arrayList.size() + "success");
+
             JSONArray jsonArray = JSONArray.fromObject(arrayList);
             result = jsonArray.toString();
         }else{
             ArrayList<String> arrayList = new ArrayList<>();
             arrayList.add("error");
+
+            System.out.println(arrayList.size() + "success");
+
             JSONArray jsonArray = JSONArray.fromObject(arrayList);
             result = jsonArray.toString();
         }
@@ -178,6 +188,7 @@ public class TradeAction extends ActionSupport{
     }
 
     public String getUserTradeStockInfo(){
+        System.out.println(accountID);
         ArrayList<HoldingStockVO> holdingStockVOArrayList = tradeService.getHoldingStocks(accountID);
         JSONArray jsonArray = JSONArray.fromObject(holdingStockVOArrayList);
         result = jsonArray.toString();
