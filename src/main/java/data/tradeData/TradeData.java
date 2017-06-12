@@ -73,7 +73,7 @@ public class TradeData implements TradeDAO{
                 .find("from HoldingStock  h where h.userId = ? and h.code = ?",
                         new String[] {userID, stockID}).iterator();
 
-        if(iterator != null){
+        if(iterator.hasNext()){
             HoldingStock old = iterator.next();
             int oriNum = old.getHoldNum();
             if(newNum + oriNum < 0){
