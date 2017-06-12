@@ -11,7 +11,7 @@ public class TradeRecordVO {
     private int action;         // 0买入 1卖出
     private int numOfStock;
 
-    private double price;      //界面层该参数无需赋值
+    private double price;
 
     public TradeRecordVO() {}
 
