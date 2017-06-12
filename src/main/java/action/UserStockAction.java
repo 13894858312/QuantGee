@@ -18,6 +18,15 @@ import java.util.ArrayList;
 public class UserStockAction extends ActionSupport{
 
     private ArrayList<StockCurrentVO> stockCurrentVOS;
+ private ArrayList<String> test;
+
+    public ArrayList<String> getTest() {
+        return test;
+    }
+
+    public void setTest(ArrayList<String> test) {
+        this.test = test;
+    }
 
     private String accountID;
 
@@ -34,35 +43,41 @@ public class UserStockAction extends ActionSupport{
     public String getCollectStock(){
         System.out.println(accountID);
         ArrayList<StockCurrentVO> collectedStocks = collectStockService.getCollectedStocks(accountID);
-        JSONArray jsonObject = JSONArray.fromObject(collectedStocks);
-        result = jsonObject.toString();
+//        JSONArray jsonObject = JSONArray.fromObject(collectedStocks);
+        result = JSONArray.fromObject(collectedStocks).toString();
         return SUCCESS;
     }
 
     public String deleteCollectedStock(){
-        if (collectStockService.deleteCollectedStock(new StockCollectInputVO(accountID,codeID))){
-            HttpServletRequest request = ServletActionContext.getRequest();
-            request.setAttribute("tipMessage", "删除成功！");
-            return SUCCESS;
-        }else {
-            HttpServletRequest request = ServletActionContext.getRequest();
-            request.setAttribute("tipMessage", "删除失败！");
-            return "fail";
-        }
+//        if (collectStockService.deleteCollectedStock(new StockCollectInputVO(accountID,codeID))){
+//            HttpServletRequest request = ServletActionContext.getRequest();
+//            request.setAttribute("tipMessage", "删除成功！");
+//            return SUCCESS;
+//        }else {
+//            HttpServletRequest request = ServletActionContext.getRequest();
+//            request.setAttribute("tipMessage", "删除失败！");
+//            return "fail";
+//        }
+        return SUCCESS;
     }
 
     public String addCollectedStock(){
-        if(collectStockService.collectStock(new StockCollectInputVO(accountID, stockBasicInfoService.getCodeByName(stockName)))){
-            ArrayList<String> arrayList = new ArrayList<>();
-            arrayList.add("success");
-            JSONArray jsonArray = JSONArray.fromObject(arrayList);
-            result = jsonArray.toString();
-        }else{
-            ArrayList<String> arrayList = new ArrayList<>();
-            arrayList.add("error");
-            JSONArray jsonArray = JSONArray.fromObject(arrayList);
-            result = jsonArray.toString();
+        for (String s:test) {
+            System.out.println(s);
         }
+//        System.out.println(codeID);
+        result="success!";
+//        if(collectStockService.collectStock(new StockCollectInputVO(accountID, stockBasicInfoService.getCodeByName(stockName)))){
+//            ArrayList<String> arrayList = new ArrayList<>();
+//            arrayList.add("success");
+//            JSONArray jsonArray = JSONArray.fromObject(arrayList);
+//            result = jsonArray.toString();
+//        }else{
+//            ArrayList<String> arrayList = new ArrayList<>();
+//            arrayList.add("error");
+//            JSONArray jsonArray = JSONArray.fromObject(arrayList);
+//            result = jsonArray.toString();
+//        }
         return SUCCESS;
     }
 

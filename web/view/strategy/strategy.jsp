@@ -32,6 +32,8 @@
 
     <script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../../bootstrap/bootstrap-select/js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="../../js/ucenter/sweetalert/sweetalert.min.js" ></script>
+    <link rel="stylesheet" href="../../js/ucenter/sweetalert/sweetalert.css" />
     <!--<script type="text/javascript" src="../../bootstrap/bootstrap-datepicler/js/bootstrap-datepicker.js"></script>-->
 
     <script type="text/javascript" src="../../js/strategy/strategy.js"></script>
@@ -214,7 +216,7 @@
         <div style="height: 40px;">
 
             <span>选择股票</span>
-            <input type="text" placeholder="请输入股票代码" style="
+            <input id="searchStock" type="text" placeholder="请输入股票代码" style="
 				    width: 250px;
 				    margin-left: 15px;
 				    border-radius: 6px;
@@ -223,7 +225,7 @@
 				    transition: .3s linear;
 				    height: 40px;
 				">
-            <button style="
+            <button onclick="addStock('searchStock')" style="
 				    width: 80px;
 				    border-radius: 6px;
 				    margin-left: 10px;
@@ -273,21 +275,13 @@
         </select>
     </div>
 
-    <button style="
-width: 80px;
-				    border-radius: 6px;
-				    margin-left: 10px;
-				    border: 1px solid #999;
-				    background: #FFFFFF;
-				    padding: 1px;
-				    transition: .3s linear;
-				    height: 40px;				">添加
+    <button onclick="addStock('usertype')" style="width: 80px;border-radius: 6px;margin-left: 10px;border: 1px solid #999;background: #FFFFFF; padding: 1px;transition: .3s linear;height: 40px;">添加
     </button>
 
     <button style="
 width: 80px;
 				    border-radius: 6px;
-				    margin-left: 10px;
+				    margin-left: 110px;
 				    border: 1px solid #999;
 				    background: #FFFFFF;
 				    padding: 1px;
@@ -303,7 +297,7 @@ width: 80px;
 			    border: 1px solid rgb(41,29,29);
 			    background: #FFFFFF;
 			    transition: .3s linear;
-			    height: 300px;
+			    height: 200px;
 			">
 				<span style="
 			    border-radius: 6px;

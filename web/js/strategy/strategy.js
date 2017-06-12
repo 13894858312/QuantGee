@@ -1,6 +1,10 @@
 var accountID;
 var collectedStock;
 
+//回测参数
+var stockPoolType;
+var stockCodes = [];
+
 $(document).ready(function() {
 	//判断当前登陆用户
 	$.ajax({
@@ -27,6 +31,7 @@ $(document).ready(function() {
 			},
 			dataType: 'json',
 			success: function(data) {
+				alert(data);
 				collectedStock = JSON.parse(data);
 			},
 			error: function(data) {
@@ -87,22 +92,46 @@ function selectPoolTag(showContent, selfObj) {
 	}
 	document.getElementById(showContent).style.display = "block";
 	if(showContent == "pool_Content1") {
-		if(accountID!=""){
+		stockPoolType = 1;
+		if(accountID != "") {
 			var optionString = '';
 			for(var i = 0; i < collectedStock.length; i++) {
-				optionString += "<option value=\'" + collectedStock[i]['code'] + "\'>" + collectedStock[i]['code'] + "</option>";
+				//				optionString += "<option value='000005'>" + collectedStock[i]['code'] + "</option>";
+				optionString += "<option value='" + collectedStock[i]['code'] + "'>" + collectedStock[i]['code'] + "</option>";
 			}
 
 			$("#usertype").empty();
 			$("#usertype").append(optionString);
+			$("#usertype").append("<option value='000001'>000001</option>");
 			$('#usertype').selectpicker('refresh');
 		}
 		document.getElementsByClassName("form-group")[0].style.display = "block";
 		document.getElementById("selectedStock").style.display = "block";
 	} else {
+		stockPoolType = 0;
 		document.getElementsByClassName("form-group")[0].style.display = "none";
 		document.getElementById("selectedStock").style.display = "none";
 
+	}
+}
+
+function addStock(code) {
+	if($("#" + code).val() == "请先登陆") {
+		sweetAlert("请先登陆!", "", "error");
+		return false;
+	}
+	if($("#" + code).val() != "") {
+		stockCodes[stockCodes.length] = $("#" + code).val();
+	} else {
+		sweetAlert("请选择股票！", "", "error");
+	}
+}
+
+function addAllStock() {
+	for(var i = 0; i < collectedStock.length; i++) {
+		if(jQuery.inArray(collectedStock[i]['code'], stockCodes) == -1) {
+			stockCodes[stockCodes.length] = collectedStock[i]['code'];
+		}
 	}
 }
 
