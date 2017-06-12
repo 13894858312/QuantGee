@@ -80,7 +80,9 @@ public class TradeServiceImp implements TradeService {
             //根据实时股票价格来确定买入的资金
             newHoldingStock.setInitFund(current.getTrade() * tradeRecord.getNumOfStock());
 
-            tradeDAO.updateHoldingStock(holdingStock);
+            if(!tradeDAO.updateHoldingStock(holdingStock)) {
+                return false;
+            }
         } else {
             //买入 覆盖原先的记录
             if (tradeRecord.getAction() == 0) {
@@ -94,7 +96,9 @@ public class TradeServiceImp implements TradeService {
                 holdingStock.setSellOutMoney(holdingStock.getSellOutMoney() + current.getTrade() * tradeRecord.getNumOfStock());
             }
 
-            tradeDAO.updateHoldingStock(holdingStock);
+            if(!tradeDAO.updateHoldingStock(holdingStock)) {
+                return false;
+            }
         }
 
         return true;
