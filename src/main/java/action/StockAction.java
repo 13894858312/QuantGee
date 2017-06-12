@@ -121,4 +121,11 @@ public class StockAction extends ActionSupport{
         result = jsonObject.toString();
         return SUCCESS;
     }
+
+    public String getMKRBInfo(){
+        StockAnalysisVO stockAnalysisVO = predictStockService.getStockAnalysisInfo(stockCode);
+        JSONObject jsonObject = JSONObject.fromObject(stockAnalysisVO);
+        result = jsonObject.toString();
+        return SUCCESS;
+    }
 }
