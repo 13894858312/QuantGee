@@ -12,6 +12,17 @@
 		<link rel="shortcut icon" href="../../images/logo20x20.png">
 		<meta charset="UTF-8">
 		<title>Strategy</title>
+		<script>
+			function s1(x) {
+				x.style.fontWeight = "bold";
+				x.style.color = "#fff";
+			}
+
+			function s2(x) {
+				x.style.fontWeight = "400";
+				x.style.color = "#b7b7b7";
+			}
+		</script>
 		<script type="text/javascript" src="../../jquery-3.2.1.min.js"></script>
 
 		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
@@ -24,61 +35,54 @@
 		<script type="text/javascript" src="../../bootstrap/bootstrap-datepicler/js/bootstrap-datepicker.js"></script>
 
 		<script type="text/javascript" src="../../js/strategy/strategy.js"></script>
-		<script src="../../echarts.js"></script>
-		<script src="../../jquery-3.2.1.min.js"></script>
-		<script src="../../js/marketInfo/headcontroller.js"></script>
-		<script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>
-		<script type="text/javascript" src="../../js/jquery.autocomplete.js"></script>
-		<link rel="Stylesheet" href="../../css/jquery.autocomplete.css" />
 		<link rel="stylesheet" href="../../css/style.css" />
 		<link rel="stylesheet" href="../../css/strategy/strategy.css" />
 		<!--<link rel="stylesheet" href="../../css/strategy/build.css" />-->
-        <style type="text/css">
-            @import "../../css/style.css";
-        </style>
+
+
+
 	</head>
 
-	<body onload="changewhole3()">
-	<div class="head">
+	<body>
+		<div class="head">
 
-		<div class="hdlogo">
+			<div class="hdlogo">
 
-			<a target="_blank" class="site-logo" href=""> <img src="../../images/quantgeelogo.png" title="MyQuantGee" alt="MyQuantGee"></a>
+				<a target="_blank" class="site-logo" href=""> <img src="../../images/quantgeelogo.png" title="MyQuantGee" alt="MyQuantGee"></a>
 
-		</div>
-
-		<div class="menu" id="ha1">
-			<a class="menua" id="a1"  href="marketInfo.jsp">大盘行情</a>
-		</div>
-		<div class="menu" id="ha2">
-			<a class="menua" id="a2" href="../../view/stock/stockFirst.jsp">个股信息</a>
-		</div>
-		<div class="menu" id="ha3">
-			<a class="menua" id="a3" href="../../view/strategy/strategy.jsp">策略大全</a>
-		</div>
-		<div class="menu" id="ha4">
-			<a class="menua" id="a4" href="../../view/trade/trade.jsp">模拟交易</a>
-		</div>
-		<div class="menu" id="ha5">
-			<a class="menua" id="a5" href="" >个人中心</a>
-		</div>
-		<div class="search bar7">
-			<!--<form>-->
-			<input id="inputStockCode" type="text" placeholder="请输入股票代码">
-			<script src="../../js/fuzzysearch.js"></script>
-			<button onclick="totheStockView()"></button>
-			<!--</form>-->
-		</div>
-		<div class="marketlog">
-			<div class="logimg">
-				<img src="../../images/headlogin.png"/>
 			</div>
-			<div class="logintext">
-				<a id="la" href="../../view/ucenter/login.jsp" style="color: rgba(0, 0, 0, 0.6);font-weight: 400;cursor: hand;" ></a>
+
+			<div class="menu" id="ha1">
+				<a class="menua" id="a1" href="../../view/market/marketInfo.jsp" target="_self">大盘行情</a>
+			</div>
+			<div class="menu" id="ha2">
+				<a class="menua" id="a2" href="../../view/stock/stockFirst.jsp" target="_self">个股信息</a>
+			</div>
+			<div class="menu" id="ha3" style="border-bottom: 2px solid rgb(62, 196, 131);">
+				<a class="menua" id="a3" href="../../view/strategy/strategy.jsp" style="color: rgb(62, 196, 131);">策略大全</a>
+			</div>
+			<div class="menu" id="ha4">
+				<a class="menua" id="a4" href="../../view/trade/trade.jsp" target="_self">模拟交易</a>
+			</div>
+			<div class="menu" id="ha5">
+				<a class="menua" id="a5" href="../../view/ucenter/user_center.jsp" target="_self">个人中心</a>
+			</div>
+			<div class="search bar7">
+				<form>
+					<input type="text" placeholder="请输入股票代码">
+					<button type="submit"></button>
+				</form>
+			</div>
+			<div class="marketlog">
+				<div class="logimg">
+					<img src="../../images/headlogin.png">
+				</div>
+				<div class="logintext">
+					<a href="../../view/ucenter/login.jsp" style="color: rgba(0, 0, 0, 0.6);font-weight: 400;cursor: hand;">登录</a>
+				</div>
 			</div>
 		</div>
-	</div>
-		<div id="strategybar">
+		<div class="strategybar">
 			<div class="hmtext">策略讲解</div>
 		</div>
 		<div id=con>
@@ -119,7 +123,7 @@
 			</div>
 		</div>
 
-		<div id="strategybar">
+		<div class="strategybar">
 			<div class="hmtext">策略演示</div>
 		</div>
 
@@ -173,7 +177,7 @@
 
 			</div>
 
-		</div>
+			</div>
 
 		<div class="form-group" style="
     margin-left: 15%;
@@ -245,7 +249,7 @@ width: 80px;
     font-size: 18px;
     font-weight: 100;
     color: #000000;
-    font-family: &quot;Roboto Mono&quot;, monospace;
+    font-family: &quot; Roboto Mono &quot;, monospace;
     background: #FFFFFF;
 ">股票池</span> </div>
 
@@ -272,8 +276,8 @@ width: 80px;
 			</ul>
 			<div id=tagContent_str>
 				<div class="tagContent_str selectTag_str" id=tagContent_str0>
-					<form id="param">
-						<table id="paramTable">
+					<form class="param">
+						<table class="paramTable">
 							<tr>
 								<th>
 									<span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
@@ -304,7 +308,7 @@ width: 80px;
 									</script>
 								</th>
 								<th>
-									<div id="initFund">
+									<div class="initFund">
 										<label style="font-weight: 100; width: 64px;">初始资金</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -312,7 +316,7 @@ width: 80px;
 							</tr>
 							<tr>
 								<th>
-									<div id="holdingPeriod">
+									<div class="holdingPeriod">
 										<label style="font-weight: 100; width: 64px;">持有期</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -320,7 +324,7 @@ width: 80px;
 								</th>
 
 								<th>
-									<div id="returnPeriod">
+									<div class="returnPeriod">
 										<label style="font-weight: 100; width: 64px;">形成期</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -339,20 +343,20 @@ width: 80px;
 							</tr>
 							<tr>
 								<th>
-									<div id="ratio">
+									<div class="ratio">
 										<label style="font-weight: 100;width: 64px;">持股比例（％）</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
 
 								</th>
 								<th>
-									<div id="ratio">
+									<div class="stopLoss">
 										<label style="font-weight: 100;width: 64px;">止损点（％）</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
 								</th>
 								<th>
-									<div id="ratio">
+									<div class="stopProfit">
 										<label style="font-weight: 100;width: 64px;">止盈点（％）</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -363,8 +367,8 @@ width: 80px;
 					</form>
 				</div>
 				<div class=tagContent_str id=tagContent_str1>
-					<form id="param">
-						<table id="paramTable">
+					<form class="param">
+						<table class="paramTable">
 							<tr>
 								<th>
 									<span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
@@ -395,7 +399,7 @@ width: 80px;
 									</script>
 								</th>
 								<th>
-									<div id="initFund">
+									<div class="initFund">
 										<label style="font-weight: 100; width: 64px;">初始资金</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -403,7 +407,7 @@ width: 80px;
 							</tr>
 							<tr>
 								<th>
-									<div id="holdingPeriod">
+									<div class="holdingPeriod">
 										<label style="font-weight: 100; width: 64px;">持有期</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -411,7 +415,7 @@ width: 80px;
 								</th>
 
 								<th>
-									<div id="returnPeriod">
+									<div class="returnPeriod">
 										<label style="font-weight: 100; width: 64px;">形成期</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -430,20 +434,20 @@ width: 80px;
 							</tr>
 							<tr>
 								<th>
-									<div id="holdingStockNum">
+									<div class="holdingStockNum">
 										<label style="font-weight: 100;width: 64px;">持股数量</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
 
 								</th>
 								<th>
-									<div id="ratio">
+									<div class="stopLoss">
 										<label style="font-weight: 100;width: 64px;">止损点（％）</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
 								</th>
 								<th>
-									<div id="ratio">
+									<div class="stopProfit">
 										<label style="font-weight: 100;width: 64px;">止盈点（％）</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -454,8 +458,8 @@ width: 80px;
 					</form>
 				</div>
 				<div class=tagContent_str id=tagContent_str2>
-					<form id="param">
-						<table id="paramTable">
+					<form class="param">
+						<table class="paramTable">
 							<tr>
 								<th>
 									<span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
@@ -486,7 +490,7 @@ width: 80px;
 									</script>
 								</th>
 								<th>
-									<div id="initFund">
+									<div class="initFund">
 										<label style="font-weight: 100; width: 64px;">初始资金</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -494,7 +498,7 @@ width: 80px;
 							</tr>
 							<tr>
 								<th>
-									<div id="holdingPeriod">
+									<div class="holdingPeriod">
 										<label style="font-weight: 100; width: 64px;">持有期</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -502,7 +506,7 @@ width: 80px;
 								</th>
 
 								<th>
-									<div id="returnPeriod">
+									<div class="returnPeriod">
 										<label style="font-weight: 100; width: 64px;">形成期</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -521,20 +525,20 @@ width: 80px;
 							</tr>
 							<tr>
 								<th>
-									<div id="holdingStockNum">
+									<div class="holdingStockNum">
 										<label style="font-weight: 100;width: 64px;">持股数量</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
 
 								</th>
 								<th>
-									<div id="ratio">
+									<div class="stopLoss">
 										<label style="font-weight: 100;width: 64px;">止损点（％）</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
 								</th>
 								<th>
-									<div id="ratio">
+									<div class="stopProfit">
 										<label style="font-weight: 100;width: 64px;">止盈点（％）</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -553,8 +557,8 @@ width: 80px;
 					</form>
 				</div>
 				<div class=tagContent_str id=tagContent_str3>
-					<form id="param">
-						<table id="paramTable">
+					<form class="param">
+						<table class="paramTable">
 							<tr>
 								<th>
 									<span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
@@ -585,7 +589,7 @@ width: 80px;
 									</script>
 								</th>
 								<th>
-									<div id="initFund">
+									<div class="initFund">
 										<label style="font-weight: 100; width: 64px;">初始资金</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -593,7 +597,7 @@ width: 80px;
 							</tr>
 							<tr>
 								<th>
-									<div id="holdingPeriod">
+									<div class="holdingPeriod">
 										<label style="font-weight: 100; width: 64px;">持有期</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -601,7 +605,7 @@ width: 80px;
 								</th>
 
 								<th>
-									<div id="returnPeriod">
+									<div class="returnPeriod">
 										<label style="font-weight: 100; width: 64px;">形成期</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -620,20 +624,20 @@ width: 80px;
 							</tr>
 							<tr>
 								<th>
-									<div id="holdingStockNum">
+									<div class="holdingStockNum">
 										<label style="font-weight: 100;width: 64px;">持股数量</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
 
 								</th>
 								<th>
-									<div id="ratio">
+									<div class="stopLoss">
 										<label style="font-weight: 100;width: 64px;">止损点（％）</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
 								</th>
 								<th>
-									<div id="ratio">
+									<div class="stopProfit">
 										<label style="font-weight: 100;width: 64px;">止盈点（％）</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -651,8 +655,8 @@ width: 80px;
 					</form>
 				</div>
 				<div class=tagContent_str id=tagContent_str4>
-					<form id="param">
-						<table id="paramTable">
+					<form class="param">
+						<table class="paramTable">
 							<tr>
 								<th>
 									<span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
@@ -683,7 +687,7 @@ width: 80px;
 									</script>
 								</th>
 								<th>
-									<div id="initFund">
+									<div class="initFund">
 										<label style="font-weight: 100; width: 64px;">初始资金</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -691,7 +695,7 @@ width: 80px;
 							</tr>
 							<tr>
 								<th>
-									<div id="holdingPeriod">
+									<div class="holdingPeriod">
 										<label style="font-weight: 100; width: 64px;">持有期</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -699,7 +703,7 @@ width: 80px;
 								</th>
 
 								<th>
-									<div id="returnPeriod">
+									<div class="returnPeriod">
 										<label style="font-weight: 100; width: 64px;">形成期</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
@@ -718,20 +722,20 @@ width: 80px;
 							</tr>
 							<tr>
 								<th>
-									<div id="ratio">
+									<div class="ratio">
 										<label style="font-weight: 100;width: 64px;">持股比例（％）</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
 
 								</th>
 								<th>
-									<div id="ratio">
+									<div class="stopLoss">
 										<label style="font-weight: 100;width: 64px;">止损点（％）</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
 								</th>
 								<th>
-									<div id="ratio">
+									<div class="stopProfit">
 										<label style="font-weight: 100;width: 64px;">止盈点（％）</label>
 										<input type="number" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
 									</div>
