@@ -162,15 +162,25 @@ public class TradeAction extends ActionSupport{
         System.out.println(numOfStock);
         System.out.println(nowPrice);
 
-        TradeRecordVO tradeRecordVO = new TradeRecordVO(date, accountID, stockCode, tradeAction, Integer.parseInt(numOfStock), nowPrice);
+        String stockName = stockBasicInfoService.getCodeByName(stockCode);
+
+        System.out.println(stockName);
+
+        TradeRecordVO tradeRecordVO = new TradeRecordVO(date, accountID, stockCode, stockName, tradeAction, Integer.parseInt(numOfStock), nowPrice);
         if(tradeService.addTradeRecord(tradeRecordVO) != -1){
             ArrayList<String> arrayList = new ArrayList<>();
             arrayList.add(String.valueOf(tradeService.addTradeRecord(tradeRecordVO)));
+
+            System.out.println(arrayList.size() + "success");
+
             JSONArray jsonArray = JSONArray.fromObject(arrayList);
             result = jsonArray.toString();
         }else{
             ArrayList<String> arrayList = new ArrayList<>();
             arrayList.add("error");
+
+            System.out.println(arrayList.size() + "success");
+
             JSONArray jsonArray = JSONArray.fromObject(arrayList);
             result = jsonArray.toString();
         }
@@ -178,6 +188,7 @@ public class TradeAction extends ActionSupport{
     }
 
     public String getUserTradeStockInfo(){
+        System.out.println(accountID);
         ArrayList<HoldingStockVO> holdingStockVOArrayList = tradeService.getHoldingStocks(accountID);
         JSONArray jsonArray = JSONArray.fromObject(holdingStockVOArrayList);
         result = jsonArray.toString();
@@ -188,6 +199,22 @@ public class TradeAction extends ActionSupport{
         HoldingStockVO holdingStockVO = tradeService.getRealTimeHoldingStockInfo(new TradeInputVO(accountID,stockCode));
         JSONObject jsonObject = JSONObject.fromObject(holdingStockVO);
         result = jsonObject.toString();
+        return SUCCESS;
+    }
+
+    public String getAllTradeRecord(){
+        ArrayList<TradeRecordVO> tradeRecordVOS = tradeService.getTradeRecords(accountID);
+        JSONArray jsonArray = JSONArray.fromObject(tradeRecordVOS);
+        result = jsonArray.toString();
+        return SUCCESS;
+    }
+
+    public String getBalance(){
+        double balance = tradeService.getUserMoney(accountID);
+        ArrayList<Double> arrayList = new ArrayList<>();
+        arrayList.add(balance);
+        JSONArray jsonArray = JSONArray.fromObject(arrayList);
+        result = jsonArray.toString();
         return SUCCESS;
     }
 }

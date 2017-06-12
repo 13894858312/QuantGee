@@ -12,7 +12,6 @@ $.ajax({
     dataType:'json',
     type:'GET',
     success:function (data) {
-        alert(data);
         stockArray = JSON.parse(data);
     },
     error:function (data) {

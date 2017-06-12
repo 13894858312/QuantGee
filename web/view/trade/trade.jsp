@@ -9,7 +9,6 @@
     <script src="../../js/trade/addlist.js"></script>
 	<script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="../../js/jquery.autocomplete.js"></script>
-    <script type="text/javascript" src="../../js/trade/jquery.leanModal.min.js"></script>
 	<script type="text/javascript" src="../../js/sweet-alert.min.js"></script>
 	<link rel="stylesheet" href="../../css/sweet-alert.css">
 	<link rel="Stylesheet" href="../../css/jquery.autocomplete.css" />
@@ -134,6 +133,23 @@
     		</tr>
     	</table>
     </div>
-    <script type="text/javascript" src="../../js/trade/initTrade.js"></script>
+    <div class="recordtext">
+    	<div class="testheadtext">
+    		<div class="text">交易记录</div>
+    	</div>
+    </div>
+    <div class="traderecordtable">
+    	<table class="st" id="record">
+    		<tr>
+    			<td class="stth">股票名称</td>
+    			<td class="stth">股票代码</td>
+    			<td class="stth">买入/卖出</td>
+    			<td class="stth">股数</td>
+    			<td class="stth">交易价格</th>
+    			<td class="stth">交易时间</td>
+    		</tr>
+    	</table>
+    </div>
+        <script type="text/javascript" src="../../js/trade/initTrade.js"></script>
 </body>
 </html>

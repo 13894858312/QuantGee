@@ -210,6 +210,8 @@ public class StockInfoData implements StockInfoDAO{
 
     @Override
     public Iterator<MarketInfo> getAllStockAndNames() {
-        return null;
+        Iterator<MarketInfo> infoIterator = (Iterator<MarketInfo>) hibernateTemplate
+                .find("from MarketInfo ").iterator();
+        return infoIterator;
     }
 }

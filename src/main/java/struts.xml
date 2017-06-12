@@ -237,5 +237,15 @@
                 <param name="root">result</param>
             </result>
         </action>
+        <action name="getAllTradeRecord" class="tradeAction" method="getAllTradeRecord">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="getBalance" class="tradeAction" method="getBalance">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
     </package>
 </struts>
