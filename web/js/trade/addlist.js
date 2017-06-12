@@ -47,8 +47,7 @@ function addrow() {
 
                 var money = document.getElementById("nowmoney");
                 //HoldingStockvo里面暂时没有现价
-                if ((Number(money.textContent) - (json['trade'] * Number(num.value))) > 0) {
-                    //HoldingStockvo里面暂时没有股票名称
+                // if ((Number(money.textContent) - (json['nowPrice'] * Number(num.value))) > 0) {
                     var info = "买入" + json['stockName'];
                     swal("交易成功",info,"success");
                     var x = document.getElementById('st').insertRow(document.getElementById('st').rows.length);
@@ -59,13 +58,12 @@ function addrow() {
                     var nowPrice = x.insertCell(4);
                     var range = x.insertCell(5);
                     var deletedo = x.insertCell(6);
-                    //HoldingStockvo里面暂时没有股票名称
                     stockName.innerHTML = json['stockName'];
                     stockCode.innerHTML = json['stockCode'];
-                    theNumOfStock.innerHTML = num.value;
-                    theValueOfStock.innerHTML = json['trade'] * Number(num.value);
-                    nowPrice.innerHTML = json['trade'];
-                    range.innerHTML = json['changePercent'];
+                    theNumOfStock.innerHTML = json['holdNum'];
+                    theValueOfStock.innerHTML = json['initFund'];
+                    nowPrice.innerHTML = json['nowPrice'];
+                    range.innerHTML = json['yield'];
                     deletedo.innerHTML = "<img src='../../images/deletebutton.png' />";
                     deletedo.style.textAlign = "right";
                     deletedo.style.cursor = "hand";
@@ -74,10 +72,10 @@ function addrow() {
                     //     document.getElementById('st').deleteRow(x.rowIndex)
                     //     money.innerHTML = Number(money.textContent) + (json['trade'] * Number(num.value));
                     // }
-                    money.innerHTML = Number(money.textContent) - (json['trade'] * Number(num.value));
-                } else {
-                    swal("您的资产不足以购买","","warning");
-                }
+                    money.innerHTML = Number(money.textContent) - (json[''] * Number(num.value));
+                // } else {
+                //     swal("您的资产不足以购买","","warning");
+                // }
 
             }else{
                 swal("交易失败","","error")
@@ -90,6 +88,23 @@ function getTradeRetunResult(addordelete) {
     var stockCode = document.getElementById("inputstcode");
     var num = document.getElementById("inputnumofcode");
     var returnResult;
+    var nowPrice;
+    $.ajax({
+        cache: false,
+        async: false,
+        type: 'POST',
+        url: 'getSTCodeInfo.action',
+        data: {
+            stockCode: stockCode.value
+        },
+        dataType: 'json',
+        success: function (data) {
+            nowPrice = JSON.parse(data);
+        },
+        error: function (data) {
+            alert("error")
+        }
+    });
     $.ajax({
         cache: false,
         async: false,
@@ -99,7 +114,8 @@ function getTradeRetunResult(addordelete) {
             tradeAction:addordelete,
             stockCode: stockCode.value,
             accountID:accountID,
-            numOfStock:num.value
+            numOfStock:num.value,
+            nowPrice: nowPrice['trade']
         },
         dataType: 'json',
         success: function (data) {
