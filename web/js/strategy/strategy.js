@@ -1,26 +1,29 @@
 var accountID;
-var collectedStock
+var collectedStock;
 
 $(document).ready(function() {
+	//判断当前登陆用户
 	$.ajax({
 		type: 'get',
 		url: 'haveLogin.action',
 		async: false,
 		dataType: 'json',
 		success: function(data) {
-			accountID = JSON.parse(data);
+			accountID = JSON.parse(data)["accountID"];
 		},
 		error: function(data) {
 			alert("error");
 		}
 	});
+
 	if(accountID != "") {
+		//获取收藏的股票
 		$.ajax({
-			type: "get",
-			url: "getCollectStock.action",
+			type: 'get',
+			url: 'getCollectStock.action',
 			async: false,
 			data: {
-				accountID: accountID["accountID"]
+				accountID: accountID
 			},
 			dataType: 'json',
 			success: function(data) {
@@ -84,6 +87,16 @@ function selectPoolTag(showContent, selfObj) {
 	}
 	document.getElementById(showContent).style.display = "block";
 	if(showContent == "pool_Content1") {
+		if(accountID!=""){
+			var optionString = '';
+			for(var i = 0; i < collectedStock.length; i++) {
+				optionString += "<option value=\'" + collectedStock[i]['code'] + "\'>" + collectedStock[i]['code'] + "</option>";
+			}
+
+			$("#usertype").empty();
+			$("#usertype").append(optionString);
+			$('#usertype').selectpicker('refresh');
+		}
 		document.getElementsByClassName("form-group")[0].style.display = "block";
 		document.getElementById("selectedStock").style.display = "block";
 	} else {
