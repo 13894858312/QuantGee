@@ -73,12 +73,12 @@
                 <param name="root">result</param>
             </result>
         </action>
-        <action name="getRealSHDate" class="marketInfoAction" method="getRealSHDate">
+        <action name="getRealSH" class="marketInfoAction" method="getRealSH">
             <result name="success" type="json">
                 <param name="root">result</param>
             </result>
         </action>
-        <action name="getRealSHPrice" class="marketInfoAction" method="getRealSHPrice">
+        <action name="getRealSHData" class="marketInfoAction" method="getRealSHData">
             <result name="success" type="json">
                 <param name="root">result</param>
             </result>
@@ -106,6 +106,21 @@
             </result>
         </action>
         <action name="getStockCurrentVO" class="listAction" method="getStockCurrentVO">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="getRecommandStock" class="listAction" method="getRecommandStock">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="getStockReal" class="listAction" method="getStockReal">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <action name="getTheRealStockDateInfo" class="listAction" method="getTheRealStockDateInfo">
             <result name="success" type="json">
                 <param name="root">result</param>
             </result>

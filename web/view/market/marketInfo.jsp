@@ -123,13 +123,13 @@
 					</div>
 				</div>
 				<div class="info">
-					<div class="data">昨收:3140.32</div>
-					<div class="data">涨跌幅:10.12%</div>
-					<div class="data">今开:3132.12</div>
-					<div class="data">涨跌:3140.32</div>
+					<div class="data" id="yesclose"></div>
+					<div class="data" id="highest"></div>
+					<div class="data" id="todopen"></div>
+					<div class="data" id="lowest"></div>
 				</div>
                 <div class="shangzgraph" id="shangzgraph"></div>
-                <%--<script src="../../js/marketInfo/realInfo.js"></script>--%>
+                <script src="../../js/marketInfo/realInfo.js"></script>
 			</div>
 			<div class="shenz">
 				<div class="text">

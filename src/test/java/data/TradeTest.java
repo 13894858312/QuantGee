@@ -29,7 +29,7 @@ public class TradeTest {
         trade.setAction(1);
         trade.setPrice(2.0);
         trade.setNumOfStock(123);
-        trade.setCode("ased22i");
+//        trade.getStockId("ased22");
         trade.setTime("000");
         Assert.assertEquals(tradeDAO.addTradeInfo(trade),true);
     }
@@ -38,7 +38,7 @@ public class TradeTest {
     public void getTradeListTest(){
         Iterator<Trade> iterator = tradeDAO.getUserTradeList("123123");
         while (iterator.hasNext()){
-            System.out.println(iterator.next().getCode());
+            System.out.println(iterator.next().getStockId());
         }
     }
     @Test
