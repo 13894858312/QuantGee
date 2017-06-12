@@ -1,17 +1,14 @@
 package bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by wangxue on 2017/6/9.
+ * Created by wangxue on 2017/6/12.
  */
 @Entity
+@IdClass(StrategyPK.class)
 public class Strategy {
-
-//    /********************必须参数*******************/
+    //    /********************必须参数*******************/
 //    private int strategyID;                 //策略id 收藏后该id由数据库确定 初次添加无需指定id
 //    private String strateygyName;           //策略名字
 //    private String userID;                  //用户id
@@ -38,7 +35,6 @@ public class Strategy {
 //    private int vectorLength;               //strategyType为4时需要此参数 表示最近邻向量的长度(m)
 //    /******************不同策略的可选参数*****************/
 
-    private int strategyId;
     private String strategyName;
     private String userId;
     private String time;
@@ -59,16 +55,6 @@ public class Strategy {
     private Integer vectorLength;
 
     @Id
-    @Column(name = "strategyID", nullable = false)
-    public int getStrategyId() {
-        return strategyId;
-    }
-
-    public void setStrategyId(int strategyId) {
-        this.strategyId = strategyId;
-    }
-
-    @Basic
     @Column(name = "strategyName", nullable = false, length = 30)
     public String getStrategyName() {
         return strategyName;
@@ -78,7 +64,7 @@ public class Strategy {
         this.strategyName = strategyName;
     }
 
-    @Basic
+    @Id
     @Column(name = "userID", nullable = false, length = 20)
     public String getUserId() {
         return userId;
@@ -126,7 +112,7 @@ public class Strategy {
 
     public void setNotSt(byte notSt) {
         this.notSt = notSt;
-}
+    }
 
     @Basic
     @Column(name = "holdingPeriod", nullable = false)
@@ -255,7 +241,6 @@ public class Strategy {
 
         Strategy strategy = (Strategy) o;
 
-        if (strategyId != strategy.strategyId) return false;
         if (strategyType != strategy.strategyType) return false;
         if (Double.compare(strategy.initFund, initFund) != 0) return false;
         if (notSt != strategy.notSt) return false;
@@ -288,8 +273,7 @@ public class Strategy {
     public int hashCode() {
         int result;
         long temp;
-        result = strategyId;
-        result = 31 * result + (strategyName != null ? strategyName.hashCode() : 0);
+        result = strategyName != null ? strategyName.hashCode() : 0;
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
         result = 31 * result + (time != null ? time.hashCode() : 0);
         result = 31 * result + strategyType;
