@@ -33,6 +33,8 @@ public class TradeAction extends ActionSupport{
     private String accountID;
     private int tradeAction;
     private String numOfStock;
+    private double nowPrice;
+
 
 
     @Autowired
@@ -84,6 +86,14 @@ public class TradeAction extends ActionSupport{
 
     public void setNumOfStock(String numOfStock) {
         this.numOfStock = numOfStock;
+    }
+
+    public double getNowPrice() {
+        return nowPrice;
+    }
+
+    public void setNowPrice(double nowPrice) {
+        this.nowPrice = nowPrice;
     }
 
     private StockHistoricalVO getStockHistoricalVO(int num1, int num2, String type){
@@ -142,9 +152,17 @@ public class TradeAction extends ActionSupport{
 
     public String getTradeActionResult(){
         Date now = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = dateFormat.format(now);
-        TradeRecordVO tradeRecordVO = new TradeRecordVO(date, accountID, stockCode, tradeAction, Integer.parseInt(numOfStock), 0);
+
+        System.out.println(date);
+        System.out.println(accountID);
+        System.out.println(stockCode);
+        System.out.println(tradeAction);
+        System.out.println(numOfStock);
+        System.out.println(nowPrice);
+
+        TradeRecordVO tradeRecordVO = new TradeRecordVO(date, accountID, stockCode, tradeAction, Integer.parseInt(numOfStock), nowPrice);
         if(tradeService.addTradeRecord(tradeRecordVO)){
             ArrayList<String> arrayList = new ArrayList<>();
             arrayList.add("success");
@@ -167,9 +185,9 @@ public class TradeAction extends ActionSupport{
     }
 
     public String getTheStockTradeInfo(){
-//        HoldingStockVO holdingStockVO = tradeService.getRealTimeHoldingStockInfo(new TradeInputVO(accountID,stockCode));
-//        JSONObject jsonObject = JSONObject.fromObject(holdingStockVO);
-//        result = jsonObject.toString();
+        HoldingStockVO holdingStockVO = tradeService.getRealTimeHoldingStockInfo(new TradeInputVO(accountID,stockCode));
+        JSONObject jsonObject = JSONObject.fromObject(holdingStockVO);
+        result = jsonObject.toString();
         return SUCCESS;
     }
 }
