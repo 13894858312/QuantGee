@@ -44,7 +44,7 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
                 continue;
             }
             times.add(temp.getTime());
-            nowPrice.add(temp.getTrade());
+            nowPrice.add(MathHelper.formatData(temp.getTrade(),2));
             volumn.add((double)temp.getVolume());
         }
 

@@ -6,6 +6,7 @@ import bean.CurrentIndex;
 import bean.MarketInfo;
 import bean.Stock;
 import logic.tools.DateHelper;
+import logic.tools.MathHelper;
 import logic.tools.TimeHelper;
 import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,7 @@ public class MarketInfoServiceImp implements MarketInfoService{
         while(currentIndexs.hasNext()) {
             CurrentIndex temp = currentIndexs.next();
             times.add(temp.getT());
-            nowPrice.add(temp.getCloseNum());
+            nowPrice.add(MathHelper.formatData(temp.getCloseNum(),2));
             volumn.add((double)temp.getVolume());
         }
 

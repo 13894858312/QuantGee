@@ -55,7 +55,7 @@ public class StockCurrentVO {
         this.stockName = stockName;
         this.stockMarket = stockMarket;
         this.time = time;
-        this.trade = trade;
+        this.trade = MathHelper.formatData(trade,2);
         this.open = open;
         this.low = low;
         this.high = high;

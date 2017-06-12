@@ -167,4 +167,11 @@ public class TradeServiceImp implements TradeService {
         }
         return result;
     }
+
+    @Override
+    public double getUserMoney(String userID) {
+        double result =  tradeDAO.getUserMoney(userID);
+        return result;
+    }
+
 }
