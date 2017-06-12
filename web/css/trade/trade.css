@@ -166,14 +166,14 @@
 }
 #inputstcode{
 	float: left;
-	margin-left: 15%;
-	width: 15%;
+	margin-left: 48%;
+	width: 20%;
 	margin-top: 20px;
 	height: 25px;
 	border-radius: 3px;
 	border: 1px solid #C0C0C0;
 }
-#inputnumofcode{
+/*#inputnumofcode{
 	float: left;
 	margin-left: 3%;
 	width: 15%;
@@ -181,26 +181,26 @@
 	height: 25px;
 	border-radius: 3px;
 	border: 1px solid #C0C0C0;
-}
+}*/
 .nowmoney{
 	float: left;
-	width: 5%;
-	margin-top: 23px;
+	width: 4%;
+	margin-top: 20px;
 	height: 25px;
 }
 .nowmoneytext{
+	margin-left: 1%;
 	float: left;
-	margin-left: 3%;
-	width: 9%;
-	margin-top: 23px;
+	width: 4%;
+	margin-top: 20px;
 	height: 25px;
 }
 .check{
+	margin-left: 1%;
 	cursor: hand;
 	float: left;
 	text-align: center;
-	margin-top: 20px;
-	margin-left: 5%;
+	margin-top: 21px;
 	width: 5%;
 	height: 22px;
 	color: #FFFFFF;
@@ -211,7 +211,22 @@
 	font-weight: 100;
 	font-family: "Roboto Mono", monospace;
 }
-.buy{
+tr{
+	height: 30px;
+}
+.tdbutton{
+	height: 20px;
+	width: 50px;
+	text-align: center;
+	color: #FFFFFF;
+	background-color: #003366;
+	opacity: 0.8;
+	border-radius: 3px;
+	font-size: 16px;
+	font-weight: 400;
+	font-family: "Roboto Mono", monospace;
+}
+/*.buy{
 	cursor: hand;
 	float: left;
 	text-align: center;
@@ -226,7 +241,7 @@
 	font-size: 18px;
 	font-weight: 100;
 	font-family: "Roboto Mono", monospace;
-}
+}*/
 .stocktable{
 	float: left;
 	margin-left: 15%;
@@ -239,17 +254,20 @@
 }
 .stth{
 	text-align: left;
-	width: 12%;
-	font-size: 14px;
+	width: 16%;
+	font-size: 16px;
 	font-weight: 100;
 	font-family: "Roboto Mono", monospace;
 }
-.delete{
+.add{
 	text-align: right;
-	width: 12%;
-	font-size: 14px;
-	font-weight: 100;
-	font-family: "Roboto Mono", monospace;
+	width: 7%;
+	cursor: hand;
+}
+.delete{
+	cursor: hand;
+	text-align: right;
+	width: 7%;
 }
 .predict{
 	float: left;

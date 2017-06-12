@@ -1,6 +1,28 @@
 /**
  * Created by Administrator on 2017/6/10.
  */
+function buyStock() {
+    swal({
+            title: "输入！",
+            text: "输入一些有趣的话：",
+            type: "input",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            animation: "slide-from-top",
+            inputPlaceholder: "输入一些话"
+        },
+        function(inputValue){
+            if (inputValue === false) returnfalse;
+
+            if (inputValue === "") {
+                swal.showInputError("你需要输入一些话！");
+                return false
+            }
+
+            swal("非常好！", "你输入了：" + inputValue,"success");
+        });
+    // swal("收藏成功","","success");
+}
 function addrow() {
     var accountID;
     $.ajax({
