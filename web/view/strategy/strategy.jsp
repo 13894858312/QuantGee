@@ -199,7 +199,6 @@
             </li>
         </ul>
     </div>
-
     <div class="pool_Content" style="display: block;" id=pool_Content0>
         <span>选择板块</span>
         <select id="backTestBlock" style="height: 40px; width: 100px; margin-left: 10px; background: #FFFFFF;">
@@ -263,18 +262,10 @@
         </select>
     </div>
 
-    <button onclick="addStock('usertype')" style="width: 80px;border-radius: 6px;margin-left: 10px;border: 1px solid #999;background: #FFFFFF; padding: 1px;transition: .3s linear;height: 40px;">添加
+    <button id="addMyStock" onclick="addStock('usertype')" style="width: 80px;border-radius: 6px;margin-left: 10px;border: 1px solid #999;background: #FFFFFF; padding: 1px;transition: .3s linear;height: 40px;">添加
     </button>
 
-    <button style="
-width: 80px;
-				    border-radius: 6px;
-				    margin-left: 110px;
-				    border: 1px solid #999;
-				    background: #FFFFFF;
-				    padding: 1px;
-				    transition: .3s linear;
-				    height: 40px;				">一键添加
+    <button id="addMyAllStock" style="width: 80px;border-radius: 6px;margin-left: 110px;border: 1px solid #999;background: #FFFFFF;padding: 1px;transition: .3s linear;height: 40px;">一键添加
     </button>
 </div>
 <div id="selectedStock" style="margin: 20px auto;display: none;width: 70%;">
@@ -350,8 +341,8 @@ width: 80px;
 									clearBtn: true, //清除按钮
 									todayHighlight : true,  
     									endDate : new Date() 
-									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
-								})	
+									format: "yyyy-mm-dd"
+									})
                             </script>
                         </th>
                         <th>
@@ -401,9 +392,9 @@ width: 80px;
                             </div>
                         </th>
                         <th>
-                            <div class="ratio">
+                            <div>
                                 <label style="font-weight: 100;width: 64px;">持股比例（％）</label>
-                                <input type="number"
+                                <input class="ratio" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
 
@@ -425,9 +416,11 @@ width: 80px;
 									language: "zh-CN",
 									autoclose: true, //选中之后自动隐藏日期选择框
 									clearBtn: true, //清除按钮
+									todayHighlight : true,  
+    									endDate : new Date() ,
 									
-									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
-								})	
+									format: "yyyy-mm-dd" 
+                            		})
                             </script>                
                         </th>
                         <th>
@@ -438,8 +431,10 @@ width: 80px;
 									language: "zh-CN",
 									autoclose: true, //选中之后自动隐藏日期选择框
 									clearBtn: true, //清除按钮
+									todayHighlight : true,  
+    									endDate : new Date() ,
 									
-									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+									format: "yyyy-mm-dd"
 								})	
                             </script>                
                         </th>
@@ -520,8 +515,10 @@ width: 80px;
 									language: "zh-CN",
 									autoclose: true, //选中之后自动隐藏日期选择框
 									clearBtn: true, //清除按钮
+									todayHighlight : true,  
+    									endDate : new Date() ,
 									
-									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+									format: "yyyy-mm-dd" 
 								})	
                             </script>
                         </th>
@@ -533,8 +530,10 @@ width: 80px;
 									language: "zh-CN",
 									autoclose: true, //选中之后自动隐藏日期选择框
 									clearBtn: true, //清除按钮
+									todayHighlight : true,  
+    									endDate : new Date() ,
 									
-									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+									format: "yyyy-mm-dd"
 								})	
                             </script>
                         </th>
@@ -624,7 +623,9 @@ width: 80px;
 									language: "zh-CN",
 									autoclose: true, //选中之后自动隐藏日期选择框
 									clearBtn: true, //清除按钮
-									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+									todayHighlight : true,  
+    									endDate : new Date() ,
+									format: "yyyy-mm-dd"
 								})	
                             </script>
                         </th>
@@ -636,7 +637,9 @@ width: 80px;
 									language: "zh-CN",
 									autoclose: true, //选中之后自动隐藏日期选择框
 									clearBtn: true, //清除按钮
-									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+									todayHighlight : true,  
+    									endDate : new Date() ,
+									format: "yyyy-mm-dd"
 								})	
                             </script>
                         </th>
@@ -725,7 +728,9 @@ width: 80px;
 									language: "zh-CN",
 									autoclose: true, //选中之后自动隐藏日期选择框
 									clearBtn: true, //清除按钮
-									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+									todayHighlight : true,  
+    									endDate : new Date() ,
+									format: "yyyy-mm-dd"
 								})	
                             </script>
                         </th>
@@ -737,7 +742,9 @@ width: 80px;
 									language: "zh-CN",
 									autoclose: true, //选中之后自动隐藏日期选择框
 									clearBtn: true, //清除按钮
-									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+									todayHighlight : true,  
+    									endDate : new Date() ,
+									format: "yyyy-mm-dd"
 								})	
                             </script>
                         </th>

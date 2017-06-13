@@ -38,7 +38,8 @@ public class StrategyBackTestInputVO {
 
 
     /***************寻找最佳形成期需要的参数***************/
-    private boolean isHoldingPeriodFixed;     //持有期是否为不变量 用于寻找最佳形成期或持有期
+    private boolean isHoldingPeriodFixed;     //持有期是否为不变量
+    // 用于寻找最佳形成期或持有期
     /***************寻找最佳形成期需要的参数***************/
 
 
