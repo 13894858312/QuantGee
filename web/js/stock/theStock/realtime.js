@@ -21,8 +21,10 @@ function drawRealImg() {
     });
     var date = [];
     var price = [];
+    var open = [];
     for(var i=0;i<json['times'].length;i++){
         date.push(json['times'][i]);
+        open.push(json['nowPrice'][0]);
     }
     for(var i=0;i<json['nowPrice'].length;i++){
         price.push(json['nowPrice'][i]);
@@ -43,7 +45,7 @@ function drawRealImg() {
             trigger: 'axis'
         },
         grid: {
-            top:'20%',
+            top:'10%',
             left: '0%',
             right: '0%',
             bottom: '5%'
@@ -75,6 +77,21 @@ function drawRealImg() {
                     normal : {
                         lineStyle:{
                             color:'#579bf0'
+                        }
+                    }
+                }
+            },
+            {
+                name:'开盘价',
+                type:'line',
+                symbol:'none',
+                data:open,
+                itemStyle : {
+                    normal : {
+                        lineStyle: {
+                            type: 'dashed',
+                            width: '1',
+                            color: '#bd3f3f'
                         }
                     }
                 }
