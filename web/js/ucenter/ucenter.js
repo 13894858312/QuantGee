@@ -30,7 +30,35 @@ $(document).ready(function() {
 			},
 			dataType: 'json',
 			success: function(data) {
+				alert(data);
 				collectedStock = JSON.parse(data);
+				alert(collectedStock[0]['stockName']);
+				for(var i = 0 ; i < collectedStock.length ; i++){
+					var stockName = collectedStock[i]['stockName'];
+                    var code = collectedStock[i]['code'];
+                    var trade = collectedStock[i]['trade'];
+                    var changePercent = collectedStock[i]['changePercent'];
+					var tr = $("<tr><td><a onclick='totheStockView()' target='_blank'>"+stockName+"</a></td>" +
+						"<td><a id='inputStockCode' onclick='totheStockView()' target='_blank'>"+code+"</a></td>" +
+						"<td>"+trade+"</td><td>"+changePercent+"</td></tr>");
+					tr.appendTo("#table1");
+					var volume = collectedStock[i]['volume'];
+					var amount = collectedStock[i]['amount'];
+					var mktcap = collectedStock[i]['mktcap'];
+					var per = collectedStock[i]['per'];
+					var pb = collectedStock[i]['pb'];
+                    var tr = $("<tr><td>"+volume+"</td><td>"+amount+"</td>" +
+                        "<td>"+mktcap+"</td><td>"+per+"</td><td>"+pb+"</td></tr>");
+                    tr.appendTo("#table2");
+					var settlement = collectedStock[i]['settlement'];
+                    var open = collectedStock[i]['open'];
+                    var high = collectedStock[i]['high'];
+                    var low = collectedStock[i]['low'];
+                    var turnover = collectedStock[i]['turnover'];
+                    var tr = $("<tr><td>"+settlement+"</td><td>"+open+"</td>" +
+                        "<td>"+high+"</td><td>"+low+"</td><td>"+turnover+"</td></tr>");
+
+                }
 			},
 			error: function(data) {
 				alert("error");

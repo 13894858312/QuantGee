@@ -104,20 +104,7 @@
 								<th style="width:137px" class="table_sort"><i></i><span>涨跌幅</span></th>
 							</tr>
 						</thead>
-						<tbody>
-							<s:iterator value="stockCurrentVOS">
-								<tr>
-									<td>
-										<a onclick="totheStockView()" target="_blank"><s:property value="stockName" /></a>
-									</td>
-									<td>
-										<a id="inputStockCode" onclick="totheStockView()" target="_blank"><s:property value="code" /></a>
-									</td>
-									<td><s:property value="trade" /></td>
-									<td><s:property value="changePercent" /></td>
-									<%--<td><i class="uarr"></i></td>--%>
-								</tr>
-							</s:iterator>
+						<tbody id="table1">
 						</tbody>
 					</table>
 					<table class="colums">
@@ -130,16 +117,16 @@
 								<th class="table_sort"><i></i><span>市净率</span></th>
 							</tr>
 						</thead>
-						<tbody>
-							<s:iterator value="stockCurrentVOS">
-								<tr>
-									<td><s:property value="volume" /></td>
-									<td><s:property value="amount" /></td>
-									<td><s:property value="mktcap" /></td>
-									<td><s:property value="per" /></td>
-									<td><s:property value="pb" /></td>
-								</tr>
-							</s:iterator>
+						<tbody id="table2">
+							<%--<s:iterator value="stockCurrentVOS">--%>
+								<%--<tr>--%>
+									<%--<td><s:property value="volume" /></td>--%>
+									<%--<td><s:property value="amount" /></td>--%>
+									<%--<td><s:property value="mktcap" /></td>--%>
+									<%--<td><s:property value="per" /></td>--%>
+									<%--<td><s:property value="pb" /></td>--%>
+								<%--</tr>--%>
+							<%--</s:iterator>--%>
 						</tbody>
 					</table>
 					<table class="colums hide">
@@ -153,15 +140,15 @@
 							</tr>
 						</thead>
 						<tbody>
-							<s:iterator value="stockCurrentVOS">
-								<tr>
-									<td><s:property value="settlement" /></td>
-									<td><s:property value="open" /></td>
-									<td><s:property value="high" /></td>
-									<td><s:property value="low" /></td>
-									<td><s:property value="turnover" /></td>
-								</tr>
-							</s:iterator>
+							<%--<s:iterator value="stockCurrentVOS">--%>
+								<%--<tr>--%>
+									<%--<td><s:property value="settlement" /></td>--%>
+									<%--<td><s:property value="open" /></td>--%>
+									<%--<td><s:property value="high" /></td>--%>
+									<%--<td><s:property value="low" /></td>--%>
+									<%--<td><s:property value="turnover" /></td>--%>
+								<%--</tr>--%>
+							<%--</s:iterator>--%>
 						</tbody>
 					</table>
 
