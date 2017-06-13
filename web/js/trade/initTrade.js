@@ -60,20 +60,16 @@ if(accountID == ""){
             var theValueOfStock = x.insertCell(3);
             var nowPrice = x.insertCell(4);
             var range = x.insertCell(5);
+            var blank1 = x.insertCell(6);
+            var blank2 = x.insertCell(7);
             stockName.innerHTML = tradeInfoArray[i]['stockName'];
             stockCode.innerHTML = tradeInfoArray[i]['stockCode'];
             theNumOfStock.innerHTML = tradeInfoArray[i]['holdNum'];
             theValueOfStock.innerHTML = tradeInfoArray[i]['initFund'];
             nowPrice.innerHTML = tradeInfoArray[i]['nowPrice'];
             range.innerHTML = tradeInfoArray[i]['yield'];
-            // deletedo.innerHTML = "<img src='../../images/deletebutton.png' />";
-            // deletedo.style.textAlign = "right";
-            // deletedo.style.cursor = "hand";
-            // deletedo.onclick = function () {
-            //     if(getTradeRetunResult(1))
-            //     document.getElementById('st').deleteRow(x.rowIndex)
-            //     money.innerHTML = Number(money.textContent) + (json['trade'] * Number(num.value));
-            // }
+            blank1.innerHTML = "";
+            blank2.innerHTML = "";
         }
     }
 

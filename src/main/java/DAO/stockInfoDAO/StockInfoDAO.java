@@ -46,6 +46,13 @@ public interface StockInfoDAO {
     public Iterator<Current> getLatestCurrents();
 
     /**
+     * 获取指定板块所有股票最新信息
+     * @param code sh sz cyb zxb
+     * @return 所有股票最新信息 sh
+     */
+    public Iterator<Current> getLatestCurrents(String code);
+
+    /**
      * 得到所有股票ID
      * @return 所有股票ID
      */

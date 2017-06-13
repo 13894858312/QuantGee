@@ -1,6 +1,8 @@
 package vo.trade;
 
 
+import logic.tools.MathHelper;
+
 /**
  * Created by Mark.W on 2017/5/11.
  * 对于每个用户当前所有在模拟交易的信息的vo
@@ -33,8 +35,8 @@ public class HoldingStockVO {
         this.nowPrice = nowPrice;
         this.userId = userId;
         this.holdNum = holdNum;
-        this.initFund = initFund;
-        this.yield = yield;
+        this.initFund = MathHelper.formatData(initFund,2);
+        this.yield = MathHelper.formatData(yield,2);
     }
 
     public String getStockCode() {

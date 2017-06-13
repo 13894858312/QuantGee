@@ -1,9 +1,8 @@
 /**
  * Created by Administrator on 2017/6/3.
  */
-var intervaltime = 3000;
 doshchart();
-setInterval(doshchart, 3000);
+setInterval(doshchart, 120000);
 function doshchart() {
     var realdata;
     $.ajax({

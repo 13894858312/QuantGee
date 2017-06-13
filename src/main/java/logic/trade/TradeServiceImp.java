@@ -4,6 +4,7 @@ import DAO.stockInfoDAO.StockInfoDAO;
 import DAO.tradeDAO.TradeDAO;
 import bean.*;
 import logic.tools.DateHelper;
+import logic.tools.MathHelper;
 import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -114,7 +115,9 @@ public class TradeServiceImp implements TradeService {
                     return -1;
                 }
             } else {
-                assert (holdingStock.getHoldNum() - tradeRecord.getNumOfStock() >= 0) : "logic.TradeServiceImp.addTradeRecord.HoldNum小于0";
+                if(holdingStock.getHoldNum() - tradeRecord.getNumOfStock() < 0) {
+                    return -1;
+                }
 
                 holdingStock.setHoldNum(holdingStock.getHoldNum() - tradeRecord.getNumOfStock());
                 holdingStock.setSellOutMoney(holdingStock.getSellOutMoney() + current.getTrade() * tradeRecord.getNumOfStock());
@@ -135,7 +138,7 @@ public class TradeServiceImp implements TradeService {
             }
         }
 
-        return userMoney;
+        return MathHelper.formatData(userMoney,2);
     }
 
     @Override
@@ -162,6 +165,9 @@ public class TradeServiceImp implements TradeService {
 
         while(holdingStocks.hasNext()) {
             HoldingStock temp = holdingStocks.next();
+            if (temp.getHoldNum() == 0) {
+                continue;
+            }
             //获取当前股票价格
             double nowPrice;
             Current current = stockInfoDAO.getStockRealTimeInfo(temp.getCode());
@@ -183,7 +189,7 @@ public class TradeServiceImp implements TradeService {
     @Override
     public double getUserMoney(String userID) {
         double result =  tradeDAO.getUserMoney(userID);
-        return result;
+        return MathHelper.formatData(result,2);
     }
 
 }

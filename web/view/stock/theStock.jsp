@@ -137,7 +137,9 @@
 	  			</tr>
   			</table>
   		</div>
-  		<div class="tsrealtime" id="tsrealtime"></div>
+		<div class="tsrealtime">
+  			<div class="tsrealtime2" id="tsrealtime"></div>
+		</div>
   	</div>
   </div>
     <script src="../../js/stock/theStock/realtime.js"></script>

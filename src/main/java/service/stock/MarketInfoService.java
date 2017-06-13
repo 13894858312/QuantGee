@@ -52,5 +52,5 @@ public interface MarketInfoService {
      * @param date 日期
      * @return MarketInfoVO
      */
-    public MarketInfoVO getHistoryMarketInfo(String marketType, String date);
+    public MarketInfoVO getRealTimeMarketInfo(String marketType);
 }

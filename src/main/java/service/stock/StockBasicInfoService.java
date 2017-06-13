@@ -41,6 +41,13 @@ public interface StockBasicInfoService {
     public String getCodeByName(String name);
 
     /**
+     * 根据股票代码获得股票名字（错误返回null）
+     * @param code 股票代码
+     * @return 股票名字
+     */
+    public String getNameByCode(String code);
+
+    /**
      * 获取所有的股票代码
      * @return 代码
      */

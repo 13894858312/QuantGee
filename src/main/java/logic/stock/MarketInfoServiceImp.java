@@ -220,77 +220,151 @@ System.out.println("************************************************************
     }
 
     @Override
-    public MarketInfoVO getHistoryMarketInfo(String marketType, String date) {
-
-        boolean isRealTime = false;
-        if (DateHelper.getNowDate().equals(date)) {
-            isRealTime = true;
-        }
-
-        Iterator<String> codes = stockInfoDAO.getAllStockCodesByBlock(marketType);
+    public MarketInfoVO getRealTimeMarketInfo(String marketType) {
 
         double rate;
-        int[] rateNums = new int[6]; //数据依次为跌停，-10%- -5%，-5%-0，0-5%，5%-10%，涨停
+        int[] rateNums = new int[10]; //数据依次为跌停，-10%- -5%，-5%-0，0-5%，5%-10%，涨停
+        for(int i=0; i<rateNums.length; ++i) {
+            rateNums[i] = 0;
+        }
 
-        while (codes.hasNext()) {
-            String code = codes.next();
+        String date = DateHelper.getNowDate();
+        String time = TimeHelper.getNowTime();
+        if (TimeHelper.isMarketOpen(time) == -1) {
+            return new MarketInfoVO(date, time, marketType, rateNums);
+        }
 
-            //然后获取属于该板块的股票数据 计算涨跌幅股票的数量
-            if(isRealTime) {
-                Current temp = stockInfoDAO.getStockRealTimeInfo(code);
-                if (temp == null) {
-                    continue;
-                }
-                rate = temp.getChangepercent();
-            } else {
-                Stock temp = stockInfoDAO.getStockInfo(code, date);
-                if (temp == null) {
-                    continue;
-                }
-                rate = temp.getpChange();
+//        Iterator<Current> currents = stockInfoDAO.getLatestCurrents(marketType);
+        Iterator<Current> currents = stockInfoDAO.getLatestCurrents();
+        while (currents.hasNext()) {
+            Current temp = currents.next();
+            if (temp == null) {
+                continue;
             }
+            rate = temp.getChangepercent();
 
             //ST股不同判断条件 判断指定日期板块的股票涨跌幅情况
-            if (code.contains("st") || code.contains("ST")) {
-                if (rate <= -0.05) {
+            if (temp.getCode().contains("st") || temp.getCode().contains("ST")) {
+                if (rate <= -5) {
                     rateNums[0]++;
-                } else if (rate >= -0.05 && rate < 0) {
+                } else if (rate > -5 && rate <= -4) {
                     rateNums[2]++;
-                } else if (rate > 0 && rate <= 0.05) {
+                } else if (rate > -4 && rate <= -2) {
                     rateNums[3]++;
-                } else if (rate >= 0.05) {
+                } else if (rate > -2 && rate <=0) {
+                    rateNums[4]++;
+                } else if (rate > 0 && rate <= 2) {
                     rateNums[5]++;
+                } else if (rate > 2 && rate <= 4) {
+                    rateNums[6]++;
+                } else if (rate > 4 && rate < 5) {
+                    rateNums[7]++;
+                } else if (rate >= 5) {
+                    rateNums[9]++;
                 }
             } else {
-                if (rate <= -0.1) {
+                if (rate <= -10) {
                     rateNums[0]++;
-                } else if (rate > -0.1 && rate < -0.05) {
+                } else if (rate > -10 && rate <= -6) {
                     rateNums[1]++;
-                } else if (rate >= -0.05 && rate < 0) {
+                } else if (rate > -6 && rate <= -4) {
                     rateNums[2]++;
-                } else if (rate > 0 && rate <= 0.05) {
+                } else if (rate > -4 && rate <= -2) {
                     rateNums[3]++;
-                } else if (rate > 0.05 && rate < 0.1) {
+                } else if (rate > -2 && rate <=0) {
                     rateNums[4]++;
-                } else if (rate >= 0.1) {
+                } else if (rate > 0 && rate <= 2) {
                     rateNums[5]++;
+                } else if (rate > 2 && rate <= 4) {
+                    rateNums[6]++;
+                } else if (rate > 4 && rate <= 6) {
+                    rateNums[7]++;
+                } else if (rate > 6 && rate < 10) {
+                    rateNums[8]++;
+                } else if (rate >= 10) {
+                    rateNums[9]++;
                 }
             }
         }
 
-        MarketInfoVO result;
-
         //首先获取该板块在指定时间的基础数据
-        if(isRealTime) {
-            Current current = stockInfoDAO.getStockRealTimeInfo(marketType);
-            result = new MarketInfoVO(date, TimeHelper.getNowTime(), marketType, current.getTrade(), current.getVolume(), rateNums);
-        } else {
-            Stock s = stockInfoDAO.getStockInfo(marketType, date);
-            result = new MarketInfoVO(date, marketType, s.getVolume(), rateNums);
-        }
-
+        MarketInfoVO result = new MarketInfoVO(date, TimeHelper.getNowTime(), marketType, rateNums);
         return result;
     }
+
+
+//    @Override
+//    public MarketInfoVO getRealTimeMarketInfo(String marketType, String date) {
+//
+//        boolean isRealTime = false;
+//        if (DateHelper.getNowDate().equals(date)) {
+//            isRealTime = true;
+//        }
+//
+//        Iterator<String> codes = stockInfoDAO.getAllStockCodesByBlock(marketType);
+//
+//        double rate;
+//        int[] rateNums = new int[6]; //数据依次为跌停，-10%- -5%，-5%-0，0-5%，5%-10%，涨停
+//
+//        while (codes.hasNext()) {
+//            String code = codes.next();
+//
+//            //然后获取属于该板块的股票数据 计算涨跌幅股票的数量
+//            if(isRealTime) {
+//                Current temp = stockInfoDAO.getStockRealTimeInfo(code);
+//                if (temp == null) {
+//                    continue;
+//                }
+//                rate = temp.getChangepercent();
+//            } else {
+//                Stock temp = stockInfoDAO.getStockInfo(code, date);
+//                if (temp == null) {
+//                    continue;
+//                }
+//                rate = temp.getpChange();
+//            }
+//
+//            //ST股不同判断条件 判断指定日期板块的股票涨跌幅情况
+//            if (code.contains("st") || code.contains("ST")) {
+//                if (rate <= -0.05) {
+//                    rateNums[0]++;
+//                } else if (rate >= -0.05 && rate < 0) {
+//                    rateNums[2]++;
+//                } else if (rate > 0 && rate <= 0.05) {
+//                    rateNums[3]++;
+//                } else if (rate >= 0.05) {
+//                    rateNums[5]++;
+//                }
+//            } else {
+//                if (rate <= -0.1) {
+//                    rateNums[0]++;
+//                } else if (rate > -0.1 && rate < -0.05) {
+//                    rateNums[1]++;
+//                } else if (rate >= -0.05 && rate < 0) {
+//                    rateNums[2]++;
+//                } else if (rate > 0 && rate <= 0.05) {
+//                    rateNums[3]++;
+//                } else if (rate > 0.05 && rate < 0.1) {
+//                    rateNums[4]++;
+//                } else if (rate >= 0.1) {
+//                    rateNums[5]++;
+//                }
+//            }
+//        }
+//
+//        MarketInfoVO result;
+//
+//        //首先获取该板块在指定时间的基础数据
+//        if(isRealTime) {
+//            Current current = stockInfoDAO.getStockRealTimeInfo(marketType);
+//            result = new MarketInfoVO(date, TimeHelper.getNowTime(), marketType, current.getTrade(), current.getVolume(), rateNums);
+//        } else {
+//            Stock s = stockInfoDAO.getStockInfo(marketType, date);
+//            result = new MarketInfoVO(date, marketType, s.getVolume(), rateNums);
+//        }
+//
+//        return result;
+//    }
 
 
 

@@ -15,25 +15,17 @@ public class MarketInfoVO {
     private double volume;
     private int[] rateNums;
 
-    public MarketInfoVO() {
-    }
-
     /**
      * 实时数据的构造方法
      * @param date       日期
      * @param time       时间  在表示实时数据时有用，如果表示的信息是历史数据则time属性为""
      * @param marketType 大盘类型
-     * @param price      价格即当前指数值
-     * @param volume     当日总成交量
      * @param rateNums   数据依次为 跌停，-10%- -5%，-5%-0，0-5%，5%-10%， 涨停，
      */
-    public MarketInfoVO(String date, String time, String marketType, double price,
-                        double volume, int[] rateNums) {
+    public MarketInfoVO(String date, String time, String marketType, int[] rateNums) {
         this.date = date;
         this.time = time;
         this.marketType = marketType;
-        this.price = price;
-        this.volume = volume;
         this.rateNums = rateNums;
     }
 

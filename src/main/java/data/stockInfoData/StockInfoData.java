@@ -53,6 +53,11 @@ public class StockInfoData implements StockInfoDAO{
     }
 
     @Override
+    public Iterator<Current> getLatestCurrents(String code) {
+        return null;
+    }
+
+    @Override
     public Iterator<Stock> getStockInfo(String code) {
         Iterator<Stock> iterator = (Iterator<Stock>)hibernateTemplate
                 .find("from Stock s where s.code = ? ",code).iterator();
