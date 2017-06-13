@@ -15,14 +15,14 @@ public class TimeHelperTest {
 
     @Test
     public void nextNMinutes() throws Exception {
-        assertEquals("09:22:02",TimeHelper.nextNMinutes("09:20:02",2));
+        assertEquals("09:22:02",TimeHelper.nextNMinutes("09:20",2));
     }
 
     @Test
     public void isMarketOpen() throws Exception {
-        assertEquals(0,TimeHelper.isMarketOpen("09:31:00"));
-        assertEquals(-1,TimeHelper.isMarketOpen("23:31:00"));
-        assertEquals(1, TimeHelper.isMarketOpen("13:00:10"));
+        assertEquals(0,TimeHelper.isMarketOpen("09:31"));
+        assertEquals(-1,TimeHelper.isMarketOpen("23:31"));
+        assertEquals(1, TimeHelper.isMarketOpen("13:00"));
     }
 
 }
