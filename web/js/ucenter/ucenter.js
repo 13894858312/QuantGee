@@ -39,7 +39,7 @@ $(document).ready(function() {
                     var trade = collectedStock[i]['trade'];
                     var changePercent = collectedStock[i]['changePercent'];
 					var tr = $("<tr><td><a onclick='totheStockView()' target='_blank'>"+stockName+"</a></td>" +
-						"<td><a id='inputStockCode' onclick='totheStockView()' target='_blank'>"+code+"</a></td>" +
+						"<td><a id='inputStockCode'+i onclick='totheStockView()' target='_blank'>"+code+"</a></td>" +
 						"<td>"+trade+"</td><td>"+changePercent+"</td></tr>");
 					tr.appendTo("#table1");
 					var volume = collectedStock[i]['volume'];
@@ -57,7 +57,8 @@ $(document).ready(function() {
                     var turnover = collectedStock[i]['turnover'];
                     var tr = $("<tr><td>"+settlement+"</td><td>"+open+"</td>" +
                         "<td>"+high+"</td><td>"+low+"</td><td>"+turnover+"</td></tr>");
-
+					tr.appendTo("#table3")
+					var but = $("<button onclick='deleteCollectedStock()'></button>")
                 }
 			},
 			error: function(data) {
@@ -259,4 +260,8 @@ function changePassword() {
 			}
 		});
 	}
+}
+
+function deleteCollectedStock(i) {
+	$.("#inputStockCode"+i).innerHTML;
 }
