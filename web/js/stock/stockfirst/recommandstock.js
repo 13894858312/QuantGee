@@ -94,26 +94,24 @@ function drawChart(stockCode, idname) {
     var option = {
         backgroundColor: '#FFFFFF',
         tooltip: {
-            trigger: 'axis'
+            trigger: 'item'
             // axisPointer: {
             //     type: 'cross'
             // }
         },
-        legend: {
-            data: ['现价']
-        },
         grid: {
-            top:'10%',
+            top:'15%',
             left: '5%',
             right: '3%',
             bottom: '11%'
         },
         xAxis: {
-            show:true,
+            show:false,
             type: 'category',
             data: realDate
         },
         yAxis: {
+            show:false,
             scale: true,
             splitArea: {
                 show: true
@@ -123,8 +121,13 @@ function drawChart(stockCode, idname) {
             {
                 name: '现价',
                 type: 'line',
-                data: realPrice
-
+                data: realPrice,
+                markPoint : {
+                    data : [
+                        {type : 'max', name: '最大值'},
+                        {type : 'min', name: '最小值'}
+                    ]
+                }
             }
         ]
     };
