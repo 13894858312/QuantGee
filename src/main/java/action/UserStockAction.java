@@ -40,8 +40,10 @@ public class UserStockAction extends ActionSupport{
     }
 
     public String deleteCollectedStock(){
+        System.out.println(stockCollectInputVO.getCode()+" "+stockCollectInputVO.getUserID());
         if (collectStockService.deleteCollectedStock(stockCollectInputVO)){
             result = "success";
+
         }else {
             result = "fail";
         }
