@@ -203,4 +203,28 @@ public class StrategyVO {
     public void setVectorLength(int vectorLength) {
         this.vectorLength = vectorLength;
     }
+
+    @Override
+    public String toString() {
+        return "StrategyVO{" +
+                "userID='" + userID + '\'' +
+                ", strateygyName='" + strateygyName + '\'' +
+                ", time='" + time + '\'' +
+                ", lastYield=" + lastYield +
+                ", strategyType=" + strategyType +
+                ", initFund=" + initFund +
+                ", notST=" + notST +
+                ", holdingPeriod=" + holdingPeriod +
+                ", returnPeriod=" + returnPeriod +
+                ", stopLoss=" + stopLoss +
+                ", stopProfit=" + stopProfit +
+                ", ratio=" + ratio +
+                ", holdingStockNum=" + holdingStockNum +
+                ", shortReturnPeriod=" + shortReturnPeriod +
+                ", changeNumber=" + changeNumber +
+                ", trainPeriod=" + trainPeriod +
+                ", k=" + k +
+                ", vectorLength=" + vectorLength +
+                '}';
+    }
 }
