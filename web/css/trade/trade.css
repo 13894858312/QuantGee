@@ -293,7 +293,7 @@ tr{
 .traderecordtable{
 	float: left;
 	margin-left: 15%;
-	margin-bottom: 300px;
+	margin-bottom: 200px;
 	width: 67%;
 }
 .recordtext{
@@ -307,4 +307,20 @@ tr{
 	margin-left: 15%;
 	margin-bottom: 20px;
 	width: 67%;
+}
+.theEnd{
+	float: left;
+	margin-left: 15%;
+	width: 70%;
+	height: 100px;
+	border-top: 1px solid #C0C0C0;
+}
+.theendtext{
+	font-size: 14px;
+	text-align: center;
+	font-family: "Roboto Mono", monospace;
+	margin-left: 35%;
+	width: 30%;
+	margin-top: 40px;
+	height: 20px;
 }

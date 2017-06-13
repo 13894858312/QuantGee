@@ -466,3 +466,20 @@ li{
 	font-family: "Roboto Mono", monospace;
 	background-color: #FFFFFF;
 }
+.theEnd{
+	margin-top: 50px;
+	float: left;
+	margin-left: 15%;
+	width: 70%;
+	height: 100px;
+	border-top: 1px solid #C0C0C0;
+}
+.theendtext{
+	font-size: 14px;
+	text-align: center;
+	font-family: "Roboto Mono", monospace;
+	margin-left: 35%;
+	width: 30%;
+	margin-top: 40px;
+	height: 20px;
+}
