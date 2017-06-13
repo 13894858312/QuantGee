@@ -418,10 +418,12 @@ function drawCumulativeYield() {
         }
         var text = "基准年化收益率:" + String(strategyBackTestingResult['cumulativeYieldResultVO']['baseAnnualRevenue']) + "%"
                     + "年化收益率:" + String(strategyBackTestingResult['cumulativeYieldResultVO']['annualRevenue']) + "%"
-                    + "alpha:" + strategyBackTestingResult['cumulativeYieldResultVO']['alpha']
-                    + "beta:" + strategyBackTestingResult['cumulativeYieldResultVO']['beta']
-                    + "夏普比率:" + strategyBackTestingResult['cumulativeYieldResultVO']['sharpeRatio']
-                    + "最大回撤:" + strategyBackTestingResult['cumulativeYieldResultVO']['maxDrawdown']
+                    + "alpha:" + String(strategyBackTestingResult['cumulativeYieldResultVO']['alpha'])
+                    + "beta:" + String(strategyBackTestingResult['cumulativeYieldResultVO']['beta'])
+                    + "夏普比率:" + String(strategyBackTestingResult['cumulativeYieldResultVO']['sharpeRatio'])
+                    + "最大回撤:" + String(strategyBackTestingResult['cumulativeYieldResultVO']['maxDrawdown']) + "%";
+        var content = document.getElementById("testcontent");
+        content.innerHTML = text;
         var myChart = echarts.init(document.getElementById('grapharea'));
         var option1 = {
             backgroundColor: '#FFFFFF',
@@ -499,6 +501,11 @@ function drawYieldHistogram() {
             positive.push(strategyBackTestingResult['yieldHistogramResultVO']['yieldHistogramData'][i]['positiveFrequency']);
             negative.push(strategyBackTestingResult['yieldHistogramResultVO']['yieldHistogramData'][i]['negativeFrequency']);
         }
+        var text = "正收益周期数:" + String(strategyBackTestingResult['yieldHistogramResultVO']['positiveEarningNum'])
+                    + "负收益周期数" + String(strategyBackTestingResult['yieldHistogramResultVO']['negativeEarningNum'])
+                    +"赢率:" + String(strategyBackTestingResult['yieldHistogramResultVO']['winRate']) + "%";
+        var content = document.getElementById("testcontent");
+        content.innerHTML = text;
         var myChart = echarts.init(document.getElementById('grapharea'));
         var option1 = {
             backgroundColor: '#FFFFFF',
@@ -568,12 +575,22 @@ function drawAbnormalReturn() {
                 abnormalReturnData.push(abnormalReturnResult['abnormalReturnLineVOS'][i]['abnormalReturn']);
                 date.push(abnormalReturnResult['abnormalReturnLineVOS'][i]['returnPeriod']);
             }
+            var text = "持有期:" + String(abnormalReturnResult['abnormalReturnLineVOS'][0]['holdingPeriod']) + "天"
+                        + "最佳形成期:" + String(abnormalReturnResult['bestReturnPeriod']) + "天"
+                        + "最优的超额收益率:" + String(abnormalReturnResult['bestAbnormalReturn']) + "%";
+            var content = document.getElementById("testcontent");
+            content.innerHTML = text;
         }else{
             //形成期不变
             for(var i=0;i<abnormalReturnResult['abnormalReturnLineVOS'].length;i++){
                 abnormalReturnData.push(abnormalReturnResult['abnormalReturnLineVOS'][i]['abnormalReturn']);
                 date.push(abnormalReturnResult['abnormalReturnLineVOS'][i]['holdingPeriod']);
             }
+            var text = "形成期:" + String(abnormalReturnResult['abnormalReturnLineVOS'][0]['returnPeriod']) + "天"
+                + "最佳持有期:" + String(abnormalReturnResult['bestHoldingPeriod']) + "天"
+                + "最优的超额收益率:" + String(abnormalReturnResult['bestAbnormalReturn']) + "%";
+            var content = document.getElementById("testcontent");
+            content.innerHTML = text;
         }
         var myChart = echarts.init(document.getElementById('grapharea'));
         var option1 = {
@@ -639,12 +656,22 @@ function drawStategyWinRate() {
                 abnormalReturnData.push(abnormalReturnResult['abnormalReturnLineVOS'][i]['stategyWinRate']);
                 date.push(abnormalReturnResult['abnormalReturnLineVOS'][i]['returnPeriod']);
             }
+            var text = "持有期:" + String(abnormalReturnResult['abnormalReturnLineVOS'][0]['holdingPeriod']) + "天"
+                + "最佳形成期:" + String(abnormalReturnResult['bestReturnPeriod']) + "天"
+                + "最优的策略胜率:" + String(abnormalReturnResult['bestStategyWinRate']) + "%";
+            var content = document.getElementById("testcontent");
+            content.innerHTML = text;
         }else{
             //形成期不变
             for(var i=0;i<abnormalReturnResult['abnormalReturnLineVOS'].length;i++){
                 abnormalReturnData.push(abnormalReturnResult['abnormalReturnLineVOS'][i]['stategyWinRate']);
                 date.push(abnormalReturnResult['abnormalReturnLineVOS'][i]['holdingPeriod']);
             }
+            var text = "形成期:" + String(abnormalReturnResult['abnormalReturnLineVOS'][0]['returnPeriod']) + "天"
+                + "最佳持有期:" + String(abnormalReturnResult['bestHoldingPeriod']) + "天"
+                + "最优的策略胜率:" + String(abnormalReturnResult['bestStategyWinRate']) + "%";
+            var content = document.getElementById("testcontent");
+            content.innerHTML = text;
         }
         var myChart = echarts.init(document.getElementById('grapharea'));
         var option1 = {

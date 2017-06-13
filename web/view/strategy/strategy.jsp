@@ -24,7 +24,7 @@
         }
     </script>
     <script type="text/javascript" src="../../jquery-3.2.1.min.js"></script>
-
+    <script type="text/javascript" src="../../echarts.js"></script>
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" href="../../bootstrap/bootstrap-select/css/bootstrap-select.css">
     <link rel="stylesheet" href="../../bootstrap/bootstrap-datepicker/css/bootstrap-datepicker.css" />
@@ -947,7 +947,7 @@
 		<div class="storebutton" onclick="">加入收藏</div>
 	</div>
 	<div class="testgraphcontent" id="testcontent">
-		
+		最优超额收益率
 	</div>
 	<div class="grapharea" id="grapharea">
 		

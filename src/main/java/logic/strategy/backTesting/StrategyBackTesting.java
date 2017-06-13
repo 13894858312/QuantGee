@@ -372,7 +372,7 @@ System.out.println("                        当前周期moneyInStock:" + moneyIn
             ArrayList<Stock> indexStocks = stockPool.getIndexStocks();
             allBaseY = (indexStocks.get(indexStocks.size()-1).getClose() - indexStocks.get(stockPool.getStartIndex()).getClose())/ indexStocks.get(stockPool.getStartIndex()).getClose();
         } else {
-            allBaseY = (baseYield.get(baseYield.size()-1).getValue() - baseYield.get(0).getValue())/baseYield.get(0).getValue();
+            allBaseY = baseYield.get(baseYield.size()-1).getValue() - baseYield.get(0).getValue();
         }
 
         double result = strategyDataAnlysis.analyseAbnormalReturn(moneyInStock+moneyInHand, initFund, allBaseY);
