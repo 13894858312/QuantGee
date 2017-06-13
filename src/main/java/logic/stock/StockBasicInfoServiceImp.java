@@ -1,6 +1,5 @@
 package logic.stock;
 
-import DAO.stockInfoDAO.QuotaDAO;
 import DAO.stockInfoDAO.StockInfoDAO;
 import bean.*;
 import logic.tools.MathHelper;
@@ -113,6 +112,15 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
     @Override
     public String getCodeByName(String name) {
         return stockInfoDAO.getCodeByName(name);
+    }
+
+    @Override
+    public String getNameByCode(String code) {
+        if (code == null) {
+            return null;
+        }
+        MarketInfo marketInfo = stockInfoDAO.getMarketInfo(code);
+        return marketInfo.getName();
     }
 
 
