@@ -7,9 +7,10 @@
     <script src="../../jquery-3.2.1.min.js"></script>
     <script src="../../js/marketInfo/headcontroller.js"></script>
     <script src="../../js/trade/addlist.js"></script>
-	<script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>
+	<!--<script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>-->
 	<script type="text/javascript" src="../../js/jquery.autocomplete.js"></script>
 	<script type="text/javascript" src="../../js/sweet-alert.min.js"></script>
+	<script type="text/javascript" src="../../js/jPages.min.js"></script>
 	<link rel="stylesheet" href="../../css/sweet-alert.css">
 	<link rel="Stylesheet" href="../../css/jquery.autocomplete.css" />
 	<link rel="shortcut icon" href="../../images/logo20x20.png">
@@ -119,20 +120,25 @@
     	</div>
     </div>
     <div class="stocktable">
-    	<table class="st" id="st">
+    	<table>
     		<tr>
-    			<td class="stth">股票名称</td>
-    			<td class="stth">股票代码</td>
-    			<td class="stth">持仓股数</td>
-    			<td class="stth">初始投入</td>
-    			<td class="stth">最新价</th>
-    			<td class="stth">收益率</td>
-    			<td class="add"><div class="tdbutton" id="buybutton" onclick="buyStock()">买入</div></td>
-    			<td class="delete"><div class="tdbutton" id="sellbutton" onclick="sellStock()">卖出</div></td>
-    			<!--<td class="delete">操作</td>-->
+    			<th class="stth">股票名称</th>
+    			<th class="stth">股票代码</th>
+    			<th class="stth">持仓股数</th>
+    			<th class="stth">初始投入</td>
+    			<th class="stth">最新价</th>
+    			<th class="stth">收益率</th>
+    			<th class="add"><div class="tdbutton" id="buybutton" onclick="buyStock()">买入</div></th>
+    			<th class="delete"><div class="tdbutton" id="sellbutton" onclick="sellStock()">卖出</div></th>
     		</tr>
+    		<!--<tbody id="itemContainer" id="st">
+    			
+    		</tbody>-->
+    	</table>
+    	<table class="st" id="st">
     	</table>
     </div>
+     <div class="holder"></div>
     <div class="recordtext">
     	<div class="testheadtext">
     		<div class="text">交易记录</div>
@@ -145,7 +151,7 @@
     			<td class="stth">股票代码</td>
     			<td class="stth">买入/卖出</td>
     			<td class="stth">股数</td>
-    			<td class="stth">交易价格</th>
+    			<td class="stth">交易价格</td>
     			<td class="stth">交易时间</td>
     		</tr>
     	</table>

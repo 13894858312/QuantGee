@@ -273,6 +273,13 @@ tr{
 	font-weight: 100;
 	font-family: "Roboto Mono", monospace;
 }
+.st td{
+	text-align: left;
+	width: 14.73%;
+	font-size: 16px;
+	font-weight: 100;
+	font-family: "Roboto Mono", monospace;
+}
 .add{
 	text-align: right;
 	width: 7%;
@@ -301,4 +308,10 @@ tr{
 	width: 100%;
 	height: 50px;
 	/*background-color: #F8F8F8;*/
+}
+.holder{
+	float: left;
+	margin-left: 15%;
+	margin-bottom: 20px;
+	width: 67%;
 }
