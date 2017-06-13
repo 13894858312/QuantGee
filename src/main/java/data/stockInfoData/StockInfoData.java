@@ -54,8 +54,64 @@ public class StockInfoData implements StockInfoDAO{
 
     @Override
     public Iterator<Current> getLatestCurrents(String code) {
-        return null;
+
+        try {
+            String latest = (String) hibernateTemplate
+                    .find("select max (time) from Current ").iterator().next();
+
+//            Iterator<Current> iterator = (Iterator<Current>) hibernateTemplate
+//                    .find("from Current where time = ?", latest).iterator();
+            Iterator<Current> iterator ;
+            switch (code) {
+                case "sh":
+                    iterator = (Iterator<Current>) hibernateTemplate
+                            .find("from Current where time = ? and code like ?",
+                                    new String[]{latest, "60%"}).iterator();
+                    break;
+                case "sz":
+                    iterator = (Iterator<Current>) hibernateTemplate
+                            .find("from Current where time = ? and code like ?",
+                                    new String[]{latest, "000%"}).iterator();
+                    break;
+                case "zxb":
+                    iterator = (Iterator<Current>) hibernateTemplate
+                            .find("from Current where time = ? and code like ?",
+                                    new String[]{latest, "002%"}).iterator();
+                    break;
+                case "cyb":
+                    iterator = (Iterator<Current>) hibernateTemplate
+                            .find("from Current where time = ? and code like ?",
+                                    new String[]{latest, "30%"}).iterator();
+                    break;
+                default:
+                    return null;
+            }
+
+            return iterator;
+
+        } catch (Exception e) {
+            return null;
+        }
     }
+
+//        Iterator<Current> iterator ;
+//        switch (code){
+//            case "sh":
+//                iterator = (Iterator<String>) hibernateTemplate
+//                        .find("select m.code FROM MarketInfo m where m.code like ?","60%").iterator();
+//            case "sz":
+//                iterator = (Iterator<String>) hibernateTemplate
+//                        .find("select m.code FROM MarketInfo m where m.code like ?","000%").iterator();
+//            case "hs300":
+//                return null;
+//            case "sz50":
+//                return null;
+//            case "zxb":
+//                iterator = (Iterator<String>) hibernateTemplate
+//                        .find("select s.code FROM Sme s").iterator();
+//            case "cyb":
+//                iterator = (Iterator<String>) hibernateTemplate
+//                        .find("select g.code FROM Gem g").iterator();
 
     @Override
     public Iterator<Stock> getStockInfo(String code) {
