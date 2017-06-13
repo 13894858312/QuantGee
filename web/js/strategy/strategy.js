@@ -768,6 +768,7 @@ function addCollectedStrategy(){
 			var ratio = document.getElementsByClassName("ratio")[0].value;
 			var isHoldingPeriodFixed = document.getElementsByClassName("isHoldingPeriodFixed")[0].value;
 			strategyVO = {
+//				'strategyVO.strateygyName':"动量策略",
 				'strategyVO.userID':accountID,
 				'strategyVO.strategyType': strategyType,
 				'strategyVO.initFund': initFund,
@@ -783,6 +784,7 @@ function addCollectedStrategy(){
 		case 1:
 			var holdingStockNum = document.getElementsByClassName("holdingStockNum")[0].value;
 			strategyVO = {
+
 				'strategyVO.userID':accountID,
 				'strategyVO.strategyType': strategyType,
 				'strategyVO.initFund': initFund,
@@ -799,6 +801,7 @@ function addCollectedStrategy(){
 			var holdingStockNum = document.getElementsByClassName("holdingStockNum")[1].value;
 			var shortReturnPeriod = document.getElementById("shortReturnPeriod").value;
 			strategyVO = {
+//				'strategyVO.strateygyName':"双均线策略",
 				'strategyVO.userID':accountID,
 				'strategyVO.strategyType': strategyType,
 				'strategyVO.initFund': initFund,
@@ -815,6 +818,7 @@ function addCollectedStrategy(){
 			var holdingStockNum = document.getElementsByClassName("holdingStockNum")[2].value;
 			var changeNumber = document.getElementById("changeNumber").value;
 			strategyVO = {
+//				'strategyVO.strateygyName':"羊驼策略",
 				'strategyVO.userID':accountID,
 				'strategyVO.strategyType': strategyType,
 				'strategyVO.initFund': initFund,
@@ -833,6 +837,7 @@ function addCollectedStrategy(){
 			var k = document.getElementById("k").value;
 			var vectorLength = document.getElementById("vectorLength").value;
 			strategyVO = {
+//				'strategyVO.strateygyName':"KNN机器学习策略",
 				'strategyVO.userID':accountID,
 				'strategyVO.strategyType': strategyType,
 				'strategyVO.initFund': initFund,

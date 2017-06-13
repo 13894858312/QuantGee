@@ -155,27 +155,27 @@
 
 			</div>
 
-			<div id="myStrategy" class="right_bar_tit" style="display: none;">
+			<div id="myStrategy" class="data_panel" style="display: none;">
 				<table class="codename fl">
 					<thead>
 						<tr style="border: 1px solid #e4f2ff;">
 							<th style="width:120px"><span class="type">策略名称</span></th>
-							<th style="width:120px"><span class="type">股票代码</span></th>
-							<th class="table_sort" style="width:70px"><i></i><span>当前</span></th>
-							<th style="width:137px" class="table_sort"><i></i><span>涨跌幅</span></th>
+							<th style="width:120px"><span class="type">策略类型</span></th>
+							<th class="table_sort" ><i></i><span>初始资金</span></th>
+							<th style="width:137px" class="table_sort"><i></i><span>排除ST</span></th>
 						</tr>
 					</thead>
-					<tbody id="table1">
+					<tbody id="table5">
 					</tbody>
 				</table>
 				<table class="colums">
 					<thead>
 						<tr style="border: 1px solid #e4f2ff;">
-							<th class="table_sort" style="width:110px;"><i></i><span>成交量(手)</span></th>
-							<th class="table_sort"><i></i><span>成交额</span></th>
-							<th class="table_sort"><i></i><span>市值</span></th>
-							<th class="table_sort"><i></i><span>市盈率</span></th>
-							<th class="table_sort"><i></i><span>市净率</span></th>
+							<th class="table_sort" style="width:110px;"><i></i><span>持有期</span></th>
+							<th class="table_sort"><i></i><span>形成期</span></th>
+							<th class="table_sort"><i></i><span>止损点</span></th>
+							<th class="table_sort"><i></i><span>止盈点</span></th>
+							<th class="table_sort"><i></i><span>持股比例</span></th>
 						</tr>
 					</thead>
 					<tbody id="table2">
@@ -184,11 +184,11 @@
 				<table class="colums hide">
 					<thead>
 						<tr style="border: 1px solid #e4f2ff;">
-							<th class="table_sort" style="width:110px;"><i></i><span>昨日收盘价</span></th>
-							<th class="table_sort"><i></i><span>今日开盘价</span></th>
-							<th class="table_sort"><i></i><span>最高价</span></th>
-							<th class="table_sort"><i></i><span>最低价</span></th>
-							<th class="table_sort"><i></i><span>换手率</span></th>
+							<th class="table_sort" style="width:110px;"><i></i><span>持股数量</span></th>
+							<th class="table_sort"><i></i><span>短周期N日均线</span></th>
+							<th class="table_sort"><i></i><span>换股数量</span></th>
+							<th class="table_sort"><i></i><span>训练天数</span></th>
+							<th class="table_sort"><i></i><span>最近邻数量</span></th>
 						</tr>
 					</thead>
 					<tbody id="table3">
