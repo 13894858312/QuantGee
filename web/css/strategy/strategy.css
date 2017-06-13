@@ -330,3 +330,63 @@ ol li {
 	border: 1px solid lightblue;
 	border-radius: 6px;
 }
+.graph{
+    float: left;
+    margin-top: 50px;
+    margin-left: 15%;
+    width: 70%;
+    height: 500px;
+    /*background-color: #F8F8F8;*/
+}
+.graphhead{
+	float: left;
+	width: 100%;
+	height: 49px;
+	border-bottom: 1px solid #C0C0C0;
+}
+.headbutton{
+	float: left;
+	margin-top: 15px;
+	margin-left: 1%;
+	height: 28px;
+	font-size: 18px;
+	font-weight: 100;
+	font-family: "Roboto Mono", monospace;
+	opacity: 0.7;
+	cursor: hand;
+	text-align: center;
+	border-radius: 3px;
+}
+#firstbutton{
+	width: 160px;
+	background-color: #003366;
+	color: #FFFFFF;
+}
+#secondbutton{
+	width: 160px;
+	background-color: #FFFFFF;
+	color: #000000;
+}
+#thirdbutton{
+	width: 160px;
+	background-color: #FFFFFF;
+	color: #000000;
+}
+#fourthbutton{
+	width: 160px;
+	background-color: #FFFFFF;
+	color: #000000;
+}
+.storebutton{
+	float: left;
+	margin-top: 15px;
+	margin-left: 25%;
+	height: 28px;
+	font-size: 18px;
+	font-weight: 100;
+	font-family: "Roboto Mono", monospace;
+	opacity: 0.7;
+	cursor: hand;
+	text-align: center;
+	border-radius: 3px;
+}

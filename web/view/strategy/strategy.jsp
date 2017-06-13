@@ -250,7 +250,7 @@
     line-height: 40px;
     height: 40px;
     font-size: 18px;
-	font-family: &quot;Roboto Mono &quot;, monospace;
+	font-family: 'Roboto Mono', monospace;
     font-weight: 100;
     color: #000000;
     background: #FFFFFF;
@@ -287,7 +287,7 @@
     font-size: 18px;
     font-weight: 100;
     color: #000000;
-    font-family: &quot; Roboto Mono &quot;, monospace;
+    font-family: 'Roboto Mono', monospace;
     background: #FFFFFF;
 ">股票池</span></div>
 
@@ -300,16 +300,16 @@
             <a onclick="selectStrategyTag('tagContent_str0',this)" href="javascript:void(0)">动量策略</a>
         </li>
         <li>
-            <A onclick="selectStrategyTag('tagContent_str1',this)" href="javascript:void(0)">均值回归</a>
+            <a onclick="selectStrategyTag('tagContent_str1',this)" href="javascript:void(0)">均值回归</a>
         </li>
         <li>
-            <A onclick="selectStrategyTag('tagContent_str2',this)" href="javascript:void(0)">双均线策略</a>
+            <a onclick="selectStrategyTag('tagContent_str2',this)" href="javascript:void(0)">双均线策略</a>
         </li>
         <li>
-            <A onclick="selectStrategyTag('tagContent_str3',this)" href="javascript:void(0)">羊驼策略</a>
+            <a onclick="selectStrategyTag('tagContent_str3',this)" href="javascript:void(0)">羊驼策略</a>
         </li>
         <li>
-            <A onclick="selectStrategyTag('tagContent_str4',this)" href="javascript:void(0)">KNN机器学习策略</a>
+            <a onclick="selectStrategyTag('tagContent_str4',this)" href="javascript:void(0)">KNN机器学习策略</a>
         </li>
     </ul>
     <div id=tagContent_str>
@@ -938,8 +938,16 @@
     <button onclick="backTest()" class="button">开始回测</button>
 </div>
 
-<div style="height: 100%;"></div>
-
+<div class="graph">
+	<div class="graphhead">
+		<div class="headbutton" id="firstbutton">策略基准累积收益率</div>
+		<div class="headbutton" id="secondbutton">收益率分布</div>
+		<div class="headbutton" id="thirdbutton">超额收益率</div>
+		<div class="headbutton" id="fourthbutton">策略胜率</div>
+		<div class="storebutton">加入收藏</div>
+	</div>
+</div>
+	
 </body>
 
 </html>

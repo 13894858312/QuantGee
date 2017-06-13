@@ -68,6 +68,30 @@ function selectTag(showContent, selfObj) {
 //})
 
 function selectStrategyTag(showContent, selfObj) {
+	//显示按钮
+    var firstbutton = document.getElementById("firstbutton");
+    var secondbutton = document.getElementById("secondbutton");
+    var thirdbutton = document.getElementById("thirdbutton");
+    var fourthbutton = document.getElementById("fourthbutton");
+    if(showContent == "tagContent_str0" || showContent == "tagContent_str1") {
+        firstbutton.style.backgroundColor = "#003366";
+        firstbutton.style.color = "#FFFFFF";
+        secondbutton.style.backgroundColor = "#FFFFFF";
+        secondbutton.style.color = "#000000";
+        thirdbutton.style.backgroundColor = "#FFFFFF";
+        thirdbutton.style.color = "#000000";
+        fourthbutton.style.backgroundColor = "#FFFFFF";
+        fourthbutton.style.color = "#000000";
+    }else{
+        firstbutton.style.backgroundColor = "#003366";
+        firstbutton.style.color = "#FFFFFF";
+        secondbutton.style.backgroundColor = "#FFFFFF";
+        secondbutton.style.color = "#000000";
+        thirdbutton.style.backgroundColor = "#FFFFFF";
+        thirdbutton.style.color = "#FFFFFF";
+        fourthbutton.style.backgroundColor = "#FFFFFF";
+        fourthbutton.style.color = "#FFFFFF";
+    }
 	// 操作标签
 	var tag = document.getElementById("tip_tags").getElementsByTagName("li");
 	var tagnum = tag.length;
