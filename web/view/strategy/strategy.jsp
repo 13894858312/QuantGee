@@ -141,7 +141,7 @@
             <br/>
             在这里我们采用指数移动均线，指数移动平均和算术平均或者加权平均的主要区别在于指数移动平均需要进行一个迭代。
             <br/>
-            <img src="../../images/strategy/formula.jpg"/>
+            <img src="../../images/strategy/formula.jpg" width="250px"/>
             <br/>
             其中pi表示前一天的收盘价，且 alpah = (N-1)/(N+1)
             <br/>
@@ -326,7 +326,7 @@
 									autoclose: true, //选中之后自动隐藏日期选择框
 									clearBtn: true, //清除按钮
 									todayHighlight : true,  
-    									endDate : new Date() ,
+    									endDate : new Date(),
 									format: "yyyy-mm-dd" 
                             		})
                             </script>
@@ -340,7 +340,7 @@
 									autoclose: true, //选中之后自动隐藏日期选择框
 									clearBtn: true, //清除按钮
 									todayHighlight : true,  
-    									endDate : new Date() 
+    									endDate : new Date(),
 									format: "yyyy-mm-dd"
 									})
                             </script>
@@ -400,6 +400,32 @@
 
                         </th>
                     </tr>
+                    <tr>
+                    		<th>
+                    			<div>
+						        <label style="font-weight: 100;width: 64px;">选择基准收益率</label>
+						        <select class="baseYieldBlock" style="height: 40px; width: 100px; margin-left: 10px; background: #FFFFFF;">
+						            <option value="hs300">沪深300指数</option>
+						            <option value="sh">上证指数</option>
+						            <option value="sz">深圳成指</option>
+						            <option value="sz50">上证50</option>
+						            <option value="zxb">中小板</option>
+						            <option value="cyb">创业板</option>
+						        </select>
+						    </div>
+                    		</th>
+                    		<th>
+                    			<input class="isHoldingPeriodFixed" type="checkbox" name="category" style="
+									    width: 20px;
+									    height: 20px;
+									    margin: 0;
+									    margin-top: 13px;
+									    float: left;
+									">
+                            <label style="font-weight: 100;width: 100px;height: 40px;line-height: 40px;/* margin-bottom: 20px; */">变化持有期</label>
+
+                    		</th>
+                    </tr>
 
                 </table>
             </form>
@@ -417,7 +443,7 @@
 									autoclose: true, //选中之后自动隐藏日期选择框
 									clearBtn: true, //清除按钮
 									todayHighlight : true,  
-    									endDate : new Date() ,
+    									endDate : new Date(),
 									
 									format: "yyyy-mm-dd" 
                             		})
@@ -432,7 +458,7 @@
 									autoclose: true, //选中之后自动隐藏日期选择框
 									clearBtn: true, //清除按钮
 									todayHighlight : true,  
-    									endDate : new Date() ,
+    									endDate : new Date(),
 									
 									format: "yyyy-mm-dd"
 								})	
@@ -498,6 +524,32 @@
                             </div>
 
                         </th>
+                    </tr>
+                    <tr>
+                    		<th>
+                    			<div>
+						        <label style="font-weight: 100;width: 64px;">选择基准收益率</label>
+						        <select class="baseYieldBlock" style="height: 40px; width: 100px; margin-left: 10px; background: #FFFFFF;">
+						            <option value="hs300">沪深300指数</option>
+						            <option value="sh">上证指数</option>
+						            <option value="sz">深圳成指</option>
+						            <option value="sz50">上证50</option>
+						            <option value="zxb">中小板</option>
+						            <option value="cyb">创业板</option>
+						        </select>
+						    </div>
+                    		</th>
+                    		<th>
+                    			<input class="isHoldingPeriodFixed" type="checkbox" name="category" style="
+									    width: 20px;
+									    height: 20px;
+									    margin: 0;
+									    margin-top: 13px;
+									    float: left;
+									">
+                            <label style="font-weight: 100;width: 100px;height: 40px;line-height: 40px;/* margin-bottom: 20px; */">变化持有期</label>
+
+                    		</th>
                     </tr>
 
                 </table>
@@ -516,7 +568,7 @@
 									autoclose: true, //选中之后自动隐藏日期选择框
 									clearBtn: true, //清除按钮
 									todayHighlight : true,  
-    									endDate : new Date() ,
+    									endDate : new Date(),
 									
 									format: "yyyy-mm-dd" 
 								})	
@@ -531,7 +583,7 @@
 									autoclose: true, //选中之后自动隐藏日期选择框
 									clearBtn: true, //清除按钮
 									todayHighlight : true,  
-    									endDate : new Date() ,
+    									endDate : new Date(),
 									
 									format: "yyyy-mm-dd"
 								})	
@@ -557,7 +609,7 @@
 
                         <th>
                             <div>
-                                <label style="font-weight: 100; width: 64px;">形成期</label>
+                                <label style="font-weight: 100; width: 64px;">长周期N日均线</label>
                                 <input class="returnPeriod" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
@@ -601,10 +653,23 @@
                     <tr>
                         <th>
                             <div>
-                                <label style="font-weight: 100;width: 64px;">第二条N日均线</label>
+                                <label style="font-weight: 100;width: 64px;">短周期N日均线</label>
                                 <input id="shortReturnPeriod" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
+                        </th>
+                        <th>
+                        		<div>
+						        <label style="font-weight: 100;width: 64px;">选择基准收益率</label>
+						        <select class="baseYieldBlock" style="height: 40px; width: 100px; margin-left: 10px; background: #FFFFFF;">
+						            <option value="hs300">沪深300指数</option>
+						            <option value="sh">上证指数</option>
+						            <option value="sz">深圳成指</option>
+						            <option value="sz50">上证50</option>
+						            <option value="zxb">中小板</option>
+						            <option value="cyb">创业板</option>
+						        </select>
+						    </div>
                         </th>
                     </tr>
 
@@ -624,7 +689,7 @@
 									autoclose: true, //选中之后自动隐藏日期选择框
 									clearBtn: true, //清除按钮
 									todayHighlight : true,  
-    									endDate : new Date() ,
+    									endDate : new Date(),
 									format: "yyyy-mm-dd"
 								})	
                             </script>
@@ -711,6 +776,19 @@
                                 <input id="changeNumber" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
+                        </th>
+                        <th>
+                        		<div>
+						        <label style="font-weight: 100;width: 64px;">选择基准收益率</label>
+						        <select class="baseYieldBlock" style="height: 40px; width: 100px; margin-left: 10px; background: #FFFFFF;">
+						            <option value="hs300">沪深300指数</option>
+						            <option value="sh">上证指数</option>
+						            <option value="sz">深圳成指</option>
+						            <option value="sz50">上证50</option>
+						            <option value="zxb">中小板</option>
+						            <option value="cyb">创业板</option>
+						        </select>
+						    </div>
                         </th>
                     </tr>
                 </table>
@@ -803,10 +881,11 @@
                         </th>
                         <th>
                             <div>
-                                <label style="font-weight: 100;width: 64px;">训练天数</label>
-                                <input id="trainPeriod" type="number"
+                                <label style="font-weight: 100;width: 64px;">持股数量</label>
+                                <input class="holdingStockNum" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
+
                         </th>
                     </tr>
                     <tr>
@@ -823,6 +902,29 @@
                                 <input id="vectorLength" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
+                        </th>
+                        <th>
+                            <div>
+                                <label style="font-weight: 100;width: 64px;">训练天数</label>
+                                <input id="trainPeriod" type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            </div>
+                        </th>
+                        
+                    </tr>
+                    <tr>
+                    	<th>
+                        		<div>
+						        <label style="font-weight: 100;width: 64px;">选择基准收益率</label>
+						        <select class="baseYieldBlock" style="height: 40px; width: 100px; margin-left: 10px; background: #FFFFFF;">
+						            <option value="hs300">沪深300指数</option>
+						            <option value="sh">上证指数</option>
+						            <option value="sz">深圳成指</option>
+						            <option value="sz50">上证50</option>
+						            <option value="zxb">中小板</option>
+						            <option value="cyb">创业板</option>
+						        </select>
+						    </div>
                         </th>
                     </tr>
                 </table>

@@ -39,7 +39,6 @@ $(document).ready(function() {
 			}
 		});
 	}else{
-		alert("hh");
 		$("#addMyStock").attr("disabled",true);
 		$("#addMyAllStock").attr("disabled",true);
 	}
@@ -124,8 +123,12 @@ function addStock(code) {
 		sweetAlert("请先登陆!", "", "error");
 		return false;
 	}
+	if($.inArray($("#" + code).val().toString(),stockCodes)){
+		sweetAlert("已经添加该股票！","","error");
+		return false;
+	}
 	if($("#" + code).val() != "") {
-		stockCodes[stockCodes.length] = $("#" + code).val();
+		stockCodes[stockCodes.length] = $("#" + code).val().toString();
 	} else {
 		sweetAlert("请选择股票！", "", "error");
 	}
@@ -140,6 +143,7 @@ function addAllStock() {
 }
 
 function backTest() {
+	var baseYieldBlock;
 	var backTestBlock;
 	var startDate;
 	var endDate;
@@ -151,7 +155,10 @@ function backTest() {
 	var stopProfit;
 
 	var ratio;
-
+	
+	var baseYieldBlocks =document.getElementsByClassName("baseYieldBlock");
+	baseYieldBlock = baseYieldBlocks[strategyType].value;
+	
 	if(stockPoolType == 0) {
 		backTestBlock = $("#backTestBlock").val();
 	}
@@ -185,10 +192,11 @@ function backTest() {
 	switch(strategyType) {
 		case 0:
 			var ratio = document.getElementsByClassName("ratio")[0].value;
-			alert(ratio);
+			var isHoldingPeriodFixed = document.getElementsByClassName("isHoldingPeriodFixed")[0].value;
 			strategyBackTestInputVO = {
 				'strategyBackTestInputVO.stockPoolType': stockPoolType,
 				'strategyBackTestInputVO.strategyType': strategyType,
+				'strategyBackTestInputVO.baseYieldBlocks': baseYieldBlock,
 				'strategyBackTestInputVO.backTestBlock': backTestBlock,
 				'strategyBackTestInputVO.stockCodes': stockCodes,
 				'strategyBackTestInputVO.startDate': startDate,
@@ -199,7 +207,8 @@ function backTest() {
 				'strategyBackTestInputVO.returnPeriod': returnPeriod,
 				'strategyBackTestInputVO.stopLoss': stopLoss,
 				'strategyBackTestInputVO.stopProfit': stopProfit,
-				'strategyBackTestInputVO.ratio': ratio
+				'strategyBackTestInputVO.ratio': ratio,
+				'strategyBackTestInputVO.isHoldingPeriodFixed': isHoldingPeriodFixed
 			};
 			break;
 		case 1:
@@ -207,6 +216,7 @@ function backTest() {
 			strategyBackTestInputVO = {
 				'strategyBackTestInputVO.stockPoolType': stockPoolType,
 				'strategyBackTestInputVO.strategyType': strategyType,
+				'strategyBackTestInputVO.baseYieldBlocks': baseYieldBlock,
 				'strategyBackTestInputVO.backTestBlock': backTestBlock,
 				'strategyBackTestInputVO.stockCodes': stockCodes,
 				'strategyBackTestInputVO.startDate': startDate,
@@ -217,7 +227,8 @@ function backTest() {
 				'strategyBackTestInputVO.returnPeriod': returnPeriod,
 				'strategyBackTestInputVO.stopLoss': stopLoss,
 				'strategyBackTestInputVO.stopProfit': stopProfit,
-				'strategyBackTestInputVO.holdingStockNum': holdingStockNum
+				'strategyBackTestInputVO.holdingStockNum': holdingStockNum,
+				'strategyBackTestInputVO.isHoldingPeriodFixed': isHoldingPeriodFixed
 			};
 			break;
 		case 2:
@@ -226,6 +237,7 @@ function backTest() {
 			strategyBackTestInputVO = {
 				'strategyBackTestInputVO.stockPoolType': stockPoolType,
 				'strategyBackTestInputVO.strategyType': strategyType,
+				'strategyBackTestInputVO.baseYieldBlocks': baseYieldBlock,
 				'strategyBackTestInputVO.backTestBlock': backTestBlock,
 				'strategyBackTestInputVO.stockCodes': stockCodes,
 				'strategyBackTestInputVO.startDate': startDate,
@@ -246,6 +258,7 @@ function backTest() {
 			strategyBackTestInputVO = {
 				'strategyBackTestInputVO.stockPoolType': stockPoolType,
 				'strategyBackTestInputVO.strategyType': strategyType,
+				'strategyBackTestInputVO.baseYieldBlocks': baseYieldBlock,
 				'strategyBackTestInputVO.backTestBlock': backTestBlock,
 				'strategyBackTestInputVO.stockCodes': stockCodes,
 				'strategyBackTestInputVO.startDate': startDate,
@@ -261,12 +274,14 @@ function backTest() {
 			};
 			break;
 		case 4:
+			var holdingStockNum = document.getElementsByClassName("holdingStockNum")[3].value;
 			var trainPeriod = document.getElementById("trainPeriod").value;
 			var k = document.getElementById("k").value;
 			var vectorLength = document.getElementById("vectorLength").value;
 			strategyBackTestInputVO = {
 				'strategyBackTestInputVO.stockPoolType': stockPoolType,
 				'strategyBackTestInputVO.strategyType': strategyType,
+				'strategyBackTestInputVO.baseYieldBlocks': baseYieldBlock,
 				'strategyBackTestInputVO.backTestBlock': backTestBlock,
 				'strategyBackTestInputVO.stockCodes': stockCodes,
 				'strategyBackTestInputVO.startDate': startDate,
@@ -279,26 +294,43 @@ function backTest() {
 				'strategyBackTestInputVO.stopProfit': stopProfit,
 				'strategyBackTestInputVO.trainPeriod': trainPeriod,
 				'strategyBackTestInputVO.k': k,
+				'strategyBackTestInputVO.holdingStockNum': holdingStockNum,
 				'strategyBackTestInputVO.vectorLength': vectorLength
 			};
 			break;
 	}
 
-//			alert(notST);
-//	$.ajax({
-//		type: 'post',
-//		url: 'getStrategyBackTesting.action',
-////		url: 'test.action',
-//		async: false,
-//		data: strategyBackTestInputVO,
-//		dataType: 'json',
-//		success: function(data) {
-//			alert(data);
-//		},
-//		error: function(data) {
-//			alert("error");
-//		}
-//	});
+	var strategyBackTestingResult;
+	
+	$.ajax({
+		type: 'post',
+		url: 'getStrategyBackTesting.action',
+//		url: 'test.action',
+		async: false,
+		data: strategyBackTestInputVO,
+		dataType: 'json',
+		success: function(data) {
+			strategyBackTestingResult = JSON.parse(data);
+		},
+		error: function(data) {
+			alert("error");
+		}
+	});
+	
+	$.ajax({
+		type: 'post',
+		url: 'getStrategyBackTesting.action',
+//		url: 'test.action',
+		async: false,
+		data: strategyBackTestInputVO,
+		dataType: 'json',
+		success: function(data) {
+			alert(data);
+		},
+		error: function(data) {
+			alert("error");
+		}
+	});
 }
 
 $('.selectpicker').selectpicker({

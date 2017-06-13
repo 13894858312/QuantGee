@@ -74,8 +74,8 @@
             <div class="text-inner">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 text-center">
-                        <h1 class="animate-box"><span> </span><br><span class="big">QuantGee</span> <br><span>您身边的股票数据专家</span> <br><br><br><br><span>code by RGXD from NJU in 2017</span><br></h1>
-                        <h2 class="animate-box">source code ：<a href="https://github.com/13894858312/QuantGee" target="_blank" title="Free HTML5 Bootstrap Templates" class="fh5co-link">GITHUB</a></h2>
+                        <h1 class="animate-box"><span> </span><br><span class="big">QuantGee</span> <br><span>您身边的股票数据专家</span> <br><br><br><br><span></span><br></h1>
+                        <h2 class="animate-box"></h2>
                         <div class="call-to-action">
                             <a href="view/market/marketInfo.jsp" class="demo animate-box">进入大盘</a>
                             <a href="view/ucenter/login.jsp" class="download animate-box">用户登录</a>

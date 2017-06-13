@@ -72,6 +72,11 @@
                 <param name="root">result</param>
             </result>
         </action>
+        <action name="getAbnormalReturnGraphInfo" class="action.StrategyAction" method="getAbnormalReturnGraphInfo">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
     </package>
 
     <package name="json" extends="json-default">

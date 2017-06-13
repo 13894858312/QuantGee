@@ -1,10 +1,12 @@
 package action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import service.strategy.StrategyBackTestingService;
+import vo.strategy.AbnormalReturnResultVO;
 import vo.strategy.StrategyBackTestInputVO;
 import vo.strategy.StrategyBackTestResultVO;
 
@@ -17,6 +19,7 @@ public class StrategyAction extends ActionSupport{
     private String result;
 
     private StrategyBackTestResultVO strategyBackTestResultVO;
+    private AbnormalReturnResultVO abnormalReturnResultVO;
 
     @Autowired
     private StrategyBackTestingService strategyBackTestingService;
@@ -34,6 +37,12 @@ public class StrategyAction extends ActionSupport{
     public String getStrategyBackTesting(){
         strategyBackTestResultVO = strategyBackTestingService.getStrategyBackTesting(strategyBackTestInputVO);
         result = JSONObject.fromObject(strategyBackTestResultVO).toString();
+        return SUCCESS;
+    }
+
+    public String getAbnormalReturnGraphInfo(){
+        abnormalReturnResultVO = strategyBackTestingService.getAbnormalReturnGraphInfo(strategyBackTestInputVO);
+        result = JSONObject.fromObject(abnormalReturnResultVO).toString();
         return SUCCESS;
     }
 
@@ -59,6 +68,14 @@ public class StrategyAction extends ActionSupport{
 
     public void setStrategyBackTestResultVO(StrategyBackTestResultVO strategyBackTestResultVO) {
         this.strategyBackTestResultVO = strategyBackTestResultVO;
+    }
+
+    public AbnormalReturnResultVO getAbnormalReturnResultVO() {
+        return abnormalReturnResultVO;
+    }
+
+    public void setAbnormalReturnResultVO(AbnormalReturnResultVO abnormalReturnResultVO) {
+        this.abnormalReturnResultVO = abnormalReturnResultVO;
     }
 }
 
