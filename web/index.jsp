@@ -214,7 +214,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12"><br>
-                    <p class="copy-right">&copy; 2017 王友运 卞纯源 王雪 赵德宇 All Rights Reserved. </p>
+                    <p class="copy-right">&copy; 2017 QuantGee All Rights Reserved. </p>
                 </div>
             </div>
         </div>

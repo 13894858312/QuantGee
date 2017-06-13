@@ -118,15 +118,6 @@
 							</tr>
 						</thead>
 						<tbody id="table2">
-							<%--<s:iterator value="stockCurrentVOS">--%>
-								<%--<tr>--%>
-									<%--<td><s:property value="volume" /></td>--%>
-									<%--<td><s:property value="amount" /></td>--%>
-									<%--<td><s:property value="mktcap" /></td>--%>
-									<%--<td><s:property value="per" /></td>--%>
-									<%--<td><s:property value="pb" /></td>--%>
-								<%--</tr>--%>
-							<%--</s:iterator>--%>
 						</tbody>
 					</table>
 					<table class="colums hide">
@@ -139,16 +130,7 @@
 								<th class="table_sort"><i></i><span>换手率</span></th>
 							</tr>
 						</thead>
-						<tbody>
-							<%--<s:iterator value="stockCurrentVOS">--%>
-								<%--<tr>--%>
-									<%--<td><s:property value="settlement" /></td>--%>
-									<%--<td><s:property value="open" /></td>--%>
-									<%--<td><s:property value="high" /></td>--%>
-									<%--<td><s:property value="low" /></td>--%>
-									<%--<td><s:property value="turnover" /></td>--%>
-								<%--</tr>--%>
-							<%--</s:iterator>--%>
+						<tbody id="table3">
 						</tbody>
 					</table>
 
@@ -158,7 +140,7 @@
 								<th class="arr_r" style="width: 50px ; height: 50px;"><i id="next" onclick="changecolumns()"></i></th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="table4">
 						</tbody>
 					</table>
 

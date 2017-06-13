@@ -43,6 +43,11 @@
                 <param name="root">result</param>
             </result>
         </action>
+        <action name="deleteCollectedStock" class="action.UserStockAction" method="deleteCollectedStock">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
         <action name="getUserInfo" class="action.UcenterAction" method="getUserInfo">
             <result name="success" type="json">
                 <param name="root">result</param>
