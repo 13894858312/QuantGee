@@ -7,7 +7,7 @@
     <script src="../../jquery-3.2.1.min.js"></script>
     <script src="../../js/marketInfo/headcontroller.js"></script>
     <script src="../../js/trade/addlist.js"></script>
-	<!--<script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>-->
+	<script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="../../js/jquery.autocomplete.js"></script>
 	<script type="text/javascript" src="../../js/sweet-alert.min.js"></script>
 	<link rel="stylesheet" href="../../css/sweet-alert.css">
@@ -45,7 +45,7 @@
 			<div class="search bar7">
         		<!--<form>-->
             		<input id="inputStockCode" type="text" placeholder="请输入股票代码">
-                    <script src="../../js/fuzzysearch.js"></script>
+                    <%--<script src="../../js/fuzzysearch.js"></script>--%>
 					<button onclick="totheStockView()"></button>
         		<!--</form>-->
     		</div>
@@ -119,6 +119,7 @@
     		<!--<div class="buy" onclick="addrow()">买入</div>-->
     	</div>
     </div>
+        <script src="../../js/fuzzysearch.js"></script>
     <div class="stocktable">
     	<table class="st" id="st">
     		<tr>

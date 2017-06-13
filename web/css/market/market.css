@@ -73,6 +73,23 @@
 	margin-left: 15%;
 	background-color: #FFFFFF;
 }
+.realmarkethead{
+	float: left;
+	width: 70%;
+	height: 45px;
+	margin-top: 10px;
+	margin-left: 15%;
+	border-bottom: 1px solid #C0C0C0;
+}
+.realmarketheadtext{
+	float: left;
+	width: 30%;
+	height: 35px;
+	margin-top: 10px;
+	margin-left: 1%;
+	font-size: 26px;
+	font-family: "Roboto Mono", monospace;
+}
 .realmarket{
 	float: left;
 	margin-top: 20px;

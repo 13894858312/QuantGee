@@ -20,4 +20,8 @@ $(function() {
 
     $('#inputStockCode').autocomplete(stock,{width:195,cacheLength: 5,scroll:false}).result(function(event, data, formatted) {
     });
+    $('#inputstcode').autocomplete(stock,{width:170, cacheLength: 5,scroll:false}).result(function(event, data, formatted) {
+    });
+    $('#stname').autocomplete(stock,{width:170,cacheLength: 5,scroll:false}).result(function(event, data, formatted) {
+    });
 });
