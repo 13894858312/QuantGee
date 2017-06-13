@@ -4,6 +4,7 @@ import DAO.stockInfoDAO.StockInfoDAO;
 import DAO.tradeDAO.TradeDAO;
 import bean.*;
 import logic.tools.DateHelper;
+import logic.tools.MathHelper;
 import logic.tools.TransferHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -135,7 +136,7 @@ public class TradeServiceImp implements TradeService {
             }
         }
 
-        return userMoney;
+        return MathHelper.formatData(userMoney,2);
     }
 
     @Override
@@ -183,7 +184,7 @@ public class TradeServiceImp implements TradeService {
     @Override
     public double getUserMoney(String userID) {
         double result =  tradeDAO.getUserMoney(userID);
-        return result;
+        return MathHelper.formatData(result,2);
     }
 
 }
