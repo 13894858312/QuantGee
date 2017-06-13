@@ -2,7 +2,7 @@ var accountID;
 var collectedStock;
 
 //回测参数
-var stockPoolType;
+var stockPoolType = 0;
 var stockCodes = [];
 var strategyType = 0;
 
@@ -198,15 +198,92 @@ function backTest() {
 			};
 			break;
 		case 1:
+			var holdingStockNum = document.getElementsByClassName("holdingStockNum")[0].value;
+			strategyBackTestInputVO = {
+				'strategyBackTestInputVO.stockPoolType': stockPoolType,
+				'strategyBackTestInputVO.strategyType': strategyType,
+				'strategyBackTestInputVO.backTestBlock': backTestBlock,
+				'strategyBackTestInputVO.stockCodes': stockCodes,
+				'strategyBackTestInputVO.startDate': startDate,
+				'strategyBackTestInputVO.endDate': endDate,
+				'strategyBackTestInputVO.initFund': initFund,
+				'strategyBackTestInputVO.notST': notST,
+				'strategyBackTestInputVO.holdingPeriod': holdingPeriod,
+				'strategyBackTestInputVO.returnPeriod': returnPeriod,
+				'strategyBackTestInputVO.stopLoss': stopLoss,
+				'strategyBackTestInputVO.stopProfit': stopProfit,
+				'strategyBackTestInputVO.holdingStockNum': holdingStockNum
+			};
+			break;
 		case 2:
+			var holdingStockNum = document.getElementsByClassName("holdingStockNum")[1].value;
+			var shortReturnPeriod = document.getElementById("shortReturnPeriod").value;
+			strategyBackTestInputVO = {
+				'strategyBackTestInputVO.stockPoolType': stockPoolType,
+				'strategyBackTestInputVO.strategyType': strategyType,
+				'strategyBackTestInputVO.backTestBlock': backTestBlock,
+				'strategyBackTestInputVO.stockCodes': stockCodes,
+				'strategyBackTestInputVO.startDate': startDate,
+				'strategyBackTestInputVO.endDate': endDate,
+				'strategyBackTestInputVO.initFund': initFund,
+				'strategyBackTestInputVO.notST': notST,
+				'strategyBackTestInputVO.holdingPeriod': holdingPeriod,
+				'strategyBackTestInputVO.returnPeriod': returnPeriod,
+				'strategyBackTestInputVO.stopLoss': stopLoss,
+				'strategyBackTestInputVO.stopProfit': stopProfit,
+				'strategyBackTestInputVO.holdingStockNum': holdingStockNum,
+				'strategyBackTestInputVO.shortReturnPeriod': shortReturnPeriod
+			};
+			break;
 		case 3:
+			var holdingStockNum = document.getElementsByClassName("holdingStockNum")[2].value;
+			var changeNumber = document.getElementById("changeNumber").value;
+			strategyBackTestInputVO = {
+				'strategyBackTestInputVO.stockPoolType': stockPoolType,
+				'strategyBackTestInputVO.strategyType': strategyType,
+				'strategyBackTestInputVO.backTestBlock': backTestBlock,
+				'strategyBackTestInputVO.stockCodes': stockCodes,
+				'strategyBackTestInputVO.startDate': startDate,
+				'strategyBackTestInputVO.endDate': endDate,
+				'strategyBackTestInputVO.initFund': initFund,
+				'strategyBackTestInputVO.notST': notST,
+				'strategyBackTestInputVO.holdingPeriod': holdingPeriod,
+				'strategyBackTestInputVO.returnPeriod': returnPeriod,
+				'strategyBackTestInputVO.stopLoss': stopLoss,
+				'strategyBackTestInputVO.stopProfit': stopProfit,
+				'strategyBackTestInputVO.holdingStockNum': holdingStockNum,
+				'strategyBackTestInputVO.changeNumber': changeNumber
+			};
+			break;
 		case 4:
+			var trainPeriod = document.getElementById("trainPeriod").value;
+			var k = document.getElementById("k").value;
+			var vectorLength = document.getElementById("vectorLength").value;
+			strategyBackTestInputVO = {
+				'strategyBackTestInputVO.stockPoolType': stockPoolType,
+				'strategyBackTestInputVO.strategyType': strategyType,
+				'strategyBackTestInputVO.backTestBlock': backTestBlock,
+				'strategyBackTestInputVO.stockCodes': stockCodes,
+				'strategyBackTestInputVO.startDate': startDate,
+				'strategyBackTestInputVO.endDate': endDate,
+				'strategyBackTestInputVO.initFund': initFund,
+				'strategyBackTestInputVO.notST': notST,
+				'strategyBackTestInputVO.holdingPeriod': holdingPeriod,
+				'strategyBackTestInputVO.returnPeriod': returnPeriod,
+				'strategyBackTestInputVO.stopLoss': stopLoss,
+				'strategyBackTestInputVO.stopProfit': stopProfit,
+				'strategyBackTestInputVO.trainPeriod': trainPeriod,
+				'strategyBackTestInputVO.k': k,
+				'strategyBackTestInputVO.vectorLength': vectorLength
+			};
+			break;
 	}
 
-	//	alert(holdingPeriod);
+//			alert(notST);
 	$.ajax({
 		type: 'post',
-		url: 'test.action',
+		url: 'getStrategyBackTesting.action',
+//		url: 'test.action',
 		async: false,
 		data: strategyBackTestInputVO,
 		dataType: 'json',

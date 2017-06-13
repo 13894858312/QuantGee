@@ -67,6 +67,11 @@
                 <param name="root">result</param>
             </result>
         </action>
+        <action name="getStrategyBackTesting" class="action.StrategyAction" method="getStrategyBackTesting">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
     </package>
 
     <package name="json" extends="json-default">

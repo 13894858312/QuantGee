@@ -203,10 +203,10 @@
     <div class="pool_Content" style="display: block;" id=pool_Content0>
         <span>选择板块</span>
         <select id="backTestBlock" style="height: 40px; width: 100px; margin-left: 10px; background: #FFFFFF;">
-            <option value="0">上证</option>
-            <option value="1">深证</option>
-            <option value="2">中小板</option>
-            <option value="3">创业板</option>
+            <option value="sh">上证</option>
+            <option value="sz">深证</option>
+            <option value="zxb">中小板</option>
+            <option value="cyb">创业板</option>
         </select>
     </div>
 
@@ -335,7 +335,7 @@ width: 80px;
 									autoclose: true, //选中之后自动隐藏日期选择框
 									clearBtn: true, //清除按钮
 									todayHighlight : true,  
-    									endDate : new Date() 
+    									endDate : new Date() ,
 									format: "yyyy-mm-dd" 
                             		})
                             </script>
@@ -703,9 +703,9 @@ width: 80px;
                     </tr>
                     <tr>
                         <th>
-                            <div id="changeNumber">
+                            <div>
                                 <label style="font-weight: 100;width: 64px;">换仓股票数量</label>
-                                <input type="number"
+                                <input id="changeNumber" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
@@ -795,25 +795,25 @@ width: 80px;
                             </div>
                         </th>
                         <th>
-                            <div id="trainPeriod">
+                            <div>
                                 <label style="font-weight: 100;width: 64px;">训练天数</label>
-                                <input type="number"
+                                <input id="trainPeriod" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
                     </tr>
                     <tr>
                         <th>
-                            <div id="k">
+                            <div>
                                 <label style="font-weight: 100;width: 64px;">最邻近数量</label>
-                                <input type="number"
+                                <input id="k" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
                         <th>
-                            <div id="vectorLength">
+                            <div>
                                 <label style="font-weight: 100;width: 64px;">最邻近向量长度</label>
-                                <input type="number"
+                                <input id="vectorLength" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
