@@ -51,7 +51,7 @@ public class TimeHelper {
      * pm 13.00-15.00
      *
      * @param time time
-     * @return 0:am 1:pm 2 noon -1:不再开盘时间
+     * @return -1:9点以前 0:am 1:pm 2 noon 3:3点以后
      */
     public static int isMarketOpen(String time) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(TIME_FORMAT);
@@ -73,6 +73,10 @@ public class TimeHelper {
         long delta3 = nowDate.getTime() - date3.getTime();
         long delta4 = nowDate.getTime() - date4.getTime();
 
+        if (delta1 < 0) {
+            return -1;
+        }
+
         if (delta1 >= 0 && delta2 <= 0) {
             return 0;
         }
@@ -83,6 +87,10 @@ public class TimeHelper {
 
         if (delta2 >0 && delta3 <0) {
             return 2;
+        }
+
+        if (delta4 > 0) {
+            return 3;
         }
 
         return -1;
