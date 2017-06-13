@@ -217,4 +217,31 @@ public class StrategyBackTestInputVO {
     public void setBaseYieldBlock(String baseYieldBlock) {
         this.baseYieldBlock = baseYieldBlock;
     }
+
+    @Override
+    public String toString() {
+        return "StrategyBackTestInputVO{" +
+                "stockPoolType=" + stockPoolType +
+                ", strategyType=" + strategyType +
+                ", baseYieldBlock='" + baseYieldBlock + '\'' +
+                ", backTestBlock='" + backTestBlock + '\'' +
+                ", stockCodes=" + stockCodes +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", initFund=" + initFund +
+                ", notST=" + notST +
+                ", holdingPeriod=" + holdingPeriod +
+                ", returnPeriod=" + returnPeriod +
+                ", stopLoss=" + stopLoss +
+                ", stopProfit=" + stopProfit +
+                ", ratio=" + ratio +
+                ", holdingStockNum=" + holdingStockNum +
+                ", shortReturnPeriod=" + shortReturnPeriod +
+                ", changeNumber=" + changeNumber +
+                ", trainPeriod=" + trainPeriod +
+                ", k=" + k +
+                ", vectorLength=" + vectorLength +
+                ", isHoldingPeriodFixed=" + isHoldingPeriodFixed +
+                '}';
+    }
 }

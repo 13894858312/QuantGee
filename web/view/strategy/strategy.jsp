@@ -27,19 +27,17 @@
 
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" href="../../bootstrap/bootstrap-select/css/bootstrap-select.css">
-    <!--<link rel="stylesheet" href="../../bootstrap/bootstrap-datepicler/css/bootstrap-datepicker.css"/>-->
-    <!--<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">-->
+    <link rel="stylesheet" href="../../bootstrap/bootstrap-datepicker/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="../../js/ucenter/sweetalert/sweetalert.css" />
 
     <script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../../bootstrap/bootstrap-select/js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="../../bootstrap/bootstrap-datepicker/js/bootstrap-datepicker.js" ></script>
     <script type="text/javascript" src="../../js/ucenter/sweetalert/sweetalert.min.js" ></script>
-    <link rel="stylesheet" href="../../js/ucenter/sweetalert/sweetalert.css" />
-    <!--<script type="text/javascript" src="../../bootstrap/bootstrap-datepicler/js/bootstrap-datepicker.js"></script>-->
 
     <script type="text/javascript" src="../../js/strategy/strategy.js"></script>
     <link rel="stylesheet" href="../../css/style.css"/>
     <link rel="stylesheet" href="../../css/strategy/strategy.css"/>
-    <!--<link rel="stylesheet" href="../../css/strategy/build.css" />-->
 
 </head>
 
@@ -204,7 +202,7 @@
 
     <div class="pool_Content" style="display: block;" id=pool_Content0>
         <span>选择板块</span>
-        <select style="height: 40px; width: 100px; margin-left: 10px; background: #FFFFFF;">
+        <select id="backTestBlock" style="height: 40px; width: 100px; margin-left: 10px; background: #FFFFFF;">
             <option value="0">上证</option>
             <option value="1">深证</option>
             <option value="2">中小板</option>
@@ -262,16 +260,6 @@
         <select id="usertype"  class="selectpicker input-sm form-control" multiple
                 data-live-search="true">
                 <option>请先登陆</option>
-            <!--<option value="0">000001</option>
-            <option value="1">600001</option>
-            <option value="2">321000</option>
-            <option value="3">000123</option>
-            <option value="4">300202</option>
-            <option value="5">330123</option>
-            <option value="6">124002</option>
-            <option value="7">423300</option>
-            <option value="8">240022</option>
-            <option value="9">332003</option>-->
         </select>
     </div>
 
@@ -339,75 +327,79 @@ width: 80px;
                 <table class="paramTable">
                     <tr>
                         <th>
-                            <span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
-                                                            <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            <!--<div class="col-xs-12 col-sm-4">
-                                <div class="startTime" style="width: 100px;">
-                                    <input class="datepicker form-control" type="text"/>
-                                </div>
-                            </div>-->
-                            <!--<script type="text/javascript">
-                                $('.datepicker').datepicker({
-                                    weekStart: 1,
-                                    color: 'red'
-                                });
-                            </script>-->
+                        		<label style="font-weight: 100; width: 64px;">开始时间</label>
+                            <input type="text" class="startDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            <script type="text/javascript">
+                            		$(".startDatepicker").datepicker({
+									language: "zh-CN",
+									autoclose: true, //选中之后自动隐藏日期选择框
+									clearBtn: true, //清除按钮
+									todayHighlight : true,  
+    									endDate : new Date() 
+									format: "yyyy-mm-dd" 
+                            		})
+                            </script>
                         </th>
                         <th>
                             <span style="float: left; height: 35px; line-height: 35px;">结束时间</span>
-                                                            <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            <!--<div class="col-xs-12 col-sm-4">
-                                <div class="endTime" style="width: 100px;">
-                                    <input class="datepicker form-control" type="text"/>
-                                </div>
-                            </div>
+                            <input type="text" class="endDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             <script type="text/javascript">
-                                $('.datepicker').datepicker({
-                                    weekStart: 1,
-                                    color: 'red'
-                                });
-                            </script>-->
+                            		$(".endDatepicker").datepicker({
+									language: "zh-CN",
+									autoclose: true, //选中之后自动隐藏日期选择框
+									clearBtn: true, //清除按钮
+									todayHighlight : true,  
+    									endDate : new Date() 
+									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+								})	
+                            </script>
                         </th>
                         <th>
-                            <div class="initFund">
+                            <div >
                                 <label style="font-weight: 100; width: 64px;">初始资金</label>
-                                <input type="number"
+                                <input class="initFund" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
                     </tr>
                     <tr>
                         <th>
-                            <div class="holdingPeriod">
+                            <div>
                                 <label style="font-weight: 100; width: 64px;">持有期</label>
-                                <input type="number"
+                                <input class="holdingPeriod" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
 
                         </th>
 
                         <th>
-                            <div class="returnPeriod">
+                            <div>
                                 <label style="font-weight: 100; width: 64px;">形成期</label>
-                                <input type="number"
+                                <input class="returnPeriod" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
                         <th>
-                            <input type="checkbox" name="category" value="今日话题" style="
-									    width: 20px;
-									    height: 20px;
-									    margin: 0;
-									    margin-top: 13px;
-									    float: left;
-									">
+                            <input class="notST" type="checkbox" value="1" style="width: 20px;height: 20px;margin: 0;margin-top: 13px;float: left;">
                             <label style="font-weight: 100;width: 100px;height: 40px;line-height: 40px;/* margin-bottom: 20px; */">剔除ST股</label>
 
                         </th>
                     </tr>
                     <tr>
+                        <th>
+                            <div>
+                                <label style="font-weight: 100;width: 64px;">止损点（％）</label>
+                                <input class="stopLoss" type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            </div>
+                        </th>
+                        <th>
+                            <div>
+                                <label style="font-weight: 100;width: 64px;">止盈点（％）</label>
+                                <input class="stopProfit" type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            </div>
+                        </th>
                         <th>
                             <div class="ratio">
                                 <label style="font-weight: 100;width: 64px;">持股比例（％）</label>
@@ -415,20 +407,6 @@ width: 80px;
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
 
-                        </th>
-                        <th>
-                            <div class="stopLoss">
-                                <label style="font-weight: 100;width: 64px;">止损点（％）</label>
-                                <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            </div>
-                        </th>
-                        <th>
-                            <div class="stopProfit">
-                                <label style="font-weight: 100;width: 64px;">止盈点（％）</label>
-                                <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            </div>
                         </th>
                     </tr>
 
@@ -440,44 +418,58 @@ width: 80px;
                 <table class="paramTable">
                     <tr>
                         <th>
-                            <span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
-                            <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                
+							<label style="font-weight: 100; width: 64px;">开始时间</label>
+                            <input type="text" class="startDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            <script type="text/javascript">
+                            		$(".startDatepicker").datepicker({
+									language: "zh-CN",
+									autoclose: true, //选中之后自动隐藏日期选择框
+									clearBtn: true, //清除按钮
+									
+									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+								})	
+                            </script>                
                         </th>
                         <th>
-                            <span style="float: left; height: 35px; line-height: 35px;">结束时间</span>
-                            <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                
+							<label style="font-weight: 100; width: 64px;">结束时间</label>
+                            <input type="text" class="endDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            <script type="text/javascript">
+                            		$(".endDatepicker").datepicker({
+									language: "zh-CN",
+									autoclose: true, //选中之后自动隐藏日期选择框
+									clearBtn: true, //清除按钮
+									
+									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+								})	
+                            </script>                
                         </th>
                         <th>
-                            <div class="initFund">
+                            <div >
                                 <label style="font-weight: 100; width: 64px;">初始资金</label>
-                                <input type="number"
+                                <input class="initFund" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
                     </tr>
                     <tr>
                         <th>
-                            <div class="holdingPeriod">
+                            <div>
                                 <label style="font-weight: 100; width: 64px;">持有期</label>
-                                <input type="number"
+                                <input class="holdingPeriod" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
 
                         </th>
 
                         <th>
-                            <div class="returnPeriod">
+                            <div>
                                 <label style="font-weight: 100; width: 64px;">形成期</label>
-                                <input type="number"
+                                <input class="returnPeriod" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
                         <th>
-                            <input type="checkbox" name="category" style="
+                            <input class="notST" type="checkbox" name="category" style="
 									    width: 20px;
 									    height: 20px;
 									    margin: 0;
@@ -490,26 +482,26 @@ width: 80px;
                     </tr>
                     <tr>
                         <th>
-                            <div class="holdingStockNum">
+                            <div>
+                                <label style="font-weight: 100;width: 64px;">止损点（％）</label>
+                                <input class="stopLoss" type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            </div>
+                        </th>
+                        <th>
+                            <div>
+                                <label style="font-weight: 100;width: 64px;">止盈点（％）</label>
+                                <input class="stopProfit" type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            </div>
+                        </th>
+                        <th>
+                            <div>
                                 <label style="font-weight: 100;width: 64px;">持股数量</label>
-                                <input type="number"
+                                <input class="holdingStockNum" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
 
-                        </th>
-                        <th>
-                            <div class="stopLoss">
-                                <label style="font-weight: 100;width: 64px;">止损点（％）</label>
-                                <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            </div>
-                        </th>
-                        <th>
-                            <div class="stopProfit">
-                                <label style="font-weight: 100;width: 64px;">止盈点（％）</label>
-                                <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            </div>
                         </th>
                     </tr>
 
@@ -521,44 +513,58 @@ width: 80px;
                 <table class="paramTable">
                     <tr>
                         <th>
-                            <span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
-                            <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                
+                            <label style="font-weight: 100; width: 64px;">开始时间</label>
+                            <input type="text" class="startDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            <script type="text/javascript">
+                            		$(".startDatepicker").datepicker({
+									language: "zh-CN",
+									autoclose: true, //选中之后自动隐藏日期选择框
+									clearBtn: true, //清除按钮
+									
+									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+								})	
+                            </script>
                         </th>
                         <th>
-                            <span style="float: left; height: 35px; line-height: 35px;">结束时间</span>
-                            <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                
+                            <label style="font-weight: 100; width: 64px;">结束时间</label>
+                            <input type="text" class="endDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            <script type="text/javascript">
+                            		$(".endDatepicker").datepicker({
+									language: "zh-CN",
+									autoclose: true, //选中之后自动隐藏日期选择框
+									clearBtn: true, //清除按钮
+									
+									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+								})	
+                            </script>
                         </th>
                         <th>
-                            <div class="initFund">
+                            <div >
                                 <label style="font-weight: 100; width: 64px;">初始资金</label>
-                                <input type="number"
+                                <input class="initFund" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
                     </tr>
                     <tr>
                         <th>
-                            <div class="holdingPeriod">
+                            <div>
                                 <label style="font-weight: 100; width: 64px;">持有期</label>
-                                <input type="number"
+                                <input class="holdingPeriod" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
 
                         </th>
 
                         <th>
-                            <div class="returnPeriod">
+                            <div>
                                 <label style="font-weight: 100; width: 64px;">形成期</label>
-                                <input type="number"
+                                <input class="returnPeriod" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
                         <th>
-                            <input type="checkbox" name="category" style="
+                            <input class="notST" type="checkbox" name="category" style="
 									    width: 20px;
 									    height: 20px;
 									    margin: 0;
@@ -571,33 +577,33 @@ width: 80px;
                     </tr>
                     <tr>
                         <th>
-                            <div class="holdingStockNum">
+                            <div>
+                                <label style="font-weight: 100;width: 64px;">止损点（％）</label>
+                                <input class="stopLoss" type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            </div>
+                        </th>
+                        <th>
+                            <div>
+                                <label style="font-weight: 100;width: 64px;">止盈点（％）</label>
+                                <input class="stopProfit" type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            </div>
+                        </th>
+                        <th>
+                            <div>
                                 <label style="font-weight: 100;width: 64px;">持股数量</label>
-                                <input type="number"
+                                <input class="holdingStockNum" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
 
                         </th>
-                        <th>
-                            <div class="stopLoss">
-                                <label style="font-weight: 100;width: 64px;">止损点（％）</label>
-                                <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            </div>
-                        </th>
-                        <th>
-                            <div class="stopProfit">
-                                <label style="font-weight: 100;width: 64px;">止盈点（％）</label>
-                                <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            </div>
-                        </th>
                     </tr>
                     <tr>
                         <th>
-                            <div id="shortReturnPeriod">
+                            <div>
                                 <label style="font-weight: 100;width: 64px;">第二条N日均线</label>
-                                <input type="number"
+                                <input id="shortReturnPeriod" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
@@ -611,44 +617,56 @@ width: 80px;
                 <table class="paramTable">
                     <tr>
                         <th>
-                            <span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
-                            <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                
+                            <label style="font-weight: 100; width: 64px;">开始时间</label>
+                            <input type="text" class="startDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            <script type="text/javascript">
+                            		$(".startDatepicker").datepicker({
+									language: "zh-CN",
+									autoclose: true, //选中之后自动隐藏日期选择框
+									clearBtn: true, //清除按钮
+									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+								})	
+                            </script>
                         </th>
                         <th>
-                            <span style="float: left; height: 35px; line-height: 35px;">结束时间</span>
-                            <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                
+                            <label style="font-weight: 100; width: 64px;">结束时间</label>
+                            <input type="text" class="endDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            <script type="text/javascript">
+                            		$(".endDatepicker").datepicker({
+									language: "zh-CN",
+									autoclose: true, //选中之后自动隐藏日期选择框
+									clearBtn: true, //清除按钮
+									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+								})	
+                            </script>
                         </th>
                         <th>
-                            <div class="initFund">
+                            <div >
                                 <label style="font-weight: 100; width: 64px;">初始资金</label>
-                                <input type="number"
+                                <input class="initFund" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
                     </tr>
                     <tr>
                         <th>
-                            <div class="holdingPeriod">
+                            <div>
                                 <label style="font-weight: 100; width: 64px;">持有期</label>
-                                <input type="number"
+                                <input class="holdingPeriod" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
 
                         </th>
 
                         <th>
-                            <div class="returnPeriod">
+                            <div>
                                 <label style="font-weight: 100; width: 64px;">形成期</label>
-                                <input type="number"
+                                <input class="returnPeriod" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
                         <th>
-                            <input type="checkbox" name="category" style="
+                            <input class="notST" type="checkbox" name="category" style="
 									    width: 20px;
 									    height: 20px;
 									    margin: 0;
@@ -661,26 +679,26 @@ width: 80px;
                     </tr>
                     <tr>
                         <th>
-                            <div class="holdingStockNum">
+                            <div>
+                                <label style="font-weight: 100;width: 64px;">止损点（％）</label>
+                                <input class="stopLoss" type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            </div>
+                        </th>
+                        <th>
+                            <div>
+                                <label style="font-weight: 100;width: 64px;">止盈点（％）</label>
+                                <input class="stopProfit" type="number"
+                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            </div>
+                        </th>
+                        <th>
+                            <div>
                                 <label style="font-weight: 100;width: 64px;">持股数量</label>
-                                <input type="number"
+                                <input class="holdingStockNum" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
 
-                        </th>
-                        <th>
-                            <div class="stopLoss">
-                                <label style="font-weight: 100;width: 64px;">止损点（％）</label>
-                                <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            </div>
-                        </th>
-                        <th>
-                            <div class="stopProfit">
-                                <label style="font-weight: 100;width: 64px;">止盈点（％）</label>
-                                <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            </div>
                         </th>
                     </tr>
                     <tr>
@@ -700,44 +718,56 @@ width: 80px;
                 <table class="paramTable">
                     <tr>
                         <th>
-                            <span style="float: left; height: 35px; line-height: 35px;">开始时间</span>
-                            <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                
+                            <label style="font-weight: 100; width: 64px;">开始时间</label>
+                            <input type="text" class="startDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            <script type="text/javascript">
+                            		$(".startDatepicker").datepicker({
+									language: "zh-CN",
+									autoclose: true, //选中之后自动隐藏日期选择框
+									clearBtn: true, //清除按钮
+									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+								})	
+                            </script>
                         </th>
                         <th>
-                            <span style="float: left; height: 35px; line-height: 35px;">结束时间</span>
-                            <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                
+                            <label style="font-weight: 100; width: 64px;">结束时间</label>
+                            <input type="text" class="endDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
+                            <script type="text/javascript">
+                            		$(".endDatepicker").datepicker({
+									language: "zh-CN",
+									autoclose: true, //选中之后自动隐藏日期选择框
+									clearBtn: true, //清除按钮
+									format: "yyyy-mm-dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+								})	
+                            </script>
                         </th>
                         <th>
-                            <div class="initFund">
+                            <div >
                                 <label style="font-weight: 100; width: 64px;">初始资金</label>
-                                <input type="number"
+                                <input class="initFund" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
                     </tr>
                     <tr>
                         <th>
-                            <div class="holdingPeriod">
+                            <div>
                                 <label style="font-weight: 100; width: 64px;">持有期</label>
-                                <input type="number"
+                                <input class="holdingPeriod" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
 
                         </th>
 
                         <th>
-                            <div class="returnPeriod">
+                            <div>
                                 <label style="font-weight: 100; width: 64px;">形成期</label>
-                                <input type="number"
+                                <input class="returnPeriod" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
                         <th>
-                            <input type="checkbox" name="category" style="
+                            <input class="notST" type="checkbox" name="category" style="
 									    width: 20px;
 									    height: 20px;
 									    margin: 0;
@@ -750,29 +780,20 @@ width: 80px;
                     </tr>
                     <tr>
                         <th>
-                            <div class="ratio">
-                                <label style="font-weight: 100;width: 64px;">持股比例（％）</label>
-                                <input type="number"
+                            <div>
+                                <label style="font-weight: 100;width: 64px;">止损点（％）</label>
+                                <input class="stopLoss" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
 
                         </th>
                         <th>
-                            <div class="stopLoss">
-                                <label style="font-weight: 100;width: 64px;">止损点（％）</label>
-                                <input type="number"
-                                       style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            </div>
-                        </th>
-                        <th>
-                            <div class="stopProfit">
+                            <div>
                                 <label style="font-weight: 100;width: 64px;">止盈点（％）</label>
-                                <input type="number"
+                                <input class="stopProfit" type="number"
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
-                    </tr>
-                    <tr>
                         <th>
                             <div id="trainPeriod">
                                 <label style="font-weight: 100;width: 64px;">训练天数</label>
@@ -780,6 +801,8 @@ width: 80px;
                                        style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
                             </div>
                         </th>
+                    </tr>
+                    <tr>
                         <th>
                             <div id="k">
                                 <label style="font-weight: 100;width: 64px;">最邻近数量</label>
@@ -803,7 +826,7 @@ width: 80px;
 
 </div>
 <div style="text-align: center; margin-top: 10px; height: 40px;">
-    <button class="button">开始回测</button>
+    <button onclick="backTest()" class="button">开始回测</button>
 </div>
 
 <div style="height: 100%;"></div>
