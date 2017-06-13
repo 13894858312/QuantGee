@@ -25,6 +25,7 @@
     </script>
     <script type="text/javascript" src="../../jquery-3.2.1.min.js"></script>
 
+
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" href="../../bootstrap/bootstrap-select/css/bootstrap-select.css">
     <link rel="stylesheet" href="../../bootstrap/bootstrap-datepicker/css/bootstrap-datepicker.css" />
@@ -34,11 +35,17 @@
     <script type="text/javascript" src="../../bootstrap/bootstrap-select/js/bootstrap-select.js"></script>
     <script type="text/javascript" src="../../bootstrap/bootstrap-datepicker/js/bootstrap-datepicker.js" ></script>
     <script type="text/javascript" src="../../js/ucenter/sweetalert/sweetalert.min.js" ></script>
-
     <script type="text/javascript" src="../../js/strategy/strategy.js"></script>
+    <script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>
+				<script type="text/javascript" src="../../js/strategy/fzsearch.js" ></script>
+				<script type="text/javascript" src="../../js/jquery.autocomplete.js" ></script>
+				
+				
+				<link rel="stylesheet" href="../../css/jquery.autocomplete.css" />
     <link rel="stylesheet" href="../../css/style.css"/>
     <link rel="stylesheet" href="../../css/strategy/strategy.css"/>
 
+    
 </head>
 
 <body>
@@ -222,6 +229,7 @@
 				    transition: .3s linear;
 				    height: 40px;
 				">
+
             <button onclick="addStock('searchStock')" style="
 				    width: 80px;
 				    border-radius: 6px;
@@ -265,31 +273,13 @@
     <button id="addMyStock" onclick="addStock('usertype')" style="width: 80px;border-radius: 6px;margin-left: 10px;border: 1px solid #999;background: #FFFFFF; padding: 1px;transition: .3s linear;height: 40px;">添加
     </button>
 
-    <button id="addMyAllStock" style="width: 80px;border-radius: 6px;margin-left: 110px;border: 1px solid #999;background: #FFFFFF;padding: 1px;transition: .3s linear;height: 40px;">一键添加
+    <!--<button id="addMyAllStock" style="width: 80px;border-radius: 6px;margin-left: 110px;border: 1px solid #999;background: #FFFFFF;padding: 1px;transition: .3s linear;height: 40px;">一键添加-->
     </button>
 </div>
 <div id="selectedStock" style="margin: 20px auto;display: none;width: 70%;">
-    <div style="
-			    /* width: 70%; */
-			    margin-left: 100px;
-			    border-radius: 6px;
-			    border: 1px solid rgb(41,29,29);
-			    background: #FFFFFF;
-			    transition: .3s linear;
-			    height: 200px;
-			">
-				<span style="
-			    border-radius: 6px;
-    float: left;
-    margin-left: 10px;
-    line-height: 40px;
-    height: 40px;
-    font-size: 18px;
-    font-weight: 100;
-    color: #000000;
-    font-family: 'Roboto Mono', monospace;
-    background: #FFFFFF;
-">股票池</span></div>
+    <div id="stockPool" style="margin-left: 100px;border-radius: 6px;border: 1px solid rgb(41,29,29);background: #FFFFFF; transition: .3s linear; height: 200px;">
+				<span style=" border-radius: 6px;margin-left: 10px;line-height: 40px;height: 40px;font-size: 18px; font-weight: 100;color: #000000;font-family: 'Roboto Mono', monospace;background: #FFFFFF;">股票池</span>
+    </div>
 
 </div>
 
@@ -320,30 +310,10 @@
                         <th>
                         		<label style="font-weight: 100; width: 64px;">开始时间</label>
                             <input type="text" class="startDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            <script type="text/javascript">
-                            		$(".startDatepicker").datepicker({
-									language: "zh-CN",
-									autoclose: true, //选中之后自动隐藏日期选择框
-									clearBtn: true, //清除按钮
-									todayHighlight : true,  
-    									endDate : new Date(),
-									format: "yyyy-mm-dd" 
-                            		})
-                            </script>
                         </th>
                         <th>
                             <span style="float: left; height: 35px; line-height: 35px;">结束时间</span>
                             <input type="text" class="endDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            <script type="text/javascript">
-                            		$(".endDatepicker").datepicker({
-									language: "zh-CN",
-									autoclose: true, //选中之后自动隐藏日期选择框
-									clearBtn: true, //清除按钮
-									todayHighlight : true,  
-    									endDate : new Date(),
-									format: "yyyy-mm-dd"
-									})
-                            </script>
                         </th>
                         <th>
                             <div >
@@ -437,32 +407,12 @@
                         <th>
 							<label style="font-weight: 100; width: 64px;">开始时间</label>
                             <input type="text" class="startDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            <script type="text/javascript">
-                            		$(".startDatepicker").datepicker({
-									language: "zh-CN",
-									autoclose: true, //选中之后自动隐藏日期选择框
-									clearBtn: true, //清除按钮
-									todayHighlight : true,  
-    									endDate : new Date(),
-									
-									format: "yyyy-mm-dd" 
-                            		})
-                            </script>                
+                                            
                         </th>
                         <th>
 							<label style="font-weight: 100; width: 64px;">结束时间</label>
                             <input type="text" class="endDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            <script type="text/javascript">
-                            		$(".endDatepicker").datepicker({
-									language: "zh-CN",
-									autoclose: true, //选中之后自动隐藏日期选择框
-									clearBtn: true, //清除按钮
-									todayHighlight : true,  
-    									endDate : new Date(),
-									
-									format: "yyyy-mm-dd"
-								})	
-                            </script>                
+                                            
                         </th>
                         <th>
                             <div >
@@ -562,32 +512,12 @@
                         <th>
                             <label style="font-weight: 100; width: 64px;">开始时间</label>
                             <input type="text" class="startDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            <script type="text/javascript">
-                            		$(".startDatepicker").datepicker({
-									language: "zh-CN",
-									autoclose: true, //选中之后自动隐藏日期选择框
-									clearBtn: true, //清除按钮
-									todayHighlight : true,  
-    									endDate : new Date(),
-									
-									format: "yyyy-mm-dd" 
-								})	
-                            </script>
+                            
                         </th>
                         <th>
                             <label style="font-weight: 100; width: 64px;">结束时间</label>
                             <input type="text" class="endDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            <script type="text/javascript">
-                            		$(".endDatepicker").datepicker({
-									language: "zh-CN",
-									autoclose: true, //选中之后自动隐藏日期选择框
-									clearBtn: true, //清除按钮
-									todayHighlight : true,  
-    									endDate : new Date(),
-									
-									format: "yyyy-mm-dd"
-								})	
-                            </script>
+                            
                         </th>
                         <th>
                             <div >
@@ -683,7 +613,7 @@
                         <th>
                             <label style="font-weight: 100; width: 64px;">开始时间</label>
                             <input type="text" class="startDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            <script type="text/javascript">
+                            <!--<script type="text/javascript">
                             		$(".startDatepicker").datepicker({
 									language: "zh-CN",
 									autoclose: true, //选中之后自动隐藏日期选择框
@@ -692,12 +622,12 @@
     									endDate : new Date(),
 									format: "yyyy-mm-dd"
 								})	
-                            </script>
+                            </script>-->
                         </th>
                         <th>
                             <label style="font-weight: 100; width: 64px;">结束时间</label>
                             <input type="text" class="endDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            <script type="text/javascript">
+                            <!--<script type="text/javascript">
                             		$(".endDatepicker").datepicker({
 									language: "zh-CN",
 									autoclose: true, //选中之后自动隐藏日期选择框
@@ -706,7 +636,7 @@
     									endDate : new Date() ,
 									format: "yyyy-mm-dd"
 								})	
-                            </script>
+                            </script>-->
                         </th>
                         <th>
                             <div >
@@ -801,7 +731,7 @@
                         <th>
                             <label style="font-weight: 100; width: 64px;">开始时间</label>
                             <input type="text" class="startDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            <script type="text/javascript">
+                            <!--<script type="text/javascript">
                             		$(".startDatepicker").datepicker({
 									language: "zh-CN",
 									autoclose: true, //选中之后自动隐藏日期选择框
@@ -810,12 +740,12 @@
     									endDate : new Date() ,
 									format: "yyyy-mm-dd"
 								})	
-                            </script>
+                            </script>-->
                         </th>
                         <th>
                             <label style="font-weight: 100; width: 64px;">结束时间</label>
                             <input type="text" class="endDatepicker" style="width: 100px;margin-left:10px; border: 1px solid rgb(200,200,200);border-radius: 3px;height: 35px;">
-                            <script type="text/javascript">
+                            <!--<script type="text/javascript">
                             		$(".endDatepicker").datepicker({
 									language: "zh-CN",
 									autoclose: true, //选中之后自动隐藏日期选择框
@@ -824,7 +754,7 @@
     									endDate : new Date() ,
 									format: "yyyy-mm-dd"
 								})	
-                            </script>
+                            </script>-->
                         </th>
                         <th>
                             <div >
