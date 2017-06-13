@@ -4,7 +4,7 @@ var collectedStock;
 //回测参数
 var stockPoolType;
 var stockCodes = [];
-var strategyType;
+var strategyType = 0;
 
 $(document).ready(function() {
 	//判断当前登陆用户
@@ -77,7 +77,7 @@ function selectStrategyTag(showContent, selfObj) {
 		j.style.display = "none";
 	}
 	document.getElementById(showContent).style.display = "block";
-	strategyType = parseInt(showContent.charAt(showContent.length-1));
+	strategyType = parseInt(showContent.charAt(showContent.length - 1));
 }
 
 function selectPoolTag(showContent, selfObj) {
@@ -133,6 +133,90 @@ function addAllStock() {
 			stockCodes[stockCodes.length] = collectedStock[i]['code'];
 		}
 	}
+}
+
+function backTest() {
+	var backTestBlock;
+	var startDate;
+	var endDate;
+	var initFund;
+	var notST;
+	var holdingPeriod;
+	var returnPeriod;
+	var stopLoss;
+	var stopProfit;
+
+	var ratio;
+
+	if(stockPoolType == 0) {
+		backTestBlock = $("#backTestBlock").val();
+	}
+
+	var startTimes = document.getElementsByClassName("startDatepicker");
+	startDate = startTimes[strategyType].value;
+
+	var endTimes = document.getElementsByClassName("endDatepicker");
+	endDate = endTimes[strategyType].value;
+
+	var initFunds = document.getElementsByClassName("initFund");
+	initFund = initFunds[strategyType].value;
+
+	var holdingPeriods = document.getElementsByClassName("holdingPeriod");
+	holdingPeriod = holdingPeriods[strategyType].value;
+
+	var returnPeriods = document.getElementsByClassName("returnPeriod");
+	returnPeriod = returnPeriods[strategyType].value;
+
+	var stopLosses = document.getElementsByClassName("stopLoss");
+	stopLoss = stopLosses[strategyType].value;
+
+	var stopProfits = document.getElementsByClassName("stopProfit");
+	stopProfit = stopProfits[strategyType].value;
+
+	var notSTs = document.getElementsByClassName("notST");
+	notST = notSTs[0].checked;
+
+	var strategyBackTestInputVO;
+
+	switch(strategyType) {
+		case 0:
+			var ratio = document.getElementsByClassName("ratio")[0].value;
+			strategyBackTestInputVO = {
+				'strategyBackTestInputVO.stockPoolType': stockPoolType,
+				'strategyBackTestInputVO.strategyType': strategyType,
+				'strategyBackTestInputVO.backTestBlock': backTestBlock,
+				'strategyBackTestInputVO.stockCodes': stockCodes,
+				'strategyBackTestInputVO.startDate': startDate,
+				'strategyBackTestInputVO.endDate': endDate,
+				'strategyBackTestInputVO.initFund': initFund,
+				'strategyBackTestInputVO.notST': notST,
+				'strategyBackTestInputVO.holdingPeriod': holdingPeriod,
+				'strategyBackTestInputVO.returnPeriod': returnPeriod,
+				'strategyBackTestInputVO.stopLoss': stopLoss,
+				'strategyBackTestInputVO.stopProfit': stopProfit,
+				'strategyBackTestInputVO.ratio': ratio
+			};
+			break;
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+	}
+
+	//	alert(holdingPeriod);
+	$.ajax({
+		type: 'post',
+		url: 'test.action',
+		async: false,
+		data: strategyBackTestInputVO,
+		dataType: 'json',
+		success: function(data) {
+			alert(data);
+		},
+		error: function(data) {
+			alert("error");
+		}
+	});
 }
 
 $('.selectpicker').selectpicker({

@@ -61,6 +61,14 @@
 
     </package>
 
+    <package name="strategy" extends="struts-default,json-default">
+        <action name="test" class="action.StrategyAction" method="test">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
+
     <package name="json" extends="json-default">
         <action name="ajax" class="testAction">
             <result name="success" type="json">
