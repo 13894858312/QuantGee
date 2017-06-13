@@ -114,6 +114,9 @@
 			<div class="volume" id="volume"></div>
             <script src="../../js/marketInfo/KLine.js"></script>
 		</div>
+		<div class="realmarkethead">
+			<div class="realmarketheadtext">实时行情</div>
+		</div>
 		<div class="realmarket">
 			<div class="shangz">
 				<div class="text">

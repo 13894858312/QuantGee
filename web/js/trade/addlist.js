@@ -24,7 +24,7 @@ function buyStock() {
         var num = document.getElementById("stnum");
         if (stockCode.value == null || num.value == null) {
             swal("请输入完整信息", "", "warning");
-        } else {
+        }else {
             if (getTradeRetunResult(0)) {
                 alert(stockName);
                 var row1 = document.getElementById('st').rows.length;
@@ -242,6 +242,27 @@ function getTradeRetunResult(addordelete) {
     var num = document.getElementById("stnum");
     var returnResult;
     var nowPrice;
+    var tag;
+    $.ajax({
+        cache: false,
+        async: false,
+        type: 'POST',
+        url: 'judgeValidStockCode.action',
+        data: {
+            stockCode: stockCode.value
+        },
+        dataType: 'json',
+        success: function (data) {
+            tag = JSON.parse(data);
+        },
+        error: function (data) {
+            alert("error")
+        }
+    });
+    if(tag[0] == "error"){
+        swal("不存在该股票","请重新选择","success");
+        return false;
+    }
     $.ajax({
         cache: false,
         async: false,
