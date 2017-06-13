@@ -120,6 +120,9 @@ public class StockBasicInfoServiceImp implements StockBasicInfoService {
             return null;
         }
         MarketInfo marketInfo = stockInfoDAO.getMarketInfo(code);
+        if (marketInfo == null) {
+            return null;
+        }
         return marketInfo.getName();
     }
 

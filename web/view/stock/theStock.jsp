@@ -140,6 +140,8 @@
   		</div>
 		<div class="tsrealtime">
   			<div class="tsrealtime2" id="tsrealtime"></div>
+            <div class="xstime">09:30</div>
+            <div class="xetime">15:00</div>
 		</div>
   	</div>
   </div>

@@ -83,50 +83,80 @@ function drawChart(stockCode, idname) {
         }
     });
     var realDate = [];
+    var realPrice = [];
+    var open = [];
     for(var i=0;i<realInfo['times'].length;i++){
         realDate.push(realInfo['times'][i]);
+        open.push(realInfo['nowPrice'][0]);
     }
-    var realPrice = [];
     for(var i=0;i<realInfo['nowPrice'].length;i++){
         realPrice.push(realInfo['nowPrice'][i]);
     }
     var chart = echarts.init(document.getElementById(idname));
     var option = {
-        backgroundColor: '#FFFFFF',
+        title:{
+            text:'分时图',
+            left:'40%',
+            top:'0%',
+            textStyle:{
+                fontWeight:100,
+                fontSize:12,
+                fontFamile:'Arial, Verdana, sans-serif'
+            }
+        },
         tooltip: {
-            trigger: 'item'
-            // axisPointer: {
-            //     type: 'cross'
-            // }
+            trigger: 'axis'
         },
         grid: {
-            top:'15%',
-            left: '5%',
-            right: '3%',
-            bottom: '11%'
+            top:'10%',
+            left: '0%',
+            right: '0%',
+            bottom: '5%'
         },
-        xAxis: {
+        xAxis:  {
             show:false,
             type: 'category',
             data: realDate
         },
         yAxis: {
             show:false,
-            scale: true,
-            splitArea: {
-                show: true
-            }
+            type: 'value',
+            boundaryGap: true,
+            // splitArea: {
+            //     show: false
+            // },
+            // splitLine:{
+            //     show:true
+            // },
+            scale:true
         },
         series: [
             {
-                name: '现价',
-                type: 'line',
-                data: realPrice,
-                markPoint : {
-                    data : [
-                        {type : 'max', name: '最大值'},
-                        {type : 'min', name: '最小值'}
-                    ]
+                name:'现价',
+                type:'line',
+                symbol:'none',
+                data:realPrice,
+                itemStyle : {
+                    normal : {
+                        lineStyle:{
+                            color:'#579bf0'
+                        }
+                    }
+                }
+            },
+            {
+                name:'开盘价',
+                type:'line',
+                symbol:'none',
+                data:open,
+                itemStyle : {
+                    normal : {
+                        lineStyle: {
+                            type: 'dashed',
+                            width: '1',
+                            color: '#bd3f3f'
+                        }
+                    }
                 }
             }
         ]
