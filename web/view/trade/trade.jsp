@@ -45,7 +45,6 @@
 			<div class="search bar7">
         		<!--<form>-->
             		<input id="inputStockCode" type="text" placeholder="请输入股票代码">
-                    <%--<script src="../../js/fuzzysearch.js"></script>--%>
 					<button onclick="totheStockView()"></button>
         		<!--</form>-->
     		</div>
@@ -151,6 +150,11 @@
     		</tr>
     	</table>
     </div>
-        <script type="text/javascript" src="../../js/trade/initTrade.js"></script>
+    <script type="text/javascript" src="../../js/trade/initTrade.js"></script>
+    <div class="theEnd">
+		<div class="theendtext">
+			© 2017 QuantGee All Rights Reserved.
+		</div>
+	</div>    
 </body>
 </html>
