@@ -234,8 +234,7 @@ System.out.println("************************************************************
             return new MarketInfoVO(date, time, marketType, rateNums);
         }
 
-//        Iterator<Current> currents = stockInfoDAO.getLatestCurrents(marketType);
-        Iterator<Current> currents = stockInfoDAO.getLatestCurrents();
+        Iterator<Current> currents = stockInfoDAO.getLatestCurrents(marketType);
         while (currents.hasNext()) {
             Current temp = currents.next();
             if (temp == null) {
