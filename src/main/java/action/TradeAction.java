@@ -154,7 +154,7 @@ public class TradeAction extends ActionSupport{
         Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = dateFormat.format(now);
-        String stockName = stockBasicInfoService.getCodeByName(stockCode);
+        String stockName = stockBasicInfoService.getNameByCode(stockCode);
         TradeRecordVO tradeRecordVO = new TradeRecordVO(date, accountID, stockCode, stockName, tradeAction, Integer.parseInt(numOfStock), nowPrice);
         if(tradeService.addTradeRecord(tradeRecordVO) != -1){
             ArrayList<String> arrayList = new ArrayList<>();

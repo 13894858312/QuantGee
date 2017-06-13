@@ -18,6 +18,16 @@
         @import "../../css/style.css";
         @import "../../css/trade/trade.css";
     </style>
+    <script>
+        $(function () {
+            $("div.holder").jPages({
+                containerID : "st",
+                previous : "←",
+                next : "→",
+                perPage : 1
+            });
+        });
+    </script>
 </head>
 <body onload="changewhole4()">
 		<div class="head">

@@ -51,65 +51,69 @@ function buyStock() {
                         alert("error")
                     }
                 });
-                var info = "买入" + stockName.textContent + num.value + "股";
-                swal("交易成功",info,"success");
-                var money = document.getElementById("nowmoney");
-                money.innerHTML = balance;
-                if(json.length>0){
-                    for(var i=0;i<json.length;i++){
-                        var x = document.getElementById('st').insertRow(document.getElementById('st').rows.length);
-                        var stockName = x.insertCell(0);
-                        var stockCode = x.insertCell(1);
-                        var theNumOfStock = x.insertCell(2);
-                        var theValueOfStock = x.insertCell(3);
-                        var nowPrice = x.insertCell(4);
-                        var range = x.insertCell(5);
-                        var deletedo = x.insertCell(6);
-                        money.innerHTML = balance;
-                        stockName.innerHTML = json[i]['stockName'];
-                        stockCode.innerHTML = json[i]['stockCode'];
-                        theNumOfStock.innerHTML = json[i]['holdNum'];
-                        theValueOfStock.innerHTML = json[i]['initFund'];
-                        nowPrice.innerHTML = json[i]['nowPrice'];
-                        range.innerHTML = json[i]['yield'];
-                    }
-                }
-                var alltraderecords;
-                $.ajax({
-                    type: 'POST',
-                    url: 'getAllTradeRecord.action',
-                    async: false,
-                    dataType: 'json',
-                    data:{
-                        accountID: accountID
-                    },
-                    success: function (data) {
-                        alltraderecords = JSON.parse(data);
-                    },
-                    error: function (data) {
-                        alert("error");
-                    }
-                });
-                if(alltraderecords.length>0){
-                    for(var i=0;i<alltraderecords.length;i++){
-                        var x = document.getElementById('record').insertRow(document.getElementById('record').rows.length);
-                        var stockName = x.insertCell(0);
-                        var stockCode = x.insertCell(1);
-                        var action = x.insertCell(2);
-                        var theNumOfStock = x.insertCell(3);
-                        var tradePrice = x.insertCell(4);
-                        var tradeTime = x.insertCell(5);
-                        stockName.innerHTML = alltraderecords[i]['stockName'];
-                        stockCode.innerHTML = alltraderecords[i]['stockCode'];
-                        if(alltraderecords[i]['action'] == 0) {
-                            action.innerHTML = "买入";
-                        }else{
-                            action.innerHTML = "卖出";
+                if(balance >= 0) {
+                    var info = "买入" + stockName + num.value + "股";
+                    swal("交易成功", info, "success");
+                    var money = document.getElementById("nowmoney");
+                    money.innerHTML = balance;
+                    if (json.length > 0) {
+                        for (var i = 0; i < json.length; i++) {
+                            var x = document.getElementById('st').insertRow(document.getElementById('st').rows.length);
+                            var stockName = x.insertCell(0);
+                            var stockCode = x.insertCell(1);
+                            var theNumOfStock = x.insertCell(2);
+                            var theValueOfStock = x.insertCell(3);
+                            var nowPrice = x.insertCell(4);
+                            var range = x.insertCell(5);
+                            var deletedo = x.insertCell(6);
+                            money.innerHTML = balance;
+                            stockName.innerHTML = json[i]['stockName'];
+                            stockCode.innerHTML = json[i]['stockCode'];
+                            theNumOfStock.innerHTML = json[i]['holdNum'];
+                            theValueOfStock.innerHTML = json[i]['initFund'];
+                            nowPrice.innerHTML = json[i]['nowPrice'];
+                            range.innerHTML = json[i]['yield'];
                         }
-                        theNumOfStock.innerHTML = alltraderecords[i]['numOfStock'];
-                        tradePrice.innerHTML = alltraderecords[i]['price'];
-                        tradeTime.innerHTML = alltraderecords[i]['time'];
                     }
+                    var alltraderecords;
+                    $.ajax({
+                        type: 'POST',
+                        url: 'getAllTradeRecord.action',
+                        async: false,
+                        dataType: 'json',
+                        data: {
+                            accountID: accountID
+                        },
+                        success: function (data) {
+                            alltraderecords = JSON.parse(data);
+                        },
+                        error: function (data) {
+                            alert("error");
+                        }
+                    });
+                    if (alltraderecords.length > 0) {
+                        for (var i = 0; i < alltraderecords.length; i++) {
+                            var x = document.getElementById('record').insertRow(document.getElementById('record').rows.length);
+                            var stockName = x.insertCell(0);
+                            var stockCode = x.insertCell(1);
+                            var action = x.insertCell(2);
+                            var theNumOfStock = x.insertCell(3);
+                            var tradePrice = x.insertCell(4);
+                            var tradeTime = x.insertCell(5);
+                            stockName.innerHTML = alltraderecords[i]['stockName'];
+                            stockCode.innerHTML = alltraderecords[i]['stockCode'];
+                            if (alltraderecords[i]['action'] == 0) {
+                                action.innerHTML = "买入";
+                            } else {
+                                action.innerHTML = "卖出";
+                            }
+                            theNumOfStock.innerHTML = alltraderecords[i]['numOfStock'];
+                            tradePrice.innerHTML = alltraderecords[i]['price'];
+                            tradeTime.innerHTML = alltraderecords[i]['time'];
+                        }
+                    }
+                }else{
+                    swal("余额不足","","error");
                 }
             }else{
                 swal("交易失败","","error");
@@ -166,66 +170,66 @@ function sellStock() {
                         alert("error")
                     }
                 });
-                var info = "卖出" + stockName + num.value + "股";
-                swal("交易成功",info,"success");
-                var money = document.getElementById("nowmoney");
-                money.innerHTML = balance;
-                if(json.length>0){
-                    for(var i=0;i<json.length;i++){
-                        var x = document.getElementById('st').insertRow(document.getElementById('st').rows.length);
-                        var stockName = x.insertCell(0);
-                        var stockCode = x.insertCell(1);
-                        var theNumOfStock = x.insertCell(2);
-                        var theValueOfStock = x.insertCell(3);
-                        var nowPrice = x.insertCell(4);
-                        var range = x.insertCell(5);
-                        var deletedo = x.insertCell(6);
-                        money.innerHTML = balance;
-                        stockName.innerHTML = json[i]['stockName'];
-                        stockCode.innerHTML = json[i]['stockCode'];
-                        theNumOfStock.innerHTML = json[i]['holdNum'];
-                        theValueOfStock.innerHTML = json[i]['initFund'];
-                        nowPrice.innerHTML = json[i]['nowPrice'];
-                        range.innerHTML = json[i]['yield'];
-                    }
-                }
-                var alltraderecords;
-                $.ajax({
-                    type: 'POST',
-                    url: 'getAllTradeRecord.action',
-                    async: false,
-                    dataType: 'json',
-                    data:{
-                        accountID: accountID
-                    },
-                    success: function (data) {
-                        alltraderecords = JSON.parse(data);
-                    },
-                    error: function (data) {
-                        alert("error");
-                    }
-                });
-                if(alltraderecords.length>0){
-                    for(var i=0;i<alltraderecords.length;i++){
-                        var x = document.getElementById('record').insertRow(document.getElementById('record').rows.length);
-                        var stockName = x.insertCell(0);
-                        var stockCode = x.insertCell(1);
-                        var action = x.insertCell(2);
-                        var theNumOfStock = x.insertCell(3);
-                        var tradePrice = x.insertCell(4);
-                        var tradeTime = x.insertCell(5);
-                        stockName.innerHTML = alltraderecords[i]['stockName'];
-                        stockCode.innerHTML = alltraderecords[i]['stockCode'];
-                        if(alltraderecords[i]['action'] == 0) {
-                            action.innerHTML = "买入";
-                        }else{
-                            action.innerHTML = "卖出";
+                    var info = "卖出" + stockName + num.value + "股";
+                    swal("交易成功", info, "success");
+                    var money = document.getElementById("nowmoney");
+                    money.innerHTML = balance;
+                    if (json.length > 0) {
+                        for (var i = 0; i < json.length; i++) {
+                            var x = document.getElementById('st').insertRow(document.getElementById('st').rows.length);
+                            var stockName = x.insertCell(0);
+                            var stockCode = x.insertCell(1);
+                            var theNumOfStock = x.insertCell(2);
+                            var theValueOfStock = x.insertCell(3);
+                            var nowPrice = x.insertCell(4);
+                            var range = x.insertCell(5);
+                            var deletedo = x.insertCell(6);
+                            money.innerHTML = balance;
+                            stockName.innerHTML = json[i]['stockName'];
+                            stockCode.innerHTML = json[i]['stockCode'];
+                            theNumOfStock.innerHTML = json[i]['holdNum'];
+                            theValueOfStock.innerHTML = json[i]['initFund'];
+                            nowPrice.innerHTML = json[i]['nowPrice'];
+                            range.innerHTML = json[i]['yield'];
                         }
-                        theNumOfStock.innerHTML = alltraderecords[i]['numOfStock'];
-                        tradePrice.innerHTML = alltraderecords[i]['price'];
-                        tradeTime.innerHTML = alltraderecords[i]['time'];
                     }
-                }
+                    var alltraderecords;
+                    $.ajax({
+                        type: 'POST',
+                        url: 'getAllTradeRecord.action',
+                        async: false,
+                        dataType: 'json',
+                        data: {
+                            accountID: accountID
+                        },
+                        success: function (data) {
+                            alltraderecords = JSON.parse(data);
+                        },
+                        error: function (data) {
+                            alert("error");
+                        }
+                    });
+                    if (alltraderecords.length > 0) {
+                        for (var i = 0; i < alltraderecords.length; i++) {
+                            var x = document.getElementById('record').insertRow(document.getElementById('record').rows.length);
+                            var stockName = x.insertCell(0);
+                            var stockCode = x.insertCell(1);
+                            var action = x.insertCell(2);
+                            var theNumOfStock = x.insertCell(3);
+                            var tradePrice = x.insertCell(4);
+                            var tradeTime = x.insertCell(5);
+                            stockName.innerHTML = alltraderecords[i]['stockName'];
+                            stockCode.innerHTML = alltraderecords[i]['stockCode'];
+                            if (alltraderecords[i]['action'] == 0) {
+                                action.innerHTML = "买入";
+                            } else {
+                                action.innerHTML = "卖出";
+                            }
+                            theNumOfStock.innerHTML = alltraderecords[i]['numOfStock'];
+                            tradePrice.innerHTML = alltraderecords[i]['price'];
+                            tradeTime.innerHTML = alltraderecords[i]['time'];
+                        }
+                    }
             }else{
                 swal("交易失败","","error");
             }

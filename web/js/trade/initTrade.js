@@ -111,9 +111,3 @@ if(accountID == ""){
         }
     }
 }
-    $("div.holder").jPages({
-        containerID : "st",
-        previous : "←",
-        next : "→",
-        perPage : 1
-    });
