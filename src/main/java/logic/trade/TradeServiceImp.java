@@ -115,7 +115,9 @@ public class TradeServiceImp implements TradeService {
                     return -1;
                 }
             } else {
-                assert (holdingStock.getHoldNum() - tradeRecord.getNumOfStock() >= 0) : "logic.TradeServiceImp.addTradeRecord.HoldNum小于0";
+                if(holdingStock.getHoldNum() - tradeRecord.getNumOfStock() < 0) {
+                    return -1;
+                }
 
                 holdingStock.setHoldNum(holdingStock.getHoldNum() - tradeRecord.getNumOfStock());
                 holdingStock.setSellOutMoney(holdingStock.getSellOutMoney() + current.getTrade() * tradeRecord.getNumOfStock());
@@ -163,6 +165,9 @@ public class TradeServiceImp implements TradeService {
 
         while(holdingStocks.hasNext()) {
             HoldingStock temp = holdingStocks.next();
+            if (temp.getHoldNum() == 0) {
+                continue;
+            }
             //获取当前股票价格
             double nowPrice;
             Current current = stockInfoDAO.getStockRealTimeInfo(temp.getCode());
