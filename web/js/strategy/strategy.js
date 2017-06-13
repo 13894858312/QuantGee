@@ -38,6 +38,10 @@ $(document).ready(function() {
 				alert("error");
 			}
 		});
+	}else{
+		alert("hh");
+		$("#addMyStock").attr("disabled",true);
+		$("#addMyAllStock").attr("disabled",true);
 	}
 })
 
@@ -181,6 +185,7 @@ function backTest() {
 	switch(strategyType) {
 		case 0:
 			var ratio = document.getElementsByClassName("ratio")[0].value;
+			alert(ratio);
 			strategyBackTestInputVO = {
 				'strategyBackTestInputVO.stockPoolType': stockPoolType,
 				'strategyBackTestInputVO.strategyType': strategyType,
@@ -280,20 +285,20 @@ function backTest() {
 	}
 
 //			alert(notST);
-	$.ajax({
-		type: 'post',
-		url: 'getStrategyBackTesting.action',
-//		url: 'test.action',
-		async: false,
-		data: strategyBackTestInputVO,
-		dataType: 'json',
-		success: function(data) {
-			alert(data);
-		},
-		error: function(data) {
-			alert("error");
-		}
-	});
+//	$.ajax({
+//		type: 'post',
+//		url: 'getStrategyBackTesting.action',
+////		url: 'test.action',
+//		async: false,
+//		data: strategyBackTestInputVO,
+//		dataType: 'json',
+//		success: function(data) {
+//			alert(data);
+//		},
+//		error: function(data) {
+//			alert("error");
+//		}
+//	});
 }
 
 $('.selectpicker').selectpicker({

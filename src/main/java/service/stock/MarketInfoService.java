@@ -49,7 +49,6 @@ public interface MarketInfoService {
      * 获取历史数据大盘信息
      * @param marketType 大盘类型
      *                   sh=上证指数 sz=深圳成指 zxb=中小板 cyb=创业板
-     * @param date 日期
      * @return MarketInfoVO
      */
     public MarketInfoVO getRealTimeMarketInfo(String marketType);

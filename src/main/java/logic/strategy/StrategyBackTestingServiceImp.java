@@ -24,6 +24,10 @@ public class StrategyBackTestingServiceImp implements StrategyBackTestingService
 
     @Override
     public StrategyBackTestResultVO getStrategyBackTesting(StrategyBackTestInputVO inputVO) {
+
+        System.out.println();
+        System.out.println(inputVO.toString());
+
         stockPool.initStockPool(inputVO);
         IStrategy iStrategy = this.getStrategy(inputVO.getStrategyType());
 
