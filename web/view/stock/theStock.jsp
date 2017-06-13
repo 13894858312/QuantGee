@@ -44,6 +44,7 @@
 			</div>
 			<div class="search bar7">
             		<input id="inputStockCode" type="text" placeholder="请输入股票代码">
+                    <script src="../../js/fuzzysearch.js"></script>
             		<button type="submit" onclick="totheStockView()"></button>
     		</div>
 			<div class="marketlog">

@@ -3,7 +3,7 @@
  */
 
 drawRealImg();
-setInterval(drawRealImg,5000);
+setInterval(drawRealImg,120000);
 function drawRealImg() {
     var json;
     $.ajax({
@@ -29,14 +29,24 @@ function drawRealImg() {
     }
     var myChart = echarts.init(document.getElementById("tsrealtime"));
     var option = {
+        title:{
+            text:'分时图',
+            left:'40%',
+            top:'0%',
+            textStyle:{
+                fontWeight:100,
+                fontSize:12,
+                fontFamile:'Arial, Verdana, sans-serif'
+            }
+        },
         tooltip: {
-            trigger: 'item'
+            trigger: 'axis'
         },
         grid: {
-            top:'0%',
+            top:'20%',
             left: '0%',
             right: '0%',
-            bottom: '0%'
+            bottom: '5%'
         },
         xAxis:  {
             show:false,
@@ -47,16 +57,27 @@ function drawRealImg() {
             show:false,
             type: 'value',
             boundaryGap: true,
-            splitArea: {
-                show: true
-            },
+            // splitArea: {
+            //     show: false
+            // },
+            // splitLine:{
+            //     show:true
+            // },
             scale:true
         },
         series: [
             {
-                name:'mid',
+                name:'现价',
                 type:'line',
-                data:price
+                symbol:'none',
+                data:price,
+                itemStyle : {
+                    normal : {
+                        lineStyle:{
+                            color:'#579bf0'
+                        }
+                    }
+                }
             }
         ]
     };

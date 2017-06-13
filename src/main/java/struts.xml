@@ -213,6 +213,11 @@
                 <param name="root">result</param>
             </result>
         </action>
+        <action name="judgeValidStockCode" class="stockAction" method="judgeValidStockCode">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
     </package>
     <package name="trade" extends="json-default,struts-default">
         <action name="getdkInfo" class="tradeAction" method="getStockDayKlineInfo">

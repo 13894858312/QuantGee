@@ -12,6 +12,7 @@ import service.stock.StockQuotaService;
 import vo.stock.*;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 /**
  * Created by Administrator on 2017/6/5.
@@ -68,6 +69,19 @@ public class StockAction extends ActionSupport{
     public String getStockMonthKlineInfo(){
         JSONObject jsonObject = JSONObject.fromObject(getStockHistoricalVO(1,480, "m"));
         result = jsonObject.toString();
+        return SUCCESS;
+    }
+
+    public String judgeValidStockCode(){
+        ArrayList<String> arrayList = new ArrayList<>();
+        String str = stockBasicInfoService.getNameByCode(stockCode);
+        if(str == null){
+            arrayList.add("error");
+        }else{
+            arrayList.add("success");
+        }
+        JSONArray jsonArray = JSONArray.fromObject(arrayList);
+        result = jsonArray.toString();
         return SUCCESS;
     }
 
