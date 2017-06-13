@@ -17,30 +17,7 @@ $.ajax({
 });
 var seriesdata = [];
 for(var i=0;i<json['rateNums'].length;i++){
-    var obj = new Object();
-    obj.value = json['rateNums'][i];
-    if(i ==  0){
-        obj.name = "跌停";
-    }else if(i == 1){
-        obj.name = "-10% ~ -6%";
-    }else if(i == 2){
-        obj.name = "-6% ~ -4%";
-    }else if(i == 3){
-        obj.name = "-4% ~ -2%";
-    }else if(i == 4){
-        obj.name = "-2% ~ 0";
-    }else if(i == 5){
-        obj.name = "0 ~ 2%";
-    }else if(i == 6){
-        obj.name = "2% ~ 4%";
-    }else if(i == 7){
-        obj.name = "4% ~ 6%";
-    }else if(i == 8){
-        obj.name = "6% ~ 10%";
-    }else{
-        obj.name = "涨停";
-    }
-    seriesdata.push(obj);
+    seriesdata.push(json['rateNums'][i]);
 }
 var myChart = echarts.init(document.getElementById('pie'));
 var option1 = {
@@ -48,17 +25,52 @@ var option1 = {
     tooltip: {
         trigger: 'item'
     },
-    legend: {
-        x : 'center',
-        y : 'bottom',
-        data: ['跌停', '-10% ~ -6%', '-6% ~ -4%', '-4% ~ -2%','-2% ~ 0','0 ~ 2%','2% ~ 4%','4% ~ 6%','6% ~ 10%','涨停']
+    grid:{
+        left:'0%',
+        right:'0%',
+        top:'0%',
+        bottom:'0%'
     },
+    xAxis : [
+        {
+            show:false,
+            type : 'category',
+            data : ['跌停', '-10%~-6%', '-6%~-4%', '-4%~-2%','-2%~0','0~2%','2%~4%','4%~6%','6%~10%','涨停']
+        }
+    ],
+    yAxis : [
+        {
+            show:false,
+            type : 'value'
+        }
+    ],
     series : [
         {
-            type:'pie',
-            radius : [40, 100],
-            center : ['60%', '43%'],
-            roseType : 'area',
+            name:'涨跌分布',
+            type:'bar',
+            itemStyle: {
+                normal: {
+                    color: function(param) {
+                        // build a color map as your need.
+                        var colorList = [
+                            '#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B',
+                            '#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD',
+                            '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'
+                        ];
+                        return colorList[param.dataIndex]
+                    },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        formatter: '{b}\n{c}'
+                    }
+                }
+            },
+            label: {
+                show: true,
+                position: 'top',
+                formatter: '{b}\n{c}'
+            },
             data:seriesdata
         }
     ]
