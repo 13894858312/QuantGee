@@ -28,7 +28,7 @@ public class StrategyBackTestInputVO {
 
     /******************不同策略的可选参数*****************/
     private double ratio;                   //strategyType为0时需要此参数 持有股票的比例,用于计算持有的股票数量 输入百分数 如20表示20%
-    private int holdingStockNum;            //strategyType为1,2,3时需要此参数 持有的股票数量
+    private int holdingStockNum;            //strategyType为1,2,3,4时需要此参数 持有的股票数量
     private int shortReturnPeriod;          //strategyType为2时需要此参数 表示第二条N日平滑均线(短周期)
     private int changeNumber;               //strategyType为3时需要此参数 表示每次换仓换股数量
     private int trainPeriod;                //strategyType为4时需要此参数 表示训练数据的天数(n)
