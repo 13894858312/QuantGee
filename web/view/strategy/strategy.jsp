@@ -940,11 +940,17 @@
 
 <div class="graph">
 	<div class="graphhead">
-		<div class="headbutton" id="firstbutton">策略基准累积收益率</div>
-		<div class="headbutton" id="secondbutton">收益率分布</div>
-		<div class="headbutton" id="thirdbutton">超额收益率</div>
-		<div class="headbutton" id="fourthbutton">策略胜率</div>
-		<div class="storebutton">加入收藏</div>
+		<div class="headbutton" id="firstbutton" onclick="drawCumulativeYield()">策略基准累积收益率</div>
+		<div class="headbutton" id="secondbutton" onclick="drawYieldHistogram()">收益率分布</div>
+		<div class="headbutton" id="thirdbutton" onclick="drawAbnormalReturn()">超额收益率</div>
+		<div class="headbutton" id="fourthbutton" onclick="drawStategyWinRate()">策略胜率</div>
+		<div class="storebutton" onclick="">加入收藏</div>
+	</div>
+	<div class="testgraphcontent" id="testcontent">
+		
+	</div>
+	<div class="grapharea" id="grapharea">
+		
 	</div>
 </div>
 	
