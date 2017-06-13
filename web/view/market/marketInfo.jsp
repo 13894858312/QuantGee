@@ -8,6 +8,8 @@
     <script src="../../js/marketInfo/headcontroller.js"></script>
 	<script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="../../js/jquery.autocomplete.js"></script>
+	<script type="text/javascript" src="../../js/sweet-alert.min.js"></script>
+	<link rel="stylesheet" href="../../css/sweet-alert.css">
 	<link rel="Stylesheet" href="../../css/jquery.autocomplete.css" />
 	<link rel="shortcut icon" href="../../images/logo20x20.png">
     <%--<script type="text/javascript" for="window" event="onload">--%>

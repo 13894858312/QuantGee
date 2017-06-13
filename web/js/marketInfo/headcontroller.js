@@ -66,20 +66,41 @@ function changewhole5() {
 function totheStockView() {
     var code = document.getElementById("inputStockCode");
     var stockCode = code.value.substring(0,6);
+    var result;
     $.ajax({
         cache:false,
         async:false,
-        url:'totheStock.action',
+        url:'judgeValidStockCode.action',
         type:'POST',
         dataType:'json',
         data:{
-          stockCode: stockCode
+            stockCode: stockCode
         },
         success:function (data) {
-            window.location.href = '../../view/stock/theStock.jsp';
+            result = JSON.parse(data);
         },
         error:function (data) {
             alert("error")
         }
     });
+    if(result[0] == "success") {
+        $.ajax({
+            cache: false,
+            async: false,
+            url: 'totheStock.action',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                stockCode: stockCode
+            },
+            success: function (data) {
+                window.location.href = '../../view/stock/theStock.jsp';
+            },
+            error: function (data) {
+                alert("error")
+            }
+        });
+    }else{
+        swal("不存在该股票","请重新输入","warning");
+    }
 }

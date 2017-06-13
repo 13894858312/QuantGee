@@ -64,10 +64,9 @@ public class PredictStockServiceImp implements PredictStockService {
         Iterator<Kdj> kdjs = quotaDAO.getKDJs(startDate, endDate, code);
         Iterator<Rsi> rsis = quotaDAO.getRSIs(startDate, endDate, code);
         Iterator<Boll> bolls = quotaDAO.getBOLLs(startDate, endDate, code);
-        Iterator<Stock> stocks = stockInfoDAO.getStockInfo(code, startDate, endDate);
 
         StockAnalysisVO result = new StockAnalysisVO(code, MacdHelper.anaylyseMacd(macds), KdjHelper.anaylyseKdj(kdjs),
-                RsiHelper.anaylyseRsi(rsis), BollHelper.anaylyseBoll(bolls,stocks));
+                RsiHelper.anaylyseRsi(rsis), BollHelper.anaylyseBoll(bolls));
 
         return result;
     }
