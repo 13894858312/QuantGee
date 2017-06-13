@@ -3,7 +3,7 @@
  */
 var balance;
 var accountID;
-var stockName;
+var s;
 function buyStock() {
     $.ajax({
         type: 'get',
@@ -26,6 +26,7 @@ function buyStock() {
             swal("请输入完整信息", "", "warning");
         } else {
             if (getTradeRetunResult(0)) {
+                alert(stockName);
                 var row1 = document.getElementById('st').rows.length;
                 for(var i=row1-1;i>0;i--){
                     document.getElementById('st').deleteRow(i);
@@ -52,7 +53,7 @@ function buyStock() {
                     }
                 });
                 if(balance >= 0) {
-                    var info = "买入" + stockName + num.value + "股";
+                    var info = "买入  " + s + "  " + num.value + "  股";
                     swal("交易成功", info, "success");
                     var money = document.getElementById("nowmoney");
                     money.innerHTML = balance;
@@ -93,7 +94,7 @@ function buyStock() {
                     });
                     if (alltraderecords.length > 0) {
                         for (var i = 0; i < alltraderecords.length; i++) {
-                            var x = document.getElementById('record').insertRow(document.getElementById('record').rows.length);
+                            var x = document.getElementById('record').insertRow(1);
                             var stockName = x.insertCell(0);
                             var stockCode = x.insertCell(1);
                             var action = x.insertCell(2);
@@ -170,7 +171,7 @@ function sellStock() {
                         alert("error")
                     }
                 });
-                    var info = "卖出" + stockName + num.value + "股";
+                    var info = "卖出  " + s + "  " + num.value + "  股";
                     swal("交易成功", info, "success");
                     var money = document.getElementById("nowmoney");
                     money.innerHTML = balance;
@@ -211,7 +212,7 @@ function sellStock() {
                     });
                     if (alltraderecords.length > 0) {
                         for (var i = 0; i < alltraderecords.length; i++) {
-                            var x = document.getElementById('record').insertRow(document.getElementById('record').rows.length);
+                            var x = document.getElementById('record').insertRow(1);
                             var stockName = x.insertCell(0);
                             var stockCode = x.insertCell(1);
                             var action = x.insertCell(2);
@@ -299,7 +300,7 @@ function getTradeRetunResult(addordelete) {
             }
         });
         balance = money[0];
-        stockName = returnResult[1];
+        s = returnResult[1];
         result = true;
     }
     return result;

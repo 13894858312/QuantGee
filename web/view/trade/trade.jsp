@@ -10,7 +10,6 @@
 	<!--<script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>-->
 	<script type="text/javascript" src="../../js/jquery.autocomplete.js"></script>
 	<script type="text/javascript" src="../../js/sweet-alert.min.js"></script>
-	<script type="text/javascript" src="../../js/jPages.min.js"></script>
 	<link rel="stylesheet" href="../../css/sweet-alert.css">
 	<link rel="Stylesheet" href="../../css/jquery.autocomplete.css" />
 	<link rel="shortcut icon" href="../../images/logo20x20.png">
@@ -18,16 +17,6 @@
         @import "../../css/style.css";
         @import "../../css/trade/trade.css";
     </style>
-    <script>
-        $(function () {
-            $("div.holder").jPages({
-                containerID : "st",
-                previous : "←",
-                next : "→",
-                perPage : 1
-            });
-        });
-    </script>
 </head>
 <body onload="changewhole4()">
 		<div class="head">
@@ -130,7 +119,7 @@
     	</div>
     </div>
     <div class="stocktable">
-    	<table>
+    	<table class="st" id="st">
     		<tr>
     			<th class="stth">股票名称</th>
     			<th class="stth">股票代码</th>
@@ -141,14 +130,8 @@
     			<th class="add"><div class="tdbutton" id="buybutton" onclick="buyStock()">买入</div></th>
     			<th class="delete"><div class="tdbutton" id="sellbutton" onclick="sellStock()">卖出</div></th>
     		</tr>
-    		<!--<tbody id="itemContainer" id="st">
-    			
-    		</tbody>-->
-    	</table>
-    	<table class="st" id="st">
     	</table>
     </div>
-     <div class="holder"></div>
     <div class="recordtext">
     	<div class="testheadtext">
     		<div class="text">交易记录</div>
