@@ -1,11 +1,11 @@
 .ac_results {
 	margin-left: 14px;
 	padding: 0px;
-	border-left: 2px solid rgb(41,29,29);
-	border-bottom: 2px solid rgb(41,29,29);
-	border-right: 2px solid rgb(41,29,29);
-	border-bottom-left-radius: 15px;
-	border-bottom-right-radius: 15px;
+	border-left: 1px solid rgb(41,29,29);
+	border-bottom: 1px solid rgb(41,29,29);
+	border-right: 1px solid rgb(41,29,29);
+	border-bottom-left-radius: 12px;
+	border-bottom-right-radius: 12px;
 	background-color: white;
 	overflow: hidden;
 	z-index: 99999;

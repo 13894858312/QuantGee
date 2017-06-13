@@ -3,8 +3,7 @@
  */
 
 drawRealImg();
-var interval = 3000;
-setInterval(interval,drawRealImg());
+setInterval(drawRealImg,5000);
 function drawRealImg() {
     var json;
     $.ajax({
@@ -31,10 +30,7 @@ function drawRealImg() {
     var myChart = echarts.init(document.getElementById("tsrealtime"));
     var option = {
         tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'cross'
-            }
+            trigger: 'item'
         },
         grid: {
             top:'0%',
@@ -48,6 +44,7 @@ function drawRealImg() {
             data: date
         },
         yAxis: {
+            show:false,
             type: 'value',
             boundaryGap: true,
             splitArea: {

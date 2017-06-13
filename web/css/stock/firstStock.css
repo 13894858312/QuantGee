@@ -138,6 +138,7 @@
 }
 .todayrecommend{
 	float: left;
+	margin-top: 30px;
 	width: 100%;
 	height: 80px;
 	background-color: #FFFFFF;
@@ -250,6 +251,7 @@
 }
 .news{
 	float: left;
+	margin-top: 30px;
 	width: 100%;
 	height: 250px;
 	background-color: #FFFFFF;
@@ -347,6 +349,11 @@
     word-break:break-all;
     font-size: 12px;
     font-family: "Roboto Mono", monospace;
+}
+a:hover{
+	color: rgb(62, 196, 131);
+	font-weight: 500;
+	cursor: hand;
 }
 /*.rightrange{
 	margin-left: 8%;

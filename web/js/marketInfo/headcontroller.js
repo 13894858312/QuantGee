@@ -65,6 +65,7 @@ function changewhole5() {
 }
 function totheStockView() {
     var code = document.getElementById("inputStockCode");
+    var stockCode = code.value.substring(0,6);
     $.ajax({
         cache:false,
         async:false,
@@ -72,7 +73,7 @@ function totheStockView() {
         type:'POST',
         dataType:'json',
         data:{
-          stockCode: code.value
+          stockCode: stockCode
         },
         success:function (data) {
             window.location.href = '../../view/stock/theStock.jsp';

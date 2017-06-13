@@ -22,14 +22,22 @@ for(var i=0;i<json['rateNums'].length;i++){
     if(i ==  0){
         obj.name = "跌停";
     }else if(i == 1){
-        obj.name = "-10% ~ -5%";
+        obj.name = "-10% ~ -6%";
     }else if(i == 2){
-        obj.name = "-5% ~ 0";
+        obj.name = "-6% ~ -4%";
     }else if(i == 3){
-        obj.name = "0 ~ 5%";
+        obj.name = "-4% ~ -2%";
     }else if(i == 4){
-        obj.name = "5% ~ 10%";
+        obj.name = "-2% ~ 0";
     }else if(i == 5){
+        obj.name = "0 ~ 2%";
+    }else if(i == 6){
+        obj.name = "2% ~ 4%";
+    }else if(i == 7){
+        obj.name = "4% ~ 6%";
+    }else if(i == 8){
+        obj.name = "6% ~ 10%";
+    }else{
         obj.name = "涨停";
     }
     seriesdata.push(obj);
@@ -43,7 +51,7 @@ var option1 = {
     legend: {
         x : 'center',
         y : 'bottom',
-        data: ['跌停', '-10% ~ -5%', '-5% ~ 0', '0 ~ 5%','5% ~ 10%','涨停']
+        data: ['跌停', '-10% ~ -6%', '-6% ~ -4%', '-4% ~ -2%','-2% ~ 0','0 ~ 2%','2% ~ 4%','4% ~ 6%','6% ~ 10%','涨停']
     },
     series : [
         {

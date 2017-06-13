@@ -152,6 +152,13 @@
 	background-color: #FFFFFF;
 	border-left: 1px solid #C0C0C0;
 }
+.tsrealtime2{
+	float: left;
+	margin-left: 10px;
+	width: 90%;
+	height: 180px;
+	background-color: #FFFFFF;
+}
 .hismarket{
 	float: left;
 	width: 100%;
