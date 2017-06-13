@@ -201,7 +201,6 @@ function deleteStock(j) {
 }
 
 function backTest() {
-	alert(stockCodes);
 	var baseYieldBlock;
 	var backTestBlock;
 	var startDate;
@@ -735,5 +734,135 @@ format: "yyyy-mm-dd"
 })
 
 function addCollectedStrategy(){
-	
+	var initFund;
+	var notST;
+	var holdingPeriod;
+	var returnPeriod;
+	var stopLoss;
+	var stopProfit;
+
+	var ratio;
+
+	var initFunds = document.getElementsByClassName("initFund");
+	initFund = initFunds[strategyType].value;
+
+	var holdingPeriods = document.getElementsByClassName("holdingPeriod");
+	holdingPeriod = holdingPeriods[strategyType].value;
+
+	var returnPeriods = document.getElementsByClassName("returnPeriod");
+	returnPeriod = returnPeriods[strategyType].value;
+
+	var stopLosses = document.getElementsByClassName("stopLoss");
+	stopLoss = stopLosses[strategyType].value;
+
+	var stopProfits = document.getElementsByClassName("stopProfit");
+	stopProfit = stopProfits[strategyType].value;
+
+	var notSTs = document.getElementsByClassName("notST");
+	notST = notSTs[0].checked;
+
+	var strategyVO;
+
+	switch(strategyType) {
+		case 0:
+			var ratio = document.getElementsByClassName("ratio")[0].value;
+			var isHoldingPeriodFixed = document.getElementsByClassName("isHoldingPeriodFixed")[0].value;
+			strategyVO = {
+				'strategyVO.userID':accountID,
+				'strategyVO.strategyType': strategyType,
+				'strategyVO.initFund': initFund,
+				'strategyVO.notST': notST,
+				'strategyVO.holdingPeriod': holdingPeriod,
+				'strategyVO.returnPeriod': returnPeriod,
+				'strategyVO.stopLoss': stopLoss,
+				'strategyVO.stopProfit': stopProfit,
+				'strategyVO.ratio': ratio,
+				'strategyVO.isHoldingPeriodFixed': isHoldingPeriodFixed
+			};
+			break;
+		case 1:
+			var holdingStockNum = document.getElementsByClassName("holdingStockNum")[0].value;
+			strategyVO = {
+				'strategyVO.userID':accountID,
+				'strategyVO.strategyType': strategyType,
+				'strategyVO.initFund': initFund,
+				'strategyVO.notST': notST,
+				'strategyVO.holdingPeriod': holdingPeriod,
+				'strategyVO.returnPeriod': returnPeriod,
+				'strategyVO.stopLoss': stopLoss,
+				'strategyVO.stopProfit': stopProfit,
+				'strategyVO.holdingStockNum': holdingStockNum,
+				'strategyVO.isHoldingPeriodFixed': isHoldingPeriodFixed
+			};
+			break;
+		case 2:
+			var holdingStockNum = document.getElementsByClassName("holdingStockNum")[1].value;
+			var shortReturnPeriod = document.getElementById("shortReturnPeriod").value;
+			strategyVO = {
+				'strategyVO.userID':accountID,
+				'strategyVO.strategyType': strategyType,
+				'strategyVO.initFund': initFund,
+				'strategyVO.notST': notST,
+				'strategyVO.holdingPeriod': holdingPeriod,
+				'strategyVO.returnPeriod': returnPeriod,
+				'strategyVO.stopLoss': stopLoss,
+				'strategyVO.stopProfit': stopProfit,
+				'strategyVO.holdingStockNum': holdingStockNum,
+				'strategyVO.shortReturnPeriod': shortReturnPeriod
+			};
+			break;
+		case 3:
+			var holdingStockNum = document.getElementsByClassName("holdingStockNum")[2].value;
+			var changeNumber = document.getElementById("changeNumber").value;
+			strategyVO = {
+				'strategyVO.userID':accountID,
+				'strategyVO.strategyType': strategyType,
+				'strategyVO.initFund': initFund,
+				'strategyVO.notST': notST,
+				'strategyVO.holdingPeriod': holdingPeriod,
+				'strategyVO.returnPeriod': returnPeriod,
+				'strategyVO.stopLoss': stopLoss,
+				'strategyVO.stopProfit': stopProfit,
+				'strategyVO.holdingStockNum': holdingStockNum,
+				'strategyVO.changeNumber': changeNumber
+			};
+			break;
+		case 4:
+			var holdingStockNum = document.getElementsByClassName("holdingStockNum")[3].value;
+			var trainPeriod = document.getElementById("trainPeriod").value;
+			var k = document.getElementById("k").value;
+			var vectorLength = document.getElementById("vectorLength").value;
+			strategyVO = {
+				'strategyVO.userID':accountID,
+				'strategyVO.strategyType': strategyType,
+				'strategyVO.initFund': initFund,
+				'strategyVO.notST': notST,
+				'strategyVO.holdingPeriod': holdingPeriod,
+				'strategyVO.returnPeriod': returnPeriod,
+				'strategyVO.stopLoss': stopLoss,
+				'strategyVO.stopProfit': stopProfit,
+				'strategyVO.trainPeriod': trainPeriod,
+				'strategyVO.k': k,
+				'strategyVO.holdingStockNum': holdingStockNum,
+				'strategyVO.vectorLength': vectorLength
+			};
+			break;
+	}
+	alert(strategyVO);
+	$.ajax({
+			type: 'post',
+			url: 'addMyStartegy.action',
+			async: false,
+			data: strategyVO,
+			dataType: 'json',
+			success: function(data) {
+				if(data == "success") {
+					swal("添加成功！", "", "success");
+				} else {
+					swal("添加失败！", "", "error");
+				}			
+			},error: function(data) {
+				alert("error");
+			}
+		});
 }
