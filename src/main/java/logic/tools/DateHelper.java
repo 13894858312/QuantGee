@@ -12,6 +12,7 @@ import java.util.Date;
  */
 public class DateHelper {
     private static final String DATE_FORMAT = "yyyy-MM-dd";//可以方便地修改日期格式
+    public static final String INDEX_DATE = "2014-05-26";
 
     public static String getNowDate() {
         Date now = new Date();

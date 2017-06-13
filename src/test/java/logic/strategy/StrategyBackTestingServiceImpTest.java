@@ -27,17 +27,18 @@ public class StrategyBackTestingServiceImpTest {
     @Test
     public void getStrategyBackTesting0() throws Exception {
         StrategyBackTestInputVO inputVO = new StrategyBackTestInputVO();
-        inputVO.setStockPoolType(1);
+        inputVO.setStockPoolType(0);
         inputVO.setStrategyType(0);
         inputVO.setInitFund(10000);
-        inputVO.setStockCodes(initStockIDs());
-        inputVO.setStartDate("2015-01-30");
-        inputVO.setEndDate("2016-08-28");
+//        inputVO.setStockCodes(initStockIDs());
+        inputVO.setBackTestBlock("sh");
+        inputVO.setStartDate("2017-03-13");
+        inputVO.setEndDate("2017-06-03");
         inputVO.setHoldingPeriod(10);
         inputVO.setReturnPeriod(10);
         inputVO.setNotST(false);
-        inputVO.setStopLoss(20);
-        inputVO.setStopProfit(20);
+        inputVO.setStopLoss(10);
+        inputVO.setStopProfit(10);
 
         inputVO.setRatio(20);
 

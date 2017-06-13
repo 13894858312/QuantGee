@@ -42,10 +42,9 @@ public class BollHelper {
     /**
      * boll指标的分析
      * @param bollIterator macds
-     * @param stockIterator stocks
      * @return result
      */
-    public static String anaylyseBoll(Iterator<Boll> bollIterator, Iterator<Stock> stockIterator) {
+    public static String anaylyseBoll(Iterator<Boll> bollIterator) {
         StringBuffer result = new StringBuffer();
         ArrayList<Boll> bolls = new ArrayList<>();
 
@@ -57,7 +56,6 @@ public class BollHelper {
             return BOLL_INFO;
         }
 
-
         ArrayList<Double> upper = new ArrayList<>();
         ArrayList<Double> lower = new ArrayList<>();
         ArrayList<Double> mid = new ArrayList<>();
@@ -66,27 +64,26 @@ public class BollHelper {
             lower.add(bolls.get(i).getLow());
             mid.add(bolls.get(i).getMid());
         }
-        int n1 = lineFit(upper);
-        int n2 = lineFit(mid);
-        int n3 = lineFit(lower);
-
+        double a1 = lineFit(upper);
+        double a2 = lineFit(mid);
+        double a3 = lineFit(lower);
 
         //开口
-        if (n1 > 0 && n3 < 0 && n2 > 0) {
+        if (a1 > 0 && a3 < 0 && a2 > 0) {
             result.append(BOLL_INFO_21);
-        } else if (n1 > 0 && n3 < 0 && n2 < 0) {
+        } else if (a1 > 0 && a3 < 0 && a2 < 0) {
             result.append(BOLL_INFO_22);
-        } else if (n1 > 0 && n3 < 0) {
+        } else if (a1 > 0 && a3 < 0) {
             result.append(BOLL_INFO_23);
         }
 
-        if(n1 > 0 && n2 > 0 && n3 >0) {
+        if(a1 > 0 && a2 > 0 && a3 >0) {
             result.append(BOLL_INFO_31);
-        } else if(n1 < 0 && n2 < 0 && n3 < 0) {
+        } else if(a1 < 0 && a2 < 0 && a3 < 0) {
             result.append(BOLL_INFO_32);
-        } else if(n1 < 0 && n2 > 0 && n3 > 0) {
+        } else if(a1 < 0 && a2 > 0 && a3 > 0) {
             result.append(BOLL_INFO_33);
-        } else if(n1 > 0 && n2 < 0 && n3 < 0) {
+        } else if(a1 > 0 && a2 < 0 && a3 < 0) {
             result.append(BOLL_INFO_34);
         } else {
             result.append(BOLL_INFO_44);
@@ -100,7 +97,7 @@ public class BollHelper {
      * @param y 数据
      * @return 1:上涨 -1:下跌
      */
-    private static int lineFit(ArrayList<Double> y) {
+    public static double lineFit(ArrayList<Double> y) {
         double averageY=0, averageX=0, averageXY=0, averageXX=0;
         for (int i=0; i<y.size(); ++i) {
             averageX += i;
@@ -115,13 +112,6 @@ public class BollHelper {
         averageXX /= y.size();
 
         double b = (averageXY-averageX*averageY)/(averageXX-averageX*averageX);
-
-        double a = averageY- b * averageX;
-
-        if (a > 0) {
-            return 1;
-        }
-
-        return -1;
+        return b;
     }
 }
