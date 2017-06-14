@@ -46,7 +46,7 @@
 
     <div class="hdlogo">
 
-        <a target="_blank" class="site-logo" href=""> <img src="../../images/quantgeelogo.png" title="MyQuantGee"
+        <a class="site-logo" href=""> <img src="../../images/quantgeelogo.png" title="MyQuantGee"
                                                            alt="MyQuantGee"></a>
 
     </div>
