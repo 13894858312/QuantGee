@@ -73,6 +73,23 @@
 	margin-left: 15%;
 	background-color: #FFFFFF;
 }
+.realmarkethead{
+	float: left;
+	width: 70%;
+	height: 45px;
+	margin-top: 10px;
+	margin-left: 15%;
+	border-bottom: 1px solid #C0C0C0;
+}
+.realmarketheadtext{
+	float: left;
+	width: 30%;
+	height: 35px;
+	margin-top: 10px;
+	margin-left: 1%;
+	font-size: 26px;
+	font-family: "Roboto Mono", monospace;
+}
 .realmarket{
 	float: left;
 	margin-top: 20px;
@@ -151,11 +168,24 @@
 	width: 45%;
 	height: 20px;
 }
+.vertical{
+	float: left;
+	width: 1px;
+	height: 250px;
+	margin-left: 3%;
+	background-color: #FFFFFF;
+}
+.ver{
+	margin-top: 60px;
+	width: 1px;
+	height: 180px;
+	border: 1px solid #C0C0C0;
+}
 .riseanddownStock{
 	float: left;
 	width: 45%;
 	height: 250px;
-	margin-left: 2%;
+	/*margin-left: 2%;*/
 	background-color: #FFFFFF;
 }
 .news{
@@ -256,4 +286,20 @@
     word-break:break-all;
     font-size: 12px;
     font-family: "Roboto Mono", monospace;
+}
+.theEnd{
+	float: left;
+	margin-left: 15%;
+	width: 70%;
+	height: 100px;
+	border-top: 1px solid #C0C0C0;
+}
+.theendtext{
+	font-size: 14px;
+	text-align: center;
+	font-family: "Roboto Mono", monospace;
+	margin-left: 35%;
+	width: 30%;
+	margin-top: 40px;
+	height: 20px;
 }

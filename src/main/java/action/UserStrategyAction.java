@@ -15,6 +15,7 @@ public class UserStrategyAction extends ActionSupport{
 
     //获取的accountID
     private String accountID;
+    private StrategyVO strategyVO;
 
     //返回的json
     private String result;
@@ -27,6 +28,16 @@ public class UserStrategyAction extends ActionSupport{
         ArrayList<StrategyVO> collectStrategys = myStrategyService.getMyStrategys(accountID);
         JSONArray json = JSONArray.fromObject(collectStrategys);
         result = json.toString();
+        return SUCCESS;
+    }
+
+    public String addMyStartegy(){
+        System.out.println(strategyVO==null);
+        if (myStrategyService.addMyStartegy(strategyVO)){
+            result="success";
+        }else {
+            result="fail";
+        }
         return SUCCESS;
     }
 
@@ -46,4 +57,11 @@ public class UserStrategyAction extends ActionSupport{
         this.result = result;
     }
 
+    public StrategyVO getStrategyVO() {
+        return strategyVO;
+    }
+
+    public void setStrategyVO(StrategyVO strategyVO) {
+        this.strategyVO = strategyVO;
+    }
 }

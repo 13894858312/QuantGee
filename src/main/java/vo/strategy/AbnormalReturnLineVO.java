@@ -1,5 +1,7 @@
 package vo.strategy;
 
+import logic.tools.MathHelper;
+
 /**
  * Created by Mark.W on 2017/3/23.
  * 超额收益率和策略胜率图的坐标信息
@@ -22,8 +24,8 @@ public class AbnormalReturnLineVO {
                                 double abnormalReturn, double stategyWinRate) {
         this.holdingPeriod = holdingPeriod;
         this.returnPeriod = returnPeriod;
-        this.abnormalReturn = abnormalReturn;
-        this.stategyWinRate = stategyWinRate;
+        this.abnormalReturn = MathHelper.formatData(abnormalReturn,2);
+        this.stategyWinRate = MathHelper.formatData(stategyWinRate,2);
     }
 
     public int getHoldingPeriod() {

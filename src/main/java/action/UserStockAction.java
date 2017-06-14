@@ -18,18 +18,9 @@ import java.util.ArrayList;
 public class UserStockAction extends ActionSupport{
 
     private ArrayList<StockCurrentVO> stockCurrentVOS;
-// private ArrayList<String> test;
-//
-//    public ArrayList<String> getTest() {
-//        return test;
-//    }
-//
-//    public void setTest(ArrayList<String> test) {
-//        this.test = test;
-//    }
 
     private String accountID;
-
+    private StockCollectInputVO stockCollectInputVO;
     private String result;
     private String codeID;
     private String stockName;
@@ -49,15 +40,13 @@ public class UserStockAction extends ActionSupport{
     }
 
     public String deleteCollectedStock(){
-//        if (collectStockService.deleteCollectedStock(new StockCollectInputVO(accountID,codeID))){
-//            HttpServletRequest request = ServletActionContext.getRequest();
-//            request.setAttribute("tipMessage", "删除成功！");
-//            return SUCCESS;
-//        }else {
-//            HttpServletRequest request = ServletActionContext.getRequest();
-//            request.setAttribute("tipMessage", "删除失败！");
-//            return "fail";
-//        }
+        System.out.println(stockCollectInputVO.getCode()+" "+stockCollectInputVO.getUserID());
+        if (collectStockService.deleteCollectedStock(stockCollectInputVO)){
+            result = "success";
+
+        }else {
+            result = "fail";
+        }
         return SUCCESS;
     }
 
@@ -120,5 +109,13 @@ public class UserStockAction extends ActionSupport{
 
     public void setStockName(String stockName) {
         this.stockName = stockName;
+    }
+
+    public StockCollectInputVO getStockCollectInputVO() {
+        return stockCollectInputVO;
+    }
+
+    public void setStockCollectInputVO(StockCollectInputVO stockCollectInputVO) {
+        this.stockCollectInputVO = stockCollectInputVO;
     }
 }

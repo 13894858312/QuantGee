@@ -114,6 +114,9 @@
 			<div class="volume" id="volume"></div>
             <script src="../../js/marketInfo/KLine.js"></script>
 		</div>
+		<div class="realmarkethead">
+			<div class="realmarketheadtext">实时行情</div>
+		</div>
 		<div class="realmarket">
 			<div class="shangz">
 				<div class="text">
@@ -133,6 +136,9 @@
                 <div class="shangzgraph" id="shangzgraph"></div>
                 <script src="../../js/marketInfo/realInfo.js"></script>
 			</div>
+			<div class="vertical">
+				<div class="ver"></div>
+			</div>
 			<div class="riseanddownStock" id="pie">
 			<script src="../../js/marketInfo/risedowngraph.js"></script>
 			</div>
@@ -151,13 +157,13 @@
 					</div>
 					<div class="newscontent">
 						<li class="content">
-							<a id="zqcj1">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="zqcj1"></a>
 						</li>
 						<li class="content">
-							<a id="zqcj2">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="zqcj2"></a>
 						</li>
 						<li class="content">
-							<a id="zqcj3">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="zqcj3"></a>
 						</li>
                         <script src="../../js/marketInfo/news.js"></script>
 					</div>
@@ -171,13 +177,13 @@
 					</div>
 					<div class="newscontent">
 						<li class="content">
-							<a id="gncj1">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="gncj1"></a>
 						</li>
 						<li class="content">
-							<a id="gncj2">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="gncj2"></a>
 						</li>
 						<li class="content">
-							<a id="gncj3">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="gncj3"></a>
 						</li>
                         <script src="../../js/marketInfo/news.js"></script>
 					</div>
@@ -191,17 +197,22 @@
 					</div>
 					<div class="newscontent">
 						<li class="content">
-							<a id="mgwh1">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="mgwh1"></a>
 						</li>
 						<li class="content">
-							<a id="mgwh2">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="mgwh2"></a>
 						</li>
 						<li class="content">
-							<a id="mgwh3">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="mgwh3"></a>
 						</li>
                         <script src="../../js/marketInfo/news.js"></script>
 					</div>
 				</div>
+			</div>
+		</div>
+		<div class="theEnd">
+			<div class="theendtext">
+				© 2017 QuantGee All Rights Reserved.
 			</div>
 		</div>
 </body>

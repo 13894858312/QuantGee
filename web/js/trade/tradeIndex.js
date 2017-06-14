@@ -551,40 +551,61 @@ function getCheck() {
     var stocktemp;
     var temp;
     var stockCode = document.getElementById("inputstcode");
+    var tag;
     $.ajax({
-        cache:false,
-        async:false,
-        type:'POST',
-        data:{
+        cache: false,
+        async: false,
+        type: 'POST',
+        url: 'judgeValidStockCode.action',
+        data: {
             stockCode: stockCode.value
         },
-        url:'getSTCodeInfo.action',
-        dataType:'json',
-        success:function (data) {
-            stocktemp = JSON.parse(data);
+        dataType: 'json',
+        success: function (data) {
+            tag = JSON.parse(data);
         },
-        error:function (data) {
+        error: function (data) {
             alert("error")
         }
     });
-    dochart();
-    $.ajax({
-        cache:false,
-        async:false,
-        type:'GET',
-        url:'getPredictResult.action',
-        dataType:'json',
-        success:function (data) {
-            temp = JSON.parse(data);
-        },
-        error:function (data) {
-            alert("error")
-        }
-    });
-    $("#resultdata1").text(temp['predictTomorrowPrice']);
-    $("#resultdata2").text(String(temp['predictTomorrowIncrease'])+"%");
-    $("#resultdata3").text(String(temp['historyDeviation'])+"%");
-    $("#resulttext0").text(stocktemp['stockName']);
-    $("#resultdata0").text(stocktemp['code']);
-    drawMACD();
+    if(tag[0] == "error"){
+        swal("不存在该股票","请重新输入","error");
+    }else {
+        $.ajax({
+            cache: false,
+            async: false,
+            type: 'POST',
+            data: {
+                stockCode: stockCode.value
+            },
+            url: 'getSTCodeInfo.action',
+            dataType: 'json',
+            success: function (data) {
+                stocktemp = JSON.parse(data);
+            },
+            error: function (data) {
+                alert("error")
+            }
+        });
+        dochart();
+        $.ajax({
+            cache: false,
+            async: false,
+            type: 'GET',
+            url: 'getPredictResult.action',
+            dataType: 'json',
+            success: function (data) {
+                temp = JSON.parse(data);
+            },
+            error: function (data) {
+                alert("error")
+            }
+        });
+        $("#resultdata1").text(temp['predictTomorrowPrice']);
+        $("#resultdata2").text(String(temp['predictTomorrowIncrease']) + "%");
+        $("#resultdata3").text(String(temp['historyDeviation']) + "%");
+        $("#resulttext0").text(stocktemp['stockName']);
+        $("#resultdata0").text(stocktemp['code']);
+        drawMACD();
+    }
 }

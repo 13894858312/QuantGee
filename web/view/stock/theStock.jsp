@@ -67,9 +67,9 @@
   				<!--<div class="tsimg" id="tsimg">
   					<img src="../../images/riseicon.png" />
   				</div>-->
-  				<div class="tsnprice" id="tsnprice">9.85</div>
+  				<div class="tsnprice" id="tsnprice"></div>
   				<div class="rd" >涨跌幅度</div>
-  				<div class="tsrr" id="tsrrdata">0.68%</div>
+  				<div class="tsrr" id="tsrrdata"></div>
   				<div class="prerangetext"><a href="#anaheadtext" style="color: #000000;">预测涨跌幅:</a></div>
   				<div class="prerangedata" id="prerangedata"></div>
   				<div class="tsab">
@@ -243,6 +243,11 @@
 			</div>
 		</div>
 		<script src="../../js/stock/theStock/stockpredict.js"></script>
+	</div>
+	<div class="theEnd">
+		<div class="theendtext">
+			© 2017 QuantGee All Rights Reserved.
+		</div>
 	</div>
 </body>
 </html>

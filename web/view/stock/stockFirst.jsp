@@ -179,51 +179,51 @@
 			<div class="shangz">
 				<div class="text">
 					<div class="name" id="name1">
-						上证指数
+
 					</div>
 					<div class="code" id="code1">
-						1A0001
+
 					</div>
 				</div>
 				<div class="info">
-					<div class="data" id="yesclose1">昨收:3140.32</div>
-					<div class="data" id="highest1">涨跌幅:10.12%</div>
-					<div class="data" id="todopen1">今开:3132.12</div>
-					<div class="data" id="lowest1">涨跌:3140.32</div>
+					<div class="data" id="yesclose1"></div>
+					<div class="data" id="highest1"></div>
+					<div class="data" id="todopen1"></div>
+					<div class="data" id="lowest1"></div>
 				</div>
 				<div class="recommand" id="firstrecommand"></div>
 			</div>
 			<div class="shenz">
 				<div class="text">
 					<div class="name" id="name2">
-						深证指数
+
 					</div>
 					<div class="code" id="code2">
-						399001
+
 					</div>
 				</div>
 				<div class="info">
-                    <div class="data" id="yesclose2">昨收:3140.32</div>
-                    <div class="data" id="highest2">涨跌幅:10.12%</div>
-                    <div class="data" id="todopen2">今开:3132.12</div>
-                    <div class="data" id="lowest2">涨跌:3140.32</div>
+                    <div class="data" id="yesclose2"></div>
+                    <div class="data" id="highest2"></div>
+                    <div class="data" id="todopen2"></div>
+                    <div class="data" id="lowest2"></div>
 				</div>
                 <div class="recommand" id="secondrecommand"></div>
 			</div>
 			<div class="chuangy">
 				<div class="text">
 					<div class="name" id="name3">
-						创业板指
+
 					</div>
 					<div class="code" id="code3">
-						399006
+
 					</div>
 				</div>
 				<div class="info">
-                    <div class="data" id="yesclose3">昨收:3140.32</div>
-                    <div class="data" id="highest3">涨跌幅:10.12%</div>
-                    <div class="data" id="todopen3">今开:3132.12</div>
-                    <div class="data" id="lowest3">涨跌:3140.32</div>
+                    <div class="data" id="yesclose3"></div>
+                    <div class="data" id="highest3"></div>
+                    <div class="data" id="todopen3"></div>
+                    <div class="data" id="lowest3"></div>
 				</div>
                 <div class="recommand" id="thirdrecommand"></div>
 			</div>
@@ -243,13 +243,13 @@
 					</div>
 					<div class="newscontent">
 						<li class="content">
-							<a id="zqcj11">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="zqcj11"></a>
 						</li>
 						<li class="content">
-							<a id="zqcj22">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="zqcj22"></a>
 						</li>
 						<li class="content">
-							<a id="zqcj33">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="zqcj33"></a>
 						</li>
 						<script src="../../js/marketInfo/news.js"></script>
 					</div>
@@ -263,13 +263,13 @@
 					</div>
 					<div class="newscontent">
 						<li class="content">
-							<a id="gncj11">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="gncj11"></a>
 						</li>
 						<li class="content">
-							<a id="gncj22">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="gncj22"></a>
 						</li>
 						<li class="content">
-							<a id="gncj33">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="gncj33"></a>
 						</li>
                         <script src="../../js/marketInfo/news.js"></script>
 					</div>
@@ -283,13 +283,13 @@
 					</div>
 					<div class="newscontent">
 						<li class="content">
-							<a id="mgwh11">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="mgwh11"></a>
 						</li>
 						<li class="content">
-							<a id="mgwh22">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="mgwh22"></a>
 						</li>
 						<li class="content">
-							<a id="mgwh33">央行5月对三家政策性银行净增加抵押补充贷款476亿</a>
+							<a id="mgwh33"></a>
 						</li>
                         <script src="../../js/marketInfo/news.js"></script>
 					</div>
@@ -297,5 +297,10 @@
 			</div>
 		</div>
   	</div>
+        <div class="theEnd">
+            <div class="theendtext">
+                © 2017 QuantGee All Rights Reserved.
+            </div>
+        </div>
 </body>
 </html>
